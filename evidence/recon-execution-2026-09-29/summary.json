@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "4853dae",
+  "evidenceClass": "E2_HTTP_SIMULATION_AND_ENGINE_FREE_CONTRACTS",
+  "candidateJarSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "candidateContentDigest": "1985cb52b52aafb468845898c33b4419b8368f200b4475494cf09796b62a676f",
+  "pythonTestsPassed": 128,
+  "executionContractChecksPassed": 32,
+  "regressions": [
+    {
+      "log": "frontier-final.log",
+      "tests": 22,
+      "status": "PASS",
+      "sha256": "9b00d7c11248ec5fda2ba3a384a4be4380725b15f5e4c73971237878a9e17749"
+    },
+    {
+      "log": "battle-final.log",
+      "tests": 78,
+      "status": "PASS",
+      "sha256": "496b39ae8696bf3a51a25b5725aad5c9d676a972b755eaf3d93472e7ff19251d"
+    },
+    {
+      "log": "recheck-final.log",
+      "tests": 7,
+      "status": "PASS",
+      "sha256": "3aec0d221907c27cd579cccfd1752cc8149d2576e689167638922c6536066a5f"
+    },
+    {
+      "log": "target-final.log",
+      "tests": 6,
+      "status": "PASS",
+      "sha256": "54c3bcb4578b5fdac3ffceb85cd340658323af061502741f467794232a8d3263"
+    },
+    {
+      "log": "battle-reports.log",
+      "tests": 15,
+      "status": "PASS",
+      "sha256": "432e764160c5b06b41e1864e05386aaf72bcdcdfe2465d19c35fe57144567754"
+    }
+  ],
+  "reproductions": [
+    {
+      "case": "test_moving_actor_is_taken_over_before_frontier_planning",
+      "evidenceClass": "E2_HTTP_SIMULATION_NOT_NATIVE",
+      "baseline": {
+        "traceSha256": "d9a3997f705acd57483262ffe28b4f9343e5a7f7848dc6305b22810e16a90f90",
+        "events": {
+          "recon_order_queued": 0,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 0,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 3,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {
+          "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT": 3
+        }
+      },
+      "candidate": {
+        "traceSha256": "516e4ab9c4ce9f8fffbc81147463e4190a8445ba5b57aeea91b1b1a7c1091ebd",
+        "events": {
+          "recon_order_queued": 1,
+          "recon_order_observed": 1,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 1,
+          "recon_frontier_refreshed": 1,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 3
+        },
+        "blockedReasons": {}
+      }
+    },
+    {
+      "case": "test_order_visible_only_between_decisions_is_still_observed",
+      "evidenceClass": "E2_HTTP_SIMULATION_NOT_NATIVE",
+      "baseline": {
+        "traceSha256": "1cb3a4e510aac4dfccecadb5b96aba613b9e27f8232817149731b1b0a7419d96",
+        "events": {
+          "recon_order_queued": 1,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 0,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {}
+      },
+      "candidate": {
+        "traceSha256": "3caaba2188637a36ea3ee26cfaef87947b961fa1e4f6a58aa7158d6ae19d0338",
+        "events": {
+          "recon_order_queued": 2,
+          "recon_order_observed": 2,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 2,
+          "recon_frontier_refreshed": 1,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {}
+      }
+    },
+    {
+      "case": "test_short_move_completed_between_polls_advances_the_route",
+      "evidenceClass": "E2_HTTP_SIMULATION_NOT_NATIVE",
+      "baseline": {
+        "traceSha256": "5c5da930c62c0ed28b4706211382b9df3553fa6c46ea08fafb909dd1f2ef8f73",
+        "events": {
+          "recon_order_queued": 1,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 0,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {}
+      },
+      "candidate": {
+        "traceSha256": "833d90fda2b904b58396eafa01a9db9ac7fb1da4d921ebd9009eb38806615cc7",
+        "events": {
+          "recon_order_queued": 2,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 2,
+          "recon_progress": 2,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 1,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {}
+      }
+    },
+    {
+      "case": "test_ten_world_unit_first_leg_can_finish_without_active_order_sample",
+      "evidenceClass": "E2_HTTP_SIMULATION_NOT_NATIVE",
+      "baseline": {
+        "traceSha256": "36f32fe116f3179f76cd1980ce95c3b7167a5a38a34bd9fabb4d1d1e97b545b2",
+        "events": {
+          "recon_order_queued": 1,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 0,
+          "recon_progress": 0,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 0,
+          "recon_frontier_blocked": 1,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {
+          "WAYPOINT_REACHED_WITHOUT_LEGAL_CLEARANCE": 1
+        }
+      },
+      "candidate": {
+        "traceSha256": "5d4d78711c005ef4f68dfedc39107026aa22bb8a88ce7405371c07f6712a80ed",
+        "events": {
+          "recon_order_queued": 2,
+          "recon_order_observed": 0,
+          "recon_move_completed_between_samples": 2,
+          "recon_progress": 2,
+          "recon_frontier_refreshed": 0,
+          "recon_frontier_satisfied": 1,
+          "recon_frontier_blocked": 0,
+          "recon_takeover_observed": 0
+        },
+        "blockedReasons": {}
+      }
+    }
+  ],
+  "testSourceSha256": "99e4e98832450702990aef6f0b9c7ff6ee22e65567123c33f41afdfee4c00acd",
+  "notPerformed": [
+    "full game-dependent build/regression",
+    "native/headless or Windows match",
+    "same-game self-play",
+    "human replay import",
+    "win-rate comparison"
+  ],
+  "historicalIterations": [
+    "baseline-final.log contains four expected failures of the frozen old candidate",
+    "short-leg-initial.log preserves the initial new candidate short-leg failure",
+    "battle-initial.log preserves 12 production admission failures before legal production-menu actors were registered"
+  ]
+}

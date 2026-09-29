@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: Java harnesses and Python policy suites on this shell path.
+# Regression: the same 20 Java runs and 15 Python suites as test-win.ps1.
 set -euo pipefail
 root="$(cd "$(dirname "$0")" && pwd)"
 game_jar="${1:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
@@ -7,7 +7,7 @@ libs_dir="${2:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
 bash "$root/build.sh" "$game_jar"
 classpath="$game_jar:$libs_dir/*:$root/dist/rw-agent-bootstrap.jar"
 mkdir -p "$root/build/tests"
-java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/SmokeHarness.java" "$root/tests/BridgeHarness.java" "$root/tests/EconomyHarness.java" "$root/tests/OpeningHarness.java" "$root/tests/ProductionPlanHarness.java" "$root/tests/DiagnosticsHarness.java" "$root/tests/PreflightHarness.java" "$root/tests/ScoutHarness.java" "$root/tests/TerrainMemoryHarness.java" "$root/tests/GuardHarness.java" "$root/tests/CapabilityHarness.java" "$root/tests/TargetCompatibilityHarness.java" "$root/tests/BuilderHarness.java" "$root/tests/CombatHarness.java" "$root/tests/ReportCommitHarness.java"
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/SmokeHarness.java" "$root/tests/BridgeHarness.java" "$root/tests/EconomyHarness.java" "$root/tests/OpeningHarness.java" "$root/tests/ProductionPlanHarness.java" "$root/tests/DiagnosticsHarness.java" "$root/tests/PreflightHarness.java" "$root/tests/ScoutHarness.java" "$root/tests/TerrainMemoryHarness.java" "$root/tests/GuardHarness.java" "$root/tests/CapabilityHarness.java" "$root/tests/TargetCompatibilityHarness.java" "$root/tests/BuilderHarness.java" "$root/tests/ReachabilityHarness.java" "$root/tests/CombatHarness.java" "$root/tests/ReportCommitHarness.java" "$root/tests/ExecutionContractHarness.java"
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" SmokeHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness disabled
@@ -30,6 +30,9 @@ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" GuardHarnes
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" CapabilityHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" TargetCompatibilityHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BuilderHarness
+java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" ReachabilityHarness
+# Isolated harness only; do not enable diagnostics on the user's live game.
+java --add-modules jdk.httpserver -Drwagent.reachabilityDiagnostics=true -cp "$classpath:$root/build/tests" ReachabilityHarness
 python3 "$root/tests/test_frontier.py" "$root/dist/rw-agent-bootstrap.jar"
 
 python3 "$root/tests/test_frontier_reports.py"
@@ -40,8 +43,11 @@ python3 "$root/tests/test_battle_reports.py"
 python3 "$root/tests/test_battle_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_headless_parallel.py"
 python3 "$root/tests/test_ab_aggregate.py"
 python3 "$root/tests/test_ab_campaign.py"
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ReportCommitHarness
+
+java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarness

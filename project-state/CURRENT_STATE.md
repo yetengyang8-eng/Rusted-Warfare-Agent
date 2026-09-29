@@ -1,5 +1,13 @@
 # CURRENT_STATE（当前状态速查）
 
+## 远程突破候选：Recon 执行与最小任务所有权（2026-09-29，未部署）
+
+- 基于 GitHub `4853dae` 的新客户端候选已实现并通过 E2：单位任务归属、旧命令接管、逐观察执行确认、短航段和到达后刷新等待。
+- 待原生验收的 client overlay SHA256：`feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81`。128 项相关 Python 测试、32 项 Java 契约检查通过；四个旧版失效场景有旧/新对照。没有新的 E4 或胜率结论。
+- 交付与复跑：`handoff/HANDOFF_Astra_ReconExecution_2026-09-29.md`；`tools/build_recon_client_overlay.py`；`evidence/recon-execution-2026-09-29/summary.json`。
+- 下方 KnowledgeBacked v0 身份仍指用户已安装候选；本轮没有部署或替换它。上一轮 public-relay patch 仅吸收构建资源和 Linux 回归入口两项，其余未吸收。
+
+
 > 只记录"现在是什么状态"。历史与分析过程见 `助手交接\对话N.txt` / `输出N.txt`。
 
 ## 当前候选

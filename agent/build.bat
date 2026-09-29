@@ -14,6 +14,6 @@ if not exist "%build_root%dist" mkdir "%build_root%dist"
 (for /r "%build_root%src" %%F in (*.java) do echo "%%F") > "%build_root%build\sources.txt"
 "%compiler_java%" -m jdk.compiler/com.sun.tools.javac.Main --release 8 -encoding UTF-8 -cp "%game_jar%" -d "%build_root%build\classes" "@%build_root%build\sources.txt"
 if errorlevel 1 exit /b 1
-"%compiler_java%" -m jdk.jartool/sun.tools.jar.Main --create --file "%build_root%dist\rw-agent-bootstrap.jar" --manifest "%build_root%MANIFEST.MF" -C "%build_root%build\classes" .
+"%compiler_java%" -m jdk.jartool/sun.tools.jar.Main --create --file "%build_root%dist\rw-agent-bootstrap.jar" --manifest "%build_root%MANIFEST.MF" -C "%build_root%build\classes" . -C "%build_root%resources" .
 if errorlevel 1 exit /b 1
 echo Built: %build_root%dist\rw-agent-bootstrap.jar
