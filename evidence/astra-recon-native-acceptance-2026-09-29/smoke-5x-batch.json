@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "mode": "smoke",
+  "episodes": [
+    {
+      "episode": 1,
+      "mode": "smoke",
+      "map": "maps/skirmish/[p2]Small_Island (2p).tmx",
+      "status": "PASS",
+      "phases": [
+        {
+          "name": "preflight",
+          "exitCode": 0,
+          "wallSeconds": 0.148
+        },
+        {
+          "name": "roundtrip",
+          "exitCode": 0,
+          "wallSeconds": 2.866,
+          "verifiedReport": {
+            "file": "roundtrip-1790692671283-a47c3e55.jsonl",
+            "sha256": "5e22fed0c3bb87acdea968da87b9900177ac08072d8eaf68b4d22000d50ed68c",
+            "version": "0.07-alpha1",
+            "task": "roundtrip",
+            "result": "PASS",
+            "classification": "PASS",
+            "reportedOutcome": "PASS",
+            "phase": null,
+            "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+            "wallDurationSeconds": 2.682,
+            "commands": 2,
+            "observations": 6,
+            "eventCommands": 2,
+            "eventObservations": 6,
+            "newMines": 0,
+            "newFactories": 0,
+            "newTanks": 0,
+            "expansionStatus": null,
+            "overlapTankCount": 0,
+            "scoutMoves": 0,
+            "scoutArrivals": 0,
+            "scoutedMines": 0,
+            "newlyExploredTiles": 0,
+            "scoutRetreats": 0,
+            "escortsAssigned": 0,
+            "escortsConfirmed": 0,
+            "extractorIntervals": [],
+            "unfinishedExtractorIds": [],
+            "issues": [],
+            "summary": {
+              "outcome": "PASS",
+              "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+              "observations": 6,
+              "commands": 2,
+              "arrivals": 2
+            },
+            "allSummaries": [
+              {
+                "outcome": "PASS",
+                "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+                "observations": 6,
+                "commands": 2,
+                "arrivals": 2
+              }
+            ],
+            "eventCounts": {
+              "health": 1,
+              "observation": 6,
+              "plan": 1,
+              "action": 2,
+              "command_result": 2,
+              "arrival": 2,
+              "summary": 1
+            },
+            "validEventCount": 15,
+            "nonemptyLineCount": 15
+          }
+        }
+      ],
+      "startedUtc": "2026-09-29T14:37:48.844904+00:00",
+      "workDirectory": "episode-001",
+      "workDirectoryAbsolute": "G:\\deepseek 工作台\\助手交接\\astra_native_acceptance_20260929\\smoke5x\\run-20260929T143748-48cd68\\episode-001",
+      "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "agentJarSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+      "port": 12859,
+      "enginePid": 28288,
+      "sessionId": "7a77c35c-1355-45de-8b2f-9f30df57794a",
+      "readyUtc": "2026-09-29T14:37:51.070545+00:00",
+      "reportDirectory": "G:\\deepseek 工作台\\助手交接\\astra_native_acceptance_20260929\\smoke5x\\run-20260929T143748-48cd68\\episode-001\\rw-agent-reports",
+      "lockPath": "G:\\deepseek 工作台\\助手交接\\astra_native_acceptance_20260929\\smoke5x\\run-20260929T143748-48cd68\\episode-001\\rw-agent-reports\\economy.lock",
+      "finalFrame": 951,
+      "engineExitCode": 0,
+      "engineAliveAfterCleanup": false,
+      "runtime": {
+        "runnerVersion": "0.07-alpha1",
+        "gameVersion": "1.15",
+        "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "map": "maps/skirmish/[p2]Small_Island (2p).tmx",
+        "port": 12859,
+        "requestedSpeed": 5.0,
+        "aiDifficulty": 0,
+        "seed": 220677435,
+        "seedReproducibilityVerified": false,
+        "fogEnabled": true,
+        "lineOfSightFog": true,
+        "status": "STOP_REQUESTED",
+        "ticks": 961,
+        "frame": 961,
+        "gameTimeMs": 15376,
+        "wallSeconds": 3.2160195,
+        "simulatedSecondsPerWallSecond": 4.781065537693412
+      },
+      "wallSeconds": 5.812,
+      "finishedUtc": "2026-09-29T14:37:54.656534+00:00"
+    }
+  ],
+  "completed": 1,
+  "passed": 1,
+  "matchResults": {
+    "VICTORY": 0,
+    "DEFEAT": 0,
+    "ONGOING": 0,
+    "INVALID": 0,
+    "NO_REPORT": 0
+  },
+  "completedMatches": 0,
+  "note": "PASS means task completion. In match mode, inspect battle matchOutcome: VICTORY, DEFEAT or ONGOING. Neither is a trained agent."
+}
