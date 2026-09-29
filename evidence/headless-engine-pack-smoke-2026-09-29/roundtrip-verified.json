@@ -1,0 +1,58 @@
+{
+  "file": "roundtrip-1790691884808-a8b4061d.jsonl",
+  "sha256": "ed81e7ac0635e23948fa2ddf0824ccc7ace1536a17836c6b17575203d943f637",
+  "version": "0.07-alpha1",
+  "task": "roundtrip",
+  "result": "PASS",
+  "classification": "PASS",
+  "reportedOutcome": "PASS",
+  "phase": null,
+  "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+  "wallDurationSeconds": 3.201,
+  "commands": 2,
+  "observations": 7,
+  "eventCommands": 2,
+  "eventObservations": 7,
+  "newMines": 0,
+  "newFactories": 0,
+  "newTanks": 0,
+  "expansionStatus": null,
+  "overlapTankCount": 0,
+  "scoutMoves": 0,
+  "scoutArrivals": 0,
+  "scoutedMines": 0,
+  "newlyExploredTiles": 0,
+  "scoutRetreats": 0,
+  "escortsAssigned": 0,
+  "escortsConfirmed": 0,
+  "extractorIntervals": [],
+  "unfinishedExtractorIds": [],
+  "issues": [],
+  "summary": {
+    "outcome": "PASS",
+    "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+    "observations": 7,
+    "commands": 2,
+    "arrivals": 2
+  },
+  "allSummaries": [
+    {
+      "outcome": "PASS",
+      "reason": "Both legs arrived within 20 world units; each leg observed at least 30 world units displacement",
+      "observations": 7,
+      "commands": 2,
+      "arrivals": 2
+    }
+  ],
+  "eventCounts": {
+    "health": 1,
+    "observation": 7,
+    "plan": 1,
+    "action": 2,
+    "command_result": 2,
+    "arrival": 2,
+    "summary": 1
+  },
+  "validEventCount": 16,
+  "nonemptyLineCount": 16
+}

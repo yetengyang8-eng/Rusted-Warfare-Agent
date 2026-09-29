@@ -1,0 +1,54 @@
+﻿{
+    "schemaVersion":  1,
+    "localCorpusLabel":  "铁锈战争_1.15_按地图分类_3320局",
+    "measuredFileCount":  3289,
+    "measuredBytes":  439746552,
+    "maps":  [
+                 {
+                     "map":  "冰岛",
+                     "files":  1702,
+                     "bytes":  219256467
+                 },
+                 {
+                     "map":  "登岛",
+                     "files":  324,
+                     "bytes":  44856467
+                 },
+                 {
+                     "map":  "湖陆",
+                     "files":  50,
+                     "bytes":  6754269
+                 },
+                 {
+                     "map":  "火桥",
+                     "files":  95,
+                     "bytes":  11922366
+                 },
+                 {
+                     "map":  "巨岛",
+                     "files":  72,
+                     "bytes":  11982848
+                 },
+                 {
+                     "map":  "两极",
+                     "files":  97,
+                     "bytes":  12955479
+                 },
+                 {
+                     "map":  "山丘",
+                     "files":  101,
+                     "bytes":  15688222
+                 },
+                 {
+                     "map":  "小岛",
+                     "files":  785,
+                     "bytes":  110104907
+                 },
+                 {
+                     "map":  "直岛",
+                     "files":  63,
+                     "bytes":  6225527
+                 }
+             ],
+    "note":  "The directory label says 3320; current measured file count is authoritative for this snapshot. Full corpus is not mirrored to GitHub."
+}

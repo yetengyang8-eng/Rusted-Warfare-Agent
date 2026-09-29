@@ -36,3 +36,6 @@ The historical acceptance JSONL files required by `agent/tests/test_reports.py` 
 ## Intentionally not public
 
 The repository still does **not** distribute the commercial Rusted Warfare executable/JAR/assets/JVM, private third-party source snapshots, the full 3320-replay archive, or personal chat archives. Native-engine execution therefore still requires a compatible user-supplied Rusted Warfare 1.15 installation. Their absence is intentional, not a missing relay upload.
+## Headless engine relay self-test
+
+`headless-engine-pack-smoke-2026-09-29/` records a local clean-directory verification of `astra-relay/headless-engine-1.15.zip`: 1209/1209 files verified, native 1.15 Small Island loaded, and `run_headless.py --mode smoke --speed 4` completed PASS with the stable KnowledgeBacked v0 candidate. This removes the previous remote-engine-resource gap for future Astra headless validation.
