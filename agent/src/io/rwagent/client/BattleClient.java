@@ -10,7 +10,8 @@ public final class BattleClient {
     private final int port=Integer.getInteger("rwagent.port",47653);
     private BufferedWriter log;private FileOutputStream output;private String session;
     private int commands,observations,losses,recruits,attacks,confirmed,retreats,techs;
-    private long time,lastDecision=-1000,nextCommand,lastTactic=-10000,startTime,lastFrame=-1,frameAt=System.nanoTime();
+    private long time,lastDecision=-1000,lastTactic=-10000,startTime,lastFrame=-1,frameAt=System.nanoTime();
+    private final CommandArbiter execution=new CommandArbiter();
     private final Set<Long> seenOwn=new HashSet<Long>(),lost=new HashSet<Long>();
     private final Map<Long,Pending> pending=new LinkedHashMap<Long,Pending>();
     private final Map<Long,Long> resting=new LinkedHashMap<Long,Long>();
@@ -87,11 +88,12 @@ public final class BattleClient {
         final int potentialInfoScore,potentialNeverSeenTiles,potentialDeepFogTiles,potentialStaleFogTiles;
         final List<Integer> routeTiles;
         int routeCursor,routeWaypointIndex;
-        long unitId=-1,lastOrderAt=-100000,firstOrderAt=-1,firstProgressAt=-1,retryAt,progressAt,lastProgressEventAt=-100000;
+        long unitId=-1,lastOrderAt=-100000,firstOrderAt=-1,firstProgressAt=-1,waypointArrivedAt=-1,retryAt,progressAt,lastProgressEventAt=-100000;
         double waypointX,waypointY,bestDistance=Double.MAX_VALUE;
         double segmentStartX,segmentStartY;
         int orders,progressEvents;
-        boolean orderObserved,everOrderObserved,awaitFreshOwnObservation;
+        boolean orderObserved,everOrderObserved,executionObserved,everExecutionObserved,awaitFreshOwnObservation;
+        MoveExecution move;
         final Set<Long> failedUnits=new LinkedHashSet<Long>();
         String approach="DIRECT";
         ReconTask(long taskId,Map<String,Object> intel,long now){
@@ -132,6 +134,14 @@ public final class BattleClient {
     /** Expendable assignment survives task completion so a low-value actor never re-enters army attack-move. */
     private final Set<Long> expendableScouts=new LinkedHashSet<Long>();
     private ReconTask reconTask;
+    /** Ownership precedes planning when an old native command is still moving the actor. */
+    private static final class ReconAcquisition {
+        final long taskId,unitId,startedAt;
+        MoveExecution hold;
+        ReconAcquisition(long taskId,long unitId,long now){this.taskId=taskId;this.unitId=unitId;startedAt=now;}
+    }
+    private ReconAcquisition reconAcquisition;
+    private long reconMovesCompletedBetweenSamples,frontierTasksSatisfied;
     private long reconRecallUnitId=-1,reconRecallQueuedAt=-1;
     private long reconTaskCounter,reconCreated,reconOrders,reconOrdersObserved,reconResolvedAfterObservedMove,reconReacquired,reconCleared,reconBlocked,lastReconDeferredAt=-100000;
     private long frontierTasksCreated,frontierTasksRefreshed,frontierTasksAdvanced,frontierTasksBlocked,frontierTasksPreempted,expendableTransfers,lastFrontierPlanAt=-100000;
@@ -513,6 +523,7 @@ public final class BattleClient {
                         +",\"landFactoryTargetMax\":"+landFactoryTargetMax
                         +",\"reconEnabled\":"+reconEnabled+",\"reconFrontierEnabled\":"+reconFrontierEnabled
                         +",\"reconMinReadyArmy\":7,\"reconThreatBufferWorld\":80"
+                        +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
                         +",\"reconExpendableHpMaxFraction\":0.45,\"reconFrontierMinMainForce\":6"
                         +"}");
                 long wallStart=System.nanoTime();wallStartNanos=wallStart;
@@ -522,6 +533,7 @@ public final class BattleClient {
                     if(time-startTime>=seconds*1000L){outcome="PARTIAL";reason="Game-time budget reached without native result";exit=2;break;}
                     if((System.nanoTime()-wallStart)/1e9>2400)throw new IllegalStateException("Wall-time limit");
                     account(state);
+                    observeReconMotion(state);
                     if(time-lastDecision>=1000){
                         // Speed readiness (对话35): the decision GATE is game time, but the loop is wall
                         // time, so the real decision interval in game ms grows with the game speed. It is
@@ -533,7 +545,7 @@ public final class BattleClient {
                         String scoutPath="/scout/observe";
                         if(reconEnabled&&reconTask!=null&&reconTask.frontier())
                             scoutPath+="?tile="+reconTask.frontierTile+"&since="
-                                    +(reconTask.firstProgressAt>=0?reconTask.firstProgressAt:reconTask.createdAt);
+                                    +reconTask.createdAt;
                         Map<String,Object> scoutState=get(scoutPath,"scout_visibility");check(scoutState);
                         lastScout=scoutState;
                         confirm(state);updatePending(state);
@@ -541,11 +553,12 @@ public final class BattleClient {
                         if(reconEnabled)updateRecon(state,enemies);
                         builderRecovery(state);
                         economyLane(state);
-                        if(time>=nextCommand){
+                        if(execution.ready(time)){
                             // A frontier scout with a refreshed own position needs its first order
                             // before its old army attack-move can carry it away. Rechecks and later
                             // scout orders keep the ordinary production grace period.
                             if(reconEnabled&&issueReconRecall(state)){}
+                            else if(reconEnabled&&issueReconAcquisition(state)){}
                             else if(reconEnabled&&reconTask!=null
                                     &&(time-reconTask.createdAt>=10000
                                             ||(reconTask.frontier()&&reconTask.unitId<0
@@ -576,6 +589,9 @@ public final class BattleClient {
         }catch(Exception err){reason=err.toString();System.err.println(reason);}
         finally{
             if(log!=null)try{
+                if(reconAcquisition!=null)cancelReconAcquisition("CONTROLLER_ENDED");
+                if(reconTask!=null)releaseOwnership(reconTask.taskId,"CONTROLLER_ENDED");
+                execution.clear();
                 // Economy v1a guardrail. An intent still pending when the match ends is NORMAL: it was
                 // opened seconds ago and its timeout has not arrived. What would be a defect is a reserve
                 // that OUTLIVED its deadline, so that is what the stuck event now means, and a pending
@@ -630,6 +646,8 @@ public final class BattleClient {
                     +",\"reconEnabled\":"+reconEnabled
                     +",\"reconTasksCreated\":"+reconCreated+",\"reconOrdersQueued\":"+reconOrders
                     +",\"reconOrdersObserved\":"+reconOrdersObserved
+                    +",\"reconMovesCompletedBetweenSamples\":"+reconMovesCompletedBetweenSamples
+                    +",\"frontierTasksSatisfiedByTeamVision\":"+frontierTasksSatisfied
                     +",\"reconResolvedAfterObservedMove\":"+reconResolvedAfterObservedMove
                     +",\"reconReacquired\":"+reconReacquired+",\"reconSitesCleared\":"+reconCleared
                     +",\"reconBlocked\":"+reconBlocked+",\"reconTaskPendingAtEnd\":"+(reconTask!=null)
@@ -894,6 +912,8 @@ public final class BattleClient {
         }
         Map<String,Object> menu=get("/combat/production","production_menu");check(menu);
         List<Map<String,Object>> factories=list(menu,"factories");
+        List<Long> producerIds=new ArrayList<Long>();for(Map<String,Object> factory:factories)producerIds.add(id(factory));
+        execution.observeProductionActors(execution.stamp(),producerIds);
         // P2-B2 Global Production Budget (杈撳嚭13 搂3-搂7). The mainline unit and its primary producer are
         // derived from the native menus, never from factory ids or creation order: the mainline is the
         // highest scoring action any producer offers, and the primary is the first producer offering it.
@@ -1254,9 +1274,89 @@ public final class BattleClient {
         if("airFactory".equals(type)||"landFactory".equals(type)||"seaFactory".equals(type))return 1;
         return 2;
     }
+    private static String reconOwner(long taskId){return "recon:"+taskId;}
+    private void releaseOwnership(long taskId,String reason)throws Exception{
+        execution.release(reconOwner(taskId));
+        event("task_ownership_released","{\"taskId\":"+taskId+",\"reason\":"+Json.quote(reason)+",\"gameTimeMs\":"+time+"}");
+    }
+    private boolean claimRecon(long taskId,long unitId)throws Exception{
+        if(!execution.claim(reconOwner(taskId),unitId))return false;
+        event("task_ownership_acquired","{\"taskId\":"+taskId+",\"unitId\":"+unitId+",\"sessionId\":"+Json.quote(execution.stamp().session)
+                +",\"player\":"+Json.quote(execution.stamp().player)+",\"frame\":"+execution.stamp().frame+",\"gameTimeMs\":"+time+"}");
+        return true;
+    }
+    private void cancelReconAcquisition(String reason)throws Exception{
+        if(reconAcquisition==null)return;
+        long taskId=reconAcquisition.taskId;
+        event("recon_takeover_cancelled","{\"taskId\":"+taskId+",\"unitId\":"+reconAcquisition.unitId+",\"reason\":"+Json.quote(reason)+",\"gameTimeMs\":"+time+"}");
+        reconAcquisition=null;releaseOwnership(taskId,reason);lastFrontierPlanAt=time;
+    }
+    private boolean issueReconAcquisition(Map<String,Object> state)throws Exception{
+        if(reconAcquisition==null||reconAcquisition.hold!=null)return false;
+        ReconAcquisition acquisition=reconAcquisition;
+        Map<String,Object> actor=find(state,acquisition.unitId);
+        if(actor==null||!armed(actor)){cancelReconAcquisition("SCOUT_LOST");return false;}
+        CommandArbiter.MoveIntent intent=new CommandArbiter.MoveIntent(execution.stamp(),reconOwner(acquisition.taskId),
+                acquisition.unitId,n(actor,"x"),n(actor,"y"));
+        acquisition.hold=submitMove(intent,actor,true);
+        if(acquisition.hold==null){cancelReconAcquisition("TAKEOVER_COMMAND_REJECTED");return false;}
+        event("recon_takeover_queued","{\"taskId\":"+acquisition.taskId+",\"unitId\":"+acquisition.unitId
+                +",\"requestId\":"+Json.quote(acquisition.hold.requestId)+",\"acceptedFrame\":"+acquisition.hold.acceptedFrame+",\"gameTimeMs\":"+time+"}");
+        return true;
+    }
+    private MoveExecution.Witness moveWitness(MoveExecution move,Map<String,Object> actor){
+        if(move==null||actor==null||!armed(actor))return MoveExecution.Witness.NONE;
+        return move.observe(execution.stamp(),id(actor),n(actor,"x"),n(actor,"y"),stringOrNull(actor,"orderType"),
+                actor.get("orderX") instanceof Number?Double.valueOf(n(actor,"orderX")):null,
+                actor.get("orderY") instanceof Number?Double.valueOf(n(actor,"orderY")):null);
+    }
+    /** Observe execution on every poll, including samples between policy decisions. */
+    private void observeReconMotion(Map<String,Object> state)throws Exception{
+        ReconTask task=reconTask;if(task==null||task.unitId<0||task.move==null)return;
+        Map<String,Object> actor=find(state,task.unitId);
+        MoveExecution.Witness witness=moveWitness(task.move,actor);
+        if(witness==MoveExecution.Witness.NONE)return;
+        if(!task.executionObserved){
+            task.executionObserved=true;task.everExecutionObserved=true;
+            Map<String,Object> data=reconData(task);data.put("requestId",task.move.requestId);
+            data.put("acceptedFrame",task.move.acceptedFrame);data.put("observedFrame",execution.stamp().frame);
+            data.put("witness",witness.name());
+            if(witness==MoveExecution.Witness.ACTIVE_ORDER){
+                task.orderObserved=true;task.everOrderObserved=true;reconOrdersObserved++;
+                data.put("orderType",actor.get("orderType"));event("recon_order_observed",json(data));
+            }else{
+                reconMovesCompletedBetweenSamples++;event("recon_move_completed_between_samples",json(data));
+            }
+        }
+        double d=distance(actor,task.waypointX,task.waypointY);
+        double initialDistance=Math.hypot(task.move.startX-task.waypointX,task.move.startY-task.waypointY);
+        double progressThreshold=Math.min(12,Math.max(.5,initialDistance*.25));
+        if(d+progressThreshold<task.bestDistance){
+            task.bestDistance=d;task.progressAt=time;task.progressEvents++;
+            if(task.firstProgressAt<0)task.firstProgressAt=time;
+            if(time-task.lastProgressEventAt>=5000){
+                Map<String,Object> data=reconData(task);data.put("distanceToWaypoint",Double.valueOf(d));
+                data.put("scoutX",Double.valueOf(n(actor,"x")));data.put("scoutY",Double.valueOf(n(actor,"y")));
+                event("recon_progress",json(data));task.lastProgressEventAt=time;
+            }
+        }
+        if(task.frontier()&&task.progressEvents>0&&atReconWaypoint(state,actor,task)&&task.routeCursor<task.routeWaypointIndex){
+            task.routeCursor=task.routeWaypointIndex;task.waypointArrivedAt=time;
+            Map<String,Object> reached=reconData(task);reached.put("routeCursor",Integer.valueOf(task.routeCursor));
+            reached.put("waypointX",Double.valueOf(task.waypointX));reached.put("waypointY",Double.valueOf(task.waypointY));
+            event("recon_waypoint_reached",json(reached));
+        }
+    }
+    private static boolean atReconWaypoint(Map<String,Object> state,Map<String,Object> actor,ReconTask task){
+        Map<String,Object> map=obj(state.get("map"));double tw=n(map,"tileWidth"),th=n(map,"tileHeight");
+        return distance(actor,task.waypointX,task.waypointY)<12
+                &&(int)Math.floor(n(actor,"x")/tw)==(int)Math.floor(task.waypointX/tw)
+                &&(int)Math.floor(n(actor,"y")/th)==(int)Math.floor(task.waypointY/th);
+    }
     private Map<String,Object> reconData(ReconTask task){
         Map<String,Object> data=new LinkedHashMap<String,Object>();
         data.put("taskId",Long.valueOf(task.taskId));data.put("kind",task.kind);
+        data.put("executionObserved",Boolean.valueOf(task.everExecutionObserved));
         data.put("enemyId",task.frontier()?null:Long.valueOf(task.enemyId));
         data.put("sourceType",task.sourceType);data.put("lastSeenGameTimeMs",Long.valueOf(task.lastSeen));
         data.put("lastKnownX",Double.valueOf(task.x));data.put("lastKnownY",Double.valueOf(task.y));
@@ -1287,12 +1387,13 @@ public final class BattleClient {
             recheckNextAfterFrontier=true;
             if("recon_frontier_refreshed".equals(kind))frontierTasksRefreshed++;
             else if("recon_frontier_advanced".equals(kind))frontierTasksAdvanced++;
+            else if("recon_frontier_satisfied".equals(kind))frontierTasksSatisfied++;
             else if("recon_frontier_preempted".equals(kind))frontierTasksPreempted++;
             else frontierTasksBlocked++;
             if("recon_frontier_blocked".equals(kind)&&!("DEFENSE_PREEMPTION".equals(reason)
                     ||"SCOUT_LOST_BEFORE_ORDER".equals(reason)
                     ||"ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT".equals(reason)
-                    ||"COMMAND_REJECTED".equals(reason))) {
+                    ||"COMMAND_REJECTED".equals(reason)||"ASSIGNMENT_TIMEOUT".equals(reason))) {
                 frontierBlockedUntil.put(Long.valueOf(task.frontierTile),Long.valueOf(time+120000));
                 while(frontierBlockedUntil.size()>48)frontierBlockedUntil.remove(frontierBlockedUntil.keySet().iterator().next());
             }
@@ -1306,7 +1407,7 @@ public final class BattleClient {
             reconClosedObservations.put(Long.valueOf(task.enemyId),Long.valueOf(task.lastSeen));
             while(reconClosedObservations.size()>256)reconClosedObservations.remove(reconClosedObservations.keySet().iterator().next());
         }
-        reconTask=null;
+        releaseOwnership(task.taskId,reason);reconTask=null;
     }
     private void deferRecon(String reason,Map<String,Object> state)throws Exception{
         if(reconTask==null||time-lastReconDeferredAt<15000)return;
@@ -1333,7 +1434,7 @@ public final class BattleClient {
             closeRecon("DEFENSE_PREEMPTION".equals(reason)?"recon_frontier_preempted":"recon_frontier_blocked",reason);
             return;
         }
-        task.unitId=-1;
+        releaseOwnership(task.taskId,reason);task.move=null;task.executionObserved=false;task.unitId=-1;
         if("SCOUT_DAMAGED".equals(reason)){
             Map<String,Object> actor=find(state,oldId);
             if(actor!=null&&armed(actor)){
@@ -1376,8 +1477,10 @@ public final class BattleClient {
             // accepted when the task was created can now be checked before any move.
             task.awaitFreshOwnObservation=false;
             // Defense wins even when a legal region reveal and a task close occur in this same tick.
-            int pendingMainMinimum=expendableScouts.contains(Long.valueOf(task.preferredUnitId))?6:7;
-            if(task.frontier()&&task.unitId<0
+            int pendingMainMinimum=6; // pending ownership has already removed the actor from mainArmy
+            if(task.frontier()&&task.unitId<0&&time-task.createdAt>20000){
+                closeRecon("recon_frontier_blocked","ASSIGNMENT_TIMEOUT");
+            }else if(task.frontier()&&task.unitId<0
                     &&(URGENCY_EMERGENCY.equals(militaryUrgency)
                             ||mainArmy(state).size()<pendingMainMinimum)){
                 // A planned but unassigned scout must return to the main force immediately.
@@ -1397,6 +1500,9 @@ public final class BattleClient {
                         ?((Number)region.get("revealedStaleSince")).intValue():0;
                 long latestReveal=region!=null&&region.get("latestRelevantRevealGameTimeMs") instanceof Number
                         ?((Number)region.get("latestRelevantRevealGameTimeMs")).longValue():-1;
+                boolean matchingRegion=region!=null&&region.get("tile") instanceof Number
+                        &&((Number)region.get("tile")).longValue()==task.frontierTile;
+                if(!matchingRegion){deepReveals=0;staleReveals=0;}
                 if(task.everOrderObserved&&task.progressEvents>0&&task.firstProgressAt>=0
                         &&latestReveal>task.firstProgressAt&&(deepReveals>0||staleReveals>0)){
                     Map<String,Object> data=reconData(task);
@@ -1406,6 +1512,11 @@ public final class BattleClient {
                     data.put("source","TEAM_LEGAL_VISION_STRICTLY_AFTER_OWN_PROGRESS");
                     event("recon_frontier_memory_update",json(data));
                     closeRecon("recon_frontier_refreshed","TARGET_REGION_LEGALLY_REVEALED");
+                }else if(task.everExecutionObserved&&task.progressEvents>0&&latestReveal>task.createdAt
+                        &&(deepReveals>0||staleReveals>0)){
+                    // Coarse sampling can observe arrival AFTER the team already revealed the region.
+                    // The information goal is satisfied; do not claim a strictly ordered scout refresh.
+                    closeRecon("recon_frontier_satisfied","TEAM_REFRESH_WITHOUT_STRICT_ACTOR_ORDERING");
                 }else if(task.firstOrderAt>=0&&time-task.firstOrderAt>120000){
                     closeRecon("recon_frontier_blocked","ACTIVE_FRONTIER_TIMEOUT");
                 }
@@ -1430,7 +1541,7 @@ public final class BattleClient {
                         ||(task.frontier()?mainArmy(state).size()<6:readyReconArmy(state).size()<7))
                     releaseReconActor(state,"DEFENSE_PREEMPTION",false);
                 else if(!task.frontier()&&n(actor,"hp")<n(actor,"maxHp")*.35)releaseReconActor(state,"SCOUT_DAMAGED",true);
-                else if(task.frontier()&&task.orderObserved&&task.orders>0
+                else if(task.frontier()&&task.executionObserved&&task.orders>0
                         &&distanceFromSegment(n(actor,"x"),n(actor,"y"),task.segmentStartX,task.segmentStartY,
                                 task.waypointX,task.waypointY)>80)
                     releaseReconActor(state,"NATIVE_ROUTE_DEVIATION",true);
@@ -1439,23 +1550,7 @@ public final class BattleClient {
                     releaseReconActor(state,"NEW_KNOWN_THREAT_CORRIDOR",true);
                 else {
                     double d=distance(actor,task.waypointX,task.waypointY);
-                    if(task.orders>0&&!task.orderObserved&&"move".equals(actor.get("orderType"))
-                            &&actor.get("orderX") instanceof Number&&actor.get("orderY") instanceof Number
-                            &&Math.hypot(n(actor,"orderX")-task.waypointX,n(actor,"orderY")-task.waypointY)<15){
-                        task.orderObserved=true;task.everOrderObserved=true;reconOrdersObserved++;
-                        Map<String,Object> data=reconData(task);
-                        data.put("orderType",actor.get("orderType"));event("recon_order_observed",json(data));
-                    }
-                    if(task.orderObserved&&d+12<task.bestDistance){
-                        task.bestDistance=d;task.progressAt=time;task.progressEvents++;
-                        if(task.firstProgressAt<0)task.firstProgressAt=time;
-                        if(time-task.lastProgressEventAt>=5000){
-                            Map<String,Object> data=reconData(task);data.put("distanceToWaypoint",Double.valueOf(d));
-                            data.put("scoutX",Double.valueOf(n(actor,"x")));data.put("scoutY",Double.valueOf(n(actor,"y")));
-                            event("recon_progress",json(data));task.lastProgressEventAt=time;
-                        }
-                    }
-                    if(task.frontier()&&task.orderObserved&&task.progressEvents>0&&d<20){
+                    if(task.frontier()&&task.executionObserved&&task.progressEvents>0&&atReconWaypoint(state,actor,task)){
                         if(task.routeCursor<task.routeWaypointIndex){
                             task.routeCursor=task.routeWaypointIndex;
                             Map<String,Object> reached=reconData(task);
@@ -1464,7 +1559,7 @@ public final class BattleClient {
                             reached.put("waypointY",Double.valueOf(task.waypointY));
                             event("recon_waypoint_reached",json(reached));
                         }
-                        if(task.routeCursor>=task.routeTiles.size()-1&&time-task.lastOrderAt>8000)
+                        if(task.routeCursor>=task.routeTiles.size()-1&&task.waypointArrivedAt>=0&&time-task.waypointArrivedAt>8000)
                             closeRecon(task.targetTile==task.frontierTile?"recon_frontier_blocked":"recon_frontier_advanced",
                                     task.targetTile==task.frontierTile?"WAYPOINT_REACHED_WITHOUT_REGION_REFRESH":"SAFE_ROUTE_STEP_COMPLETED");
                     }else if(task.orders>0&&time-task.progressAt>35000)
@@ -1473,6 +1568,7 @@ public final class BattleClient {
             }
         }
         if(reconTask!=null)return;
+        if(reconAcquisition!=null){tryCreateFrontier(state);return;}
         if(reconRecallUnitId>=0)return; // finish a queued recall before giving either Recon lane another actor
         if(!(enemies.get("enemyIntel") instanceof List<?>)){
             tryCreateFrontier(state);return; // old bridge/test fixtures still allow legal map memory
@@ -1505,25 +1601,50 @@ public final class BattleClient {
         return until==null||time>=until.longValue();
     }
     private boolean tryCreateFrontier(Map<String,Object> state)throws Exception{
-        if(!reconFrontierEnabled||reconRecallUnitId>=0||URGENCY_EMERGENCY.equals(militaryUrgency)
-                ||time-lastFrontierPlanAt<15000)return false;
-        List<Map<String,Object>> main=mainArmy(state);
-        if(main.size()<6)return false;
-        Map<String,Object> chosen=null;
-        if(!expendableScouts.isEmpty()){
-            for(Long scoutId:expendableScouts){
-                Map<String,Object> unit=find(state,scoutId.longValue());
-                if(unit!=null&&armed(unit)){chosen=unit;break;}
+        Map<String,Object> chosen=null;long taskId;
+        if(reconAcquisition!=null){
+            ReconAcquisition acquisition=reconAcquisition;chosen=find(state,acquisition.unitId);
+            if(chosen==null||!armed(chosen)){cancelReconAcquisition("SCOUT_LOST");return false;}
+            if(URGENCY_EMERGENCY.equals(militaryUrgency)||mainArmy(state).size()<6){cancelReconAcquisition("DEFENSE_PREEMPTION");return false;}
+            if(time-acquisition.startedAt>20000){cancelReconAcquisition("TAKEOVER_TIMEOUT");return false;}
+            if(acquisition.hold==null||moveWitness(acquisition.hold,chosen)==MoveExecution.Witness.NONE
+                    ||distance(chosen,acquisition.hold.intent.x,acquisition.hold.intent.y)>=12)return true;
+            taskId=acquisition.taskId;
+            event("recon_takeover_observed","{\"taskId\":"+taskId+",\"unitId\":"+acquisition.unitId
+                    +",\"frame\":"+execution.stamp().frame+",\"gameTimeMs\":"+time+"}");
+        }else{
+            if(!reconFrontierEnabled||reconRecallUnitId>=0||URGENCY_EMERGENCY.equals(militaryUrgency)
+                    ||time-lastFrontierPlanAt<15000)return false;
+            List<Map<String,Object>> main=mainArmy(state);if(main.size()<6)return false;
+            if(!expendableScouts.isEmpty()){
+                for(Long scoutId:expendableScouts){
+                    Map<String,Object> unit=find(state,scoutId.longValue());
+                    if(unit!=null&&armed(unit)&&!execution.reserved(id(unit))){chosen=unit;break;}
+                }
+            }else if(main.size()>=7){
+                double lowest=Double.MAX_VALUE;
+                for(Map<String,Object> unit:main)if(expendableEligible(unit)){
+                    double ratio=n(unit,"hp")/n(unit,"maxHp");
+                    if(ratio<lowest){lowest=ratio;chosen=unit;}
+                }
             }
-        }else if(main.size()>=7){
-            double lowest=Double.MAX_VALUE;
-            for(Map<String,Object> unit:main)if(expendableEligible(unit)){
-                double ratio=n(unit,"hp")/n(unit,"maxHp");
-                if(ratio<lowest){lowest=ratio;chosen=unit;}
+            if(chosen==null)return false;
+            taskId=++reconTaskCounter;if(!claimRecon(taskId,id(chosen)))return false;
+            // Exclusion from FUTURE army orders does not cancel an EXISTING native order.
+            // Stop that order using the ordinary, rate-limited native move to a legal own position.
+            // Do not plan until a later own observation confirms takeover at that position.
+            if(chosen.get("orderType")!=null){
+                reconAcquisition=new ReconAcquisition(taskId,id(chosen),time);return true;
             }
         }
-        if(chosen==null)return false;
         lastFrontierPlanAt=time;
+        try{return createFrontierPlan(state,chosen,taskId);}
+        finally{
+            reconAcquisition=null;
+            if(reconTask==null||reconTask.taskId!=taskId)releaseOwnership(taskId,"NO_VALID_FRONTIER_PLAN");
+        }
+    }
+    private boolean createFrontierPlan(Map<String,Object> state,Map<String,Object> chosen,long taskId)throws Exception{
         StringBuilder avoid=new StringBuilder();
         Iterator<Map.Entry<Long,Long>> blocks=frontierBlockedUntil.entrySet().iterator();
         while(blocks.hasNext()){
@@ -1567,7 +1688,7 @@ public final class BattleClient {
                     +",\"gameTimeMs\":"+time+"}");
             return false;
         }
-        reconTask=new ReconTask(++reconTaskCounter,plan,id(chosen),time);
+        reconTask=new ReconTask(taskId,plan,id(chosen),time);
         // The planner and this client can observe the same unit at different moments.
         // Recheck every new frontier assignment against the next own-state snapshot.
         reconTask.awaitFreshOwnObservation=true;
@@ -1647,7 +1768,11 @@ public final class BattleClient {
     }
     private List<Map<String,Object>> readyReconArmy(Map<String,Object> state){
         List<Map<String,Object>> ready=new ArrayList<Map<String,Object>>();
-        for(Map<String,Object> unit:mainArmy(state)){
+        List<Map<String,Object>> candidates=mainArmy(state);
+        if(reconTask!=null&&!reconTask.frontier()&&reconTask.unitId>=0){
+            Map<String,Object> actor=find(state,reconTask.unitId);if(actor!=null&&armed(actor))candidates.add(actor);
+        }
+        for(Map<String,Object> unit:candidates){
             Long until=resting.get(Long.valueOf(id(unit)));
             if(until==null||time>=until.longValue())ready.add(unit);
         }
@@ -1656,7 +1781,7 @@ public final class BattleClient {
     private List<Map<String,Object>> mainArmy(Map<String,Object> state){
         List<Map<String,Object>> main=new ArrayList<Map<String,Object>>();
         for(Map<String,Object> unit:army(state))if(!expendableScouts.contains(Long.valueOf(id(unit)))
-                &&id(unit)!=reconRecallUnitId)main.add(unit);
+                &&id(unit)!=reconRecallUnitId&&!execution.reserved(id(unit)))main.add(unit);
         return main;
     }
     private boolean issueReconOrder(Map<String,Object> state)throws Exception{
@@ -1689,20 +1814,23 @@ public final class BattleClient {
         double waypointDistance=distance(chosen,chosenWaypoint[0],chosenWaypoint[1]);
         if(waypointDistance<45){deferRecon(chosenWaypoint[2]>0?"KNOWN_THREAT_STANDOFF":"SITE_STILL_HIDDEN",state);return false;}
         if(task.unitId<0){
+            if(!claimRecon(task.taskId,id(chosen)))return false;
             task.unitId=id(chosen);Map<String,Object> data=reconData(task);
             data.put("unitType",chosen.get("type"));data.put("armyBeforeAssignment",Integer.valueOf(available.size()));
             data.put("selectionScore",Double.valueOf(chosenScore));event("recon_assigned",json(data));
         }
         task.waypointX=chosenWaypoint[0];task.waypointY=chosenWaypoint[1];
         task.approach=chosenWaypoint[2]>0?"STANDOFF":"DIRECT";
-        Map<String,Object> receipt=post("/command/move?unitId="+task.unitId+"&x="+task.waypointX+"&y="+task.waypointY);
-        if(receipt==null){task.unitId=-1;deferRecon("COMMAND_REJECTED",state);return false;}
+        task.move=submitMove(new CommandArbiter.MoveIntent(execution.stamp(),reconOwner(task.taskId),
+                task.unitId,task.waypointX,task.waypointY),chosen,false);
+        if(task.move==null){releaseOwnership(task.taskId,"COMMAND_REJECTED");task.unitId=-1;deferRecon("COMMAND_REJECTED",state);return false;}
         task.orders++;task.lastOrderAt=time;if(task.firstOrderAt<0)task.firstOrderAt=time;
         task.progressAt=time;task.lastProgressEventAt=-100000;
-        task.bestDistance=distance(chosen,task.waypointX,task.waypointY);task.orderObserved=false;reconOrders++;
+        task.bestDistance=distance(chosen,task.waypointX,task.waypointY);task.orderObserved=false;task.executionObserved=false;task.waypointArrivedAt=-1;reconOrders++;
         Map<String,Object> data=reconData(task);data.put("approach",task.approach);
         data.put("waypointX",Double.valueOf(task.waypointX));data.put("waypointY",Double.valueOf(task.waypointY));
-        data.put("receiptStatus",receipt.get("status"));event("recon_order_queued",json(data));
+        data.put("receiptStatus","queued");data.put("requestId",task.move.requestId);
+        data.put("acceptedFrame",task.move.acceptedFrame);event("recon_order_queued",json(data));
         return true;
     }
     private boolean issueFrontierOrder(Map<String,Object> state,ReconTask task)throws Exception{
@@ -1718,7 +1846,7 @@ public final class BattleClient {
         }
         boolean alreadyExpendable=expendableScouts.contains(Long.valueOf(id(actor)));
         int mainCount=mainArmy(state).size();
-        if(mainCount<(alreadyExpendable?6:7)){
+        if(mainCount<6){
             deferRecon("MAIN_FORCE_BELOW_SIX_AFTER_TRANSFER",state);return false;
         }
         if(!alreadyExpendable&&!expendableEligible(actor)){
@@ -1726,11 +1854,8 @@ public final class BattleClient {
         }
         if(task.routeCursor<task.routeWaypointIndex)return false; // wait for observed arrival at the last segment
         if(task.unitId>=0&&time-task.lastOrderAt<4000)return false;
-        if(task.routeCursor>=task.routeTiles.size()-1){
-            closeRecon(task.targetTile==task.frontierTile?"recon_frontier_blocked":"recon_frontier_advanced",
-                    task.targetTile==task.frontierTile?"WAYPOINT_REACHED_WITHOUT_REGION_REFRESH":"SAFE_ROUTE_STEP_COMPLETED");
-            return false;
-        }
+        // updateRecon owns the post-arrival vision deadline; issuing cannot close it early.
+        if(task.routeCursor>=task.routeTiles.size()-1)return false;
         Map<String,Object> map=obj(state.get("map"));
         int height=((Number)map.get("tilesHigh")).intValue(),width=((Number)map.get("tilesWide")).intValue();
         double tw=n(map,"tileWidth"),th=n(map,"tileHeight");
@@ -1760,8 +1885,8 @@ public final class BattleClient {
             return false;
         }
         boolean firstAssignment=task.unitId<0;
-        Map<String,Object> receipt=post("/command/move?unitId="+id(actor)+"&x="+wx+"&y="+wy);
-        if(receipt==null){
+        task.move=submitMove(new CommandArbiter.MoveIntent(execution.stamp(),reconOwner(task.taskId),id(actor),wx,wy),actor,false);
+        if(task.move==null){
             if(firstAssignment)closeRecon("recon_frontier_blocked","COMMAND_REJECTED");
             else releaseReconActor(state,"COMMAND_REJECTED",true);
             return false;
@@ -1786,12 +1911,13 @@ public final class BattleClient {
         task.segmentStartX=n(actor,"x");task.segmentStartY=n(actor,"y");
         task.orders++;task.lastOrderAt=time;if(task.firstOrderAt<0)task.firstOrderAt=time;
         task.progressAt=time;task.lastProgressEventAt=-100000;
-        task.bestDistance=distance(actor,task.waypointX,task.waypointY);task.orderObserved=false;reconOrders++;
+        task.bestDistance=distance(actor,task.waypointX,task.waypointY);task.orderObserved=false;task.executionObserved=false;task.waypointArrivedAt=-1;reconOrders++;
         Map<String,Object> data=reconData(task);data.put("approach",task.approach);
         data.put("waypointX",Double.valueOf(task.waypointX));data.put("waypointY",Double.valueOf(task.waypointY));
         data.put("routeCursor",Integer.valueOf(task.routeCursor));data.put("routeWaypointIndex",Integer.valueOf(end));
         data.put("routeTilesTotal",Integer.valueOf(task.routeTiles.size()));
-        data.put("receiptStatus",receipt.get("status"));event("recon_order_queued",json(data));
+        data.put("receiptStatus","queued");data.put("requestId",task.move.requestId);
+        data.put("acceptedFrame",task.move.acceptedFrame);event("recon_order_queued",json(data));
         return true;
     }
     private boolean safeFrontierSegment(Map<String,Object> actor,double wx,double wy){
@@ -2507,7 +2633,7 @@ public final class BattleClient {
             data.put("builderId",id(builder));data.put("x",job.x);data.put("y",job.y);
             data.put("cost",job.cost);data.put("kind",job.kind);data.put("gameTimeMs",time);
             event(prefix+"_started",json(data));
-        }else if(time>=nextCommand){
+        }else if(execution.ready(time)){
             // The write was allowed by the rate limit yet not accepted: record why for the report.
             Map<String,Object> data=new LinkedHashMap<String,Object>();
             data.put("reason","BUILD_COMMAND_REJECTED");data.put("builderId",id(builder));
@@ -3107,17 +3233,44 @@ public final class BattleClient {
             if(jump>maxObservedGameTimeJump)maxObservedGameTimeJump=jump;
         }
         lastObservedGameTime=time;
+        Map<String,Object> player=obj(s.get("player"));
+        String playerKey=player.get("teamId") instanceof Number?"team:"+((Number)player.get("teamId")).longValue():"legacy-local";
+        List<Long> ownIds=new ArrayList<Long>();for(Map<String,Object> unit:units(s))if(alive(unit))ownIds.add(id(unit));
+        execution.observe(new CommandArbiter.Stamp((String)s.get("sessionId"),playerKey,frame,time),ownIds);
         return s;
     }
     private void check(Map<String,Object> s){if(!session.equals(s.get("sessionId")))throw new IllegalStateException("Session changed");}
     private Map<String,Object> post(String path)throws Exception{
-        if(time<nextCommand)return null;
-        path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time+"}");nextCommand=time+1000;
+        return post(CommandArbiter.DEFAULT_OWNER,path,execution.stamp());
+    }
+    private Map<String,Object> post(String owner,String path,CommandArbiter.Stamp stamp)throws Exception{
+        List<Long> actors=new ArrayList<Long>();
+        for(String field:path.substring(path.indexOf('?')+1).split("&")){
+            if(field.startsWith("unitId=")||field.startsWith("unitIds="))
+                for(String value:field.substring(field.indexOf('=')+1).split(","))actors.add(Long.valueOf(value));
+        }
+        String denied=execution.admit(stamp,owner,actors);
+        if(denied!=null){
+            if(!"COMMAND_GAME_TIME_BUDGET".equals(denied))event("command_arbitration_denied",
+                    "{\"owner\":"+Json.quote(owner)+",\"reason\":"+Json.quote(denied)+",\"unitIds\":"+actors+",\"gameTimeMs\":"+time+"}");
+            return null;
+        }
+        path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time+"}");
         AgentClient.Response r=AgentClient.request("POST","http://127.0.0.1:"+port+path);
         if(r.status==409){event("command_rejected","{\"status\":409,\"body\":"+Json.quote(r.body)+"}");return null;}
         if(r.status!=200)throw new IllegalStateException("Command HTTP "+r.status+": "+r.body);
         Map<String,Object> result=obj(Json.parse(r.body));event("command_result",r.body);
         if(!"queued".equals(result.get("status")))throw new IllegalStateException("Invalid command receipt");check(result);commands++;return result;
+    }
+    /** The Recon policy emits a typed intent; the same ownership/time gate serves legacy commands. */
+    private MoveExecution submitMove(CommandArbiter.MoveIntent intent,Map<String,Object> actor,boolean takeover)throws Exception{
+        Map<String,Object> receipt=post(intent.owner,"/command/move?unitId="+intent.unitId+"&x="+intent.x+"&y="+intent.y,intent.observation);
+        if(receipt==null)return null;
+        if(!(receipt.get("frame") instanceof Number)||!(receipt.get("unitId") instanceof Number)
+                ||((Number)receipt.get("unitId")).longValue()!=intent.unitId||!(receipt.get("requestId") instanceof String))
+            throw new IllegalStateException("Move receipt lacks execution identity");
+        return new MoveExecution(intent,(String)receipt.get("requestId"),((Number)receipt.get("frame")).longValue(),
+                n(actor,"x"),n(actor,"y"),takeover);
     }
     private Map<String,Object> optionalGet(String path,String kind)throws Exception{
         AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+path);

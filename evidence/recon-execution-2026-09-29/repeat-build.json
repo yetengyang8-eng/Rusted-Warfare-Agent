@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_OVERLAY_NATIVE_UNVERIFIED",
+  "baseJarSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+  "sourceSha256": {
+    "agent/src/io/rwagent/client/BattleClient.java": "29dfd1057c7ed05e0ce79e2477bf092d28c5ebe336d2376e66f904a31639abe3",
+    "agent/src/io/rwagent/client/CommandArbiter.java": "c2e1376385a413c08f5b8c6cec7f34fd34ac9d68e7e929ac55b6f76aa4db1863",
+    "agent/src/io/rwagent/client/MoveExecution.java": "6c117a8e62ee4c4fed67f3a0020d9fb55817616b7ee049fa7f60b64f57d492bb"
+  },
+  "compiler": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+  "release": 8,
+  "limits": [
+    "Native bridge and knowledge resources are inherited unchanged.",
+    "No game engine, native match, self-play or performance validation is implied."
+  ],
+  "agentJarSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "changedEntries": [
+    "META-INF/astra-recon-client-overlay.json",
+    "io/rwagent/client/BattleClient$BuildJob.class",
+    "io/rwagent/client/BattleClient$GuardSelection.class",
+    "io/rwagent/client/BattleClient$Investment.class",
+    "io/rwagent/client/BattleClient$Pending.class",
+    "io/rwagent/client/BattleClient$ReconAcquisition.class",
+    "io/rwagent/client/BattleClient$ReconTask.class",
+    "io/rwagent/client/BattleClient$SearchTarget.class",
+    "io/rwagent/client/BattleClient$TargetProgress.class",
+    "io/rwagent/client/BattleClient.class",
+    "io/rwagent/client/CommandArbiter$MoveIntent.class",
+    "io/rwagent/client/CommandArbiter$Stamp.class",
+    "io/rwagent/client/CommandArbiter.class",
+    "io/rwagent/client/MoveExecution$Witness.class",
+    "io/rwagent/client/MoveExecution.class"
+  ],
+  "preservedEntries": 61,
+  "contentDigest": "1985cb52b52aafb468845898c33b4419b8368f200b4475494cf09796b62a676f"
+}

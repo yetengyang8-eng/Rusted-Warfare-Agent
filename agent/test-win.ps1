@@ -98,6 +98,7 @@ PyStep 'py:test_headless_parallel' 'test_headless_parallel.py' @()
 PyStep 'py:test_ab_aggregate' 'test_ab_aggregate.py' @()
 PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
 Step 'java:ReportCommitHarness' { & $java -cp $cp io.rwagent.client.ReportCommitHarness }
+Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
 
 Write-Host ''
 Write-Host '===== SUMMARY =====' -ForegroundColor Yellow

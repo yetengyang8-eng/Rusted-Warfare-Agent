@@ -1,0 +1,470 @@
+{
+  "evidenceClass": "E2_NOT_NATIVE",
+  "entries": [
+    {
+      "path": "baseline/test_moving_actor_is_taken_over_before_frontier_planning/fixture.json",
+      "size": 13648,
+      "sha256": "6829325117a5d4bdd49f36c12b4baeb44a97e09be34499c592ab787bb3b532b4"
+    },
+    {
+      "path": "baseline/test_moving_actor_is_taken_over_before_frontier_planning/trace.jsonl",
+      "size": 153969,
+      "sha256": "d9a3997f705acd57483262ffe28b4f9343e5a7f7848dc6305b22810e16a90f90"
+    },
+    {
+      "path": "baseline/test_order_visible_only_between_decisions_is_still_observed/fixture.json",
+      "size": 19173,
+      "sha256": "d1baba8cf378ab9aa3f463da85cf2ef5864e1e9f842f4116bd3c5b8229434a3c"
+    },
+    {
+      "path": "baseline/test_order_visible_only_between_decisions_is_still_observed/trace.jsonl",
+      "size": 228027,
+      "sha256": "1cb3a4e510aac4dfccecadb5b96aba613b9e27f8232817149731b1b0a7419d96"
+    },
+    {
+      "path": "baseline/test_short_move_completed_between_polls_advances_the_route/fixture.json",
+      "size": 12398,
+      "sha256": "d07859066bb9a3f1ba9d99211a01b1b3e5dcc365a3c2d852535a1f2e5e4ef561"
+    },
+    {
+      "path": "baseline/test_short_move_completed_between_polls_advances_the_route/trace.jsonl",
+      "size": 117558,
+      "sha256": "5c5da930c62c0ed28b4706211382b9df3553fa6c46ea08fafb909dd1f2ef8f73"
+    },
+    {
+      "path": "baseline/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/fixture.json",
+      "size": 13657,
+      "sha256": "15ca450c3ab01b4f48d81bc206e9c36a65fd7400f7b2819d8af42eeb79e67a83"
+    },
+    {
+      "path": "baseline/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/trace.jsonl",
+      "size": 130037,
+      "sha256": "36f32fe116f3179f76cd1980ce95c3b7167a5a38a34bd9fabb4d1d1e97b545b2"
+    },
+    {
+      "path": "candidate/test_accepted_but_unexecuted_takeover_cannot_authorize_a_route/fixture.json",
+      "size": 13106,
+      "sha256": "e207cdd10148d2f0d1f2750b6fc2c43ea86bf4379e294a53811e52c9d74ba830"
+    },
+    {
+      "path": "candidate/test_accepted_but_unexecuted_takeover_cannot_authorize_a_route/trace.jsonl",
+      "size": 145059,
+      "sha256": "5efe0f25ecfad0aeb1d1d1a5b4a314ccf6c913716a208e69731cd454eaa36cbc"
+    },
+    {
+      "path": "candidate/test_actor_drift_before_first_order_rejects_stale_route/fixture.json",
+      "size": 9659,
+      "sha256": "7c8482c6cfabd9598dda663e748cc97577b7851fb43a5827b829f7395bc160ac"
+    },
+    {
+      "path": "candidate/test_actor_drift_before_first_order_rejects_stale_route/trace.jsonl",
+      "size": 107643,
+      "sha256": "be22e642a0f5bcae823ac61efb4214061b153c8e9543cdefdef7683cdade30dd"
+    },
+    {
+      "path": "candidate/test_adjacent_tile_before_first_order_rejects_wrong_route_cursor/fixture.json",
+      "size": 9952,
+      "sha256": "137b17f6987a12914d9c3eccf66cd6777ad56eccf6b80bb52b556ec0ced0b5c9"
+    },
+    {
+      "path": "candidate/test_adjacent_tile_before_first_order_rejects_wrong_route_cursor/trace.jsonl",
+      "size": 109691,
+      "sha256": "c82a1f8cb9d987427fe027082c090eb0bcc7784305de7c5dec1d612887c42e80"
+    },
+    {
+      "path": "candidate/test_damaged_heavy_tank_is_not_expended/fixture.json",
+      "size": 8019,
+      "sha256": "2a49b1fa06b3b419b63154ecb58d2609318f1dc46c5789669f1a2758e3102204"
+    },
+    {
+      "path": "candidate/test_damaged_heavy_tank_is_not_expended/trace.jsonl",
+      "size": 92918,
+      "sha256": "53f313ed8c4c49cdbeafe14b0e19ead55e896397bf4b57403aadb05bb6426c90"
+    },
+    {
+      "path": "candidate/test_emergency_after_transfer_releases_for_defense_and_recalls/fixture.json",
+      "size": 15930,
+      "sha256": "1bff335b1bce58ec9b399dbb3858a697522af66124a834003f0ec7268d265780"
+    },
+    {
+      "path": "candidate/test_emergency_after_transfer_releases_for_defense_and_recalls/trace.jsonl",
+      "size": 172465,
+      "sha256": "d060862f1e2b120a06fd5ec8167dc648df90a8714984b65611a4aa15d5008a23"
+    },
+    {
+      "path": "candidate/test_emergency_keeps_damaged_unit_with_main_force/fixture.json",
+      "size": 8011,
+      "sha256": "9c97da5fc43c670d042d326af1e5aa49bdca7f5076259a469c2be4ffe20b323c"
+    },
+    {
+      "path": "candidate/test_emergency_keeps_damaged_unit_with_main_force/trace.jsonl",
+      "size": 92770,
+      "sha256": "31a86931501349107b72047f89f472e9341943dc61faac1a005e06bf1440343b"
+    },
+    {
+      "path": "candidate/test_existing_expendable_pending_keeps_six_ready_main_units/fixture.json",
+      "size": 27406,
+      "sha256": "0d1b709c4775abb3148e6311c509e803f23a4bafecbad6296e5405a2bbfcc944"
+    },
+    {
+      "path": "candidate/test_existing_expendable_pending_keeps_six_ready_main_units/trace.jsonl",
+      "size": 273397,
+      "sha256": "e318189e8ba6dcb9f39adb196fd72507cfe4ad66766da89f40a897fe1e57bf93"
+    },
+    {
+      "path": "candidate/test_frontier_and_lost_building_alternate_when_both_remain_available/fixture.json",
+      "size": 17851,
+      "sha256": "38d7f264f20a4b2084de811a0d5ea37b12a1cf7e1c43c3ee6fb37fb42471a015"
+    },
+    {
+      "path": "candidate/test_frontier_and_lost_building_alternate_when_both_remain_available/trace.jsonl",
+      "size": 187687,
+      "sha256": "84c8aa6e75476a3e7f06608a02eb2b7d799f8f1c93d9450e927e43736b21c14b"
+    },
+    {
+      "path": "candidate/test_frontier_toggle_preserves_existing_non_frontier_behavior/fixture.json",
+      "size": 8019,
+      "sha256": "666e07b60571b05c89d4d823938789342d24b7f73aa01fe4bb2d0a243f8f9bf6"
+    },
+    {
+      "path": "candidate/test_frontier_toggle_preserves_existing_non_frontier_behavior/trace.jsonl",
+      "size": 92830,
+      "sha256": "0c00d16b210ca0f5f08c7c6ca30fd7b108c1f6c7deaca861fd0f34e07358e4ed"
+    },
+    {
+      "path": "candidate/test_lost_scout_on_emergency_frame_is_not_recorded_as_preempted/fixture.json",
+      "size": 14397,
+      "sha256": "ac06dc8206cb7361a3023adb4cf640b09c7a44961c916c165dc5c02de53b66fd"
+    },
+    {
+      "path": "candidate/test_lost_scout_on_emergency_frame_is_not_recorded_as_preempted/trace.jsonl",
+      "size": 148392,
+      "sha256": "8fc333554c146798484e2f74a80d72301cf0e9cf3e78f54053ec8d02c21d6e32"
+    },
+    {
+      "path": "candidate/test_low_value_damaged_unit_sweeps_deep_fog_and_stays_out_of_army/fixture.json",
+      "size": 20080,
+      "sha256": "d7dd8ec34e843d6dc58bf7cb5f0a66c3150a9c77a6aaedcb75b4b6e2aeee21da"
+    },
+    {
+      "path": "candidate/test_low_value_damaged_unit_sweeps_deep_fog_and_stays_out_of_army/trace.jsonl",
+      "size": 204754,
+      "sha256": "04884d036fed69ffe92fe13b1e2c88770260dbfc612323e77ff1f95db3107a01"
+    },
+    {
+      "path": "candidate/test_move_409_does_not_log_successful_expendable_transfer/fixture.json",
+      "size": 10198,
+      "sha256": "547e22e06ede109576f21c4ef0f0553634a96571434cc55e67ae18bb6cf3d97a"
+    },
+    {
+      "path": "candidate/test_move_409_does_not_log_successful_expendable_transfer/trace.jsonl",
+      "size": 110832,
+      "sha256": "6e2cf33e7fa0e60037255577658bd63bb4a35ff6d7445ba4b78fc33e97ba0b62"
+    },
+    {
+      "path": "candidate/test_moving_actor_is_taken_over_before_frontier_planning/fixture.json",
+      "size": 14130,
+      "sha256": "346e41827c140a6513897fe5214bba2b08ef0fea9cab2c803256b0bac457ad1d"
+    },
+    {
+      "path": "candidate/test_moving_actor_is_taken_over_before_frontier_planning/trace.jsonl",
+      "size": 148541,
+      "sha256": "234bbbdd5f6f16ebd7966cddeb9f169686361a6e70396711e0b351d950bf55f6"
+    },
+    {
+      "path": "candidate/test_one_tile_stale_own_observation_waits_for_bridge_route_anchor/fixture.json",
+      "size": 16191,
+      "sha256": "d6d6c9c9fee883d1378b325ea783cb0ca618916cd1e9fa80d7f7db4ddd7eba75"
+    },
+    {
+      "path": "candidate/test_one_tile_stale_own_observation_waits_for_bridge_route_anchor/trace.jsonl",
+      "size": 169487,
+      "sha256": "af3f257d331d6ea04cf82d1b51259a8f54629774b35a7d6560197a327b2016ed"
+    },
+    {
+      "path": "candidate/test_pending_frontier_closes_for_emergency_without_transfer/fixture.json",
+      "size": 12859,
+      "sha256": "7e2bb7339411eb0f5bbdeabe5fab2aecec55cdfcc4cb08af82bc8c2ec5783140"
+    },
+    {
+      "path": "candidate/test_pending_frontier_closes_for_emergency_without_transfer/trace.jsonl",
+      "size": 144330,
+      "sha256": "de6cf97fa0154142c9eb176724a772378f347a7f2234db490dcefd42962b2f37"
+    },
+    {
+      "path": "candidate/test_receipt_and_movement_without_region_update_do_not_claim_refresh/fixture.json",
+      "size": 10891,
+      "sha256": "cedb2c40abc4e76bb87d1021f9f43ace36800b56b2599679acf887e165189b42"
+    },
+    {
+      "path": "candidate/test_receipt_and_movement_without_region_update_do_not_claim_refresh/trace.jsonl",
+      "size": 111633,
+      "sha256": "c6846930167522e8a5c6e2d4b9aabe3a670892f9c4cadecbaa7e3f9cb07aa556"
+    },
+    {
+      "path": "candidate/test_region_revealed_before_own_progress_is_not_attributed_to_scout/fixture.json",
+      "size": 11846,
+      "sha256": "eb50873cb5dfe9a3d5c9c00c67bdbc0a2f7ccd25c1f29c06caee28213b52600f"
+    },
+    {
+      "path": "candidate/test_region_revealed_before_own_progress_is_not_attributed_to_scout/trace.jsonl",
+      "size": 121028,
+      "sha256": "a3932bc4006f301f694ab84f93a6e244c7d52fbe4602a1e9e11d1f7f9c3d0372"
+    },
+    {
+      "path": "candidate/test_short_move_completed_between_polls_advances_the_route/fixture.json",
+      "size": 11717,
+      "sha256": "c583aecad6b0b8a1210b61fe0e767428f01510fbe321be3ec2f1d88253d9e298"
+    },
+    {
+      "path": "candidate/test_short_move_completed_between_polls_advances_the_route/trace.jsonl",
+      "size": 123467,
+      "sha256": "de9f19cf71e8f66afed7d87cd3357f971442a52c27e83f09757d254725c52276"
+    },
+    {
+      "path": "candidate/test_stale_own_tile_on_first_route_leg_still_waits_one_observation/fixture.json",
+      "size": 16191,
+      "sha256": "4ba31376401c4efb9af27c3967160872864360b0694fa17fd35d896dccd7fe78"
+    },
+    {
+      "path": "candidate/test_stale_own_tile_on_first_route_leg_still_waits_one_observation/trace.jsonl",
+      "size": 169489,
+      "sha256": "0e4e736a8027fd3f85978611f9db71e4a64944fb373b2534944f78fa84d9fd95"
+    },
+    {
+      "path": "final/test_accepted_but_unexecuted_takeover_cannot_authorize_a_route/fixture.json",
+      "size": 13266,
+      "sha256": "2b440390030d14463ebe42a4546aa38b8731315936a1909aa9be63db45cab3a2"
+    },
+    {
+      "path": "final/test_accepted_but_unexecuted_takeover_cannot_authorize_a_route/trace.jsonl",
+      "size": 145126,
+      "sha256": "2095babe111277e49cfa0095b831d4afd991b881598ad4543b091cc1f0ad981a"
+    },
+    {
+      "path": "final/test_actor_drift_before_first_order_rejects_stale_route/fixture.json",
+      "size": 9819,
+      "sha256": "aa44986e1c84d2033f272b103cd476fbbb0428f06865946513b6785febc43452"
+    },
+    {
+      "path": "final/test_actor_drift_before_first_order_rejects_stale_route/trace.jsonl",
+      "size": 107710,
+      "sha256": "a2c84ae5770872372eba69b1c4893d4503f6f72fcd2d8024d86c5a031eb37b14"
+    },
+    {
+      "path": "final/test_adjacent_tile_before_first_order_rejects_wrong_route_cursor/fixture.json",
+      "size": 10112,
+      "sha256": "2546c3bf3bcc48a1965b9f029d84c6b070de0422d9ccf9531eb6183d47805fb5"
+    },
+    {
+      "path": "final/test_adjacent_tile_before_first_order_rejects_wrong_route_cursor/trace.jsonl",
+      "size": 109758,
+      "sha256": "99d0ae337701a16819d371f8c96d33842afc6b0dc76b68896a44a095041920e4"
+    },
+    {
+      "path": "final/test_damaged_heavy_tank_is_not_expended/fixture.json",
+      "size": 8179,
+      "sha256": "954ff37559d3b5435ad334e68fbf4245f6050e539a5e1d46319d35c461c37994"
+    },
+    {
+      "path": "final/test_damaged_heavy_tank_is_not_expended/trace.jsonl",
+      "size": 92985,
+      "sha256": "886f7b0e00c9a977f96f255ba1c95a6a67fbd17816a7ed499572c24c904e4074"
+    },
+    {
+      "path": "final/test_emergency_after_transfer_releases_for_defense_and_recalls/fixture.json",
+      "size": 16090,
+      "sha256": "4f37ddf1e61da37f93f0f84dd1a8f594be517dd4c587ece0c99c2d9ca69cf7e7"
+    },
+    {
+      "path": "final/test_emergency_after_transfer_releases_for_defense_and_recalls/trace.jsonl",
+      "size": 172533,
+      "sha256": "b23464172538edac0dca685ff2a5c54826bfc184059703ce3af6599a2317ac67"
+    },
+    {
+      "path": "final/test_emergency_keeps_damaged_unit_with_main_force/fixture.json",
+      "size": 8171,
+      "sha256": "270b7f62c1c1dbe8e06d948a0266a157feb6f83964bb0f7be22313312628e15b"
+    },
+    {
+      "path": "final/test_emergency_keeps_damaged_unit_with_main_force/trace.jsonl",
+      "size": 92837,
+      "sha256": "55235fda6d4b865ceb47f35c8932cb99bd1bb3a8f0c53367f0a08565d736ee11"
+    },
+    {
+      "path": "final/test_existing_expendable_pending_keeps_six_ready_main_units/fixture.json",
+      "size": 28066,
+      "sha256": "cabf192deb7532ef8954518e07321e6e9a15eefd50a43d589f1b58a5af92b73b"
+    },
+    {
+      "path": "final/test_existing_expendable_pending_keeps_six_ready_main_units/trace.jsonl",
+      "size": 273459,
+      "sha256": "0b22778bcbc4ea3f40332329a28640e09d4983ec3efc51c0f644506718cf297c"
+    },
+    {
+      "path": "final/test_frontier_and_lost_building_alternate_when_both_remain_available/fixture.json",
+      "size": 18011,
+      "sha256": "8ad4ef71c066a52b7195f33cb55a5709dc3dda3939c09e49532f89e0bb3b8690"
+    },
+    {
+      "path": "final/test_frontier_and_lost_building_alternate_when_both_remain_available/trace.jsonl",
+      "size": 187754,
+      "sha256": "adf88b9426bbae8630e3cc747bc757fabd9fa83fe517b7949a2a480801dc30e1"
+    },
+    {
+      "path": "final/test_frontier_toggle_preserves_existing_non_frontier_behavior/fixture.json",
+      "size": 8179,
+      "sha256": "ccf1c56b6dbb57619a04cf7d60bd9bd048a07de196dae3fd0c7baeeb280f50d8"
+    },
+    {
+      "path": "final/test_frontier_toggle_preserves_existing_non_frontier_behavior/trace.jsonl",
+      "size": 92897,
+      "sha256": "9d41d84ebfffe7a1acda0a75f32702983e78dec73dcfd27fbbb3585a64b462c3"
+    },
+    {
+      "path": "final/test_lost_scout_on_emergency_frame_is_not_recorded_as_preempted/fixture.json",
+      "size": 14557,
+      "sha256": "1a5fee0eb9b61bde481e32d006ed529ce2066c1cf3f36784613608182a58dd84"
+    },
+    {
+      "path": "final/test_lost_scout_on_emergency_frame_is_not_recorded_as_preempted/trace.jsonl",
+      "size": 148460,
+      "sha256": "d45f5007e8fb259b5fc49a996464b9791c46ea6e675ee34a5021ddb177428ea3"
+    },
+    {
+      "path": "final/test_low_value_damaged_unit_sweeps_deep_fog_and_stays_out_of_army/fixture.json",
+      "size": 20240,
+      "sha256": "a2a1a93eee2c69209795aefe465fcfb810be7b2a2ad816ac70ade90738bc6cda"
+    },
+    {
+      "path": "final/test_low_value_damaged_unit_sweeps_deep_fog_and_stays_out_of_army/trace.jsonl",
+      "size": 204821,
+      "sha256": "89189eb5c2a888b1455cfc272f0e62af478501d5d265a3d0e5f2bfe14aa827cc"
+    },
+    {
+      "path": "final/test_move_409_does_not_log_successful_expendable_transfer/fixture.json",
+      "size": 10358,
+      "sha256": "5844738720513aeafab60e83707ac57e9b760c6c81143ece2d4832737edff28a"
+    },
+    {
+      "path": "final/test_move_409_does_not_log_successful_expendable_transfer/trace.jsonl",
+      "size": 110899,
+      "sha256": "6da548f7b2c3acbcd4cec7179fc99e958ad4729751a63b3423a2aa061137931b"
+    },
+    {
+      "path": "final/test_moving_actor_is_taken_over_before_frontier_planning/fixture.json",
+      "size": 14290,
+      "sha256": "411437466577ba975ac031e2d22bd0bfeacba4f5443a5fc9fd86ec059cff89e1"
+    },
+    {
+      "path": "final/test_moving_actor_is_taken_over_before_frontier_planning/trace.jsonl",
+      "size": 148608,
+      "sha256": "516e4ab9c4ce9f8fffbc81147463e4190a8445ba5b57aeea91b1b1a7c1091ebd"
+    },
+    {
+      "path": "final/test_one_tile_stale_own_observation_waits_for_bridge_route_anchor/fixture.json",
+      "size": 16351,
+      "sha256": "1a7c6d58d9374c7b95a99a38502798fa847e88d5582e9b1d030c6baa3ebf163a"
+    },
+    {
+      "path": "final/test_one_tile_stale_own_observation_waits_for_bridge_route_anchor/trace.jsonl",
+      "size": 169553,
+      "sha256": "f330904660dc4f79775fe46280492587763c2d9abe886dbb07613277f5d227a3"
+    },
+    {
+      "path": "final/test_order_visible_only_between_decisions_is_still_observed/fixture.json",
+      "size": 17759,
+      "sha256": "294e9eb514db57686cbcf10b29b8cfff3f5300fad68e62dbceaa7ab629448a6d"
+    },
+    {
+      "path": "final/test_order_visible_only_between_decisions_is_still_observed/trace.jsonl",
+      "size": 234293,
+      "sha256": "3caaba2188637a36ea3ee26cfaef87947b961fa1e4f6a58aa7158d6ae19d0338"
+    },
+    {
+      "path": "final/test_pending_frontier_closes_for_emergency_without_transfer/fixture.json",
+      "size": 13019,
+      "sha256": "5cad80b4add6cecda0efd9bfa9b578d6fa546a6d29bbe6c8bf508e114dadea54"
+    },
+    {
+      "path": "final/test_pending_frontier_closes_for_emergency_without_transfer/trace.jsonl",
+      "size": 144398,
+      "sha256": "92cd9e9566a649e1c74b14da2ab5bc081da18913d67cb80296827cfb42216f97"
+    },
+    {
+      "path": "final/test_receipt_and_movement_without_region_update_do_not_claim_refresh/fixture.json",
+      "size": 11546,
+      "sha256": "58fc8686a28c20b586a741f85b607ce7da0ad1d769f9ba37684d00c53bb3f3ea"
+    },
+    {
+      "path": "final/test_receipt_and_movement_without_region_update_do_not_claim_refresh/trace.jsonl",
+      "size": 111705,
+      "sha256": "ee26a02299c7818e449a71a61c015df6892a07688c79b7880285629ca5658059"
+    },
+    {
+      "path": "final/test_region_revealed_before_own_progress_is_not_attributed_to_scout/fixture.json",
+      "size": 12006,
+      "sha256": "bfabb8552ad629f1e49c999edd7c319d305d17ce0aa9d7c674d1bf0ae00c8b9f"
+    },
+    {
+      "path": "final/test_region_revealed_before_own_progress_is_not_attributed_to_scout/trace.jsonl",
+      "size": 121095,
+      "sha256": "bb62fc1986d70024700977ae0ce1ce75a76e6172eedcb9a27cbd9ef07b8b39de"
+    },
+    {
+      "path": "final/test_short_move_completed_between_polls_advances_the_route/fixture.json",
+      "size": 11877,
+      "sha256": "1049374794bcea7d1bc9a4bdb82bb9f6f63520a8b7ba0638aeeee36ec5edfe10"
+    },
+    {
+      "path": "final/test_short_move_completed_between_polls_advances_the_route/trace.jsonl",
+      "size": 123533,
+      "sha256": "833d90fda2b904b58396eafa01a9db9ac7fb1da4d921ebd9009eb38806615cc7"
+    },
+    {
+      "path": "final/test_stale_own_tile_on_first_route_leg_still_waits_one_observation/fixture.json",
+      "size": 16351,
+      "sha256": "cb5c020e0744e7b9128e1196a8d7b069d1ee2c8d764535cba9a086ad8f4ddc0b"
+    },
+    {
+      "path": "final/test_stale_own_tile_on_first_route_leg_still_waits_one_observation/trace.jsonl",
+      "size": 169556,
+      "sha256": "f2886dad9153ec73878129f8906ce8c66ca6d8dcfcf665e46408ca07876008f1"
+    },
+    {
+      "path": "final/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/fixture.json",
+      "size": 12706,
+      "sha256": "3fac5d0798c0c2ef8467a6bc209959edb81b3a105c8eb36ca13bab9475215ec1"
+    },
+    {
+      "path": "final/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/trace.jsonl",
+      "size": 134149,
+      "sha256": "5d4d78711c005ef4f68dfedc39107026aa22bb8a88ce7405371c07f6712a80ed"
+    },
+    {
+      "path": "final/test_vision_grace_starts_at_arrival_not_at_submission/fixture.json",
+      "size": 14664,
+      "sha256": "705fa58760123b7b3354dfab024739ce41e585ddaae5a73be91fa4fe276eeb12"
+    },
+    {
+      "path": "final/test_vision_grace_starts_at_arrival_not_at_submission/trace.jsonl",
+      "size": 152476,
+      "sha256": "e8784ed66ccfb15287d661bb0d2044e423709c100313a6ca445d6c556d5a02e5"
+    },
+    {
+      "path": "initial-candidate/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/fixture.json",
+      "size": 13646,
+      "sha256": "91fb773d9e7c1cfda5c37f219bf2919f548ca654bd88b14a590daf04de80deda"
+    },
+    {
+      "path": "initial-candidate/test_ten_world_unit_first_leg_can_finish_without_active_order_sample/trace.jsonl",
+      "size": 130983,
+      "sha256": "3f729fcaa23ecf859e54bd509f4a376107880596f8dc63d151bb9923fd54fec0"
+    },
+    {
+      "path": "initial-candidate.jar",
+      "size": 220635,
+      "sha256": "b4b9538b301f769b8a157273307bdfa77934724f55c0d590a81f9da5e57cf27b"
+    }
+  ]
+}
