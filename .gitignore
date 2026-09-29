@@ -1,0 +1,27 @@
+# Build products
+agent/build/
+agent/dist/
+**/*.class
+**/*.jar
+
+# Python caches
+**/__pycache__/
+**/*.pyc
+
+# Runtime / reports
+*.log
+*.partial
+*.rwsave
+*.replay
+*.zip
+*.rar
+*.7z
+rw-agent-reports/
+headless-runs/
+report-bundles/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
