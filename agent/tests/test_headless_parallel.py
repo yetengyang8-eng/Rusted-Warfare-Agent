@@ -683,6 +683,7 @@ class AtomicStateWriteTests(unittest.TestCase):
     `[WinError 5] 拒绝访问: campaign.json.tmp -> campaign.json` while a concurrent reader held the state
     file. The write now retries a transient denial, and must still fail loudly if the reader never leaves.
     """
+    @unittest.skipUnless(os.name == 'nt', 'requires Windows FILE_SHARE_DELETE semantics')
     def test_a_transient_reader_is_retried_until_it_releases(self):
         with tempfile.TemporaryDirectory() as temporary:
             target = Path(temporary) / 'campaign.json'
@@ -706,6 +707,7 @@ class AtomicStateWriteTests(unittest.TestCase):
             self.assertEqual(json.loads(target.read_text(encoding='utf-8'))['state'], 'new')
             self.assertFalse((Path(temporary) / 'campaign.json.tmp').exists(), 'no temp file is left behind')
 
+    @unittest.skipUnless(os.name == 'nt', 'requires Windows FILE_SHARE_DELETE semantics')
     def test_a_permanent_reader_still_fails_loudly(self):
         with tempfile.TemporaryDirectory() as temporary:
             target = Path(temporary) / 'campaign.json'
@@ -719,6 +721,42 @@ class AtomicStateWriteTests(unittest.TestCase):
                              'the previous state survives a denied write')
             self.assertTrue((Path(temporary) / 'campaign.json.tmp').exists(),
                             'the pending bytes stay on disk for forensic recovery')
+
+    def test_injected_transient_denial_retries_and_commits(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary) / 'campaign.json'
+            target.write_bytes(b'old')
+            native_replace = Path.replace
+            calls = []
+
+            def replace(source, destination):
+                calls.append((source, destination))
+                if len(calls) < 3:
+                    raise PermissionError('injected reader lock')
+                return native_replace(source, destination)
+
+            with mock.patch.dict(os.environ, {'RW_WRITE_REPLACE_ATTEMPTS': '3'}), \
+                 mock.patch.object(Path, 'replace', replace), \
+                 mock.patch.object(runner.time, 'sleep') as delay:
+                runner.write_bytes(target, b'new')
+            self.assertEqual(len(calls), 3)
+            self.assertEqual(delay.call_args_list, [mock.call(0.25), mock.call(0.5)])
+            self.assertEqual(target.read_bytes(), b'new')
+            self.assertFalse(target.with_suffix('.json.tmp').exists())
+
+    def test_injected_permanent_denial_preserves_old_and_pending_bytes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            target = Path(temporary) / 'campaign.json'
+            target.write_bytes(b'old')
+            with mock.patch.dict(os.environ, {'RW_WRITE_REPLACE_ATTEMPTS': '2'}), \
+                 mock.patch.object(Path, 'replace', side_effect=PermissionError('injected reader lock')) as replace, \
+                 mock.patch.object(runner.time, 'sleep') as delay:
+                with self.assertRaises(PermissionError):
+                    runner.write_bytes(target, b'new')
+            self.assertEqual(replace.call_count, 2)
+            delay.assert_called_once_with(0.25)
+            self.assertEqual(target.read_bytes(), b'old')
+            self.assertEqual(target.with_suffix('.json.tmp').read_bytes(), b'new')
 
 
 class LiveClaimsAndReapTests(unittest.TestCase):
@@ -748,10 +786,12 @@ class LiveClaimsAndReapTests(unittest.TestCase):
             self.assertEqual(saved['status'], 'PASS')
             self.assertEqual(saved['killed'], [])
 
-    def test_reap_is_idempotent_and_reports_released_resources(self):
+    @mock.patch.object(runner, 'process_info', return_value={})
+    @mock.patch.object(runner, 'port_owners', return_value={})
+    def test_reap_is_idempotent_and_reports_released_resources(self, _owners, _info):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            # Pids that cannot be running: the reaper must end PASS without killing anything.
+            # Successful empty identity lookups prove absence independently of the host OS.
             absent = 999000001
             self.claims_file(root, [{'role': 'engine', 'pid': absent, 'port': 51001, 'state': 'RUNNING',
                                      'episode': 1, 'workDirectory': str(root / 'episode-001')}])
@@ -776,11 +816,27 @@ class LiveClaimsAndReapTests(unittest.TestCase):
             self.claims_file(root, [{'role': 'engine', 'pid': bystander.pid, 'port': 51002,
                                      'state': 'RUNNING', 'episode': 1,
                                      'workDirectory': str(root / 'episode-001')}])
-            self.assertEqual(runner.reap_run(root), 0)
+            claims_before = (root / 'live-claims.json').read_bytes()
+            self.assertEqual(runner.reap_run(root), 0 if os.name == 'nt' else 1)
             self.assertIsNone(bystander.poll(), 'an unrelated process must survive the reaper')
             report = json.loads((root / 'reap-report.json').read_text(encoding='utf-8'))
             self.assertEqual(report['killed'], [])
-            self.assertIn('not a headless engine', report['skipped'][0]['reason'])
+            if os.name == 'nt':
+                self.assertIn('not a headless engine', report['skipped'][0]['reason'])
+            else:
+                self.assertEqual(report['status'], 'FAIL')
+                self.assertIn('lookup unavailable', ' '.join(report['verified']))
+                self.assertEqual((root / 'live-claims.json').read_bytes(), claims_before,
+                                 'unavailable identity must never mark a live process GONE')
+
+    def test_unsupported_identity_lookup_is_unknown_not_empty(self):
+        with mock.patch.object(runner.os, 'name', 'posix'), \
+             mock.patch.object(runner.subprocess, 'run') as query:
+            self.assertIsNone(runner.process_info([12345]))
+            self.assertIsNone(runner.port_owners([51002]))
+            self.assertEqual(runner.process_info([]), {})
+            self.assertEqual(runner.port_owners([]), {})
+        query.assert_not_called()
 
     def test_a_pid_reused_by_another_process_is_refused_by_port_ownership(self):
         # Same command line, but the claimed port is owned by a different pid: still refuse.

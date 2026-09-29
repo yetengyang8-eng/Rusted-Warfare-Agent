@@ -26,8 +26,10 @@ public final class ExecutionContractHarness {
         check("STALE_OR_FOREIGN_OBSERVATION".equals(a.admit(a0,"recon:1",ids(1L))),"stale policy result rejected");
         check(!a.ready(2500),"wall-clock passage cannot buy game-time commands");
         CommandArbiter.Stamp a2=stamp("team:0",102,3000);a.observe(a2,ids(1L,2L));
-        a.release("other-task");check(a.reserved(1),"release is owner-scoped");
-        a.release("recon:1");check(a.admit(a2,CommandArbiter.DEFAULT_OWNER,ids(1L,2L))==null,"explicit release returns actors to main force");
+        check(!a.release("other-task"),"unheld lease cannot emit a release");check(a.reserved(1),"release is owner-scoped");
+        check(a.release("recon:1"),"real lease released once");
+        check(!a.release("recon:1"),"idempotent second release reports no transition");
+        check(a.admit(a2,CommandArbiter.DEFAULT_OWNER,ids(1L,2L))==null,"explicit release returns actors to main force");
         a.observe(stamp("team:0",103,4000),ids(2L));
         check("ACTOR_NOT_OWN".equals(a.admit(a.stamp(),CommandArbiter.DEFAULT_OWNER,ids(1L))),"lost actor rejected");
         boolean changed=false;try{a.observe(stamp("team:1",104,5000),ids(2L));}catch(IllegalStateException expected){changed=true;}

@@ -186,6 +186,15 @@ class ReconPolicyTests(unittest.TestCase):
                                  completed.stdout.decode('utf-8', errors='replace'))
                 report = next(pathlib.Path(cwd).glob('rw-agent-reports/battle-*.jsonl'))
                 rows = [json.loads(line) for line in report.read_text(encoding='utf-8').splitlines()]
+                held = set()
+                for row in rows:
+                    if row['event'] == 'task_ownership_acquired':
+                        self.assertNotIn(row['data']['taskId'], held)
+                        held.add(row['data']['taskId'])
+                    elif row['event'] == 'task_ownership_released':
+                        self.assertIn(row['data']['taskId'], held, 'release must match an outstanding acquire')
+                        held.remove(row['data']['taskId'])
+                self.assertFalse(held, 'controller must release remaining task ownership')
                 return calls, rows
         finally:
             server.shutdown()

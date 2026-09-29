@@ -10,6 +10,15 @@
 
 > 只记录"现在是什么状态"。历史与分析过程见 `助手交接\对话N.txt` / `输出N.txt`。
 
+## 2026-09-30 反馈轮：目标资格修复候选
+
+- 最近桌面已验收的是 Recon Execution `feb7ad39...`：1x 原生 VICTORY 且 Frontier 闭环成立；5x 长局稳定但无 Frontier 正例，详见该轮 desktop acceptance 证据。
+- 本分支从 main `795146a` 集成 `28e4655` 后修复：明确不兼容目标失联变 UNKNOWN 后重新吸走主力。增加会话内拒绝证据；只有更新的合法可见 COMPATIBLE 观察解除，并挡住旧址搜索旁路；当前可见候选优先于记忆候选。未修改经济 cap 或 Recon 威胁参数。
+- 原始 5x `lightSub #1026` 有 114 条目标进军意图；相同固定观察输入的 E2 决策对照为旧候选 106、新候选 0，UNKNOWN 语义保留。此对照不代表反事实实机轨迹或胜率。
+- ownership release 仅在确实持有租约时记账；新候选**未安装用户桌面**。构建身份、完整回归、原生验证及限制以 `handoff/HANDOFF_Astra_TargetStability_2026-09-30.md` 为入口；以下为此前状态快照。
+- 新候选 JAR SHA256 `165bd3b2207f96cee41a2dc3c8e25c36ce3ae799dd46a268304fe8dd65acf245`；contentDigest `cfaeeab48d1b7e3d2eb238a87f3aeb92de6a1be6e0661fc4ff839ca99a9f712e`。分段回归矩阵 20 Java / 15 Python 完成，2 个真实 Windows 文件锁用例在 Linux 跳过；修复了既有的非 Windows reap 假 GONE 报告。
+- 新 5x 原生 headless 局：1801.024 游戏秒，合法 PARTIAL/ONGOING、报告完整性无问题；3 个 lightSub 自然被抑制，失联后 0 条针对它们的进军意图，ownership 16/16。恢复兼容后的解除仍为 E2；未取得新桌面或胜率证据。先前 100 ms 轮询尝试触发现有 64 MiB 报告上限，已按失败保留；有效样本使用桌面 500 ms 墙钟轮询。
+
 ## 当前候选
 
 **KnowledgeBacked World Model / Capability v0（2026-09-29）** 已完成本机资料包接入、完整回归、P1F 安装和一局隔离原生验证。执行依据是 `助手交接/请Codex开始_KnowledgeBacked_v0_2026-09-29.md` 指向的施工版主合同；新交接见 `助手交接/HANDOFF_Codex_KnowledgeBacked_v0_2026-09-29.md`。

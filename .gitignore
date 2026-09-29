@@ -1,6 +1,7 @@
 # Build products
 agent/build/
 agent/dist/
+.engine/
 **/*.class
 **/*.jar
 

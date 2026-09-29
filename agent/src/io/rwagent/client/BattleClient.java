@@ -166,6 +166,17 @@ public final class BattleClient {
         TargetProgress(long enemyId,String type){this.enemyId=enemyId;this.type=type;}
     }
     private final Map<Long,TargetProgress> targetProgress=new LinkedHashMap<Long,TargetProgress>();
+    /** A policy exclusion, not a claim that an unseen target is still in the same domain.
+     * No timeout: fog, missing catalog data and same-type reinforcements cannot erase a rejection.
+     * Only a newer legal visible COMPATIBLE observation can release it (including a changed force).
+     * Instance-local like session/player ownership; never shared across controllers or matches.
+     */
+    private static final class TargetSuppression {
+        long observedAt;Map<String,Object> evidence;boolean holdReported;
+        TargetSuppression(long observedAt,Map<String,Object> evidence){this.observedAt=observedAt;this.evidence=evidence;}
+    }
+    private final Map<Long,TargetSuppression> targetSuppressions=new LinkedHashMap<Long,TargetSuppression>();
+    private long targetSuppressionsStarted,targetSuppressionsReleased,targetSuppressedSelections;
     /** 杈撳嚭30 搂4: the window, the cooldown and "the main force is close" are all explicit and tunable. */
     private final long noProgressWindowMs=Math.max(2000L,Integer.getInteger("rwagent.noProgressWindowMs",20000));
     private final long noProgressCooldownMs=Math.max(2000L,Integer.getInteger("rwagent.noProgressCooldownMs",30000));
@@ -524,6 +535,7 @@ public final class BattleClient {
                         +",\"reconEnabled\":"+reconEnabled+",\"reconFrontierEnabled\":"+reconFrontierEnabled
                         +",\"reconMinReadyArmy\":7,\"reconThreatBufferWorld\":80"
                         +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
+                        +",\"targetEligibilityVersion\":1,\"targetSuppressionRelease\":\"NEWER_VISIBLE_COMPATIBLE_EVIDENCE\""
                         +",\"reconExpendableHpMaxFraction\":0.45,\"reconFrontierMinMainForce\":6"
                         +"}");
                 long wallStart=System.nanoTime();wallStartNanos=wallStart;
@@ -551,6 +563,8 @@ public final class BattleClient {
                         confirm(state);updatePending(state);
                         updateMilitaryUrgency(state,enemies);
                         if(reconEnabled)updateRecon(state,enemies);
+                        // Consume negative evidence even when Economy/Recon spends this tick's command.
+                        updateTargetSuppressions(state,enemies);
                         builderRecovery(state);
                         economyLane(state);
                         if(execution.ready(time)){
@@ -622,6 +636,10 @@ public final class BattleClient {
                     +",\"noProgressCooldownMs\":"+noProgressCooldownMs
                     +",\"targetNoProgressTriggers\":"+noProgressTriggers
                     +",\"targetRetries\":"+noProgressRetries
+                    +",\"targetSuppressionsStarted\":"+targetSuppressionsStarted
+                    +",\"targetSuppressionsReleased\":"+targetSuppressionsReleased
+                    +",\"targetSuppressedSelections\":"+targetSuppressedSelections
+                    +",\"targetSuppressionsAtEnd\":"+targetSuppressions.size()
                     +",\"targetSwitches\":"+targetSwitches
                     // Speed readiness (对话35): all of these are measured, not assumed. A report without
                     // them cannot answer "was the client still reacting at this game speed?".
@@ -1276,7 +1294,7 @@ public final class BattleClient {
     }
     private static String reconOwner(long taskId){return "recon:"+taskId;}
     private void releaseOwnership(long taskId,String reason)throws Exception{
-        execution.release(reconOwner(taskId));
+        if(!execution.release(reconOwner(taskId)))return;
         event("task_ownership_released","{\"taskId\":"+taskId+",\"reason\":"+Json.quote(reason)+",\"gameTimeMs\":"+time+"}");
     }
     private boolean claimRecon(long taskId,long unitId)throws Exception{
@@ -1957,6 +1975,7 @@ public final class BattleClient {
         updateSearchTargets(state,enemies);
         double cx=0,cy=0;for(Map<String,Object> u:force){cx+=n(u,"x");cy+=n(u,"y");}cx/=force.size();cy/=force.size();
         Map<String,Object> target=null;GuardSelection targetGuard=null;double score=Double.MAX_VALUE;
+        boolean targetVisible=false;
         for(Map<String,Object> e:list(enemies,"rememberedEnemies")){
             TargetProgress tracked=targetProgress.get(Long.valueOf(id(e)));
             if(tracked!=null)tracked.lastSeenAt=time;
@@ -1964,6 +1983,18 @@ public final class BattleClient {
             // its cooldown expires. It is never removed from the world model, only benched.
             if(deprioritized(e))continue;
             GuardSelection candidate=targetGuard(force,e,enemies);
+            TargetSuppression suppression=targetSuppressions.get(Long.valueOf(id(e)));
+            if(suppression!=null){
+                targetSuppressedSelections++;
+                if(!suppression.holdReported){
+                    Map<String,Object> data=new LinkedHashMap<String,Object>(suppression.evidence);
+                    data.put("currentGuardStatus",candidate.status);
+                    data.put("reason","PRIOR_INCOMPATIBILITY_REQUIRES_NEW_COMPATIBLE_EVIDENCE");
+                    data.put("gameTimeMs",Long.valueOf(time));
+                    event("target_selection_suppressed",json(data));suppression.holdReported=true;
+                }
+                logTargetGuard(e,candidate);continue;
+            }
             if("INCOMPATIBLE".equals(candidate.status)){
                 logTargetGuard(e,candidate);
                 continue;
@@ -1972,7 +2003,12 @@ public final class BattleClient {
             if(n(e,"lastSeenGameTimeMs")==n(enemies,"gameTimeMs")&&Math.hypot(n(e,"x")-homeX,n(e,"y")-homeY)<450&&Boolean.TRUE.equals(e.get("canAttack")))d-=3000;
             if(Boolean.TRUE.equals(e.get("building")))d-=150;
             if("UNKNOWN".equals(candidate.status))d+=120; // retain the old legal flow without preferring uncertainty
-            if(d<score){score=d;target=e;targetGuard=candidate;}
+            // A legal current contact outranks a last-seen hypothesis. Distance/building scoring
+            // still chooses within each tier; UNKNOWN remains UNKNOWN and is not a hard rejection.
+            boolean visible=currentEnemy(e,enemies);
+            if(target==null||visible&&!targetVisible||visible==targetVisible&&d<score){
+                score=d;target=e;targetGuard=candidate;targetVisible=visible;
+            }
         }
         pruneTargetProgress();
         if(!marching&&force.size()>=6)marching=true;
@@ -2039,6 +2075,57 @@ public final class BattleClient {
             this.observedAt=observedAt;this.compatible=compatible;this.unknown=unknown;this.incompatible=incompatible;
         }
     }
+    private static boolean currentEnemy(Map<String,Object> enemy,Map<String,Object> enemies){
+        Long now=numberOrNull(enemies,"gameTimeMs"),seen=numberOrNull(enemy,"lastSeenGameTimeMs");
+        if(now==null||seen==null||!now.equals(seen))return false;
+        for(Map<String,Object> visible:list(enemies,"visibleEnemies"))
+            if(id(visible)==id(enemy))return true;
+        return false;
+    }
+    private void updateTargetSuppressions(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        List<Map<String,Object>> force=new ArrayList<Map<String,Object>>();
+        for(Map<String,Object> unit:mainArmy(state)){
+            Long until=resting.get(id(unit));if(until==null||time>=until)force.add(unit);
+        }
+        // Lack of an army is not evidence that a target is incompatible.
+        if(force.isEmpty())return;
+        for(Map<String,Object> enemy:list(enemies,"visibleEnemies")){
+            if(!currentEnemy(enemy,enemies))continue;
+            GuardSelection guard=targetGuard(force,enemy,enemies);
+            Long now=numberOrNull(enemies,"gameTimeMs");
+            if(now==null||guard.observedAt!=now.longValue())continue;
+            Long enemyId=Long.valueOf(id(enemy));TargetSuppression previous=targetSuppressions.get(enemyId);
+            if(previous!=null&&guard.observedAt<previous.observedAt)continue;
+            Map<String,Object> proof=new LinkedHashMap<String,Object>();
+            proof.put("targetId",enemyId);proof.put("targetType",enemy.get("type"));
+            proof.put("observedTargetDomain",enemy.get("targetDomain"));
+            proof.put("observedTouchingWater",enemy.get("touchingWater"));
+            proof.put("observedAtGameTimeMs",Long.valueOf(guard.observedAt));
+            proof.put("reason",guard.reason);proof.put("sourceId",guard.sourceId);
+            proof.put("domainSourceId",enemy.get("domainSourceId"));
+            proof.put("catalogSha256",TargetCatalog.catalogSha256());
+            proof.put("actorDecisions",guard.actorDecisions);
+            proof.put("sessionId",session);proof.put("player",execution.stamp().player);
+            proof.put("gameTimeMs",Long.valueOf(time));
+            if("INCOMPATIBLE".equals(guard.status)&&guard.incompatible>0){
+                if(previous==null){
+                    targetSuppressions.put(enemyId,new TargetSuppression(guard.observedAt,proof));
+                    targetSuppressionsStarted++;event("target_suppression_started",json(proof));
+                }else{previous.observedAt=guard.observedAt;previous.evidence=proof;}
+                // An old search objective must not bypass the strategic exclusion after memory expiry.
+                if(searchTarget!=null&&searchTarget.sourceEnemyId==enemyId.longValue()){
+                    event("search_target_suppressed","{\"targetId\":"+searchTarget.targetId
+                        +",\"sourceEnemyId\":"+enemyId+",\"reason\":\"CURRENT_INCOMPATIBILITY\",\"gameTimeMs\":"+time+"}");
+                    searchTarget=null;searchNeedsOrder=false;
+                }
+            }else if(previous!=null&&"COMPATIBLE".equals(guard.status)&&guard.observedAt>previous.observedAt){
+                targetSuppressions.remove(enemyId);targetSuppressionsReleased++;
+                proof.put("previousRejectionObservedAtGameTimeMs",Long.valueOf(previous.observedAt));
+                proof.put("reason","NEWER_VISIBLE_COMPATIBLE_EVIDENCE");
+                event("target_suppression_released",json(proof));
+            }
+        }
+    }
     private GuardSelection targetGuard(List<Map<String,Object>> force,Map<String,Object> enemy,
                                         Map<String,Object> enemies){
         boolean trusted=Boolean.TRUE.equals(enemies.get("catalogGameJarMatched"))
@@ -2046,15 +2133,9 @@ public final class BattleClient {
                 &&TargetCatalog.catalogSha256().equals(enemies.get("catalogSha256"));
         long observedAt=enemy.get("domainObservedAtGameTimeMs") instanceof Number
                 ?((Number)enemy.get("domainObservedAtGameTimeMs")).longValue():-1;
-        long lastSeen=enemy.get("lastSeenGameTimeMs") instanceof Number
-                ?((Number)enemy.get("lastSeenGameTimeMs")).longValue():-1;
         long now=enemies.get("gameTimeMs") instanceof Number
                 ?((Number)enemies.get("gameTimeMs")).longValue():-1;
-        boolean visible=false;
-        if(enemies.get("visibleEnemies") instanceof List<?>)
-            for(Map<String,Object> current:list(enemies,"visibleEnemies"))
-                if(id(current)==id(enemy)){visible=true;break;}
-        boolean fresh=visible&&now>=0&&observedAt==now&&lastSeen==now;
+        boolean fresh=currentEnemy(enemy,enemies)&&now>=0&&observedAt==now;
         String domain=stringOrNull(enemy,"targetDomain");
         Boolean water=enemy.get("touchingWater") instanceof Boolean?(Boolean)enemy.get("touchingWater"):null;
         List<Map<String,Object>> compatibleUnits=new ArrayList<Map<String,Object>>();
@@ -2223,6 +2304,7 @@ public final class BattleClient {
         Map<String,Object> best=null;double bestDistance=Double.MAX_VALUE;
         for(Map<String,Object> e:list(enemies,"visibleEnemies")){
             // Do not turn a fresh, clearly incompatible target into a later fog search order.
+            if(targetSuppressions.containsKey(Long.valueOf(id(e))))continue;
             if("INCOMPATIBLE".equals(targetGuard(mainArmy(state),e,enemies).status))continue;
             long enemyId=id(e),seen=(long)n(e,"lastSeenGameTimeMs");
             Long consumed=consumedObservations.get(Long.valueOf(enemyId));

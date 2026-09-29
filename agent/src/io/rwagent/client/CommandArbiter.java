@@ -55,9 +55,11 @@ public final class CommandArbiter {
     }
     public boolean reserved(long unitId){return owners.containsKey(unitId);}
     public boolean owns(String owner,long unitId){return owner.equals(owners.get(unitId));}
-    public void release(String owner){
+    public boolean release(String owner){
+        boolean released=false;
         Iterator<Map.Entry<Long,String>> it=owners.entrySet().iterator();
-        while(it.hasNext())if(owner.equals(it.next().getValue()))it.remove();
+        while(it.hasNext())if(owner.equals(it.next().getValue())){it.remove();released=true;}
+        return released;
     }
     public void clear(){owners.clear();}
     public boolean ready(long now){return latest!=null&&now>=nextCommand;}
