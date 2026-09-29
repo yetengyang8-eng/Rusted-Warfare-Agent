@@ -8,6 +8,7 @@ import tempfile
 import threading
 import unittest
 from urllib.parse import parse_qs, urlsplit
+from target_policy_fixture import run_frames
 
 JAR = str(pathlib.Path(sys.argv.pop(1)).resolve())
 CATALOG_SHA = '263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236'
@@ -172,6 +173,120 @@ class TargetCompatibilityIntegration(unittest.TestCase):
         self.assertTrue(orders, 'the first session made a real order')
         self.assertTrue(all(o['gameTimeMs'] < 6000 for o in orders),
                         'no command may use the first session after sessionId changes')
+
+
+class TargetEligibilityTransitions(unittest.TestCase):
+    @staticmethod
+    def frame(now, *, domain='SUBMERGED', visible=True, seen=None, force=None,
+              memory=True, alternative=False, trusted=True):
+        own = [dict(id=3, type='commandCenter', x=100, y=100, hp=4000, maxHp=4000,
+                    dead=False, buildProgress=1, mobile=False, canAttack=True,
+                    building=True, techLevel=1, productionQueue=0, orderType=None)]
+        for i, kind in enumerate(force if force is not None else ['tank']*6):
+            own.append(dict(id=20+i, type=kind, x=900, y=1000, hp=1000, maxHp=1000,
+                dead=False, buildProgress=1, mobile=True, canAttack=True,
+                building=False, techLevel=1, productionQueue=0, orderType=None))
+        sighting = now if seen is None else seen
+        enemy = dict(id=74, type='lightSub', x=1000, y=1000, hp=1000,
+            building=False, canAttack=True, lastSeenGameTimeMs=sighting,
+            targetDomain=domain, touchingWater=True, domainObservedAtGameTimeMs=sighting,
+            domainSourceId='fixture_legal_visibility')
+        current = [enemy] if visible else []
+        remembered = [enemy] if memory else []
+        if alternative:
+            other = dict(enemy, id=75, type='tank', targetDomain='SURFACE',
+                         x=1900, y=1000, lastSeenGameTimeMs=now, domainObservedAtGameTimeMs=now)
+            current.append(other)
+            remembered.append(other)
+        return dict(state=dict(status='running', sessionId='s', frame=now//10,
+            gameTimeMs=now, networked=False, replay=False, player=dict(teamId=0, credits=0),
+            ownUnits=own, match=dict(outcome='ONGOING', nativeDefeat=False, nativeVictory=False),
+            map=dict(width=2400, height=2400, tilesWide=120, tilesHigh=120, tileWidth=20, tileHeight=20)),
+            combat=dict(status='observed', sessionId='s', gameTimeMs=now,
+                catalogSha256=CATALOG_SHA, catalogGameJarMatched=trusted,
+                visibleEnemies=current, rememberedEnemies=remembered))
+
+    def run_timeline(self, frames):
+        return run_frames(JAR, [frames[0]]+frames)
+
+    @staticmethod
+    def events(rows, name):
+        return [r['data'] for r in rows if r['event'] == name]
+
+    @staticmethod
+    def orders_to_sub(orders):
+        return [o for o in orders if o['path'] == '/command/attack-move'
+                and (o['x'], o['y']) == (1000, 1000)]
+
+    def test_rejection_survives_fog_time_same_type_reinforcements_and_catalog_gap(self):
+        orders, rows = self.run_timeline([
+            self.frame(10000), self.frame(20000, visible=False, seen=10000, alternative=True),
+            self.frame(80000, visible=False, seen=10000, force=['tank']*8),
+            self.frame(300000, visible=False, seen=10000, trusted=False)])
+        self.assertFalse(self.orders_to_sub(orders))
+        self.assertEqual(len(self.events(rows, 'target_suppression_started')), 1)
+        self.assertFalse(self.events(rows, 'target_suppression_released'))
+        self.assertTrue(any(g['status'] == 'UNKNOWN' for g in self.events(rows, 'target_guard')
+                            if g['targetId'] == 74), 'fog still means UNKNOWN, never fabricated current rejection')
+        self.assertTrue(any(o['x'] == 1900 for o in orders), 'available visible target remains actionable')
+
+    def test_unchanged_reacquisition_does_not_reopen_target(self):
+        orders, rows = self.run_timeline([self.frame(10000),
+            self.frame(20000, visible=False, seen=10000), self.frame(30000),
+            self.frame(40000, visible=False, seen=30000)])
+        self.assertFalse(self.orders_to_sub(orders))
+        self.assertEqual(len(self.events(rows, 'target_suppression_started')), 1)
+        self.assertFalse(self.events(rows, 'target_suppression_released'))
+
+    def test_new_visible_surface_observation_releases(self):
+        orders, rows = self.run_timeline([self.frame(10000),
+            self.frame(20000, visible=False, seen=10000), self.frame(30000, domain='SURFACE')])
+        self.assertEqual([o['gameTimeMs'] for o in self.orders_to_sub(orders)], [30000])
+        release = self.events(rows, 'target_suppression_released')
+        self.assertEqual(len(release), 1)
+        self.assertEqual(release[0]['previousRejectionObservedAtGameTimeMs'], 10000)
+        self.assertEqual(release[0]['observedTargetDomain'], 'SURFACE')
+
+    def test_unknown_observation_and_unknown_new_attacker_do_not_erase_rejection(self):
+        orders, rows = self.run_timeline([self.frame(10000),
+            self.frame(20000, domain='UNKNOWN'),
+            self.frame(30000, force=['tank']*6+['uncataloguedUnit'])])
+        self.assertFalse(self.orders_to_sub(orders))
+        self.assertFalse(self.events(rows, 'target_suppression_released'))
+
+    def test_new_capable_force_requires_current_target_evidence_then_uses_subset(self):
+        force = ['tank']*6+['heavyTank']
+        orders, rows = self.run_timeline([self.frame(10000, domain='AIR'),
+            self.frame(20000, domain='AIR', visible=False, seen=10000, force=force),
+            self.frame(30000, domain='AIR', force=force)])
+        aimed = self.orders_to_sub(orders)
+        self.assertEqual([o['gameTimeMs'] for o in aimed], [30000])
+        self.assertEqual(aimed[0]['unitIds'], [26])
+        self.assertEqual(len(self.events(rows, 'target_suppression_released')), 1)
+
+    def test_visible_candidate_outranks_nearer_remembered_candidate(self):
+        orders, rows = self.run_timeline([
+            self.frame(10000, domain='SURFACE', visible=False, seen=1000, alternative=True)])
+        self.assertFalse(self.orders_to_sub(orders))
+        self.assertTrue(any(o['x'] == 1900 for o in orders))
+        self.assertFalse(self.events(rows, 'target_suppression_started'))
+
+    def test_never_rejected_unknown_target_keeps_fallback(self):
+        orders, rows = self.run_timeline([self.frame(10000, visible=False, seen=1000)])
+        self.assertTrue(self.orders_to_sub(orders))
+        self.assertFalse(self.events(rows, 'target_suppression_started'))
+
+    def test_empty_force_does_not_create_negative_evidence(self):
+        orders, rows = self.run_timeline([self.frame(10000, force=[]),
+            self.frame(20000, visible=False, seen=10000)])
+        self.assertTrue(self.orders_to_sub(orders))
+        self.assertFalse(self.events(rows, 'target_suppression_started'))
+
+    def test_existing_search_objective_cannot_bypass_later_rejection(self):
+        orders, rows = self.run_timeline([self.frame(10000, domain='SURFACE'),
+            self.frame(20000), self.frame(30000, visible=False, seen=20000, memory=False)])
+        self.assertEqual([o['gameTimeMs'] for o in self.orders_to_sub(orders)], [10000])
+        self.assertEqual(len(self.events(rows, 'search_target_suppressed')), 1)
 
 
 if __name__ == '__main__':

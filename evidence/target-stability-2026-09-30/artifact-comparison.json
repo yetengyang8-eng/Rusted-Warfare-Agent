@@ -1,0 +1,46 @@
+{
+  "comparisonBaseSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "candidateJarSha256": "165bd3b2207f96cee41a2dc3c8e25c36ce3ae799dd46a268304fe8dd65acf245",
+  "changedEntries": [
+    "META-INF/MANIFEST.MF",
+    "META-INF/astra-recon-client-overlay.json",
+    "io/rwagent/bootstrap/EconomyBridge$1.class",
+    "io/rwagent/bootstrap/RuntimeBridge$4$1.class",
+    "io/rwagent/bootstrap/RwAgent$1.class",
+    "io/rwagent/client/BattleClient$BuildJob.class",
+    "io/rwagent/client/BattleClient$GuardSelection.class",
+    "io/rwagent/client/BattleClient$Investment.class",
+    "io/rwagent/client/BattleClient$Pending.class",
+    "io/rwagent/client/BattleClient$TargetSuppression.class",
+    "io/rwagent/client/BattleClient.class",
+    "io/rwagent/client/CommandArbiter.class"
+  ],
+  "nativeAndKnowledgeUnchanged": false,
+  "fullSourceBaselineSha256": "3fe23a3f616f775e9549fb34bf652cd37c57f944e5ae56caa318b75829f3682a",
+  "fullSourceBaselineChangedEntries": [
+    "io/rwagent/client/BattleClient$BuildJob.class",
+    "io/rwagent/client/BattleClient$GuardSelection.class",
+    "io/rwagent/client/BattleClient$Investment.class",
+    "io/rwagent/client/BattleClient$Pending.class",
+    "io/rwagent/client/BattleClient$TargetSuppression.class",
+    "io/rwagent/client/BattleClient.class",
+    "io/rwagent/client/CommandArbiter.class"
+  ],
+  "nativeAndKnowledgeUnchangedFromFullSourceBaseline": true,
+  "desktopNativeClassDisassembly": {
+    "io.rwagent.bootstrap.EconomyBridge$1": {
+      "javapListingEqual": false,
+      "jvmDescriptorsAndInstructionsEqual": true
+    },
+    "io.rwagent.bootstrap.RuntimeBridge$4$1": {
+      "javapListingEqual": false,
+      "jvmDescriptorsAndInstructionsEqual": true
+    },
+    "io.rwagent.bootstrap.RwAgent$1": {
+      "javapListingEqual": false,
+      "jvmDescriptorsAndInstructionsEqual": true
+    }
+  },
+  "finalRegressionJarSha256": "3b7fdf7f244ab99d9af24608bd84114c83fbb8719a01d1701748c26ce49d7265",
+  "finalRegressionNonManifestEntriesEqualDelivery": true
+}

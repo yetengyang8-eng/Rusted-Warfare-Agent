@@ -200,9 +200,10 @@ def verify_live_owner(proc,work,port,session,agent_sha,game_sha):
     return state
 
 def process_info(pids):
-    """{pid: command line} for the pids that currently exist. Windows-only; {} elsewhere."""
+    """{pid: command line}, or None when this platform cannot verify process identity."""
     wanted=[int(p) for p in pids if p]
-    if os.name!='nt' or not wanted:return {}
+    if not wanted:return {}
+    if os.name!='nt':return None
     script=('[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
             '$out=@();foreach($p in @(%s)){'
             '$c=Get-CimInstance Win32_Process -Filter ("ProcessId=$p") -ErrorAction SilentlyContinue;'
@@ -221,9 +222,10 @@ def process_info(pids):
     return {int(row['pid']):(row.get('cmd') or '') for row in data if isinstance(row,dict) and row.get('pid') is not None}
 
 def port_owners(ports):
-    """{port: owning pid} for ports currently in LISTEN. Windows-only; {} elsewhere."""
+    """{port: owning pid}, or None when this platform cannot verify port ownership."""
     wanted=sorted({int(p) for p in ports if p})
-    if os.name!='nt' or not wanted:return {}
+    if not wanted:return {}
+    if os.name!='nt':return None
     script=('[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
             '$out=@();foreach($p in @(%s)){'
             '$c=Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction SilentlyContinue;'

@@ -6,7 +6,9 @@ the fixture first exposes the scout's own move order and position progress.
 """
 
 import http.server
+import hashlib
 import json
+import os
 import pathlib
 import subprocess
 import sys
@@ -42,6 +44,9 @@ class FrontierReconPolicyTests(unittest.TestCase):
                  lost_on_emergency=False, stale_adjacent_plan=False,
                  stale_forward_on_route=False, pending_emergency=False,
                  existing_expendable_pending=False,
+                 moving_old_order=False, instant_completion=False,
+                 intra_poll_refresh=False, drop_moves=False,
+                 short_first_leg=False, between_decisions=False, game_step_ms=2000, region_delay=2,
                  polls=34):
         frame = [0]
         calls = []
@@ -49,6 +54,7 @@ class FrontierReconPolicyTests(unittest.TestCase):
         outbound_moves = []
         builder_orders = []
         recon_plan_requests = []
+        actual_frontier = [self.FRONTIER_TILE]
         delay_for_builder = (drift_before_first_order or
                              adjacent_tile_before_first_order)
 
@@ -58,12 +64,15 @@ class FrontierReconPolicyTests(unittest.TestCase):
                           canAttack=can_attack, building=False, techLevel=1,
                           productionQueue=0, orderType=None)
             if order is not None:
-                result.update(orderType='move', orderX=order['x'],
+                result.update(orderType=order.get('orderType', 'move'), orderX=order['x'],
                               orderY=order['y'])
             return result
 
         def scout_position():
             if not move_orders:
+                if moving_old_order:
+                    return (100.0 + frame[0] * 40, 100.0,
+                            dict(x=1800.0, y=100.0, orderType='attackMove'))
                 if stale_adjacent_plan or stale_forward_on_route:
                     return ((110.0, 110.0, None) if recon_plan_requests
                             else (130.0, 100.0, None) if stale_forward_on_route
@@ -71,7 +80,7 @@ class FrontierReconPolicyTests(unittest.TestCase):
                 if delay_for_builder and builder_orders:
                     return ((100.0, 130.0, None) if adjacent_tile_before_first_order
                             else (180.0, 130.0, None))
-                return 100.0, 100.0, None
+                return (119.5, 110.0, None) if short_first_leg else (100.0, 100.0, None)
             if (existing_expendable_pending and len(recon_plan_requests) >= 2
                     and len(outbound_moves) == 2):
                 return 230.0, 250.0, None
@@ -79,6 +88,13 @@ class FrontierReconPolicyTests(unittest.TestCase):
             elapsed = frame[0] - order['frame']
             if elapsed <= 0:
                 return order['startX'], order['startY'], None
+            if between_decisions:
+                if elapsed == 1:
+                    return ((order['startX'] + order['x']) / 2,
+                            (order['startY'] + order['y']) / 2, order)
+                return order['x'], order['y'], None
+            if instant_completion:
+                return order['x'], order['y'], None
             first_leg = outbound_moves and order is outbound_moves[0]
             fraction = min(1.0, elapsed * (0.16 if slow_first_leg and first_leg
                                            else 0.35))
@@ -88,8 +104,9 @@ class FrontierReconPolicyTests(unittest.TestCase):
 
         def region_revealed():
             return bool(reveal_region and not preempt_after_move and
-                        len(outbound_moves) >= 2 and
-                        frame[0] >= outbound_moves[1]['frame'] + 2)
+                        len(outbound_moves) >= (1 if moving_old_order else 2) and
+                        frame[0] >= outbound_moves[0 if moving_old_order else 1]['frame'] +
+                        (1 if intra_poll_refresh else region_delay))
 
         def emergency_now():
             return bool(emergency or (pending_emergency and recon_plan_requests
@@ -128,9 +145,11 @@ class FrontierReconPolicyTests(unittest.TestCase):
                     order = dict(unitId=int(query['unitId'][0]),
                                  x=x, y=y, startX=start_x, startY=start_y,
                                  frame=frame[0])
-                    move_orders.append(order)
-                    if order['x'] != 100.0 or order['y'] != 100.0:
-                        outbound_moves.append(order)
+                    if not drop_moves:
+                        move_orders.append(order)
+                        if ((order['x'] != 100.0 or order['y'] != 100.0) and
+                                abs(x - start_x) + abs(y - start_y) > 1):
+                            outbound_moves.append(order)
                     receipt.update(unitId=order['unitId'], targetX=order['x'],
                                    targetY=order['y'], orderType='move')
                 elif parsed.path == '/command/attack-move':
@@ -147,12 +166,12 @@ class FrontierReconPolicyTests(unittest.TestCase):
                 path = parsed.path
                 calls.append(dict(method='GET', path=path,
                                   query=query, frame=frame[0]))
-                now = frame[0] * 2000
+                now = frame[0] * game_step_ms
                 if path == '/health':
                     return self.reply(dict(status='ok', version='0.07-alpha1'))
                 if path == '/state':
                     frame[0] += 1
-                    now = frame[0] * 2000
+                    now = frame[0] * game_step_ms
                     terminal = frame[0] >= polls
                     own = [dict(id=3, type='commandCenter', x=100.0, y=100.0,
                                 hp=1000, maxHp=1000, dead=False, buildProgress=1,
@@ -237,19 +256,43 @@ class FrontierReconPolicyTests(unittest.TestCase):
                         visibleTiles=120, exploredTiles=108 if revealed else 100,
                         newlyObservedTiles=8 if revealed else 0,
                         resources=[], visibleThreats=[], rememberedThreats=[],
-                        region=dict(tile=FrontierReconPolicyTests.FRONTIER_TILE,
+                        region=dict(tile=actual_frontier[0],
                                     currentlyVisible=revealed,
                                     revealedDeepOrNeverSince=8 if revealed else 0,
                                     revealedStaleSince=0,
                                     latestRelevantRevealGameTimeMs=(
-                                        outbound_moves[0]['frame'] * 2000
+                                        outbound_moves[0]['frame'] * game_step_ms
                                         if revealed and early_region_timestamp else
+                                        (outbound_moves[-1]['frame'] * game_step_ms + game_step_ms // 2)
+                                        if revealed and intra_poll_refresh else
                                         now if revealed else -1))))
                 if path == '/scout/plan' and query.get('role') == ['recon']:
                     recon_plan_requests.append(frame[0])
                     if region_revealed() and not (persistent_frontier or existing_expendable_pending):
                         return self.reply(dict(status='no_frontier', sessionId='s',
                                                reason='NO_HIGH_VALUE_RECON_FRONTIER'))
+                    if short_first_leg:
+                        actual_frontier[0] = 666
+                        return self.reply(dict(
+                            status='planned', sessionId='s', anchorUnitId=20,
+                            anchorX=119.5, anchorY=110.0, targetX=130.0, targetY=130.0,
+                            targetTile=666, frontierTile=666, routeTiles=[555, 665, 666],
+                            frontierMemoryClass='DEEP_FOG', potentialInfoScore=120,
+                            potentialNeverSeenTiles=0, potentialDeepFogTiles=24,
+                            potentialStaleFogTiles=0, pathKnown=True, pathVisible=False))
+                    if moving_old_order:
+                        sx, sy, _ = scout_position()
+                        col, row = int(sx // 20), int(sy // 20)
+                        route = [col * 110 + r for r in range(row, row + 7)]
+                        actual_frontier[0] = route[-1]
+                        return self.reply(dict(
+                            status='planned', sessionId='s', anchorUnitId=20,
+                            anchorX=sx, anchorY=sy, targetX=(col + .5) * 20,
+                            targetY=(row + 6.5) * 20, targetTile=route[-1],
+                            frontierTile=route[-1], routeTiles=route,
+                            frontierMemoryClass='DEEP_FOG', potentialInfoScore=120,
+                            potentialNeverSeenTiles=0, potentialDeepFogTiles=24,
+                            potentialStaleFogTiles=0, pathKnown=True, pathVisible=False))
                     second = region_revealed() and (persistent_frontier or existing_expendable_pending)
                     pending_second = second and existing_expendable_pending
                     return self.reply(dict(
@@ -304,6 +347,18 @@ class FrontierReconPolicyTests(unittest.TestCase):
                 self.assertEqual(len(reports), 1)
                 rows = [json.loads(line) for line in
                         reports[0].read_text(encoding='utf-8').splitlines()]
+                if os.environ.get('RWAGENT_TEST_EVIDENCE_DIR'):
+                    target = pathlib.Path(os.environ['RWAGENT_TEST_EVIDENCE_DIR']) / self._testMethodName
+                    target.mkdir(parents=True, exist_ok=True)
+                    (target / 'trace.jsonl').write_text(reports[0].read_text(encoding='utf-8'), encoding='utf-8')
+                    (target / 'fixture.json').write_text(json.dumps(dict(
+                        evidenceClass='E2_HTTP_SIMULATION_NOT_NATIVE', jar=JAR,
+                        jarSha256=hashlib.sha256(pathlib.Path(JAR).read_bytes()).hexdigest(),
+                        gameStepMs=game_step_ms, betweenDecisions=between_decisions,
+                        shortFirstLeg=short_first_leg,
+                        movingOldOrder=moving_old_order, instantCompletion=instant_completion,
+                        intraPollRefresh=intra_poll_refresh, dropMoves=drop_moves,
+                        calls=calls), indent=2) + '\n', encoding='utf-8')
                 return calls, rows
         finally:
             server.shutdown()
@@ -313,6 +368,52 @@ class FrontierReconPolicyTests(unittest.TestCase):
     @staticmethod
     def events(rows, event):
         return [row['data'] for row in rows if row['event'] == event]
+
+    def test_moving_actor_is_taken_over_before_frontier_planning(self):
+        calls, rows = self.run_case(moving_old_order=True, polls=25)
+        self.assertTrue(self.events(rows, 'recon_order_queued'))
+        self.assertTrue(self.events(rows, 'recon_frontier_refreshed'))
+        names = [row['event'] for row in rows]
+        self.assertLess(names.index('task_ownership_acquired'), names.index('recon_takeover_queued'))
+        self.assertLess(names.index('recon_takeover_queued'), names.index('recon_takeover_observed'))
+        self.assertLess(names.index('recon_takeover_observed'), names.index('recon_frontier_plan'))
+        for call in calls:
+            if call['method'] == 'POST' and call['path'] == '/command/attack-move':
+                self.assertNotIn('20', call['query']['unitIds'][0].split(','))
+
+    def test_short_move_completed_between_polls_advances_the_route(self):
+        _, rows = self.run_case(instant_completion=True, intra_poll_refresh=True, polls=20)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_order_queued')), 2)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_move_completed_between_samples')), 2)
+        self.assertTrue(self.events(rows, 'recon_frontier_satisfied'))
+        self.assertFalse(self.events(rows, 'recon_order_observed'), 'no active native order was sampled')
+        self.assertFalse(self.events(rows, 'recon_frontier_refreshed'), 'strict temporal attribution is unavailable')
+
+    def test_accepted_but_unexecuted_takeover_cannot_authorize_a_route(self):
+        calls, rows = self.run_case(moving_old_order=True, drop_moves=True, polls=25)
+        self.assertTrue(self.events(rows, 'recon_takeover_queued'))
+        self.assertFalse(self.events(rows, 'recon_takeover_observed'))
+        self.assertFalse(self.events(rows, 'recon_order_queued'))
+        self.assertFalse([c for c in calls if c['path'] == '/scout/plan' and c['query'].get('role') == ['recon']])
+        self.assertIn('TAKEOVER_TIMEOUT', [e['reason'] for e in self.events(rows, 'recon_takeover_cancelled')])
+
+    def test_order_visible_only_between_decisions_is_still_observed(self):
+        _, rows = self.run_case(between_decisions=True, game_step_ms=500, polls=55)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_order_observed')), 2)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_order_queued')), 2)
+        self.assertTrue(self.events(rows, 'recon_frontier_refreshed'))
+
+    def test_ten_world_unit_first_leg_can_finish_without_active_order_sample(self):
+        _, rows = self.run_case(short_first_leg=True, instant_completion=True,
+                                intra_poll_refresh=True, polls=22)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_order_queued')), 2)
+        self.assertGreaterEqual(len(self.events(rows, 'recon_move_completed_between_samples')), 2)
+        self.assertTrue(self.events(rows, 'recon_frontier_satisfied'))
+
+    def test_vision_grace_starts_at_arrival_not_at_submission(self):
+        _, rows = self.run_case(instant_completion=True, region_delay=4, polls=25)
+        self.assertTrue(self.events(rows, 'recon_frontier_satisfied'))
+        self.assertFalse(self.events(rows, 'recon_frontier_blocked'))
 
     def test_low_value_damaged_unit_sweeps_deep_fog_and_stays_out_of_army(self):
         calls, rows = self.run_case()

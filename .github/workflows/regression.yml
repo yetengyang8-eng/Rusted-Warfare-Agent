@@ -1,0 +1,25 @@
+name: Full regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, 'astra/**']
+  pull_request:
+
+jobs:
+  linux-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare verified RW 1.15 headless engine
+        run: python tools/prepare_headless_engine.py --out .engine/rw115
+      - name: Run complete Linux regression matrix
+        run: bash agent/test.sh .engine/rw115/game-lib.jar .engine/rw115/libs

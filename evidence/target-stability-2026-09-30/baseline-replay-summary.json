@@ -1,0 +1,2392 @@
+{
+  "sourceBattleSha256": "3d6ba9bd309e52eb55366509c46fedd780efcdb6658fd93e03b838028eb92cb3",
+  "original": {
+    "targetedIntents": {
+      "54": 1,
+      "233": 1,
+      "237": 1,
+      "248": 1,
+      "242": 1,
+      "307": 1,
+      "296": 1,
+      "277": 1,
+      "244": 1,
+      "235": 1,
+      "787": 1,
+      "228": 1,
+      "640": 1,
+      "210": 1,
+      "204": 1,
+      "331": 1,
+      "202": 1,
+      "357": 1,
+      "797": 1,
+      "276": 1,
+      "1577": 1,
+      "282": 1,
+      "1755": 1,
+      "225": 84,
+      "1026": 114,
+      "774": 2,
+      "211": 34
+    },
+    "switchesTo": {
+      "54": 1,
+      "233": 1,
+      "237": 1,
+      "248": 1,
+      "242": 1,
+      "307": 1,
+      "296": 1,
+      "277": 1,
+      "244": 1,
+      "235": 1,
+      "787": 1,
+      "228": 1,
+      "640": 1,
+      "210": 1,
+      "204": 1,
+      "331": 1,
+      "202": 1,
+      "357": 1,
+      "797": 1,
+      "276": 1,
+      "1577": 1,
+      "282": 1,
+      "1755": 1,
+      "225": 84,
+      "1026": 113,
+      "774": 1,
+      "211": 34
+    },
+    "guards": [
+      {
+        "targetId": 54,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 202,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 204,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 210,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 211,
+        "status": "UNKNOWN",
+        "count": 50
+      },
+      {
+        "targetId": 225,
+        "status": "UNKNOWN",
+        "count": 164
+      },
+      {
+        "targetId": 228,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 233,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 235,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 237,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 242,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 244,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 248,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 276,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 277,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 282,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 296,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 307,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 331,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 357,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 617,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 640,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 774,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 774,
+        "status": "UNKNOWN",
+        "count": 1
+      },
+      {
+        "targetId": 787,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 797,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 1026,
+        "status": "INCOMPATIBLE",
+        "count": 219
+      },
+      {
+        "targetId": 1026,
+        "status": "UNKNOWN",
+        "count": 235
+      },
+      {
+        "targetId": 1317,
+        "status": "INCOMPATIBLE",
+        "count": 233
+      },
+      {
+        "targetId": 1577,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 1755,
+        "status": "COMPATIBLE",
+        "count": 1
+      }
+    ],
+    "rememberedReentriesAfterRejection": [
+      {
+        "line": 1956,
+        "targetId": 1026,
+        "observationGameTimeMs": 628876,
+        "lastSeenGameTimeMs": 626246,
+        "priorRejectionLine": 1942,
+        "visibleAlternatives": [
+          774
+        ]
+      },
+      {
+        "line": 2013,
+        "targetId": 1026,
+        "observationGameTimeMs": 641926,
+        "lastSeenGameTimeMs": 639326,
+        "priorRejectionLine": 2001,
+        "visibleAlternatives": [
+          774
+        ]
+      },
+      {
+        "line": 2051,
+        "targetId": 1026,
+        "observationGameTimeMs": 652476,
+        "lastSeenGameTimeMs": 639326,
+        "priorRejectionLine": 2001,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2093,
+        "targetId": 1026,
+        "observationGameTimeMs": 662896,
+        "lastSeenGameTimeMs": 660246,
+        "priorRejectionLine": 2074,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2122,
+        "targetId": 1026,
+        "observationGameTimeMs": 668046,
+        "lastSeenGameTimeMs": 665461,
+        "priorRejectionLine": 2105,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2164,
+        "targetId": 1026,
+        "observationGameTimeMs": 678576,
+        "lastSeenGameTimeMs": 673276,
+        "priorRejectionLine": 2142,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2200,
+        "targetId": 1026,
+        "observationGameTimeMs": 689111,
+        "lastSeenGameTimeMs": 686461,
+        "priorRejectionLine": 2179,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2244,
+        "targetId": 1026,
+        "observationGameTimeMs": 699576,
+        "lastSeenGameTimeMs": 696996,
+        "priorRejectionLine": 2235,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2299,
+        "targetId": 1026,
+        "observationGameTimeMs": 715211,
+        "lastSeenGameTimeMs": 712611,
+        "priorRejectionLine": 2285,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2327,
+        "targetId": 1026,
+        "observationGameTimeMs": 720376,
+        "lastSeenGameTimeMs": 717796,
+        "priorRejectionLine": 2311,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 2369,
+        "targetId": 1026,
+        "observationGameTimeMs": 728261,
+        "lastSeenGameTimeMs": 725596,
+        "priorRejectionLine": 2353,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2455,
+        "targetId": 1026,
+        "observationGameTimeMs": 754261,
+        "lastSeenGameTimeMs": 751696,
+        "priorRejectionLine": 2445,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2522,
+        "targetId": 1026,
+        "observationGameTimeMs": 769976,
+        "lastSeenGameTimeMs": 764746,
+        "priorRejectionLine": 2502,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2564,
+        "targetId": 1026,
+        "observationGameTimeMs": 780376,
+        "lastSeenGameTimeMs": 777776,
+        "priorRejectionLine": 2548,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2607,
+        "targetId": 1026,
+        "observationGameTimeMs": 790826,
+        "lastSeenGameTimeMs": 783011,
+        "priorRejectionLine": 2577,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2662,
+        "targetId": 1026,
+        "observationGameTimeMs": 803846,
+        "lastSeenGameTimeMs": 801246,
+        "priorRejectionLine": 2652,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2716,
+        "targetId": 1026,
+        "observationGameTimeMs": 816926,
+        "lastSeenGameTimeMs": 814346,
+        "priorRejectionLine": 2706,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2767,
+        "targetId": 1026,
+        "observationGameTimeMs": 829926,
+        "lastSeenGameTimeMs": 827346,
+        "priorRejectionLine": 2756,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2833,
+        "targetId": 1026,
+        "observationGameTimeMs": 845646,
+        "lastSeenGameTimeMs": 840411,
+        "priorRejectionLine": 2814,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2883,
+        "targetId": 1026,
+        "observationGameTimeMs": 858661,
+        "lastSeenGameTimeMs": 856076,
+        "priorRejectionLine": 2873,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2942,
+        "targetId": 1026,
+        "observationGameTimeMs": 871761,
+        "lastSeenGameTimeMs": 869096,
+        "priorRejectionLine": 2926,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2984,
+        "targetId": 1026,
+        "observationGameTimeMs": 882246,
+        "lastSeenGameTimeMs": 879596,
+        "priorRejectionLine": 2961,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3017,
+        "targetId": 1026,
+        "observationGameTimeMs": 890061,
+        "lastSeenGameTimeMs": 887411,
+        "priorRejectionLine": 3002,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3063,
+        "targetId": 1026,
+        "observationGameTimeMs": 900576,
+        "lastSeenGameTimeMs": 895296,
+        "priorRejectionLine": 3045,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3110,
+        "targetId": 1026,
+        "observationGameTimeMs": 911046,
+        "lastSeenGameTimeMs": 908381,
+        "priorRejectionLine": 3090,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3154,
+        "targetId": 1026,
+        "observationGameTimeMs": 921396,
+        "lastSeenGameTimeMs": 918811,
+        "priorRejectionLine": 3130,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3214,
+        "targetId": 1026,
+        "observationGameTimeMs": 936896,
+        "lastSeenGameTimeMs": 931746,
+        "priorRejectionLine": 3196,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3270,
+        "targetId": 1026,
+        "observationGameTimeMs": 949926,
+        "lastSeenGameTimeMs": 947276,
+        "priorRejectionLine": 3248,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3315,
+        "targetId": 1026,
+        "observationGameTimeMs": 960311,
+        "lastSeenGameTimeMs": 957726,
+        "priorRejectionLine": 3304,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 3351,
+        "targetId": 1026,
+        "observationGameTimeMs": 968126,
+        "lastSeenGameTimeMs": 965546,
+        "priorRejectionLine": 3341,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3410,
+        "targetId": 1026,
+        "observationGameTimeMs": 981411,
+        "lastSeenGameTimeMs": 978746,
+        "priorRejectionLine": 3395,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3446,
+        "targetId": 1026,
+        "observationGameTimeMs": 989176,
+        "lastSeenGameTimeMs": 986596,
+        "priorRejectionLine": 3429,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3495,
+        "targetId": 1026,
+        "observationGameTimeMs": 999646,
+        "lastSeenGameTimeMs": 997061,
+        "priorRejectionLine": 3480,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3561,
+        "targetId": 1026,
+        "observationGameTimeMs": 1015311,
+        "lastSeenGameTimeMs": 1010046,
+        "priorRejectionLine": 3537,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3619,
+        "targetId": 1026,
+        "observationGameTimeMs": 1030911,
+        "lastSeenGameTimeMs": 1025696,
+        "priorRejectionLine": 3601,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3661,
+        "targetId": 1026,
+        "observationGameTimeMs": 1041296,
+        "lastSeenGameTimeMs": 1038711,
+        "priorRejectionLine": 3646,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3709,
+        "targetId": 1026,
+        "observationGameTimeMs": 1051776,
+        "lastSeenGameTimeMs": 1049176,
+        "priorRejectionLine": 3699,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3750,
+        "targetId": 1026,
+        "observationGameTimeMs": 1062226,
+        "lastSeenGameTimeMs": 1057001,
+        "priorRejectionLine": 3727,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3794,
+        "targetId": 1026,
+        "observationGameTimeMs": 1072676,
+        "lastSeenGameTimeMs": 1070096,
+        "priorRejectionLine": 3784,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3833,
+        "targetId": 1026,
+        "observationGameTimeMs": 1080576,
+        "lastSeenGameTimeMs": 1077911,
+        "priorRejectionLine": 3812,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3859,
+        "targetId": 1026,
+        "observationGameTimeMs": 1085811,
+        "lastSeenGameTimeMs": 1083161,
+        "priorRejectionLine": 3844,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3904,
+        "targetId": 1026,
+        "observationGameTimeMs": 1096361,
+        "lastSeenGameTimeMs": 1091046,
+        "priorRejectionLine": 3880,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3947,
+        "targetId": 1026,
+        "observationGameTimeMs": 1106746,
+        "lastSeenGameTimeMs": 1104146,
+        "priorRejectionLine": 3937,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4000,
+        "targetId": 1026,
+        "observationGameTimeMs": 1117211,
+        "lastSeenGameTimeMs": 1114561,
+        "priorRejectionLine": 3990,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4061,
+        "targetId": 1026,
+        "observationGameTimeMs": 1130126,
+        "lastSeenGameTimeMs": 1127546,
+        "priorRejectionLine": 4043,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4112,
+        "targetId": 1026,
+        "observationGameTimeMs": 1143146,
+        "lastSeenGameTimeMs": 1140561,
+        "priorRejectionLine": 4101,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4170,
+        "targetId": 1026,
+        "observationGameTimeMs": 1156196,
+        "lastSeenGameTimeMs": 1153611,
+        "priorRejectionLine": 4160,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4209,
+        "targetId": 1026,
+        "observationGameTimeMs": 1164061,
+        "lastSeenGameTimeMs": 1161411,
+        "priorRejectionLine": 4192,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 4244,
+        "targetId": 1026,
+        "observationGameTimeMs": 1171876,
+        "lastSeenGameTimeMs": 1169296,
+        "priorRejectionLine": 4234,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4290,
+        "targetId": 1026,
+        "observationGameTimeMs": 1182346,
+        "lastSeenGameTimeMs": 1179746,
+        "priorRejectionLine": 4280,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4331,
+        "targetId": 1026,
+        "observationGameTimeMs": 1190146,
+        "lastSeenGameTimeMs": 1187496,
+        "priorRejectionLine": 4309,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 4370,
+        "targetId": 1026,
+        "observationGameTimeMs": 1198061,
+        "lastSeenGameTimeMs": 1195461,
+        "priorRejectionLine": 4360,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4416,
+        "targetId": 1026,
+        "observationGameTimeMs": 1208426,
+        "lastSeenGameTimeMs": 1205846,
+        "priorRejectionLine": 4403,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4474,
+        "targetId": 1026,
+        "observationGameTimeMs": 1221526,
+        "lastSeenGameTimeMs": 1218876,
+        "priorRejectionLine": 4458,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4527,
+        "targetId": 1026,
+        "observationGameTimeMs": 1234711,
+        "lastSeenGameTimeMs": 1232126,
+        "priorRejectionLine": 4517,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4583,
+        "targetId": 1026,
+        "observationGameTimeMs": 1247746,
+        "lastSeenGameTimeMs": 1245146,
+        "priorRejectionLine": 4572,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4642,
+        "targetId": 1026,
+        "observationGameTimeMs": 1260746,
+        "lastSeenGameTimeMs": 1258176,
+        "priorRejectionLine": 4632,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4697,
+        "targetId": 1026,
+        "observationGameTimeMs": 1273711,
+        "lastSeenGameTimeMs": 1271111,
+        "priorRejectionLine": 4687,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4751,
+        "targetId": 1026,
+        "observationGameTimeMs": 1286676,
+        "lastSeenGameTimeMs": 1284111,
+        "priorRejectionLine": 4738,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4790,
+        "targetId": 1026,
+        "observationGameTimeMs": 1294561,
+        "lastSeenGameTimeMs": 1291911,
+        "priorRejectionLine": 4770,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 4822,
+        "targetId": 1026,
+        "observationGameTimeMs": 1302366,
+        "lastSeenGameTimeMs": 1299781,
+        "priorRejectionLine": 4812,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4857,
+        "targetId": 1026,
+        "observationGameTimeMs": 1312816,
+        "lastSeenGameTimeMs": 1310251,
+        "priorRejectionLine": 4849,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4907,
+        "targetId": 1026,
+        "observationGameTimeMs": 1325901,
+        "lastSeenGameTimeMs": 1323231,
+        "priorRejectionLine": 4894,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4949,
+        "targetId": 1026,
+        "observationGameTimeMs": 1338931,
+        "lastSeenGameTimeMs": 1336331,
+        "priorRejectionLine": 4941,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4979,
+        "targetId": 1026,
+        "observationGameTimeMs": 1346731,
+        "lastSeenGameTimeMs": 1344081,
+        "priorRejectionLine": 4964,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 5014,
+        "targetId": 1026,
+        "observationGameTimeMs": 1354601,
+        "lastSeenGameTimeMs": 1352031,
+        "priorRejectionLine": 5003,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5065,
+        "targetId": 1026,
+        "observationGameTimeMs": 1365001,
+        "lastSeenGameTimeMs": 1362431,
+        "priorRejectionLine": 5052,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5099,
+        "targetId": 1026,
+        "observationGameTimeMs": 1372831,
+        "lastSeenGameTimeMs": 1370251,
+        "priorRejectionLine": 5083,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5138,
+        "targetId": 1026,
+        "observationGameTimeMs": 1380631,
+        "lastSeenGameTimeMs": 1378066,
+        "priorRejectionLine": 5125,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5181,
+        "targetId": 1026,
+        "observationGameTimeMs": 1391116,
+        "lastSeenGameTimeMs": 1388551,
+        "priorRejectionLine": 5171,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5224,
+        "targetId": 1026,
+        "observationGameTimeMs": 1398916,
+        "lastSeenGameTimeMs": 1396281,
+        "priorRejectionLine": 5203,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 5260,
+        "targetId": 1026,
+        "observationGameTimeMs": 1406731,
+        "lastSeenGameTimeMs": 1404151,
+        "priorRejectionLine": 5250,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5307,
+        "targetId": 1026,
+        "observationGameTimeMs": 1417181,
+        "lastSeenGameTimeMs": 1414601,
+        "priorRejectionLine": 5297,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5367,
+        "targetId": 1026,
+        "observationGameTimeMs": 1430281,
+        "lastSeenGameTimeMs": 1427616,
+        "priorRejectionLine": 5352,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5421,
+        "targetId": 1026,
+        "observationGameTimeMs": 1443181,
+        "lastSeenGameTimeMs": 1440596,
+        "priorRejectionLine": 5408,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5457,
+        "targetId": 1026,
+        "observationGameTimeMs": 1450981,
+        "lastSeenGameTimeMs": 1448416,
+        "priorRejectionLine": 5447,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5516,
+        "targetId": 1026,
+        "observationGameTimeMs": 1463931,
+        "lastSeenGameTimeMs": 1461371,
+        "priorRejectionLine": 5506,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5551,
+        "targetId": 1026,
+        "observationGameTimeMs": 1471816,
+        "lastSeenGameTimeMs": 1469166,
+        "priorRejectionLine": 5535,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5581,
+        "targetId": 1026,
+        "observationGameTimeMs": 1477096,
+        "lastSeenGameTimeMs": 1474446,
+        "priorRejectionLine": 5565,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5616,
+        "targetId": 1026,
+        "observationGameTimeMs": 1484981,
+        "lastSeenGameTimeMs": 1482396,
+        "priorRejectionLine": 5606,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5667,
+        "targetId": 1026,
+        "observationGameTimeMs": 1495466,
+        "lastSeenGameTimeMs": 1492881,
+        "priorRejectionLine": 5657,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5703,
+        "targetId": 1026,
+        "observationGameTimeMs": 1503281,
+        "lastSeenGameTimeMs": 1500631,
+        "priorRejectionLine": 5686,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 5742,
+        "targetId": 1026,
+        "observationGameTimeMs": 1511171,
+        "lastSeenGameTimeMs": 1508596,
+        "priorRejectionLine": 5732,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5788,
+        "targetId": 1026,
+        "observationGameTimeMs": 1521616,
+        "lastSeenGameTimeMs": 1518981,
+        "priorRejectionLine": 5775,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5845,
+        "targetId": 1026,
+        "observationGameTimeMs": 1534781,
+        "lastSeenGameTimeMs": 1532131,
+        "priorRejectionLine": 5835,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5887,
+        "targetId": 1026,
+        "observationGameTimeMs": 1547846,
+        "lastSeenGameTimeMs": 1545266,
+        "priorRejectionLine": 5879,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5937,
+        "targetId": 1026,
+        "observationGameTimeMs": 1561016,
+        "lastSeenGameTimeMs": 1558366,
+        "priorRejectionLine": 5923,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5980,
+        "targetId": 1026,
+        "observationGameTimeMs": 1574131,
+        "lastSeenGameTimeMs": 1571496,
+        "priorRejectionLine": 5972,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6009,
+        "targetId": 1026,
+        "observationGameTimeMs": 1581946,
+        "lastSeenGameTimeMs": 1579296,
+        "priorRejectionLine": 5994,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 6040,
+        "targetId": 1026,
+        "observationGameTimeMs": 1589781,
+        "lastSeenGameTimeMs": 1587196,
+        "priorRejectionLine": 6032,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6091,
+        "targetId": 1026,
+        "observationGameTimeMs": 1600236,
+        "lastSeenGameTimeMs": 1597631,
+        "priorRejectionLine": 6078,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6144,
+        "targetId": 1026,
+        "observationGameTimeMs": 1613331,
+        "lastSeenGameTimeMs": 1610696,
+        "priorRejectionLine": 6133,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6197,
+        "targetId": 1026,
+        "observationGameTimeMs": 1626376,
+        "lastSeenGameTimeMs": 1623781,
+        "priorRejectionLine": 6187,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6263,
+        "targetId": 1026,
+        "observationGameTimeMs": 1639391,
+        "lastSeenGameTimeMs": 1636821,
+        "priorRejectionLine": 6248,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6316,
+        "targetId": 1026,
+        "observationGameTimeMs": 1652451,
+        "lastSeenGameTimeMs": 1649876,
+        "priorRejectionLine": 6306,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6378,
+        "targetId": 1026,
+        "observationGameTimeMs": 1665426,
+        "lastSeenGameTimeMs": 1662761,
+        "priorRejectionLine": 6361,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 6433,
+        "targetId": 1026,
+        "observationGameTimeMs": 1678421,
+        "lastSeenGameTimeMs": 1675826,
+        "priorRejectionLine": 6420,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6484,
+        "targetId": 1026,
+        "observationGameTimeMs": 1691546,
+        "lastSeenGameTimeMs": 1688911,
+        "priorRejectionLine": 6473,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6544,
+        "targetId": 1026,
+        "observationGameTimeMs": 1704601,
+        "lastSeenGameTimeMs": 1701956,
+        "priorRejectionLine": 6534,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6598,
+        "targetId": 1026,
+        "observationGameTimeMs": 1717711,
+        "lastSeenGameTimeMs": 1715061,
+        "priorRejectionLine": 6587,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6645,
+        "targetId": 1026,
+        "observationGameTimeMs": 1728196,
+        "lastSeenGameTimeMs": 1725546,
+        "priorRejectionLine": 6634,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6693,
+        "targetId": 1026,
+        "observationGameTimeMs": 1738716,
+        "lastSeenGameTimeMs": 1736086,
+        "priorRejectionLine": 6682,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6747,
+        "targetId": 1026,
+        "observationGameTimeMs": 1751761,
+        "lastSeenGameTimeMs": 1749121,
+        "priorRejectionLine": 6737,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6786,
+        "targetId": 1026,
+        "observationGameTimeMs": 1759636,
+        "lastSeenGameTimeMs": 1756986,
+        "priorRejectionLine": 6769,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 6826,
+        "targetId": 1026,
+        "observationGameTimeMs": 1767521,
+        "lastSeenGameTimeMs": 1764891,
+        "priorRejectionLine": 6811,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6869,
+        "targetId": 1026,
+        "observationGameTimeMs": 1777981,
+        "lastSeenGameTimeMs": 1775341,
+        "priorRejectionLine": 6861,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6915,
+        "targetId": 1026,
+        "observationGameTimeMs": 1790946,
+        "lastSeenGameTimeMs": 1788296,
+        "priorRejectionLine": 6906,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 6962,
+        "targetId": 1026,
+        "observationGameTimeMs": 1803986,
+        "lastSeenGameTimeMs": 1801401,
+        "priorRejectionLine": 6952,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7005,
+        "targetId": 1026,
+        "observationGameTimeMs": 1817056,
+        "lastSeenGameTimeMs": 1814476,
+        "priorRejectionLine": 6996,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7047,
+        "targetId": 1026,
+        "observationGameTimeMs": 1830081,
+        "lastSeenGameTimeMs": 1827436,
+        "priorRejectionLine": 7039,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7107,
+        "targetId": 1026,
+        "observationGameTimeMs": 1843286,
+        "lastSeenGameTimeMs": 1840641,
+        "priorRejectionLine": 7096,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7161,
+        "targetId": 1026,
+        "observationGameTimeMs": 1856301,
+        "lastSeenGameTimeMs": 1853731,
+        "priorRejectionLine": 7151,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7226,
+        "targetId": 1026,
+        "observationGameTimeMs": 1869341,
+        "lastSeenGameTimeMs": 1866701,
+        "priorRejectionLine": 7206,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 7280,
+        "targetId": 1026,
+        "observationGameTimeMs": 1882341,
+        "lastSeenGameTimeMs": 1879736,
+        "priorRejectionLine": 7267,
+        "visibleAlternatives": []
+      }
+    ],
+    "events": {
+      "health": 1,
+      "report_provenance": 1,
+      "observation": 691,
+      "battle_config": 1,
+      "combat_observation": 689,
+      "scout_visibility": 689,
+      "plan_unavailable": 95,
+      "economy_expansion_blocked": 136,
+      "production_menu": 644,
+      "production_decision": 1,
+      "action": 409,
+      "command_result": 409,
+      "spend": 69,
+      "agent_tick_alive": 173,
+      "army_frontier_plan": 44,
+      "tactical_intent": 301,
+      "attack_order_confirmed": 300,
+      "army_frontier_arrived": 39,
+      "economy_expansion_prospect": 10,
+      "upgrade_completed": 2,
+      "production_queue_finished": 57,
+      "economy_expansion_plan": 11,
+      "economy_expansion_planned": 11,
+      "production_surplus": 17,
+      "economy_expansion_started": 11,
+      "economy_expansion_observed": 11,
+      "combat_unit_observed": 55,
+      "capability_snapshot": 6,
+      "extractor_started": 11,
+      "extractor_completed": 11,
+      "economy_expansion_finished": 1,
+      "production_facility_move": 2,
+      "production_facility_plan": 1,
+      "production_facility_planned": 1,
+      "production_facility_started": 1,
+      "production_facility_observed": 1,
+      "reachability_raw": 92,
+      "report_reachability": 92,
+      "reachability_sample": 46,
+      "search_target_created": 28,
+      "target_guard": 944,
+      "target_switch": 255,
+      "search_target_refreshed": 5,
+      "scout_visible_probe": 4,
+      "search_target_confirmed_empty": 4,
+      "factory_started": 1,
+      "factory_completed": 1,
+      "production_facility_finished": 1,
+      "factory_target_increase_blocked": 1,
+      "production_deferred": 746,
+      "SECONDARY_INVESTMENT_FALLBACK": 25,
+      "production_idle": 59,
+      "search_target_superseded": 23,
+      "own_loss": 21,
+      "military_urgency": 14,
+      "production_reserve_started": 1,
+      "investment_intent": 13,
+      "investment_released": 13,
+      "combat_retreat": 6,
+      "task_ownership_acquired": 4,
+      "recon_frontier_plan": 2,
+      "task_ownership_released": 4,
+      "target_progress": 2,
+      "recon_takeover_queued": 2,
+      "recon_takeover_cancelled": 2,
+      "economy_expansion_move": 8,
+      "summary": 1
+    }
+  },
+  "evidence": "E2_OPEN_LOOP_POLICY_REPLAY_OF_E4_INPUTS",
+  "limits": "Fixed own positions/enemy visibility; Economy/Recon disabled; no native execution or outcome evidence.",
+  "candidateSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "replay": {
+    "targetedIntents": {
+      "54": 2,
+      "233": 1,
+      "237": 1,
+      "279": 1,
+      "248": 1,
+      "242": 1,
+      "307": 1,
+      "296": 1,
+      "277": 1,
+      "244": 1,
+      "246": 1,
+      "235": 1,
+      "787": 1,
+      "228": 1,
+      "640": 1,
+      "210": 1,
+      "204": 1,
+      "331": 1,
+      "202": 1,
+      "710": 1,
+      "357": 2,
+      "797": 1,
+      "276": 1,
+      "1577": 1,
+      "243": 1,
+      "282": 1,
+      "1755": 2,
+      "225": 78,
+      "1026": 106,
+      "774": 1,
+      "211": 32
+    },
+    "switchesTo": {
+      "54": 1,
+      "233": 1,
+      "237": 1,
+      "279": 1,
+      "248": 1,
+      "242": 1,
+      "307": 1,
+      "296": 1,
+      "277": 1,
+      "244": 1,
+      "246": 1,
+      "235": 1,
+      "787": 1,
+      "228": 1,
+      "640": 1,
+      "210": 1,
+      "204": 1,
+      "331": 1,
+      "202": 1,
+      "710": 1,
+      "357": 1,
+      "797": 1,
+      "276": 1,
+      "1577": 1,
+      "243": 1,
+      "282": 1,
+      "1755": 1,
+      "225": 78,
+      "1026": 104,
+      "774": 1,
+      "211": 31
+    },
+    "guards": [
+      {
+        "targetId": 54,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 202,
+        "status": "COMPATIBLE",
+        "count": 4
+      },
+      {
+        "targetId": 204,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 210,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 211,
+        "status": "UNKNOWN",
+        "count": 57
+      },
+      {
+        "targetId": 225,
+        "status": "UNKNOWN",
+        "count": 134
+      },
+      {
+        "targetId": 228,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 233,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 235,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 237,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 242,
+        "status": "COMPATIBLE",
+        "count": 4
+      },
+      {
+        "targetId": 243,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 244,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 246,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 248,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 276,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 277,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 279,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 282,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 296,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 307,
+        "status": "COMPATIBLE",
+        "count": 4
+      },
+      {
+        "targetId": 331,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 357,
+        "status": "COMPATIBLE",
+        "count": 5
+      },
+      {
+        "targetId": 613,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 617,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 640,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 710,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 774,
+        "status": "UNKNOWN",
+        "count": 1
+      },
+      {
+        "targetId": 787,
+        "status": "COMPATIBLE",
+        "count": 2
+      },
+      {
+        "targetId": 797,
+        "status": "COMPATIBLE",
+        "count": 3
+      },
+      {
+        "targetId": 857,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 1026,
+        "status": "INCOMPATIBLE",
+        "count": 196
+      },
+      {
+        "targetId": 1026,
+        "status": "UNKNOWN",
+        "count": 213
+      },
+      {
+        "targetId": 1317,
+        "status": "INCOMPATIBLE",
+        "count": 212
+      },
+      {
+        "targetId": 1577,
+        "status": "COMPATIBLE",
+        "count": 1
+      },
+      {
+        "targetId": 1755,
+        "status": "COMPATIBLE",
+        "count": 3
+      }
+    ],
+    "rememberedReentriesAfterRejection": [
+      {
+        "line": 1587,
+        "targetId": 1026,
+        "observationGameTimeMs": 628876,
+        "lastSeenGameTimeMs": 626246,
+        "priorRejectionLine": 1573,
+        "visibleAlternatives": [
+          774
+        ]
+      },
+      {
+        "line": 1632,
+        "targetId": 1026,
+        "observationGameTimeMs": 641926,
+        "lastSeenGameTimeMs": 639326,
+        "priorRejectionLine": 1610,
+        "visibleAlternatives": [
+          774
+        ]
+      },
+      {
+        "line": 1660,
+        "targetId": 1026,
+        "observationGameTimeMs": 652476,
+        "lastSeenGameTimeMs": 639326,
+        "priorRejectionLine": 1610,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1696,
+        "targetId": 1026,
+        "observationGameTimeMs": 662896,
+        "lastSeenGameTimeMs": 660246,
+        "priorRejectionLine": 1682,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1721,
+        "targetId": 1026,
+        "observationGameTimeMs": 668046,
+        "lastSeenGameTimeMs": 665461,
+        "priorRejectionLine": 1706,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1752,
+        "targetId": 1026,
+        "observationGameTimeMs": 675946,
+        "lastSeenGameTimeMs": 673276,
+        "priorRejectionLine": 1739,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1793,
+        "targetId": 1026,
+        "observationGameTimeMs": 689111,
+        "lastSeenGameTimeMs": 686461,
+        "priorRejectionLine": 1772,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1830,
+        "targetId": 1026,
+        "observationGameTimeMs": 699576,
+        "lastSeenGameTimeMs": 696996,
+        "priorRejectionLine": 1822,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1883,
+        "targetId": 1026,
+        "observationGameTimeMs": 715211,
+        "lastSeenGameTimeMs": 712611,
+        "priorRejectionLine": 1873,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 1927,
+        "targetId": 1026,
+        "observationGameTimeMs": 728261,
+        "lastSeenGameTimeMs": 725596,
+        "priorRejectionLine": 1919,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2010,
+        "targetId": 1026,
+        "observationGameTimeMs": 754261,
+        "lastSeenGameTimeMs": 751696,
+        "priorRejectionLine": 2002,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2053,
+        "targetId": 1026,
+        "observationGameTimeMs": 767326,
+        "lastSeenGameTimeMs": 764746,
+        "priorRejectionLine": 2031,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2107,
+        "targetId": 1026,
+        "observationGameTimeMs": 785661,
+        "lastSeenGameTimeMs": 783011,
+        "priorRejectionLine": 2098,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 2162,
+        "targetId": 1026,
+        "observationGameTimeMs": 803846,
+        "lastSeenGameTimeMs": 801246,
+        "priorRejectionLine": 2154,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2203,
+        "targetId": 1026,
+        "observationGameTimeMs": 816926,
+        "lastSeenGameTimeMs": 814346,
+        "priorRejectionLine": 2190,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2247,
+        "targetId": 1026,
+        "observationGameTimeMs": 829926,
+        "lastSeenGameTimeMs": 827346,
+        "priorRejectionLine": 2230,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2295,
+        "targetId": 1026,
+        "observationGameTimeMs": 845646,
+        "lastSeenGameTimeMs": 840411,
+        "priorRejectionLine": 2279,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2345,
+        "targetId": 1026,
+        "observationGameTimeMs": 861311,
+        "lastSeenGameTimeMs": 856076,
+        "priorRejectionLine": 2328,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2382,
+        "targetId": 1026,
+        "observationGameTimeMs": 871761,
+        "lastSeenGameTimeMs": 869096,
+        "priorRejectionLine": 2373,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2420,
+        "targetId": 1026,
+        "observationGameTimeMs": 882246,
+        "lastSeenGameTimeMs": 879596,
+        "priorRejectionLine": 2411,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2470,
+        "targetId": 1026,
+        "observationGameTimeMs": 897946,
+        "lastSeenGameTimeMs": 895296,
+        "priorRejectionLine": 2462,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2512,
+        "targetId": 1026,
+        "observationGameTimeMs": 911046,
+        "lastSeenGameTimeMs": 908381,
+        "priorRejectionLine": 2499,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2556,
+        "targetId": 1026,
+        "observationGameTimeMs": 923976,
+        "lastSeenGameTimeMs": 918811,
+        "priorRejectionLine": 2539,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2593,
+        "targetId": 1026,
+        "observationGameTimeMs": 934311,
+        "lastSeenGameTimeMs": 931746,
+        "priorRejectionLine": 2584,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2622,
+        "targetId": 1026,
+        "observationGameTimeMs": 944696,
+        "lastSeenGameTimeMs": 931746,
+        "priorRejectionLine": 2584,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2643,
+        "targetId": 1026,
+        "observationGameTimeMs": 949926,
+        "lastSeenGameTimeMs": 947276,
+        "priorRejectionLine": 2630,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2682,
+        "targetId": 1026,
+        "observationGameTimeMs": 960311,
+        "lastSeenGameTimeMs": 957726,
+        "priorRejectionLine": 2673,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 2720,
+        "targetId": 1026,
+        "observationGameTimeMs": 970796,
+        "lastSeenGameTimeMs": 965546,
+        "priorRejectionLine": 2704,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2755,
+        "targetId": 1026,
+        "observationGameTimeMs": 981411,
+        "lastSeenGameTimeMs": 978746,
+        "priorRejectionLine": 2747,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2786,
+        "targetId": 1026,
+        "observationGameTimeMs": 989176,
+        "lastSeenGameTimeMs": 986596,
+        "priorRejectionLine": 2773,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2840,
+        "targetId": 1026,
+        "observationGameTimeMs": 1002226,
+        "lastSeenGameTimeMs": 997061,
+        "priorRejectionLine": 2819,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2875,
+        "targetId": 1026,
+        "observationGameTimeMs": 1012711,
+        "lastSeenGameTimeMs": 1010046,
+        "priorRejectionLine": 2867,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2924,
+        "targetId": 1026,
+        "observationGameTimeMs": 1028261,
+        "lastSeenGameTimeMs": 1025696,
+        "priorRejectionLine": 2915,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 2965,
+        "targetId": 1026,
+        "observationGameTimeMs": 1041296,
+        "lastSeenGameTimeMs": 1038711,
+        "priorRejectionLine": 2952,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3003,
+        "targetId": 1026,
+        "observationGameTimeMs": 1051776,
+        "lastSeenGameTimeMs": 1049176,
+        "priorRejectionLine": 2995,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3031,
+        "targetId": 1026,
+        "observationGameTimeMs": 1059646,
+        "lastSeenGameTimeMs": 1057001,
+        "priorRejectionLine": 3017,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3074,
+        "targetId": 1026,
+        "observationGameTimeMs": 1072676,
+        "lastSeenGameTimeMs": 1070096,
+        "priorRejectionLine": 3066,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3115,
+        "targetId": 1026,
+        "observationGameTimeMs": 1085811,
+        "lastSeenGameTimeMs": 1083161,
+        "priorRejectionLine": 3102,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3152,
+        "targetId": 1026,
+        "observationGameTimeMs": 1096361,
+        "lastSeenGameTimeMs": 1091046,
+        "priorRejectionLine": 3131,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3187,
+        "targetId": 1026,
+        "observationGameTimeMs": 1106746,
+        "lastSeenGameTimeMs": 1104146,
+        "priorRejectionLine": 3179,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3225,
+        "targetId": 1026,
+        "observationGameTimeMs": 1117211,
+        "lastSeenGameTimeMs": 1114561,
+        "priorRejectionLine": 3217,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3273,
+        "targetId": 1026,
+        "observationGameTimeMs": 1130126,
+        "lastSeenGameTimeMs": 1127546,
+        "priorRejectionLine": 3260,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3315,
+        "targetId": 1026,
+        "observationGameTimeMs": 1143146,
+        "lastSeenGameTimeMs": 1140561,
+        "priorRejectionLine": 3293,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3364,
+        "targetId": 1026,
+        "observationGameTimeMs": 1158846,
+        "lastSeenGameTimeMs": 1153611,
+        "priorRejectionLine": 3348,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3388,
+        "targetId": 1026,
+        "observationGameTimeMs": 1164061,
+        "lastSeenGameTimeMs": 1161411,
+        "priorRejectionLine": 3373,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 3426,
+        "targetId": 1026,
+        "observationGameTimeMs": 1174511,
+        "lastSeenGameTimeMs": 1169296,
+        "priorRejectionLine": 3409,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3455,
+        "targetId": 1026,
+        "observationGameTimeMs": 1182346,
+        "lastSeenGameTimeMs": 1179746,
+        "priorRejectionLine": 3447,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3505,
+        "targetId": 1026,
+        "observationGameTimeMs": 1198061,
+        "lastSeenGameTimeMs": 1195461,
+        "priorRejectionLine": 3497,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3541,
+        "targetId": 1026,
+        "observationGameTimeMs": 1208426,
+        "lastSeenGameTimeMs": 1205846,
+        "priorRejectionLine": 3528,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3584,
+        "targetId": 1026,
+        "observationGameTimeMs": 1221526,
+        "lastSeenGameTimeMs": 1218876,
+        "priorRejectionLine": 3568,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3633,
+        "targetId": 1026,
+        "observationGameTimeMs": 1237296,
+        "lastSeenGameTimeMs": 1232126,
+        "priorRejectionLine": 3616,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3670,
+        "targetId": 1026,
+        "observationGameTimeMs": 1247746,
+        "lastSeenGameTimeMs": 1245146,
+        "priorRejectionLine": 3661,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3713,
+        "targetId": 1026,
+        "observationGameTimeMs": 1260746,
+        "lastSeenGameTimeMs": 1258176,
+        "priorRejectionLine": 3705,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3756,
+        "targetId": 1026,
+        "observationGameTimeMs": 1273711,
+        "lastSeenGameTimeMs": 1271111,
+        "priorRejectionLine": 3748,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3797,
+        "targetId": 1026,
+        "observationGameTimeMs": 1286676,
+        "lastSeenGameTimeMs": 1284111,
+        "priorRejectionLine": 3784,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3826,
+        "targetId": 1026,
+        "observationGameTimeMs": 1294561,
+        "lastSeenGameTimeMs": 1291911,
+        "priorRejectionLine": 3812,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 3857,
+        "targetId": 1026,
+        "observationGameTimeMs": 1302366,
+        "lastSeenGameTimeMs": 1299781,
+        "priorRejectionLine": 3844,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3900,
+        "targetId": 1026,
+        "observationGameTimeMs": 1315416,
+        "lastSeenGameTimeMs": 1310251,
+        "priorRejectionLine": 3884,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3937,
+        "targetId": 1026,
+        "observationGameTimeMs": 1325901,
+        "lastSeenGameTimeMs": 1323231,
+        "priorRejectionLine": 3929,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 3981,
+        "targetId": 1026,
+        "observationGameTimeMs": 1338931,
+        "lastSeenGameTimeMs": 1336331,
+        "priorRejectionLine": 3973,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4031,
+        "targetId": 1026,
+        "observationGameTimeMs": 1354601,
+        "lastSeenGameTimeMs": 1352031,
+        "priorRejectionLine": 4023,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4067,
+        "targetId": 1026,
+        "observationGameTimeMs": 1365001,
+        "lastSeenGameTimeMs": 1362431,
+        "priorRejectionLine": 4054,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4095,
+        "targetId": 1026,
+        "observationGameTimeMs": 1372831,
+        "lastSeenGameTimeMs": 1370251,
+        "priorRejectionLine": 4081,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4125,
+        "targetId": 1026,
+        "observationGameTimeMs": 1380631,
+        "lastSeenGameTimeMs": 1378066,
+        "priorRejectionLine": 4112,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4170,
+        "targetId": 1026,
+        "observationGameTimeMs": 1393706,
+        "lastSeenGameTimeMs": 1388551,
+        "priorRejectionLine": 4152,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4193,
+        "targetId": 1026,
+        "observationGameTimeMs": 1398916,
+        "lastSeenGameTimeMs": 1396281,
+        "priorRejectionLine": 4179,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 4231,
+        "targetId": 1026,
+        "observationGameTimeMs": 1409381,
+        "lastSeenGameTimeMs": 1404151,
+        "priorRejectionLine": 4215,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4261,
+        "targetId": 1026,
+        "observationGameTimeMs": 1417181,
+        "lastSeenGameTimeMs": 1414601,
+        "priorRejectionLine": 4253,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4304,
+        "targetId": 1026,
+        "observationGameTimeMs": 1430281,
+        "lastSeenGameTimeMs": 1427616,
+        "priorRejectionLine": 4296,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4345,
+        "targetId": 1026,
+        "observationGameTimeMs": 1443181,
+        "lastSeenGameTimeMs": 1440596,
+        "priorRejectionLine": 4332,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4375,
+        "targetId": 1026,
+        "observationGameTimeMs": 1450981,
+        "lastSeenGameTimeMs": 1448416,
+        "priorRejectionLine": 4367,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4419,
+        "targetId": 1026,
+        "observationGameTimeMs": 1463931,
+        "lastSeenGameTimeMs": 1461371,
+        "priorRejectionLine": 4411,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4461,
+        "targetId": 1026,
+        "observationGameTimeMs": 1477096,
+        "lastSeenGameTimeMs": 1474446,
+        "priorRejectionLine": 4447,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4499,
+        "targetId": 1026,
+        "observationGameTimeMs": 1487631,
+        "lastSeenGameTimeMs": 1482396,
+        "priorRejectionLine": 4482,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4528,
+        "targetId": 1026,
+        "observationGameTimeMs": 1495466,
+        "lastSeenGameTimeMs": 1492881,
+        "priorRejectionLine": 4520,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4578,
+        "targetId": 1026,
+        "observationGameTimeMs": 1511171,
+        "lastSeenGameTimeMs": 1508596,
+        "priorRejectionLine": 4570,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4614,
+        "targetId": 1026,
+        "observationGameTimeMs": 1521616,
+        "lastSeenGameTimeMs": 1518981,
+        "priorRejectionLine": 4601,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4657,
+        "targetId": 1026,
+        "observationGameTimeMs": 1534781,
+        "lastSeenGameTimeMs": 1532131,
+        "priorRejectionLine": 4641,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4706,
+        "targetId": 1026,
+        "observationGameTimeMs": 1550496,
+        "lastSeenGameTimeMs": 1545266,
+        "priorRejectionLine": 4689,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4743,
+        "targetId": 1026,
+        "observationGameTimeMs": 1561016,
+        "lastSeenGameTimeMs": 1558366,
+        "priorRejectionLine": 4734,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4787,
+        "targetId": 1026,
+        "observationGameTimeMs": 1574131,
+        "lastSeenGameTimeMs": 1571496,
+        "priorRejectionLine": 4779,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4836,
+        "targetId": 1026,
+        "observationGameTimeMs": 1589781,
+        "lastSeenGameTimeMs": 1587196,
+        "priorRejectionLine": 4828,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4872,
+        "targetId": 1026,
+        "observationGameTimeMs": 1600236,
+        "lastSeenGameTimeMs": 1597631,
+        "priorRejectionLine": 4859,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4916,
+        "targetId": 1026,
+        "observationGameTimeMs": 1613331,
+        "lastSeenGameTimeMs": 1610696,
+        "priorRejectionLine": 4899,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 4964,
+        "targetId": 1026,
+        "observationGameTimeMs": 1629011,
+        "lastSeenGameTimeMs": 1623781,
+        "priorRejectionLine": 4948,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5007,
+        "targetId": 1026,
+        "observationGameTimeMs": 1639391,
+        "lastSeenGameTimeMs": 1636821,
+        "priorRejectionLine": 4994,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5050,
+        "targetId": 1026,
+        "observationGameTimeMs": 1652451,
+        "lastSeenGameTimeMs": 1649876,
+        "priorRejectionLine": 5042,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5095,
+        "targetId": 1026,
+        "observationGameTimeMs": 1665426,
+        "lastSeenGameTimeMs": 1662761,
+        "priorRejectionLine": 5085,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 5138,
+        "targetId": 1026,
+        "observationGameTimeMs": 1678421,
+        "lastSeenGameTimeMs": 1675826,
+        "priorRejectionLine": 5130,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5179,
+        "targetId": 1026,
+        "observationGameTimeMs": 1691546,
+        "lastSeenGameTimeMs": 1688911,
+        "priorRejectionLine": 5158,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5230,
+        "targetId": 1026,
+        "observationGameTimeMs": 1707261,
+        "lastSeenGameTimeMs": 1701956,
+        "priorRejectionLine": 5213,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5265,
+        "targetId": 1026,
+        "observationGameTimeMs": 1717711,
+        "lastSeenGameTimeMs": 1715061,
+        "priorRejectionLine": 5256,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5303,
+        "targetId": 1026,
+        "observationGameTimeMs": 1728196,
+        "lastSeenGameTimeMs": 1725546,
+        "priorRejectionLine": 5294,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5339,
+        "targetId": 1026,
+        "observationGameTimeMs": 1738716,
+        "lastSeenGameTimeMs": 1736086,
+        "priorRejectionLine": 5317,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5388,
+        "targetId": 1026,
+        "observationGameTimeMs": 1754411,
+        "lastSeenGameTimeMs": 1749121,
+        "priorRejectionLine": 5372,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5412,
+        "targetId": 1026,
+        "observationGameTimeMs": 1759636,
+        "lastSeenGameTimeMs": 1756986,
+        "priorRejectionLine": 5397,
+        "visibleAlternatives": [
+          1317
+        ]
+      },
+      {
+        "line": 5450,
+        "targetId": 1026,
+        "observationGameTimeMs": 1770101,
+        "lastSeenGameTimeMs": 1764891,
+        "priorRejectionLine": 5433,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5479,
+        "targetId": 1026,
+        "observationGameTimeMs": 1777981,
+        "lastSeenGameTimeMs": 1775341,
+        "priorRejectionLine": 5471,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5523,
+        "targetId": 1026,
+        "observationGameTimeMs": 1790946,
+        "lastSeenGameTimeMs": 1788296,
+        "priorRejectionLine": 5514,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5564,
+        "targetId": 1026,
+        "observationGameTimeMs": 1803986,
+        "lastSeenGameTimeMs": 1801401,
+        "priorRejectionLine": 5551,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5608,
+        "targetId": 1026,
+        "observationGameTimeMs": 1817056,
+        "lastSeenGameTimeMs": 1814476,
+        "priorRejectionLine": 5592,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5657,
+        "targetId": 1026,
+        "observationGameTimeMs": 1832736,
+        "lastSeenGameTimeMs": 1827436,
+        "priorRejectionLine": 5640,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5694,
+        "targetId": 1026,
+        "observationGameTimeMs": 1843286,
+        "lastSeenGameTimeMs": 1840641,
+        "priorRejectionLine": 5685,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5737,
+        "targetId": 1026,
+        "observationGameTimeMs": 1856301,
+        "lastSeenGameTimeMs": 1853731,
+        "priorRejectionLine": 5729,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5785,
+        "targetId": 1026,
+        "observationGameTimeMs": 1869341,
+        "lastSeenGameTimeMs": 1866701,
+        "priorRejectionLine": 5772,
+        "visibleAlternatives": []
+      },
+      {
+        "line": 5827,
+        "targetId": 1026,
+        "observationGameTimeMs": 1882341,
+        "lastSeenGameTimeMs": 1879736,
+        "priorRejectionLine": 5814,
+        "visibleAlternatives": []
+      }
+    ],
+    "events": {
+      "health": 1,
+      "report_provenance": 1,
+      "observation": 691,
+      "battle_config": 1,
+      "combat_observation": 689,
+      "scout_visibility": 689,
+      "economy_expansion_plan": 116,
+      "economy_expansion_blocked": 126,
+      "production_menu": 592,
+      "army_frontier_plan": 88,
+      "agent_tick_alive": 173,
+      "combat_unit_observed": 55,
+      "capability_snapshot": 6,
+      "economy_expansion_finished": 1,
+      "action": 363,
+      "command_result": 363,
+      "production_facility_move": 97,
+      "production_facility_blocked": 22,
+      "search_target_created": 36,
+      "target_guard": 874,
+      "tactical_intent": 257,
+      "target_switch": 241,
+      "search_target_refreshed": 10,
+      "target_progress": 5,
+      "scout_visible_probe": 31,
+      "production_facility_finished": 1,
+      "factory_target_increased": 1,
+      "production_facility_plan": 6,
+      "search_target_unreachable": 2,
+      "search_target_superseded": 33,
+      "attack_order_confirmed": 237,
+      "own_loss": 21,
+      "military_urgency": 14,
+      "production_reserve_started": 1,
+      "investment_intent": 7,
+      "investment_released": 7,
+      "combat_retreat": 9,
+      "match_terminal": 1,
+      "summary": 1
+    }
+  },
+  "emittedOrders": 363
+}

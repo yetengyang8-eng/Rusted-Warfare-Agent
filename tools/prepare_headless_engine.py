@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse, hashlib, json, shutil, tempfile, zipfile
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 def sha256(path):
     h=hashlib.sha256()
@@ -19,7 +19,20 @@ def main():
     if not a.verify_only:
         if a.out.exists(): shutil.rmtree(a.out)
         a.out.parent.mkdir(parents=True,exist_ok=True)
-        with zipfile.ZipFile(a.archive) as z: z.extractall(a.out)
+        # The relay ZIP was written on Windows and contains backslash entry names.
+        # Normalize separators before extraction; retain all byte/hash checks below.
+        with zipfile.ZipFile(a.archive) as z:
+            for info in z.infolist():
+                name=PurePosixPath(info.filename.replace('\\', '/'))
+                if name.is_absolute() or '..' in name.parts or ':' in str(name):
+                    raise SystemExit('unsafe archive path: '+info.filename)
+                target=a.out.joinpath(*name.parts)
+                if info.filename.endswith(('/', '\\')):
+                    target.mkdir(parents=True,exist_ok=True)
+                else:
+                    target.parent.mkdir(parents=True,exist_ok=True)
+                    with z.open(info) as src, target.open('wb') as dst:
+                        shutil.copyfileobj(src,dst)
     root=a.out
     if not root.is_dir(): raise SystemExit('output directory missing: '+str(root))
     checked=0

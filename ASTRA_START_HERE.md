@@ -3,14 +3,18 @@
 本仓库是 `G:\deepseek 工作台` 的公开工程中转镜像，供无法访问用户本机文件系统的 Astra / Codex / DeepSeek 使用。
 
 ## 当前任务与候选
+本分支基于 main `795146a` 集成已验收 Recon 源码，继续修复 5x 桌面证据中的目标振荡。
+优先读 `ASTRA_FEEDBACK_RECON_EXECUTION_2026-09-30.md` 与
+`handoff/HANDOFF_Astra_TargetStability_2026-09-30.md`。下面的突破任务/总评作为历史背景。
 1. `ASTRA_BREAKTHROUGH_MISSION_2026-09-29.md` — 高自主性突破任务。
 2. `ASTRA_PROJECT_REVIEW_RESPONSE_2026-09-29.md` — 上一轮项目总评。
 3. `handoff/HANDOFF_Astra_ReconExecution_2026-09-29.md` — Astra 最新 Recon 执行层交付说明。
-4. 分支 `astra/recon-execution-20260929` — 最新待原生验收源码候选，commit `28e4655`；不要把它误认为已部署 main。
+4. 分支 `astra/recon-execution-20260929` — 已取得 1x 桌面 Recon 正验收，commit `28e4655`；本分支已集成。
 5. `astra-deliveries/recon-execution-2026-09-29/` — Astra 原始交付 ZIP 与 handoff 归档。
 
 ## 当前已部署基线
-- KnowledgeBacked v0 Agent JAR SHA256: `5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54`
+- 最近桌面验收 Recon Execution JAR SHA256: `feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81`
+- 本分支目标振荡修复是后续候选，未安装用户桌面；身份和验证见最新 handoff。
 - 兼容 1.15 `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`
 - `project-state/CURRENT_STATE.md`、`project-state/HANDOFF_FOR_CODEX.md` 是状态速查。
 - `evidence/README.md` 索引桌面 raw battle 与 KnowledgeBacked / Recon 证据。
@@ -36,7 +40,7 @@ python tools/run_headless.py --game-dir .engine/rw115 --agent-jar YOUR_AGENT.jar
 ## 不变的安全边界
 战争迷雾、UNKNOWN、控制权限和证据等级继续执行；不要因获得完整静态资源而把未探索地图/隐藏动态敌情直接喂给策略。不要重新启用已隔离的危险反射探针。
 
-最新 Astra ReconExecution 仍是 **待原生验收候选**；E2 通过不等于桌面 E4 或胜率提升。若从该候选继续工作，请优先使用它自己的分支，不要直接覆盖 main 的稳定基线。
+ReconExecution 的 1x 正验收见 `evidence/astra-recon-desktop-acceptance-2026-09-29/`；那场 5x 局没有创建 Frontier，不能算其正验收。新的 TargetStability 候选也不能继承为已通过桌面验收。
 
 ## 直接回写
 若 Astra 环境已经连接 GitHub 并获得本仓库写权限，按 `ASTRA_WRITEBACK.md` 在 `astra/<task>-YYYYMMDD` 分支提交，不直接覆盖稳定 main。没有写凭据时继续交付 patch/ZIP，由中转端落分支。

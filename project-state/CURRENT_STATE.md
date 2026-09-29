@@ -1,6 +1,23 @@
 # CURRENT_STATE（当前状态速查）
 
+## 远程突破候选：Recon 执行与最小任务所有权（2026-09-29，未部署）
+
+- 基于 GitHub `4853dae` 的新客户端候选已实现并通过 E2：单位任务归属、旧命令接管、逐观察执行确认、短航段和到达后刷新等待。
+- 待原生验收的 client overlay SHA256：`feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81`。128 项相关 Python 测试、32 项 Java 契约检查通过；四个旧版失效场景有旧/新对照。没有新的 E4 或胜率结论。
+- 交付与复跑：`handoff/HANDOFF_Astra_ReconExecution_2026-09-29.md`；`tools/build_recon_client_overlay.py`；`evidence/recon-execution-2026-09-29/summary.json`。
+- 下方 KnowledgeBacked v0 身份仍指用户已安装候选；本轮没有部署或替换它。上一轮 public-relay patch 仅吸收构建资源和 Linux 回归入口两项，其余未吸收。
+
+
 > 只记录"现在是什么状态"。历史与分析过程见 `助手交接\对话N.txt` / `输出N.txt`。
+
+## 2026-09-30 反馈轮：目标资格修复候选
+
+- 最近桌面已验收的是 Recon Execution `feb7ad39...`：1x 原生 VICTORY 且 Frontier 闭环成立；5x 长局稳定但无 Frontier 正例，详见该轮 desktop acceptance 证据。
+- 本分支从 main `795146a` 集成 `28e4655` 后修复：明确不兼容目标失联变 UNKNOWN 后重新吸走主力。增加会话内拒绝证据；只有更新的合法可见 COMPATIBLE 观察解除，并挡住旧址搜索旁路；当前可见候选优先于记忆候选。未修改经济 cap 或 Recon 威胁参数。
+- 原始 5x `lightSub #1026` 有 114 条目标进军意图；相同固定观察输入的 E2 决策对照为旧候选 106、新候选 0，UNKNOWN 语义保留。此对照不代表反事实实机轨迹或胜率。
+- ownership release 仅在确实持有租约时记账；新候选**未安装用户桌面**。构建身份、完整回归、原生验证及限制以 `handoff/HANDOFF_Astra_TargetStability_2026-09-30.md` 为入口；以下为此前状态快照。
+- 新候选 JAR SHA256 `165bd3b2207f96cee41a2dc3c8e25c36ce3ae799dd46a268304fe8dd65acf245`；contentDigest `cfaeeab48d1b7e3d2eb238a87f3aeb92de6a1be6e0661fc4ff839ca99a9f712e`。分段回归矩阵 20 Java / 15 Python 完成，2 个真实 Windows 文件锁用例在 Linux 跳过；修复了既有的非 Windows reap 假 GONE 报告。
+- 新 5x 原生 headless 局：1801.024 游戏秒，合法 PARTIAL/ONGOING、报告完整性无问题；3 个 lightSub 自然被抑制，失联后 0 条针对它们的进军意图，ownership 16/16。恢复兼容后的解除仍为 E2；未取得新桌面或胜率证据。先前 100 ms 轮询尝试触发现有 64 MiB 报告上限，已按失败保留；有效样本使用桌面 500 ms 墙钟轮询。
 
 ## 当前候选
 

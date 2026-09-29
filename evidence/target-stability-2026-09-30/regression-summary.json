@@ -1,0 +1,72 @@
+{
+  "status": "PASS_COMPLETE_MATRIX_SPLIT_RUN",
+  "javaHarnessInvocations": 20,
+  "pythonSuites": 15,
+  "pythonTestsRun": 273,
+  "pythonTestsPassed": 271,
+  "pythonTestsSkipped": 2,
+  "skips": [
+    "Real Windows FILE_SHARE_DELETE transient reader",
+    "Real Windows FILE_SHARE_DELETE permanent reader"
+  ],
+  "executionContractChecks": 35,
+  "method": "The captured full script passed 18 Java invocations and 12 Python suites, then stopped at two existing Linux portability failures. After applying the prior audit fix from ccf90cea to the runner and its tests, all three remaining Python suites and both remaining Java harnesses passed. Unchanged game/client suites were not repeated.",
+  "initialFullRun": {
+    "exitCode": 1,
+    "wallSeconds": 418.7159818529981,
+    "outputBytes": 366424
+  },
+  "resume": {
+    "steps": [
+      {
+        "command": [
+          "python",
+          "agent/tests/test_headless_parallel.py"
+        ],
+        "exitCode": 0,
+        "log": "regression-resume-01.log"
+      },
+      {
+        "command": [
+          "python",
+          "agent/tests/test_ab_aggregate.py"
+        ],
+        "exitCode": 0,
+        "log": "regression-resume-02.log"
+      },
+      {
+        "command": [
+          "python",
+          "agent/tests/test_ab_campaign.py"
+        ],
+        "exitCode": 0,
+        "log": "regression-resume-03.log"
+      },
+      {
+        "command": [
+          "java",
+          "-cp",
+          "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/.engine/rw115/game-lib.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/.engine/rw115/libs/*:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/agent/dist/rw-agent-bootstrap.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/agent/build/tests",
+          "io.rwagent.client.ReportCommitHarness"
+        ],
+        "exitCode": 0,
+        "log": "regression-resume-04.log"
+      },
+      {
+        "command": [
+          "java",
+          "-cp",
+          "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/.engine/rw115/game-lib.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/.engine/rw115/libs/*:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/agent/dist/rw-agent-bootstrap.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-target-stability/agent/build/tests",
+          "io.rwagent.client.ExecutionContractHarness"
+        ],
+        "exitCode": 0,
+        "log": "regression-resume-05.log"
+      }
+    ],
+    "wallSeconds": 2.8924012249990483
+  },
+  "preexistingFailureSources": {
+    "tools/run_headless.py": "40dbeb1a94f6e5d2fa00537567f7690c94503a8e1ece024d1a63168aebdff077",
+    "agent/tests/test_headless_parallel.py": "033b690688d3dcbaa92b9128df99b3f06c692e8f72a70cc16c6756e818801a1c"
+  }
+}

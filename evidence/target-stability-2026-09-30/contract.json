@@ -1,0 +1,12 @@
+{
+  "releaseCondition": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+  "rejectionIsPolicyMemoryNotCurrentDomain": true,
+  "sameTypeReinforcementDoesNotRelease": true,
+  "newAttackerAlsoRequiresFreshTargetObservation": true,
+  "sourceDesktopBattleSha256": "3d6ba9bd309e52eb55366509c46fedd780efcdb6658fd93e03b838028eb92cb3",
+  "evidenceLimits": [
+    "Replay inputs came from a desktop native match, but emitted policy orders are E2.",
+    "Fixed replay positions and visibility do not evolve with the new commands.",
+    "No win-rate or complete elimination of all target switching is demonstrated."
+  ]
+}

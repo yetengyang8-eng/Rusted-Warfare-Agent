@@ -1,0 +1,8 @@
+{
+  "baseSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+  "candidateSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "repeatSha256": "feb7ad39cb137bda1ef105f6d449bbf1c5875bd9132c0b91790165a824a68f81",
+  "repeatIdentical": true,
+  "nativeAndKnowledgeEntriesCompared": 36,
+  "nativeAndKnowledgeUnchanged": true
+}
