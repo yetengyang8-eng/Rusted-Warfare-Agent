@@ -18,7 +18,7 @@
 - 能进行 Agent-vs-Agent 自我博弈、历史对手池与批量实验；
 - 最终形成“数据/回放学习 + 自我博弈 + 评测 + 迭代”的持续改进闭环，而不是只能人工加规则。
 
-工程里程碑仍沿用 0.1 / 0.3 / 0.5 / 0.7 / 0.8 / 0.9 的能力含义；版本号 0.07 不表示完成度 7%。## 2. 当前已经具备的主要能力
+工程里程碑仍沿用 0.1 / 0.3 / 0.5 / 0.7 / 0.8 / 0.9 的能力含义；版本号 0.07 不表示完成度 7%。`r`n`r`n## 2. 当前已经具备的主要能力
 
 不要把以下已完成工作重新列为“下一步从零实现”：
 
@@ -45,7 +45,7 @@
 5. Cross-Domain Recovery：陆/水/空/跨海目标导致主力卡死时的恢复策略。
 6. LOW_VALUE_TARGET_PURSUIT_LIMIT：限制低价值目标把主力长期拖走。
 7. Unit Role / Task Group Manager：MAIN_FORCE / LOCAL_GUARD / PURSUIT / WOUNDED_RESERVE / BUILDER_ESCORT 等多任务编组。
-8. 修理/重建：战损建筑、受损单位、关键生产设施的恢复逻辑。9. 越基线经济损失再评估：矿/厂被摧毁后，压力解除时重新判断当前最佳投资。
+8. 修理/重建：战损建筑、受损单位、关键生产设施的恢复逻辑。`r`n9. 越基线经济损失再评估：矿/厂被摧毁后，压力解除时重新判断当前最佳投资。
 10. 经济资本配置补全：矿/厂升级、intentional banking、机会成本与更完整的 Budget/Investment Manager。
 11. Builder scaling：是否/何时增加第二建造者及后续建造能力扩容。
 12. Dynamic army cap / map-scale adaptation：军力上限随地图规模、敌人数和经济能力调整，而不是固定 40。
@@ -62,7 +62,7 @@
 19. 学习闭环：先允许离线模仿/策略参数学习，再与 self-play/A-B 结合，证明统计上持续改进，而不是“多跑几百局规则就会自己学”。
 20. 竞技泛化评测：九图、多开局、多风格真人/AI基线、公平 APM/反应约束，形成 0.5→0.8 的可复算门槛。
 
-不计入20项但仍是工程前置/技术债：Diagnostic Lab 的 Reachability B/C/D/E、祖先 owner override 风险、capability air/ground 映射等。它们只有在对应主线需要时才应投入，避免再次让诊断工作吞掉产品推进。## 4. 最新桌面实机反馈（尚未完全写入公开 CURRENT_STATE）
+不计入20项但仍是工程前置/技术债：Diagnostic Lab 的 Reachability B/C/D/E、祖先 owner override 风险、capability air/ground 映射等。它们只有在对应主线需要时才应投入，避免再次让诊断工作吞掉产品推进。`r`n`r`n## 4. 最新桌面实机反馈（尚未完全写入公开 CURRENT_STATE）
 
 用户已用当前候选在多张全新地图打了多局；最后一局为 10 人超大地图、1800 游戏秒压力测试。可从 `evidence/last_1800_spain_10p.html` 复盘 Agent 合法视角。
 
