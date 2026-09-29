@@ -12,6 +12,12 @@
 - 回归：改前完整基线 3 构建 + 17 Java + 14 Python = **34/34**，改后最终完整 3 + 19 + 15 = **37/37**，failed 0。最终原始日志 `助手交接/evidence/knowledge_backed_v0_regression.log`。E2 原生地形对照 3 地图（含非方图）及隔离 PathingOverride 资产、6 移动域、438,450 格值匹配；两格 LAND 代价 -1→0、0→-1。见 `knowledge_backed_v0_terrain_e2.json` 与 raw ZIP。
 - 隔离原生局：`work/kb-v0-native-final/run-20260929T081835-5e0d86/episode-001`，Big Island (2p)、难度 1、请求 4x，**PASS / VICTORY**；战报 SHA256 `211839c4c2953deaa4969c95a085d058018589769d5b59aa3c7a0fd7d0011cc1`，独立审计 `PASS`、`issues=[]`。797 次观察、209 条命令、4 座完成矿、2 座新厂、121 条确认的攻击命令、1 个 Recon 任务和 1 条观察到的 Recon 命令。Target Guard 实局事件 86（兼容 78、UNKNOWN 3、不兼容 5），两次混编对空保留 heavyTank 兼容子集；潜水目标明确拒绝。Frontier 计划 2 次，其中一条 LAND 路线有 `KNOWN` 地形证据，但本局没有创建 frontier 任务。详见 `knowledge_backed_v0_native.json` 和 raw ZIP。
 - **边界**：LAND/HOVER 同格差异及 PathingOverride 为 E2-only，本局没有自然触发；一局隔离胜利不代表因果性能增益或用户桌面游戏验收。动态敌情观测过期时返回 UNKNOWN，不用静态目录补全隐藏实例。没有开展合同外策略扩展。
+### 2026-09-29 用户桌面实机补充（当前候选）
+
+- 用户已用当前 KnowledgeBacked v0 在多张全新地图完成多局桌面 Match；至少一局 180x180 在约 842 游戏秒原生 `VICTORY`，另有三局 400x370 超大图压力测试，其中最后一局运行约 1801 游戏秒后 `PARTIAL/ONGOING`。这补齐了“用户桌面尚未验证”的旧状态，但仍不是九图 1v1 竞技质量证明。
+- 最后 1800s 局：77 个新战斗单位、50 己方损失、209 条确认攻击命令、12 座新矿（结束时 11 ready）、2 座总陆厂，最终余额约 120785.5；固定 `mobileUnitHardCap=40` 在该多人巨图上形成明显尺度瓶颈信号，不能据此直接断言提高 cap 会提高胜率。
+- Target Compatibility Guard 在桌面实局自然触发并按能力筛选混编攻击者；方向符合设计。Recon 则暴露执行闭环问题：34 个 frontier 任务中 31 blocked、3 preempted、0 refreshed/advanced；本轮任务书登记其中 26 次为 `ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT`，需用 raw JSONL 继续核查根因。
+- 公开中转已补充四份最新 `battle-*.jsonl` 的压缩原始包、KnowledgeBacked / Recon 核心证据以及历史 acceptance fixtures；索引见 GitHub `evidence/README.md`。完整商业游戏引擎仍不公开分发，原生复跑需执行环境自备合法 Rusted Warfare 1.15。
 
 ## Recon v0.2 交付时快照（历史）
 

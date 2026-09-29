@@ -1,0 +1,28 @@
+Recon v0.2 证据账本（Codex，2026-09-28）
+
+授权与范围
+- 先读 HANDOFF_FOR_CODEX.md，并在修改任何代码前运行完整回归：改前基线 Java harness 17 项、Python suites 13 组、失败 0；原始日志 recon_v02_baseline.log，SHA256 9afc6c4fed863158465bc3d13fbe6fedd41911917a68c2655dc627333b36ddd5。
+- 依照 Codex_Recon_v0.2_加速推进合同_2026-09-28.md，实现合法地图记忆、残血轻坦转岗、FRONTIER_SWEEP；保留 RECHECK_INTEL，开关 reconFrontierEnabled=false 可关闭新前沿通道。没有实现 SUICIDE_PROBE、追击速度场、经济补员或多人/self-play。
+
+实现及边界
+- ScoutBridge 只用己方合法可见地图按当前、近期雾(<45s)、陈旧雾(45–<120s)、深雾(>=120s)、从未见过分类。路线只跨已见可通行格；未知格只是信息目标，不能当作已知地形。
+- BattleClient 只将 hp/maxHp<=45% 的 tank/c_tank 转为消耗型侦察，首次转岗前至少 7 名武装主力，转岗后至少留 6 名；已转岗者可在 6 名主力时续接任务。候选暂留期间不收新的主力 attack-move。紧急防守会取消待分配任务或释放侦察控制权。
+- 桥接与客户端己方观察相差一格时，必须由 planner 的同 ID anchor 佐证；任何新任务均等下一次己方观察，再检查实际位置、已知路线和记忆威胁，优先安排首令。偏离当前已知路段时阻塞或释放；不能把计划或 queued 回执写成已发生移动。
+
+完整回归与候选身份
+- 最终开发者完整回归：Java harness 17 项 + Python suites 14 组，failed steps 0；ScoutHarness 160 checks；test_recon_frontier_client.py 16/16（含一格旧观察、同路线首段等待、紧急待命释放及已转岗者主力恰 6 的续接）。原始日志 recon_v02_regression.log，SHA256 16d88414d1e0d16d7645eb49c1b4656beabe9cef265d74f71bacd729d83a31a2。
+- JDK 17 最终候选、developer/dist、隔离 P1F 安装件及本局 staged JAR whole SHA256 均为 0c53bdfa1b545088e15fa6ab4269216b5c3fa586b00738bf00f5770ac5adc71a。当前源码/安装件 contentDigest 为 b292e168c3cabe71ba5bada3159d14d027d324cc7794d99fe80fba6ac396aa20；candidate_sha_lineage.json 的 aVsInstalled=[]、aVsDist=[]。JDK 13 回归构建和 JDK 17 交付件的 Recon 类字节相同；3 个旧匿名类有编译器元数据差异，反汇编未见调用描述符或方法指令差异。原生局实际运行了交付 JAR。
+- 交接目录中另存逐字节相同的 recon_v02_candidate.jar，便于 DeepSeek/GPTsol 复核；其 SHA 同为 0c53bdfa1b545088e15fa6ab4269216b5c3fa586b00738bf00f5770ac5adc71a。
+- 冻结的环境根 rw-agent-bootstrap.jar SHA256 0681b4f7ef632a9c9372fff418fec591f240894fd99373ff6c7ca3b72d4a9eb1、game-lib.jar SHA256 8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9，均未改变。安装前 v0.2 候选备份 work/recon-v021-before-final.jar 为 e594770f7cf31494d5245c87a6dc5353a3b6cc4a83ae269ceed5ba4459ecac8f；更早 Recon v0.1 P1F 备份 work/recon-v02-before-2026-09-28/p1f-agent.jar 为 9394bdc52b449400d3ec332bf23e959c1a0ce9a8c28d8bbddaf255f276432a52。
+
+自然原生局：旧候选与最终候选分别记账
+- 旧 e594... 候选的 Small Island 难度 1 / 600 游戏秒、Small Island 难度 0 / 原生 VICTORY 263.888 游戏秒、Big Island 难度 1 / 900 游戏秒，均未建 FRONTIER 任务或转岗。三份审计分别为 recon_v02_native_attempt1/2/3.json；原始样本包 recon_v02_native_raw.zip，触发漏斗 recon_v02_trigger_forensics.txt。Big Island 在 750.208 游戏秒曾得到一条 planned 路线，但一格己方观察时差使旧客户端安全拒绝；这不是旧候选的自然侦察成功。旧候选一次 JDK 17 启动遇本机 Selector.open()/loopback 故障，NO_REPORT，不算比赛样本。
+- 最终 0c53... 候选：run-20260927T184202-5237df/episode-001，Big Island (2p)、AI 难度 1、4x、1200 游戏秒预算、480 墙钟秒上限、seed 826773822（不保证种子可复现）。battle-1790534545432-3833fd1d.jsonl SHA256 d68a3083734e45a36a9942939d882e7fd4a102274d1cd25a8459a129a68cd38b；runner episode 状态 FAIL 是游戏时长预算到期分类，原生战报 PARTIAL/ONGOING、battleGameTimeMs=1200000、integrity issues=[]，不能记作原生胜负。
+- 独立只读审计 recon_v02_native_final.json：auditStatus=PASS、issues=[]，episode/staging/战报 provenance 与 SHA 相符；FRONTIER 任务创建 36，残血转岗 1，单兵 queued 30，己方观察到的 move 24、位置进展 24，后续全队合法目标区域刷新及任务 refreshed 各 23。审计器记 23 条“转岗→任务分配→下令→己方观察移动→位置进展→严格后续全队合法刷新”时间链，其中 14 个任务瞄准从未见过区域的边界，9 个瞄准深雾；这是同一转岗侦察者执行多项任务，不是 23 次转岗。193 次整军 attack-move 经审计，其中 75 次需检查仍转岗单位排除，违规 0。
+- 首条完整链为 task #9 / c_tank #345：原始 JSONL 第 4093 行于 696192ms 建 FRONTIER，4095 行同轮等待新己方观察；第 4108–4112 行于 697616ms 发 move、排队成功并转岗（HP 2.485/210，主力 41→40）；第 4113–4114 行己方状态确认 move 且位置从 (624.336,874.621) 到 (541.639,881.677)，第 4117–4118 行记 observed/progress（698992ms）；第 4123 行 region 的最新合法刷新时刻 700432ms，深雾/未知刷新 142 格，严格晚于首次进展；第 4124–4125 行记 memory_update/refreshed。该局首次转岗前最后一条整军命令仍含 #345；创建任务同轮起的整军命令已排除它。上述行号均为原始 JSONL 一基行号，审计 JSON 中 row 为零基索引。
+- 原始最终样本及 episode/staging/运行日志归档 recon_v02_native_final_raw.zip，SHA256 f285573b1bec90fdaf4ca8c4e0ce36d8bee0af07dd143ebb84091e346619fac3。归档内 MANIFEST.json 对 11 个文件逐一记 SHA，ZIP CRC 与逐条 SHA 校验通过。
+- 产品桥接、客户端、相关 Java/Python 夹具、Windows 回归入口及原生运行指南的源码审查包为 recon_v02_sources.zip，SHA256 d10a949da91e12d170545420c8e10f89397304f17425ed205b5a0193c5bafb1a；包内 7 个源文件均有逐文件 SHA 清单并已回读验证。
+
+仍未验证／下一步
+- “目标区域后来进入全队合法视野”是时间关联；不能证明仅由 #345 揭开，也不能证明原生寻路完全沿计划线、最终胜率提升或经济无成本。此局无原生终局，没有桌面图形验收、多人、自我对战或回放验收。
+- 最终原生局仍有 12 个 FRONTIER 阻塞：9 次分配前路线锚点漂移、1 次新已知威胁走廊、2 次已到 waypoint 但没有合法清场；其余 1 个任务在预算结束时未结。安全拒绝可审计，不能把阻塞记成成功。任务 #24 的原始己方观察第 6721 行曾短暂显示匹配的 move，但决策采样时已完成，最终 orderObserved=false，提示短航点执行证据可能漏记。下一轮优先研究候选旧 attack-move 下的重规划/安全持位、短航点采样口径与路线活性，并继续量化主力及经济影响，不能用放宽合法视野或假设未知通行性来掩盖阻塞。更强 Recon 应先于经济 vNext 和多人/self-play 进入下一次策略交接。

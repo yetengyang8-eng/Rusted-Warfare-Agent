@@ -1,0 +1,64 @@
+{
+  "builds": [
+    {
+      "label": "A current source",
+      "wholeSha256": "ee3a31e285ad1381032e8c7db7094a7fac0148c9727ceba568784b2ea6d20f98",
+      "contentDigest": "82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7",
+      "entries": 68
+    },
+    {
+      "label": "B same source rebuilt",
+      "wholeSha256": "1c1374ef8fbd3cb8882f701874b1b7553e5387a10083a8eb34478f2bdc518e75",
+      "contentDigest": "82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7",
+      "entries": 68
+    },
+    {
+      "label": "C guard reverted",
+      "wholeSha256": "a40bd06fb4679127ef0fe447af5c476f20c1121b8045c2afc2e49b20b23b09b6",
+      "contentDigest": "b78dee1748020b3d2d63366209cd588970ba2d66f0abac7494afaf3f80a3511d",
+      "entries": 68
+    },
+    {
+      "label": "installed (smoke env)",
+      "wholeSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+      "contentDigest": "82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7",
+      "entries": 68
+    },
+    {
+      "label": "regression dist jar",
+      "wholeSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+      "contentDigest": "82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7",
+      "entries": 68
+    }
+  ],
+  "aVsC": [
+    "io/rwagent/client/BattleClient$GuardSelection.class",
+    "io/rwagent/client/BattleClient$Pending.class",
+    "io/rwagent/client/BattleClient.class"
+  ],
+  "aVsInstalled": [],
+  "aVsDist": [],
+  "note": "contentDigest ignores MANIFEST.MF and zip metadata, so it is stable across rebuilds while the whole-file SHA is not. The candidate identity of record is the contentDigest; the whole-file SHA is build output and changes on every rebuild of unchanged sources.",
+  "frozenDeliverables": {
+    "rw-agent-bootstrap.jar (env root)": "0681b4f7ef632a9c9372fff418fec591f240894fd99373ff6c7ca3b72d4a9eb1",
+    "game-lib.jar": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9"
+  },
+  "regeneratedBy": "_analysis/sha_lineage.py + _analysis/assemble_lineage.py",
+  "calibratedEconomy": {
+    "perT1MineCreditsPerGameSecond": 12.07,
+    "baseCreditsPerGameSecond": 26.9,
+    "source": "four live matches (battle-1790440004071, battle-1790441059316, battle-1790444931065, battle-1790445226048; two at 5x, two at 1x), constant-mine windows with the real first-to-last observation span and mine-completion / upgrade / recovery transitions excluded; per-level medians across matches, least squares over 20 windows, R2 0.999, residual sigma 0.59",
+    "libraryPrior": 12.1,
+    "note": "the measured 12.07 agrees with the mechanics-library prior (12.1 = +8 per 0.66 s) and gives 700 / 12.07 = 58.0 game seconds per-mine payback (library: 58 s). This block SUPERSEDES the earlier 10.1 / 34.5 reading, which came from the fixed-60-second-window + median-mine-count method: that method reads ~15% low on the slope and ~8 credits/s high on the base on the same reports. Evidence: evidence/two_speed_economy_builder.txt (script _analysis/two_speed_economy_builder.py).",
+    "shippedAs": {
+      "baseIncome": 26.9,
+      "incomePerMine": 12.07,
+      "overridableBy": [
+        "-Drwagent.baseIncome",
+        "-Drwagent.incomePerMine"
+      ],
+      "provenanceField": "report_provenance.economyModelSource = MEASURED_4_MATCHES_2_SPEEDS_CONSTANT_MINE_WINDOWS_R2_0.999",
+      "usedBy": "Economy v1b dynamic land factory (considerFactoryTargetIncrease)"
+    }
+  }
+}

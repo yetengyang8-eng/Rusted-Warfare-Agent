@@ -3,7 +3,7 @@
 > 写给**第一次进入本工作区的模型**（Codex / Astra）。只写**当前真相**，不写历史。
 > 历史与决策过程在 `助手交接\对话N.txt` / `输出N.txt` / `*_ChatGPT.md`；当前状态速查以
 > 根目录 `CURRENT_STATE.md` 为准。
-> 当前工程轮次：**KnowledgeBacked World Model / Capability v0 已完成完整回归、P1F 安装、E2 原生地形对照与一局隔离原生 `PASS / VICTORY`；用户桌面游戏和因果性能仍未验证，DeepSeek 独立验收待做**。
+> 当前工程轮次：**KnowledgeBacked World Model / Capability v0 已完成完整回归、P1F 安装、E2 原生地形对照、一局隔离原生 `PASS / VICTORY`，并已有用户桌面多局自然运行证据（含一局 180x180 VICTORY 与 400x370/1800s 压力局）；仍未证明九图 1v1 因果性能增益，独立原生验收仍待补齐**。
 > 最新交接：`助手交接\HANDOFF_Codex_KnowledgeBacked_v0_2026-09-29.md`；候选身份、合法视野、原生结果与未验证边界以该文件和 `CURRENT_STATE.md` 为准。下文保留策略与实机保护约束，旧 Recon 身份段落标为历史。
 
 ---

@@ -1,0 +1,77 @@
+KnowledgeBacked World Model / Capability v0 — verification ledger — 2026-09-29
+
+Contract: 助手交接/Codex_KnowledgeBacked_WorldModel_Capability_v0_施工版_2026-09-29.md
+Product: 游戏环境/Rusted-Warfare-1.15-Agent-0.07
+Installed candidate: 游戏环境/P1F-冒烟环境/rw-agent-bootstrap.jar
+Candidate SHA256 (dist = P1F = isolated episode staged JAR):
+  5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54
+Source/content digest (68 JAR entries, excluding manifest and ZIP metadata):
+  82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7
+Lineage: source rebuild A = rebuild B = dist = P1F by content;
+  aVsInstalled=[]; aVsDist=[]. Whole-file A/B SHAs differ due rebuild metadata.
+  The historical C arm in sha_lineage.py reverts an older capability diagnostic
+  guard. It is not an ablation of the new Target Compatibility Guard.
+Frozen game-lib SHA256: 8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9
+Frozen environment-root agent SHA256: 0681b4f7ef632a9c9372fff418fec591f240894fd99373ff6c7ca3b72d4a9eb1
+Catalog packet and packaged JAR resource SHA256:
+  263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236
+Terrain packet SHA256: ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9
+
+E1 — packet/static contract
+  Consumed the existing packet; did not rebuild unit tables or reparse nine maps.
+  TargetCatalog checks packet and frozen game identity. Three target states carry
+  reason/source/time. Dynamic target domain is read only from legally visible
+  instances; remembered or stale dynamic state falls back to UNKNOWN.
+  Terrain semantics distinguish native terrain cost, dynamic blocking and
+  reachability. terrainCost=0 is not called reachable. Hidden tiles remain UNKNOWN.
+
+E2 — deterministic and native comparison
+  Complete pre-change regression: 3 build steps + 17 Java harnesses + 14 Python
+  suites = 34/34 steps, failed 0. Post-change: 3 + 19 + 15 = 37/37 steps,
+  failed 0. Final regression includes Guard native harness 83 checks, Terrain
+  Memory harness 82, Scout native harness 160, target client 6/6 tests, and
+  Recon frontier client 16/16 tests.
+  A first post-change run caught an optional-grid /scout/observe 503; fixed so
+  a missing path grid preserves UNKNOWN and reran the whole suite green.
+  Native d[] terrain costs matched the packet on 3 copied maps (including two
+  non-square maps) and a copied two-cell PathingOverride fixture: 6 movement
+  domains per case, 438,450 native cell values. Isolated override changed
+  LAND (10,10) from -1 to 0 and (55,55) from 0 to -1.
+  Target E2 covers tank vs air/submerged, heavyTank vs air, surface-water,
+  unarmed builders/factories/extractors, mixed force and UNKNOWN/stale state.
+  Terrain E2 covers LAND/HOVER same-tile differences, hidden UNKNOWN, and
+  session invalidation. Exact raw logs and source are in the review ZIPs.
+
+E4 — isolated native headless episode, installed candidate
+  Big Island (2p), difficulty 1, requested 4x, one episode: PASS / VICTORY.
+  Episode and battle both report VICTORY; match-verified battle report SHA256:
+  211839c4c2953deaa4969c95a085d058018589769d5b59aa3c7a0fd7d0011cc1
+  Independent native audit: PASS, issues=[]; staged agent equals installed P1F,
+  game JAR equals frozen hash, battle provenance and verified raw report agree.
+  Main chain: 797 observations, 209 commands, 4 completed mines, 2 new
+  factories, 121 confirmed attack orders, 1 Recon task and 1 observed Recon
+  order. Two frontier plans were logged: first no_frontier due known threats;
+  second selected a LAND route with KNOWN native terrain evidence and
+  unknownCostTiles=0. No frontier task was created in this particular game.
+  Target Guard logged 86 natural decisions: COMPATIBLE 78, UNKNOWN 3,
+  INCOMPATIBLE 5; target domains SURFACE 79, AIR 2, SUBMERGED 5. Two mixed
+  force decisions retained compatible heavyTanks against AIR and excluded
+  incompatible c_tanks. Submerged lightSub was rejected with assignedUnitIds=[].
+  Stale current state emitted UNKNOWN and followed the conservative fallback.
+
+Limits and rollback
+  LAND/HOVER same-cell behavior and PathingOverride were E2-only; the natural
+  match did not exercise those branches. The native win demonstrates this
+  candidate's one-game behavior, not a causal performance gain or desktop
+  game acceptance. No user desktop game, original saves or replays were changed.
+  Roll back P1F by restoring
+  C:/Users/Administrator/Documents/Codex/2026-09-27/g-deepseek/work/
+  p1f-before-knowledge-backed-v0-20260929.jar
+  to 游戏环境/P1F-冒烟环境/rw-agent-bootstrap.jar; old SHA256:
+  0c53bdfa1b545088e15fa6ab4269216b5c3fa586b00738bf00f5770ac5adc71a
+
+Files: knowledge_backed_v0_baseline.log, knowledge_backed_v0_regression.log,
+knowledge_backed_v0_terrain_e2.json, knowledge_backed_v0_terrain_e2_raw.zip,
+knowledge_backed_v0_native.json, knowledge_backed_v0_native_raw.zip,
+knowledge_backed_v0_sources.zip, knowledge_backed_v0_candidate.jar,
+candidate_sha_lineage.json.

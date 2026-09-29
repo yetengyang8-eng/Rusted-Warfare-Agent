@@ -1,0 +1,51 @@
+Recon v0.2 第一局原生触发条件复盘（只读，2026-09-28）
+
+原始报告：
+C:\Users\Administrator\Documents\Codex\2026-09-27\g-deepseek\work\recon-v02-native\run-20260927T180400-3cf81f\episode-001\rw-agent-reports\battle-1790532264254-314d9e9d.jsonl
+SHA-256: fcfa6ccf6f0ec5bec6e6b4e95b800bd1cc094b070b685a2de1767844bb8bdf9b
+配置：maps/skirmish/[p2]Small_Island (2p).tmx；AI 难度 1；速度 4x；游戏时长预算 600 秒。
+口径：按 480 条 combat_observation 决策样本，配对同轮之前的己方 observation、同轮 scout_visibility 和 military_urgency 状态；主力数按已完成、存活、可攻击的己方机动单位计算。残血候选限定 tank/c_tank 且 0 < hp/maxHp <= 45%。
+
+触发漏斗：
+- 决策样本 480；主力 >= 7 的样本 199；非 EMERGENCY 的样本 252；存在残血 tank/c_tank 的样本 69。
+- “残血候选 + 主力 >= 7 + 非 EMERGENCY”三条件同时成立 6 次。
+- 其中 5 次处于 211472、212688、214000、215200、216512 游戏毫秒，Recon Controller 已被 RECHECK_INTEL 占有，不能同时创建 FRONTIER_SWEEP。
+- 唯一没有 RECHECK_INTEL 占有的重叠点是 130096 游戏毫秒：c_tank #20 血量 70/210（33.3%），主力 7，军情 STABLE。Agent 确实请求了 /scout/plan?role=recon。
+- 该次规划返回 no_frontier：finalCause=SEARCH_BLOCKED_BY_KNOWN_THREATS，reachableTiles=1，dangerBlockedTiles=4，unknownTilesTotal=8346。此时地图记忆还有陈旧雾 78 格、从未见过 8346 格、深雾 0 格；地图并不缺信息目标，是已合法记住的威胁使候选兵无法离开当前可达根格。
+- 后 5 次重叠时已有深雾 229–371 格、未知约 8062–8080 格，但旧址复查占有单任务槽。全局 480 条 scout_visibility 中 383 条有深雾；本局不存在“没有深雾/未知”这一整体解释。
+- 报告 summary：frontierTasksCreated=0，expendableTransfers=0，frontierTasksRefreshed=0。不能把任何其他探索或 RECHECK 行为记作自然 FRONTIER_SWEEP。
+
+结果与证据边界：
+- battle report outcome=PARTIAL，matchOutcome=ONGOING，reason=Game-time budget reached without native result；episode status=FAIL 是预算到期分类，并非已判定胜负。
+- match-verified.json 对该 battle 报告记录 issues=[]、validEventCount=3658、nonemptyLineCount=3658；这可称日志结构审计 PASS。审计 PASS 不等于自然 frontier 验收，本局没有出现残血转岗、FRONTIER_SWEEP 任务或深雾侦察行为链。
+- 下一局建议保留同地图及候选，改 AI 难度为 0、预算 900 游戏秒、速度 4x、换 seed；保持地图与候选不变，在较低对手压力、更长时长及不同 seed 下，观察残血兵能否在六人主力之外存活并走出已知威胁封锁。若再现同类威胁封锁，再用更大地图做有界第二种场景；地图安全性须以新局规划与原始报告证实。
+
+
+第二局原生触发条件复盘（只读，2026-09-28）
+
+原始报告：
+C:\Users\Administrator\Documents\Codex\2026-09-27\g-deepseek\work\recon-v02-native\run-20260927T181044-e2e728\episode-001\rw-agent-reports\battle-1790532668440-ab7e528d.jsonl
+SHA-256: be3413940b8a6cdcb3c1bb480b96b9cb648e67eddde5ae6ab3be7577b3b05f60
+配置：同一 Small_Island (2p) 地图；AI 难度 0；速度 4x；游戏时长预算 900 秒。口径沿用第一局：逐条配对 206 次 combat_observation 决策、己方 observation 与军情状态，残血候选限定存活、已完成、可移动且可攻击的 tank/c_tank，0 < hp/maxHp <= 45%。
+
+触发漏斗与原因：
+- 206 次决策中，主力 >= 7 有 113 次，非 EMERGENCY 有 132 次，出现残血轻坦候选有 18 次；三条件同时成立仅 3 次，且这 3 次均没有 RECHECK_INTEL 占有任务槽。
+- 三次重叠位于 113072、114448、115744 游戏毫秒；均为 c_tank #9，主力 7、军情 STABLE，其血量依次为 80/210（38.1%）、60/210（28.6%）、23/210（11.0%）。候选约 2.7 游戏秒内快速失血，随后 116464 毫秒记录 own_loss，117008 毫秒进入 EMERGENCY 且主力降为 6。
+- 全局仅 1 条 recon_frontier_plan（报告第 182 行），恰在首次重叠的 113072 毫秒；结果为 no_frontier，reason=NO_REACHABLE_DEEP_OR_STALE_FRONTIER，finalCause=SEARCH_BLOCKED_BY_KNOWN_THREATS，reachableTiles=1，dangerBlockedTiles=4，unknownTilesTotal=8751。彼时陈旧雾 0、深雾 0，但未知格 8751；不是没有侦察信息，而是合法已知威胁挡住候选兵的安全出口。随后两次重叠在同一个 15 秒规划限频窗口内，未再次调用 frontier 规划；候选在限频到期前阵亡。
+- 后续确有两次 RECHECK_INTEL 创建（156464、294624 毫秒），但已错过该残血候选；没有形成新的三条件重叠。
+
+结果与证据边界：
+- 原生结果屏为 VICTORY（报告第 1523–1524 行），battleGameTimeMs=263888，即约 263.888 游戏秒即获胜，比 900 秒预算早结束；有效观察窗只有 206 次决策，短于第一局的 600.208 游戏秒、480 次决策。早胜压缩了自然产生并存活的残血转岗窗口。
+- summary 中 frontierTasksCreated=0、frontierTasksRefreshed=0、expendableTransfers=0；这局验证了原生胜利，但仍未提供自然 FRONTIER_SWEEP/残血转岗验收证据。不能以胜利结果替代缺失的侦察行为链。
+
+第三局 Big Island 原生触发条件复盘（只读，2026-09-28）
+
+原始报告：
+C:\Users\Administrator\Documents\Codex\2026-09-27\g-deepseek\work\recon-v02-native\run-20260927T181243-4b5047\episode-001\rw-agent-reports\battle-1790532788394-cdc26a5b.jsonl
+SHA-256: cb7fab0db1565ab1d59cea4b9056051baF0BBF2107CD3790A5189116CC6666F2
+口径：逐条配对 694 次 combat_observation 决策、最近的己方 observation 与军情状态；轻坦残血门槛为 0 < hp/maxHp <= 45%，主力为存活、已完成、可移动且可攻击的己方单位；RECHECK 占位按任务创建至复查完成的事件区间计算。
+
+触发漏斗：694 次决策中主力 >= 7 为 694 次、非 EMERGENCY 为 552 次、出现残血 tank/c_tank 为 393 次；三条件同时成立 266 次，其中 135 次无 RECHECK_INTEL 占位。故本局 FRONTIER_SWEEP=0 不能解释为兵力/血量机会不足，或一直被旧址复查占位。
+规划回执：共 14 次 recon_frontier_plan；13 次 no_frontier，均为 NO_REACHABLE_DEEP_OR_STALE_FRONTIER / SEARCH_BLOCKED_BY_KNOWN_THREATS，reachableTiles=1、dangerBlockedTiles=4，尽管各次 unknownTilesTotal 仍约 9206–14248。唯一一次 planned 见报告第 4537 行，游戏时刻 750208 ms，候选 c_tank #440 仅 9/210 HP，主力约 41，非紧急、无 RECHECK；planner 返回 CANDIDATE_SELECTED、reachableTiles=1493、pathKnown=true、pathVisible=true、潜在信息分 891。但第 4538 行立即记录 recon_frontier_deferred / INVALID_KNOWN_ROUTE，任务未创建。
+该 deferred 的具体边界：调用前 observation 第 4534 行 #440 坐标 (449.893,451.029)，对应 tile 3982；planner anchor (443.133,461.669)，routeTiles 首格 3983。兵在请求期间跨过 1 格；BattleClient.java 的 validFrontierRoute 对调用前 actor tile 与新路线首格要求完全相等，安全拒绝了这次规划。应保留安全校验；若要改进，可对这种已证实的观察时差先重新取状态/规划，或避免让这次跨格失配耗尽 15 秒规划限频，仍须重新验证实际路径合法性。
+结果：报告 summary 第 6037 行为 PARTIAL / ONGOING，battleGameTimeMs=900272（预算到期，无原生胜负）；frontierTasksCreated=0、frontierTasksRefreshed=0、expendableTransfers=0。Big Island 提供了自然候选和一次有信息价值的可规划路线，却仍未完成 FRONTIER_SWEEP 行为链；不能标为自然侦察验收。

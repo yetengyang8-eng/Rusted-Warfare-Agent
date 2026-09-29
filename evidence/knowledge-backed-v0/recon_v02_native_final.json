@@ -1,0 +1,3392 @@
+{
+  "episode": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-27\\g-deepseek\\work\\recon-v021-native\\run-20260927T184202-5237df\\episode-001",
+  "episodeStatus": "FAIL",
+  "verifiedBattleReport": {
+    "file": "battle-1790534545432-3833fd1d.jsonl",
+    "sha256": "d68a3083734e45a36a9942939d882e7fd4a102274d1cd25a8459a129a68cd38b",
+    "classification": "PARTIAL",
+    "result": "PARTIAL"
+  },
+  "candidateIdentity": {
+    "agentJarSha256": "0c53bdfa1b545088e15fa6ab4269216b5c3fa586b00738bf00f5770ac5adc71a",
+    "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "battleReportSha256": "d68a3083734e45a36a9942939d882e7fd4a102274d1cd25a8459a129a68cd38b",
+    "episodeAgentMatchesStaged": true,
+    "runtimeGameMatchesStaged": true,
+    "battleProvenanceMatchesStaged": true,
+    "healthProvenanceMatchesStaged": true
+  },
+  "conditions": {
+    "map": "maps/skirmish/[p2]Big Island (2p).tmx",
+    "requestedSpeed": 4.0,
+    "aiDifficulty": 1,
+    "nativeSeed": 826773822,
+    "seedReproducibilityVerified": false,
+    "fogEnabled": true,
+    "lineOfSightFog": true
+  },
+  "gameResult": {
+    "clientOutcome": "PARTIAL",
+    "nativeMatchOutcome": "ONGOING",
+    "battleGameTimeMs": 1200000,
+    "summaryReason": "Game-time budget reached without native result"
+  },
+  "reconConfiguration": {
+    "reconEnabled": true,
+    "reconFrontierEnabled": true,
+    "reconExpendableHpMaxFraction": 0.45,
+    "reconFrontierMinMainForce": 6
+  },
+  "frontierEventCounts": {
+    "transfer": 1,
+    "assign": 26,
+    "queued": 30,
+    "observed": 24,
+    "progress": 24,
+    "waypoint": 4,
+    "teamLegalReveal": 23,
+    "refreshed": 23,
+    "advanced": 0,
+    "preempted": 0,
+    "blocked": 12,
+    "releasedForDefense": 0,
+    "recallQueuedAllRecon": 3,
+    "frontierTaskCreated": 36
+  },
+  "frontierSummary": {
+    "frontierTasksCreated": 36,
+    "frontierTasksRefreshed": 23,
+    "frontierTasksAdvanced": 0,
+    "frontierTasksPreempted": 0,
+    "frontierTasksBlocked": 12,
+    "expendableTransfers": 1,
+    "expendableScoutsAtEnd": 1
+  },
+  "orderedFrontierFragments": [
+    {
+      "taskId": 1,
+      "unitId": null,
+      "frontierTile": 10829,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 2374,
+          "event": "recon_task_created",
+          "gameTimeMs": 456096,
+          "wallTimeMs": 1790534643829,
+          "taskId": 1,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 10829,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 2389,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 457472,
+          "wallTimeMs": 1790534644185,
+          "taskId": 1,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 10829,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 2,
+      "unitId": null,
+      "frontierTile": 10837,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 2561,
+          "event": "recon_task_created",
+          "gameTimeMs": 478176,
+          "wallTimeMs": 1790534649574,
+          "taskId": 2,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 10837,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 2565,
+          "event": "recon_deferred",
+          "gameTimeMs": 478176,
+          "wallTimeMs": 1790534649589,
+          "taskId": 2,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 10837,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 2578,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 479552,
+          "wallTimeMs": 1790534649916,
+          "taskId": 2,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 10837,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 3,
+      "unitId": null,
+      "frontierTile": 8871,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 2666,
+          "event": "recon_task_created",
+          "gameTimeMs": 493616,
+          "wallTimeMs": 1790534653600,
+          "taskId": 3,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 8871,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 2668,
+          "event": "recon_deferred",
+          "gameTimeMs": 493616,
+          "wallTimeMs": 1790534653609,
+          "taskId": 3,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 8871,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 2679,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 495040,
+          "wallTimeMs": 1790534653952,
+          "taskId": 3,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 8871,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 4,
+      "unitId": null,
+      "frontierTile": 22580,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 3328,
+          "event": "recon_task_created",
+          "gameTimeMs": 586768,
+          "wallTimeMs": 1790534677850,
+          "taskId": 4,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 22580,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 3330,
+          "event": "recon_deferred",
+          "gameTimeMs": 586768,
+          "wallTimeMs": 1790534677862,
+          "taskId": 4,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 22580,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 3337,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 588128,
+          "wallTimeMs": 1790534678191,
+          "taskId": 4,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 22580,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 5,
+      "unitId": null,
+      "frontierTile": 23628,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 3455,
+          "event": "recon_task_created",
+          "gameTimeMs": 602368,
+          "wallTimeMs": 1790534681915,
+          "taskId": 5,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 23628,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 3457,
+          "event": "recon_deferred",
+          "gameTimeMs": 602368,
+          "wallTimeMs": 1790534681927,
+          "taskId": 5,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 23628,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 3462,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 603760,
+          "wallTimeMs": 1790534682254,
+          "taskId": 5,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 23628,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 6,
+      "unitId": null,
+      "frontierTile": 14232,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 3559,
+          "event": "recon_task_created",
+          "gameTimeMs": 618064,
+          "wallTimeMs": 1790534686000,
+          "taskId": 6,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 14232,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 3564,
+          "event": "recon_deferred",
+          "gameTimeMs": 618064,
+          "wallTimeMs": 1790534686014,
+          "taskId": 6,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 14232,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 3569,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 619360,
+          "wallTimeMs": 1790534686327,
+          "taskId": 6,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 14232,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 7,
+      "unitId": null,
+      "frontierTile": 1658,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 3685,
+          "event": "recon_task_created",
+          "gameTimeMs": 633952,
+          "wallTimeMs": 1790534690135,
+          "taskId": 7,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1658,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 3689,
+          "event": "recon_deferred",
+          "gameTimeMs": 633952,
+          "wallTimeMs": 1790534690149,
+          "taskId": 7,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1658,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 3699,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 635312,
+          "wallTimeMs": 1790534690482,
+          "taskId": 7,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1658,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 8,
+      "unitId": null,
+      "frontierTile": 1830,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4002,
+          "event": "recon_task_created",
+          "gameTimeMs": 680544,
+          "wallTimeMs": 1790534702273,
+          "taskId": 8,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4006,
+          "event": "recon_deferred",
+          "gameTimeMs": 680544,
+          "wallTimeMs": 1790534702287,
+          "taskId": 8,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4013,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 681920,
+          "wallTimeMs": 1790534702632,
+          "taskId": 8,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 9,
+      "unitId": 345,
+      "frontierTile": 1830,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4092,
+          "event": "recon_task_created",
+          "gameTimeMs": 696192,
+          "wallTimeMs": 1790534706346,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4094,
+          "event": "recon_deferred",
+          "gameTimeMs": 696192,
+          "wallTimeMs": 1790534706360,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4109,
+          "event": "recon_expendable_transfer",
+          "gameTimeMs": 697616,
+          "wallTimeMs": 1790534706734,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4110,
+          "event": "recon_assigned",
+          "gameTimeMs": 697616,
+          "wallTimeMs": 1790534706734,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4111,
+          "event": "recon_order_queued",
+          "gameTimeMs": 697616,
+          "wallTimeMs": 1790534706734,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 510.0,
+          "waypointY": 870.0
+        },
+        {
+          "row": 4116,
+          "event": "recon_order_observed",
+          "gameTimeMs": 698992,
+          "wallTimeMs": 1790534707062,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4117,
+          "event": "recon_progress",
+          "gameTimeMs": 698992,
+          "wallTimeMs": 1790534707062,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 541.639,
+          "scoutY": 881.677
+        },
+        {
+          "row": 4123,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 700320,
+          "wallTimeMs": 1790534707407,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 142,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 700432
+        },
+        {
+          "row": 4124,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 700320,
+          "wallTimeMs": 1790534707407,
+          "taskId": 9,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1830,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 10,
+      "unitId": 345,
+      "frontierTile": 3790,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4191,
+          "event": "recon_task_created",
+          "gameTimeMs": 711968,
+          "wallTimeMs": 1790534710460,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4195,
+          "event": "recon_deferred",
+          "gameTimeMs": 711968,
+          "wallTimeMs": 1790534710474,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4212,
+          "event": "recon_assigned",
+          "gameTimeMs": 714624,
+          "wallTimeMs": 1790534711145,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4213,
+          "event": "recon_order_queued",
+          "gameTimeMs": 714624,
+          "wallTimeMs": 1790534711145,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 890.0
+        },
+        {
+          "row": 4218,
+          "event": "recon_order_observed",
+          "gameTimeMs": 715920,
+          "wallTimeMs": 1790534711470,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4219,
+          "event": "recon_progress",
+          "gameTimeMs": 715920,
+          "wallTimeMs": 1790534711470,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 459.627,
+          "scoutY": 889.879
+        },
+        {
+          "row": 4240,
+          "event": "recon_waypoint_reached",
+          "gameTimeMs": 717408,
+          "wallTimeMs": 1790534711861,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 890.0
+        },
+        {
+          "row": 4254,
+          "event": "recon_order_queued",
+          "gameTimeMs": 718656,
+          "wallTimeMs": 1790534712216,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 770.0
+        },
+        {
+          "row": 4259,
+          "event": "recon_order_observed",
+          "gameTimeMs": 719952,
+          "wallTimeMs": 1790534712513,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4260,
+          "event": "recon_progress",
+          "gameTimeMs": 719952,
+          "wallTimeMs": 1790534712513,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 432.183,
+          "scoutY": 847.902
+        },
+        {
+          "row": 4274,
+          "event": "recon_waypoint_reached",
+          "gameTimeMs": 721248,
+          "wallTimeMs": 1790534712857,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 770.0
+        },
+        {
+          "row": 4295,
+          "event": "recon_order_queued",
+          "gameTimeMs": 723808,
+          "wallTimeMs": 1790534713540,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 730.0
+        },
+        {
+          "row": 4376,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 734336,
+          "wallTimeMs": 1790534716264,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 28,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 734432
+        },
+        {
+          "row": 4377,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 734336,
+          "wallTimeMs": 1790534716264,
+          "taskId": 10,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 11,
+      "unitId": 345,
+      "frontierTile": 3790,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4379,
+          "event": "recon_task_created",
+          "gameTimeMs": 734336,
+          "wallTimeMs": 1790534716279,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4384,
+          "event": "recon_deferred",
+          "gameTimeMs": 734336,
+          "wallTimeMs": 1790534716294,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4391,
+          "event": "recon_assigned",
+          "gameTimeMs": 735696,
+          "wallTimeMs": 1790534716638,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4392,
+          "event": "recon_order_queued",
+          "gameTimeMs": 735696,
+          "wallTimeMs": 1790534716639,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 430.0,
+          "waypointY": 610.0
+        },
+        {
+          "row": 4397,
+          "event": "recon_order_observed",
+          "gameTimeMs": 737024,
+          "wallTimeMs": 1790534716965,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4398,
+          "event": "recon_progress",
+          "gameTimeMs": 737024,
+          "wallTimeMs": 1790534716965,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 429.719,
+          "scoutY": 671.618
+        },
+        {
+          "row": 4407,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 738336,
+          "wallTimeMs": 1790534717306,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 4,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 737136
+        },
+        {
+          "row": 4408,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 738336,
+          "wallTimeMs": 1790534717306,
+          "taskId": 11,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3790,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 12,
+      "unitId": null,
+      "frontierTile": 4150,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4496,
+          "event": "recon_task_created",
+          "gameTimeMs": 750176,
+          "wallTimeMs": 1790534720403,
+          "taskId": 12,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4150,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4501,
+          "event": "recon_deferred",
+          "gameTimeMs": 750176,
+          "wallTimeMs": 1790534720417,
+          "taskId": 12,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4150,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4510,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 751552,
+          "wallTimeMs": 1790534720742,
+          "taskId": 12,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4150,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "KNOWN_THREAT_CORRIDOR"
+        }
+      ]
+    },
+    {
+      "taskId": 13,
+      "unitId": 345,
+      "frontierTile": 3431,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4615,
+          "event": "recon_task_created",
+          "gameTimeMs": 766032,
+          "wallTimeMs": 1790534724539,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4620,
+          "event": "recon_deferred",
+          "gameTimeMs": 766032,
+          "wallTimeMs": 1790534724553,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4634,
+          "event": "recon_assigned",
+          "gameTimeMs": 767520,
+          "wallTimeMs": 1790534724914,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4635,
+          "event": "recon_order_queued",
+          "gameTimeMs": 767520,
+          "wallTimeMs": 1790534724914,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 390.0,
+          "waypointY": 490.0
+        },
+        {
+          "row": 4640,
+          "event": "recon_order_observed",
+          "gameTimeMs": 768720,
+          "wallTimeMs": 1790534725220,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 4641,
+          "event": "recon_progress",
+          "gameTimeMs": 768720,
+          "wallTimeMs": 1790534725220,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 392.854,
+          "scoutY": 518.266
+        },
+        {
+          "row": 4650,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 770000,
+          "wallTimeMs": 1790534725544,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 81,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 770080
+        },
+        {
+          "row": 4651,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 770000,
+          "wallTimeMs": 1790534725544,
+          "taskId": 13,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 3431,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 14,
+      "unitId": 345,
+      "frontierTile": 6849,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4750,
+          "event": "recon_task_created",
+          "gameTimeMs": 782016,
+          "wallTimeMs": 1790534728695,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4755,
+          "event": "recon_deferred",
+          "gameTimeMs": 782016,
+          "wallTimeMs": 1790534728709,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4767,
+          "event": "recon_assigned",
+          "gameTimeMs": 783392,
+          "wallTimeMs": 1790534729053,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4768,
+          "event": "recon_order_queued",
+          "gameTimeMs": 783392,
+          "wallTimeMs": 1790534729053,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 490.0,
+          "waypointY": 530.0
+        },
+        {
+          "row": 4773,
+          "event": "recon_order_observed",
+          "gameTimeMs": 784640,
+          "wallTimeMs": 1790534729364,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4774,
+          "event": "recon_progress",
+          "gameTimeMs": 784640,
+          "wallTimeMs": 1790534729364,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 414.218,
+          "scoutY": 504.944
+        },
+        {
+          "row": 4792,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 787232,
+          "wallTimeMs": 1790534730034,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 25,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 787328
+        },
+        {
+          "row": 4793,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 787232,
+          "wallTimeMs": 1790534730036,
+          "taskId": 14,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 15,
+      "unitId": 345,
+      "frontierTile": 6849,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4866,
+          "event": "recon_task_created",
+          "gameTimeMs": 797424,
+          "wallTimeMs": 1790534732711,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4871,
+          "event": "recon_deferred",
+          "gameTimeMs": 797424,
+          "wallTimeMs": 1790534732727,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 4878,
+          "event": "recon_assigned",
+          "gameTimeMs": 798752,
+          "wallTimeMs": 1790534733057,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4879,
+          "event": "recon_order_queued",
+          "gameTimeMs": 798752,
+          "wallTimeMs": 1790534733057,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 610.0,
+          "waypointY": 530.0
+        },
+        {
+          "row": 4884,
+          "event": "recon_order_observed",
+          "gameTimeMs": 800080,
+          "wallTimeMs": 1790534733383,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 4885,
+          "event": "recon_progress",
+          "gameTimeMs": 800080,
+          "wallTimeMs": 1790534733383,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 518.335,
+          "scoutY": 528.295
+        },
+        {
+          "row": 4898,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 801424,
+          "wallTimeMs": 1790534733737,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 0,
+          "revealedStaleSince": 1,
+          "latestRelevantRevealGameTimeMs": 801536
+        },
+        {
+          "row": 4899,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 801424,
+          "wallTimeMs": 1790534733737,
+          "taskId": 15,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 6849,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 16,
+      "unitId": 345,
+      "frontierTile": 7030,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 4988,
+          "event": "recon_task_created",
+          "gameTimeMs": 813184,
+          "wallTimeMs": 1790534736819,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5015,
+          "event": "recon_assigned",
+          "gameTimeMs": 817136,
+          "wallTimeMs": 1790534737845,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5016,
+          "event": "recon_order_queued",
+          "gameTimeMs": 817136,
+          "wallTimeMs": 1790534737845,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 730.0,
+          "waypointY": 530.0
+        },
+        {
+          "row": 5021,
+          "event": "recon_order_observed",
+          "gameTimeMs": 818480,
+          "wallTimeMs": 1790534738171,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5022,
+          "event": "recon_progress",
+          "gameTimeMs": 818480,
+          "wallTimeMs": 1790534738171,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 677.598,
+          "scoutY": 530.023
+        },
+        {
+          "row": 5036,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 819888,
+          "wallTimeMs": 1790534738545,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 11,
+          "revealedStaleSince": 18,
+          "latestRelevantRevealGameTimeMs": 820000
+        },
+        {
+          "row": 5037,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 819888,
+          "wallTimeMs": 1790534738545,
+          "taskId": 16,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 7030,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 17,
+      "unitId": null,
+      "frontierTile": 5280,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": false,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5104,
+          "event": "recon_task_created",
+          "gameTimeMs": 828768,
+          "wallTimeMs": 1790534740870,
+          "taskId": 17,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 5280,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5109,
+          "event": "recon_deferred",
+          "gameTimeMs": 828768,
+          "wallTimeMs": 1790534740884,
+          "taskId": 17,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 5280,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5114,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 830096,
+          "wallTimeMs": 1790534741208,
+          "taskId": 17,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 5280,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "ROUTE_ANCHOR_DRIFT_BEFORE_ASSIGNMENT"
+        }
+      ]
+    },
+    {
+      "taskId": 18,
+      "unitId": 345,
+      "frontierTile": 5102,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5217,
+          "event": "recon_task_created",
+          "gameTimeMs": 844192,
+          "wallTimeMs": 1790534744890,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5222,
+          "event": "recon_deferred",
+          "gameTimeMs": 844192,
+          "wallTimeMs": 1790534744903,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5229,
+          "event": "recon_assigned",
+          "gameTimeMs": 845456,
+          "wallTimeMs": 1790534745214,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5230,
+          "event": "recon_order_queued",
+          "gameTimeMs": 845456,
+          "wallTimeMs": 1790534745214,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 650.0,
+          "waypointY": 690.0
+        },
+        {
+          "row": 5236,
+          "event": "recon_order_observed",
+          "gameTimeMs": 846736,
+          "wallTimeMs": 1790534745529,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5237,
+          "event": "recon_progress",
+          "gameTimeMs": 846736,
+          "wallTimeMs": 1790534745529,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 742.412,
+          "scoutY": 682.907
+        },
+        {
+          "row": 5250,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 848032,
+          "wallTimeMs": 1790534745870,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 0,
+          "revealedStaleSince": 7,
+          "latestRelevantRevealGameTimeMs": 848128
+        },
+        {
+          "row": 5251,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 848032,
+          "wallTimeMs": 1790534745870,
+          "taskId": 18,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 5102,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 19,
+      "unitId": 345,
+      "frontierTile": 4387,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5339,
+          "event": "recon_task_created",
+          "gameTimeMs": 860048,
+          "wallTimeMs": 1790534749020,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5344,
+          "event": "recon_deferred",
+          "gameTimeMs": 860048,
+          "wallTimeMs": 1790534749034,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5351,
+          "event": "recon_assigned",
+          "gameTimeMs": 861376,
+          "wallTimeMs": 1790534749362,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5352,
+          "event": "recon_order_queued",
+          "gameTimeMs": 861376,
+          "wallTimeMs": 1790534749362,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 530.0,
+          "waypointY": 690.0
+        },
+        {
+          "row": 5357,
+          "event": "recon_order_observed",
+          "gameTimeMs": 862640,
+          "wallTimeMs": 1790534749676,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5358,
+          "event": "recon_progress",
+          "gameTimeMs": 862640,
+          "wallTimeMs": 1790534749676,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 586.694,
+          "scoutY": 689.848
+        },
+        {
+          "row": 5367,
+          "event": "recon_waypoint_reached",
+          "gameTimeMs": 863888,
+          "wallTimeMs": 1790534750004,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 530.0,
+          "waypointY": 690.0
+        },
+        {
+          "row": 5396,
+          "event": "recon_order_queued",
+          "gameTimeMs": 866592,
+          "wallTimeMs": 1790534750734,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 490.0,
+          "waypointY": 690.0
+        },
+        {
+          "row": 5487,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 878432,
+          "wallTimeMs": 1790534753795,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 27,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 878560
+        },
+        {
+          "row": 5488,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 878432,
+          "wallTimeMs": 1790534753795,
+          "taskId": 19,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 20,
+      "unitId": 345,
+      "frontierTile": 4387,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5490,
+          "event": "recon_task_created",
+          "gameTimeMs": 878432,
+          "wallTimeMs": 1790534753811,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5495,
+          "event": "recon_deferred",
+          "gameTimeMs": 878432,
+          "wallTimeMs": 1790534753825,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5508,
+          "event": "recon_assigned",
+          "gameTimeMs": 879888,
+          "wallTimeMs": 1790534754183,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5509,
+          "event": "recon_order_queued",
+          "gameTimeMs": 879888,
+          "wallTimeMs": 1790534754183,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 490.0,
+          "waypointY": 810.0
+        },
+        {
+          "row": 5514,
+          "event": "recon_order_observed",
+          "gameTimeMs": 881120,
+          "wallTimeMs": 1790534754493,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5515,
+          "event": "recon_progress",
+          "gameTimeMs": 881120,
+          "wallTimeMs": 1790534754493,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 492.3,
+          "scoutY": 735.179
+        },
+        {
+          "row": 5524,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 882496,
+          "wallTimeMs": 1790534754851,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 75,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 882624
+        },
+        {
+          "row": 5525,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 882496,
+          "wallTimeMs": 1790534754851,
+          "taskId": 20,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 4387,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 21,
+      "unitId": 345,
+      "frontierTile": 1483,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5606,
+          "event": "recon_task_created",
+          "gameTimeMs": 894160,
+          "wallTimeMs": 1790534757898,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5611,
+          "event": "recon_deferred",
+          "gameTimeMs": 894160,
+          "wallTimeMs": 1790534757913,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5618,
+          "event": "recon_assigned",
+          "gameTimeMs": 895504,
+          "wallTimeMs": 1790534758242,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5619,
+          "event": "recon_order_queued",
+          "gameTimeMs": 895504,
+          "wallTimeMs": 1790534758242,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 370.0,
+          "waypointY": 810.0
+        },
+        {
+          "row": 5624,
+          "event": "recon_order_observed",
+          "gameTimeMs": 896768,
+          "wallTimeMs": 1790534758570,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5625,
+          "event": "recon_progress",
+          "gameTimeMs": 896768,
+          "wallTimeMs": 1790534758570,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 440.504,
+          "scoutY": 807.852
+        },
+        {
+          "row": 5638,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 898112,
+          "wallTimeMs": 1790534758912,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 2,
+          "revealedStaleSince": 12,
+          "latestRelevantRevealGameTimeMs": 898208
+        },
+        {
+          "row": 5639,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 898112,
+          "wallTimeMs": 1790534758912,
+          "taskId": 21,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1483,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 22,
+      "unitId": 345,
+      "frontierTile": 1481,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5730,
+          "event": "recon_task_created",
+          "gameTimeMs": 909536,
+          "wallTimeMs": 1790534761909,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5735,
+          "event": "recon_deferred",
+          "gameTimeMs": 909536,
+          "wallTimeMs": 1790534761923,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5742,
+          "event": "recon_assigned",
+          "gameTimeMs": 910880,
+          "wallTimeMs": 1790534762249,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5743,
+          "event": "recon_order_queued",
+          "gameTimeMs": 910880,
+          "wallTimeMs": 1790534762249,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 250.0,
+          "waypointY": 810.0
+        },
+        {
+          "row": 5748,
+          "event": "recon_order_observed",
+          "gameTimeMs": 912224,
+          "wallTimeMs": 1790534762592,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 5749,
+          "event": "recon_progress",
+          "gameTimeMs": 912224,
+          "wallTimeMs": 1790534762592,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 299.954,
+          "scoutY": 809.965
+        },
+        {
+          "row": 5762,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 913488,
+          "wallTimeMs": 1790534762921,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 79,
+          "revealedStaleSince": 16,
+          "latestRelevantRevealGameTimeMs": 913600
+        },
+        {
+          "row": 5763,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 913488,
+          "wallTimeMs": 1790534762921,
+          "taskId": 22,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 1481,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 23,
+      "unitId": 345,
+      "frontierTile": 2359,
+      "frontierMemoryClass": "STALE_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 5848,
+          "event": "recon_task_created",
+          "gameTimeMs": 924880,
+          "wallTimeMs": 1790534765904,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG"
+        },
+        {
+          "row": 5853,
+          "event": "recon_deferred",
+          "gameTimeMs": 924880,
+          "wallTimeMs": 1790534765918,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 5860,
+          "event": "recon_assigned",
+          "gameTimeMs": 926304,
+          "wallTimeMs": 1790534766275,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG"
+        },
+        {
+          "row": 5861,
+          "event": "recon_order_queued",
+          "gameTimeMs": 926304,
+          "wallTimeMs": 1790534766275,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG",
+          "waypointX": 270.0,
+          "waypointY": 810.0
+        },
+        {
+          "row": 6125,
+          "event": "recon_attempt_blocked",
+          "gameTimeMs": 962560,
+          "wallTimeMs": 1790534775695,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG",
+          "reason": "WAYPOINT_REACHED_WITHOUT_LEGAL_CLEARANCE"
+        },
+        {
+          "row": 6126,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 962560,
+          "wallTimeMs": 1790534775695,
+          "taskId": 23,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 2359,
+          "frontierMemoryClass": "STALE_FOG",
+          "reason": "WAYPOINT_REACHED_WITHOUT_LEGAL_CLEARANCE"
+        }
+      ]
+    },
+    {
+      "taskId": 24,
+      "unitId": 345,
+      "frontierTile": 27487,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 6706,
+          "event": "recon_task_created",
+          "gameTimeMs": 1041760,
+          "wallTimeMs": 1790534796344,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 6711,
+          "event": "recon_deferred",
+          "gameTimeMs": 1041760,
+          "wallTimeMs": 1790534796358,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 6718,
+          "event": "recon_assigned",
+          "gameTimeMs": 1043136,
+          "wallTimeMs": 1790534796700,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 6719,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1043136,
+          "wallTimeMs": 1790534796700,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 2950.0,
+          "waypointY": 3030.0
+        },
+        {
+          "row": 6940,
+          "event": "recon_attempt_blocked",
+          "gameTimeMs": 1079488,
+          "wallTimeMs": 1790534806149,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAYPOINT_REACHED_WITHOUT_LEGAL_CLEARANCE"
+        },
+        {
+          "row": 6941,
+          "event": "recon_frontier_blocked",
+          "gameTimeMs": 1079488,
+          "wallTimeMs": 1790534806149,
+          "taskId": 24,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27487,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAYPOINT_REACHED_WITHOUT_LEGAL_CLEARANCE"
+        }
+      ]
+    },
+    {
+      "taskId": 25,
+      "unitId": 345,
+      "frontierTile": 30393,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 6943,
+          "event": "recon_task_created",
+          "gameTimeMs": 1079488,
+          "wallTimeMs": 1790534806166,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 6945,
+          "event": "recon_deferred",
+          "gameTimeMs": 1079488,
+          "wallTimeMs": 1790534806179,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 6952,
+          "event": "recon_assigned",
+          "gameTimeMs": 1080864,
+          "wallTimeMs": 1790534806523,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 6953,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1080864,
+          "wallTimeMs": 1790534806523,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3070.0,
+          "waypointY": 3030.0
+        },
+        {
+          "row": 6958,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1082160,
+          "wallTimeMs": 1790534806849,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 6959,
+          "event": "recon_progress",
+          "gameTimeMs": 1082160,
+          "wallTimeMs": 1790534806849,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 2997.549,
+          "scoutY": 3032.42
+        },
+        {
+          "row": 6965,
+          "event": "recon_waypoint_reached",
+          "gameTimeMs": 1083456,
+          "wallTimeMs": 1790534807179,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3070.0,
+          "waypointY": 3030.0
+        },
+        {
+          "row": 6980,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1085968,
+          "wallTimeMs": 1790534807861,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3190.0,
+          "waypointY": 3030.0
+        },
+        {
+          "row": 6990,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1087408,
+          "wallTimeMs": 1790534808206,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 28,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1087488
+        },
+        {
+          "row": 6991,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1087408,
+          "wallTimeMs": 1790534808206,
+          "taskId": 25,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30393,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 26,
+      "unitId": 345,
+      "frontierTile": 30926,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7030,
+          "event": "recon_task_created",
+          "gameTimeMs": 1095248,
+          "wallTimeMs": 1790534810266,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7032,
+          "event": "recon_deferred",
+          "gameTimeMs": 1095248,
+          "wallTimeMs": 1790534810280,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7040,
+          "event": "recon_assigned",
+          "gameTimeMs": 1096544,
+          "wallTimeMs": 1790534810607,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7041,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1096544,
+          "wallTimeMs": 1790534810608,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3310.0,
+          "waypointY": 3030.0
+        },
+        {
+          "row": 7046,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1097856,
+          "wallTimeMs": 1790534810934,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7047,
+          "event": "recon_progress",
+          "gameTimeMs": 1097856,
+          "wallTimeMs": 1790534810934,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3255.589,
+          "scoutY": 3030.045
+        },
+        {
+          "row": 7055,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1099136,
+          "wallTimeMs": 1790534811261,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 86,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1099232
+        },
+        {
+          "row": 7056,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1099136,
+          "wallTimeMs": 1790534811261,
+          "taskId": 26,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30926,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 27,
+      "unitId": 345,
+      "frontierTile": 29833,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7115,
+          "event": "recon_task_created",
+          "gameTimeMs": 1110768,
+          "wallTimeMs": 1790534814313,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7117,
+          "event": "recon_deferred",
+          "gameTimeMs": 1110768,
+          "wallTimeMs": 1790534814328,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7124,
+          "event": "recon_assigned",
+          "gameTimeMs": 1112144,
+          "wallTimeMs": 1790534814672,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7125,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1112144,
+          "wallTimeMs": 1790534814672,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3310.0,
+          "waypointY": 2910.0
+        },
+        {
+          "row": 7130,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1113440,
+          "wallTimeMs": 1790534814984,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7131,
+          "event": "recon_progress",
+          "gameTimeMs": 1113440,
+          "wallTimeMs": 1790534814984,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3308.153,
+          "scoutY": 2983.634
+        },
+        {
+          "row": 7137,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1114736,
+          "wallTimeMs": 1790534815325,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 37,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1114832
+        },
+        {
+          "row": 7138,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1114736,
+          "wallTimeMs": 1790534815325,
+          "taskId": 27,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 29833,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 28,
+      "unitId": 345,
+      "frontierTile": 30733,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7239,
+          "event": "recon_task_created",
+          "gameTimeMs": 1126816,
+          "wallTimeMs": 1790534818484,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7244,
+          "event": "recon_deferred",
+          "gameTimeMs": 1126816,
+          "wallTimeMs": 1790534818497,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7252,
+          "event": "recon_assigned",
+          "gameTimeMs": 1128144,
+          "wallTimeMs": 1790534818839,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7253,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1128144,
+          "wallTimeMs": 1790534818839,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3410.0,
+          "waypointY": 2910.0
+        },
+        {
+          "row": 7258,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1129424,
+          "wallTimeMs": 1790534819147,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7259,
+          "event": "recon_progress",
+          "gameTimeMs": 1129424,
+          "wallTimeMs": 1790534819147,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3356.221,
+          "scoutY": 2911.938
+        },
+        {
+          "row": 7269,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1130656,
+          "wallTimeMs": 1790534819474,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 28,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1130768
+        },
+        {
+          "row": 7270,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1130656,
+          "wallTimeMs": 1790534819474,
+          "taskId": 28,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30733,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 29,
+      "unitId": 345,
+      "frontierTile": 30732,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7360,
+          "event": "recon_task_created",
+          "gameTimeMs": 1142320,
+          "wallTimeMs": 1790534822530,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7365,
+          "event": "recon_deferred",
+          "gameTimeMs": 1142320,
+          "wallTimeMs": 1790534822543,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7372,
+          "event": "recon_assigned",
+          "gameTimeMs": 1143616,
+          "wallTimeMs": 1790534822857,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7373,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1143616,
+          "wallTimeMs": 1790534822857,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3410.0,
+          "waypointY": 2790.0
+        },
+        {
+          "row": 7378,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1144896,
+          "wallTimeMs": 1790534823186,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7379,
+          "event": "recon_progress",
+          "gameTimeMs": 1144896,
+          "wallTimeMs": 1790534823186,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3408.007,
+          "scoutY": 2860.517
+        },
+        {
+          "row": 7390,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1146256,
+          "wallTimeMs": 1790534823529,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 88,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1146336
+        },
+        {
+          "row": 7391,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1146256,
+          "wallTimeMs": 1790534823529,
+          "taskId": 29,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30732,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 30,
+      "unitId": 345,
+      "frontierTile": 30727,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7483,
+          "event": "recon_task_created",
+          "gameTimeMs": 1157968,
+          "wallTimeMs": 1790534826600,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7488,
+          "event": "recon_deferred",
+          "gameTimeMs": 1157968,
+          "wallTimeMs": 1790534826614,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7496,
+          "event": "recon_assigned",
+          "gameTimeMs": 1159344,
+          "wallTimeMs": 1790534826960,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7497,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1159344,
+          "wallTimeMs": 1790534826960,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3410.0,
+          "waypointY": 2670.0
+        },
+        {
+          "row": 7502,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1160672,
+          "wallTimeMs": 1790534827288,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7503,
+          "event": "recon_progress",
+          "gameTimeMs": 1160672,
+          "wallTimeMs": 1790534827288,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3410.058,
+          "scoutY": 2723.259
+        },
+        {
+          "row": 7517,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1162048,
+          "wallTimeMs": 1790534827645,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 98,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1162144
+        },
+        {
+          "row": 7518,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1162048,
+          "wallTimeMs": 1790534827645,
+          "taskId": 30,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30727,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 31,
+      "unitId": 345,
+      "frontierTile": 30721,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7598,
+          "event": "recon_task_created",
+          "gameTimeMs": 1173744,
+          "wallTimeMs": 1790534830714,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7610,
+          "event": "recon_assigned",
+          "gameTimeMs": 1175040,
+          "wallTimeMs": 1790534831044,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7611,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1175040,
+          "wallTimeMs": 1790534831044,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3410.0,
+          "waypointY": 2550.0
+        },
+        {
+          "row": 7616,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1176304,
+          "wallTimeMs": 1790534831354,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7617,
+          "event": "recon_progress",
+          "gameTimeMs": 1176304,
+          "wallTimeMs": 1790534831354,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3410.041,
+          "scoutY": 2605.77
+        },
+        {
+          "row": 7632,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1177680,
+          "wallTimeMs": 1790534831711,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 98,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1177760
+        },
+        {
+          "row": 7633,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1177680,
+          "wallTimeMs": 1790534831711,
+          "taskId": 31,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30721,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 32,
+      "unitId": 345,
+      "frontierTile": 30715,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7722,
+          "event": "recon_task_created",
+          "gameTimeMs": 1189424,
+          "wallTimeMs": 1790534834794,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7727,
+          "event": "recon_deferred",
+          "gameTimeMs": 1189424,
+          "wallTimeMs": 1790534834809,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7738,
+          "event": "recon_assigned",
+          "gameTimeMs": 1190832,
+          "wallTimeMs": 1790534835152,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7739,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1190832,
+          "wallTimeMs": 1790534835152,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3410.0,
+          "waypointY": 2430.0
+        },
+        {
+          "row": 7744,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1192112,
+          "wallTimeMs": 1790534835479,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7745,
+          "event": "recon_progress",
+          "gameTimeMs": 1192112,
+          "wallTimeMs": 1790534835479,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3410.042,
+          "scoutY": 2483.879
+        },
+        {
+          "row": 7756,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1193456,
+          "wallTimeMs": 1790534835822,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 98,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1193536
+        },
+        {
+          "row": 7757,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1193456,
+          "wallTimeMs": 1790534835822,
+          "taskId": 32,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 30715,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 33,
+      "unitId": 345,
+      "frontierTile": 28381,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7839,
+          "event": "recon_task_created",
+          "gameTimeMs": 1204976,
+          "wallTimeMs": 1790534838843,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7844,
+          "event": "recon_deferred",
+          "gameTimeMs": 1204976,
+          "wallTimeMs": 1790534838856,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7855,
+          "event": "recon_assigned",
+          "gameTimeMs": 1206368,
+          "wallTimeMs": 1790534839202,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7856,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1206368,
+          "wallTimeMs": 1790534839202,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3290.0,
+          "waypointY": 2430.0
+        },
+        {
+          "row": 7866,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1207744,
+          "wallTimeMs": 1790534839546,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7867,
+          "event": "recon_progress",
+          "gameTimeMs": 1207744,
+          "wallTimeMs": 1790534839546,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3354.926,
+          "scoutY": 2431.882
+        },
+        {
+          "row": 7876,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1209040,
+          "wallTimeMs": 1790534839889,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 87,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1209168
+        },
+        {
+          "row": 7877,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1209040,
+          "wallTimeMs": 1790534839889,
+          "taskId": 33,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 28381,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 34,
+      "unitId": 345,
+      "frontierTile": 27661,
+      "frontierMemoryClass": "NEVER_SEEN_EDGE",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 7957,
+          "event": "recon_task_created",
+          "gameTimeMs": 1220656,
+          "wallTimeMs": 1790534842920,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7962,
+          "event": "recon_deferred",
+          "gameTimeMs": 1220656,
+          "wallTimeMs": 1790534842934,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 7970,
+          "event": "recon_assigned",
+          "gameTimeMs": 1221984,
+          "wallTimeMs": 1790534843264,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7971,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1221984,
+          "wallTimeMs": 1790534843264,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "waypointX": 3170.0,
+          "waypointY": 2430.0
+        },
+        {
+          "row": 7976,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1223216,
+          "wallTimeMs": 1790534843575,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE"
+        },
+        {
+          "row": 7977,
+          "event": "recon_progress",
+          "gameTimeMs": 1223216,
+          "wallTimeMs": 1790534843576,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "scoutX": 3227.567,
+          "scoutY": 2429.961
+        },
+        {
+          "row": 7992,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1224688,
+          "wallTimeMs": 1790534843965,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "revealedDeepOrNeverSince": 98,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1224816
+        },
+        {
+          "row": 7993,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1224688,
+          "wallTimeMs": 1790534843965,
+          "taskId": 34,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 27661,
+          "frontierMemoryClass": "NEVER_SEEN_EDGE",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 35,
+      "unitId": 345,
+      "frontierTile": 24609,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": true,
+        "fullTransferThroughRefreshTemporalChain": true,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 8077,
+          "event": "recon_task_created",
+          "gameTimeMs": 1236176,
+          "wallTimeMs": 1790534846971,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 8082,
+          "event": "recon_deferred",
+          "gameTimeMs": 1236176,
+          "wallTimeMs": 1790534846985,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 8094,
+          "event": "recon_assigned",
+          "gameTimeMs": 1237664,
+          "wallTimeMs": 1790534847359,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 8095,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1237664,
+          "wallTimeMs": 1790534847359,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 3070.0,
+          "waypointY": 2430.0
+        },
+        {
+          "row": 8100,
+          "event": "recon_order_observed",
+          "gameTimeMs": 1238992,
+          "wallTimeMs": 1790534847685,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 8101,
+          "event": "recon_progress",
+          "gameTimeMs": 1238992,
+          "wallTimeMs": 1790534847685,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG",
+          "scoutX": 3103.477,
+          "scoutY": 2429.966
+        },
+        {
+          "row": 8110,
+          "event": "recon_frontier_memory_update",
+          "gameTimeMs": 1240240,
+          "wallTimeMs": 1790534848013,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG",
+          "revealedDeepOrNeverSince": 31,
+          "revealedStaleSince": 0,
+          "latestRelevantRevealGameTimeMs": 1240352
+        },
+        {
+          "row": 8111,
+          "event": "recon_frontier_refreshed",
+          "gameTimeMs": 1240240,
+          "wallTimeMs": 1790534848013,
+          "taskId": 35,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 24609,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "TARGET_REGION_LEGALLY_REVEALED"
+        }
+      ]
+    },
+    {
+      "taskId": 36,
+      "unitId": 345,
+      "frontierTile": 23356,
+      "frontierMemoryClass": "DEEP_FOG",
+      "orderedChain": {
+        "transferBeforeAssignment": true,
+        "assignedQueuedObservedProgressedTeamRevealedRefreshed": false,
+        "fullTransferThroughRefreshTemporalChain": false,
+        "meaning": "Order and own movement precede team legal vision; this is temporal association only."
+      },
+      "events": [
+        {
+          "row": 8198,
+          "event": "recon_task_created",
+          "gameTimeMs": 1251632,
+          "wallTimeMs": 1790534850987,
+          "taskId": 36,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 23356,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 8203,
+          "event": "recon_deferred",
+          "gameTimeMs": 1251632,
+          "wallTimeMs": 1790534851002,
+          "taskId": 36,
+          "kind": "FRONTIER_SWEEP",
+          "frontierTile": 23356,
+          "frontierMemoryClass": "DEEP_FOG",
+          "reason": "WAITING_FOR_FRESH_ROUTE_ANCHOR"
+        },
+        {
+          "row": 8211,
+          "event": "recon_assigned",
+          "gameTimeMs": 1252944,
+          "wallTimeMs": 1790534851329,
+          "taskId": 36,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 23356,
+          "frontierMemoryClass": "DEEP_FOG"
+        },
+        {
+          "row": 8212,
+          "event": "recon_order_queued",
+          "gameTimeMs": 1252944,
+          "wallTimeMs": 1790534851329,
+          "taskId": 36,
+          "kind": "FRONTIER_SWEEP",
+          "unitId": 345,
+          "frontierTile": 23356,
+          "frontierMemoryClass": "DEEP_FOG",
+          "waypointX": 3070.0,
+          "waypointY": 2470.0
+        }
+      ]
+    }
+  ],
+  "fullTransferThroughRefreshTemporalChains": 23,
+  "mainForceAttackMoveAudit": {
+    "attackMoveActionsChecked": 193,
+    "transferredScoutExclusionsChecked": 75,
+    "evidenceStatus": "OBSERVED_EXCLUSION",
+    "noStillTransferredScoutInAttackMove": true,
+    "violations": [],
+    "releaseForDefenseIsOnlyAControlDecision": true
+  },
+  "ownAndVisionCrossChecks": {
+    "ownMoveOrdersMatched": 24,
+    "ownPositionProgressMatched": 24,
+    "strictlyLaterTeamLegalVisionSamplesMatched": 23,
+    "summaryEventCountsConsistent": {
+      "frontierTasksRefreshed": true,
+      "frontierTasksAdvanced": true,
+      "frontierTasksPreempted": true,
+      "frontierTasksBlocked": true,
+      "expendableTransfers": true,
+      "reconOrdersQueued": true,
+      "reconOrdersObserved": true,
+      "frontierTasksCreated": true
+    }
+  },
+  "auditStatus": "PASS",
+  "issues": [],
+  "interpretationLimit": "A target region refreshed in team legal vision strictly after an observed own move and own-position progress. This is temporal association only; it does not prove that the scout alone revealed the area, that a queued recall completed, or that native movement exactly followed the planned route."
+}

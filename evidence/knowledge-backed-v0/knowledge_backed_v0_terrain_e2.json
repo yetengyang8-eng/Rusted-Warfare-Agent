@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "evidenceLevel": "E2",
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "agentJarSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+  "terrainPacketSha256": "ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9",
+  "fixtureSha256": "969ae2f81b68b1583a55247ef64288357dc3d40a0c78c119f6c7f0aab886b1e9",
+  "fixtureSourceMap": "[p2]Small_Island (2p).tmx",
+  "fixtureCells": [
+    {
+      "x": 10,
+      "y": 10,
+      "baselineLand": -1,
+      "overrideLand": 0
+    },
+    {
+      "x": 55,
+      "y": 55,
+      "baselineLand": 0,
+      "overrideLand": -1
+    }
+  ],
+  "cases": [
+    {
+      "id": "beach_landing",
+      "mode": "baseline",
+      "map": "maps/skirmish/[p2]Beach landing (2p) [by hxyy].tmx",
+      "grid": "beach_landing.json",
+      "exitCode": 0,
+      "pass": true,
+      "gridChecks": 6,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-27\\g-deepseek\\terrain-e2-final-20260929\\evidence\\beach_landing.log"
+    },
+    {
+      "id": "two_cold_sides",
+      "mode": "baseline",
+      "map": "maps/skirmish/[p2]Two_cold_sides (2p).tmx",
+      "grid": "two_cold_sides.json",
+      "exitCode": 0,
+      "pass": true,
+      "gridChecks": 6,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-27\\g-deepseek\\terrain-e2-final-20260929\\evidence\\two_cold_sides.log"
+    },
+    {
+      "id": "small_island",
+      "mode": "baseline",
+      "map": "maps/skirmish/[p2]Small_Island (2p).tmx",
+      "grid": "small_island.json",
+      "exitCode": 0,
+      "pass": true,
+      "gridChecks": 6,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-27\\g-deepseek\\terrain-e2-final-20260929\\evidence\\small_island.log"
+    },
+    {
+      "id": "override_two_cells",
+      "mode": "override",
+      "map": "maps/skirmish/E2_PathingOverride_two_cells.tmx",
+      "grid": "small_island.json",
+      "exitCode": 0,
+      "pass": true,
+      "gridChecks": 6,
+      "log": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-27\\g-deepseek\\terrain-e2-final-20260929\\evidence\\override_two_cells.log"
+    }
+  ]
+}
