@@ -1,0 +1,137 @@
+﻿{
+    "generatedUtc":  "2026-09-29T11:25:55.4368106Z",
+    "purpose":  "Remote Astra relay for project-owned runtime overlay",
+    "baseGame":  "Rusted Warfare 1.15 PC Build #28 / Game Code 176",
+    "gameLibSha256":  "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "agentJarSha256":  "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
+    "included":  [
+                     {
+                         "name":  "RW-Agent-Analyze.bat",
+                         "size":  315,
+                         "sha256":  "a6346fbb0d269b89d425cc79c6db69307290261450fa879a610d47f6a71ab39f"
+                     },
+                     {
+                         "name":  "RW-Agent-Autopilot.bat",
+                         "size":  576,
+                         "sha256":  "5c3974deeaee772a1999fac95f38b7af68e8c6f2ffc26cd37774df7b3ca704ae"
+                     },
+                     {
+                         "name":  "RW-Agent-Battle.bat",
+                         "size":  567,
+                         "sha256":  "06d560be425d7d287569dec4a874ad25cf12a2b7c9600c94b4a15063c7787f14"
+                     },
+                     {
+                         "name":  "rw-agent-bootstrap.jar",
+                         "size":  211712,
+                         "sha256":  "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54"
+                     },
+                     {
+                         "name":  "RW-Agent-Collect-Reports.bat",
+                         "size":  233,
+                         "sha256":  "46a610ad07960ff74a5cc0ffefd76acd2b59947cc1b220d3547f1144bc7a8f81"
+                     },
+                     {
+                         "name":  "RW-Agent-Develop.bat",
+                         "size":  410,
+                         "sha256":  "cd228e2525077067160e73e0b8cb3a763e3e8aa646fac248b6c7f257a2342f7d"
+                     },
+                     {
+                         "name":  "RW-Agent-Economy.bat",
+                         "size":  406,
+                         "sha256":  "3cc30b4c6c9cb19370614bd700febf5c9bfb3954dce2e0d4f5c0c3e4358f5c30"
+                     },
+                     {
+                         "name":  "RW-Agent-Explore.bat",
+                         "size":  574,
+                         "sha256":  "c25c731e8e5a6a87ceb6dc20aa96fffefaf61928967e8b6b5243ebf337297442"
+                     },
+                     {
+                         "name":  "RW-Agent-Headless.bat",
+                         "size":  253,
+                         "sha256":  "70f039fa8ec5bec66578dae0cd33ab7b63808e459f068835b472d84fd137b9ec"
+                     },
+                     {
+                         "name":  "RW-Agent-Health.bat",
+                         "size":  174,
+                         "sha256":  "d607f31712273064223dce6c9ecf1432ac79493de1ecf0968a9787fc42ee307e"
+                     },
+                     {
+                         "name":  "RW-Agent-Match.bat",
+                         "size":  565,
+                         "sha256":  "64f2a8b8c1e6258753a489e131b596d7f885e2a93e591b35634cd6cd3b034dd3"
+                     },
+                     {
+                         "name":  "RW-Agent-Match-Cap32.bat",
+                         "size":  1137,
+                         "sha256":  "7c416b707758e412e889346afb68cd982900735aa543378d4cdd1a467f3a9806"
+                     },
+                     {
+                         "name":  "RW-Agent-Match-NoSample.bat",
+                         "size":  1067,
+                         "sha256":  "7b0c498b03a8db53f8d53ad431e718243424dc0c1c54e00d6e5f908df3342a91"
+                     },
+                     {
+                         "name":  "RW-Agent-Move.bat",
+                         "size":  409,
+                         "sha256":  "2896f82bed28b90569cd53823ce0ca33df48510e5267d8c5bf94e6f31c1733f5"
+                     },
+                     {
+                         "name":  "RW-Agent-Opening.bat",
+                         "size":  406,
+                         "sha256":  "5dd62044c0792c87d8f08d64901e29a67ac096c396a5cb8a631c5fd33de936da"
+                     },
+                     {
+                         "name":  "RW-Agent-Preflight.bat",
+                         "size":  210,
+                         "sha256":  "39baa9e594800d4aae84e1a6d59f10fc7ef42000a0b2dc52453109a9957e6f84"
+                     },
+                     {
+                         "name":  "RW-Agent-Record.bat",
+                         "size":  411,
+                         "sha256":  "030fea7049285385aa3b83dbc58338bfc02a8de22adbf4a695015ee722b43c71"
+                     },
+                     {
+                         "name":  "RW-Agent-RoundTrip.bat",
+                         "size":  414,
+                         "sha256":  "26aa43ec3f8207cb3bd5130f438a45f18734dd9962de0c92c0f4a6bf9d0f8c93"
+                     },
+                     {
+                         "name":  "RW-Agent-Start.bat",
+                         "size":  563,
+                         "sha256":  "58baa63064edbfd72dd529bf2d6620c8bc32901819d76a09c332a2ff33b49aeb"
+                     },
+                     {
+                         "name":  "RW-Agent-State.bat",
+                         "size":  173,
+                         "sha256":  "14cd59023ff61832d80051e4d0071fb9f8bab1178d990197a016dbf5aa0b35df"
+                     },
+                     {
+                         "name":  "RW-Agent-Test-Move.bat",
+                         "size":  244,
+                         "sha256":  "c4b3d550da34937f5798b3030a3cffedadf3642c02f9163750c9a138a831ac8c"
+                     },
+                     {
+                         "name":  "START_HERE_CN.md",
+                         "size":  3249,
+                         "sha256":  "3fc1795a4d896c597d9d32f463e2e4c6106ffeed9f26ac66d201e066f0760c4b"
+                     },
+                     {
+                         "name":  "VERSION",
+                         "size":  12,
+                         "sha256":  "d978cead1093134d31f87f89b5949f03ea8c3ad634cfe42df41ae202d8ca18f9"
+                     }
+                 ],
+    "omittedProprietary":  [
+                               "game-lib.jar",
+                               "Rusted Warfare.exe",
+                               "Rusted Warfare - 64.exe",
+                               "assets/",
+                               "libs/",
+                               "jvm/",
+                               "jvm64/",
+                               "native DLLs",
+                               "replays/",
+                               "saves/"
+                           ],
+    "note":  "This public relay does not redistribute the vanilla game. Extract runtime-overlay onto a legally owned compatible 1.15 installation."
+}
