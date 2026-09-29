@@ -1,0 +1,2024 @@
+From ccf90cea8489c1fc375f82634ee4042ea511f2ae Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Tue, 29 Sep 2026 19:41:33 +0800
+Subject: [PATCH] Fix public relay build coverage and fail closed for
+ unsupported reaping
+
+---
+ ASTRA_START_HERE.md                           |   3 +-
+ agent/README_CN.md                            |  29 +-
+ agent/build.bat                               |   2 +-
+ agent/test-win.ps1                            |   2 +-
+ agent/test.sh                                 |   8 +-
+ agent/tests/test_headless_parallel.py         |  64 +++-
+ docs/PUBLIC_RELAY_CN.md                       |  72 +++++
+ .../public-relay-2026-09-29/SHA256SUMS.txt    |  36 +++
+ .../public-relay-2026-09-29/catalog-after.log |   1 +
+ .../catalog-before.log                        |   2 +
+ .../compile-catalog-source.log                |   0
+ .../compile-independent-harnesses.log         |   0
+ .../current-report-harness.log                |   1 +
+ .../current-target-harness.log                |   1 +
+ .../public-relay-2026-09-29/environment.json  |  12 +
+ .../identity-negative.json                    |   8 +
+ .../public-relay-2026-09-29/identity.json     |  39 +++
+ .../public-relay-2026-09-29/java-results.json |  41 +++
+ .../public-relay-2026-09-29/package-after.log |   0
+ .../package-before.log                        |   0
+ .../packaging-results.json                    |  78 +++++
+ .../py_test_ab_aggregate.log                  |   6 +
+ .../py_test_ab_aggregate_after.log            |   6 +
+ .../py_test_ab_campaign.log                   |  20 ++
+ .../py_test_ab_campaign_after.log             |  20 ++
+ .../py_test_battle_client.log                 |   5 +
+ .../py_test_battle_reports.log                |   5 +
+ .../py_test_client.log                        |  16 +
+ .../py_test_development.log                   |  18 ++
+ .../py_test_economy.log                       |  17 +
+ .../py_test_frontier.log                      |  13 +
+ .../py_test_frontier_reports.log              |  15 +
+ .../py_test_headless_parallel.log             |  40 +++
+ .../py_test_headless_parallel_after.log       |  23 ++
+ .../py_test_opening.log                       |  13 +
+ .../py_test_recon_client.log                  |   5 +
+ .../py_test_recon_frontier_client.log         |   5 +
+ .../py_test_reports.log                       |  55 ++++
+ .../py_test_target_compatibility.log          |  11 +
+ .../python-rechecks.json                      |  36 +++
+ .../python-results.json                       | 194 ++++++++++++
+ .../runner-parity.json                        |   6 +
+ .../source-review.json                        |  25 ++
+ evidence/public-relay-2026-09-29/summary.json | 291 ++++++++++++++++++
+ .../HANDOFF_Astra_PublicRelay_2026-09-29.md   | 103 +++++++
+ project-state/CURRENT_STATE.md                |  13 +
+ project-state/HANDOFF_FOR_CODEX.md            |   2 +
+ tools/run_headless.py                         |  10 +-
+ tools/verify_public_relay.py                  | 158 ++++++++++
+ 49 files changed, 1516 insertions(+), 14 deletions(-)
+ create mode 100644 docs/PUBLIC_RELAY_CN.md
+ create mode 100644 evidence/public-relay-2026-09-29/SHA256SUMS.txt
+ create mode 100644 evidence/public-relay-2026-09-29/catalog-after.log
+ create mode 100644 evidence/public-relay-2026-09-29/catalog-before.log
+ create mode 100644 evidence/public-relay-2026-09-29/compile-catalog-source.log
+ create mode 100644 evidence/public-relay-2026-09-29/compile-independent-harnesses.log
+ create mode 100644 evidence/public-relay-2026-09-29/current-report-harness.log
+ create mode 100644 evidence/public-relay-2026-09-29/current-target-harness.log
+ create mode 100644 evidence/public-relay-2026-09-29/environment.json
+ create mode 100644 evidence/public-relay-2026-09-29/identity-negative.json
+ create mode 100644 evidence/public-relay-2026-09-29/identity.json
+ create mode 100644 evidence/public-relay-2026-09-29/java-results.json
+ create mode 100644 evidence/public-relay-2026-09-29/package-after.log
+ create mode 100644 evidence/public-relay-2026-09-29/package-before.log
+ create mode 100644 evidence/public-relay-2026-09-29/packaging-results.json
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_ab_aggregate.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_ab_aggregate_after.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_ab_campaign.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_ab_campaign_after.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_battle_client.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_battle_reports.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_client.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_development.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_economy.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_frontier.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_frontier_reports.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_headless_parallel.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_headless_parallel_after.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_opening.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_recon_client.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_recon_frontier_client.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_reports.log
+ create mode 100644 evidence/public-relay-2026-09-29/py_test_target_compatibility.log
+ create mode 100644 evidence/public-relay-2026-09-29/python-rechecks.json
+ create mode 100644 evidence/public-relay-2026-09-29/python-results.json
+ create mode 100644 evidence/public-relay-2026-09-29/runner-parity.json
+ create mode 100644 evidence/public-relay-2026-09-29/source-review.json
+ create mode 100644 evidence/public-relay-2026-09-29/summary.json
+ create mode 100644 handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md
+ create mode 100644 tools/verify_public_relay.py
+
+diff --git a/ASTRA_START_HERE.md b/ASTRA_START_HERE.md
+index f79c25a..242f188 100644
+--- a/ASTRA_START_HERE.md
++++ b/ASTRA_START_HERE.md
+@@ -8,6 +8,7 @@
+ 3. `handoff/HANDOFF_Codex_KnowledgeBacked_v0_2026-09-29.md` — 最新 KnowledgeBacked 交付。
+ 4. `knowledge/README.md` 与 `knowledge/VALIDATION.md` — 当前知识包与证据口径。
+ 5. `agent/README_CN.md` — 构建和完整回归方法。
++6. `handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md` — GitHub 公开镜像复核、构建/回收修复及未公开证据边界（不替代上方候选身份）。
+ 
+ ## 当前运行候选
+ - Agent JAR SHA-256: `5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54`
+@@ -20,4 +21,4 @@
+ 
+ 不要把静态 TMX/单位知识直接当作实时合法视野；当前项目要求未探索动态信息保持 UNKNOWN。不要重新启用已隔离的危险反射探针。
+ 
+-如果任务只是审计、设计、改 Agent 源码、写测试或分析既有证据，本仓库已经提供主要工程上下文，不需要本地 G 盘。
+\ No newline at end of file
++如果任务只是审计、设计、改 Agent 源码、写测试或分析既有证据，本仓库已经提供主要工程上下文，不需要本地 G 盘。
+diff --git a/agent/README_CN.md b/agent/README_CN.md
+index 6a44be7..e917ab9 100644
+--- a/agent/README_CN.md
++++ b/agent/README_CN.md
+@@ -1,5 +1,33 @@
+ # 构建与验证
+ 
++## 公开 GitHub 镜像入口（2026-09-29）
++
++本仓库将原工作区的 `developer/` 映射为 `agent/`。下方历史说明中的
++`developer/...` 在本仓库使用 `agent/...`；不需要访问本机 G 盘。
++当前候选及证据边界以根目录 `ASTRA_START_HERE.md` 与最新交接为准。
++
++```bash
++# 只读校验公开 ZIP、候选身份、目录资源与地形 RLE；不需要游戏安装
++python tools/verify_public_relay.py
++
++# 完整构建/回归：需要自行提供兼容原版依赖及历史报告夹具
++bash agent/build.sh /absolute/path/to/game-lib.jar
++bash agent/test.sh /absolute/path/to/game-lib.jar /absolute/path/to/libs
++```
++
++Windows 使用 `agent/build.bat` 或 `agent/test-win.ps1`。所有构建入口都必须
++将 `agent/resources/` 打入 JAR，否则 `TargetCatalog` 会因资源缺失返回 `UNKNOWN`。
++Linux 与 Windows 回归入口均登记 19 次 Java harness 和 15 套 Python 测试。
++
++公开镜像不含原版游戏，也不含完整回归所需的历史报告夹具
++`docs/acceptance-0.02-alpha2.jsonl`、`docs/acceptance-0.03-alpha2.jsonl`
++及 `docs/acceptance-0.04/*.jsonl`。缺这些文件时，`test_reports.py` 的历史样本用例
++会失败；不能把公开制品校验或客户端子集通过写成完整回归通过。
++`knowledge/tools/verify_packet.py` 依赖未公开的原始证据快照，不能用公开子集重新生成
++它的历史验收结论。详见 `docs/PUBLIC_RELAY_CN.md`。
++
++## 原工作区构建说明（历史路径）
++
+ 固定依赖：原版 PC 1.15 Build #28 / Game Code 176。
+ `game-lib.jar` SHA-256 必须为 `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`。
+ 原版游戏依赖不随本包分发。
+@@ -251,4 +279,3 @@ OR 客户端记录过 completed 的事件（extractor/factory/tank_completed）
+ ```
+ 
+ 三项证据要求保持不变：确实曾出现、后续 observation 中确实消失、`own_loss` 的 unitId 与已知单位一致。这是校验语义修正，不是削弱证据要求；只改分析工具，客户端与交付 JAR 行为未变。回归用例见 `tests/test_battle_reports.py`（15 项，新增 4 项：建筑损失被接受、从未出现过的单位仍拒绝、仍存活时仍拒绝、仅凭 completed 记录即可接受）。
+-
+diff --git a/agent/build.bat b/agent/build.bat
+index 243b7fd..b75393f 100644
+--- a/agent/build.bat
++++ b/agent/build.bat
+@@ -14,6 +14,6 @@ if not exist "%build_root%dist" mkdir "%build_root%dist"
+ (for /r "%build_root%src" %%F in (*.java) do echo "%%F") > "%build_root%build\sources.txt"
+ "%compiler_java%" -m jdk.compiler/com.sun.tools.javac.Main --release 8 -encoding UTF-8 -cp "%game_jar%" -d "%build_root%build\classes" "@%build_root%build\sources.txt"
+ if errorlevel 1 exit /b 1
+-"%compiler_java%" -m jdk.jartool/sun.tools.jar.Main --create --file "%build_root%dist\rw-agent-bootstrap.jar" --manifest "%build_root%MANIFEST.MF" -C "%build_root%build\classes" .
++"%compiler_java%" -m jdk.jartool/sun.tools.jar.Main --create --file "%build_root%dist\rw-agent-bootstrap.jar" --manifest "%build_root%MANIFEST.MF" -C "%build_root%build\classes" . -C "%build_root%resources" .
+ if errorlevel 1 exit /b 1
+ echo Built: %build_root%dist\rw-agent-bootstrap.jar
+diff --git a/agent/test-win.ps1 b/agent/test-win.ps1
+index 387b813..71c8615 100644
+--- a/agent/test-win.ps1
++++ b/agent/test-win.ps1
+@@ -1,5 +1,5 @@
+ # rw-agent Windows regression runner.
+-# Mirrors developer/test.sh; Windows also runs two Reachability harness variants.
++# Mirrors test.sh, including both isolated Reachability harness variants.
+ # Differences from test.sh, both forced by this environment and documented in the handoff notes:
+ #   1. The build passes source files directly to javac instead of writing an @argfile, because
+ #      cmd.exe writes the argfile in the OEM code page while javac reads it in another, which
+diff --git a/agent/test.sh b/agent/test.sh
+index db1aed8..1877ac6 100644
+--- a/agent/test.sh
++++ b/agent/test.sh
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env bash
+-# Regression: Java harnesses and Python policy suites on this shell path.
++# Regression: the same 19 Java runs and 15 Python suites as test-win.ps1.
+ set -euo pipefail
+ root="$(cd "$(dirname "$0")" && pwd)"
+ game_jar="${1:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
+@@ -7,7 +7,7 @@ libs_dir="${2:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
+ bash "$root/build.sh" "$game_jar"
+ classpath="$game_jar:$libs_dir/*:$root/dist/rw-agent-bootstrap.jar"
+ mkdir -p "$root/build/tests"
+-java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/SmokeHarness.java" "$root/tests/BridgeHarness.java" "$root/tests/EconomyHarness.java" "$root/tests/OpeningHarness.java" "$root/tests/ProductionPlanHarness.java" "$root/tests/DiagnosticsHarness.java" "$root/tests/PreflightHarness.java" "$root/tests/ScoutHarness.java" "$root/tests/TerrainMemoryHarness.java" "$root/tests/GuardHarness.java" "$root/tests/CapabilityHarness.java" "$root/tests/TargetCompatibilityHarness.java" "$root/tests/BuilderHarness.java" "$root/tests/CombatHarness.java" "$root/tests/ReportCommitHarness.java"
++java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/SmokeHarness.java" "$root/tests/BridgeHarness.java" "$root/tests/EconomyHarness.java" "$root/tests/OpeningHarness.java" "$root/tests/ProductionPlanHarness.java" "$root/tests/DiagnosticsHarness.java" "$root/tests/PreflightHarness.java" "$root/tests/ScoutHarness.java" "$root/tests/TerrainMemoryHarness.java" "$root/tests/GuardHarness.java" "$root/tests/CapabilityHarness.java" "$root/tests/TargetCompatibilityHarness.java" "$root/tests/BuilderHarness.java" "$root/tests/ReachabilityHarness.java" "$root/tests/CombatHarness.java" "$root/tests/ReportCommitHarness.java"
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" SmokeHarness
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness disabled
+@@ -30,6 +30,9 @@ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" GuardHarnes
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" CapabilityHarness
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" TargetCompatibilityHarness
+ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BuilderHarness
++java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" ReachabilityHarness
++# Isolated harness only; do not enable diagnostics on the user's live game.
++java --add-modules jdk.httpserver -Drwagent.reachabilityDiagnostics=true -cp "$classpath:$root/build/tests" ReachabilityHarness
+ python3 "$root/tests/test_frontier.py" "$root/dist/rw-agent-bootstrap.jar"
+ 
+ python3 "$root/tests/test_frontier_reports.py"
+@@ -40,6 +43,7 @@ python3 "$root/tests/test_battle_reports.py"
+ python3 "$root/tests/test_battle_client.py" "$root/dist/rw-agent-bootstrap.jar"
+ python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstrap.jar"
+ python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
++python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"
+ python3 "$root/tests/test_headless_parallel.py"
+ python3 "$root/tests/test_ab_aggregate.py"
+ python3 "$root/tests/test_ab_campaign.py"
+diff --git a/agent/tests/test_headless_parallel.py b/agent/tests/test_headless_parallel.py
+index dbc8050..b781c03 100644
+--- a/agent/tests/test_headless_parallel.py
++++ b/agent/tests/test_headless_parallel.py
+@@ -683,6 +683,7 @@ class AtomicStateWriteTests(unittest.TestCase):
+     `[WinError 5] 拒绝访问: campaign.json.tmp -> campaign.json` while a concurrent reader held the state
+     file. The write now retries a transient denial, and must still fail loudly if the reader never leaves.
+     """
++    @unittest.skipUnless(os.name == 'nt', 'requires Windows FILE_SHARE_DELETE semantics')
+     def test_a_transient_reader_is_retried_until_it_releases(self):
+         with tempfile.TemporaryDirectory() as temporary:
+             target = Path(temporary) / 'campaign.json'
+@@ -706,6 +707,7 @@ class AtomicStateWriteTests(unittest.TestCase):
+             self.assertEqual(json.loads(target.read_text(encoding='utf-8'))['state'], 'new')
+             self.assertFalse((Path(temporary) / 'campaign.json.tmp').exists(), 'no temp file is left behind')
+ 
++    @unittest.skipUnless(os.name == 'nt', 'requires Windows FILE_SHARE_DELETE semantics')
+     def test_a_permanent_reader_still_fails_loudly(self):
+         with tempfile.TemporaryDirectory() as temporary:
+             target = Path(temporary) / 'campaign.json'
+@@ -720,6 +722,42 @@ class AtomicStateWriteTests(unittest.TestCase):
+             self.assertTrue((Path(temporary) / 'campaign.json.tmp').exists(),
+                             'the pending bytes stay on disk for forensic recovery')
+ 
++    def test_injected_transient_denial_retries_and_commits(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            target = Path(temporary) / 'campaign.json'
++            target.write_bytes(b'old')
++            native_replace = Path.replace
++            calls = []
++
++            def replace(source, destination):
++                calls.append((source, destination))
++                if len(calls) < 3:
++                    raise PermissionError('injected reader lock')
++                return native_replace(source, destination)
++
++            with mock.patch.dict(os.environ, {'RW_WRITE_REPLACE_ATTEMPTS': '3'}), \
++                 mock.patch.object(Path, 'replace', replace), \
++                 mock.patch.object(runner.time, 'sleep') as delay:
++                runner.write_bytes(target, b'new')
++            self.assertEqual(len(calls), 3)
++            self.assertEqual(delay.call_args_list, [mock.call(0.25), mock.call(0.5)])
++            self.assertEqual(target.read_bytes(), b'new')
++            self.assertFalse(target.with_suffix('.json.tmp').exists())
++
++    def test_injected_permanent_denial_preserves_old_and_pending_bytes(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            target = Path(temporary) / 'campaign.json'
++            target.write_bytes(b'old')
++            with mock.patch.dict(os.environ, {'RW_WRITE_REPLACE_ATTEMPTS': '2'}), \
++                 mock.patch.object(Path, 'replace', side_effect=PermissionError('injected reader lock')) as replace, \
++                 mock.patch.object(runner.time, 'sleep') as delay:
++                with self.assertRaises(PermissionError):
++                    runner.write_bytes(target, b'new')
++            self.assertEqual(replace.call_count, 2)
++            delay.assert_called_once_with(0.25)
++            self.assertEqual(target.read_bytes(), b'old')
++            self.assertEqual(target.with_suffix('.json.tmp').read_bytes(), b'new')
++
+ 
+ class LiveClaimsAndReapTests(unittest.TestCase):
+     """Orchestrator crash recovery v0: a claims file plus a reaper that never guesses.
+@@ -748,10 +786,12 @@ class LiveClaimsAndReapTests(unittest.TestCase):
+             self.assertEqual(saved['status'], 'PASS')
+             self.assertEqual(saved['killed'], [])
+ 
+-    def test_reap_is_idempotent_and_reports_released_resources(self):
++    @mock.patch.object(runner, 'process_info', return_value={})
++    @mock.patch.object(runner, 'port_owners', return_value={})
++    def test_reap_is_idempotent_and_reports_released_resources(self, _owners, _info):
+         with tempfile.TemporaryDirectory() as temporary:
+             root = Path(temporary)
+-            # Pids that cannot be running: the reaper must end PASS without killing anything.
++            # Successful empty identity lookups prove absence independently of the host OS.
+             absent = 999000001
+             self.claims_file(root, [{'role': 'engine', 'pid': absent, 'port': 51001, 'state': 'RUNNING',
+                                      'episode': 1, 'workDirectory': str(root / 'episode-001')}])
+@@ -776,11 +816,27 @@ class LiveClaimsAndReapTests(unittest.TestCase):
+             self.claims_file(root, [{'role': 'engine', 'pid': bystander.pid, 'port': 51002,
+                                      'state': 'RUNNING', 'episode': 1,
+                                      'workDirectory': str(root / 'episode-001')}])
+-            self.assertEqual(runner.reap_run(root), 0)
++            claims_before = (root / 'live-claims.json').read_bytes()
++            self.assertEqual(runner.reap_run(root), 0 if os.name == 'nt' else 1)
+             self.assertIsNone(bystander.poll(), 'an unrelated process must survive the reaper')
+             report = json.loads((root / 'reap-report.json').read_text(encoding='utf-8'))
+             self.assertEqual(report['killed'], [])
+-            self.assertIn('not a headless engine', report['skipped'][0]['reason'])
++            if os.name == 'nt':
++                self.assertIn('not a headless engine', report['skipped'][0]['reason'])
++            else:
++                self.assertEqual(report['status'], 'FAIL')
++                self.assertIn('lookup unavailable', ' '.join(report['verified']))
++                self.assertEqual((root / 'live-claims.json').read_bytes(), claims_before,
++                                 'unavailable identity must never mark a live process GONE')
++
++    def test_unsupported_identity_lookup_is_unknown_not_empty(self):
++        with mock.patch.object(runner.os, 'name', 'posix'), \
++             mock.patch.object(runner.subprocess, 'run') as query:
++            self.assertIsNone(runner.process_info([12345]))
++            self.assertIsNone(runner.port_owners([51002]))
++            self.assertEqual(runner.process_info([]), {})
++            self.assertEqual(runner.port_owners([]), {})
++        query.assert_not_called()
+ 
+     def test_a_pid_reused_by_another_process_is_refused_by_port_ownership(self):
+         # Same command line, but the claimed port is owned by a different pid: still refuse.
+diff --git a/docs/PUBLIC_RELAY_CN.md b/docs/PUBLIC_RELAY_CN.md
+new file mode 100644
+index 0000000..8cd8506
+--- /dev/null
++++ b/docs/PUBLIC_RELAY_CN.md
+@@ -0,0 +1,72 @@
++# 公开工程中转站的验证边界
++
++本轮入口为 GitHub 仓库根目录 `ASTRA_START_HERE.md`。原 Windows 工作区的路径
++只用于解释历史来源；公开仓库中的 `agent/`、`project-state/`、`handoff/`、
++`knowledge/` 和 `astra-relay/` 是本轮可实际读取的工程内容。
++
++## 可以立即复核的内容
++
++在仓库根目录运行：
++
++```bash
++python tools/verify_public_relay.py
++# 可选：将同一结果保存为 JSON
++python tools/verify_public_relay.py --output agent/build/public-relay-identity.json
++```
++
++脚本只读输入，不运行游戏、不重建知识包、不改写 overlay。成功状态为
++`PASS_PUBLIC_ARTIFACT_CHECKS`，并保留下面的限制：
++
++- ZIP 中 23 个文件按 `P1F_ENVIRONMENT_MANIFEST.json` 核对大小和 SHA。
++- 候选 JAR 的 whole-file SHA 与 contentDigest 均核对最新交接；JAR 中能力 JSON
++  与 `agent/resources/`、`knowledge/` 的原字节一致。
++- `PACKET_MANIFEST.json` 的 559 项中，公开存在的 23 项核对原始大小与 SHA；
++  未公开的 536 项为证据文件，其中 534 项位于 `evidence/sources/`。
++  不因文件缺席重新声称其源证据已验证。
++- 九图 72 份移动域 RLE 的长度、直方图、地图身份和坐标约定可独立核对。
++  这是派生文件的一致性检查，不能代替原生 `d[]` 对照。
++
++当前 checkout 的 17 个 BAT 与 ZIP 只有 LF/CRLF 差异。manifest 描述的是 ZIP 中
++保留的原始字节，ZIP 的 23 项全部应精确匹配；脚本将 checkout 的换行差异单独列出。
++部署或进行逐字节交付核对时使用原 ZIP，不用 Git 文本换行转换后的 SHA 替代它。
++
++## 不需要原版引擎的客户端检查
++
++有 Java 8 兼容运行环境和 Python 3 时，可直接使用公开候选 JAR，例如：
++
++```bash
++python agent/tests/test_target_compatibility.py astra-relay/runtime-overlay/rw-agent-bootstrap.jar
++python agent/tests/test_recon_client.py astra-relay/runtime-overlay/rw-agent-bootstrap.jar
++python agent/tests/test_recon_frontier_client.py astra-relay/runtime-overlay/rw-agent-bootstrap.jar
++```
++
++这些测试用本地 HTTP 夹具驱动真实客户端 JVM，不启动游戏、不向用户桌面进程发命令。
++`TargetCompatibilityHarness` 和 `ReportCommitHarness` 也只依赖 Agent JAR，
++可以独立编译运行。其余引擎 harness 仍需兼容的原版依赖。
++
++## 进程回收与旧 campaign
++
++`tools/run_headless.py --reap` 的进程身份/端口归属查询目前仅支持 Windows。
++非 Windows 且登记簿有待查询对象时，查询返回未知，回收明确 `FAIL`，保留原登记并且
++不杀进程。不能把“不支持查询”写成“进程不在运行”。无登记或空查询仍可正常返回。
++本轮没有实现 Linux 原生回收能力。
++
++`test_headless_parallel.py` 保留两个 Windows 原生文件句柄用例，在其他系统显式
++SKIP；另用跨平台注入 `PermissionError` 验证有限重试、成功提交、旧数据保护和暂存
++数据保留。Windows 本机行为仍须在 Windows 执行，不能用注入测试冒充。
++
++该修复改变了 runner 的 SHA。已有 campaign 的 `runnerSha256` 绑定应继续生效：
++需要续跑旧 campaign 时使用其原先绑定的 runner；不能替换 runner 后修改 manifest
++来绕过身份校验。新修复用于新的运行目录，既有活动目录和证据不迁移、不改写。
++
++## 完整验收仍需补齐的输入
++
++| 输入 | 用途 |
++| --- | --- |
++| 合法兼容安装中的 `game-lib.jar`、`libs/`，及原生局所需资源 | 完整编译、引擎 harness、原生地形和 headless 验证 |
++| `docs/acceptance-0.02-alpha2.jsonl`、`docs/acceptance-0.03-alpha2.jsonl`、`docs/acceptance-0.04/*.jsonl` | `test_reports.py` 两个历史样本测试；应恢复原始字节，不能编造样本或删断言 |
++| 最新交接引用的 `candidate_sha_lineage.json`、`knowledge_backed_v0_*` 原始证据 | 独立复算历史源码谱系、37/37 回归、原生地形及胜利行为链 |
++| 知识包原始来源快照 | 重跑 `knowledge/tools/verify_packet.py` 的完整静态源证据检查 |
++
++这些缺项不妨碍编辑源码、审查已公开实现或运行客户端子集；但子集通过不能写成
++新的完整 regression、原生胜利、桌面实机验收或性能增益。当前 Agent 候选保持原身份。
+diff --git a/evidence/public-relay-2026-09-29/SHA256SUMS.txt b/evidence/public-relay-2026-09-29/SHA256SUMS.txt
+new file mode 100644
+index 0000000..29a850f
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/SHA256SUMS.txt
+@@ -0,0 +1,36 @@
++e428142e59e841af0a235da3eb4b8efcdd514024e60c8f7b9731c3128ccd54bc  catalog-after.log
++3b7363b133999c08e5b52d26ede82e26e55cea57e17835c2ac2e1e0e098331e3  catalog-before.log
++e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  compile-catalog-source.log
++e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  compile-independent-harnesses.log
++aab17415cfc01aaf567a88b946ab364785accfa48d4459b435b638ab754a26c0  current-report-harness.log
++e428142e59e841af0a235da3eb4b8efcdd514024e60c8f7b9731c3128ccd54bc  current-target-harness.log
++befc68b3d9843d2903d28688c7859a9879a7e3039aeceba666b423d2eb488402  environment.json
++d8db6bd5aff9d3e7bbbe00e4eef5b7d015ce7892bc491531fe27d616bcbde1a6  identity-negative.json
++f55c2fc0cc9078598959e59fdeb215ee19a8d2e70b6a9d4561b4f68a2dc70f52  identity.json
++71529e9852b5e92adcab37351e97303a3e8f4b7ba1cd0b6ceaff8a06190fa685  java-results.json
++e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  package-after.log
++e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  package-before.log
++392e6926887825b02180896fa3eab2e1c6d7085ceedbc608d51fc7366d841473  packaging-results.json
++d5eed7411c4a23cfd0cd26e3a93e1fb0f6579f52cb64187141f64e48fc0d637e  py_test_ab_aggregate.log
++06585d8a1fe042d38e58cfaa00543deb9c156840b50c9ac6b49d40df5793bac5  py_test_ab_aggregate_after.log
++56fba9179c7543aa2c3396d8638b64303f7fed01a0379623e97e8c19f103efef  py_test_ab_campaign.log
++88a27e7156920444ef3aba6485c3a5d4f01b067b18d41dcdf45227321c72442b  py_test_ab_campaign_after.log
++b2dbaed127b45a4ea9104b4f866a4fb682d5cac4dc824bf322857e8b8db5f2d6  py_test_battle_client.log
++432e764160c5b06b41e1864e05386aaf72bcdcdfe2465d19c35fe57144567754  py_test_battle_reports.log
++9eb036d8f0e62884f3a74902eebaae37f12285e41d59b5ca9cde6f5b8d9b0d46  py_test_client.log
++76fea622978ce1b4b74cc575b47b632f8aca8a08af25a1774304921d79f4c491  py_test_development.log
++87c8e72e1d2b57e58693141a8fd443a9fb7495d3ad62b93741f2e38a6f985093  py_test_economy.log
++1577be7dca2cfee27958eab9ee0f52c0249af915a37f7d7667caf188f9156c4f  py_test_frontier.log
++bb734f1d60564844b02a26db06ff05007a37db59e20c6bd5b0bd3a259bb1cfd3  py_test_frontier_reports.log
++b39e2543acd03bcec97073b1e24b87e14835fbbb856d43de19a81bf60bc6f504  py_test_headless_parallel.log
++b6e43d1243207e37940d7a219155e9b78b28e7e2edbfdf5a44c4987b12609491  py_test_headless_parallel_after.log
++8df311a0c83ffcf5a370d88514854e3c9e70101181fe4067206b86f09700385a  py_test_opening.log
++604774677334222973f9e57fc4d2f4c9d10c7b8521eea829166b9e5caf2d22f6  py_test_recon_client.log
++56ea08044c59deb442de1e9e03bbc7b6badbae7bcd064afa39921645f86ce339  py_test_recon_frontier_client.log
++92cd56d6a70c9fba8bf3c171d5210faae6429599f0f28ef3778369cbcbcbdfb2  py_test_reports.log
++238069bc3060dc077eb17c00637180024ec0943b1763eca992ff8da662acec46  py_test_target_compatibility.log
++7a48b6cf1c5cd361d9e6e747a2796709e2b54c47dd7b9d973b1f81941680cc18  python-rechecks.json
++f1e5eee486bc52eb0fd00979da858c62cc7832f29ff0924bad0392c03bbc57f3  python-results.json
++d87f5b6b6e28e4593e3527b543281a9c51a2131b339f16f45b9f59f9e69495e7  runner-parity.json
++0e48a70bbe66ec1b6f11d65867bf7d475c23bda8dfb0e71e0dea2de5cc3f5965  source-review.json
++cfa174bead54fbbb0e2b50abdbb7a6103ac4517052eae00dbdf6793b751052f7  summary.json
+diff --git a/evidence/public-relay-2026-09-29/catalog-after.log b/evidence/public-relay-2026-09-29/catalog-after.log
+new file mode 100644
+index 0000000..c52b682
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/catalog-after.log
+@@ -0,0 +1 @@
++TargetCompatibilityHarness PASS
+diff --git a/evidence/public-relay-2026-09-29/catalog-before.log b/evidence/public-relay-2026-09-29/catalog-before.log
+new file mode 100644
+index 0000000..c7ec68d
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/catalog-before.log
+@@ -0,0 +1,2 @@
++Exception in thread "main" java.lang.AssertionError: packaged catalog identity differs from accepted knowledge packet
++	at TargetCompatibilityHarness.main(TargetCompatibilityHarness.java:17)
+diff --git a/evidence/public-relay-2026-09-29/compile-catalog-source.log b/evidence/public-relay-2026-09-29/compile-catalog-source.log
+new file mode 100644
+index 0000000..e69de29
+diff --git a/evidence/public-relay-2026-09-29/compile-independent-harnesses.log b/evidence/public-relay-2026-09-29/compile-independent-harnesses.log
+new file mode 100644
+index 0000000..e69de29
+diff --git a/evidence/public-relay-2026-09-29/current-report-harness.log b/evidence/public-relay-2026-09-29/current-report-harness.log
+new file mode 100644
+index 0000000..c53c484
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/current-report-harness.log
+@@ -0,0 +1 @@
++REPORT_COMMIT_TEST_OK stale journal replacement retained complete UTF-8 content
+diff --git a/evidence/public-relay-2026-09-29/current-target-harness.log b/evidence/public-relay-2026-09-29/current-target-harness.log
+new file mode 100644
+index 0000000..c52b682
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/current-target-harness.log
+@@ -0,0 +1 @@
++TargetCompatibilityHarness PASS
+diff --git a/evidence/public-relay-2026-09-29/environment.json b/evidence/public-relay-2026-09-29/environment.json
+new file mode 100644
+index 0000000..3301ff0
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/environment.json
+@@ -0,0 +1,12 @@
++{
++  "repository": "https://github.com/yetengyang8-eng/Rusted-Warfare-Agent",
++  "baseCommit": "dbbe6274cc6b2ae042a91ac3cb0aa777160f720b",
++  "branch": "astra/public-relay-validation-20260929",
++  "python": "3.12.14",
++  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
++  "java": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
++  "gameLibPresentInRepository": false,
++  "nativeMatchRunThisTurn": false,
++  "candidateJarModified": false,
++  "fullSourceRebuildRun": false
++}
+diff --git a/evidence/public-relay-2026-09-29/identity-negative.json b/evidence/public-relay-2026-09-29/identity-negative.json
+new file mode 100644
+index 0000000..9ed3d28
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/identity-negative.json
+@@ -0,0 +1,8 @@
++{
++  "case": "resource catalog modified by one byte in an isolated copy",
++  "status": "FAIL",
++  "failures": [
++    "catalog in JAR, resources and packet"
++  ],
++  "originalCandidateUnchanged": true
++}
+diff --git a/evidence/public-relay-2026-09-29/identity.json b/evidence/public-relay-2026-09-29/identity.json
+new file mode 100644
+index 0000000..8cc1fcb
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/identity.json
+@@ -0,0 +1,39 @@
++{
++  "schemaVersion": 1,
++  "generatedUtc": "2026-09-29T11:34:58.144897+00:00",
++  "status": "PASS_PUBLIC_ARTIFACT_CHECKS",
++  "agentJarSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
++  "contentDigest": "82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7",
++  "checks": 172,
++  "failures": [],
++  "overlayFiles": 23,
++  "checkoutLineEndingDifferences": [
++    "RW-Agent-Analyze.bat",
++    "RW-Agent-Autopilot.bat",
++    "RW-Agent-Battle.bat",
++    "RW-Agent-Collect-Reports.bat",
++    "RW-Agent-Develop.bat",
++    "RW-Agent-Economy.bat",
++    "RW-Agent-Explore.bat",
++    "RW-Agent-Headless.bat",
++    "RW-Agent-Health.bat",
++    "RW-Agent-Match.bat",
++    "RW-Agent-Move.bat",
++    "RW-Agent-Opening.bat",
++    "RW-Agent-Preflight.bat",
++    "RW-Agent-Record.bat",
++    "RW-Agent-RoundTrip.bat",
++    "RW-Agent-State.bat",
++    "RW-Agent-Test-Move.bat"
++  ],
++  "packetPresentFiles": 23,
++  "packetOmittedEvidenceFiles": 536,
++  "catalogFields": 206,
++  "derivedMovementGrids": 72,
++  "limits": [
++    "Packet source/bytecode evidence was omitted from this public mirror; metadata is not re-verification of those sources.",
++    "RLE checks are internal artifact consistency, not a comparison against native terrain d[].",
++    "No full build, engine harness, native match, desktop validation or performance comparison is performed.",
++    "Historical native raw ZIPs and candidate lineage reports are not present in the public evidence directory."
++  ]
++}
+diff --git a/evidence/public-relay-2026-09-29/java-results.json b/evidence/public-relay-2026-09-29/java-results.json
+new file mode 100644
+index 0000000..8779522
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/java-results.json
+@@ -0,0 +1,41 @@
++[
++  {
++    "name": "compile-independent-harnesses",
++    "exitCode": 0,
++    "command": [
++      "java",
++      "-m",
++      "jdk.compiler/com.sun.tools.javac.Main",
++      "--release",
++      "8",
++      "-encoding",
++      "UTF-8",
++      "-cp",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar",
++      "-d",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/client-classes",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/TargetCompatibilityHarness.java",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/ReportCommitHarness.java"
++    ]
++  },
++  {
++    "name": "current-target-harness",
++    "exitCode": 0,
++    "command": [
++      "java",
++      "-cp",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/client-classes",
++      "TargetCompatibilityHarness"
++    ]
++  },
++  {
++    "name": "current-report-harness",
++    "exitCode": 0,
++    "command": [
++      "java",
++      "-cp",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar:/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/client-classes",
++      "io.rwagent.client.ReportCommitHarness"
++    ]
++  }
++]
+diff --git a/evidence/public-relay-2026-09-29/package-after.log b/evidence/public-relay-2026-09-29/package-after.log
+new file mode 100644
+index 0000000..e69de29
+diff --git a/evidence/public-relay-2026-09-29/package-before.log b/evidence/public-relay-2026-09-29/package-before.log
+new file mode 100644
+index 0000000..e69de29
+diff --git a/evidence/public-relay-2026-09-29/packaging-results.json b/evidence/public-relay-2026-09-29/packaging-results.json
+new file mode 100644
+index 0000000..860948d
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/packaging-results.json
+@@ -0,0 +1,78 @@
++[
++  {
++    "name": "compile-catalog-source",
++    "exitCode": 0,
++    "expectedExitCode": 0,
++    "command": [
++      "java",
++      "-m",
++      "jdk.compiler/com.sun.tools.javac.Main",
++      "--release",
++      "8",
++      "-encoding",
++      "UTF-8",
++      "-d",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-classes",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/src/io/rwagent/client/Json.java",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/src/io/rwagent/client/TargetCatalog.java",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/TargetCompatibilityHarness.java"
++    ]
++  },
++  {
++    "name": "package-before",
++    "exitCode": 0,
++    "expectedExitCode": 0,
++    "command": [
++      "java",
++      "-m",
++      "jdk.jartool/sun.tools.jar.Main",
++      "--create",
++      "--file",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-before.jar",
++      "-C",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-classes",
++      "."
++    ]
++  },
++  {
++    "name": "catalog-before",
++    "exitCode": 1,
++    "expectedExitCode": 1,
++    "command": [
++      "java",
++      "-cp",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-before.jar",
++      "TargetCompatibilityHarness"
++    ]
++  },
++  {
++    "name": "package-after",
++    "exitCode": 0,
++    "expectedExitCode": 0,
++    "command": [
++      "java",
++      "-m",
++      "jdk.jartool/sun.tools.jar.Main",
++      "--create",
++      "--file",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-after.jar",
++      "-C",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-classes",
++      ".",
++      "-C",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/resources",
++      "."
++    ]
++  },
++  {
++    "name": "catalog-after",
++    "exitCode": 0,
++    "expectedExitCode": 0,
++    "command": [
++      "java",
++      "-cp",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/build/public-relay-audit/packaging-after.jar",
++      "TargetCompatibilityHarness"
++    ]
++  }
++]
+diff --git a/evidence/public-relay-2026-09-29/py_test_ab_aggregate.log b/evidence/public-relay-2026-09-29/py_test_ab_aggregate.log
+new file mode 100644
+index 0000000..2b918d4
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_ab_aggregate.log
+@@ -0,0 +1,6 @@
++.................
++----------------------------------------------------------------------
++Ran 17 tests in 0.168s
++
++OK
++{"batches": 2, "episodes": 4, "output": "/tmp/tmpn8d6d1b2/summary.json"}
+diff --git a/evidence/public-relay-2026-09-29/py_test_ab_aggregate_after.log b/evidence/public-relay-2026-09-29/py_test_ab_aggregate_after.log
+new file mode 100644
+index 0000000..ae6451e
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_ab_aggregate_after.log
+@@ -0,0 +1,6 @@
++.................
++----------------------------------------------------------------------
++Ran 17 tests in 0.232s
++
++OK
++{"batches": 2, "episodes": 4, "output": "/tmp/tmpea4gu7dn/summary.json"}
+diff --git a/evidence/public-relay-2026-09-29/py_test_ab_campaign.log b/evidence/public-relay-2026-09-29/py_test_ab_campaign.log
+new file mode 100644
+index 0000000..21d487c
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_ab_campaign.log
+@@ -0,0 +1,20 @@
++test_budget_blocks_before_next_pair (__main__.CampaignTests.test_budget_blocks_before_next_pair) ... ok
++test_disk_limit_can_change_on_resume_with_audit_record (__main__.CampaignTests.test_disk_limit_can_change_on_resume_with_audit_record) ... ok
++test_final_aggregate_retains_zero_native_n_without_winner (__main__.CampaignTests.test_final_aggregate_retains_zero_native_n_without_winner) ... {"status": "COMPLETE", "campaign": "/tmp/tmpjsih3vjm", "aggregate": {"path": "/tmp/tmpjsih3vjm/aggregate.json", "sha256": "94df6dccaeca79572bb9949a03e43fdb0921304ae8b4bd2033e079e5eb053562", "batchCount": 2, "profileOrderCounts": {"AB": 1, "BA": 1}, "profiles": {"A": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}, "B": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}}, "metricN": {"A": 0, "B": 0}}}
++ok
++test_lock_rejects_concurrent_campaign_and_releases (__main__.CampaignTests.test_lock_rejects_concurrent_campaign_and_releases) ... ok
++test_manifest_alternates_and_same_plan_resumes (__main__.CampaignTests.test_manifest_alternates_and_same_plan_resumes) ... ok
++test_missing_report_is_never_adopted (__main__.CampaignTests.test_missing_report_is_never_adopted) ... ok
++test_passing_report_with_nonzero_client_exit_is_not_accepted (__main__.CampaignTests.test_passing_report_with_nonzero_client_exit_is_not_accepted) ... ok
++test_recover_complete_run_does_not_launch_or_reap (__main__.CampaignTests.test_recover_complete_run_does_not_launch_or_reap) ... ok
++test_recover_incomplete_run_reaps_without_deleting_evidence (__main__.CampaignTests.test_recover_incomplete_run_reaps_without_deleting_evidence) ... ok
++test_resource_cache_is_owned_copy_and_mutation_is_detected (__main__.CampaignTests.test_resource_cache_is_owned_copy_and_mutation_is_detected) ... ok
++test_safe_reap_refuses_a_skipped_live_claimed_child (__main__.CampaignTests.test_safe_reap_refuses_a_skipped_live_claimed_child) ... ok
++test_staging_must_point_to_campaign_owned_cache (__main__.CampaignTests.test_staging_must_point_to_campaign_owned_cache) ... ok
++test_unexpected_runner_failure_is_not_normal_partial (__main__.CampaignTests.test_unexpected_runner_failure_is_not_normal_partial) ... ok
++test_valid_partial_counts_as_completed_pair (__main__.CampaignTests.test_valid_partial_counts_as_completed_pair) ... ok
++
++----------------------------------------------------------------------
++Ran 14 tests in 0.013s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_ab_campaign_after.log b/evidence/public-relay-2026-09-29/py_test_ab_campaign_after.log
+new file mode 100644
+index 0000000..1f15ff7
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_ab_campaign_after.log
+@@ -0,0 +1,20 @@
++test_budget_blocks_before_next_pair (__main__.CampaignTests.test_budget_blocks_before_next_pair) ... ok
++test_disk_limit_can_change_on_resume_with_audit_record (__main__.CampaignTests.test_disk_limit_can_change_on_resume_with_audit_record) ... ok
++test_final_aggregate_retains_zero_native_n_without_winner (__main__.CampaignTests.test_final_aggregate_retains_zero_native_n_without_winner) ... {"status": "COMPLETE", "campaign": "/tmp/tmp_mz7l_1n", "aggregate": {"path": "/tmp/tmp_mz7l_1n/aggregate.json", "sha256": "94df6dccaeca79572bb9949a03e43fdb0921304ae8b4bd2033e079e5eb053562", "batchCount": 2, "profileOrderCounts": {"AB": 1, "BA": 1}, "profiles": {"A": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}, "B": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}}, "metricN": {"A": 0, "B": 0}}}
++ok
++test_lock_rejects_concurrent_campaign_and_releases (__main__.CampaignTests.test_lock_rejects_concurrent_campaign_and_releases) ... ok
++test_manifest_alternates_and_same_plan_resumes (__main__.CampaignTests.test_manifest_alternates_and_same_plan_resumes) ... ok
++test_missing_report_is_never_adopted (__main__.CampaignTests.test_missing_report_is_never_adopted) ... ok
++test_passing_report_with_nonzero_client_exit_is_not_accepted (__main__.CampaignTests.test_passing_report_with_nonzero_client_exit_is_not_accepted) ... ok
++test_recover_complete_run_does_not_launch_or_reap (__main__.CampaignTests.test_recover_complete_run_does_not_launch_or_reap) ... ok
++test_recover_incomplete_run_reaps_without_deleting_evidence (__main__.CampaignTests.test_recover_incomplete_run_reaps_without_deleting_evidence) ... ok
++test_resource_cache_is_owned_copy_and_mutation_is_detected (__main__.CampaignTests.test_resource_cache_is_owned_copy_and_mutation_is_detected) ... ok
++test_safe_reap_refuses_a_skipped_live_claimed_child (__main__.CampaignTests.test_safe_reap_refuses_a_skipped_live_claimed_child) ... ok
++test_staging_must_point_to_campaign_owned_cache (__main__.CampaignTests.test_staging_must_point_to_campaign_owned_cache) ... ok
++test_unexpected_runner_failure_is_not_normal_partial (__main__.CampaignTests.test_unexpected_runner_failure_is_not_normal_partial) ... ok
++test_valid_partial_counts_as_completed_pair (__main__.CampaignTests.test_valid_partial_counts_as_completed_pair) ... ok
++
++----------------------------------------------------------------------
++Ran 14 tests in 0.016s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_battle_client.log b/evidence/public-relay-2026-09-29/py_test_battle_client.log
+new file mode 100644
+index 0000000..0362ea4
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_battle_client.log
+@@ -0,0 +1,5 @@
++..............................................................................
++----------------------------------------------------------------------
++Ran 78 tests in 131.484s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_battle_reports.log b/evidence/public-relay-2026-09-29/py_test_battle_reports.log
+new file mode 100644
+index 0000000..974ecf3
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_battle_reports.log
+@@ -0,0 +1,5 @@
++...............
++----------------------------------------------------------------------
++Ran 15 tests in 0.001s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_client.log b/evidence/public-relay-2026-09-29/py_test_client.log
+new file mode 100644
+index 0000000..6241b16
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_client.log
+@@ -0,0 +1,16 @@
++test_dead_unit_stops_before_return (__main__.ClientTests.test_dead_unit_stops_before_return) ... ok
++test_http_failure_no_retry (__main__.ClientTests.test_http_failure_no_retry) ... ok
++test_manual_long_or_invalid_targets_send_nothing (__main__.ClientTests.test_manual_long_or_invalid_targets_send_nothing) ... ok
++test_manual_nearby_target (__main__.ClientTests.test_manual_nearby_target) ... ok
++test_network_rejected (__main__.ClientTests.test_network_rejected) ... ok
++test_paused_stops (__main__.ClientTests.test_paused_stops) ... ok
++test_record_no_commands (__main__.ClientTests.test_record_no_commands) ... ok
++test_roundtrip (__main__.ClientTests.test_roundtrip) ... ok
++test_session_change_stops_before_return (__main__.ClientTests.test_session_change_stops_before_return) ... ok
++test_three_reported_origins (__main__.ClientTests.test_three_reported_origins) ... ok
++test_wrong_200x200_map_stops_before_any_order (__main__.ClientTests.test_wrong_200x200_map_stops_before_any_order) ... ok
++
++----------------------------------------------------------------------
++Ran 11 tests in 33.674s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_development.log b/evidence/public-relay-2026-09-29/py_test_development.log
+new file mode 100644
+index 0000000..d1ead66
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_development.log
+@@ -0,0 +1,18 @@
++test_completed_mine_death_stops (__main__.DevelopmentTests.test_completed_mine_death_stops) ... ok
++test_default_eight_tanks_three_mines_overlap (__main__.DevelopmentTests.test_default_eight_tanks_three_mines_overlap) ... ok
++test_exhausted_visible_mines_preserves_production (__main__.DevelopmentTests.test_exhausted_visible_mines_preserves_production) ... ok
++test_missing_factory_zero_orders (__main__.DevelopmentTests.test_missing_factory_zero_orders) ... ok
++test_no_visible_mine_reports_zero (__main__.DevelopmentTests.test_no_visible_mine_reports_zero) ... ok
++test_pending_mine_budget_reserved_until_native_charge (__main__.DevelopmentTests.test_pending_mine_budget_reserved_until_native_charge) ... ok
++test_plan_503_stops_zero_orders (__main__.DevelopmentTests.test_plan_503_stops_zero_orders) ... ok
++test_preexisting_mine_not_accepted (__main__.DevelopmentTests.test_preexisting_mine_not_accepted) ... ok
++test_production_only_option (__main__.DevelopmentTests.test_production_only_option) ... ok
++test_queue_interference_stops_both_lanes (__main__.DevelopmentTests.test_queue_interference_stops_both_lanes) ... ok
++test_session_change_stops_both_lanes (__main__.DevelopmentTests.test_session_change_stops_both_lanes) ... ok
++test_type_mismatch_stops_before_other_lane_order (__main__.DevelopmentTests.test_type_mismatch_stops_before_other_lane_order) ... ok
++test_unknown_production_never_retried (__main__.DevelopmentTests.test_unknown_production_never_retried) ... ok
++
++----------------------------------------------------------------------
++Ran 13 tests in 45.491s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_economy.log b/evidence/public-relay-2026-09-29/py_test_economy.log
+new file mode 100644
+index 0000000..29bf0ef
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_economy.log
+@@ -0,0 +1,17 @@
++test_ambiguous_tanks_rejected (__main__.EconomyTests.test_ambiguous_tanks_rejected) ... ok
++test_builder_dead (__main__.EconomyTests.test_builder_dead) ... ok
++test_existing_factory_not_accepted (__main__.EconomyTests.test_existing_factory_not_accepted) ... ok
++test_existing_tank_not_accepted (__main__.EconomyTests.test_existing_tank_not_accepted) ... ok
++test_factory_destroyed_no_production (__main__.EconomyTests.test_factory_destroyed_no_production) ... ok
++test_legacy_tank_without_replacement (__main__.EconomyTests.test_legacy_tank_without_replacement) ... ok
++test_new_factory_then_new_tank (__main__.EconomyTests.test_new_factory_then_new_tank) ... ok
++test_new_tank_without_queue_cycle_not_accepted (__main__.EconomyTests.test_new_tank_without_queue_cycle_not_accepted) ... ok
++test_other_queue_orders_rejected (__main__.EconomyTests.test_other_queue_orders_rejected) ... ok
++test_poor_no_orders (__main__.EconomyTests.test_poor_no_orders) ... ok
++test_session_change (__main__.EconomyTests.test_session_change) ... ok
++test_unknown_command_not_retried (__main__.EconomyTests.test_unknown_command_not_retried) ... ok
++
++----------------------------------------------------------------------
++Ran 12 tests in 32.217s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_frontier.log b/evidence/public-relay-2026-09-29/py_test_frontier.log
+new file mode 100644
+index 0000000..b3a9983
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_frontier.log
+@@ -0,0 +1,13 @@
++test_guard_command_must_be_observed_before_departure (__main__.FrontierTests.test_guard_command_must_be_observed_before_departure) ... ok
++test_new_mine_requires_observed_discovery_and_completed_build (__main__.FrontierTests.test_new_mine_requires_observed_discovery_and_completed_build) ... ok
++test_session_change_stops_control (__main__.FrontierTests.test_session_change_stops_control) ... ok
++test_stalled_scout_stops_at_move_budget (__main__.FrontierTests.test_stalled_scout_stops_at_move_budget) ... ok
++test_threat_during_construction_cancels_expansion_and_waits_for_retreat (__main__.FrontierTests.test_threat_during_construction_cancels_expansion_and_waits_for_retreat) ... ok
++test_unknown_move_response_is_not_retried (__main__.FrontierTests.test_unknown_move_response_is_not_retried) ... ok
++test_unreachable_frontier_is_partial_not_pass (__main__.FrontierTests.test_unreachable_frontier_is_partial_not_pass) ... ok
++test_visible_threat_triggers_bounded_retreat (__main__.FrontierTests.test_visible_threat_triggers_bounded_retreat) ... ok
++
++----------------------------------------------------------------------
++Ran 8 tests in 20.436s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_frontier_reports.log b/evidence/public-relay-2026-09-29/py_test_frontier_reports.log
+new file mode 100644
+index 0000000..2704c0b
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_frontier_reports.log
+@@ -0,0 +1,15 @@
++test_an_oversize_session_is_alone_and_marked (__main__.FrontierReportsTests.test_an_oversize_session_is_alone_and_marked) ... ok
++test_arrival_requires_observed_movement (__main__.FrontierReportsTests.test_arrival_requires_observed_movement) ... ok
++test_bundle_index_lists_bundle_session_phase_and_size (__main__.FrontierReportsTests.test_bundle_index_lists_bundle_session_phase_and_size) ... ok
++test_claimed_guard_requires_native_state (__main__.FrontierReportsTests.test_claimed_guard_requires_native_state) ... ok
++test_complete_evidence (__main__.FrontierReportsTests.test_complete_evidence) ... ok
++test_every_volume_stays_within_the_target (__main__.FrontierReportsTests.test_every_volume_stays_within_the_target) ... ok
++test_feedback_zip_keeps_raw_and_excludes_game_files (__main__.FrontierReportsTests.test_feedback_zip_keeps_raw_and_excludes_game_files) ... ok
++test_one_session_is_never_split_across_bundles (__main__.FrontierReportsTests.test_one_session_is_never_split_across_bundles) ... ok
++test_partial_goal_cannot_pass (__main__.FrontierReportsTests.test_partial_goal_cannot_pass) ... ok
++test_preknown_mine_cannot_be_called_scout_discovery (__main__.FrontierReportsTests.test_preknown_mine_cannot_be_called_scout_discovery) ... ok
++
++----------------------------------------------------------------------
++Ran 10 tests in 0.031s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_headless_parallel.log b/evidence/public-relay-2026-09-29/py_test_headless_parallel.log
+new file mode 100644
+index 0000000..bc0d821
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_headless_parallel.log
+@@ -0,0 +1,40 @@
++{"episode": 2, "status": "PASS", "wallSeconds": 0.415, "error": null, "matchOutcome": "VICTORY"}
++{"episode": 1, "status": "PASS", "wallSeconds": 0.416, "error": null, "matchOutcome": "VICTORY"}
++Results: /tmp/tmpn3nqr2hj/runs/run-20260929T113742-564e42
++.{"episode": 2, "status": "FAIL", "wallSeconds": 0.413, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
++{"episode": 1, "status": "FAIL", "wallSeconds": 0.414, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
++Results: /tmp/tmpxl9pgrgh/runs/run-20260929T113743-1f6a37
++....F...{"episode": 1, "status": "FAIL", "wallSeconds": 0.002, "error": "roundtrip report belongs to sessions ['session-a', 'session-b']", "matchOutcome": null}
++.{"episode": 1, "status": "FAIL", "wallSeconds": 0.003, "error": "Engine exited during startup; see engine.log", "matchOutcome": null}
++{"episode": 2, "status": "PASS", "wallSeconds": 0.006, "error": null, "matchOutcome": null}
++Results: /tmp/tmpxv7ps1ys/output/run-20260929T113743-674f50
++..{"reap": "/tmp/tmp0_06o0f4", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
++F.{"reap": "/tmp/tmp11ol4l3f", "status": "FAIL", "killed": 1, "skipped": 0, "verified": ["post-reap process identity lookup unavailable", "post-reap port ownership lookup unavailable"]}
++.{"reap": "/tmp/tmpxut75cki", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
++{"reap": "/tmp/tmpxut75cki", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
++.{"reap": "/tmp/tmpkzkjovr8/run-a", "status": "FAIL", "killed": 0, "verified": ["claims batchDirectory differs from requested run directory", "pid 4242 workDirectory does not belong to its episode in this run"]}
++.{"reap": "/tmp/tmpkf8j1nnb", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
++{"reap": "/tmp/tmpkf8j1nnb", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
++.{"reap": "/tmp/tmphtjk5uj4", "status": "PASS", "killed": 0, "note": "no live-claims.json; nothing to reap"}
++......
++======================================================================
++FAIL: test_a_permanent_reader_still_fails_loudly (__main__.AtomicStateWriteTests.test_a_permanent_reader_still_fails_loudly)
++----------------------------------------------------------------------
++Traceback (most recent call last):
++  File "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_headless_parallel.py", line 716, in test_a_permanent_reader_still_fails_loudly
++    with self.assertRaises(PermissionError):
++         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++AssertionError: PermissionError not raised
++
++======================================================================
++FAIL: test_an_unrelated_live_process_is_never_reaped (__main__.LiveClaimsAndReapTests.test_an_unrelated_live_process_is_never_reaped)
++----------------------------------------------------------------------
++Traceback (most recent call last):
++  File "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_headless_parallel.py", line 783, in test_an_unrelated_live_process_is_never_reaped
++    self.assertIn('not a headless engine', report['skipped'][0]['reason'])
++AssertionError: 'not a headless engine' not found in 'process no longer running'
++
++----------------------------------------------------------------------
++Ran 24 tests in 3.181s
++
++FAILED (failures=2)
+diff --git a/evidence/public-relay-2026-09-29/py_test_headless_parallel_after.log b/evidence/public-relay-2026-09-29/py_test_headless_parallel_after.log
+new file mode 100644
+index 0000000..5ba2add
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_headless_parallel_after.log
+@@ -0,0 +1,23 @@
++{"episode": 1, "status": "PASS", "wallSeconds": 0.418, "error": null, "matchOutcome": "VICTORY"}
++{"episode": 2, "status": "PASS", "wallSeconds": 0.419, "error": null, "matchOutcome": "VICTORY"}
++Results: /tmp/tmp133xs9cs/runs/run-20260929T113852-a1e9e9
++.{"episode": 2, "status": "FAIL", "wallSeconds": 0.416, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
++{"episode": 1, "status": "FAIL", "wallSeconds": 0.417, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
++Results: /tmp/tmpomyfxwak/runs/run-20260929T113852-28b05f
++....ss....{"episode": 1, "status": "FAIL", "wallSeconds": 0.002, "error": "roundtrip report belongs to sessions ['session-a', 'session-b']", "matchOutcome": null}
++.{"episode": 1, "status": "FAIL", "wallSeconds": 0.004, "error": "Engine exited during startup; see engine.log", "matchOutcome": null}
++{"episode": 2, "status": "PASS", "wallSeconds": 0.007, "error": null, "matchOutcome": null}
++Results: /tmp/tmpmy6va80n/output/run-20260929T113853-e029ef
++..{"reap": "/tmp/tmp_qbf9m_x", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
++..{"reap": "/tmp/tmpiftizglj", "status": "FAIL", "killed": 1, "skipped": 0, "verified": ["post-reap process identity lookup unavailable", "post-reap port ownership lookup unavailable"]}
++.{"reap": "/tmp/tmpkxaqhspk", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
++{"reap": "/tmp/tmpkxaqhspk", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
++.{"reap": "/tmp/tmpuj7nzgwe/run-a", "status": "FAIL", "killed": 0, "verified": ["claims batchDirectory differs from requested run directory", "pid 4242 workDirectory does not belong to its episode in this run"]}
++.{"reap": "/tmp/tmpyzew_qp9", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
++{"reap": "/tmp/tmpyzew_qp9", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
++.{"reap": "/tmp/tmpi65jhjj8", "status": "PASS", "killed": 0, "note": "no live-claims.json; nothing to reap"}
++.......
++----------------------------------------------------------------------
++Ran 27 tests in 2.288s
++
++OK (skipped=2)
+diff --git a/evidence/public-relay-2026-09-29/py_test_opening.log b/evidence/public-relay-2026-09-29/py_test_opening.log
+new file mode 100644
+index 0000000..0847dd3
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_opening.log
+@@ -0,0 +1,13 @@
++test_completed_mine_lost_during_second_tank_stops (__main__.OpeningTests.test_completed_mine_lost_during_second_tank_stops) ... ok
++test_full_opening_and_distinct_tanks (__main__.OpeningTests.test_full_opening_and_distinct_tanks) ... ok
++test_legacy_extractor_without_replacement (__main__.OpeningTests.test_legacy_extractor_without_replacement) ... ok
++test_no_resource_sends_nothing (__main__.OpeningTests.test_no_resource_sends_nothing) ... ok
++test_preexisting_extractor_not_accepted (__main__.OpeningTests.test_preexisting_extractor_not_accepted) ... ok
++test_session_changed_stops (__main__.OpeningTests.test_session_changed_stops) ... ok
++test_unknown_factory_command_not_retried (__main__.OpeningTests.test_unknown_factory_command_not_retried) ... ok
++test_wait_income_before_mine_and_second_tank (__main__.OpeningTests.test_wait_income_before_mine_and_second_tank) ... ok
++
++----------------------------------------------------------------------
++Ran 8 tests in 28.859s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_recon_client.log b/evidence/public-relay-2026-09-29/py_test_recon_client.log
+new file mode 100644
+index 0000000..df6cd1a
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_recon_client.log
+@@ -0,0 +1,5 @@
++.......
++----------------------------------------------------------------------
++Ran 7 tests in 11.414s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_recon_frontier_client.log b/evidence/public-relay-2026-09-29/py_test_recon_frontier_client.log
+new file mode 100644
+index 0000000..59cbefb
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_recon_frontier_client.log
+@@ -0,0 +1,5 @@
++................
++----------------------------------------------------------------------
++Ran 16 tests in 33.457s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/py_test_reports.log b/evidence/public-relay-2026-09-29/py_test_reports.log
+new file mode 100644
+index 0000000..7ef25c7
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_reports.log
+@@ -0,0 +1,55 @@
++test_bad_line (__main__.ReportsTests.test_bad_line) ... ok
++test_cli_strict_and_outputs (__main__.ReportsTests.test_cli_strict_and_outputs) ... ok
++test_clock_regression (__main__.ReportsTests.test_clock_regression) ... ok
++test_count_mismatch (__main__.ReportsTests.test_count_mismatch) ... ok
++test_duplicate_completion (__main__.ReportsTests.test_duplicate_completion) ... ok
++test_earlier_reports (__main__.ReportsTests.test_earlier_reports) ... ERROR
++test_events_after_summary (__main__.ReportsTests.test_events_after_summary) ... ok
++test_historical_acceptance (__main__.ReportsTests.test_historical_acceptance) ... FAIL
++test_missing_summary (__main__.ReportsTests.test_missing_summary) ... ok
++test_multiple_summaries (__main__.ReportsTests.test_multiple_summaries) ... ok
++test_nonfinite_and_invalid_schema (__main__.ReportsTests.test_nonfinite_and_invalid_schema) ... ok
++test_partial_mine_is_not_complete (__main__.ReportsTests.test_partial_mine_is_not_complete) ... ok
++test_preexisting_unit_not_counted_as_valid_pass (__main__.ReportsTests.test_preexisting_unit_not_counted_as_valid_pass) ... ok
++test_preserve_summary_and_large_ids (__main__.ReportsTests.test_preserve_summary_and_large_ids) ... ok
++test_truncated_tail (__main__.ReportsTests.test_truncated_tail) ... ok
++test_uncommitted_report (__main__.ReportsTests.test_uncommitted_report) ... ok
++
++======================================================================
++ERROR: test_earlier_reports (__main__.ReportsTests.test_earlier_reports)
++----------------------------------------------------------------------
++Traceback (most recent call last):
++  File "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_reports.py", line 40, in test_earlier_reports
++    r=m.analyze_file(ROOT/'docs'/name)
++      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++  File "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/tools/analyze_reports.py", line 37, in analyze_file
++    raw = path.read_bytes()
++          ^^^^^^^^^^^^^^^^^
++  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
++    with self.open(mode='rb') as f:
++         ^^^^^^^^^^^^^^^^^^^^
++  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
++    return io.open(self, mode, buffering, encoding, errors, newline)
++           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/docs/acceptance-0.02-alpha2.jsonl'
++
++======================================================================
++FAIL: test_historical_acceptance (__main__.ReportsTests.test_historical_acceptance)
++----------------------------------------------------------------------
++Traceback (most recent call last):
++  File "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_reports.py", line 33, in test_historical_acceptance
++    self.assertEqual([r['classification'] for r in results], ['PRECONDITION_REJECTED', 'PASS', 'PASS'])
++AssertionError: Lists differ: [] != ['PRECONDITION_REJECTED', 'PASS', 'PASS']
++
++Second list contains 3 additional elements.
++First extra element 0:
++'PRECONDITION_REJECTED'
++
++- []
+++ ['PRECONDITION_REJECTED', 'PASS', 'PASS']
++
++----------------------------------------------------------------------
++Ran 16 tests in 0.007s
++
++FAILED (failures=1, errors=1)
++{"reports": 1, "results": {"INVALID": 1}, "output": "/tmp/tmpwey8pn5b/out"}
+diff --git a/evidence/public-relay-2026-09-29/py_test_target_compatibility.log b/evidence/public-relay-2026-09-29/py_test_target_compatibility.log
+new file mode 100644
+index 0000000..3d1591a
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/py_test_target_compatibility.log
+@@ -0,0 +1,11 @@
++test_heavy_tank_and_scout_keep_mixed_air_squad_active (__main__.TargetCompatibilityIntegration.test_heavy_tank_and_scout_keep_mixed_air_squad_active) ... ok
++test_missing_dynamic_domain_degrades_without_deadlock (__main__.TargetCompatibilityIntegration.test_missing_dynamic_domain_degrades_without_deadlock) ... ok
++test_session_change_stops_before_reusing_prior_guard_decision (__main__.TargetCompatibilityIntegration.test_session_change_stops_before_reusing_prior_guard_decision) ... ok
++test_stale_air_domain_cannot_be_reused_as_current_state (__main__.TargetCompatibilityIntegration.test_stale_air_domain_cannot_be_reused_as_current_state) ... ok
++test_tanks_keep_surface_water_target (__main__.TargetCompatibilityIntegration.test_tanks_keep_surface_water_target) ... ok
++test_tanks_reject_visible_air_and_submerged (__main__.TargetCompatibilityIntegration.test_tanks_reject_visible_air_and_submerged) ... ok
++
++----------------------------------------------------------------------
++Ran 6 tests in 6.582s
++
++OK
+diff --git a/evidence/public-relay-2026-09-29/python-rechecks.json b/evidence/public-relay-2026-09-29/python-rechecks.json
+new file mode 100644
+index 0000000..4f73744
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/python-rechecks.json
+@@ -0,0 +1,36 @@
++[
++  {
++    "suite": "py:test_headless_parallel",
++    "command": [
++      "python",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_headless_parallel.py"
++    ],
++    "exitCode": 0,
++    "tests": 27,
++    "skipped": 2,
++    "log": "agent/build/public-relay-audit/py_test_headless_parallel_after.log",
++    "logSha256": "b6e43d1243207e37940d7a219155e9b78b28e7e2edbfdf5a44c4987b12609491"
++  },
++  {
++    "suite": "py:test_ab_aggregate",
++    "command": [
++      "python",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_aggregate.py"
++    ],
++    "exitCode": 0,
++    "tests": 17,
++    "log": "agent/build/public-relay-audit/py_test_ab_aggregate_after.log",
++    "logSha256": "06585d8a1fe042d38e58cfaa00543deb9c156840b50c9ac6b49d40df5793bac5"
++  },
++  {
++    "suite": "py:test_ab_campaign",
++    "command": [
++      "python",
++      "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_campaign.py"
++    ],
++    "exitCode": 0,
++    "tests": 14,
++    "log": "agent/build/public-relay-audit/py_test_ab_campaign_after.log",
++    "logSha256": "88a27e7156920444ef3aba6485c3a5d4f01b067b18d41dcdf45227321c72442b"
++  }
++]
+diff --git a/evidence/public-relay-2026-09-29/python-results.json b/evidence/public-relay-2026-09-29/python-results.json
+new file mode 100644
+index 0000000..c23685a
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/python-results.json
+@@ -0,0 +1,194 @@
++{
++  "jarSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
++  "results": [
++    {
++      "suite": "py:test_development",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_development.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 13,
++      "startedUtc": "2026-09-29T11:31:57.647534+00:00",
++      "log": "agent/build/public-relay-audit/py_test_development.log",
++      "logSha256": "76fea622978ce1b4b74cc575b47b632f8aca8a08af25a1774304921d79f4c491"
++    },
++    {
++      "suite": "py:test_opening",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_opening.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 8,
++      "startedUtc": "2026-09-29T11:32:43.254592+00:00",
++      "log": "agent/build/public-relay-audit/py_test_opening.log",
++      "logSha256": "8df311a0c83ffcf5a370d88514854e3c9e70101181fe4067206b86f09700385a"
++    },
++    {
++      "suite": "py:test_economy",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_economy.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 12,
++      "startedUtc": "2026-09-29T11:33:12.202573+00:00",
++      "log": "agent/build/public-relay-audit/py_test_economy.log",
++      "logSha256": "87c8e72e1d2b57e58693141a8fd443a9fb7495d3ad62b93741f2e38a6f985093"
++    },
++    {
++      "suite": "py:test_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 11,
++      "startedUtc": "2026-09-29T11:33:44.520646+00:00",
++      "log": "agent/build/public-relay-audit/py_test_client.log",
++      "logSha256": "9eb036d8f0e62884f3a74902eebaae37f12285e41d59b5ca9cde6f5b8d9b0d46"
++    },
++    {
++      "suite": "py:test_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_reports.py"
++      ],
++      "exitCode": 1,
++      "tests": 16,
++      "startedUtc": "2026-09-29T11:34:18.306902+00:00",
++      "log": "agent/build/public-relay-audit/py_test_reports.log",
++      "logSha256": "92cd56d6a70c9fba8bf3c171d5210faae6429599f0f28ef3778369cbcbcbdfb2"
++    },
++    {
++      "suite": "py:test_frontier",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_frontier.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 8,
++      "startedUtc": "2026-09-29T11:34:18.422356+00:00",
++      "log": "agent/build/public-relay-audit/py_test_frontier.log",
++      "logSha256": "1577be7dca2cfee27958eab9ee0f52c0249af915a37f7d7667caf188f9156c4f"
++    },
++    {
++      "suite": "py:test_frontier_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_frontier_reports.py"
++      ],
++      "exitCode": 0,
++      "tests": 10,
++      "startedUtc": "2026-09-29T11:34:38.952061+00:00",
++      "log": "agent/build/public-relay-audit/py_test_frontier_reports.log",
++      "logSha256": "bb734f1d60564844b02a26db06ff05007a37db59e20c6bd5b0bd3a259bb1cfd3"
++    },
++    {
++      "suite": "py:test_battle_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_battle_reports.py"
++      ],
++      "exitCode": 0,
++      "tests": 15,
++      "startedUtc": "2026-09-29T11:34:39.067280+00:00",
++      "log": "agent/build/public-relay-audit/py_test_battle_reports.log",
++      "logSha256": "432e764160c5b06b41e1864e05386aaf72bcdcdfe2465d19c35fe57144567754"
++    },
++    {
++      "suite": "py:test_battle_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_battle_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 78,
++      "startedUtc": "2026-09-29T11:34:39.132378+00:00",
++      "log": "agent/build/public-relay-audit/py_test_battle_client.log",
++      "logSha256": "b2dbaed127b45a4ea9104b4f866a4fb682d5cac4dc824bf322857e8b8db5f2d6"
++    },
++    {
++      "suite": "py:test_target_compatibility",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_target_compatibility.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 6,
++      "startedUtc": "2026-09-29T11:36:50.746196+00:00",
++      "log": "agent/build/public-relay-audit/py_test_target_compatibility.log",
++      "logSha256": "238069bc3060dc077eb17c00637180024ec0943b1763eca992ff8da662acec46"
++    },
++    {
++      "suite": "py:test_recon_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_recon_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 7,
++      "startedUtc": "2026-09-29T11:36:57.438431+00:00",
++      "log": "agent/build/public-relay-audit/py_test_recon_client.log",
++      "logSha256": "604774677334222973f9e57fc4d2f4c9d10c7b8521eea829166b9e5caf2d22f6"
++    },
++    {
++      "suite": "py:test_recon_frontier_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_recon_frontier_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 16,
++      "startedUtc": "2026-09-29T11:37:08.952105+00:00",
++      "log": "agent/build/public-relay-audit/py_test_recon_frontier_client.log",
++      "logSha256": "56ea08044c59deb442de1e9e03bbc7b6badbae7bcd064afa39921645f86ce339"
++    },
++    {
++      "suite": "py:test_headless_parallel",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_headless_parallel.py"
++      ],
++      "exitCode": 1,
++      "tests": 24,
++      "startedUtc": "2026-09-29T11:37:42.540383+00:00",
++      "log": "agent/build/public-relay-audit/py_test_headless_parallel.log",
++      "logSha256": "b39e2543acd03bcec97073b1e24b87e14835fbbb856d43de19a81bf60bc6f504"
++    },
++    {
++      "suite": "py:test_ab_aggregate",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_aggregate.py"
++      ],
++      "exitCode": 0,
++      "tests": 17,
++      "startedUtc": "2026-09-29T11:37:45.864791+00:00",
++      "log": "agent/build/public-relay-audit/py_test_ab_aggregate.log",
++      "logSha256": "d5eed7411c4a23cfd0cd26e3a93e1fb0f6579f52cb64187141f64e48fc0d637e"
++    },
++    {
++      "suite": "py:test_ab_campaign",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_campaign.py"
++      ],
++      "exitCode": 0,
++      "tests": 14,
++      "startedUtc": "2026-09-29T11:37:46.130589+00:00",
++      "log": "agent/build/public-relay-audit/py_test_ab_campaign.log",
++      "logSha256": "56fba9179c7543aa2c3396d8638b64303f7fed01a0379623e97e8c19f103efef"
++    }
++  ]
++}
+diff --git a/evidence/public-relay-2026-09-29/runner-parity.json b/evidence/public-relay-2026-09-29/runner-parity.json
+new file mode 100644
+index 0000000..6aee410
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/runner-parity.json
+@@ -0,0 +1,6 @@
++{
++  "pythonSuites": 15,
++  "javaRuns": 19,
++  "samePythonSuites": true,
++  "sameJavaVariants": true
++}
+diff --git a/evidence/public-relay-2026-09-29/source-review.json b/evidence/public-relay-2026-09-29/source-review.json
+new file mode 100644
+index 0000000..e20cc69
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/source-review.json
+@@ -0,0 +1,25 @@
++{
++  "scope": "Target guard and terrain visibility source review; not native execution",
++  "files": [
++    {
++      "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
++      "finding": "Enemy dynamic domain is read only after both unit.d(player) and map visibility checks. Lost contacts retain snapshots; no new Enemy is created for hidden instances."
++    },
++    {
++      "path": "agent/src/io/rwagent/client/TargetCatalog.java",
++      "finding": "Catalog bytes and frozen game identity gate tri-state domain compatibility. Missing/stale/untrusted data remains UNKNOWN; domain compatibility does not claim reachability or weapon fire."
++    },
++    {
++      "path": "agent/src/io/rwagent/client/BattleClient.java",
++      "finding": "Guard requires current visible ID and equal domain/last-seen/observation timestamps. Mixed force chooses compatible subset; unknown-only fallback retains eligible unknown actors."
++    },
++    {
++      "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
++      "finding": "Visible checks precede terrain and native cost reads. Session changes reset terrain caches; unknown costs keep a sentinel. No terrain_grids files are loaded by runtime source."
++    }
++  ],
++  "limits": [
++    "No game library available to verify actual dispatch or native terrain behavior.",
++    "Current candidate contentDigest was verified from shipped bytes; full source-to-binary reconstruction was not performed."
++  ]
++}
+diff --git a/evidence/public-relay-2026-09-29/summary.json b/evidence/public-relay-2026-09-29/summary.json
+new file mode 100644
+index 0000000..94d17ad
+--- /dev/null
++++ b/evidence/public-relay-2026-09-29/summary.json
+@@ -0,0 +1,291 @@
++{
++  "schemaVersion": 1,
++  "scope": "current shipped JAR client tests plus affected Python tooling rechecks; not full regression",
++  "baseCommit": "dbbe6274cc6b2ae042a91ac3cb0aa777160f720b",
++  "agentJarSha256": "5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54",
++  "suiteCount": 15,
++  "successfulSuites": 14,
++  "tests": 258,
++  "passed": 254,
++  "skipped": 2,
++  "failures": 1,
++  "errors": 1,
++  "results": [
++    {
++      "suite": "py:test_development",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_development.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 13,
++      "startedUtc": "2026-09-29T11:31:57.647534+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_development.log",
++      "logSha256": "76fea622978ce1b4b74cc575b47b632f8aca8a08af25a1774304921d79f4c491",
++      "originalLog": "agent/build/public-relay-audit/py_test_development.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 13,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_opening",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_opening.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 8,
++      "startedUtc": "2026-09-29T11:32:43.254592+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_opening.log",
++      "logSha256": "8df311a0c83ffcf5a370d88514854e3c9e70101181fe4067206b86f09700385a",
++      "originalLog": "agent/build/public-relay-audit/py_test_opening.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 8,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_economy",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_economy.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 12,
++      "startedUtc": "2026-09-29T11:33:12.202573+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_economy.log",
++      "logSha256": "87c8e72e1d2b57e58693141a8fd443a9fb7495d3ad62b93741f2e38a6f985093",
++      "originalLog": "agent/build/public-relay-audit/py_test_economy.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 12,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 11,
++      "startedUtc": "2026-09-29T11:33:44.520646+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_client.log",
++      "logSha256": "9eb036d8f0e62884f3a74902eebaae37f12285e41d59b5ca9cde6f5b8d9b0d46",
++      "originalLog": "agent/build/public-relay-audit/py_test_client.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 11,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_reports.py"
++      ],
++      "exitCode": 1,
++      "tests": 16,
++      "startedUtc": "2026-09-29T11:34:18.306902+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_reports.log",
++      "logSha256": "92cd56d6a70c9fba8bf3c171d5210faae6429599f0f28ef3778369cbcbcbdfb2",
++      "originalLog": "agent/build/public-relay-audit/py_test_reports.log",
++      "failures": 1,
++      "errors": 1,
++      "skipped": 0,
++      "passed": 14,
++      "classification": "BLOCKED_MISSING_HISTORICAL_FIXTURES"
++    },
++    {
++      "suite": "py:test_frontier",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_frontier.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 8,
++      "startedUtc": "2026-09-29T11:34:18.422356+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_frontier.log",
++      "logSha256": "1577be7dca2cfee27958eab9ee0f52c0249af915a37f7d7667caf188f9156c4f",
++      "originalLog": "agent/build/public-relay-audit/py_test_frontier.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 8,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_frontier_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_frontier_reports.py"
++      ],
++      "exitCode": 0,
++      "tests": 10,
++      "startedUtc": "2026-09-29T11:34:38.952061+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_frontier_reports.log",
++      "logSha256": "bb734f1d60564844b02a26db06ff05007a37db59e20c6bd5b0bd3a259bb1cfd3",
++      "originalLog": "agent/build/public-relay-audit/py_test_frontier_reports.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 10,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_battle_reports",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_battle_reports.py"
++      ],
++      "exitCode": 0,
++      "tests": 15,
++      "startedUtc": "2026-09-29T11:34:39.067280+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_battle_reports.log",
++      "logSha256": "432e764160c5b06b41e1864e05386aaf72bcdcdfe2465d19c35fe57144567754",
++      "originalLog": "agent/build/public-relay-audit/py_test_battle_reports.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 15,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_battle_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_battle_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 78,
++      "startedUtc": "2026-09-29T11:34:39.132378+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_battle_client.log",
++      "logSha256": "b2dbaed127b45a4ea9104b4f866a4fb682d5cac4dc824bf322857e8b8db5f2d6",
++      "originalLog": "agent/build/public-relay-audit/py_test_battle_client.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 78,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_target_compatibility",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_target_compatibility.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 6,
++      "startedUtc": "2026-09-29T11:36:50.746196+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_target_compatibility.log",
++      "logSha256": "238069bc3060dc077eb17c00637180024ec0943b1763eca992ff8da662acec46",
++      "originalLog": "agent/build/public-relay-audit/py_test_target_compatibility.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 6,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_recon_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_recon_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 7,
++      "startedUtc": "2026-09-29T11:36:57.438431+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_recon_client.log",
++      "logSha256": "604774677334222973f9e57fc4d2f4c9d10c7b8521eea829166b9e5caf2d22f6",
++      "originalLog": "agent/build/public-relay-audit/py_test_recon_client.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 7,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_recon_frontier_client",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_recon_frontier_client.py",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/astra-relay/runtime-overlay/rw-agent-bootstrap.jar"
++      ],
++      "exitCode": 0,
++      "tests": 16,
++      "startedUtc": "2026-09-29T11:37:08.952105+00:00",
++      "log": "evidence/public-relay-2026-09-29/py_test_recon_frontier_client.log",
++      "logSha256": "56ea08044c59deb442de1e9e03bbc7b6badbae7bcd064afa39921645f86ce339",
++      "originalLog": "agent/build/public-relay-audit/py_test_recon_frontier_client.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 16,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_headless_parallel",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_headless_parallel.py"
++      ],
++      "exitCode": 0,
++      "tests": 27,
++      "skipped": 2,
++      "log": "evidence/public-relay-2026-09-29/py_test_headless_parallel_after.log",
++      "logSha256": "b6e43d1243207e37940d7a219155e9b78b28e7e2edbfdf5a44c4987b12609491",
++      "originalLog": "agent/build/public-relay-audit/py_test_headless_parallel_after.log",
++      "failures": 0,
++      "errors": 0,
++      "passed": 25,
++      "classification": "PASS_WITH_PLATFORM_SKIPS"
++    },
++    {
++      "suite": "py:test_ab_aggregate",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_aggregate.py"
++      ],
++      "exitCode": 0,
++      "tests": 17,
++      "log": "evidence/public-relay-2026-09-29/py_test_ab_aggregate_after.log",
++      "logSha256": "06585d8a1fe042d38e58cfaa00543deb9c156840b50c9ac6b49d40df5793bac5",
++      "originalLog": "agent/build/public-relay-audit/py_test_ab_aggregate_after.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 17,
++      "classification": "PASS"
++    },
++    {
++      "suite": "py:test_ab_campaign",
++      "command": [
++        "python",
++        "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent/agent/tests/test_ab_campaign.py"
++      ],
++      "exitCode": 0,
++      "tests": 14,
++      "log": "evidence/public-relay-2026-09-29/py_test_ab_campaign_after.log",
++      "logSha256": "88a27e7156920444ef3aba6485c3a5d4f01b067b18d41dcdf45227321c72442b",
++      "originalLog": "agent/build/public-relay-audit/py_test_ab_campaign_after.log",
++      "failures": 0,
++      "errors": 0,
++      "skipped": 0,
++      "passed": 14,
++      "classification": "PASS"
++    }
++  ]
++}
+diff --git a/handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md b/handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md
+new file mode 100644
+index 0000000..0179618
+--- /dev/null
++++ b/handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md
+@@ -0,0 +1,103 @@
++# Astra 交接｜公开 GitHub 中转复核与修复｜2026-09-29
++
++本轮从公开仓库实际 clone，基线提交 `dbbe6274cc6b2ae042a91ac3cb0aa777160f720b`。
++按 `ASTRA_START_HERE.md` 指定顺序读取 CURRENT_STATE、工程交接、KnowledgeBacked 最新交接、
++知识包与构建说明。执行范围是最新交接建议的独立复核和明确工程缺陷修复；本轮入口由用户
++指定为 GitHub，不要求或声称访问 G 盘。
++
++## 结论
++
++公开制品身份通过，客户端/工具回归有可复核结果；**尚不能给当前候选完整独立 ACCEPT**。
++缺少原版引擎依赖及最新原生 raw 证据，未重跑完整回归、原生地形对照或 headless 对局。
++本轮没有新的胜率、桌面实机或策略增益结论。
++
++候选 JAR 未修改：whole-file SHA256
++`5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54`；contentDigest
++`82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7`。
++这是对已发布字节的复核，不是本环境完成全量源码重建的谱系证明。
++
++## 已修复
++
++1. **Windows build.bat 漏 resources**：旧打包命令不带能力 JSON，`TargetCatalog` 会失效。
++   增加资源打包参数，与 build.sh/test-win.ps1 一致。用当前 TargetCatalog/Json 源码和现有
++   TargetCompatibilityHarness 编译最小测试制品：旧参数下预期失败，新参数下通过。
++   这是 Linux 上对相同 JAR 打包参数的实测；没有声称执行过 Windows BAT 或全量 Agent 构建。
++2. **Linux 回归少三项**：test.sh 增加 ReachabilityHarness 的常规/诊断夹具两次运行和
++   test_recon_frontier_client。静态登记已与 Windows 对齐为 19 Java + 15 Python。
++   诊断标志仅用于隔离夹具；未重启或改动用户实际游戏。
++3. **非 Windows --reap 错误宣称进程已退出**：旧 process_info/port_owners 在不支持的平台
++   返回空字典，导致真实存活的旁观进程被登记为 GONE。现在非空查询返回 None，现有回收逻辑
++   明确 FAIL、保留登记、不执行 kill。原生 Windows 查询逻辑未变，未增加 Linux 回收能力。
++   跨平台失败注入覆盖有限重试与数据保留；两个依赖 Windows 文件句柄语义的原生用例保留并
++   在 Linux 显式 SKIP。新增用例检查不支持的查询不能冒充空结果；真实旁观进程用例检查
++   进程仍存活且登记原字节不变。
++
++另提供 `tools/verify_public_relay.py` 和 `docs/PUBLIC_RELAY_CN.md`，让后续 Agent 可在没有
++本机 G 盘或游戏安装时复核已公开内容。没有改动 `agent/src`、目录 JSON 或当前运行 JAR。
++
++**旧 campaign 兼容边界**：本轮 runner 源码 SHA 改变。已绑定旧 runnerSha256 的 campaign
++继续使用原 runner 续跑；不得修改旧 plan/manifest 绕过身份检查。新修复用于新运行目录。
++
++## 本轮验证
++
++- 公开 ZIP 的 23 项全部精确匹配 manifest。checkout 中 17 个 BAT 与 ZIP 只有 LF/CRLF
++  差异，已单列；未重写 manifest 或归档。JAR、目录 JSON 三处副本均一致。
++- 知识包 559 个 manifest 条目中，本镜像存在的 23 项全部通过大小/SHA 检查；536 项证据
++  未公开，其中 534 项是 sources。九图 72 份派生 RLE 的长度/直方图/身份一致。
++  这些是制品一致性，不能升格为原始源码语义或引擎运行验证。
++- `TargetCompatibilityHarness`、`ReportCommitHarness` 在原候选 JAR 上独立编译并运行通过。
++- 15 套 Python 的首次运行及修复后必要复跑均保留。最终集合 **258 项：254 通过、2 SKIP、
++  1 failure + 1 error**；14 套退出 0。下面两项失败来自同一历史报告套件缺文件，未删断言、
++  未造历史数据，也未改成自动跳过。
++
++| Python 套件 | 用例数 | 本轮结果 |
++| --- | ---: | --- |
++| `test_development` | 13 | 通过 |
++| `test_opening` | 8 | 通过 |
++| `test_economy` | 12 | 通过 |
++| `test_client` | 11 | 通过 |
++| `test_reports` | 16 | 14 通过 / 2 历史输入缺失 |
++| `test_frontier` | 8 | 通过 |
++| `test_frontier_reports` | 10 | 通过 |
++| `test_battle_reports` | 15 | 通过 |
++| `test_battle_client` | 78 | 通过 |
++| `test_target_compatibility` | 6 | 通过 |
++| `test_recon_client` | 7 | 通过 |
++| `test_recon_frontier_client` | 16 | 通过 |
++| `test_headless_parallel` | 27 | 25 通过 / 2 Windows-only SKIP |
++| `test_ab_aggregate` | 17 | 通过 |
++| `test_ab_campaign` | 14 | 通过 |
++
++缺项定位：`test_reports.py::test_earlier_reports` 需要
++`docs/acceptance-0.02-alpha2.jsonl`、`docs/acceptance-0.03-alpha2.jsonl`；
++`test_historical_acceptance` 需要 `docs/acceptance-0.04/*.jsonl` 的三份原始样本。
++原始退出码/traceback 见 `evidence/public-relay-2026-09-29/py_test_reports.log`。
++
++## 证据与复跑
++
++证据目录：`evidence/public-relay-2026-09-29/`。`summary.json` 是最终测试集合；
++`python-results.json` 和原日志保留首次运行（包括修复前的失败），`python-rechecks.json`
++与 `_after.log` 保留修复后的编排/聚合/续跑结果。`identity.json`、`identity-negative.json`、
++`packaging-results.json`、`java-results.json`、`runner-parity.json` 分别记录身份、损坏副本
++拒绝、漏打包前后对照、两项独立 Java 测试和入口登记对齐。
++`source-review.json` 只记合法视野/UNKNOWN/混编分配/terrain 缓存的窄范围源码检查，不作为原生证明。
++
++从仓库根目录：
++
++```bash
++python tools/verify_public_relay.py
++python agent/tests/test_headless_parallel.py
++python agent/tests/test_ab_aggregate.py
++python agent/tests/test_ab_campaign.py
++python agent/tests/test_target_compatibility.py astra-relay/runtime-overlay/rw-agent-bootstrap.jar
++python agent/tests/test_recon_frontier_client.py astra-relay/runtime-overlay/rw-agent-bootstrap.jar
++```
++
++原候选 15 套 Python 按 `agent/test-win.ps1` 中的 PyStep 清单串行执行；具体命令、用例数、
++退出码和日志 SHA 在 summary 中。没有同时运行两套完整回归或写同一份 dist。
++
++## 后续动作
++
++下一步仍是补齐合法引擎依赖与最新原始证据，完成 KnowledgeBacked v0 的独立原生验收；
++既有 37/37、438450 格对照及 PASS/VICTORY 均保持“上一轮交接记录”的身份。
++本轮不重复生成知识库、不扩展经济/多人/self-play/Replay、不启用真实比赛危险反射。
+diff --git a/project-state/CURRENT_STATE.md b/project-state/CURRENT_STATE.md
+index c5fce24..c0a46f3 100644
+--- a/project-state/CURRENT_STATE.md
++++ b/project-state/CURRENT_STATE.md
+@@ -13,6 +13,19 @@
+ - 隔离原生局：`work/kb-v0-native-final/run-20260929T081835-5e0d86/episode-001`，Big Island (2p)、难度 1、请求 4x，**PASS / VICTORY**；战报 SHA256 `211839c4c2953deaa4969c95a085d058018589769d5b59aa3c7a0fd7d0011cc1`，独立审计 `PASS`、`issues=[]`。797 次观察、209 条命令、4 座完成矿、2 座新厂、121 条确认的攻击命令、1 个 Recon 任务和 1 条观察到的 Recon 命令。Target Guard 实局事件 86（兼容 78、UNKNOWN 3、不兼容 5），两次混编对空保留 heavyTank 兼容子集；潜水目标明确拒绝。Frontier 计划 2 次，其中一条 LAND 路线有 `KNOWN` 地形证据，但本局没有创建 frontier 任务。详见 `knowledge_backed_v0_native.json` 和 raw ZIP。
+ - **边界**：LAND/HOVER 同格差异及 PathingOverride 为 E2-only，本局没有自然触发；一局隔离胜利不代表因果性能增益或用户桌面游戏验收。动态敌情观测过期时返回 UNKNOWN，不用静态目录补全隐藏实例。没有开展合同外策略扩展。
+ 
++## GitHub 公开中转复核（2026-09-29，非新候选）
++
++- 从公开仓库提交 `dbbe6274cc6b2ae042a91ac3cb0aa777160f720b` 开展独立复核；没有访问本机 G 盘。
++  当前 JAR whole-file SHA 与 contentDigest 均匹配上方身份，运行候选和 `agent/src` 未改。
++- 已修复 `agent/build.bat` 漏打包能力资源、Linux 回归入口少三项，以及非 Windows `--reap`
++  把不支持身份查询当作进程已退出的问题。回收现在明确失败并保留登记；未增加 Linux 杀进程能力。
++  runner SHA 改变，旧 campaign 应继续用原来绑定的 runner，不能改 plan 绕过身份检查。
++- 本轮执行 15 套 Python 并对受影响工具复跑：最终集合 258 项，254 通过、2 Windows-only SKIP、
++  2 项因未公开的历史 JSONL 缺失而失败；14 套退出 0。另两项无引擎依赖的 Java harness 通过。
++  不等于上方历史完整 37/37；本环境缺原版依赖与最新 raw ZIP，完整原生独立验收仍待补齐。
++- 复核和补丁交接：`handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md`；可复跑校验
++  `python tools/verify_public_relay.py`；原始测试结果在 `evidence/public-relay-2026-09-29/`。
++
+ ## Recon v0.2 交付时快照（历史）
+ 
+ > 以下旧条目中的“当前”仅指 2026-09-27 的 Recon v0.2 交付时点；今日实际安装候选以上方 KnowledgeBacked v0 身份为准。
+diff --git a/project-state/HANDOFF_FOR_CODEX.md b/project-state/HANDOFF_FOR_CODEX.md
+index 5f97698..f1e5b86 100644
+--- a/project-state/HANDOFF_FOR_CODEX.md
++++ b/project-state/HANDOFF_FOR_CODEX.md
+@@ -5,6 +5,8 @@
+ > 根目录 `CURRENT_STATE.md` 为准。
+ > 当前工程轮次：**KnowledgeBacked World Model / Capability v0 已完成完整回归、P1F 安装、E2 原生地形对照与一局隔离原生 `PASS / VICTORY`；用户桌面游戏和因果性能仍未验证，DeepSeek 独立验收待做**。
+ > 最新交接：`助手交接\HANDOFF_Codex_KnowledgeBacked_v0_2026-09-29.md`；候选身份、合法视野、原生结果与未验证边界以该文件和 `CURRENT_STATE.md` 为准。下文保留策略与实机保护约束，旧 Recon 身份段落标为历史。
++>
++> GitHub 公开镜像的后续复核见 `handoff/HANDOFF_Astra_PublicRelay_2026-09-29.md`：构建与回归入口修复、非 Windows 回收误报修复，以及 254 通过 / 2 SKIP / 2 历史输入缺失的客户端/工具测试集合。当前 Agent 候选未改；这不是新的完整原生验收。公开镜像路径与缺项见 `docs/PUBLIC_RELAY_CN.md`，本轮不需要访问 G 盘。
+ 
+ ---
+ 
+diff --git a/tools/run_headless.py b/tools/run_headless.py
+index 205084d..4798bc7 100644
+--- a/tools/run_headless.py
++++ b/tools/run_headless.py
+@@ -200,9 +200,10 @@ def verify_live_owner(proc,work,port,session,agent_sha,game_sha):
+     return state
+ 
+ def process_info(pids):
+-    """{pid: command line} for the pids that currently exist. Windows-only; {} elsewhere."""
++    """{pid: command line}, or None when this platform cannot verify process identity."""
+     wanted=[int(p) for p in pids if p]
+-    if os.name!='nt' or not wanted:return {}
++    if not wanted:return {}
++    if os.name!='nt':return None
+     script=('[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+             '$out=@();foreach($p in @(%s)){'
+             '$c=Get-CimInstance Win32_Process -Filter ("ProcessId=$p") -ErrorAction SilentlyContinue;'
+@@ -221,9 +222,10 @@ def process_info(pids):
+     return {int(row['pid']):(row.get('cmd') or '') for row in data if isinstance(row,dict) and row.get('pid') is not None}
+ 
+ def port_owners(ports):
+-    """{port: owning pid} for ports currently in LISTEN. Windows-only; {} elsewhere."""
++    """{port: owning pid}, or None when this platform cannot verify port ownership."""
+     wanted=sorted({int(p) for p in ports if p})
+-    if os.name!='nt' or not wanted:return {}
++    if not wanted:return {}
++    if os.name!='nt':return None
+     script=('[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+             '$out=@();foreach($p in @(%s)){'
+             '$c=Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction SilentlyContinue;'
+diff --git a/tools/verify_public_relay.py b/tools/verify_public_relay.py
+new file mode 100644
+index 0000000..9adf113
+--- /dev/null
++++ b/tools/verify_public_relay.py
+@@ -0,0 +1,158 @@
++#!/usr/bin/env python3
++"""Verify the public relay's shipped bytes and derived grids, without a game install.
++
++This does not reproduce private source verification, full regression or native matches.
++It never rebuilds the knowledge packet or modifies the runtime overlay.
++"""
++import argparse
++from collections import Counter
++from datetime import datetime, timezone
++import hashlib
++import json
++from pathlib import Path
++import sys
++import zipfile
++
++
++AGENT_SHA = '5741e241ce8ec1b921f36ed3274087609d0430f9281c44f6f62c096de84c5f54'
++CONTENT_DIGEST = '82438a7b373111dca88b38e7a1c2779527a9cef136cdb9a1297bdf4c511273a7'
++GAME_SHA = '8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9'
++CATALOG_SHA = '263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236'
++TERRAIN_SHA = 'ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9'
++
++
++def sha(data):
++    return hashlib.sha256(data).hexdigest()
++
++
++def read_json(path):
++    return json.loads(path.read_text(encoding='utf-8-sig'))
++
++
++def verify(root):
++    checks, differences = [], []
++
++    def check(name, passed):
++        checks.append({'name': name, 'passed': bool(passed)})
++
++    relay = root / 'astra-relay'
++    manifest = read_json(relay / 'P1F_ENVIRONMENT_MANIFEST.json')
++    check('manifest frozen identities', manifest['gameLibSha256'] == GAME_SHA
++          and manifest['agentJarSha256'] == AGENT_SHA)
++    with zipfile.ZipFile(relay / 'P1F-runtime-overlay-public.zip') as archive:
++        names = [item['name'] for item in manifest['included']]
++        check('overlay ZIP inventory', sorted(archive.namelist()) == sorted(names))
++        for item in manifest['included']:
++            name = item['name']
++            raw = archive.read(name)
++            checkout = (relay / 'runtime-overlay' / name).read_bytes()
++            check('ZIP manifest bytes: ' + name,
++                  len(raw) == item['size'] and sha(raw) == item['sha256'])
++            text = Path(name).suffix.lower() in ('.bat', '.md') or name == 'VERSION'
++            normalized = text and raw.replace(b'\r\n', b'\n') == checkout.replace(b'\r\n', b'\n')
++            check('checkout content: ' + name, checkout == raw or normalized)
++            if checkout != raw and normalized:
++                differences.append(name)
++
++    jar = relay / 'runtime-overlay/rw-agent-bootstrap.jar'
++    check('candidate whole-file SHA256', sha(jar.read_bytes()) == AGENT_SHA)
++    with zipfile.ZipFile(jar) as archive:
++        entries = {name: sha(archive.read(name)) for name in archive.namelist()
++                   if name != 'META-INF/MANIFEST.MF'}
++        digest = sha('\n'.join('%s %s' % (name, entries[name])
++                              for name in sorted(entries)).encode('utf-8'))
++        check('candidate contentDigest', digest == CONTENT_DIGEST)
++        catalog_bytes = archive.read('knowledge/UNIT_CATALOG_CANDIDATES.json')
++    check('catalog in JAR, resources and packet', sha(catalog_bytes) == CATALOG_SHA
++          and catalog_bytes == (root / 'agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json').read_bytes()
++          and catalog_bytes == (root / 'knowledge/UNIT_CATALOG_CANDIDATES.json').read_bytes())
++
++    packet = root / 'knowledge'
++    omitted, present = [], 0
++    for item in read_json(packet / 'PACKET_MANIFEST.json')['files']:
++        path = packet / item['path']
++        if not path.is_file():
++            omitted.append(item['path'])
++            continue
++        present += 1
++        raw = path.read_bytes()
++        check('packet bytes: ' + item['path'],
++              len(raw) == item['bytes'] and sha(raw) == item['sha256'])
++    # The publishing notes exclude copied third-party/private evidence.
++    check('packet omissions confined to evidence',
++          all(path.startswith('evidence/') for path in omitted))
++
++    catalog = json.loads(catalog_bytes)
++    check('catalog frozen game', catalog['gameJarSha256'] == GAME_SHA)
++    check('catalog coverage', len(catalog['units']) == 10 and len(catalog['aliasMap']) == 14)
++    ids = {unit['id'] for unit in catalog['units']}
++    check('catalog aliases resolve', set(catalog['aliasMap'].values()) <= ids)
++    fields = [field for unit in catalog['units'] for field in unit['fields'].values()]
++    check('field provenance metadata', all({'value', 'status', 'source'} <= field.keys()
++                                         and field['source'] for field in fields))
++
++    terrain_path = packet / 'TERRAIN_MAP_CANDIDATES.json'
++    terrain = read_json(terrain_path)
++    check('terrain packet identity', sha(terrain_path.read_bytes()) == TERRAIN_SHA
++          and terrain['gameJarSha256'] == GAME_SHA)
++    check('nine derived maps', len(terrain['maps']) == 9)
++    grid_count = 0
++    for item in terrain['maps']:
++        grid = read_json(packet / item['terrainGridCandidate'])
++        check('map/grid identity: ' + item['id'],
++              grid['mapSha256'] == item['sha256']
++              and (grid['width'], grid['height']) == (item['width'], item['height'])
++              and grid['order'] == 'TMX_ROW_MAJOR_Y_TIMES_WIDTH_PLUS_X'
++              and grid['engineIndex'] == 'x*height+y')
++        check('movement coverage: ' + item['id'], set(grid['costRle']) ==
++              {'LAND', 'WATER', 'HOVER', 'OVER_CLIFF', 'OVER_CLIFF_WATER', 'BUILDING', 'AIR', 'NONE'})
++        for movement, runs in grid['costRle'].items():
++            grid_count += 1
++            histogram = Counter()
++            for value, length in runs:
++                if type(value) is not int or type(length) is not int or length <= 0:
++                    raise ValueError('Invalid RLE in ' + item['id'] + '/' + movement)
++                histogram[str(value)] += length
++            check('RLE length/histogram: ' + item['id'] + '/' + movement,
++                  sum(histogram.values()) == grid['width'] * grid['height']
++                  and dict(histogram) == item['terrainCostHistogramCandidate'][movement])
++    check('resource count metadata', sum(item['resourcesItemsLayer'] for item in terrain['maps']) == 98)
++    failures = [item['name'] for item in checks if not item['passed']]
++    return {
++        'schemaVersion': 1,
++        'generatedUtc': datetime.now(timezone.utc).isoformat(),
++        'status': 'FAIL' if failures else 'PASS_PUBLIC_ARTIFACT_CHECKS',
++        'agentJarSha256': sha(jar.read_bytes()),
++        'contentDigest': digest,
++        'checks': len(checks), 'failures': failures,
++        'overlayFiles': len(names), 'checkoutLineEndingDifferences': differences,
++        'packetPresentFiles': present, 'packetOmittedEvidenceFiles': len(omitted),
++        'catalogFields': len(fields), 'derivedMovementGrids': grid_count,
++        'limits': [
++            'Packet source/bytecode evidence was omitted from this public mirror; metadata is not re-verification of those sources.',
++            'RLE checks are internal artifact consistency, not a comparison against native terrain d[].',
++            'No full build, engine harness, native match, desktop validation or performance comparison is performed.',
++            'Historical native raw ZIPs and candidate lineage reports are not present in the public evidence directory.'
++        ]
++    }
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
++    parser.add_argument('--output', type=Path, help='Optional JSON report; inputs are never rewritten')
++    args = parser.parse_args()
++    try:
++        report = verify(args.root.resolve())
++    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as error:
++        report = {'status': 'FAIL', 'error': str(error)}
++    rendered = json.dumps(report, ensure_ascii=False, indent=2) + '\n'
++    if args.output:
++        args.output.parent.mkdir(parents=True, exist_ok=True)
++        args.output.write_text(rendered, encoding='utf-8')
++    print(rendered, end='')
++    return 0 if report['status'] == 'PASS_PUBLIC_ARTIFACT_CHECKS' else 1
++
++
++if __name__ == '__main__':
++    sys.exit(main())
+-- 
+2.51.1
+
