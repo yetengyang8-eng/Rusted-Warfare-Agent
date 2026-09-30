@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-09-30-SPECIALIST-LIFECYCLE-v1",
+  "sourceCommit": "db0f6eec006a4f61f85134c38adc5c0f88a99e8a",
+  "candidateJarSha256": "b3e172de9ba54e9ebfd8da1f6787c72ad9f9f7a8702e42cdc63cc948bc57e71e",
+  "candidateContentDigest": "bea182a367f327d69000a3053a259a1e2f1288c58ab7737e0f0a25c978541f69",
+  "status": "REGRESSION_PASS_WITH_BOUNDED_NATIVE_RESULT",
+  "targeted": {
+    "contractChecks": 166,
+    "newHttpCasesPassed": 4,
+    "previousFundingHttpCasesPassed": 7,
+    "oldCandidateExpectedFailures": 4,
+    "firstContractFixtureFailure": "Only 500 free credits for a 700 mine; fixture corrected to 1500 free credits; original failure preserved."
+  },
+  "windows": {
+    "status": "PASS",
+    "runnerExitCode": 0,
+    "stepCount": 42,
+    "javaHarnessRuns": 21,
+    "pythonSuites": 18,
+    "failedSteps": 0,
+    "pythonTestsRun": 292,
+    "pythonSkipped": 0,
+    "strategyContractChecks": 166,
+    "transcript": "full-regression.log",
+    "transcriptSha256": "6eaf8dd3fc6c8032f85fdbc2011727301a3b4d05d3dfec0b0eef604ecd8206f7",
+    "fixedAndRegressionJarContentEqual": true,
+    "fixedCandidateSha256": "b3e172de9ba54e9ebfd8da1f6787c72ad9f9f7a8702e42cdc63cc948bc57e71e",
+    "candidateContentDigest": "bea182a367f327d69000a3053a259a1e2f1288c58ab7737e0f0a25c978541f69"
+  },
+  "native": {
+    "runtime": {
+      "runnerVersion": "0.07-alpha1",
+      "gameVersion": "1.15",
+      "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "map": "maps/skirmish/[p2]Big Island (2p).tmx",
+      "port": 10872,
+      "requestedSpeed": 5.0,
+      "aiDifficulty": 1,
+      "seed": 548988877,
+      "seedReproducibilityVerified": false,
+      "fogEnabled": true,
+      "lineOfSightFog": true,
+      "status": "STOP_REQUESTED",
+      "ticks": 81025,
+      "frame": 81025,
+      "gameTimeMs": 1296400,
+      "wallSeconds": 270.0977126,
+      "simulatedSecondsPerWallSecond": 4.799744461071752
+    },
+    "reportedOutcome": "PARTIAL",
+    "matchOutcome": "ONGOING",
+    "runnerExitCode": 1,
+    "engineExitCode": 0,
+    "engineAliveAfterCleanup": false,
+    "postRunOsCheck": {
+      "enginePid": 4304,
+      "processPresent": false,
+      "port": 10872,
+      "portListening": false
+    },
+    "battleSeconds": 1200.752,
+    "sourceReport": "native\\run-20260930T153432-e7abf2\\episode-001\\rw-agent-reports\\battle-1790782494518-9924836f.jsonl",
+    "sourceReportSha256": "f1bab32563e95cf11a49ea9110b4227d60a134892355d8fc346480600f6921c4",
+    "engineersObserved": 2,
+    "engineerOwnLossEvents": 0,
+    "responseAssignments": 4,
+    "newLifecycleEvents": {
+      "strategy_purchase_committed": 2,
+      "strategy_worker_committed": 4,
+      "strategy_investigation_started": 4,
+      "strategy_investigation_exhausted": 4,
+      "strategy_worker_commitment_released": 4
+    },
+    "needsResolvedByLegalEvidence": 0,
+    "globalAuditPassed": true,
+    "specialistPolicyPassed": true
+  },
+  "platformBoundary": "Windows complete; POSIX-only Java rename simulation skipped, Windows locking exercised; Linux not rerun.",
+  "evidenceArchiveSha256": "a327b6a43cb1f880fd96e16f4e9aaa7bf42a5339f690e46655e25cec53fd8877",
+  "inputEvidenceArchiveSha256": "56a58ab5d44505de62db7327addfad75ded475858d8f0c404b7a6f7a25662828",
+  "limits": [
+    "One natural headless sample is not desktop acceptance or win-rate evidence.",
+    "Support construction, escort and repair coverage must be read from events, not inferred from passing fixtures.",
+    "Historical desktop runs lack mapPath, difficulty and bootstrap records and are not a controlled A/B."
+  ]
+}

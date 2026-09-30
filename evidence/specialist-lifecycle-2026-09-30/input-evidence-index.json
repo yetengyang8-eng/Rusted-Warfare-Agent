@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scope": "THREE_OLD_DESKTOP_RAW_AND_TWO_REFERENCE_TEXTS_ONLY",
+  "archive": "input-evidence.zip",
+  "preparedArchive": "G:\\deepseek 工作台\\_validation\\specialist-lifecycle-20260930\\input-evidence.zip",
+  "archiveSha256": "56a58ab5d44505de62db7327addfad75ded475858d8f0c404b7a6f7a25662828",
+  "archiveBytes": 21096775,
+  "entries": [
+    {
+      "entry": "raw/battle-1790757006698-4a8d52d7.jsonl",
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790757006698-4a8d52d7.jsonl",
+      "sha256": "cedbeda1eb0c65f28a2f08c9dd3c565df3ea9087a4c9bd778be3a23a74fcc2bf",
+      "bytes": 34779268,
+      "archiveReadbackVerified": true
+    },
+    {
+      "entry": "raw/battle-1790757300274-44abfe25.jsonl",
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790757300274-44abfe25.jsonl",
+      "sha256": "dce31552573039866c48b5d833e5d5e979de7333c990e6bc72a4775bd3a3d16c",
+      "bytes": 144109303,
+      "archiveReadbackVerified": true
+    },
+    {
+      "entry": "raw/battle-1790765936935-dbcd93c4.jsonl",
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790765936935-dbcd93c4.jsonl",
+      "sha256": "2074f5c5c712ad197d9b15548b60c73f04ebd8f475b702fd9a34b42c9eea4ef6",
+      "bytes": 110249988,
+      "archiveReadbackVerified": true
+    },
+    {
+      "entry": "references/工程师 思路.txt",
+      "source": "G:\\deepseek 工作台\\脚本思路参考\\工程师 思路.txt",
+      "sha256": "ae3d1c76fa3319ca6848c0fbed57d70fbdf6efbc609a00337fb5effcbbac0f23",
+      "bytes": 3553,
+      "archiveReadbackVerified": true
+    },
+    {
+      "entry": "references/agent 思维架构 仓库 4.txt",
+      "source": "G:\\deepseek 工作台\\脚本思路参考\\agent 思维架构 仓库 4.txt",
+      "sha256": "53cded0c6043ec5d2ab54ea45c6aadfb9d20b177bba076960cb82ce1d2097a03",
+      "bytes": 10300,
+      "archiveReadbackVerified": true
+    }
+  ],
+  "allArchiveEntriesVerified": true
+}

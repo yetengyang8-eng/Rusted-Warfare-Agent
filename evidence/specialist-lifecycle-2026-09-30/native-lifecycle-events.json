@@ -1,0 +1,525 @@
+[
+  {
+    "line": 1533,
+    "wallTimeMs": 1790782576719,
+    "event": "strategy_purchase_committed",
+    "data": {
+      "needId": 778,
+      "producerId": 201,
+      "product": "combatEngineer",
+      "gameTimeMs": 486256,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 1726,
+    "wallTimeMs": 1790782583920,
+    "event": "strategy_worker_committed",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "needId": 778,
+      "reason": "PURCHASE_NEED_FULFILMENT",
+      "producerId": 201,
+      "assignmentSemantics": "OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE",
+      "gameTimeMs": 521072,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 1733,
+    "wallTimeMs": 1790782583974,
+    "event": "strategy_task_assigned",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "role": "CROSS_DOMAIN_RESPONSE",
+      "targetId": 778,
+      "approachX": 3190.0,
+      "approachY": 1530.0,
+      "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+      "evidence": {
+        "status": "observed",
+        "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+        "player": 0,
+        "frame": 32590,
+        "gameTimeMs": 521440,
+        "targetId": 778,
+        "targetX": 3250.01,
+        "targetY": 1400.585,
+        "targetObservedAtGameTimeMs": 459872,
+        "targetVisible": false,
+        "source": "LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY",
+        "scope": "APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF",
+        "actors": [
+          {
+            "unitId": 925,
+            "unitType": "combatEngineer",
+            "movementType": "HOVER",
+            "weaponRange": 170.0,
+            "compatibility": "UNKNOWN",
+            "status": "UNKNOWN",
+            "reason": "TARGET_NOT_CURRENTLY_VISIBLE",
+            "requiresWaterPosition": true,
+            "lastKnownPositionApproachStatus": "APPROACH_PATH_KNOWN",
+            "approachX": 3190.0,
+            "approachY": 1530.0,
+            "distanceTiles": 100
+          }
+        ]
+      },
+      "gameTimeMs": 521072,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 1832,
+    "wallTimeMs": 1790782587619,
+    "event": "strategy_purchase_committed",
+    "data": {
+      "needId": 800,
+      "producerId": 318,
+      "product": "combatEngineer",
+      "gameTimeMs": 538608,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 1996,
+    "wallTimeMs": 1790782593638,
+    "event": "strategy_investigation_started",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "targetId": 778,
+      "lastSeenGameTimeMs": 459792,
+      "deadlineGameTimeMs": 582584,
+      "distance": 59.72200020930308,
+      "gameTimeMs": 567584,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2033,
+    "wallTimeMs": 1790782594828,
+    "event": "strategy_worker_committed",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "needId": 800,
+      "reason": "PURCHASE_NEED_FULFILMENT",
+      "producerId": 318,
+      "assignmentSemantics": "OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE",
+      "gameTimeMs": 573456,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2041,
+    "wallTimeMs": 1790782594891,
+    "event": "strategy_task_assigned",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "role": "CROSS_DOMAIN_RESPONSE",
+      "targetId": 800,
+      "approachX": 3070.0,
+      "approachY": 1910.0,
+      "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+      "evidence": {
+        "status": "observed",
+        "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+        "player": 0,
+        "frame": 35868,
+        "gameTimeMs": 573888,
+        "targetId": 800,
+        "targetX": 3187.68,
+        "targetY": 1817.783,
+        "targetObservedAtGameTimeMs": 544736,
+        "targetVisible": false,
+        "source": "LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY",
+        "scope": "APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF",
+        "actors": [
+          {
+            "unitId": 1105,
+            "unitType": "combatEngineer",
+            "movementType": "HOVER",
+            "weaponRange": 170.0,
+            "compatibility": "UNKNOWN",
+            "status": "UNKNOWN",
+            "reason": "TARGET_NOT_CURRENTLY_VISIBLE",
+            "requiresWaterPosition": true,
+            "lastKnownPositionApproachStatus": "APPROACH_PATH_KNOWN",
+            "approachX": 3070.0,
+            "approachY": 1910.0,
+            "distanceTiles": 67
+          }
+        ]
+      },
+      "gameTimeMs": 573456,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2105,
+    "wallTimeMs": 1790782597325,
+    "event": "strategy_investigation_exhausted",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "targetId": 778,
+      "lastSeenGameTimeMs": 459792,
+      "reason": "LAST_KNOWN_APPROACH_REACHED_WITHOUT_FRESH_CONTACT",
+      "gameTimeMs": 585184,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2161,
+    "wallTimeMs": 1790782599681,
+    "event": "strategy_investigation_started",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "targetId": 800,
+      "lastSeenGameTimeMs": 544656,
+      "deadlineGameTimeMs": 611640,
+      "distance": 4.62521923804679,
+      "gameTimeMs": 596640,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2232,
+    "wallTimeMs": 1790782602672,
+    "event": "strategy_worker_commitment_released",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "needId": 778,
+      "reason": "STALE_SITE_INVESTIGATION_RETURNED_HOME",
+      "gameTimeMs": 611024,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2235,
+    "wallTimeMs": 1790782602703,
+    "event": "strategy_worker_committed",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "needId": 705,
+      "reason": "AVAILABLE_SPECIALIST",
+      "producerId": -1,
+      "assignmentSemantics": "OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE",
+      "gameTimeMs": 611024,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2236,
+    "wallTimeMs": 1790782602703,
+    "event": "strategy_task_assigned",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "role": "CROSS_DOMAIN_RESPONSE",
+      "targetId": 705,
+      "approachX": 2950.0,
+      "approachY": 870.0,
+      "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+      "evidence": {
+        "status": "observed",
+        "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+        "player": 0,
+        "frame": 38211,
+        "gameTimeMs": 611376,
+        "targetId": 705,
+        "targetX": 2981.083,
+        "targetY": 781.063,
+        "targetObservedAtGameTimeMs": 521440,
+        "targetVisible": false,
+        "source": "LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY",
+        "scope": "APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF",
+        "actors": [
+          {
+            "unitId": 925,
+            "unitType": "combatEngineer",
+            "movementType": "HOVER",
+            "weaponRange": 170.0,
+            "compatibility": "UNKNOWN",
+            "status": "UNKNOWN",
+            "reason": "TARGET_NOT_CURRENTLY_VISIBLE",
+            "requiresWaterPosition": true,
+            "lastKnownPositionApproachStatus": "APPROACH_PATH_KNOWN",
+            "approachX": 2950.0,
+            "approachY": 870.0,
+            "distanceTiles": 108
+          }
+        ]
+      },
+      "gameTimeMs": 611024,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2250,
+    "wallTimeMs": 1790782603294,
+    "event": "strategy_investigation_exhausted",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "targetId": 800,
+      "lastSeenGameTimeMs": 544656,
+      "reason": "LAST_KNOWN_APPROACH_REACHED_WITHOUT_FRESH_CONTACT",
+      "gameTimeMs": 613904,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2353,
+    "wallTimeMs": 1790782607521,
+    "event": "strategy_worker_commitment_released",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "needId": 800,
+      "reason": "STALE_SITE_INVESTIGATION_RETURNED_HOME",
+      "gameTimeMs": 634256,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2358,
+    "wallTimeMs": 1790782607554,
+    "event": "strategy_worker_committed",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "needId": 861,
+      "reason": "AVAILABLE_SPECIALIST",
+      "producerId": -1,
+      "assignmentSemantics": "OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE",
+      "gameTimeMs": 634256,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2359,
+    "wallTimeMs": 1790782607554,
+    "event": "strategy_task_assigned",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "role": "CROSS_DOMAIN_RESPONSE",
+      "targetId": 861,
+      "approachX": 3090.0,
+      "approachY": 1890.0,
+      "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+      "evidence": {
+        "status": "observed",
+        "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+        "player": 0,
+        "frame": 39667,
+        "gameTimeMs": 634672,
+        "targetId": 861,
+        "targetX": 3200.486,
+        "targetY": 1794.335,
+        "targetObservedAtGameTimeMs": 559264,
+        "targetVisible": false,
+        "source": "LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY",
+        "scope": "APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF",
+        "actors": [
+          {
+            "unitId": 1105,
+            "unitType": "combatEngineer",
+            "movementType": "HOVER",
+            "weaponRange": 170.0,
+            "compatibility": "UNKNOWN",
+            "status": "UNKNOWN",
+            "reason": "TARGET_NOT_CURRENTLY_VISIBLE",
+            "requiresWaterPosition": true,
+            "lastKnownPositionApproachStatus": "APPROACH_PATH_KNOWN",
+            "approachX": 3090.0,
+            "approachY": 1890.0,
+            "distanceTiles": 66
+          }
+        ]
+      },
+      "gameTimeMs": 634256,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2410,
+    "wallTimeMs": 1790782609905,
+    "event": "strategy_investigation_started",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "targetId": 705,
+      "lastSeenGameTimeMs": 521296,
+      "deadlineGameTimeMs": 660712,
+      "distance": 53.681991207480415,
+      "gameTimeMs": 645712,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2491,
+    "wallTimeMs": 1790782613491,
+    "event": "strategy_investigation_exhausted",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "targetId": 705,
+      "lastSeenGameTimeMs": 521296,
+      "reason": "LAST_KNOWN_APPROACH_REACHED_WITHOUT_FRESH_CONTACT",
+      "gameTimeMs": 662928,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2513,
+    "wallTimeMs": 1790782614629,
+    "event": "strategy_investigation_started",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "targetId": 861,
+      "lastSeenGameTimeMs": 556320,
+      "deadlineGameTimeMs": 683432,
+      "distance": 4.565183457430804,
+      "gameTimeMs": 668432,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2585,
+    "wallTimeMs": 1790782618181,
+    "event": "strategy_investigation_exhausted",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "targetId": 861,
+      "lastSeenGameTimeMs": 556320,
+      "reason": "LAST_KNOWN_APPROACH_REACHED_WITHOUT_FRESH_CONTACT",
+      "gameTimeMs": 685424,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2610,
+    "wallTimeMs": 1790782619362,
+    "event": "strategy_task_blocked",
+    "data": {
+      "taskId": 1000003,
+      "job": "PROSPECT",
+      "reason": "PROSPECT_NO_PROGRESS",
+      "gameTimeMs": 691072,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2636,
+    "wallTimeMs": 1790782620559,
+    "event": "strategy_worker_commitment_released",
+    "data": {
+      "taskId": 1000001,
+      "unitId": 925,
+      "needId": 705,
+      "reason": "STALE_SITE_INVESTIGATION_RETURNED_HOME",
+      "gameTimeMs": 696976,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2680,
+    "wallTimeMs": 1790782622347,
+    "event": "strategy_worker_commitment_released",
+    "data": {
+      "taskId": 1000002,
+      "unitId": 1105,
+      "needId": 861,
+      "reason": "STALE_SITE_INVESTIGATION_RETURNED_HOME",
+      "gameTimeMs": 705440,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2902,
+    "wallTimeMs": 1790782629953,
+    "event": "strategy_task_preempted",
+    "data": {
+      "taskId": 1000003,
+      "previousJob": "PROSPECT",
+      "reason": "CRITICAL_HP",
+      "gameTimeMs": 741584,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 2922,
+    "wallTimeMs": 1790782630591,
+    "event": "strategy_task_lost",
+    "data": {
+      "taskId": 1000003,
+      "unitId": 1193,
+      "job": "RETURN",
+      "gameTimeMs": 744736,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 4469,
+    "wallTimeMs": 1790782688190,
+    "event": "strategy_task_preempted",
+    "data": {
+      "taskId": 1000004,
+      "previousJob": "IDLE",
+      "reason": "CRITICAL_HP",
+      "gameTimeMs": 1020976,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  },
+  {
+    "line": 4488,
+    "wallTimeMs": 1790782688849,
+    "event": "strategy_task_lost",
+    "data": {
+      "taskId": 1000004,
+      "unitId": 1535,
+      "job": "RETURN",
+      "gameTimeMs": 1024288,
+      "sessionId": "8da2b6dc-e99e-49e7-b40b-965b44cefa02",
+      "player": "team:0"
+    }
+  }
+]

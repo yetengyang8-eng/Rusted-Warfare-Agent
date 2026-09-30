@@ -14,7 +14,9 @@ Rusted Warfare PC 1.15（Build 28 / Game Code 176）的规则型自动对战 Age
 
 生产输入起点为 Git 6214f073d1b76429c0b827268db918e1e90e9f5f；交付 JAR SHA256 为 76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed。后续任务先核对 project-state/baseline-manifest.json，不使用旧环境副本作为最新源码。
 
-当前候选已有三场 Windows 桌面 5x / 约 2400 游戏秒长局，全部 PARTIAL/ONGOING；峰值移动武装单位为 88 / 21 / 101。它们证明自然运行与部分任务链，尚不证明胜率提升。Spain 两局在 Match 前人工生产一个 builder，此后自主运行。当前主线是解释同图轨迹差异及需求到投资/响应之间的断点。
+基线交付件已有三场 Windows 桌面 5x / 约 2400 游戏秒长局，全部 PARTIAL/ONGOING；峰值移动武装单位为 88 / 21 / 101。Spain 两局在 Match 前人工生产一个 builder，此后自主运行。这些是基线历史证据，不继承为后续候选验收。
+
+最新增量为 [Specialist Lifecycle 候选](deliveries/specialist-lifecycle-2026-09-30/README.md)，基于已完成的有界资金预留，继续修复工程师经济挪用、到点失联后的调查与任务释放、重复返回。源码和验证见 [当前状态](project-state/CURRENT_STATE.md) 与 [本轮交付证据](evidence/specialist-lifecycle-2026-09-30/README.md)。继续任务时保留最新提交，不因基线核对报告增量源码差异而回退。下一主线是有证据的响应者护送。
 
 ## 目录
 

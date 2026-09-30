@@ -1,0 +1,411 @@
+{
+  "status": "PASS",
+  "runnerExitCode": 0,
+  "stepCount": 42,
+  "javaHarnessRuns": 21,
+  "pythonSuites": 18,
+  "failedSteps": 0,
+  "pythonTestsRun": 292,
+  "pythonSkipped": 0,
+  "strategyContractChecks": 166,
+  "steps": [
+    {
+      "step": "build:compile",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/build_compile.log",
+      "rawLogSha256": "5f4a1217b53a61ba4c05f20f0add48886003fca20297bbcfbe521498eee68f51",
+      "skipLines": []
+    },
+    {
+      "step": "build:jar",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/build_jar.log",
+      "rawLogSha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca",
+      "skipLines": []
+    },
+    {
+      "step": "build:test-classes",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/build_test-classes.log",
+      "rawLogSha256": "5c852e5b178f99984e2a21a5f5c3ad0f084b8256aff01c89272fbe0bab699aee",
+      "skipLines": []
+    },
+    {
+      "step": "java:SmokeHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_SmokeHarness.log",
+      "rawLogSha256": "4c448dd0bc536feda53aa5582a8e6edaf214ad93758186c111f590eb7172193f",
+      "skipLines": []
+    },
+    {
+      "step": "java:BridgeHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_BridgeHarness.log",
+      "rawLogSha256": "1c259276eebe966e52943bca9af510a98ac47d30a95fafadf2b7a03e6c57c25c",
+      "skipLines": []
+    },
+    {
+      "step": "java:BridgeHarness-disabled",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_BridgeHarness-disabled.log",
+      "rawLogSha256": "daa7bd2b28bf244b575a6c277c0e65a86cdd3df8509bc07696a7a7103a773f21",
+      "skipLines": []
+    },
+    {
+      "step": "java:EconomyHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_EconomyHarness.log",
+      "rawLogSha256": "8263f911a4dfe565448941199d1bb7c771ef041a6fd6e42700ac0f6a46d62c9d",
+      "skipLines": []
+    },
+    {
+      "step": "java:OpeningHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_OpeningHarness.log",
+      "rawLogSha256": "1b7c2d215b66553ab4c14c38f6c1c19167628eab728c55142fb267c301ea394f",
+      "skipLines": []
+    },
+    {
+      "step": "java:OpeningHarness-replacement",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_OpeningHarness-replacement.log",
+      "rawLogSha256": "7109aee3fbc5fedab4e6ebfa66a4bf256ea8faa0b850690db96a4fb22ff4e35a",
+      "skipLines": []
+    },
+    {
+      "step": "java:ProductionPlanHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ProductionPlanHarness.log",
+      "rawLogSha256": "ab6a951989e0b4afed697d5330032ba205f6580b59c2d42b57fda6badd231c78",
+      "skipLines": []
+    },
+    {
+      "step": "py:test_development",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_development.log",
+      "rawLogSha256": "e9733e9aeace6c3caa635d9be29c43658d6dd58c57f9a0ced74d7052db9648b6",
+      "testsRun": 13,
+      "seconds": 47.091,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_opening",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_opening.log",
+      "rawLogSha256": "9ed1f04964d8fb6a004f0760ca5880eab5fff09e8185f68ed73ea0537961ceed",
+      "testsRun": 8,
+      "seconds": 30.0,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_economy",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_economy.log",
+      "rawLogSha256": "934c8517dd1771f03f1040b6bd00b289fdf3b4118f61293f189657c8607563d4",
+      "testsRun": 12,
+      "seconds": 33.444,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_client.log",
+      "rawLogSha256": "81951d06394a09aad9f81a1af93176037228e15a37a6605561c35abd7ff03993",
+      "testsRun": 11,
+      "seconds": 35.412,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "java:DiagnosticsHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_DiagnosticsHarness.log",
+      "rawLogSha256": "1a02fb39c8392d17ca9f70099c0bb8f8a8168dfb112ac91429375b08eadbe6b8",
+      "skipLines": []
+    },
+    {
+      "step": "java:PreflightHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_PreflightHarness.log",
+      "rawLogSha256": "91512a91899c2f5937826344657ed3a47102f812ca0c536239386ac996c7f343",
+      "skipLines": []
+    },
+    {
+      "step": "py:test_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_reports.log",
+      "rawLogSha256": "cd7bf23d2e26401db4d0e85489c412adfec2a4c7aa050d3278312fc646b7f201",
+      "testsRun": 16,
+      "seconds": 0.03,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "java:ScoutHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ScoutHarness.log",
+      "rawLogSha256": "801900c5691bd61de16b28cd5e7c5500a5a054c2b3d61dd6edb6264eae61c60c",
+      "skipLines": []
+    },
+    {
+      "step": "java:TerrainMemoryHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_TerrainMemoryHarness.log",
+      "rawLogSha256": "b2d8ccaceb404e8072f268afc2279d4ddfa2a5a5145b8b0999b95f00b16df280",
+      "skipLines": []
+    },
+    {
+      "step": "java:GuardHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_GuardHarness.log",
+      "rawLogSha256": "af8140cba5bc69f297e053b3c29a14b64e091de76e1751f9c0c0e73617db5846",
+      "skipLines": []
+    },
+    {
+      "step": "java:CapabilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_CapabilityHarness.log",
+      "rawLogSha256": "1f8e904333a0885c04c5ae4a12e5b19eef676dcd245fafbdf1194ecd35471362",
+      "skipLines": []
+    },
+    {
+      "step": "java:TargetCompatibilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_TargetCompatibilityHarness.log",
+      "rawLogSha256": "534f7496e2dbcd59b9b2d4b37523c2e0d8603b3aa4078185a6fec0087357f2c9",
+      "skipLines": []
+    },
+    {
+      "step": "java:BuilderHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_BuilderHarness.log",
+      "rawLogSha256": "3af1d368f36d32e3628138833c859233eddca80b97c2d0411b4b217d6f60cfe1",
+      "skipLines": []
+    },
+    {
+      "step": "java:ReachabilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ReachabilityHarness.log",
+      "rawLogSha256": "4a03ecb3f1e1c6f983f5ea17d516599b3b6fb33b599df75d0c98ffb4ff47d442",
+      "skipLines": []
+    },
+    {
+      "step": "java:ReachabilityHarness-sandbox",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ReachabilityHarness-sandbox.log",
+      "rawLogSha256": "80e0f68f33d6d57afca6bd2447c9f1655980c73a86c02e68755a8d08a5501a8f",
+      "skipLines": []
+    },
+    {
+      "step": "py:test_frontier",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_frontier.log",
+      "rawLogSha256": "a0b8bb78fc972f29bf484f2bbbf7de1ad4dc6c46ae6d227853c9dad818369988",
+      "testsRun": 8,
+      "seconds": 22.12,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_frontier_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_frontier_reports.log",
+      "rawLogSha256": "07fa8ac995bd1d9e92520ebe8e70f6e220337a5460cbb6294b7f93de6e78bd73",
+      "testsRun": 10,
+      "seconds": 0.096,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "java:CombatHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_CombatHarness.log",
+      "rawLogSha256": "4da14500b48aa129e6f9561bfbfbfc6eb0110896cc2453cbd8add7f3ca4a3a65",
+      "skipLines": []
+    },
+    {
+      "step": "py:test_battle_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_battle_reports.log",
+      "rawLogSha256": "94020f9b379fdf44ed145150fc58d11bc665b35114ee88f758f293a631ed5a49",
+      "testsRun": 15,
+      "seconds": 0.001,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_battle_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_battle_client.log",
+      "rawLogSha256": "df7d6de20e47057e60fd6e77daeece232ac0b41b76eeef1cafeffbb1339f1492",
+      "testsRun": 78,
+      "seconds": 149.189,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_strategy_funding",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_strategy_funding.log",
+      "rawLogSha256": "4c4a723c77eb9b2e7839cd5ac23c260af0bf71bbb7aa7f3ba006821b9f74e3a5",
+      "testsRun": 7,
+      "seconds": 24.596,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_specialist_lifecycle",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_specialist_lifecycle.log",
+      "rawLogSha256": "90b887868f0f4edbfc2f526cbcaea89fb7f16e64beffe630567787e6f6d574c3",
+      "testsRun": 4,
+      "seconds": 13.381,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_target_compatibility",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_target_compatibility.log",
+      "rawLogSha256": "f8f45bcf20077d1472821a994f1fd1e701b51396cb9e8f3f2bcefa1bb2a02661",
+      "testsRun": 15,
+      "seconds": 15.157,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_recon_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_recon_client.log",
+      "rawLogSha256": "dc2ba182d9a1c23db7b40d6e21682ef6072d08d304a9c0cb960d3960c2470f57",
+      "testsRun": 7,
+      "seconds": 12.698,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_recon_frontier_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_recon_frontier_client.log",
+      "rawLogSha256": "cb9ab5524e46e1da2a91e3adcccc3fa83ed7d96aafe01fe5b15e193a934a3e52",
+      "testsRun": 22,
+      "seconds": 54.338,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_headless_parallel",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_headless_parallel.log",
+      "rawLogSha256": "55c8cac2c09bb411d393f25a38709f0f1ca7447fe218eb8ce7e69f7ac326e85a",
+      "testsRun": 27,
+      "seconds": 10.878,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_ab_aggregate",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_ab_aggregate.log",
+      "rawLogSha256": "6de6c4e6d48844912dd927e314e934713d1f7ef32923ba4f08df174c4537cac3",
+      "testsRun": 17,
+      "seconds": 0.75,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "py:test_ab_campaign",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_ab_campaign.log",
+      "rawLogSha256": "fe28c6e5796b5e6a561ff7af7941420e16efa52742624bd1579a9e12e9ad2860",
+      "testsRun": 14,
+      "seconds": 0.07,
+      "skipped": 0,
+      "skipLines": []
+    },
+    {
+      "step": "java:ReportCommitHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ReportCommitHarness.log",
+      "rawLogSha256": "7f21de88f68cc75ecd3d2ecd061a56e40006152eae93694222bfaa20a59b8d3a",
+      "skipLines": [
+        "REPORT_COMMIT_TEST_SKIP posix-only open-handle rename simulation on Windows 11; remaining commit checks still run"
+      ]
+    },
+    {
+      "step": "java:ExecutionContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_ExecutionContractHarness.log",
+      "rawLogSha256": "72e8f194e4f987bac25d3f78d5d3aab012908966fd43eeed64d36b9ba3dd234d",
+      "skipLines": []
+    },
+    {
+      "step": "java:StrategyContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/java_StrategyContractHarness.log",
+      "rawLogSha256": "8708773ce9c94c411858b5cf9d03ab4597a337a05b72ec02d39e6f4d27f73296",
+      "skipLines": [],
+      "contractChecks": 166
+    },
+    {
+      "step": "py:test_global_strategy_audit",
+      "status": "PASS",
+      "exitCode": 0,
+      "rawLog": "raw-logs/py_test_global_strategy_audit.log",
+      "rawLogSha256": "6c7426d9b91666577a9d75b1bc4f1622199af6d1c170c027b0746cc4bf13d505",
+      "testsRun": 8,
+      "seconds": 0.01,
+      "skipped": 0,
+      "skipLines": []
+    }
+  ],
+  "transcript": "full-regression.log",
+  "transcriptSha256": "6eaf8dd3fc6c8032f85fdbc2011727301a3b4d05d3dfec0b0eef604ecd8206f7",
+  "fixedAndRegressionJarContentEqual": true,
+  "fixedCandidateSha256": "b3e172de9ba54e9ebfd8da1f6787c72ad9f9f7a8702e42cdc63cc948bc57e71e",
+  "candidateContentDigest": "bea182a367f327d69000a3053a259a1e2f1288c58ab7737e0f0a25c978541f69"
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-09-30-SPECIALIST-LIFECYCLE-v1",
+  "sourceCommit": "db0f6eec006a4f61f85134c38adc5c0f88a99e8a",
+  "parentSourceCommit": "ea614b5fdf729a0a09b3b324252555a31d565ac5",
+  "parentBaselineId": "RW-BASELINE-2026-09-30-GS-v1",
+  "promotedToBaseline": false,
+  "installedToDesktop": false,
+  "jar": {
+    "path": "deliveries/specialist-lifecycle-2026-09-30/rw-agent-bootstrap.jar",
+    "sha256": "b3e172de9ba54e9ebfd8da1f6787c72ad9f9f7a8702e42cdc63cc948bc57e71e",
+    "bytes": 261000,
+    "contentDigest": "bea182a367f327d69000a3053a259a1e2f1288c58ab7737e0f0a25c978541f69"
+  },
+  "frozenGameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "catalogSha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+  "build": {
+    "java": "BellSoft Liberica JDK 17.0.20.1",
+    "release": 8,
+    "platform": "Windows",
+    "nativeRuntimeJava": "Original bundled Java 13",
+    "fixedVsFullRegressionContentEqual": true,
+    "nonManifestArchiveEntries": 88
+  },
+  "validatedWorkspaceFiles": [
+    {
+      "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+      "sha256": "ebb891b804ce70d269ff6597179e9b328ce5192c536f5c480dda9470210bcfc5"
+    },
+    {
+      "path": "agent/tests/StrategyContractHarness.java",
+      "sha256": "d3ba119941d626afe379f3fa4ac1ed6756c72cfc0762c215946246e1ea5c373b"
+    },
+    {
+      "path": "agent/tests/test_specialist_lifecycle.py",
+      "sha256": "f4b7af9ca7f697477db6cd0f7ca5d1c78398379892c1b9fdf1712618442e003f"
+    },
+    {
+      "path": "agent/test-win.ps1",
+      "sha256": "230a81aacafa07afe10c1d8dfd428ab04e54b1c46839e3a9219f8f7f4154e6dc"
+    },
+    {
+      "path": "agent/test.sh",
+      "sha256": "1c9b5becace30315bded3bdb049bf74eef23c33098f0bea78ef38c3a947dee6f"
+    },
+    {
+      "path": "tools/audit_specialist_lifecycle.py",
+      "sha256": "753ae1c4bd521288b569bd368dedd65faf641f4ad34abd087a6fcda8ddbfe9ea"
+    }
+  ],
+  "rollback": {
+    "baselineJar": "astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar",
+    "previousCandidateJar": "deliveries/capability-funding-2026-09-30/rw-agent-bootstrap.jar",
+    "installedProgramReplaced": false
+  }
+}

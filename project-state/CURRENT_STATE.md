@@ -6,24 +6,31 @@
 
 先读 [BASELINE.md](BASELINE.md) 和 [baseline-manifest.json](baseline-manifest.json)，再读 [NEXT_STAGE_PLAN.md](NEXT_STAGE_PLAN.md)。本文件只记录基线建立后的增量状态，不再叠加多个“当前版本”。
 
-## 最新增量：工程师有界资金预留
+## 最新增量：专属单位生命周期
 
-- 候选 ID：`RW-CANDIDATE-2026-09-30-CAP-FUNDING-v1`，基于基线提交 `6214868`，实现提交 `fd8572849388d2e7fe04a5d446154602b54d3118`。
-- 固定候选 JAR SHA256：`41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141`；contentDigest：`28bca05142179dbf2640451682ca11b5d4ff440bc7f95321e3dafce356392f06`。
-- 已实现：真实需求及菜单报价驱动的单项资金预留，预计缺口不超过 60 游戏秒才建立，90 游戏秒到期，取消/失败后冷却 60 游戏秒。普通生产和新可选经济支出尊重预留；既有恢复和施工优先级保留。
-- 已证断点：Spain A 的 137 次工程师菜单均不可负担，93 次有空队列；普通出兵持续消耗收入。A 的 8 个需求去向、SHA、行号和可复跑工具见 [专项分析](../evidence/capability-funding-2026-09-30/ANALYSIS.md)。更早战损和整局分化根因仍未知。
-- 针对性验证：117 项策略契约检查、7 个真实 HTTP 客户端场景全部通过。旧基线的有限收入场景失败，最终候选在开始预留后 48 游戏秒接受工程师订单；也验证紧急取消、超时、冷却和旧经济支出旁路。
-- 完整 Windows 回归：41/41 步通过，21 Java runs、17 Python suites、288 Python tests、0 Python skipped、failed steps=0；Java 的 POSIX 专用文件句柄模拟按平台跳过，Windows 文件锁用例实际通过。固定交付与完整回归重建的 88 个非 manifest 归档项完全一致。
-- 独立原生局：Big Island / difficulty=1 / 请求5x / 1202.416 Battle 游戏秒，预算到期 PARTIAL/ONGOING；3 次预留全部释放，2 次在约33秒后购买成功，1 次因需求已服务取消。新工程师 #2290/#3223 均观察到成品、认领和响应任务；两者后续均出现 NO_OBSERVED_PROGRESS，合法解决需求数0。引擎正常退出，原始报告完整，现有专项审计零违规。
-- 固定交付件见 [候选目录](../deliveries/capability-funding-2026-09-30/README.md)，完整结果见 [交付证据](../evidence/capability-funding-2026-09-30/README.md) 和 [验证摘要](../evidence/capability-funding-2026-09-30/validation-summary.json)。原生局的第二次购买关联需求与成品首次接手目标不同，后续分析以逐单位来源记录为准。
-- 该候选尚未晋级新基线，也未部署到桌面环境。后续保留本仓库增量源码，不因 v1 校验器报告源码差异而重置。
+- 候选 ID：`RW-CANDIDATE-2026-09-30-SPECIALIST-LIFECYCLE-v1`。实现提交 `db0f6eec006a4f61f85134c38adc5c0f88a99e8a`，从上一轮最新提交 `ea614b5fdf729a0a09b3b324252555a31d565ac5` 继续。
+- 固定候选 JAR SHA256：`b3e172de9ba54e9ebfd8da1f6787c72ad9f9f7a8702e42cdc63cc948bc57e71e`；contentDigest：`bea182a367f327d69000a3053a259a1e2f1288c58ab7737e0f0a25c978541f69`。
+- 已实现：工程师退出普通经济任务，采购/任务/响应者明确关联；到点后失联进入最多 15 游戏秒调查，耗尽保留 UNKNOWN，返回后释放旧任务。新合法接触可重启；已在基地或原生仍在返回的单位不重复下令，远处中断仍恢复。普通 builder 经济职责、资金预留、明确移动缺口的两栖喷气机施工及成品接手保留。
+- 已核对最新两份参考原文和三场 Capability Funding 桌面 raw。第二局为 14 名工程师观察、12 名损失，并非 14 名死亡；大量工程师被普通探矿/施工挪用。到点失联后重复原坐标命令与已在家重复返回均有逐行证据，见 [输入分析](../evidence/specialist-lifecycle-2026-09-30/INPUT_ANALYSIS.md)。
+- 旧候选在新增四个真实 HTTP 场景中全部预期失败；最终新候选四场全部通过，原有七场资金测试继续通过。策略契约为 166 项，包含失联后处理新需求、同目标新证据重启、采购成品等待与三次损失上限。
+- 完整 Windows 回归：42/42 步通过，21 Java runs、18 Python suites、292 Python tests、0 Python skipped、failed steps=0。POSIX 专用 Java 模拟按平台跳过，Windows 文件锁真实执行；88 个非 manifest JAR 归档项与固定交付完全一致。Linux 未重新运行。
+- 独立原生局：Big Island / difficulty=1 / 请求5x / poll500ms / 1200.752 Battle 游戏秒，预算到期 PARTIAL/ONGOING。两笔采购、两名工程师 #925/#1105、四次响应/调查/到期/返家释放；两者均接手过第二个需求，工程师损失0、普通经济挪用0、已到家重复返回0。调查识别前有一次刚到点重发，详细边界保留在证据中；调查期间和超出明确失联观察宽限后的重发0。
+- 合法解决数0，末尾四项需求仍 UNKNOWN。本局没有自然触发调查中重新发现目标、支援喷气机接手；这些只有自动测试覆盖。不把单局存活、预算到期或流程通过当成胜率收益。
+- 固定交付见 [候选目录](../deliveries/specialist-lifecycle-2026-09-30/README.md)；[完整证据](../evidence/specialist-lifecycle-2026-09-30/README.md)、[身份清单](../evidence/specialist-lifecycle-2026-09-30/candidate-manifest.json)、[验证摘要](../evidence/specialist-lifecycle-2026-09-30/validation-summary.json) 已保存旧/新对照、原始报告、运行设置与清理记录。
+- 本候选未晋级基线、未替换桌面安装。后续任务从本仓库最新提交及本文件继续，不因 v1 校验器报告增量源码差异而重置。
+
+## 已完成的上一项：有界资金预留
+
+`RW-CANDIDATE-2026-09-30-CAP-FUNDING-v1` 的实现提交为 `fd8572849388d2e7fe04a5d446154602b54d3118`，JAR 为 `41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141`。按真实报价预留单项工程师资金，预计缺口不超过60游戏秒、90秒到期、失败冷却60秒，已纳入当前候选。其历史回归和自然局保留在 [原交付证据](../evidence/capability-funding-2026-09-30/README.md)。
+
+最新只读核对确认它已经运行于 `游戏环境/P1F-Astra-CapabilityFunding-2026-09-30`，三场桌面 raw 均自证该 SHA。本文件覆盖上一轮“未部署”的现状措辞，原交付文档保留当时记录；本轮没有执行该安装。三局实际地图路径、难度、人工 bootstrap 未记录，不能补猜。
 
 ## 已固定的起点
 
 - 默认源码：本仓库 agent/、tools/；生产代码及既有证据起点为 6214f073d1b76429c0b827268db918e1e90e9f5f。
 - 最新功能：Global Strategy / Feasibility / Combat Engineer。
 - 不可变交付 JAR：SHA256 76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed。
-- 最新桌面环境：工作区 游戏环境/P1F-Astra-GlobalStrategy-2026-09-30；程序与原版引擎哈希已核对。
+- 基线桌面环境：工作区 游戏环境/P1F-Astra-GlobalStrategy-2026-09-30；更新的 Capability Funding 桌面身份见上节，两者分开保存。
 - 旧 P1F-冒烟环境 与旧 developer/dist 仍为 5741e241…，保留历史身份，不能据此判断最新候选未部署。
 - 基线建立轮只整理和验证；其后的产品增量见上节，不回写旧基线结果。
 
@@ -46,7 +53,7 @@
 
 ## 下一项工作
 
-资金链与任务建立已在独立自然局触发。下一项优先沿新工程师 #2290/#3223 的接近目标、命令、运动和进展判定追踪 NO_OBSERVED_PROGRESS，按证据修一个响应执行断点。取消后的真实军力收益仍待自然样本。完整早期战损归因及通用运行上下文扩展按需推进，不阻塞已有证据支持的单项施工；不继续扩大军力上限来替代诊断。
+优先处理有证据的响应者护送：沿最新旧桌面 Run 2 的四次低血中断，核定受损位置、合法威胁和附近可用友军，设计最小护卫集合、等待上限、任务归属及撤回条件，再用同条件自然样本验证。保持主力最低可用力量，不按工程师价格推算战力。通用敌群/多编队、修理和无 builder 起步保持独立待办；若实际使用被无 builder 阻塞，再提前该项。当前任务已完成的生命周期增量不回退。完整计划见 NEXT_STAGE_PLAN。
 
 ## 历史记录
 

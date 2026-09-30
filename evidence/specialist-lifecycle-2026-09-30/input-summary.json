@@ -1,0 +1,4593 @@
+{
+  "schemaVersion": 1,
+  "purpose": "THREE_DESKTOP_INPUTS_NEW_POLICY_NEGATIVE_CONTROLS",
+  "auditTool": "tools/audit_specialist_lifecycle.py",
+  "reports": [
+    {
+      "schemaVersion": 1,
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790757006698-4a8d52d7.jsonl",
+      "sourceSha256": "cedbeda1eb0c65f28a2f08c9dd3c565df3ea9087a4c9bd778be3a23a74fcc2bf",
+      "sourceBytes": 34779268,
+      "candidateProvenance": {
+        "agentVersion": "0.07-alpha1",
+        "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-bootstrap.jar",
+        "agentJarSha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+        "gameLibJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\game-lib.jar",
+        "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30",
+        "reportDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports",
+        "osName": "Windows 10",
+        "javaVersion": "13",
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "gameTimeMs": 0
+      },
+      "battleConfig": {
+        "gameSeconds": 1200,
+        "armyCap": 24,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "mineTarget": 3,
+        "expansionIntervalGameMs": 15000,
+        "expansionBuildRangeWorld": 100.0,
+        "landFactoryTarget": 2,
+        "rearFactoryRadiusWorld": 400.0,
+        "builderTarget": 1,
+        "reachabilitySamplingEnabled": true,
+        "reachabilitySampleIntervalSeconds": 30,
+        "reachabilityRepresentativeTypeLimit": 3,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "noProgressEngageRange": 300.0,
+        "noProgressAttentionGapMs": 3000,
+        "decisionIntervalGameMs": 1000,
+        "minimumCommandGapGameMs": 1000,
+        "openingApmLimited": false,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "reconEnabled": true,
+        "reconFrontierEnabled": true,
+        "reconMinReadyArmy": 7,
+        "reconThreatBufferWorld": 80,
+        "executionContractVersion": 1,
+        "executionPlayerScope": "team:0",
+        "targetEligibilityVersion": 1,
+        "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+        "globalStrategyEnabled": true,
+        "strategyContractVersion": 1,
+        "engagementAssessmentContract": "COMMITTED_FORMATION_V1",
+        "pollWallTimeMs": 500,
+        "battleSafetyGameSeconds": 7200,
+        "battleSafetyWallSeconds": 2400,
+        "reportCommitMemoryMiB": 8,
+        "reportDiskLimitMiB": 1024,
+        "reconExpendableHpMaxFraction": 0.45,
+        "reconFrontierMinMainForce": 6
+      },
+      "controlConditions": {
+        "mapDimensions": {
+          "width": 3600.0,
+          "height": 3600.0,
+          "tilesWide": 180,
+          "tilesHigh": 180,
+          "tileWidth": 20,
+          "tileHeight": 20
+        },
+        "playerScope": "team:0",
+        "initialPlayer": {
+          "teamId": 0,
+          "name": "Player",
+          "credits": 3138.5
+        },
+        "battleStartGameTimeMs": 93457,
+        "pollWallTimeMs": 500,
+        "mapPath": "UNKNOWN",
+        "difficulty": "UNKNOWN",
+        "seed": "UNKNOWN",
+        "seedReproducibilityVerified": false,
+        "requestedSpeed": "UNKNOWN",
+        "measuredGameSecondsPerWallSecond": 5.0,
+        "bootstrapIntervention": "UNKNOWN",
+        "source": "RAW_REPORT_ONLY_NO_OPERATOR_CONTEXT_INFERRED"
+      },
+      "summary": {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "phase": "battle",
+        "matchOutcome": "ONGOING",
+        "commands": 336,
+        "observations": 449,
+        "ownLosses": 43,
+        "newCombatUnits": 72,
+        "attackOrders": 154,
+        "attackOrdersConfirmed": 153,
+        "retreatOrders": 20,
+        "upgradesCompleted": 2,
+        "completedMines": 6,
+        "newMines": 6,
+        "mineTarget": 3,
+        "minesBeyondFloor": 4,
+        "expansionRefusals": 52,
+        "expansionBlocked": 63,
+        "completedFactories": 1,
+        "newFactories": 1,
+        "landFactoryTarget": 2,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 3,
+        "builderOrders": 3,
+        "battleGameTimeMs": 1200160,
+        "gameSecondsPerWallSecond": 5.0,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 0,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 0,
+        "targetSwitches": 88,
+        "effectiveDecisionIntervalGameMs": 2980,
+        "noProgressAttentionGapMs": 8940,
+        "maxObservedGameTimeJump": 3040,
+        "observationCount": 449,
+        "spendTotal": 61050,
+        "spendByCategory": {
+          "FACTORY_UPGRADE": {
+            "orders": 2,
+            "cost": 4000
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 72,
+            "cost": 47250
+          },
+          "NEW_MINE": {
+            "orders": 7,
+            "cost": 4900
+          },
+          "NEW_FACTORY": {
+            "orders": 1,
+            "cost": 700
+          },
+          "BUILDER_RECOVERY": {
+            "orders": 3,
+            "cost": 1500
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 4,
+            "cost": 2000
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 1,
+            "cost": 700
+          }
+        },
+        "measuredIncomePerGameSecond": 63.43,
+        "investmentIntentions": 8,
+        "investmentCompletions": 0,
+        "investmentCancellations": 8,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "EMERGENCY",
+        "reconEnabled": true,
+        "reconTasksCreated": 27,
+        "reconOrdersQueued": 30,
+        "reconOrdersObserved": 0,
+        "reconMovesCompletedBetweenSamples": 30,
+        "frontierTasksSatisfiedByTeamVision": 18,
+        "reconResolvedAfterObservedMove": 0,
+        "reconReacquired": 0,
+        "reconSitesCleared": 0,
+        "reconBlocked": 0,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 27,
+        "frontierTasksRefreshed": 0,
+        "frontierTasksAdvanced": 2,
+        "frontierTasksBlocked": 4,
+        "frontierTasksPreempted": 3,
+        "expendableTransfers": 4,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 0,
+        "factoryTargetIncreaseBlocks": 1,
+        "landFactoryTargetAtEnd": 2,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 8.67,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 2,
+        "productionConsumptionPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 51.0,
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 43,
+          "activeTarget": 35,
+          "reserveTarget": 8,
+          "hardSafetyCap": 128,
+          "builderTarget": 1,
+          "capabilityNeedsAtEnd": 0,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 5,
+          "mineUpgradesObserved": 0,
+          "constructionCompletionsObserved": 1,
+          "capabilityReservesStarted": 0,
+          "capabilityReservesReleased": 0,
+          "capabilityReserveAtEnd": 0.0
+        }
+      },
+      "engineersObserved": 0,
+      "engineerOwnLossEvents": 0,
+      "engineerIdsWithOwnLoss": [],
+      "engineers": [],
+      "engineerDeaths": [],
+      "engineerTaskLosses": [],
+      "engineerProspectOrders": [],
+      "engineerConstructionOrders": [],
+      "engineerConstructionProducts": {},
+      "responseAssignments": [],
+      "responseOrdersRepeatedAtApproach": [],
+      "returnOrdersAlreadyAtHome": [],
+      "responseRepeatContactEvidence": {},
+      "newLifecycleEvents": {},
+      "needBindings": [],
+      "workerCommitmentsAtEnd": {},
+      "reportIntegrityIssues": [],
+      "newPolicy": "SPECIALIST_LIFECYCLE_2026_09_30_V1",
+      "newPolicyConformancePassed": true,
+      "newPolicyViolationsByReason": {},
+      "newPolicyViolations": [],
+      "interpretation": "NEW_POLICY_NEGATIVE_CONTROLS_DO_NOT_CHANGE_HISTORICAL_AUDIT_RESULTS",
+      "limits": [
+        "Not a fog/ownership legality audit; run audit_global_strategy.py separately.",
+        "Own-loss events are observed disappearance from own state, not proof of enemy kill attribution.",
+        "Near-point uses the latest preceding legal own observation (<20 world units); no hidden target reads.",
+        "Near-point repeats are policy failures only with explicit lost contact, continuous sampled arrival >=12s and first lost assessment >10s ago; visible/unknown remain diagnostics.",
+        "Worker commitment release does not itself release ownership or complete a still-running support BUILD.",
+        "At-home requires reconstructed RETURN job and a move to the observed command center (<180 world units).",
+        "Missing movement/response coverage is not evidence of benefit; no win-rate or matched-run claim."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790757300274-44abfe25.jsonl",
+      "sourceSha256": "dce31552573039866c48b5d833e5d5e979de7333c990e6bc72a4775bd3a3d16c",
+      "sourceBytes": 144109303,
+      "candidateProvenance": {
+        "agentVersion": "0.07-alpha1",
+        "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-bootstrap.jar",
+        "agentJarSha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+        "gameLibJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\game-lib.jar",
+        "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30",
+        "reportDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports",
+        "osName": "Windows 10",
+        "javaVersion": "13",
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "gameTimeMs": 0
+      },
+      "battleConfig": {
+        "gameSeconds": 2400,
+        "armyCap": 24,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "mineTarget": 3,
+        "expansionIntervalGameMs": 15000,
+        "expansionBuildRangeWorld": 100.0,
+        "landFactoryTarget": 2,
+        "rearFactoryRadiusWorld": 400.0,
+        "builderTarget": 1,
+        "reachabilitySamplingEnabled": true,
+        "reachabilitySampleIntervalSeconds": 30,
+        "reachabilityRepresentativeTypeLimit": 3,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "noProgressEngageRange": 300.0,
+        "noProgressAttentionGapMs": 3000,
+        "decisionIntervalGameMs": 1000,
+        "minimumCommandGapGameMs": 1000,
+        "openingApmLimited": false,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "reconEnabled": true,
+        "reconFrontierEnabled": true,
+        "reconMinReadyArmy": 7,
+        "reconThreatBufferWorld": 80,
+        "executionContractVersion": 1,
+        "executionPlayerScope": "team:0",
+        "targetEligibilityVersion": 1,
+        "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+        "globalStrategyEnabled": true,
+        "strategyContractVersion": 1,
+        "engagementAssessmentContract": "COMMITTED_FORMATION_V1",
+        "pollWallTimeMs": 500,
+        "battleSafetyGameSeconds": 7200,
+        "battleSafetyWallSeconds": 2400,
+        "reportCommitMemoryMiB": 8,
+        "reportDiskLimitMiB": 1024,
+        "reconExpendableHpMaxFraction": 0.45,
+        "reconFrontierMinMainForce": 6
+      },
+      "controlConditions": {
+        "mapDimensions": {
+          "width": 3600.0,
+          "height": 3600.0,
+          "tilesWide": 180,
+          "tilesHigh": 180,
+          "tileWidth": 20,
+          "tileHeight": 20
+        },
+        "playerScope": "team:0",
+        "initialPlayer": {
+          "teamId": 0,
+          "name": "Player",
+          "credits": 3188.0
+        },
+        "battleStartGameTimeMs": 95130,
+        "pollWallTimeMs": 500,
+        "mapPath": "UNKNOWN",
+        "difficulty": "UNKNOWN",
+        "seed": "UNKNOWN",
+        "seedReproducibilityVerified": false,
+        "requestedSpeed": "UNKNOWN",
+        "measuredGameSecondsPerWallSecond": 5.0,
+        "bootstrapIntervention": "UNKNOWN",
+        "source": "RAW_REPORT_ONLY_NO_OPERATOR_CONTEXT_INFERRED"
+      },
+      "summary": {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "phase": "battle",
+        "matchOutcome": "ONGOING",
+        "commands": 731,
+        "observations": 872,
+        "ownLosses": 201,
+        "newCombatUnits": 196,
+        "attackOrders": 244,
+        "attackOrdersConfirmed": 231,
+        "retreatOrders": 57,
+        "upgradesCompleted": 4,
+        "completedMines": 9,
+        "newMines": 9,
+        "mineTarget": 3,
+        "minesBeyondFloor": 7,
+        "expansionRefusals": 114,
+        "expansionBlocked": 129,
+        "completedFactories": 3,
+        "newFactories": 3,
+        "landFactoryTarget": 4,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 2,
+        "builderOrders": 2,
+        "battleGameTimeMs": 2402110,
+        "gameSecondsPerWallSecond": 5.0,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 5,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 9,
+        "targetSuppressionsAtEnd": 5,
+        "targetSwitches": 146,
+        "effectiveDecisionIntervalGameMs": 2895,
+        "noProgressAttentionGapMs": 8685,
+        "maxObservedGameTimeJump": 3125,
+        "observationCount": 872,
+        "spendTotal": 229650,
+        "spendByCategory": {
+          "FACTORY_UPGRADE": {
+            "orders": 4,
+            "cost": 8000
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 185,
+            "cost": 129550
+          },
+          "NEW_MINE": {
+            "orders": 9,
+            "cost": 6300
+          },
+          "NEW_FACTORY": {
+            "orders": 3,
+            "cost": 2100
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 22,
+            "cost": 53000
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 21,
+            "cost": 15700
+          },
+          "MINE_UPGRADE": {
+            "orders": 10,
+            "cost": 14000
+          },
+          "BUILDER_RECOVERY": {
+            "orders": 2,
+            "cost": 1000
+          }
+        },
+        "measuredIncomePerGameSecond": 94.4,
+        "investmentIntentions": 7,
+        "investmentCompletions": 1,
+        "investmentCancellations": 6,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "EMERGENCY",
+        "reconEnabled": true,
+        "reconTasksCreated": 8,
+        "reconOrdersQueued": 42,
+        "reconOrdersObserved": 36,
+        "reconMovesCompletedBetweenSamples": 4,
+        "frontierTasksSatisfiedByTeamVision": 2,
+        "reconResolvedAfterObservedMove": 0,
+        "reconReacquired": 0,
+        "reconSitesCleared": 0,
+        "reconBlocked": 4,
+        "reconTaskPendingAtEnd": true,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 3,
+        "frontierTasksRefreshed": 0,
+        "frontierTasksAdvanced": 0,
+        "frontierTasksBlocked": 0,
+        "frontierTasksPreempted": 1,
+        "expendableTransfers": 1,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 2,
+        "factoryTargetIncreaseBlocks": 3,
+        "landFactoryTargetAtEnd": 4,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 47.85,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 3,
+        "productionConsumptionPerGameSecond": 127.0,
+        "sustainableSurplusPerGameSecond": -57.9,
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 47,
+          "activeTarget": 39,
+          "reserveTarget": 8,
+          "hardSafetyCap": 128,
+          "builderTarget": 1,
+          "capabilityNeedsAtEnd": 5,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 53,
+          "mineUpgradesObserved": 9,
+          "constructionCompletionsObserved": 21,
+          "capabilityReservesStarted": 3,
+          "capabilityReservesReleased": 3,
+          "capabilityReserveAtEnd": 0.0
+        }
+      },
+      "engineersObserved": 14,
+      "engineerOwnLossEvents": 12,
+      "engineerIdsWithOwnLoss": [
+        3055,
+        3490,
+        4612,
+        5044,
+        6811,
+        6915,
+        7826,
+        8152,
+        9114,
+        9207,
+        9857,
+        10282
+      ],
+      "engineers": [
+        {
+          "unitId": 3055,
+          "type": "combatEngineer",
+          "firstObservationLine": 4045,
+          "firstGameTimeMs": 968700,
+          "responseAssignments": 3,
+          "prospectOrders": 2,
+          "constructionProducts": {},
+          "ownLossLine": 8185,
+          "lastObservationLine": 8165,
+          "lastGameTimeMs": 1533785,
+          "lastHp": 131.403,
+          "lastX": 954.313,
+          "lastY": 2570.003
+        },
+        {
+          "unitId": 3490,
+          "type": "combatEngineer",
+          "firstObservationLine": 4924,
+          "firstGameTimeMs": 1098490,
+          "responseAssignments": 1,
+          "prospectOrders": 0,
+          "constructionProducts": {},
+          "ownLossLine": 6280,
+          "lastObservationLine": 6256,
+          "lastGameTimeMs": 1269180,
+          "lastHp": 65.103,
+          "lastX": 1989.99,
+          "lastY": 1147.896
+        },
+        {
+          "unitId": 4612,
+          "type": "combatEngineer",
+          "firstObservationLine": 6662,
+          "firstGameTimeMs": 1318040,
+          "responseAssignments": 1,
+          "prospectOrders": 0,
+          "constructionProducts": {},
+          "ownLossLine": 7351,
+          "lastObservationLine": 7331,
+          "lastGameTimeMs": 1407540,
+          "lastHp": 48.281,
+          "lastX": 1489.573,
+          "lastY": 1289.584
+        },
+        {
+          "unitId": 5044,
+          "type": "combatEngineer",
+          "firstObservationLine": 7583,
+          "firstGameTimeMs": 1451615,
+          "responseAssignments": 0,
+          "prospectOrders": 4,
+          "constructionProducts": {
+            "extractorT1": 3
+          },
+          "ownLossLine": 9214,
+          "lastObservationLine": 9185,
+          "lastGameTimeMs": 1698325,
+          "lastHp": 642.342,
+          "lastX": 1052.992,
+          "lastY": 1290.112
+        },
+        {
+          "unitId": 6811,
+          "type": "combatEngineer",
+          "firstObservationLine": 9630,
+          "firstGameTimeMs": 1769695,
+          "responseAssignments": 0,
+          "prospectOrders": 2,
+          "constructionProducts": {
+            "extractorT1": 1
+          },
+          "ownLossLine": 10373,
+          "lastObservationLine": 10353,
+          "lastGameTimeMs": 1866665,
+          "lastHp": 66.903,
+          "lastX": 1886.173,
+          "lastY": 2006.454
+        },
+        {
+          "unitId": 6915,
+          "type": "combatEngineer",
+          "firstObservationLine": 9696,
+          "firstGameTimeMs": 1778415,
+          "responseAssignments": 0,
+          "prospectOrders": 2,
+          "constructionProducts": {
+            "extractorT1": 1
+          },
+          "ownLossLine": 10691,
+          "lastObservationLine": 10664,
+          "lastGameTimeMs": 1906860,
+          "lastHp": 113.021,
+          "lastX": 954.374,
+          "lastY": 2572.205
+        },
+        {
+          "unitId": 7826,
+          "type": "combatEngineer",
+          "firstObservationLine": 10630,
+          "firstGameTimeMs": 1903745,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {
+            "heavyTank": 4
+          },
+          "ownLossLine": 11702,
+          "lastObservationLine": 11679,
+          "lastGameTimeMs": 2032050,
+          "lastHp": 252.681,
+          "lastX": 1790.052,
+          "lastY": 972.007
+        },
+        {
+          "unitId": 8152,
+          "type": "combatEngineer",
+          "firstObservationLine": 10995,
+          "firstGameTimeMs": 1946545,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {
+            "heavyTank": 1,
+            "extractorT1": 1
+          },
+          "ownLossLine": 11940,
+          "lastObservationLine": 11916,
+          "lastGameTimeMs": 2060810,
+          "lastHp": 96.342,
+          "lastX": 1762.759,
+          "lastY": 1937.131
+        },
+        {
+          "unitId": 9114,
+          "type": "combatEngineer",
+          "firstObservationLine": 11984,
+          "firstGameTimeMs": 2069410,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {
+            "heavyTank": 1
+          },
+          "ownLossLine": 12575,
+          "lastObservationLine": 12550,
+          "lastGameTimeMs": 2147770,
+          "lastHp": 210.208,
+          "lastX": 1715.051,
+          "lastY": 446.593
+        },
+        {
+          "unitId": 9207,
+          "type": "combatEngineer",
+          "firstObservationLine": 12190,
+          "firstGameTimeMs": 2097385,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {},
+          "ownLossLine": 13133,
+          "lastObservationLine": 13109,
+          "lastGameTimeMs": 2223925,
+          "lastHp": 65.654,
+          "lastX": 1893.849,
+          "lastY": 2990.01
+        },
+        {
+          "unitId": 9857,
+          "type": "combatEngineer",
+          "firstObservationLine": 12816,
+          "firstGameTimeMs": 2184505,
+          "responseAssignments": 0,
+          "prospectOrders": 2,
+          "constructionProducts": {
+            "extractorT1": 2
+          },
+          "ownLossLine": 13658,
+          "lastObservationLine": 13639,
+          "lastGameTimeMs": 2309415,
+          "lastHp": 377.832,
+          "lastX": 2037.958,
+          "lastY": 1527.906
+        },
+        {
+          "unitId": 10282,
+          "type": "combatEngineer",
+          "firstObservationLine": 13317,
+          "firstGameTimeMs": 2262145,
+          "responseAssignments": 0,
+          "prospectOrders": 2,
+          "constructionProducts": {},
+          "ownLossLine": 13728,
+          "lastObservationLine": 13709,
+          "lastGameTimeMs": 2317930,
+          "lastHp": 278.839,
+          "lastX": 2014.719,
+          "lastY": 1509.044
+        },
+        {
+          "unitId": 11092,
+          "type": "combatEngineer",
+          "firstObservationLine": 13923,
+          "firstGameTimeMs": 2348430,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {
+            "heavyTank": 2
+          },
+          "ownLossLine": null,
+          "lastObservationLine": 14940,
+          "lastGameTimeMs": 2497240,
+          "lastHp": 104.49,
+          "lastX": 2228.332,
+          "lastY": 2348.343
+        },
+        {
+          "unitId": 11183,
+          "type": "combatEngineer",
+          "firstObservationLine": 13974,
+          "firstGameTimeMs": 2356690,
+          "responseAssignments": 0,
+          "prospectOrders": 1,
+          "constructionProducts": {
+            "heavyTank": 2
+          },
+          "ownLossLine": null,
+          "lastObservationLine": 14940,
+          "lastGameTimeMs": 2497240,
+          "lastHp": 113.795,
+          "lastX": 2578.491,
+          "lastY": 2698.498
+        }
+      ],
+      "engineerDeaths": [
+        {
+          "line": 6280,
+          "unitId": 3490,
+          "type": "combatEngineer",
+          "x": 1989.99,
+          "y": 1147.896,
+          "gameTimeMs": 1271985
+        },
+        {
+          "line": 7351,
+          "unitId": 4612,
+          "type": "combatEngineer",
+          "x": 1489.573,
+          "y": 1289.584,
+          "gameTimeMs": 1410350
+        },
+        {
+          "line": 8185,
+          "unitId": 3055,
+          "type": "combatEngineer",
+          "x": 954.313,
+          "y": 2570.003,
+          "gameTimeMs": 1536660
+        },
+        {
+          "line": 9214,
+          "unitId": 5044,
+          "type": "combatEngineer",
+          "x": 1052.992,
+          "y": 1290.112,
+          "gameTimeMs": 1701285
+        },
+        {
+          "line": 10373,
+          "unitId": 6811,
+          "type": "combatEngineer",
+          "x": 1886.173,
+          "y": 2006.454,
+          "gameTimeMs": 1869480
+        },
+        {
+          "line": 10691,
+          "unitId": 6915,
+          "type": "combatEngineer",
+          "x": 954.374,
+          "y": 2572.205,
+          "gameTimeMs": 1909680
+        },
+        {
+          "line": 11702,
+          "unitId": 7826,
+          "type": "combatEngineer",
+          "x": 1790.052,
+          "y": 972.007,
+          "gameTimeMs": 2034940
+        },
+        {
+          "line": 11940,
+          "unitId": 8152,
+          "type": "combatEngineer",
+          "x": 1762.759,
+          "y": 1937.131,
+          "gameTimeMs": 2063730
+        },
+        {
+          "line": 12575,
+          "unitId": 9114,
+          "type": "combatEngineer",
+          "x": 1715.051,
+          "y": 446.593,
+          "gameTimeMs": 2150580
+        },
+        {
+          "line": 13133,
+          "unitId": 9207,
+          "type": "combatEngineer",
+          "x": 1893.849,
+          "y": 2990.01,
+          "gameTimeMs": 2226675
+        },
+        {
+          "line": 13658,
+          "unitId": 9857,
+          "type": "combatEngineer",
+          "x": 2037.958,
+          "y": 1527.906,
+          "gameTimeMs": 2312290
+        },
+        {
+          "line": 13728,
+          "unitId": 10282,
+          "type": "combatEngineer",
+          "x": 2014.719,
+          "y": 1509.044,
+          "gameTimeMs": 2320735
+        }
+      ],
+      "engineerTaskLosses": [
+        {
+          "line": 6285,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "job": "RETURN",
+          "gameTimeMs": 1271985,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 7357,
+          "taskId": 1000006,
+          "unitId": 4612,
+          "job": "RETURN",
+          "gameTimeMs": 1410350,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 8188,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "job": "RETURN",
+          "gameTimeMs": 1536660,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 9219,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "job": "IDLE",
+          "gameTimeMs": 1701285,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 10377,
+          "taskId": 1000009,
+          "unitId": 6811,
+          "job": "RETURN",
+          "gameTimeMs": 1869480,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 10696,
+          "taskId": 1000010,
+          "unitId": 6915,
+          "job": "RETURN",
+          "gameTimeMs": 1909680,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 11705,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "job": "RETURN",
+          "gameTimeMs": 2034940,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 11944,
+          "taskId": 1000013,
+          "unitId": 8152,
+          "job": "RETURN",
+          "gameTimeMs": 2063730,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 12578,
+          "taskId": 1000015,
+          "unitId": 9114,
+          "job": "RETURN",
+          "gameTimeMs": 2150580,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 13137,
+          "taskId": 1000016,
+          "unitId": 9207,
+          "job": "RETURN",
+          "gameTimeMs": 2226675,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 13663,
+          "taskId": 1000018,
+          "unitId": 9857,
+          "job": "IDLE",
+          "gameTimeMs": 2312290,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        },
+        {
+          "line": 13731,
+          "taskId": 1000019,
+          "unitId": 10282,
+          "job": "RETURN",
+          "gameTimeMs": 2320735,
+          "sessionId": "c4dfdc66-fb71-4b17-b766-d1f8d4b45b44",
+          "player": "team:0",
+          "unitType": "combatEngineer"
+        }
+      ],
+      "engineerProspectOrders": [
+        {
+          "line": 7601,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1451615,
+          "tile": 15447
+        },
+        {
+          "line": 7811,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "gameTimeMs": 1484935,
+          "tile": 15447
+        },
+        {
+          "line": 8014,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "gameTimeMs": 1510795,
+          "tile": 8226
+        },
+        {
+          "line": 8084,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1519720,
+          "tile": 8226
+        },
+        {
+          "line": 8555,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1592720,
+          "tile": 17713
+        },
+        {
+          "line": 9076,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1681310,
+          "tile": 9063
+        },
+        {
+          "line": 9695,
+          "taskId": 1000009,
+          "unitId": 6811,
+          "gameTimeMs": 1775610,
+          "tile": 29457
+        },
+        {
+          "line": 10077,
+          "taskId": 1000009,
+          "unitId": 6811,
+          "gameTimeMs": 1826710,
+          "tile": 15576
+        },
+        {
+          "line": 10140,
+          "taskId": 1000010,
+          "unitId": 6915,
+          "gameTimeMs": 1835345,
+          "tile": 15447
+        },
+        {
+          "line": 10517,
+          "taskId": 1000010,
+          "unitId": 6915,
+          "gameTimeMs": 1886600,
+          "tile": 8226
+        },
+        {
+          "line": 11258,
+          "taskId": 1000013,
+          "unitId": 8152,
+          "gameTimeMs": 1972385,
+          "tile": 15576
+        },
+        {
+          "line": 11338,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "gameTimeMs": 1981370,
+          "tile": 15680
+        },
+        {
+          "line": 12139,
+          "taskId": 1000015,
+          "unitId": 9114,
+          "gameTimeMs": 2088885,
+          "tile": 15680
+        },
+        {
+          "line": 12660,
+          "taskId": 1000016,
+          "unitId": 9207,
+          "gameTimeMs": 2158995,
+          "tile": 15447
+        },
+        {
+          "line": 12844,
+          "taskId": 1000018,
+          "unitId": 9857,
+          "gameTimeMs": 2184505,
+          "tile": 24220
+        },
+        {
+          "line": 13348,
+          "taskId": 1000019,
+          "unitId": 10282,
+          "gameTimeMs": 2262145,
+          "tile": 29457
+        },
+        {
+          "line": 13461,
+          "taskId": 1000018,
+          "unitId": 9857,
+          "gameTimeMs": 2278955,
+          "tile": 17713
+        },
+        {
+          "line": 13522,
+          "taskId": 1000019,
+          "unitId": 10282,
+          "gameTimeMs": 2287385,
+          "tile": 17713
+        },
+        {
+          "line": 14575,
+          "taskId": 1000022,
+          "unitId": 11183,
+          "gameTimeMs": 2436960,
+          "tile": 15576
+        },
+        {
+          "line": 14615,
+          "taskId": 1000021,
+          "unitId": 11092,
+          "gameTimeMs": 2445155,
+          "tile": 15576
+        }
+      ],
+      "engineerConstructionOrders": [
+        {
+          "line": 7883,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1493765,
+          "x": 1710.0,
+          "y": 2950.0
+        },
+        {
+          "line": 8790,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1629135,
+          "x": 1970.0,
+          "y": 1470.0
+        },
+        {
+          "line": 8935,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1653705,
+          "x": 1730.0,
+          "y": 1930.0
+        },
+        {
+          "line": 9804,
+          "taskId": 1000009,
+          "unitId": 6811,
+          "product": "extractorT1",
+          "gameTimeMs": 1792320,
+          "x": 3270.0,
+          "y": 2350.0
+        },
+        {
+          "line": 10333,
+          "taskId": 1000010,
+          "unitId": 6915,
+          "product": "extractorT1",
+          "gameTimeMs": 1861055,
+          "x": 1710.0,
+          "y": 2950.0
+        },
+        {
+          "line": 10663,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1903745,
+          "x": 3150.0,
+          "y": 3230.0
+        },
+        {
+          "line": 10806,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1920935,
+          "x": 3130.0,
+          "y": 3270.0
+        },
+        {
+          "line": 11026,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1946545,
+          "x": 3110.0,
+          "y": 3310.0
+        },
+        {
+          "line": 11103,
+          "taskId": 1000013,
+          "unitId": 8152,
+          "product": "heavyTank",
+          "gameTimeMs": 1955225,
+          "x": 3050.0,
+          "y": 3270.0
+        },
+        {
+          "line": 11173,
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1963810,
+          "x": 3090.0,
+          "y": 3350.0
+        },
+        {
+          "line": 11507,
+          "taskId": 1000013,
+          "unitId": 8152,
+          "product": "extractorT1",
+          "gameTimeMs": 2006665,
+          "x": 1730.0,
+          "y": 1930.0
+        },
+        {
+          "line": 12026,
+          "taskId": 1000015,
+          "unitId": 9114,
+          "product": "heavyTank",
+          "gameTimeMs": 2072135,
+          "x": 3150.0,
+          "y": 3190.0
+        },
+        {
+          "line": 13022,
+          "taskId": 1000018,
+          "unitId": 9857,
+          "product": "extractorT1",
+          "gameTimeMs": 2209980,
+          "x": 2690.0,
+          "y": 2010.0
+        },
+        {
+          "line": 13279,
+          "taskId": 1000018,
+          "unitId": 9857,
+          "product": "extractorT1",
+          "gameTimeMs": 2254025,
+          "x": 3270.0,
+          "y": 2350.0
+        },
+        {
+          "line": 14019,
+          "taskId": 1000022,
+          "unitId": 11183,
+          "product": "heavyTank",
+          "gameTimeMs": 2362310,
+          "x": 3070.0,
+          "y": 3270.0
+        },
+        {
+          "line": 14134,
+          "taskId": 1000021,
+          "unitId": 11092,
+          "product": "heavyTank",
+          "gameTimeMs": 2378850,
+          "x": 3150.0,
+          "y": 3230.0
+        },
+        {
+          "line": 14191,
+          "taskId": 1000022,
+          "unitId": 11183,
+          "product": "heavyTank",
+          "gameTimeMs": 2387210,
+          "x": 3030.0,
+          "y": 3290.0
+        },
+        {
+          "line": 14255,
+          "taskId": 1000021,
+          "unitId": 11092,
+          "product": "heavyTank",
+          "gameTimeMs": 2395400,
+          "x": 3150.0,
+          "y": 3270.0
+        }
+      ],
+      "engineerConstructionProducts": {
+        "extractorT1": 8,
+        "heavyTank": 10
+      },
+      "responseAssignments": [
+        {
+          "line": 4061,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 2805,
+          "gameTimeMs": 968700,
+          "approachX": 1870.0,
+          "approachY": 170.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 4596,
+          "orders": 3,
+          "ordersNearApproach": 2,
+          "nearSinceGameTimeMs": 1041275,
+          "lostContactSinceGameTimeMs": 968700,
+          "lostContactSinceLine": 4061,
+          "arrivalGameTimeMs": 1041275,
+          "nearSinceLine": 4596,
+          "endLine": 4706,
+          "endReason": "CRITICAL_HP"
+        },
+        {
+          "line": 4944,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1098490,
+          "approachX": 1930.0,
+          "approachY": 170.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 5635,
+          "orders": 6,
+          "ordersNearApproach": 5,
+          "nearSinceGameTimeMs": 1189280,
+          "lostContactSinceGameTimeMs": 1098490,
+          "lostContactSinceLine": 4944,
+          "arrivalGameTimeMs": 1189280,
+          "nearSinceLine": 5635,
+          "endLine": 6122,
+          "endReason": "NO_OBSERVED_PROGRESS"
+        },
+        {
+          "line": 5175,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1126875,
+          "approachX": 1030.0,
+          "approachY": 630.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 6486,
+          "orders": 8,
+          "ordersNearApproach": 5,
+          "nearSinceGameTimeMs": 1297820,
+          "lostContactSinceGameTimeMs": 1252330,
+          "lostContactSinceLine": 6135,
+          "arrivalGameTimeMs": 1297820,
+          "nearSinceLine": 6486,
+          "endLine": 6778,
+          "endReason": "CRITICAL_HP"
+        },
+        {
+          "line": 6680,
+          "taskId": 1000006,
+          "unitId": 4612,
+          "targetId": 4301,
+          "gameTimeMs": 1318040,
+          "approachX": 1110.0,
+          "approachY": 530.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": null,
+          "orders": 1,
+          "ordersNearApproach": 0,
+          "nearSinceGameTimeMs": null,
+          "lostContactSinceGameTimeMs": 1318040,
+          "lostContactSinceLine": 6680,
+          "endLine": 7315,
+          "endReason": "CRITICAL_HP"
+        },
+        {
+          "line": 7203,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 4198,
+          "gameTimeMs": 1387505,
+          "approachX": 1050.0,
+          "approachY": 550.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": null,
+          "orders": 1,
+          "ordersNearApproach": 0,
+          "nearSinceGameTimeMs": null,
+          "lostContactSinceGameTimeMs": 1387505,
+          "lostContactSinceLine": 7203,
+          "endLine": 8180,
+          "endReason": "CRITICAL_HP"
+        }
+      ],
+      "responseOrdersRepeatedAtApproach": [
+        {
+          "line": 4606,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 2805,
+          "gameTimeMs": 1041275,
+          "distance": 4.694,
+          "orderTypeObserved": null,
+          "x": 1870.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4564,
+            "gameTimeMs": 1035985,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 4687,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 2805,
+          "gameTimeMs": 1054835,
+          "distance": 4.694,
+          "orderTypeObserved": null,
+          "x": 1870.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4629,
+            "gameTimeMs": 1046795,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4596,
+          "nearGameMs": 13560,
+          "lostContactSinceLine": 4061,
+          "lostContactGameMs": 86135
+        },
+        {
+          "line": 5616,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1183595,
+          "distance": 4.836,
+          "orderTypeObserved": null,
+          "x": 1110.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5612,
+            "gameTimeMs": 1183905,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 5677,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1192085,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5647,
+            "gameTimeMs": 1189490,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 5738,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1197860,
+          "distance": 4.836,
+          "orderTypeObserved": null,
+          "x": 1110.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5705,
+            "gameTimeMs": 1195295,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5593,
+          "nearGameMs": 14265,
+          "lostContactSinceLine": 5175,
+          "lostContactGameMs": 70985
+        },
+        {
+          "line": 5801,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1206445,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5756,
+            "gameTimeMs": 1201020,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 17165,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 107955
+        },
+        {
+          "line": 5844,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1212145,
+          "distance": 4.836,
+          "orderTypeObserved": null,
+          "x": 1110.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5797,
+            "gameTimeMs": 1206710,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5593,
+          "nearGameMs": 28550,
+          "lostContactSinceLine": 5175,
+          "lostContactGameMs": 85270
+        },
+        {
+          "line": 5902,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1220705,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5857,
+            "gameTimeMs": 1215260,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 31425,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 122215
+        },
+        {
+          "line": 6016,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1234910,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5963,
+            "gameTimeMs": 1229500,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 45630,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 136420
+        },
+        {
+          "line": 6118,
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1249245,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 6052,
+            "gameTimeMs": 1240875,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 59965,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 150755
+        },
+        {
+          "line": 6612,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1309375,
+          "distance": 4.888,
+          "orderTypeObserved": null,
+          "x": 1030.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 6608,
+            "gameTimeMs": 1309655,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 6733,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1323890,
+          "distance": 4.888,
+          "orderTypeObserved": null,
+          "x": 1030.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 6709,
+            "gameTimeMs": 1321245,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 6486,
+          "nearGameMs": 26070,
+          "lostContactSinceLine": 6135,
+          "lostContactGameMs": 71560
+        }
+      ],
+      "returnOrdersAlreadyAtHome": [
+        {
+          "line": 7787,
+          "taskId": 1000003,
+          "unitId": 3055,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1482290,
+          "hp": 437.413,
+          "distanceHome": 42.128
+        },
+        {
+          "line": 8529,
+          "taskId": 1000007,
+          "unitId": 5044,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1589895,
+          "hp": 341.704,
+          "distanceHome": 42.18
+        }
+      ],
+      "responseRepeatContactEvidence": {
+        "LOST_IN_LAST_RESPONSE_ASSESSMENT": 12
+      },
+      "newLifecycleEvents": {},
+      "needBindings": [],
+      "workerCommitmentsAtEnd": {},
+      "reportIntegrityIssues": [],
+      "newPolicy": "SPECIALIST_LIFECYCLE_2026_09_30_V1",
+      "newPolicyConformancePassed": false,
+      "newPolicyViolationsByReason": {
+        "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH": 8,
+        "ENGINEER_ORDINARY_PROSPECT": 20,
+        "RETURN_ORDER_ALREADY_AT_HOME": 2,
+        "ENGINEER_ORDINARY_CONSTRUCTION": 18
+      },
+      "newPolicyViolations": [
+        {
+          "line": 4687,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 2805,
+          "gameTimeMs": 1054835,
+          "distance": 4.694,
+          "orderTypeObserved": null,
+          "x": 1870.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4629,
+            "gameTimeMs": 1046795,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4596,
+          "nearGameMs": 13560,
+          "lostContactSinceLine": 4061,
+          "lostContactGameMs": 86135
+        },
+        {
+          "line": 5738,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1197860,
+          "distance": 4.836,
+          "orderTypeObserved": null,
+          "x": 1110.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5705,
+            "gameTimeMs": 1195295,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5593,
+          "nearGameMs": 14265,
+          "lostContactSinceLine": 5175,
+          "lostContactGameMs": 70985
+        },
+        {
+          "line": 5801,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1206445,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5756,
+            "gameTimeMs": 1201020,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 17165,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 107955
+        },
+        {
+          "line": 5844,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1212145,
+          "distance": 4.836,
+          "orderTypeObserved": null,
+          "x": 1110.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5797,
+            "gameTimeMs": 1206710,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5593,
+          "nearGameMs": 28550,
+          "lostContactSinceLine": 5175,
+          "lostContactGameMs": 85270
+        },
+        {
+          "line": 5902,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1220705,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5857,
+            "gameTimeMs": 1215260,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 31425,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 122215
+        },
+        {
+          "line": 6016,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1234910,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5963,
+            "gameTimeMs": 1229500,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 45630,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 136420
+        },
+        {
+          "line": 6118,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 3490,
+          "targetId": 3037,
+          "gameTimeMs": 1249245,
+          "distance": 4.871,
+          "orderTypeObserved": null,
+          "x": 1930.0,
+          "y": 170.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 6052,
+            "gameTimeMs": 1240875,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 5635,
+          "nearGameMs": 59965,
+          "lostContactSinceLine": 4944,
+          "lostContactGameMs": 150755
+        },
+        {
+          "line": 6733,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "targetId": 3233,
+          "gameTimeMs": 1323890,
+          "distance": 4.888,
+          "orderTypeObserved": null,
+          "x": 1030.0,
+          "y": 630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 6709,
+            "gameTimeMs": 1321245,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 6486,
+          "nearGameMs": 26070,
+          "lostContactSinceLine": 6135,
+          "lostContactGameMs": 71560
+        },
+        {
+          "line": 7601,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1451615,
+          "tile": 15447
+        },
+        {
+          "line": 7787,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1482290,
+          "hp": 437.413,
+          "distanceHome": 42.128
+        },
+        {
+          "line": 7811,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "gameTimeMs": 1484935,
+          "tile": 15447
+        },
+        {
+          "line": 7883,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1493765,
+          "x": 1710.0,
+          "y": 2950.0
+        },
+        {
+          "line": 8014,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000003,
+          "unitId": 3055,
+          "gameTimeMs": 1510795,
+          "tile": 8226
+        },
+        {
+          "line": 8084,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1519720,
+          "tile": 8226
+        },
+        {
+          "line": 8529,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1589895,
+          "hp": 341.704,
+          "distanceHome": 42.18
+        },
+        {
+          "line": 8555,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1592720,
+          "tile": 17713
+        },
+        {
+          "line": 8790,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1629135,
+          "x": 1970.0,
+          "y": 1470.0
+        },
+        {
+          "line": 8935,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "product": "extractorT1",
+          "gameTimeMs": 1653705,
+          "x": 1730.0,
+          "y": 1930.0
+        },
+        {
+          "line": 9076,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000007,
+          "unitId": 5044,
+          "gameTimeMs": 1681310,
+          "tile": 9063
+        },
+        {
+          "line": 9695,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000009,
+          "unitId": 6811,
+          "gameTimeMs": 1775610,
+          "tile": 29457
+        },
+        {
+          "line": 9804,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000009,
+          "unitId": 6811,
+          "product": "extractorT1",
+          "gameTimeMs": 1792320,
+          "x": 3270.0,
+          "y": 2350.0
+        },
+        {
+          "line": 10077,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000009,
+          "unitId": 6811,
+          "gameTimeMs": 1826710,
+          "tile": 15576
+        },
+        {
+          "line": 10140,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000010,
+          "unitId": 6915,
+          "gameTimeMs": 1835345,
+          "tile": 15447
+        },
+        {
+          "line": 10333,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000010,
+          "unitId": 6915,
+          "product": "extractorT1",
+          "gameTimeMs": 1861055,
+          "x": 1710.0,
+          "y": 2950.0
+        },
+        {
+          "line": 10517,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000010,
+          "unitId": 6915,
+          "gameTimeMs": 1886600,
+          "tile": 8226
+        },
+        {
+          "line": 10663,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1903745,
+          "x": 3150.0,
+          "y": 3230.0
+        },
+        {
+          "line": 10806,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1920935,
+          "x": 3130.0,
+          "y": 3270.0
+        },
+        {
+          "line": 11026,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1946545,
+          "x": 3110.0,
+          "y": 3310.0
+        },
+        {
+          "line": 11103,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000013,
+          "unitId": 8152,
+          "product": "heavyTank",
+          "gameTimeMs": 1955225,
+          "x": 3050.0,
+          "y": 3270.0
+        },
+        {
+          "line": 11173,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000012,
+          "unitId": 7826,
+          "product": "heavyTank",
+          "gameTimeMs": 1963810,
+          "x": 3090.0,
+          "y": 3350.0
+        },
+        {
+          "line": 11258,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000013,
+          "unitId": 8152,
+          "gameTimeMs": 1972385,
+          "tile": 15576
+        },
+        {
+          "line": 11338,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000012,
+          "unitId": 7826,
+          "gameTimeMs": 1981370,
+          "tile": 15680
+        },
+        {
+          "line": 11507,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000013,
+          "unitId": 8152,
+          "product": "extractorT1",
+          "gameTimeMs": 2006665,
+          "x": 1730.0,
+          "y": 1930.0
+        },
+        {
+          "line": 12026,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000015,
+          "unitId": 9114,
+          "product": "heavyTank",
+          "gameTimeMs": 2072135,
+          "x": 3150.0,
+          "y": 3190.0
+        },
+        {
+          "line": 12139,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000015,
+          "unitId": 9114,
+          "gameTimeMs": 2088885,
+          "tile": 15680
+        },
+        {
+          "line": 12660,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000016,
+          "unitId": 9207,
+          "gameTimeMs": 2158995,
+          "tile": 15447
+        },
+        {
+          "line": 12844,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000018,
+          "unitId": 9857,
+          "gameTimeMs": 2184505,
+          "tile": 24220
+        },
+        {
+          "line": 13022,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000018,
+          "unitId": 9857,
+          "product": "extractorT1",
+          "gameTimeMs": 2209980,
+          "x": 2690.0,
+          "y": 2010.0
+        },
+        {
+          "line": 13279,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000018,
+          "unitId": 9857,
+          "product": "extractorT1",
+          "gameTimeMs": 2254025,
+          "x": 3270.0,
+          "y": 2350.0
+        },
+        {
+          "line": 13348,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000019,
+          "unitId": 10282,
+          "gameTimeMs": 2262145,
+          "tile": 29457
+        },
+        {
+          "line": 13461,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000018,
+          "unitId": 9857,
+          "gameTimeMs": 2278955,
+          "tile": 17713
+        },
+        {
+          "line": 13522,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000019,
+          "unitId": 10282,
+          "gameTimeMs": 2287385,
+          "tile": 17713
+        },
+        {
+          "line": 14019,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000022,
+          "unitId": 11183,
+          "product": "heavyTank",
+          "gameTimeMs": 2362310,
+          "x": 3070.0,
+          "y": 3270.0
+        },
+        {
+          "line": 14134,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000021,
+          "unitId": 11092,
+          "product": "heavyTank",
+          "gameTimeMs": 2378850,
+          "x": 3150.0,
+          "y": 3230.0
+        },
+        {
+          "line": 14191,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000022,
+          "unitId": 11183,
+          "product": "heavyTank",
+          "gameTimeMs": 2387210,
+          "x": 3030.0,
+          "y": 3290.0
+        },
+        {
+          "line": 14255,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000021,
+          "unitId": 11092,
+          "product": "heavyTank",
+          "gameTimeMs": 2395400,
+          "x": 3150.0,
+          "y": 3270.0
+        },
+        {
+          "line": 14575,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000022,
+          "unitId": 11183,
+          "gameTimeMs": 2436960,
+          "tile": 15576
+        },
+        {
+          "line": 14615,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000021,
+          "unitId": 11092,
+          "gameTimeMs": 2445155,
+          "tile": 15576
+        }
+      ],
+      "interpretation": "NEW_POLICY_NEGATIVE_CONTROLS_DO_NOT_CHANGE_HISTORICAL_AUDIT_RESULTS",
+      "limits": [
+        "Not a fog/ownership legality audit; run audit_global_strategy.py separately.",
+        "Own-loss events are observed disappearance from own state, not proof of enemy kill attribution.",
+        "Near-point uses the latest preceding legal own observation (<20 world units); no hidden target reads.",
+        "Near-point repeats are policy failures only with explicit lost contact, continuous sampled arrival >=12s and first lost assessment >10s ago; visible/unknown remain diagnostics.",
+        "Worker commitment release does not itself release ownership or complete a still-running support BUILD.",
+        "At-home requires reconstructed RETURN job and a move to the observed command center (<180 world units).",
+        "Missing movement/response coverage is not evidence of benefit; no win-rate or matched-run claim."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "source": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports\\battle-1790765936935-dbcd93c4.jsonl",
+      "sourceSha256": "2074f5c5c712ad197d9b15548b60c73f04ebd8f475b702fd9a34b42c9eea4ef6",
+      "sourceBytes": 110249988,
+      "candidateProvenance": {
+        "agentVersion": "0.07-alpha1",
+        "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-bootstrap.jar",
+        "agentJarSha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+        "gameLibJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\game-lib.jar",
+        "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30",
+        "reportDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-CapabilityFunding-2026-09-30\\rw-agent-reports",
+        "osName": "Windows 10",
+        "javaVersion": "13",
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "gameTimeMs": 0
+      },
+      "battleConfig": {
+        "gameSeconds": 2400,
+        "armyCap": 24,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "mineTarget": 3,
+        "expansionIntervalGameMs": 15000,
+        "expansionBuildRangeWorld": 100.0,
+        "landFactoryTarget": 2,
+        "rearFactoryRadiusWorld": 400.0,
+        "builderTarget": 1,
+        "reachabilitySamplingEnabled": true,
+        "reachabilitySampleIntervalSeconds": 30,
+        "reachabilityRepresentativeTypeLimit": 3,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "noProgressEngageRange": 300.0,
+        "noProgressAttentionGapMs": 3000,
+        "decisionIntervalGameMs": 1000,
+        "minimumCommandGapGameMs": 1000,
+        "openingApmLimited": false,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "reconEnabled": true,
+        "reconFrontierEnabled": true,
+        "reconMinReadyArmy": 7,
+        "reconThreatBufferWorld": 80,
+        "executionContractVersion": 1,
+        "executionPlayerScope": "team:1",
+        "targetEligibilityVersion": 1,
+        "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+        "globalStrategyEnabled": true,
+        "strategyContractVersion": 1,
+        "engagementAssessmentContract": "COMMITTED_FORMATION_V1",
+        "pollWallTimeMs": 500,
+        "battleSafetyGameSeconds": 7200,
+        "battleSafetyWallSeconds": 2400,
+        "reportCommitMemoryMiB": 8,
+        "reportDiskLimitMiB": 1024,
+        "reconExpendableHpMaxFraction": 0.45,
+        "reconFrontierMinMainForce": 6
+      },
+      "controlConditions": {
+        "mapDimensions": {
+          "width": 8000.0,
+          "height": 7400.0,
+          "tilesWide": 400,
+          "tilesHigh": 370,
+          "tileWidth": 20,
+          "tileHeight": 20
+        },
+        "playerScope": "team:1",
+        "initialPlayer": {
+          "teamId": 1,
+          "name": "Player",
+          "credits": 3141.0
+        },
+        "battleStartGameTimeMs": 110291,
+        "pollWallTimeMs": 500,
+        "mapPath": "UNKNOWN",
+        "difficulty": "UNKNOWN",
+        "seed": "UNKNOWN",
+        "seedReproducibilityVerified": false,
+        "requestedSpeed": "UNKNOWN",
+        "measuredGameSecondsPerWallSecond": 4.99,
+        "bootstrapIntervention": "UNKNOWN",
+        "source": "RAW_REPORT_ONLY_NO_OPERATOR_CONTEXT_INFERRED"
+      },
+      "summary": {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "phase": "battle",
+        "matchOutcome": "ONGOING",
+        "commands": 666,
+        "observations": 843,
+        "ownLosses": 108,
+        "newCombatUnits": 168,
+        "attackOrders": 205,
+        "attackOrdersConfirmed": 187,
+        "retreatOrders": 34,
+        "upgradesCompleted": 3,
+        "completedMines": 8,
+        "newMines": 8,
+        "mineTarget": 3,
+        "minesBeyondFloor": 7,
+        "expansionRefusals": 110,
+        "expansionBlocked": 167,
+        "completedFactories": 2,
+        "newFactories": 2,
+        "landFactoryTarget": 3,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 1,
+        "builderOrders": 1,
+        "battleGameTimeMs": 2401820,
+        "gameSecondsPerWallSecond": 4.99,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 3,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 27,
+        "targetSuppressionsAtEnd": 3,
+        "targetSwitches": 133,
+        "effectiveDecisionIntervalGameMs": 3380,
+        "noProgressAttentionGapMs": 10140,
+        "maxObservedGameTimeJump": 3600,
+        "observationCount": 843,
+        "spendTotal": 169500,
+        "spendByCategory": {
+          "FACTORY_UPGRADE": {
+            "orders": 3,
+            "cost": 6000
+          },
+          "NEW_MINE": {
+            "orders": 5,
+            "cost": 3500
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 167,
+            "cost": 112900
+          },
+          "NEW_FACTORY": {
+            "orders": 2,
+            "cost": 1400
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 12,
+            "cost": 15000
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 25,
+            "cost": 19000
+          },
+          "MINE_UPGRADE": {
+            "orders": 8,
+            "cost": 11200
+          },
+          "BUILDER_RECOVERY": {
+            "orders": 1,
+            "cost": 500
+          }
+        },
+        "measuredIncomePerGameSecond": 109.67,
+        "investmentIntentions": 16,
+        "investmentCompletions": 3,
+        "investmentCancellations": 13,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "EMERGENCY",
+        "reconEnabled": true,
+        "reconTasksCreated": 32,
+        "reconOrdersQueued": 43,
+        "reconOrdersObserved": 15,
+        "reconMovesCompletedBetweenSamples": 27,
+        "frontierTasksSatisfiedByTeamVision": 10,
+        "reconResolvedAfterObservedMove": 3,
+        "reconReacquired": 7,
+        "reconSitesCleared": 0,
+        "reconBlocked": 1,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 24,
+        "frontierTasksRefreshed": 2,
+        "frontierTasksAdvanced": 1,
+        "frontierTasksBlocked": 6,
+        "frontierTasksPreempted": 5,
+        "expendableTransfers": 8,
+        "expendableScoutsAtEnd": 1,
+        "factoryTargetIncreases": 1,
+        "factoryTargetIncreaseBlocks": 2,
+        "landFactoryTargetAtEnd": 3,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 4.94,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 12,
+        "productionConsumptionPerGameSecond": 21.3,
+        "sustainableSurplusPerGameSecond": 192.7,
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 96,
+          "activeTarget": 88,
+          "reserveTarget": 8,
+          "hardSafetyCap": 128,
+          "builderTarget": 1,
+          "capabilityNeedsAtEnd": 3,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 45,
+          "mineUpgradesObserved": 8,
+          "constructionCompletionsObserved": 25,
+          "capabilityReservesStarted": 4,
+          "capabilityReservesReleased": 4,
+          "capabilityReserveAtEnd": 0.0
+        }
+      },
+      "engineersObserved": 3,
+      "engineerOwnLossEvents": 1,
+      "engineerIdsWithOwnLoss": [
+        17427
+      ],
+      "engineers": [
+        {
+          "unitId": 17427,
+          "type": "combatEngineer",
+          "firstObservationLine": 4604,
+          "firstGameTimeMs": 1100241,
+          "responseAssignments": 1,
+          "prospectOrders": 0,
+          "constructionProducts": {},
+          "ownLossLine": 5420,
+          "lastObservationLine": 5395,
+          "lastGameTimeMs": 1236361,
+          "lastHp": 16.975,
+          "lastX": 1050.012,
+          "lastY": 2494.532
+        },
+        {
+          "unitId": 20487,
+          "type": "combatEngineer",
+          "firstObservationLine": 5395,
+          "firstGameTimeMs": 1236361,
+          "responseAssignments": 2,
+          "prospectOrders": 7,
+          "constructionProducts": {
+            "extractorT1": 4,
+            "heavyTank": 7
+          },
+          "ownLossLine": null,
+          "lastObservationLine": 12699,
+          "lastGameTimeMs": 2512111,
+          "lastHp": 1000.0,
+          "lastX": 3196.259,
+          "lastY": 3996.227
+        },
+        {
+          "unitId": 22175,
+          "type": "combatEngineer",
+          "firstObservationLine": 5804,
+          "firstGameTimeMs": 1298721,
+          "responseAssignments": 1,
+          "prospectOrders": 7,
+          "constructionProducts": {
+            "heavyTank": 8,
+            "extractorT1": 4
+          },
+          "ownLossLine": null,
+          "lastObservationLine": 12699,
+          "lastGameTimeMs": 2512111,
+          "lastHp": 722.079,
+          "lastX": 1070.008,
+          "lastY": 1181.493
+        }
+      ],
+      "engineerDeaths": [
+        {
+          "line": 5420,
+          "unitId": 17427,
+          "type": "combatEngineer",
+          "x": 1050.012,
+          "y": 2494.532,
+          "gameTimeMs": 1239256
+        }
+      ],
+      "engineerTaskLosses": [
+        {
+          "line": 5425,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "job": "RETURN",
+          "gameTimeMs": 1239256,
+          "sessionId": "adb9be17-426b-485b-b8cd-229cf526dd9f",
+          "player": "team:1",
+          "unitType": "combatEngineer"
+        }
+      ],
+      "engineerProspectOrders": [
+        {
+          "line": 5450,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1239256,
+          "tile": 28281
+        },
+        {
+          "line": 5676,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1274501,
+          "tile": 41999
+        },
+        {
+          "line": 5903,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1311241,
+          "tile": 16498
+        },
+        {
+          "line": 6088,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1338421,
+          "tile": 22036
+        },
+        {
+          "line": 6878,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1483186,
+          "tile": 46780
+        },
+        {
+          "line": 6926,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1491571,
+          "tile": 46780
+        },
+        {
+          "line": 7629,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1614741,
+          "tile": 41999
+        },
+        {
+          "line": 7818,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1649196,
+          "tile": 22036
+        },
+        {
+          "line": 7869,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1658166,
+          "tile": 16498
+        },
+        {
+          "line": 9628,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1984266,
+          "tile": 28281
+        },
+        {
+          "line": 10677,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 2178326,
+          "tile": 34996
+        },
+        {
+          "line": 10723,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 2189656,
+          "tile": 34996
+        },
+        {
+          "line": 11595,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 2340276,
+          "tile": 61986
+        },
+        {
+          "line": 11659,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 2352291,
+          "tile": 61986
+        }
+      ],
+      "engineerConstructionOrders": [
+        {
+          "line": 5844,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1301761,
+          "x": 2270.0,
+          "y": 3790.0
+        },
+        {
+          "line": 5969,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1320396,
+          "x": 2290.0,
+          "y": 3750.0
+        },
+        {
+          "line": 6684,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1445926,
+          "x": 1090.0,
+          "y": 1190.0
+        },
+        {
+          "line": 6797,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1466201,
+          "x": 1050.0,
+          "y": 1190.0
+        },
+        {
+          "line": 6841,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1474841,
+          "x": 1010.0,
+          "y": 1210.0
+        },
+        {
+          "line": 7269,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 1552561,
+          "x": 2530.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7314,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1561176,
+          "x": 2590.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7375,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1570001,
+          "x": 2610.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7578,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1605516,
+          "x": 2570.0,
+          "y": 3150.0
+        },
+        {
+          "line": 7749,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1639836,
+          "x": 2550.0,
+          "y": 2930.0
+        },
+        {
+          "line": 8382,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1744426,
+          "x": 890.0,
+          "y": 4370.0
+        },
+        {
+          "line": 8488,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1764436,
+          "x": 1190.0,
+          "y": 4130.0
+        },
+        {
+          "line": 9233,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1918646,
+          "x": 1070.0,
+          "y": 1170.0
+        },
+        {
+          "line": 9339,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1936641,
+          "x": 1010.0,
+          "y": 1170.0
+        },
+        {
+          "line": 9454,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1954496,
+          "x": 990.0,
+          "y": 1130.0
+        },
+        {
+          "line": 9803,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2022966,
+          "x": 1530.0,
+          "y": 3230.0
+        },
+        {
+          "line": 10430,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 2128121,
+          "x": 1090.0,
+          "y": 1190.0
+        },
+        {
+          "line": 10503,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 2140691,
+          "x": 1550.0,
+          "y": 3190.0
+        },
+        {
+          "line": 10563,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 2155136,
+          "x": 1050.0,
+          "y": 1210.0
+        },
+        {
+          "line": 10813,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2211446,
+          "x": 1890.0,
+          "y": 4330.0
+        },
+        {
+          "line": 11819,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 2377366,
+          "x": 3350.0,
+          "y": 3930.0
+        },
+        {
+          "line": 11883,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2387436,
+          "x": 3610.0,
+          "y": 3950.0
+        },
+        {
+          "line": 12564,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 2488986,
+          "x": 1110.0,
+          "y": 1230.0
+        }
+      ],
+      "engineerConstructionProducts": {
+        "extractorT1": 8,
+        "heavyTank": 15
+      },
+      "responseAssignments": [
+        {
+          "line": 4614,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1100241,
+          "approachX": 650.0,
+          "approachY": 4250.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 4873,
+          "orders": 5,
+          "ordersNearApproach": 4,
+          "nearSinceGameTimeMs": 1152121,
+          "lostContactSinceGameTimeMs": null,
+          "lostContactSinceLine": 4614,
+          "arrivalGameTimeMs": 1152121,
+          "nearSinceLine": 4873,
+          "endLine": 5217,
+          "endReason": "CRITICAL_HP"
+        },
+        {
+          "line": 8424,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1752956,
+          "approachX": 850.0,
+          "approachY": 3630.0,
+          "objectiveSemantics": "CURRENT_CONTACT_APPROACH",
+          "arrivalLine": 8742,
+          "orders": 5,
+          "ordersNearApproach": 4,
+          "nearSinceGameTimeMs": 1811366,
+          "lostContactSinceGameTimeMs": 1802431,
+          "lostContactSinceLine": 8694,
+          "arrivalGameTimeMs": 1811366,
+          "nearSinceLine": 8742,
+          "endLine": 12095,
+          "endReason": "CRITICAL_HP"
+        },
+        {
+          "line": 8585,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1786206,
+          "approachX": 810.0,
+          "approachY": 3830.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 8725,
+          "orders": 6,
+          "ordersNearApproach": 5,
+          "nearSinceGameTimeMs": 1808386,
+          "lostContactSinceGameTimeMs": 1811436,
+          "lostContactSinceLine": 8745,
+          "arrivalGameTimeMs": 1808386,
+          "nearSinceLine": 8725,
+          "endLine": 8993,
+          "endReason": "NO_OBSERVED_PROGRESS"
+        },
+        {
+          "line": 9209,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1915191,
+          "approachX": 810.0,
+          "approachY": 3670.0,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "arrivalLine": 9464,
+          "orders": 6,
+          "ordersNearApproach": 5,
+          "nearSinceGameTimeMs": 1960201,
+          "lostContactSinceGameTimeMs": 1915191,
+          "lostContactSinceLine": 9209,
+          "arrivalGameTimeMs": 1960201,
+          "nearSinceLine": 9464,
+          "endLine": 9785,
+          "endReason": "NO_OBSERVED_PROGRESS"
+        }
+      ],
+      "responseOrdersRepeatedAtApproach": [
+        {
+          "line": 4882,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1152121,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4824,
+            "gameTimeMs": 1143776,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 4970,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1166446,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4966,
+            "gameTimeMs": 1166591,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 14325,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 66205
+        },
+        {
+          "line": 5069,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1181091,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5044,
+            "gameTimeMs": 1178521,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 28970,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 80850
+        },
+        {
+          "line": 5172,
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1195661,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5122,
+            "gameTimeMs": 1190051,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 43540,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 95420
+        },
+        {
+          "line": 8739,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1808386,
+          "distance": 12.939,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "VISIBLE_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8681,
+            "gameTimeMs": 1799446,
+            "targetVisible": true
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 8749,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1811366,
+          "distance": 11.227,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8694,
+            "gameTimeMs": 1802431,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 8808,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1823176,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8804,
+            "gameTimeMs": 1823326,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 14790,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 11740
+        },
+        {
+          "line": 8832,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1828691,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8828,
+            "gameTimeMs": 1828936,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 17325,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 26260
+        },
+        {
+          "line": 8863,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1836891,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8846,
+            "gameTimeMs": 1834221,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 28505,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 25455
+        },
+        {
+          "line": 8891,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1842436,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8871,
+            "gameTimeMs": 1839826,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 31070,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 40005
+        },
+        {
+          "line": 8939,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1851071,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8899,
+            "gameTimeMs": 1845586,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 42685,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 39635
+        },
+        {
+          "line": 8960,
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1856871,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8946,
+            "gameTimeMs": 1854241,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 45505,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 54440
+        },
+        {
+          "line": 8988,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1864941,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8956,
+            "gameTimeMs": 1856956,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 56555,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 53505
+        },
+        {
+          "line": 9487,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1960201,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9425,
+            "gameTimeMs": 1951796,
+            "targetVisible": false
+          },
+          "classification": "DIAGNOSTIC_NOT_AUTOMATIC_POLICY_VIOLATION"
+        },
+        {
+          "line": 9571,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1972836,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9502,
+            "gameTimeMs": 1963796,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 12635,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 57645
+        },
+        {
+          "line": 9636,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1987081,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9632,
+            "gameTimeMs": 1987151,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 26880,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 71890
+        },
+        {
+          "line": 9692,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 2000776,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9675,
+            "gameTimeMs": 1998086,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 40575,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 85585
+        },
+        {
+          "line": 9764,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 2014811,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9735,
+            "gameTimeMs": 2009491,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 54610,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 99620
+        }
+      ],
+      "returnOrdersAlreadyAtHome": [
+        {
+          "line": 9185,
+          "taskId": 1000004,
+          "unitId": 20487,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1912391,
+          "hp": 1000.0,
+          "distanceHome": 161.064
+        },
+        {
+          "line": 10547,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2152226,
+          "hp": 21.036,
+          "distanceHome": 171.603
+        },
+        {
+          "line": 10623,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2164051,
+          "hp": 21.036,
+          "distanceHome": 45.255
+        },
+        {
+          "line": 10664,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2175611,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10710,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2186831,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10761,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2198096,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10800,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2208786,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10841,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2219631,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10906,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2230606,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11005,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2243431,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11076,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2253636,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11139,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2265731,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11191,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2277301,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11251,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2289156,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11337,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2301696,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11414,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2314196,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11513,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2327396,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11584,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2337306,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11642,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2349016,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11715,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2361821,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11797,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2374396,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11866,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2384151,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11955,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2396526,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 12049,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2409211,
+          "hp": 21.036,
+          "distanceHome": 38.647
+        },
+        {
+          "line": 12123,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2421386,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12212,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2434881,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12292,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2447511,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12372,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2459926,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12446,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2472666,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12534,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2485606,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12604,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2495686,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12695,
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2508676,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        }
+      ],
+      "responseRepeatContactEvidence": {
+        "LOST_IN_LAST_RESPONSE_ASSESSMENT": 17,
+        "VISIBLE_IN_LAST_RESPONSE_ASSESSMENT": 1
+      },
+      "newLifecycleEvents": {},
+      "needBindings": [],
+      "workerCommitmentsAtEnd": {},
+      "reportIntegrityIssues": [],
+      "newPolicy": "SPECIALIST_LIFECYCLE_2026_09_30_V1",
+      "newPolicyConformancePassed": false,
+      "newPolicyViolationsByReason": {
+        "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH": 14,
+        "ENGINEER_ORDINARY_PROSPECT": 14,
+        "ENGINEER_ORDINARY_CONSTRUCTION": 23,
+        "RETURN_ORDER_ALREADY_AT_HOME": 32
+      },
+      "newPolicyViolations": [
+        {
+          "line": 4970,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1166446,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 4966,
+            "gameTimeMs": 1166591,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 14325,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 66205
+        },
+        {
+          "line": 5069,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1181091,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5044,
+            "gameTimeMs": 1178521,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 28970,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 80850
+        },
+        {
+          "line": 5172,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000002,
+          "unitId": 17427,
+          "targetId": 9561,
+          "gameTimeMs": 1195661,
+          "distance": 4.927,
+          "orderTypeObserved": null,
+          "x": 650.0,
+          "y": 4250.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 5122,
+            "gameTimeMs": 1190051,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 4873,
+          "nearGameMs": 43540,
+          "lostContactSinceLine": 4614,
+          "lostContactGameMs": 95420
+        },
+        {
+          "line": 5450,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1239256,
+          "tile": 28281
+        },
+        {
+          "line": 5676,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1274501,
+          "tile": 41999
+        },
+        {
+          "line": 5844,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1301761,
+          "x": 2270.0,
+          "y": 3790.0
+        },
+        {
+          "line": 5903,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1311241,
+          "tile": 16498
+        },
+        {
+          "line": 5969,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1320396,
+          "x": 2290.0,
+          "y": 3750.0
+        },
+        {
+          "line": 6088,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1338421,
+          "tile": 22036
+        },
+        {
+          "line": 6684,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1445926,
+          "x": 1090.0,
+          "y": 1190.0
+        },
+        {
+          "line": 6797,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1466201,
+          "x": 1050.0,
+          "y": 1190.0
+        },
+        {
+          "line": 6841,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1474841,
+          "x": 1010.0,
+          "y": 1210.0
+        },
+        {
+          "line": 6878,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1483186,
+          "tile": 46780
+        },
+        {
+          "line": 6926,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1491571,
+          "tile": 46780
+        },
+        {
+          "line": 7269,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 1552561,
+          "x": 2530.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7314,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1561176,
+          "x": 2590.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7375,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1570001,
+          "x": 2610.0,
+          "y": 3210.0
+        },
+        {
+          "line": 7578,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1605516,
+          "x": 2570.0,
+          "y": 3150.0
+        },
+        {
+          "line": 7629,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1614741,
+          "tile": 41999
+        },
+        {
+          "line": 7749,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 1639836,
+          "x": 2550.0,
+          "y": 2930.0
+        },
+        {
+          "line": 7818,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1649196,
+          "tile": 22036
+        },
+        {
+          "line": 7869,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 1658166,
+          "tile": 16498
+        },
+        {
+          "line": 8382,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1744426,
+          "x": 890.0,
+          "y": 4370.0
+        },
+        {
+          "line": 8488,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 1764436,
+          "x": 1190.0,
+          "y": 4130.0
+        },
+        {
+          "line": 8808,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1823176,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8804,
+            "gameTimeMs": 1823326,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 14790,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 11740
+        },
+        {
+          "line": 8832,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1828691,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8828,
+            "gameTimeMs": 1828936,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 17325,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 26260
+        },
+        {
+          "line": 8863,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1836891,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8846,
+            "gameTimeMs": 1834221,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 28505,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 25455
+        },
+        {
+          "line": 8891,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1842436,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8871,
+            "gameTimeMs": 1839826,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 31070,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 40005
+        },
+        {
+          "line": 8939,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1851071,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8899,
+            "gameTimeMs": 1845586,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 42685,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 39635
+        },
+        {
+          "line": 8960,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "targetId": 9561,
+          "gameTimeMs": 1856871,
+          "distance": 6.408,
+          "orderTypeObserved": null,
+          "x": 850.0,
+          "y": 3630.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8946,
+            "gameTimeMs": 1854241,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8742,
+          "nearGameMs": 45505,
+          "lostContactSinceLine": 8694,
+          "lostContactGameMs": 54440
+        },
+        {
+          "line": 8988,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1864941,
+          "distance": 5.85,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3830.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 8956,
+            "gameTimeMs": 1856956,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 8725,
+          "nearGameMs": 56555,
+          "lostContactSinceLine": 8745,
+          "lostContactGameMs": 53505
+        },
+        {
+          "line": 9185,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "unitType": "combatEngineer",
+          "gameTimeMs": 1912391,
+          "hp": 1000.0,
+          "distanceHome": 161.064
+        },
+        {
+          "line": 9233,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1918646,
+          "x": 1070.0,
+          "y": 1170.0
+        },
+        {
+          "line": 9339,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1936641,
+          "x": 1010.0,
+          "y": 1170.0
+        },
+        {
+          "line": 9454,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 1954496,
+          "x": 990.0,
+          "y": 1130.0
+        },
+        {
+          "line": 9571,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1972836,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9502,
+            "gameTimeMs": 1963796,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 12635,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 57645
+        },
+        {
+          "line": 9628,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 1984266,
+          "tile": 28281
+        },
+        {
+          "line": 9636,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 1987081,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9632,
+            "gameTimeMs": 1987151,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 26880,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 71890
+        },
+        {
+          "line": 9692,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 2000776,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9675,
+            "gameTimeMs": 1998086,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 40575,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 85585
+        },
+        {
+          "line": 9764,
+          "reason": "REPEATED_LOST_CONTACT_ORDER_AT_APPROACH",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "targetId": 11213,
+          "gameTimeMs": 2014811,
+          "distance": 4.713,
+          "orderTypeObserved": null,
+          "x": 810.0,
+          "y": 3670.0,
+          "contactEvidence": "LOST_IN_LAST_RESPONSE_ASSESSMENT",
+          "lastResponseAssessment": {
+            "line": 9735,
+            "gameTimeMs": 2009491,
+            "targetVisible": false
+          },
+          "classification": "NEW_POLICY_LOST_CONTACT_AT_APPROACH_REPEAT",
+          "nearSinceLine": 9464,
+          "nearGameMs": 54610,
+          "lostContactSinceLine": 9209,
+          "lostContactGameMs": 99620
+        },
+        {
+          "line": 9803,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2022966,
+          "x": 1530.0,
+          "y": 3230.0
+        },
+        {
+          "line": 10430,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 2128121,
+          "x": 1090.0,
+          "y": 1190.0
+        },
+        {
+          "line": 10503,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 2140691,
+          "x": 1550.0,
+          "y": 3190.0
+        },
+        {
+          "line": 10547,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2152226,
+          "hp": 21.036,
+          "distanceHome": 171.603
+        },
+        {
+          "line": 10563,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "heavyTank",
+          "gameTimeMs": 2155136,
+          "x": 1050.0,
+          "y": 1210.0
+        },
+        {
+          "line": 10623,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2164051,
+          "hp": 21.036,
+          "distanceHome": 45.255
+        },
+        {
+          "line": 10664,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2175611,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10677,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 2178326,
+          "tile": 34996
+        },
+        {
+          "line": 10710,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2186831,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10723,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 2189656,
+          "tile": 34996
+        },
+        {
+          "line": 10761,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2198096,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10800,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2208786,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10813,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2211446,
+          "x": 1890.0,
+          "y": 4330.0
+        },
+        {
+          "line": 10841,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2219631,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 10906,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2230606,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11005,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2243431,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11076,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2253636,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11139,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2265731,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11191,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2277301,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11251,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2289156,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11337,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2301696,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11414,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2314196,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11513,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2327396,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11584,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2337306,
+          "hp": 21.036,
+          "distanceHome": 39.989
+        },
+        {
+          "line": 11595,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "gameTimeMs": 2340276,
+          "tile": 61986
+        },
+        {
+          "line": 11642,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2349016,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11659,
+          "reason": "ENGINEER_ORDINARY_PROSPECT",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "gameTimeMs": 2352291,
+          "tile": 61986
+        },
+        {
+          "line": 11715,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2361821,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11797,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2374396,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11819,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000004,
+          "unitId": 20487,
+          "product": "extractorT1",
+          "gameTimeMs": 2377366,
+          "x": 3350.0,
+          "y": 3930.0
+        },
+        {
+          "line": 11866,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2384151,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 11883,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "extractorT1",
+          "gameTimeMs": 2387436,
+          "x": 3610.0,
+          "y": 3950.0
+        },
+        {
+          "line": 11955,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2396526,
+          "hp": 21.036,
+          "distanceHome": 40.099
+        },
+        {
+          "line": 12049,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2409211,
+          "hp": 21.036,
+          "distanceHome": 38.647
+        },
+        {
+          "line": 12123,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2421386,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12212,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2434881,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12292,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2447511,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12372,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2459926,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12446,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2472666,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12534,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2485606,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12564,
+          "reason": "ENGINEER_ORDINARY_CONSTRUCTION",
+          "taskId": 1000005,
+          "unitId": 22175,
+          "product": "heavyTank",
+          "gameTimeMs": 2488986,
+          "x": 1110.0,
+          "y": 1230.0
+        },
+        {
+          "line": 12604,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2495686,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        },
+        {
+          "line": 12695,
+          "reason": "RETURN_ORDER_ALREADY_AT_HOME",
+          "taskId": 1000012,
+          "unitId": 35688,
+          "unitType": "builder",
+          "gameTimeMs": 2508676,
+          "hp": 21.036,
+          "distanceHome": 37.893
+        }
+      ],
+      "interpretation": "NEW_POLICY_NEGATIVE_CONTROLS_DO_NOT_CHANGE_HISTORICAL_AUDIT_RESULTS",
+      "limits": [
+        "Not a fog/ownership legality audit; run audit_global_strategy.py separately.",
+        "Own-loss events are observed disappearance from own state, not proof of enemy kill attribution.",
+        "Near-point uses the latest preceding legal own observation (<20 world units); no hidden target reads.",
+        "Near-point repeats are policy failures only with explicit lost contact, continuous sampled arrival >=12s and first lost assessment >10s ago; visible/unknown remain diagnostics.",
+        "Worker commitment release does not itself release ownership or complete a still-running support BUILD.",
+        "At-home requires reconstructed RETURN job and a move to the observed command center (<180 world units).",
+        "Missing movement/response coverage is not evidence of benefit; no win-rate or matched-run claim."
+      ]
+    }
+  ]
+}

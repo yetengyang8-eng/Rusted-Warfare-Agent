@@ -1,0 +1,25 @@
+{
+  "baselineId": "RW-BASELINE-2026-09-30-GS-v1",
+  "passed": false,
+  "sourceCommit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+  "filesChecked": 106,
+  "localEnvironmentsChecked": true,
+  "failures": [
+    {
+      "kind": "source_drift",
+      "changed": [
+        "agent/src/io/rwagent/client/BattleClient.java",
+        "agent/src/io/rwagent/client/StrategyDirector.java",
+        "agent/test-win.ps1",
+        "agent/test.sh",
+        "agent/tests/StrategyContractHarness.java",
+        "agent/tests/test_specialist_lifecycle.py",
+        "agent/tests/test_strategy_funding.py",
+        "tools/analyze_capability_funding.py",
+        "tools/audit_specialist_lifecycle.py"
+      ],
+      "untracked": []
+    }
+  ],
+  "action": "Read-only; preserve differences. No reset, build, install or game launch performed."
+}
