@@ -1,0 +1,4424 @@
+{
+  "schemaVersion": 1,
+  "source": "battle-1790743783098-ae01b65e.jsonl",
+  "sourceSha256": "a5a3e05c157b381616837b37a88b29af1dbb597137cc37ad870fa862d4ee1026",
+  "sourceLines": 12832,
+  "candidateProvenance": {
+    "agentVersion": "0.07-alpha1",
+    "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-GlobalStrategy-2026-09-30\\rw-agent-bootstrap.jar",
+    "agentJarSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+    "gameLibJar": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-GlobalStrategy-2026-09-30\\game-lib.jar",
+    "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-GlobalStrategy-2026-09-30",
+    "reportDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-GlobalStrategy-2026-09-30\\rw-agent-reports",
+    "osName": "Windows 10",
+    "javaVersion": "13"
+  },
+  "battleStartGameTimeMs": 105494,
+  "eventCounts": {
+    "health": 1,
+    "report_provenance": 1,
+    "observation": 844,
+    "battle_config": 1,
+    "combat_observation": 842,
+    "scout_visibility": 842,
+    "strategy_capacity": 77,
+    "economy_expansion_plan": 17,
+    "economy_expansion_planned": 13,
+    "production_menu": 580,
+    "production_decision": 22,
+    "action": 651,
+    "command_result": 648,
+    "spend": 208,
+    "agent_tick_alive": 212,
+    "economy_expansion_move": 8,
+    "economy_expansion_started": 12,
+    "economy_expansion_observed": 13,
+    "army_frontier_plan": 34,
+    "tactical_intent": 245,
+    "attack_order_confirmed": 227,
+    "army_frontier_arrived": 22,
+    "production_surplus": 94,
+    "extractor_started": 13,
+    "extractor_completed": 13,
+    "engagement_observation": 2305,
+    "engagement_assessment": 1264,
+    "search_target_created": 105,
+    "target_guard": 348,
+    "target_switch": 140,
+    "reachability_raw": 117,
+    "report_reachability": 121,
+    "reachability_sample": 69,
+    "task_ownership_acquired": 73,
+    "recon_takeover_queued": 3,
+    "own_loss": 82,
+    "upgrade_completed": 4,
+    "production_queue_finished": 140,
+    "military_urgency": 66,
+    "recon_takeover_cancelled": 2,
+    "task_ownership_released": 73,
+    "plan_unavailable": 241,
+    "economy_expansion_blocked": 130,
+    "recon_task_created": 51,
+    "recon_deferred": 54,
+    "combat_retreat": 17,
+    "search_target_superseded": 95,
+    "army_regroup": 1,
+    "combat_unit_observed": 139,
+    "capability_snapshot": 6,
+    "recon_assigned": 52,
+    "recon_order_queued": 65,
+    "recon_order_observed": 22,
+    "recon_progress": 86,
+    "search_target_refreshed": 37,
+    "recon_attempt_blocked": 2,
+    "recon_recall_queued": 16,
+    "economy_expansion_prospect": 13,
+    "recon_reacquired": 5,
+    "target_progress": 17,
+    "economy_expansion_finished": 1,
+    "production_facility_move": 7,
+    "production_facility_plan": 3,
+    "production_facility_planned": 3,
+    "scout_visible_probe": 11,
+    "search_target_confirmed_empty": 9,
+    "production_facility_started": 3,
+    "production_facility_observed": 3,
+    "factory_started": 3,
+    "factory_completed": 3,
+    "production_facility_finished": 3,
+    "factory_target_increase_blocked": 2,
+    "production_deferred": 259,
+    "SECONDARY_INVESTMENT_FALLBACK": 1,
+    "production_idle": 55,
+    "investment_intent": 18,
+    "production_reserve_started": 1,
+    "investment_released": 18,
+    "strategy_production_menu": 60,
+    "strategy_allocation": 22,
+    "economy_expansion_prospect_failed": 2,
+    "strategy_production_queue_finished": 9,
+    "strategy_resource_approach": 33,
+    "strategy_prospect_ordered": 33,
+    "recon_takeover_observed": 2,
+    "recon_frontier_plan": 48,
+    "engagement_assessment_deferred": 30,
+    "strategy_prospect_observed": 32,
+    "strategy_expansion_plan": 21,
+    "target_suppression_started": 2,
+    "target_selection_suppressed": 2,
+    "capability_need_created": 2,
+    "strategy_construction_ordered": 30,
+    "strategy_construction_observed": 30,
+    "recon_expendable_transfer": 2,
+    "recon_move_completed_between_samples": 43,
+    "recon_waypoint_reached": 42,
+    "recon_frontier_satisfied": 34,
+    "recon_frontier_advanced": 2,
+    "factory_target_increased": 2,
+    "recon_frontier_blocked": 5,
+    "response_engagement_observation": 193,
+    "strategy_task_assigned": 3,
+    "strategy_response_ordered": 17,
+    "strategy_response_progress": 33,
+    "strategy_target_damage_observed": 1,
+    "recon_unassigned": 7,
+    "recon_expendable_released_for_defense": 1,
+    "recon_frontier_preempted": 1,
+    "strategy_construction_plan": 11,
+    "strategy_task_preempted": 5,
+    "strategy_task_lost": 4,
+    "strategy_investment_menu": 36,
+    "strategy_task_blocked": 3,
+    "mine_upgrade_observed": 13,
+    "recon_frontier_memory_update": 1,
+    "recon_frontier_refreshed": 1,
+    "builder_recovery_started": 1,
+    "builder_production": 1,
+    "builder_recovery_ordered": 1,
+    "builder_recovery_completed": 1,
+    "recon_site_cleared": 2,
+    "command_rejected": 3,
+    "summary": 1
+  },
+  "creditsMaxima": {
+    "allObservations": {
+      "line": 12827,
+      "gameTimeMs": 2507814,
+      "battleSeconds": 2402.32,
+      "credits": 206404.5
+    },
+    "afterFirstNeed": {
+      "line": 12827,
+      "gameTimeMs": 2507814,
+      "battleSeconds": 2402.32,
+      "credits": 206404.5
+    },
+    "whileNeedActive": {
+      "line": 12827,
+      "gameTimeMs": 2507814,
+      "battleSeconds": 2402.32,
+      "credits": 206404.5
+    }
+  },
+  "productionMenuSummary": {
+    "count": 60,
+    "withEngineerMenu": 60,
+    "withEmptyEngineerFactory": 22,
+    "withAffordableEngineer": 30,
+    "withEmptyAndAffordableEngineerFactory": 9
+  },
+  "productionMenus": [
+    {
+      "line": 2022,
+      "gameTimeMs": 617004,
+      "battleSeconds": 511.51,
+      "observationLine": 2019,
+      "creditsFromPriorObservation": 1063.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2058,
+      "gameTimeMs": 627624,
+      "battleSeconds": 522.13,
+      "observationLine": 2055,
+      "creditsFromPriorObservation": 1063.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2084,
+      "gameTimeMs": 635664,
+      "battleSeconds": 530.17,
+      "observationLine": 2079,
+      "creditsFromPriorObservation": 1313.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2125,
+      "gameTimeMs": 643784,
+      "battleSeconds": 538.29,
+      "observationLine": 2122,
+      "creditsFromPriorObservation": 1133.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2161,
+      "gameTimeMs": 654419,
+      "battleSeconds": 548.925,
+      "observationLine": 2154,
+      "creditsFromPriorObservation": 1583.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2632,
+      "gameTimeMs": 734359,
+      "battleSeconds": 628.865,
+      "observationLine": 2621,
+      "creditsFromPriorObservation": 527.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2695,
+      "gameTimeMs": 743199,
+      "battleSeconds": 637.705,
+      "observationLine": 2685,
+      "creditsFromPriorObservation": 493.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2741,
+      "gameTimeMs": 751794,
+      "battleSeconds": 646.3,
+      "observationLine": 2738,
+      "creditsFromPriorObservation": 897.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2789,
+      "gameTimeMs": 760054,
+      "battleSeconds": 654.56,
+      "observationLine": 2786,
+      "creditsFromPriorObservation": 806.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2832,
+      "gameTimeMs": 770639,
+      "battleSeconds": 665.145,
+      "observationLine": 2827,
+      "creditsFromPriorObservation": 926.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2892,
+      "gameTimeMs": 779009,
+      "battleSeconds": 673.515,
+      "observationLine": 2886,
+      "creditsFromPriorObservation": 963.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2927,
+      "gameTimeMs": 787089,
+      "battleSeconds": 681.595,
+      "observationLine": 2923,
+      "creditsFromPriorObservation": 871.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 2977,
+      "gameTimeMs": 795314,
+      "battleSeconds": 689.82,
+      "observationLine": 2961,
+      "creditsFromPriorObservation": 1302.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3024,
+      "gameTimeMs": 804019,
+      "battleSeconds": 698.525,
+      "observationLine": 3020,
+      "creditsFromPriorObservation": 1360.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3060,
+      "gameTimeMs": 812184,
+      "battleSeconds": 706.69,
+      "observationLine": 3054,
+      "creditsFromPriorObservation": 1130.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3104,
+      "gameTimeMs": 820469,
+      "battleSeconds": 714.975,
+      "observationLine": 3101,
+      "creditsFromPriorObservation": 1155.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3139,
+      "gameTimeMs": 828509,
+      "battleSeconds": 723.015,
+      "observationLine": 3135,
+      "creditsFromPriorObservation": 1613.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3197,
+      "gameTimeMs": 836894,
+      "battleSeconds": 731.4,
+      "observationLine": 3188,
+      "creditsFromPriorObservation": 1734.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3249,
+      "gameTimeMs": 845274,
+      "battleSeconds": 739.78,
+      "observationLine": 3236,
+      "creditsFromPriorObservation": 1868.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3296,
+      "gameTimeMs": 853724,
+      "battleSeconds": 748.23,
+      "observationLine": 3287,
+      "creditsFromPriorObservation": 2021.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3328,
+      "gameTimeMs": 861834,
+      "battleSeconds": 756.34,
+      "observationLine": 3324,
+      "creditsFromPriorObservation": 2113.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3371,
+      "gameTimeMs": 870264,
+      "battleSeconds": 764.77,
+      "observationLine": 3368,
+      "creditsFromPriorObservation": 2247.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3410,
+      "gameTimeMs": 878394,
+      "battleSeconds": 772.9,
+      "observationLine": 3402,
+      "creditsFromPriorObservation": 2359.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3445,
+      "gameTimeMs": 886549,
+      "battleSeconds": 781.055,
+      "observationLine": 3440,
+      "creditsFromPriorObservation": 2451.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3488,
+      "gameTimeMs": 895004,
+      "battleSeconds": 789.51,
+      "observationLine": 3484,
+      "creditsFromPriorObservation": 2593.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3534,
+      "gameTimeMs": 903194,
+      "battleSeconds": 797.7,
+      "observationLine": 3528,
+      "creditsFromPriorObservation": 2801.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3570,
+      "gameTimeMs": 911329,
+      "battleSeconds": 805.835,
+      "observationLine": 3567,
+      "creditsFromPriorObservation": 2094.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3624,
+      "gameTimeMs": 922009,
+      "battleSeconds": 816.515,
+      "observationLine": 3611,
+      "creditsFromPriorObservation": 3286.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3657,
+      "gameTimeMs": 930114,
+      "battleSeconds": 824.62,
+      "observationLine": 3653,
+      "creditsFromPriorObservation": 2698.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3692,
+      "gameTimeMs": 938119,
+      "battleSeconds": 832.625,
+      "observationLine": 3682,
+      "creditsFromPriorObservation": 3682.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3733,
+      "gameTimeMs": 946399,
+      "battleSeconds": 840.905,
+      "observationLine": 3727,
+      "creditsFromPriorObservation": 3111.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3781,
+      "gameTimeMs": 954679,
+      "battleSeconds": 849.185,
+      "observationLine": 3768,
+      "creditsFromPriorObservation": 4104.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3810,
+      "gameTimeMs": 962949,
+      "battleSeconds": 857.455,
+      "observationLine": 3807,
+      "creditsFromPriorObservation": 3545.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3863,
+      "gameTimeMs": 973879,
+      "battleSeconds": 868.385,
+      "observationLine": 3860,
+      "creditsFromPriorObservation": 4077.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3905,
+      "gameTimeMs": 982214,
+      "battleSeconds": 876.72,
+      "observationLine": 3899,
+      "creditsFromPriorObservation": 3602.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 3952,
+      "gameTimeMs": 990669,
+      "battleSeconds": 885.175,
+      "observationLine": 3948,
+      "creditsFromPriorObservation": 3832.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4002,
+      "gameTimeMs": 998944,
+      "battleSeconds": 893.45,
+      "observationLine": 3993,
+      "creditsFromPriorObservation": 4113.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4041,
+      "gameTimeMs": 1007364,
+      "battleSeconds": 901.87,
+      "observationLine": 4038,
+      "creditsFromPriorObservation": 4434.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4077,
+      "gameTimeMs": 1015584,
+      "battleSeconds": 910.09,
+      "observationLine": 4071,
+      "creditsFromPriorObservation": 4763.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4111,
+      "gameTimeMs": 1023899,
+      "battleSeconds": 918.405,
+      "observationLine": 4108,
+      "creditsFromPriorObservation": 4371.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4148,
+      "gameTimeMs": 1032164,
+      "battleSeconds": 926.67,
+      "observationLine": 4142,
+      "creditsFromPriorObservation": 4700.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4186,
+      "gameTimeMs": 1040449,
+      "battleSeconds": 934.955,
+      "observationLine": 4183,
+      "creditsFromPriorObservation": 5069.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4229,
+      "gameTimeMs": 1048529,
+      "battleSeconds": 943.035,
+      "observationLine": 4223,
+      "creditsFromPriorObservation": 5445.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4272,
+      "gameTimeMs": 1057029,
+      "battleSeconds": 951.535,
+      "observationLine": 4266,
+      "creditsFromPriorObservation": 5907.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4323,
+      "gameTimeMs": 1065799,
+      "battleSeconds": 960.305,
+      "observationLine": 4320,
+      "creditsFromPriorObservation": 5693.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4370,
+      "gameTimeMs": 1074149,
+      "battleSeconds": 968.655,
+      "observationLine": 4364,
+      "creditsFromPriorObservation": 6126.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4413,
+      "gameTimeMs": 1082489,
+      "battleSeconds": 976.995,
+      "observationLine": 4409,
+      "creditsFromPriorObservation": 6591.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4455,
+      "gameTimeMs": 1090764,
+      "battleSeconds": 985.27,
+      "observationLine": 4451,
+      "creditsFromPriorObservation": 7112.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4499,
+      "gameTimeMs": 1099259,
+      "battleSeconds": 993.765,
+      "observationLine": 4496,
+      "creditsFromPriorObservation": 8454.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4536,
+      "gameTimeMs": 1107444,
+      "battleSeconds": 1001.95,
+      "observationLine": 4533,
+      "creditsFromPriorObservation": 5470.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4576,
+      "gameTimeMs": 1115509,
+      "battleSeconds": 1010.015,
+      "observationLine": 4570,
+      "creditsFromPriorObservation": 6750.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4617,
+      "gameTimeMs": 1123894,
+      "battleSeconds": 1018.4,
+      "observationLine": 4611,
+      "creditsFromPriorObservation": 7271.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4657,
+      "gameTimeMs": 1132154,
+      "battleSeconds": 1026.66,
+      "observationLine": 4654,
+      "creditsFromPriorObservation": 8600.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4700,
+      "gameTimeMs": 1140319,
+      "battleSeconds": 1034.825,
+      "observationLine": 4696,
+      "creditsFromPriorObservation": 9104.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 4969,
+      "gameTimeMs": 1188699,
+      "battleSeconds": 1083.205,
+      "observationLine": 4957,
+      "creditsFromPriorObservation": 9256.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 6073,
+      "gameTimeMs": 1373819,
+      "battleSeconds": 1268.325,
+      "observationLine": 6057,
+      "creditsFromPriorObservation": 12410.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17228,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17988,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 6278,
+      "gameTimeMs": 1407259,
+      "battleSeconds": 1301.765,
+      "observationLine": 6270,
+      "creditsFromPriorObservation": 13327.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17228,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17988,
+          "tier": 2,
+          "queue": 1,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 8350,
+      "gameTimeMs": 1786484,
+      "battleSeconds": 1680.99,
+      "observationLine": 8333,
+      "creditsFromPriorObservation": 92222.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17228,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17988,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9108,
+      "gameTimeMs": 1898144,
+      "battleSeconds": 1792.65,
+      "observationLine": 9094,
+      "creditsFromPriorObservation": 104226.5,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17228,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17988,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9378,
+      "gameTimeMs": 1949959,
+      "battleSeconds": 1844.465,
+      "observationLine": 9365,
+      "creditsFromPriorObservation": 105786.0,
+      "factories": [
+        {
+          "id": 569,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 2995,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17228,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        },
+        {
+          "id": 17988,
+          "tier": 2,
+          "queue": 0,
+          "actions": [
+            {
+              "actionId": "u_combatEngineer",
+              "type": "combatEngineer",
+              "cost": 3500,
+              "affordable": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "needLifecycles": [
+    {
+      "targetId": 8232,
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "created": {
+        "line": 2608,
+        "gameTimeMs": 731404,
+        "battleSeconds": 625.91
+      },
+      "events": [],
+      "status": "OPEN_AT_REPORT_END",
+      "reportEnd": {
+        "line": 12832,
+        "gameTimeMs": 2507814,
+        "battleSeconds": 2402.32
+      }
+    },
+    {
+      "targetId": 8671,
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "created": {
+        "line": 2613,
+        "gameTimeMs": 731404,
+        "battleSeconds": 625.91
+      },
+      "events": [
+        {
+          "line": 4677,
+          "gameTimeMs": 1134809,
+          "battleSeconds": 1029.315,
+          "event": "strategy_task_assigned",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "objectiveSemantics": "CURRENT_CONTACT_APPROACH",
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4681,
+          "gameTimeMs": 1134809,
+          "battleSeconds": 1029.315,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4688,
+          "gameTimeMs": 1137564,
+          "battleSeconds": 1032.07,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4699,
+          "gameTimeMs": 1140319,
+          "battleSeconds": 1034.825,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4710,
+          "gameTimeMs": 1142984,
+          "battleSeconds": 1037.49,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4723,
+          "gameTimeMs": 1145739,
+          "battleSeconds": 1040.245,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4736,
+          "gameTimeMs": 1148479,
+          "battleSeconds": 1042.985,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4746,
+          "gameTimeMs": 1151294,
+          "battleSeconds": 1045.8,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4761,
+          "gameTimeMs": 1154049,
+          "battleSeconds": 1048.555,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4787,
+          "gameTimeMs": 1157094,
+          "battleSeconds": 1051.6,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4801,
+          "gameTimeMs": 1160009,
+          "battleSeconds": 1054.515,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4818,
+          "gameTimeMs": 1162809,
+          "battleSeconds": 1057.315,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4838,
+          "gameTimeMs": 1165709,
+          "battleSeconds": 1060.215,
+          "event": "strategy_target_damage_observed",
+          "taskId": 1000002,
+          "attribution": "TEAM_DAMAGE_NOT_EXCLUSIVE_TO_RESPONDER",
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4865,
+          "gameTimeMs": 1168694,
+          "battleSeconds": 1063.2,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 4939,
+          "gameTimeMs": 1183109,
+          "battleSeconds": 1077.615,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5019,
+          "gameTimeMs": 1197384,
+          "battleSeconds": 1091.89,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5088,
+          "gameTimeMs": 1211924,
+          "battleSeconds": 1106.43,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5154,
+          "gameTimeMs": 1226109,
+          "battleSeconds": 1120.615,
+          "event": "strategy_task_blocked",
+          "taskId": 1000002,
+          "reason": "NO_OBSERVED_PROGRESS",
+          "attempts": 1,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5163,
+          "gameTimeMs": 1228744,
+          "battleSeconds": 1123.25,
+          "event": "strategy_task_assigned",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5167,
+          "gameTimeMs": 1228744,
+          "battleSeconds": 1123.25,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5174,
+          "gameTimeMs": 1231494,
+          "battleSeconds": 1126.0,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5195,
+          "gameTimeMs": 1234549,
+          "battleSeconds": 1129.055,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5210,
+          "gameTimeMs": 1237359,
+          "battleSeconds": 1131.865,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5225,
+          "gameTimeMs": 1240074,
+          "battleSeconds": 1134.58,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5244,
+          "gameTimeMs": 1243114,
+          "battleSeconds": 1137.62,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5258,
+          "gameTimeMs": 1245849,
+          "battleSeconds": 1140.355,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5278,
+          "gameTimeMs": 1248979,
+          "battleSeconds": 1143.485,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5298,
+          "gameTimeMs": 1251934,
+          "battleSeconds": 1146.44,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5319,
+          "gameTimeMs": 1254969,
+          "battleSeconds": 1149.475,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5337,
+          "gameTimeMs": 1257774,
+          "battleSeconds": 1152.28,
+          "event": "strategy_response_progress",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5350,
+          "gameTimeMs": 1257774,
+          "battleSeconds": 1152.28,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5435,
+          "gameTimeMs": 1272544,
+          "battleSeconds": 1167.05,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5531,
+          "gameTimeMs": 1286839,
+          "battleSeconds": 1181.345,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5610,
+          "gameTimeMs": 1298884,
+          "battleSeconds": 1193.39,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5699,
+          "gameTimeMs": 1311519,
+          "battleSeconds": 1206.025,
+          "event": "strategy_response_ordered",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5737,
+          "gameTimeMs": 1320264,
+          "battleSeconds": 1214.77,
+          "event": "strategy_task_blocked",
+          "taskId": 1000003,
+          "reason": "NO_OBSERVED_PROGRESS",
+          "attempts": 2,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5835,
+          "gameTimeMs": 1332439,
+          "battleSeconds": 1226.945,
+          "event": "strategy_task_assigned",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5839,
+          "gameTimeMs": 1332439,
+          "battleSeconds": 1226.945,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5844,
+          "gameTimeMs": 1335709,
+          "battleSeconds": 1230.215,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5853,
+          "gameTimeMs": 1338469,
+          "battleSeconds": 1232.975,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5884,
+          "gameTimeMs": 1341714,
+          "battleSeconds": 1236.22,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5904,
+          "gameTimeMs": 1344624,
+          "battleSeconds": 1239.13,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5930,
+          "gameTimeMs": 1347749,
+          "battleSeconds": 1242.255,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5936,
+          "gameTimeMs": 1350394,
+          "battleSeconds": 1244.9,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5951,
+          "gameTimeMs": 1353299,
+          "battleSeconds": 1247.805,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5964,
+          "gameTimeMs": 1356104,
+          "battleSeconds": 1250.61,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5981,
+          "gameTimeMs": 1359164,
+          "battleSeconds": 1253.67,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 5993,
+          "gameTimeMs": 1362039,
+          "battleSeconds": 1256.545,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6017,
+          "gameTimeMs": 1365014,
+          "battleSeconds": 1259.52,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6033,
+          "gameTimeMs": 1368029,
+          "battleSeconds": 1262.535,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6049,
+          "gameTimeMs": 1370999,
+          "battleSeconds": 1265.505,
+          "event": "strategy_response_progress",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6056,
+          "gameTimeMs": 1370999,
+          "battleSeconds": 1265.505,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6154,
+          "gameTimeMs": 1383659,
+          "battleSeconds": 1278.165,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6219,
+          "gameTimeMs": 1395674,
+          "battleSeconds": 1290.18,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6294,
+          "gameTimeMs": 1410049,
+          "battleSeconds": 1304.555,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6360,
+          "gameTimeMs": 1423754,
+          "battleSeconds": 1318.26,
+          "event": "strategy_response_ordered",
+          "taskId": 1000002,
+          "unitId": 16844,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 6395,
+          "gameTimeMs": 1432244,
+          "battleSeconds": 1326.75,
+          "event": "strategy_task_blocked",
+          "taskId": 1000002,
+          "reason": "NO_OBSERVED_PROGRESS",
+          "attempts": 3,
+          "targetIdSource": "EVENT"
+        },
+        {
+          "line": 8588,
+          "gameTimeMs": 1821059,
+          "battleSeconds": 1715.565,
+          "event": "strategy_task_preempted",
+          "taskId": 1000002,
+          "reason": "CRITICAL_HP",
+          "previousJob": "IDLE",
+          "targetIdSource": "LAST_ASSIGNMENT_FOR_TASK"
+        },
+        {
+          "line": 8831,
+          "gameTimeMs": 1856609,
+          "battleSeconds": 1751.115,
+          "event": "strategy_task_preempted",
+          "taskId": 1000003,
+          "reason": "CRITICAL_HP",
+          "previousJob": "IDLE",
+          "targetIdSource": "LAST_ASSIGNMENT_FOR_TASK"
+        },
+        {
+          "line": 9075,
+          "gameTimeMs": 1895019,
+          "battleSeconds": 1789.525,
+          "event": "strategy_task_lost",
+          "taskId": 1000003,
+          "unitId": 17679,
+          "job": "RETURN",
+          "targetIdSource": "LAST_ASSIGNMENT_FOR_TASK"
+        }
+      ],
+      "status": "OPEN_AT_REPORT_END",
+      "reportEnd": {
+        "line": 12832,
+        "gameTimeMs": 2507814,
+        "battleSeconds": 2402.32
+      }
+    }
+  ],
+  "strategyAllocations": [
+    {
+      "line": 2162,
+      "gameTimeMs": 654419,
+      "battleSeconds": 548.925,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 883.5,
+      "protectedFunds": 700.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": false,
+      "engineers": 0
+    },
+    {
+      "line": 4500,
+      "gameTimeMs": 1099259,
+      "battleSeconds": 993.765,
+      "selected": "UNSERVED_CAPABILITY_NEED",
+      "freeCredits": 8454.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_combatEngineer",
+        "type": "combatEngineer",
+        "cost": 3500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 0
+    },
+    {
+      "line": 4701,
+      "gameTimeMs": 1140319,
+      "battleSeconds": 1034.825,
+      "selected": "UNSERVED_CAPABILITY_NEED",
+      "freeCredits": 8404.0,
+      "protectedFunds": 700.0,
+      "action": {
+        "actionId": "u_combatEngineer",
+        "type": "combatEngineer",
+        "cost": 3500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 1
+    },
+    {
+      "line": 4970,
+      "gameTimeMs": 1188699,
+      "battleSeconds": 1083.205,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 9256.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5031,
+      "gameTimeMs": 1200269,
+      "battleSeconds": 1094.775,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 9805.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 604,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5070,
+      "gameTimeMs": 1208959,
+      "battleSeconds": 1103.465,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 8913.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 786,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5105,
+      "gameTimeMs": 1217534,
+      "battleSeconds": 1112.04,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 8000.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 6441,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5185,
+      "gameTimeMs": 1231494,
+      "battleSeconds": 1126.0,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 5916.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 7960,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5237,
+      "gameTimeMs": 1240074,
+      "battleSeconds": 1134.58,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 5856.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 10053,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5310,
+      "gameTimeMs": 1251934,
+      "battleSeconds": 1146.44,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 4671.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 14835,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5392,
+      "gameTimeMs": 1263779,
+      "battleSeconds": 1158.285,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 3154.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 15784,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 5758,
+      "gameTimeMs": 1322999,
+      "battleSeconds": 1217.505,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 3505.0,
+      "protectedFunds": 700.0,
+      "action": {
+        "id": 19760,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 6074,
+      "gameTimeMs": 1373819,
+      "battleSeconds": 1268.325,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 12410.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 6224,
+      "gameTimeMs": 1398334,
+      "battleSeconds": 1292.84,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 14721.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 15408,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 6279,
+      "gameTimeMs": 1407259,
+      "battleSeconds": 1301.765,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 13327.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 8351,
+      "gameTimeMs": 1786484,
+      "battleSeconds": 1680.99,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 91722.5,
+      "protectedFunds": 500.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 8697,
+      "gameTimeMs": 1837324,
+      "battleSeconds": 1731.83,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 100496.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 2245,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 8785,
+      "gameTimeMs": 1850134,
+      "battleSeconds": 1744.64,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 99980.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 21736,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 9109,
+      "gameTimeMs": 1898144,
+      "battleSeconds": 1792.65,
+      "selected": "UNSERVED_CAPABILITY_NEED",
+      "freeCredits": 104226.5,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_combatEngineer",
+        "type": "combatEngineer",
+        "cost": 3500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 1
+    },
+    {
+      "line": 9379,
+      "gameTimeMs": 1949959,
+      "battleSeconds": 1844.465,
+      "selected": "PARALLEL_CONSTRUCTION_BACKLOG",
+      "freeCredits": 105786.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "actionId": "u_builder",
+        "type": "builder",
+        "cost": 500,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 9632,
+      "gameTimeMs": 1994319,
+      "battleSeconds": 1888.825,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 112080.0,
+      "protectedFunds": 0.0,
+      "action": {
+        "id": 33036,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    },
+    {
+      "line": 9703,
+      "gameTimeMs": 2003869,
+      "battleSeconds": 1898.375,
+      "selected": "MINE_T2_INCOME_INVESTMENT",
+      "freeCredits": 111908.5,
+      "protectedFunds": 700.0,
+      "action": {
+        "id": 33483,
+        "type": "extractorT1",
+        "queue": 0,
+        "actionId": "extractorT2_0",
+        "product": "extractorT2",
+        "cost": 1400,
+        "affordable": true
+      },
+      "unservedCapabilityNeed": true,
+      "engineers": 2
+    }
+  ],
+  "fundingGateWindows": [
+    {
+      "endBoundaryLineExclusive": 12833,
+      "start": {
+        "line": 2622,
+        "gameTimeMs": 734359,
+        "battleSeconds": 628.865,
+        "observationLine": 2621,
+        "force": 33,
+        "credits": 527.0,
+        "homeEmergency": false,
+        "activeNeeds": [
+          8232,
+          8671
+        ],
+        "readyT2Factories": [
+          569,
+          2995
+        ],
+        "emptyT2Factories": [],
+        "modelledIncome": 87.25,
+        "capacityLine": 2484,
+        "builderReserveAtLastHeartbeat": 0,
+        "buildPendingAtLastHeartbeat": null,
+        "heartbeatLine": 2620
+      },
+      "end": {
+        "line": 12811,
+        "gameTimeMs": 2504914,
+        "battleSeconds": 2399.42,
+        "observationLine": 12809,
+        "force": 97,
+        "credits": 205644.0,
+        "homeEmergency": false,
+        "activeNeeds": [
+          8232,
+          8671
+        ],
+        "readyT2Factories": [
+          569,
+          2995,
+          17228,
+          17988
+        ],
+        "emptyT2Factories": [
+          569,
+          2995,
+          17228,
+          17988
+        ],
+        "modelledIncome": 256.23,
+        "capacityLine": 12772,
+        "builderReserveAtLastHeartbeat": 0,
+        "buildPendingAtLastHeartbeat": null,
+        "heartbeatLine": 12808
+      },
+      "observedSpanSeconds": 1770.555,
+      "observationSamples": 609,
+      "forceMin": 32,
+      "forceMax": 101,
+      "modelledIncomeMin": 87.25,
+      "modelledIncomeMax": 262.265,
+      "maximumSampledBuilderReserve": 500,
+      "sampledBuildPendingValues": [
+        "None",
+        "extractor",
+        "landFactory"
+      ],
+      "spendByCategory": {
+        "UNIT_PRODUCTION": 66200,
+        "STRATEGIC_CONSTRUCTION": 22100,
+        "NEW_MINE": 5600,
+        "STRATEGIC_CAPABILITY": 13000,
+        "NEW_FACTORY": 1400,
+        "MINE_UPGRADE": 18200,
+        "FACTORY_UPGRADE": 4000,
+        "BUILDER_RECOVERY": 500
+      },
+      "ordinaryProductionCount": 85,
+      "ordinaryProductionCost": 66200,
+      "ordinaryProductionSpends": [
+        {
+          "line": 2679,
+          "gameTimeMs": 740234,
+          "battleSeconds": 634.74,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 2725,
+          "gameTimeMs": 746084,
+          "battleSeconds": 640.59,
+          "category": "UNIT_PRODUCTION",
+          "cost": 350,
+          "itemType": "c_tank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 2785,
+          "gameTimeMs": 757094,
+          "battleSeconds": 651.6,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 2793,
+          "gameTimeMs": 760054,
+          "battleSeconds": 654.56,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 2896,
+          "gameTimeMs": 779009,
+          "battleSeconds": 673.515,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 2947,
+          "gameTimeMs": 789749,
+          "battleSeconds": 684.255,
+          "category": "UNIT_PRODUCTION",
+          "cost": 350,
+          "itemType": "c_tank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3014,
+          "gameTimeMs": 801294,
+          "battleSeconds": 695.8,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3030,
+          "gameTimeMs": 804019,
+          "battleSeconds": 698.525,
+          "category": "UNIT_PRODUCTION",
+          "cost": 350,
+          "itemType": "c_tank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3100,
+          "gameTimeMs": 817654,
+          "battleSeconds": 712.16,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3109,
+          "gameTimeMs": 820469,
+          "battleSeconds": 714.975,
+          "category": "UNIT_PRODUCTION",
+          "cost": 350,
+          "itemType": "c_tank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3182,
+          "gameTimeMs": 833994,
+          "battleSeconds": 728.5,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3201,
+          "gameTimeMs": 836894,
+          "battleSeconds": 731.4,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3286,
+          "gameTimeMs": 850899,
+          "battleSeconds": 745.405,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3312,
+          "gameTimeMs": 856539,
+          "battleSeconds": 751.045,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3367,
+          "gameTimeMs": 867359,
+          "battleSeconds": 761.865,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3392,
+          "gameTimeMs": 872924,
+          "battleSeconds": 767.43,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3439,
+          "gameTimeMs": 883719,
+          "battleSeconds": 778.225,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3475,
+          "gameTimeMs": 889299,
+          "battleSeconds": 783.805,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3557,
+          "gameTimeMs": 905934,
+          "battleSeconds": 800.44,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3565,
+          "gameTimeMs": 908664,
+          "battleSeconds": 803.17,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3631,
+          "gameTimeMs": 922009,
+          "battleSeconds": 816.515,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3652,
+          "gameTimeMs": 927544,
+          "battleSeconds": 822.05,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3697,
+          "gameTimeMs": 938119,
+          "battleSeconds": 832.625,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3726,
+          "gameTimeMs": 943659,
+          "battleSeconds": 838.165,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3786,
+          "gameTimeMs": 954679,
+          "battleSeconds": 849.185,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3806,
+          "gameTimeMs": 960144,
+          "battleSeconds": 854.65,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3854,
+          "gameTimeMs": 970914,
+          "battleSeconds": 865.42,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3898,
+          "gameTimeMs": 979579,
+          "battleSeconds": 874.085,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 3947,
+          "gameTimeMs": 987439,
+          "battleSeconds": 881.945,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 3991,
+          "gameTimeMs": 995994,
+          "battleSeconds": 890.5,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4037,
+          "gameTimeMs": 1004489,
+          "battleSeconds": 898.995,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4070,
+          "gameTimeMs": 1012664,
+          "battleSeconds": 907.17,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4107,
+          "gameTimeMs": 1020974,
+          "battleSeconds": 915.48,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4140,
+          "gameTimeMs": 1029189,
+          "battleSeconds": 923.695,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4182,
+          "gameTimeMs": 1037629,
+          "battleSeconds": 932.135,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4222,
+          "gameTimeMs": 1045739,
+          "battleSeconds": 940.245,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4265,
+          "gameTimeMs": 1054124,
+          "battleSeconds": 948.63,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4315,
+          "gameTimeMs": 1062834,
+          "battleSeconds": 957.34,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4363,
+          "gameTimeMs": 1071274,
+          "battleSeconds": 965.78,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4408,
+          "gameTimeMs": 1079679,
+          "battleSeconds": 974.185,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 4450,
+          "gameTimeMs": 1087964,
+          "battleSeconds": 982.47,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4532,
+          "gameTimeMs": 1104494,
+          "battleSeconds": 999.0,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4610,
+          "gameTimeMs": 1121074,
+          "battleSeconds": 1015.58,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4695,
+          "gameTimeMs": 1137564,
+          "battleSeconds": 1032.07,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4797,
+          "gameTimeMs": 1157094,
+          "battleSeconds": 1051.6,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4924,
+          "gameTimeMs": 1177614,
+          "battleSeconds": 1072.12,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 4932,
+          "gameTimeMs": 1180364,
+          "battleSeconds": 1074.87,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 5058,
+          "gameTimeMs": 1206129,
+          "battleSeconds": 1100.635,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 5099,
+          "gameTimeMs": 1214804,
+          "battleSeconds": 1109.31,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 5150,
+          "gameTimeMs": 1223064,
+          "battleSeconds": 1117.57,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 5252,
+          "gameTimeMs": 1243114,
+          "battleSeconds": 1137.62,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 5274,
+          "gameTimeMs": 1245849,
+          "battleSeconds": 1140.355,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 5424,
+          "gameTimeMs": 1269749,
+          "battleSeconds": 1164.255,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 5468,
+          "gameTimeMs": 1278614,
+          "battleSeconds": 1173.12,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 5486,
+          "gameTimeMs": 1281199,
+          "battleSeconds": 1175.705,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 5543,
+          "gameTimeMs": 1290044,
+          "battleSeconds": 1184.55,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 5583,
+          "gameTimeMs": 1295764,
+          "battleSeconds": 1190.27,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 5676,
+          "gameTimeMs": 1308319,
+          "battleSeconds": 1202.825,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 6197,
+          "gameTimeMs": 1389569,
+          "battleSeconds": 1284.075,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 6211,
+          "gameTimeMs": 1392794,
+          "battleSeconds": 1287.3,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 6247,
+          "gameTimeMs": 1401009,
+          "battleSeconds": 1295.515,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 6264,
+          "gameTimeMs": 1404214,
+          "battleSeconds": 1298.72,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17988
+        },
+        {
+          "line": 8639,
+          "gameTimeMs": 1827544,
+          "battleSeconds": 1722.05,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 8660,
+          "gameTimeMs": 1830734,
+          "battleSeconds": 1725.24,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 8722,
+          "gameTimeMs": 1840524,
+          "battleSeconds": 1735.03,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 8747,
+          "gameTimeMs": 1843769,
+          "battleSeconds": 1738.275,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 8813,
+          "gameTimeMs": 1853389,
+          "battleSeconds": 1747.895,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 8877,
+          "gameTimeMs": 1863079,
+          "battleSeconds": 1757.585,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 8898,
+          "gameTimeMs": 1866359,
+          "battleSeconds": 1760.865,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 8957,
+          "gameTimeMs": 1875884,
+          "battleSeconds": 1770.39,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 9134,
+          "gameTimeMs": 1901119,
+          "battleSeconds": 1795.625,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 9153,
+          "gameTimeMs": 1904334,
+          "battleSeconds": 1798.84,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 9176,
+          "gameTimeMs": 1910419,
+          "battleSeconds": 1804.925,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17988
+        },
+        {
+          "line": 10181,
+          "gameTimeMs": 2088524,
+          "battleSeconds": 1983.03,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 10225,
+          "gameTimeMs": 2094919,
+          "battleSeconds": 1989.425,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 10244,
+          "gameTimeMs": 2098104,
+          "battleSeconds": 1992.61,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 10297,
+          "gameTimeMs": 2104664,
+          "battleSeconds": 1999.17,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 10317,
+          "gameTimeMs": 2107939,
+          "battleSeconds": 2002.445,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17988
+        },
+        {
+          "line": 10363,
+          "gameTimeMs": 2114369,
+          "battleSeconds": 2008.875,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 10383,
+          "gameTimeMs": 2117459,
+          "battleSeconds": 2011.965,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 10432,
+          "gameTimeMs": 2123959,
+          "battleSeconds": 2018.465,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 10575,
+          "gameTimeMs": 2143079,
+          "battleSeconds": 2037.585,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 569
+        },
+        {
+          "line": 10596,
+          "gameTimeMs": 2145824,
+          "battleSeconds": 2040.33,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 2995
+        },
+        {
+          "line": 10642,
+          "gameTimeMs": 2152219,
+          "battleSeconds": 2046.725,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17228
+        },
+        {
+          "line": 10658,
+          "gameTimeMs": 2155359,
+          "battleSeconds": 2049.865,
+          "category": "UNIT_PRODUCTION",
+          "cost": 800,
+          "itemType": "heavyTank",
+          "producerOrBuilderId": 17988
+        }
+      ],
+      "bookkeepingThresholds": [
+        {
+          "menuCost": 3500,
+          "menuCostEvidenceLine": 2022,
+          "illustrativeAdditionalBuffer": 0,
+          "targetCash": 3500,
+          "firstCrossing": {
+            "line": 2830,
+            "gameTimeMs": 770639,
+            "battleSeconds": 665.145,
+            "observationLine": 2827,
+            "secondsFromWindowStart": 36.28,
+            "actualCredits": 926.0,
+            "retainedOrdinarySpend": 2750,
+            "bookkeepingCash": 3676.0,
+            "observedForce": 36,
+            "spendLines": [
+              2679,
+              2725,
+              2785,
+              2793
+            ]
+          }
+        },
+        {
+          "menuCost": 3500,
+          "menuCostEvidenceLine": 2022,
+          "illustrativeAdditionalBuffer": 700,
+          "targetCash": 4200,
+          "firstCrossing": {
+            "line": 2924,
+            "gameTimeMs": 787089,
+            "battleSeconds": 681.595,
+            "observationLine": 2923,
+            "secondsFromWindowStart": 52.73,
+            "actualCredits": 871.5,
+            "retainedOrdinarySpend": 3550,
+            "bookkeepingCash": 4421.5,
+            "observedForce": 38,
+            "spendLines": [
+              2679,
+              2725,
+              2785,
+              2793,
+              2896
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "combatObservationSamples": 842,
+  "reportedSummary": {
+    "outcome": "PARTIAL",
+    "reason": "Game-time budget reached without native result",
+    "phase": "battle",
+    "matchOutcome": "ONGOING",
+    "commands": 648,
+    "observations": 844,
+    "ownLosses": 82,
+    "newCombatUnits": 139,
+    "attackOrders": 242,
+    "attackOrdersConfirmed": 227,
+    "retreatOrders": 17,
+    "upgradesCompleted": 4,
+    "completedMines": 13,
+    "newMines": 13,
+    "mineTarget": 3,
+    "minesBeyondFloor": 11,
+    "expansionRefusals": 111,
+    "expansionBlocked": 130,
+    "completedFactories": 3,
+    "newFactories": 3,
+    "landFactoryTarget": 4,
+    "factoryBlocks": 0,
+    "builderTarget": 1,
+    "builderRecoveries": 1,
+    "builderOrders": 1,
+    "battleGameTimeMs": 2402320,
+    "gameSecondsPerWallSecond": 5.0,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 2,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 34,
+    "targetSuppressionsAtEnd": 2,
+    "targetSwitches": 140,
+    "effectiveDecisionIntervalGameMs": 2940,
+    "noProgressAttentionGapMs": 8820,
+    "maxObservedGameTimeJump": 3610,
+    "observationCount": 844,
+    "spendTotal": 172150,
+    "spendByCategory": {
+      "FACTORY_UPGRADE": {
+        "orders": 4,
+        "cost": 8000
+      },
+      "NEW_MINE": {
+        "orders": 12,
+        "cost": 8400
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 136,
+        "cost": 99350
+      },
+      "NEW_FACTORY": {
+        "orders": 3,
+        "cost": 2100
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 9,
+        "cost": 13500
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 30,
+        "cost": 22100
+      },
+      "MINE_UPGRADE": {
+        "orders": 13,
+        "cost": 18200
+      },
+      "BUILDER_RECOVERY": {
+        "orders": 1,
+        "cost": 500
+      }
+    },
+    "measuredIncomePerGameSecond": 156.33,
+    "investmentIntentions": 18,
+    "investmentCompletions": 5,
+    "investmentCancellations": 13,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "CONTESTED",
+    "reconEnabled": true,
+    "reconTasksCreated": 51,
+    "reconOrdersQueued": 65,
+    "reconOrdersObserved": 22,
+    "reconMovesCompletedBetweenSamples": 43,
+    "frontierTasksSatisfiedByTeamVision": 34,
+    "reconResolvedAfterObservedMove": 5,
+    "reconReacquired": 5,
+    "reconSitesCleared": 2,
+    "reconBlocked": 0,
+    "reconTaskPendingAtEnd": true,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 43,
+    "frontierTasksRefreshed": 1,
+    "frontierTasksAdvanced": 2,
+    "frontierTasksBlocked": 5,
+    "frontierTasksPreempted": 1,
+    "expendableTransfers": 2,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 2,
+    "factoryTargetIncreaseBlocks": 2,
+    "landFactoryTargetAtEnd": 4,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 5,
+    "factorySaturationPct": 0.0,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+    "minesReadyAtEnd": 16,
+    "productionConsumptionPerGameSecond": 0.0,
+    "sustainableSurplusPerGameSecond": 256.2,
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 92,
+      "activeTarget": 80,
+      "reserveTarget": 12,
+      "hardSafetyCap": 128,
+      "builderTarget": 2,
+      "capabilityNeedsAtEnd": 2,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 52,
+      "mineUpgradesObserved": 13,
+      "constructionCompletionsObserved": 30
+    }
+  },
+  "interpretation": {
+    "windowGate": "ACTIVE_NEED_AND_FORCE_GTE_6_AND_NO_VISIBLE_ARMED_ENEMY_WITHIN_500_OF_HOME_AND_READY_T2_FACTORY",
+    "windowIsPartialAdmissionOnly": true,
+    "bounds": [
+      "Consecutive observed gates do not prove tactical safety between observations or after withholding production.",
+      "Windows do not reconstruct assigned responders, retry limits, pending purchases, shared command slots, or the 8-second allocation timer.",
+      "The A report has no strategy task assignment or engineer investment; do not assume that for other reports.",
+      "Heartbeat builder reserve and buildPending are incomplete samples, not exact protectedFunds; the 700 buffer is illustrative, not inferred hard reserve.",
+      "Bookkeeping cash adds only earlier ordinary UNIT_PRODUCTION spending to observed cash. It keeps the historical income/loss trajectory fixed and is not a counterfactual game.",
+      "Modelled income is strategy_capacity.incomeEstimate, not a fresh measurement.",
+      "Open needs at a PARTIAL/ONGOING budget boundary are unfinished, not necessarily rejected or failed.",
+      "Menu affordability is the native action flag; prior observation credits can precede that menu in game time."
+    ]
+  }
+}

@@ -28,6 +28,17 @@ final class StrategyDirector {
     private final Map<Long,Worker> workers=new LinkedHashMap<Long,Worker>();
     private final Map<Long,Purchase> purchases=new LinkedHashMap<Long,Purchase>();
     private int investments,upgrades,completedJobs,resolvedNeeds;
+    private CapabilityFunding capabilityFunding;
+    private long capabilityFundingRetryAt;
+    private int capabilityReservesStarted,capabilityReservesReleased;
+    private static final class CapabilityFunding {
+        final long need,producer,started,deadline;
+        final String action;
+        final double cost;
+        CapabilityFunding(long need,long producer,String action,double cost,long now){
+            this.need=need;this.producer=producer;this.action=action;this.cost=cost;started=now;deadline=now+90000;
+        }
+    }
     private static final class Assessment {
         long checked=-100000;String signature="";double x,y;
         final Set<Long> blocked=new HashSet<Long>();
@@ -58,6 +69,10 @@ final class StrategyDirector {
     int armyTarget(){return enabled?armyTarget:hardCap;}
     int activeTarget(){return activeTarget;}
     int builderTarget(){return builderTarget;}
+    double capabilityReserve(){return capabilityFunding==null?0:capabilityFunding.cost;}
+    boolean wouldBreachCapabilityReserve(double credits,double cost,double otherReserved){
+        return capabilityFunding!=null&&credits-cost<capabilityFunding.cost+Math.max(0,otherReserved);
+    }
     boolean pending(long actor){return purchases.containsKey(actor);}
     boolean safetyCapacityAvailable(){return !enabled||state==null||committedArmed()<hardCap;}
     private int committedArmed(){
@@ -84,6 +99,7 @@ final class StrategyDirector {
         for(Map<String,Object> enemy:items(enemies,"visibleEnemies"))if(Boolean.TRUE.equals(enemy.get("canAttack"))
                 &&distance(enemy,homeX,homeY)<500)homeEmergency=true;
         updatePurchases();claimWorkers();updateWorkers();refreshAssessments(main);clearNeeds();
+        validateCapabilityFunding();
         if(now-lastCapacity>=30000){
             lastCapacity=now;
             int backlog=resourceBacklog(),armed=army(state).size();
@@ -260,16 +276,17 @@ final class StrategyDirector {
     boolean act(double reserved,long factoryTarget)throws Exception{
         if(!enabled||!arbiter.ready(now))return false;
         protectedFunds=reserved;
+        if(capabilityFunding!=null&&fulfilCapabilityFunding())return true;
         for(Worker worker:workers.values())if(workerAction(worker))return true;
         if(now-lastAllocation<8000)return false;
         lastAllocation=now;
-        double credits=n(obj(state.get("player")),"credits"),free=credits-protectedFunds;
+        double credits=n(obj(state.get("player")),"credits"),free=credits-protectedFunds-capabilityReserve();
         int force=army(state).size(),engineers=count("combatEngineer"),builders=count("builder");
         int backlog=resourceBacklog();
         boolean unserved=false;for(Need need:needs.values())if(need.failures<3&&!assigned(need.id)){unserved=true;break;}
         // Explicit alternatives: a task capability gap outranks throughput, then safe growth.
         String product=null,reason=null;
-        if(unserved&&engineers+pendingCount("combatEngineer")<Math.min(2,needs.size())&&force>=6&&!homeEmergency&&safetyCapacityAvailable()){product="combatEngineer";reason="UNSERVED_CAPABILITY_NEED";}
+        if(capabilityFunding==null&&now>=capabilityFundingRetryAt&&unserved&&engineers+pendingCount("combatEngineer")<Math.min(2,needs.size())&&force>=6&&!homeEmergency&&safetyCapacityAvailable()){product="combatEngineer";reason="UNSERVED_CAPABILITY_NEED";}
         else if(builders+pendingCount("builder")<builderTarget&&!homeEmergency){product="builder";reason="PARALLEL_CONSTRUCTION_BACKLOG";}
         Map<String,Object> alternatives=map("militaryDeficit",Math.max(0,armyTarget-force),"unservedCapabilityNeed",unserved,
             "constructionBacklog",backlog,"builders",builders,"builderTarget",builderTarget,"engineers",engineers,
@@ -284,6 +301,7 @@ final class StrategyDirector {
                     if(receipt!=null){purchases.put(id(factory),new Purchase(product,now));investments++;host.spendStrategy("STRATEGIC_CAPABILITY",(long)n(action,"cost"),product,id(factory));return true;}
                 }
             }
+            if("combatEngineer".equals(product)&&startCapabilityFunding(menu,free))free-=capabilityReserve();
         }
         // Upgrades compete against military recovery and new-site expansion. The gain is a labelled
         // estimate: calibrated T1 income times the frozen 12/8 native generation ratio.
@@ -355,6 +373,77 @@ final class StrategyDirector {
             worker.retryAt=now+15000;
         }
         return false;
+    }
+    private void validateCapabilityFunding()throws Exception{
+        if(capabilityFunding==null)return;
+        Need need=needs.get(capabilityFunding.need);
+        Map<String,Object> producer=find(state,capabilityFunding.producer);
+        String reason=null;
+        if(now>=capabilityFunding.deadline)reason="TIMEOUT";
+        else if(need==null||need.failures>=3)reason="NEED_UNAVAILABLE";
+        else if(assigned(need.id))reason="NEED_ALREADY_SERVED";
+        else if(homeEmergency)reason="HOME_EMERGENCY";
+        else if(army(state).size()<6)reason="FORCE_BELOW_MINIMUM";
+        else if(producer==null||!alive(producer))reason="PRODUCER_LOST";
+        else if(!safetyCapacityAvailable())reason="CAPACITY_UNAVAILABLE";
+        else if(count("combatEngineer")+pendingCount("combatEngineer")>=Math.min(2,needs.size()))reason="ENGINEER_CAPACITY_SATISFIED";
+        if(reason!=null)releaseCapabilityFunding(reason);
+    }
+    private boolean startCapabilityFunding(Map<String,Object> menu,double free)throws Exception{
+        if(capabilityFunding!=null||now<capabilityFundingRetryAt||!(income>0)||!Double.isFinite(income))return false;
+        Need selected=null;for(Need need:needs.values())if(need.failures<3&&!assigned(need.id)){selected=need;break;}
+        if(selected==null)return false;
+        for(Map<String,Object> factory:items(menu,"factories")){
+            Map<String,Object> producer=find(state,id(factory));
+            if(producer==null||!alive(producer)||pending(id(factory)))continue;
+            for(Map<String,Object> action:items(factory,"actions")){
+                double cost=number(action,"cost",0);
+                if(!"combatEngineer".equals(action.get("type"))||!(action.get("actionId") instanceof String)
+                        ||String.valueOf(action.get("actionId")).isEmpty()||!Double.isFinite(cost)||cost<=0||free>=cost)continue;
+                double fundingSeconds=(cost-free)/income;
+                if(fundingSeconds>60)continue;
+                capabilityFunding=new CapabilityFunding(selected.id,id(factory),(String)action.get("actionId"),cost,now);
+                capabilityReservesStarted++;
+                Map<String,Object> data=capabilityFundingData("BOUNDED_CAPABILITY_FUNDING");
+                data.put("freeCredits",free);data.put("protectedFunds",protectedFunds);data.put("incomeEstimate",income);
+                data.put("estimatedFundingGameSeconds",fundingSeconds);data.put("estimateSemantics","BUDGET_FEASIBILITY_NOT_OUTCOME_PREDICTION");
+                emit("strategy_capability_reserve_started",data);return true;
+            }
+        }
+        return false;
+    }
+    /** A funded purchase keeps its original hard-reserve deduction, never its own reserve. */
+    private boolean fulfilCapabilityFunding()throws Exception{
+        CapabilityFunding funding=capabilityFunding;
+        Map<String,Object> menu=host.readStrategy("/combat/production","strategy_production_menu");
+        if(menu==null){releaseCapabilityFunding("MENU_UNAVAILABLE");return false;}
+        Map<String,Object> producer=null,chosen=null;
+        for(Map<String,Object> factory:items(menu,"factories"))if(id(factory)==funding.producer){producer=factory;break;}
+        if(producer!=null)for(Map<String,Object> action:items(producer,"actions"))
+            if("combatEngineer".equals(action.get("type"))&&funding.action.equals(action.get("actionId"))){chosen=action;break;}
+        if(chosen==null){releaseCapabilityFunding("ACTION_UNAVAILABLE");return false;}
+        if(number(chosen,"cost",Double.NaN)!=funding.cost){releaseCapabilityFunding("PRICE_CHANGED");return false;}
+        double free=n(obj(state.get("player")),"credits")-protectedFunds;
+        if(number(producer,"queue",-1)!=0||pending(funding.producer)||!Boolean.TRUE.equals(chosen.get("affordable"))||free<funding.cost)return false;
+        Map<String,Object> data=capabilityFundingData("CAPABILITY_COMMITMENT_READY");
+        data.put("selected","UNSERVED_CAPABILITY_NEED");data.put("action",chosen);data.put("freeCredits",free);data.put("protectedFunds",protectedFunds);
+        emit("strategy_allocation",data);
+        Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action));
+        if(receipt==null){releaseCapabilityFunding("ORDER_REJECTED");return false;}
+        purchases.put(funding.producer,new Purchase("combatEngineer",now));investments++;
+        host.spendStrategy("STRATEGIC_CAPABILITY",(long)funding.cost,"combatEngineer",funding.producer);
+        releaseCapabilityFunding("PURCHASE_ACCEPTED");return true;
+    }
+    private Map<String,Object> capabilityFundingData(String reason){
+        CapabilityFunding f=capabilityFunding;
+        return map("needId",f.need,"producerId",f.producer,"product","combatEngineer","actionId",f.action,"cost",f.cost,
+            "startedAtGameTimeMs",f.started,"deadlineGameTimeMs",f.deadline,"ageGameMs",now-f.started,"reason",reason);
+    }
+    private void releaseCapabilityFunding(String reason)throws Exception{
+        if(capabilityFunding==null)return;
+        Map<String,Object> data=capabilityFundingData(reason);capabilityFunding=null;capabilityReservesReleased++;
+        if(!"PURCHASE_ACCEPTED".equals(reason))capabilityFundingRetryAt=now+60000;
+        emit("strategy_capability_reserve_released",data);
     }
     private boolean workerAction(Worker w)throws Exception{
         Map<String,Object> actor=find(state,w.unit);if(actor==null||!ready(actor))return false;
@@ -455,10 +544,11 @@ final class StrategyDirector {
     private void release(Worker w,String reason)throws Exception{
         if(arbiter.release(w.owner))emit("task_ownership_released",map("taskId",w.task,"owner",w.owner,"reason",reason));
     }
-    void close()throws Exception{for(Worker w:workers.values())release(w,"CONTROLLER_ENDED");workers.clear();}
+    void close()throws Exception{releaseCapabilityFunding("CONTROLLER_ENDED");for(Worker w:workers.values())release(w,"CONTROLLER_ENDED");workers.clear();}
     Map<String,Object> summary(){return map("enabled",enabled,"armyTarget",armyTarget,"activeTarget",activeTarget,"reserveTarget",reserveTarget,
         "hardSafetyCap",hardCap,"builderTarget",builderTarget,"capabilityNeedsAtEnd",needs.size(),"needsResolvedByLegalEvidence",resolvedNeeds,
-        "investmentOrders",investments,"mineUpgradesObserved",upgrades,"constructionCompletionsObserved",completedJobs);}
+        "investmentOrders",investments,"mineUpgradesObserved",upgrades,"constructionCompletionsObserved",completedJobs,
+        "capabilityReservesStarted",capabilityReservesStarted,"capabilityReservesReleased",capabilityReservesReleased,"capabilityReserveAtEnd",capabilityReserve());}
     private void emit(String event,Map<String,Object> data)throws Exception{
         data.put("gameTimeMs",now);data.put("sessionId",arbiter.stamp().session);data.put("player",arbiter.stamp().player);host.emitStrategy(event,data);
     }

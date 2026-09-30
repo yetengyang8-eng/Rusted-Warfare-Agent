@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: the same 21 Java runs and 16 Python suites as test-win.ps1.
+# Regression: the same 21 Java runs and 17 Python suites as test-win.ps1.
 set -euo pipefail
 root="$(cd "$(dirname "$0")" && pwd)"
 game_jar="${1:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
@@ -41,6 +41,7 @@ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" CombatHarne
 python3 "$root/tests/test_battle_reports.py"
 
 python3 "$root/tests/test_battle_client.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_strategy_funding.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"

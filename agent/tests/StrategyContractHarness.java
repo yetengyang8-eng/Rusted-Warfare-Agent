@@ -34,6 +34,8 @@ public final class StrategyContractHarness {
         final List<String> orders=new ArrayList<String>();
         Map<String,Object> world;String approach="BLOCKED_TERRAIN";
         boolean visible=true;int upgradeOrders;
+        double engineerCost=3500;
+        boolean engineerOffered=true,productionMenuAvailable=true,rejectOrders,minePlan;
         public Map<String,Object> readStrategy(String path,String event){
             if(path.startsWith("/combat/engagement")){
                 String ids=path.split("unitIds=")[1].split("&")[0];List<Map<String,Object>> actors=new ArrayList<Map<String,Object>>();
@@ -44,8 +46,16 @@ public final class StrategyContractHarness {
                 }
                 return map("targetVisible",visible,"targetX",510,"targetY",70,"targetObservedAtGameTimeMs",world.get("gameTimeMs"),"actors",actors);
             }
-            if(path.equals("/combat/production"))return map("factories",Arrays.asList(map("id",90L,"queue",0,"actions",Arrays.asList(
-                map("actionId","u_combatEngineer","type","combatEngineer","cost",3500,"affordable",true),map("actionId","u_builder","type","builder","cost",500,"affordable",true)))));
+            if(path.equals("/combat/production")){
+                if(!productionMenuAvailable)return null;
+                List<Map<String,Object>> actions=new ArrayList<Map<String,Object>>();
+                if(engineerOffered)actions.add(map("actionId","u_combatEngineer","type","combatEngineer","cost",engineerCost,
+                    "affordable",number(BattleClient.obj(world.get("player")),"credits",0)>=engineerCost));
+                actions.add(map("actionId","u_builder","type","builder","cost",500,"affordable",true));
+                Map<String,Object> factory=BattleClient.find(world,90);
+                return map("factories",Arrays.asList(map("id",90L,"queue",number(factory,"productionQueue",0),"actions",actions)));
+            }
+            if(path.startsWith("/expansion/plan")&&minePlan)return map("extractorCost",700,"extractorX",3090,"extractorY",3100);
             if(path.equals("/economy/investments"))return map("units",Arrays.asList(map("id",91L,"queue",0,"actionId","extractorT2_0","cost",1400,"affordable",true)));
             if(path.startsWith("/scout/resource-approach"))return map("pathKnown",true,"x",1890,"y",1890,"tile",17000);
             return null;
@@ -55,6 +65,7 @@ public final class StrategyContractHarness {
             for(String id:value.split(","))ids.add(Long.valueOf(id));
             require(gate.admit(gate.stamp(),owner,ids)==null,"strategy observes actor ownership and shared command gap");
             orders.add(path);if(path.startsWith("/command/invest"))upgradeOrders++;
+            if(rejectOrders)return null;
             return map("status","queued","unitIds",ids,"requestId","r"+orders.size(),"targetX",490,"targetY",90);
         }
         public void emitStrategy(String kind,Map<String,Object> data){events.add(map("event",kind,"data",new LinkedHashMap<String,Object>(data)));}
@@ -124,8 +135,102 @@ public final class StrategyContractHarness {
         require(strategy.safetyCapacityAvailable()&&f.events("strategy_prospect_observed")==1,"only fresh owned arrival and freed capacity complete prospect accounting");
         strategy.close();require(!f.gate.reserved(3),"remote construction worker releases at end");
     }
+    static final class FundingFixture {
+        final Fake f=new Fake();
+        final StrategyDirector strategy=new StrategyDirector(f,f.gate);
+        final List<Map<String,Object>> all=new ArrayList<Map<String,Object>>(),force=new ArrayList<Map<String,Object>>();
+        final Map<String,Object> world,enemies,scout;
+        double income=63.11,reserved=500;
+        FundingFixture()throws Exception{
+            strategy.enable(map("strategyContractVersion",1),128);
+            all.add(unit(1,"commandCenter",2990,3070));all.add(unit(2,"builder",2990,3000));all.add(unit(90,"landFactory",3050,3100));
+            for(long id=10;id<18;id++){Map<String,Object> tank=unit(id,"heavyTank",450,350);force.add(tank);all.add(tank);}
+            world=map("sessionId","session","gameTimeMs",120000L,"map",map("tilesWide",400,"tilesHigh",370),"player",map("credits",1000),"ownUnits",all);
+            enemies=map("visibleEnemies",Arrays.asList(map("id",230L,"type","seaFactory","building",true,"canAttack",false,"x",510,"y",70,"hp",1000)),
+                "enemyIntel",Collections.emptyList());
+            scout=map("resources",Collections.emptyList(),"rememberedThreats",Collections.emptyList());
+            observe(120000);
+        }
+        void observe(long now)throws Exception{
+            world.put("gameTimeMs",now);f.stamp(world);
+            strategy.observe(world,enemies,scout,force,0,900000,income,60,reserved,false);
+        }
+        void credits(double value){BattleClient.obj(world.get("player")).put("credits",value);}
+        void start()throws Exception{
+            require(!strategy.act(reserved,1),"starting a funding commitment is not a native command");
+            require(strategy.capabilityReserve()==3500&&f.events("strategy_capability_reserve_started")==1,"reserve uses full native engineer menu price");
+        }
+        String releaseReason(){
+            String reason=null;for(Map<String,Object> event:f.events)if("strategy_capability_reserve_released".equals(event.get("event")))
+                reason=String.valueOf(BattleClient.obj(event.get("data")).get("reason"));
+            return reason;
+        }
+        void released(String expected){require(strategy.capabilityReserve()==0&&expected.equals(releaseReason()),"commitment released: "+expected);}
+    }
+    static void capabilityFunding()throws Exception{
+        FundingFixture bought=new FundingFixture();bought.start();
+        require(bought.strategy.wouldBreachCapabilityReserve(4000,1,500),"ordinary spending protects capability plus independent hard reserves");
+        require(!bought.strategy.wouldBreachCapabilityReserve(4600,600,500),"spending above both reserves remains legal");
+        Map<String,Object> wounded=unit(3,"builder",3100,3300);wounded.put("hp",100);bought.all.add(wounded);
+        bought.credits(4000);bought.observe(121000);
+        require(bought.strategy.act(500,1),"held purchase gets a legal opportunity before ordinary eight-second allocation");
+        require(bought.f.orders.get(0).contains("u_combatEngineer"),"funded engineer purchase precedes an available worker return command");
+        bought.released("PURCHASE_ACCEPTED");require(bought.strategy.pending(90),"accepted engineer retains normal pending accounting");
+        require(!bought.strategy.wouldBreachCapabilityReserve(100,100,500),"released commitment no longer changes ordinary production");
+
+        FundingFixture fog=new FundingFixture();fog.start();fog.f.visible=false;fog.enemies.put("visibleEnemies",Collections.emptyList());fog.observe(125000);
+        require(fog.strategy.capabilityReserve()==3500,"future UNKNOWN contact preserves legal unresolved capability memory");
+        fog.observe(209999);require(fog.strategy.capabilityReserve()==3500,"reserve remains one millisecond before deadline");
+        fog.observe(210000);fog.released("TIMEOUT");
+        fog.observe(269000);fog.strategy.act(500,1);require(fog.strategy.capabilityReserve()==0,"failed commitment cannot restart before sixty-second cooldown");
+        fog.observe(278000);fog.strategy.act(500,1);require(fog.strategy.capabilityReserve()==3500,"unresolved legal memory may start a new bounded attempt after cooldown");
+        fog.strategy.close();fog.released("CONTROLLER_ENDED");
+        FundingFixture fundedTimeout=new FundingFixture();fundedTimeout.start();fundedTimeout.credits(10000);fundedTimeout.observe(210000);
+        fundedTimeout.released("TIMEOUT");fundedTimeout.strategy.act(500,1);
+        require(fundedTimeout.f.orders.isEmpty(),"timeout with sufficient funds cannot bypass cooldown through a direct purchase");
+        fundedTimeout.observe(262000);fundedTimeout.strategy.act(500,1);
+        require(fundedTimeout.f.orders.isEmpty(),"direct engineer purchase remains blocked within sixty seconds of timeout");
+        fundedTimeout.observe(270000);
+        require(fundedTimeout.strategy.act(500,1)&&fundedTimeout.f.orders.get(0).contains("u_combatEngineer"),"direct purchase resumes at cooldown boundary when ordinary allocation is ready");
+
+        FundingFixture emergency=new FundingFixture();emergency.start();
+        emergency.enemies.put("visibleEnemies",Arrays.asList(map("id",999L,"type","heavyTank","canAttack",true,"x",2990,"y",3070,"hp",1000)));
+        emergency.observe(121000);emergency.released("HOME_EMERGENCY");
+        FundingFixture cleared=new FundingFixture();cleared.start();cleared.enemies.put("visibleEnemies",Collections.emptyList());
+        cleared.enemies.put("enemyIntel",Arrays.asList(map("id",230L,"status","CLEARED")));cleared.observe(121000);cleared.released("NEED_UNAVAILABLE");
+        FundingFixture lost=new FundingFixture();lost.start();lost.all.remove(BattleClient.find(lost.world,90));lost.observe(121000);lost.released("PRODUCER_LOST");
+        FundingFixture weak=new FundingFixture();weak.start();
+        for(int i=0;i<3;i++){Map<String,Object> tank=weak.force.remove(0);weak.all.remove(tank);}
+        weak.observe(121000);weak.released("FORCE_BELOW_MINIMUM");
+        FundingFixture arrived=new FundingFixture();arrived.start();arrived.all.add(unit(80,"combatEngineer",410,350));arrived.observe(121000);arrived.released("ENGINEER_CAPACITY_SATISFIED");
+        FundingFixture full=new FundingFixture();full.start();full.strategy.enable(map("strategyContractVersion",1),8);full.observe(121000);full.released("CAPACITY_UNAVAILABLE");
+        FundingFixture served=new FundingFixture();
+        List<Map<String,Object>> contacts=new ArrayList<Map<String,Object>>(BattleClient.list(served.enemies,"visibleEnemies"));
+        Map<String,Object> second=new LinkedHashMap<String,Object>(contacts.get(0));second.put("id",231L);contacts.add(second);served.enemies.put("visibleEnemies",contacts);
+        served.observe(120000);served.start();served.all.add(unit(80,"combatEngineer",410,350));served.observe(121000);served.strategy.act(500,1);
+        served.observe(122000);served.released("NEED_ALREADY_SERVED");
+
+        FundingFixture price=new FundingFixture();price.start();price.f.engineerCost=3600;price.credits(10000);price.observe(130000);price.strategy.act(500,1);price.released("PRICE_CHANGED");
+        require(price.f.orders.isEmpty(),"price-change cancellation cannot directly buy the newly affordable action in the same allocation");
+        FundingFixture missing=new FundingFixture();missing.start();missing.f.engineerOffered=false;missing.observe(121000);missing.strategy.act(500,1);missing.released("ACTION_UNAVAILABLE");
+        FundingFixture menu=new FundingFixture();menu.start();menu.f.productionMenuAvailable=false;menu.observe(121000);menu.strategy.act(500,1);menu.released("MENU_UNAVAILABLE");
+        FundingFixture rejected=new FundingFixture();rejected.start();rejected.f.rejectOrders=true;rejected.credits(4000);rejected.observe(121000);
+        rejected.strategy.act(500,1);rejected.released("ORDER_REJECTED");require(!rejected.strategy.pending(90),"rejected order creates no pending purchase");
+
+        FundingFixture hardReserve=new FundingFixture();hardReserve.start();hardReserve.credits(3999);hardReserve.observe(130000);
+        require(!hardReserve.strategy.act(500,1)&&hardReserve.strategy.capabilityReserve()==3500,"funded order must still protect original hard reserve");
+        hardReserve.all.add(unit(3,"builder",2990,3000));hardReserve.f.minePlan=true;hardReserve.observe(140000);hardReserve.strategy.act(500,1);
+        require(hardReserve.f.orders.isEmpty(),"lower-priority strategic construction cannot spend committed capability funds");
+
+        FundingFixture slow=new FundingFixture();slow.income=49;slow.observe(121000);slow.strategy.act(500,1);
+        require(slow.strategy.capabilityReserve()==0,"a funding gap over sixty modeled game seconds cannot start a commitment");
+        FundingFixture noIncome=new FundingFixture();noIncome.income=0;noIncome.observe(121000);noIncome.strategy.act(500,1);
+        require(noIncome.strategy.capabilityReserve()==0,"zero income cannot justify funding");
+        FundingFixture invalidCost=new FundingFixture();invalidCost.f.engineerCost=Double.NaN;invalidCost.strategy.act(500,1);
+        require(invalidCost.strategy.capabilityReserve()==0,"invalid native menu price cannot justify funding");
+    }
     public static void main(String[] args)throws Exception{
-        geometry();policy();constructionCapacity();
+        geometry();policy();constructionCapacity();capabilityFunding();
         require(BattleBudget.seconds(new String[]{"3600"})==3600,"long product window is independent of old 1800 limit");
         boolean refused=false;try{BattleBudget.seconds(new String[]{"21601"});}catch(IllegalArgumentException e){refused=true;}
         require(refused,"long experiments retain a bounded safety ceiling");

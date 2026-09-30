@@ -215,9 +215,15 @@ public final class BattleClient implements StrategyDirector.Host {
             try{event("military_urgency",json(data));}catch(Exception ignored){}
         }
     }
-    /** Production may not spend money that has been committed to a chosen investment. */
+    /** Production may not spend money committed to an investment or a bounded capability purchase. */
     private boolean wouldBreachInvestmentReserve(Map<String,Object> state,double cost){
-        return investmentReserve>0&&n(obj(state.get("player")),"credits")-cost<investmentReserve;
+        return investmentReserve>0&&n(obj(state.get("player")),"credits")-cost<investmentReserve
+                ||wouldBreachCapabilityReserve(state,cost);
+    }
+    private boolean wouldBreachCapabilityReserve(Map<String,Object> state,double cost){
+        // Other reserves exclude the capability itself: adding it to strategyReserve would make
+        // the director unable to spend its own commitment once the native quote is affordable.
+        return strategy.wouldBreachCapabilityReserve(n(obj(state.get("player")),"credits"),cost,strategyReserve());
     }
     /**
      * One intent at a time, and only from a quiet state with an army that is not clearly weak. The reserve
@@ -229,6 +235,7 @@ public final class BattleClient implements StrategyDirector.Host {
         if(!URGENCY_STABLE.equals(militaryUrgency)&&!URGENCY_OPEN.equals(militaryUrgency))return;
         if(mainArmy(state).size()<activeArmyTarget)return;   // a transferred scout is not main-force readiness
         long cost=lastExtractorCost>0?lastExtractorCost:investmentMineCostDefault;
+        if(wouldBreachCapabilityReserve(state,cost))return;
         long[] bucket=spendByCategory.get(SPEND_MINE);
         investment=new Investment("NEW_MINE",cost,time,time+investmentTimeoutGameMs);
         investmentReserve=cost;investmentIntentions++;
@@ -1002,7 +1009,8 @@ public final class BattleClient implements StrategyDirector.Host {
                 if(!Boolean.TRUE.equals(a.get("affordable")))continue;String type=(String)a.get("type");int score=-1;
                 if(("tank".equals(type)||"c_tank".equals(type))&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=1;
                 if("heavyTank".equals(type)&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=3;
-                if("upgrade".equals(type)&&mainCount>=6&&n(obj(state.get("player")),"credits")>=n(a,"cost"))score=5;
+                if("upgrade".equals(type)&&mainCount>=6&&n(obj(state.get("player")),"credits")>=n(a,"cost")
+                        &&!wouldBreachCapabilityReserve(state,n(a,"cost")))score=5;
                 if(score>priority){priority=score;chosen=a;}
             }
             if(chosen==null){
@@ -1012,6 +1020,8 @@ public final class BattleClient implements StrategyDirector.Host {
                 // is committed to a chosen investment. This event is the middle link of the success chain.
                 else if(investmentReserve>0&&investment!=null)
                     reportProductionDeferred(f,investmentCandidate(f),state,"INVESTMENT",investmentReserve);
+                else if(strategy.capabilityReserve()>0)
+                    reportProductionDeferred(f,investmentCandidate(f),state,"CAPABILITY_PURCHASE",strategy.capabilityReserve());
                 if(idleReason==null)idleReason=army.size()>=productionLimit()?
                         (strategy.enabled()&&strategy.safetyCapacityAvailable()?"STRATEGY_ARMY_TARGET_REACHED":"MOBILE_UNIT_HARD_CAP_REACHED"):"NO_AFFORDABLE_ACTION";
                 continue;
@@ -2519,6 +2529,7 @@ public final class BattleClient implements StrategyDirector.Host {
             // prospect gate only runs when no site is visible, so a visible site used to bypass it
             // entirely and take the builder the factory lane was about to need.
             else if(countReadyType(state,"landFactory")<landFactoryTarget)refusal="BUILDER_NEEDED_FOR_FACTORY";
+            else if(investment==null&&wouldBreachCapabilityReserve(state,cost))refusal="CAPABILITY_PURCHASE_RESERVED";
             // Builder Utilization v0 (对话41): the intent already reserved exactly this price, so the mine
             // is affordable the moment that price is covered. Requiring a preferred unit on top as well
             // was the second half of the double threshold that kept the builder idle.
@@ -2610,6 +2621,9 @@ public final class BattleClient implements StrategyDirector.Host {
         }
         double x=n(plan,"targetX"),y=n(plan,"targetY");
         double credits=n(obj(state.get("player")),"credits");
+        if(!factoryTargetCommitted&&wouldBreachCapabilityReserve(state,n(plan,"factoryCost"))){
+            reportFactoryBlocked(state,"CAPABILITY_PURCHASE_RESERVED",mines,factories);return;
+        }
         buildJob=new BuildJob(JOB_LAND_FACTORY,x,y,(long)n(plan,"factoryCost"),time,String.valueOf(plan.get("diagnostics")));
         snapshotKnownUnits(state,JOB_LAND_FACTORY);
         Map<String,Object> data=new LinkedHashMap<String,Object>();
@@ -3258,6 +3272,7 @@ public final class BattleClient implements StrategyDirector.Host {
         long price=landFactoryCost>0?landFactoryCost:landFactoryCostDefault;
         double credits=n(obj(state.get("player")),"credits");
         if(credits<price+builderReserve+investmentReserve)return "INSUFFICIENT_CREDITS_FOR_FACTORY";
+        if(wouldBreachCapabilityReserve(state,price))return "CAPABILITY_PURCHASE_RESERVED";
         long from=landFactoryTarget;landFactoryTarget++;
         factoryTargetIncreases++;
         // The target moved, so "target reached" is a fresh statement again once the new factory completes.
