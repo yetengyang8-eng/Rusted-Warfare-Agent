@@ -5,6 +5,7 @@ import com.corrodinggames.rts.game.units.y;
 import com.corrodinggames.rts.game.units.ao;
 import com.corrodinggames.rts.gameFramework.k.i;
 import io.rwagent.client.TargetCatalog;
+import io.rwagent.client.EngagementGeometry;
 import com.sun.net.httpserver.HttpServer;
 import java.util.*;
 import static io.rwagent.bootstrap.RuntimeBridge.*;
@@ -65,8 +66,22 @@ final class ScoutBridge {
     }
 
     ScoutBridge(RuntimeBridge bridge) { this.bridge=bridge; }
+    void refreshEngagementTerrain(Collection<y> actors){
+        observe();Set<ao> movements=new HashSet<ao>();
+        for(y actor:actors)movements.add(actor.h());
+        for(ao movement:movements)if(movement!=ao.d&&movement!=ao.a)recordPassability(movement);
+    }
+    EngagementGeometry.Field engagementField(y actor,double x,double y,double range,double radius,boolean water){
+        int w=bridge.engine.bL.C,h=bridge.engine.bL.D;
+        byte[] costs=terrainRulesTrusted?knownTerrainCost.get(actor.h()):null;
+        // AIR terrain is an explicit movement rule, not permission to observe hidden terrain.
+        if(terrainRulesTrusted&&actor.h()==ao.d)costs=new byte[w*h];
+        boolean[] wet=new boolean[w*h];
+        for(int at=0;at<wet.length;at++)wet[at]=seen.get(at)&&(groundFlags[at]&TerrainSemantics.WATER)!=0;
+        return EngagementGeometry.prepare(w,h,bridge.engine.bL.n,bridge.engine.bL.o,costs,wet,x,y,range,radius,water);
+    }
     void install(HttpServer server) {
-        for(final String path:new String[]{"/scout/observe","/scout/plan","/scout/visible"})server.createContext(path,exchange -> {
+        for(final String path:new String[]{"/scout/observe","/scout/plan","/scout/visible","/scout/resource-approach"})server.createContext(path,exchange -> {
             if(!path.equals(exchange.getRequestURI().getPath())) {respond(exchange,404,jsonError("unknown endpoint"));return;}
             if(!"GET".equals(exchange.getRequestMethod())) {respond(exchange,405,jsonError("GET required"));return;}
             if(exchange.getRequestHeaders().getFirst("Origin")!=null) {respond(exchange,403,jsonError("browser-origin requests disabled"));return;}
@@ -83,6 +98,7 @@ final class ScoutBridge {
         bridge.refreshSession();CommandResult guard=bridge.commandGuard();if(guard!=null)return guard;
         if(bridge.engine.bL==null || bridge.engine.bU==null)return CommandResult.error(409,"map or path engine unavailable");
         if((long)bridge.engine.bL.C*bridge.engine.bL.D>262144)return CommandResult.error(409,"scout map limit is 262144 tiles");
+        if(path.equals("/scout/resource-approach"))return resourceApproach(q);
         if(path.equals("/scout/observe")) {
             if(!new HashSet<String>(Arrays.asList("tile","since")).containsAll(q.keySet())
                     ||q.containsKey("since")&&!q.containsKey("tile"))
@@ -287,6 +303,30 @@ final class ScoutBridge {
     }
     private static int rectangle(int[] prefix,int stride,int a,int b,int c,int d){
         return prefix[c*stride+d]-prefix[a*stride+d]-prefix[c*stride+b]+prefix[a*stride+b];
+    }
+    private CommandResult resourceApproach(Map<String,String> q){
+        if(!q.keySet().equals(new HashSet<String>(Arrays.asList("unitId","tile"))))throw new IllegalArgumentException("required: unitId,tile");
+        long id=Long.parseLong(q.get("unitId"));int tile=Integer.parseInt(q.get("tile"));
+        if(tile<0||tile>=(long)bridge.engine.bL.C*bridge.engine.bL.D)throw new IllegalArgumentException("invalid tile");
+        y worker=null;am[] live=am.bE.a();
+        for(int index=0;index<am.bE.size();index++){
+            am u=live[index];if(u instanceof y&&u.eh==id&&u.bX==bridge.engine.bs&&!u.ej&&!u.bV&&!u.cW()&&u.cm>=1
+                    &&((y)u).I()&&EconomyBridge.expansionBuilder(u)){worker=(y)u;break;}
+        }
+        if(worker==null)return CommandResult.error(409,"completed own mobile extractor constructor required");
+        observe();if(!resources.containsKey(tile))return CommandResult.error(409,"resource was never legally observed");
+        recordPassability(worker.h());
+        VisibleGrid grid=new VisibleGrid(bridge,worker,new ArrayList<Threat>(rememberedThreats.values()),
+                knownPassability.get(worker.h()),0,knownTerrainCost.get(worker.h()),effectiveTerrainFlags());
+        double x=(tile/grid.height+.5)*grid.tw,y=(tile%grid.height+.5)*grid.th;
+        int best=-1;
+        for(int at:grid.reachable)if(Math.hypot((at/grid.height+.5)*grid.tw-x,(at%grid.height+.5)*grid.th-y)<=60
+                &&(best<0||grid.distance[at]<grid.distance[best]))best=at;
+        if(best<0)return CommandResult.error(409,"no known safe approach to remembered resource");
+        return CommandResult.ok("{\"status\":\"planned\",\"sessionId\":\""+bridge.sessionId+"\",\"unitId\":"+id
+                +",\"tile\":"+tile+",\"x\":"+format((best/grid.height+.5)*grid.tw)+",\"y\":"+format((best%grid.height+.5)*grid.th)
+                +",\"pathKnown\":true,\"movementType\":\""+TerrainSemantics.movementName(worker.h())
+                +"\",\"distanceTiles\":"+grid.distance[best]+",\"gameTimeMs\":"+bridge.engine.by+"}");
     }
     private void observe() {
         int h=bridge.engine.bL.D,w=bridge.engine.bL.C;boolean first=!bridge.sessionId.equals(memorySession);

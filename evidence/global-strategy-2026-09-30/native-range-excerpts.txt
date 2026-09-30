@@ -1,0 +1,37 @@
+Frozen game-lib.jar SHA256: 8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9
+Offline javap -p -c excerpts. This does not enable a live reflection probe.
+
+agent/build/y.javap
+  public strictfp float o(com.corrodinggames.rts.game.units.am);
+    Code:
+       0: aload_0
+       1: invokevirtual #857                // Method aV:()Z
+       4: ifeq          26
+       7: aload_1
+       8: ifnull        26
+      11: aload_0
+      12: invokevirtual #978                // Method m:()F
+      15: aload_0
+      16: getfield      #523                // Field cj:F
+      19: fadd
+      20: aload_1
+      21: getfield      #353                // Field com/corrodinggames/rts/game/units/am.cj:F
+      24: fadd
+      25: freturn
+      26: aload_0
+      27: invokevirtual #978                // Method m:()F
+      30: freturn
+
+agent/build/y.javap
+  public strictfp boolean aV();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+agent/build/custom-j.javap
+  public strictfp boolean aV();
+    Code:
+       0: aload_0
+       1: getfield      #703                // Field x:Lcom/corrodinggames/rts/game/units/custom/l;
+       4: getfield      #909                // Field com/corrodinggames/rts/game/units/custom/l.eF:Z
+       7: ireturn

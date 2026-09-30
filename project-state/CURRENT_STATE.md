@@ -1,5 +1,16 @@
 # CURRENT_STATE（当前状态速查）
 
+## 2026-09-30 Global Strategy 最新候选（已完成 Windows 桌面长局 E4）
+
+- 正式任务 `ASTRA_BREAKTHROUGH_MISSION_GLOBAL_STRATEGY_2026-09-30.md`；基线 main `4d80b4e`，源码 `2f310ec`。最新交接为 `handoff/HANDOFF_Astra_GlobalStrategy_2026-09-30.md`；本节优先于下方历史状态。
+- 已消费 Target Stability 桌面 E4：`seaFactory #230` 的域兼容不等于 LAND 存在接战位置。新候选增加合法地形证据和跨域能力需求，接入工程师/两栖响应者的独占任务、动态军力/Builder 预算、T2 矿投资及长局报告写入。
+- SHA256 `76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed`；contentDigest `8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120`。原始日志、最终与中间候选分离的验证在 `evidence/global-strategy-2026-09-30/`。
+- 中间原生 2400 秒样本自然闭合海厂 #2610 的能力需求→工程师建造喷气机→任务运动与可见掉血→原址合法 CLEARED。最终候选在 Battle 644.512 秒原生 VICTORY，84/84 攻击确认、最大 56 个 mobile armed，报告与事件审计无违规；该局未执行工程师/矿升级投资。最终 JAR Linux 回归 21 Java / 16 Python，0 失败、2 个 Windows 用例跳过；另有 native E2 46 项。这些是交付时的原生/回归结论；随后已补 Windows 桌面 E4，见下一条。
+- **Windows 桌面 E4（2026-09-30）**：最终 JAR 76711a8e... 已跑三场 5x / 2400 秒长局，1 场 Big Island 180×180、2 场西班牙 10p 400×370，均 PARTIAL/ONGOING。最高 mobile armed 分别 88 / 21 / 101；Big Island 出现 MOVEMENT_APPROACH_GAP → response → progress → visible damage → capability need resolved；Spain 两局表现差异巨大。Spain 地图开局该出生位只有基地，没有 builder，因此两次测试均由操作者在 **Match 启动前人工生产 1 个 builder**，随后 Match 全程无人工干预。证据与 raw bundles：evidence/global-strategy-desktop-2026-09-30/。
+- 经济溢出尚未解决，响应者生存与成组完成任务仍是重点；修理/回收、完整海军、PlayerContext / same-game 双玩家暂缓。
+
+> 下方为历史快照，旧“当前候选/未部署”措辞不覆盖本节及最新桌面证据。
+
 ## 远程突破候选：Recon 执行与最小任务所有权（2026-09-29，未部署）
 
 - 基于 GitHub `4853dae` 的新客户端候选已实现并通过 E2：单位任务归属、旧命令接管、逐观察执行确认、短航段和到达后刷新等待。

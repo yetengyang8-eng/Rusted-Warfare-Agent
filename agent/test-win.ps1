@@ -97,8 +97,10 @@ PyStep 'py:test_recon_frontier_client' 'test_recon_frontier_client.py' @($distJa
 PyStep 'py:test_headless_parallel' 'test_headless_parallel.py' @()
 PyStep 'py:test_ab_aggregate' 'test_ab_aggregate.py' @()
 PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
-Step 'java:ReportCommitHarness' { & $java -cp $cp io.rwagent.client.ReportCommitHarness }
+Step 'java:ReportCommitHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.ReportCommitHarness }
 Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
+Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
+PyStep 'py:test_global_strategy_audit' 'test_global_strategy_audit.py' @()
 
 Write-Host ''
 Write-Host '===== SUMMARY =====' -ForegroundColor Yellow

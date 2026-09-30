@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "source": "battle-1790707520592-e66a8406.jsonl",
+  "sourceSha256": "d6cd2a5d277d389b05204e3132184d6478c81db93083751c00358845147753af",
+  "evidenceScope": "EVENT_AUDIT_NATIVE_OR_DESKTOP_GRADE_REQUIRES_RUN_PROVENANCE",
+  "candidateProvenance": {
+    "agentVersion": "0.07-alpha1",
+    "agentJar": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/strategy-prototype/run-20260929T184500-2d3cd8/episode-001/rw-agent-bootstrap.jar",
+    "agentJarSha256": "536bcd8f642af60407cb827e022ac69bae0edbcf96442d2db7001529c9eb13c9",
+    "gameLibJar": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/.engine/rw115/game-lib.jar",
+    "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "workingDirectory": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/strategy-prototype/run-20260929T184500-2d3cd8/episode-001",
+    "reportDirectory": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/strategy-prototype/run-20260929T184500-2d3cd8/episode-001/rw-agent-reports",
+    "osName": "Linux",
+    "javaVersion": "17.0.20"
+  },
+  "battleConfig": {
+    "gameSeconds": 1800,
+    "armyCap": 24,
+    "activeArmyTarget": 24,
+    "reserveTarget": 8,
+    "mobileUnitHardCap": 128,
+    "mineTarget": 3,
+    "expansionIntervalGameMs": 15000,
+    "expansionBuildRangeWorld": 100.0,
+    "landFactoryTarget": 2,
+    "rearFactoryRadiusWorld": 400.0,
+    "builderTarget": 1,
+    "reachabilitySamplingEnabled": true,
+    "reachabilitySampleIntervalSeconds": 30,
+    "reachabilityRepresentativeTypeLimit": 3,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "noProgressEngageRange": 300.0,
+    "noProgressAttentionGapMs": 3000,
+    "decisionIntervalGameMs": 1000,
+    "minimumCommandGapGameMs": 1000,
+    "openingApmLimited": false,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyWindowGameMs": 150000,
+    "factorySaturationMinPct": 80,
+    "landFactoryTargetMax": 5,
+    "reconEnabled": true,
+    "reconFrontierEnabled": true,
+    "reconMinReadyArmy": 7,
+    "reconThreatBufferWorld": 80,
+    "executionContractVersion": 1,
+    "executionPlayerScope": "team:0",
+    "targetEligibilityVersion": 1,
+    "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+    "globalStrategyEnabled": true,
+    "strategyContractVersion": 1,
+    "pollWallTimeMs": 500,
+    "reconExpendableHpMaxFraction": 0.45,
+    "reconFrontierMinMainForce": 6
+  },
+  "summary": {
+    "outcome": "PARTIAL",
+    "reason": "Game-time budget reached without native result",
+    "phase": "battle",
+    "matchOutcome": "ONGOING",
+    "commands": 358,
+    "observations": 436,
+    "ownLosses": 29,
+    "newCombatUnits": 77,
+    "attackOrders": 135,
+    "attackOrdersConfirmed": 127,
+    "retreatOrders": 8,
+    "upgradesCompleted": 2,
+    "completedMines": 13,
+    "newMines": 13,
+    "mineTarget": 3,
+    "minesBeyondFloor": 11,
+    "expansionRefusals": 71,
+    "expansionBlocked": 81,
+    "completedFactories": 1,
+    "newFactories": 1,
+    "landFactoryTarget": 2,
+    "factoryBlocks": 0,
+    "builderTarget": 1,
+    "builderRecoveries": 0,
+    "builderOrders": 0,
+    "battleGameTimeMs": 1801584,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 2,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 16,
+    "targetSuppressionsAtEnd": 2,
+    "targetSwitches": 43,
+    "effectiveDecisionIntervalGameMs": 5344,
+    "noProgressAttentionGapMs": 16032,
+    "maxObservedGameTimeJump": 8160,
+    "observationCount": 436,
+    "spendTotal": 97600,
+    "spendByCategory": {
+      "FACTORY_UPGRADE": {
+        "orders": 2,
+        "cost": 4000
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 75,
+        "cost": 57300
+      },
+      "NEW_MINE": {
+        "orders": 13,
+        "cost": 9100
+      },
+      "NEW_FACTORY": {
+        "orders": 1,
+        "cost": 700
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 5,
+        "cost": 8500
+      },
+      "MINE_UPGRADE": {
+        "orders": 10,
+        "cost": 14000
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 5,
+        "cost": 4000
+      }
+    },
+    "measuredIncomePerGameSecond": 140.65,
+    "investmentIntentions": 14,
+    "investmentCompletions": 5,
+    "investmentCancellations": 9,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "CONTESTED",
+    "reconEnabled": true,
+    "reconTasksCreated": 48,
+    "reconOrdersQueued": 45,
+    "reconOrdersObserved": 1,
+    "reconMovesCompletedBetweenSamples": 43,
+    "frontierTasksSatisfiedByTeamVision": 31,
+    "reconResolvedAfterObservedMove": 1,
+    "reconReacquired": 2,
+    "reconSitesCleared": 0,
+    "reconBlocked": 0,
+    "reconTaskPendingAtEnd": true,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 46,
+    "frontierTasksRefreshed": 0,
+    "frontierTasksAdvanced": 2,
+    "frontierTasksBlocked": 11,
+    "frontierTasksPreempted": 1,
+    "expendableTransfers": 5,
+    "expendableScoutsAtEnd": 1,
+    "factoryTargetIncreases": 0,
+    "factoryTargetIncreaseBlocks": 1,
+    "landFactoryTargetAtEnd": 2,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 5,
+    "factorySaturationPct": 0.0,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_CONSTANT_MINE_WINDOWS_R2_0.999",
+    "minesReadyAtEnd": 12,
+    "productionConsumptionPerGameSecond": 0.0,
+    "sustainableSurplusPerGameSecond": 220.0,
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 64,
+      "activeTarget": 52,
+      "reserveTarget": 12,
+      "hardSafetyCap": 128,
+      "builderTarget": 1,
+      "capabilityNeedsAtEnd": 7,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 20,
+      "mineUpgradesObserved": 10,
+      "constructionCompletionsObserved": 5
+    }
+  },
+  "maxObservedMobileArmed": 65,
+  "maxObservedBuilders": 2,
+  "maxObservedCombatEngineers": 2,
+  "endCredits": 158983.0,
+  "capabilityNeeds": {
+    "1091": {
+      "targetType": "attackSubmarine",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 786016
+    },
+    "1395": {
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 786528
+    },
+    "2404": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 980480
+    },
+    "2428": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 981216
+    },
+    "2450": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 982000
+    },
+    "2461": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 985824
+    },
+    "2477": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 986624
+    }
+  },
+  "terrainSelectionBlocksByTarget": {},
+  "assignedResponseTargets": [
+    1091,
+    1395
+  ],
+  "progressTargets": [
+    1091,
+    1395
+  ],
+  "damageTargets": [
+    1091
+  ],
+  "responseObjectiveSemantics": {
+    "CURRENT_CONTACT_APPROACH": 3
+  },
+  "observedInvestmentProducts": {
+    "extractorT2": 10,
+    "heavyTank": 5
+  },
+  "events": {
+    "strategy_capacity": 57,
+    "engagement_observation": 469,
+    "strategy_production_menu": 25,
+    "strategy_allocation": 15,
+    "task_ownership_acquired": 59,
+    "task_ownership_released": 59,
+    "strategy_production_queue_finished": 5,
+    "strategy_investment_menu": 27,
+    "capability_need_created": 7,
+    "strategy_task_assigned": 3,
+    "strategy_response_ordered": 11,
+    "strategy_response_progress": 48,
+    "mine_upgrade_observed": 10,
+    "strategy_task_preempted": 1,
+    "strategy_construction_plan": 5,
+    "strategy_construction_ordered": 5,
+    "strategy_construction_observed": 5,
+    "strategy_target_damage_observed": 4,
+    "strategy_task_blocked": 2
+  },
+  "violations": [],
+  "pass": true
+}

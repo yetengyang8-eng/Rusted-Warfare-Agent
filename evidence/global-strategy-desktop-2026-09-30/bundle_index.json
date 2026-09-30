@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-09-30T04:58:23.329257+00:00",
+  "targetBytes": 89128960,
+  "hardCapBytes": 104857600,
+  "bundleCount": 3,
+  "totalRawBytes": 361521197,
+  "totalZipBytes": 26110897,
+  "bundles": [
+    {
+      "name": "RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip",
+      "bytes": 8865733,
+      "rawBytes": 129130903,
+      "oversize": true,
+      "sessions": [
+        "0434d623-ad21-46c0-ab69-ac3a854d404c"
+      ],
+      "reports": [
+        {
+          "file": "economy-1790743761630-ec51c708.jsonl",
+          "sessionId": "0434d623-ad21-46c0-ab69-ac3a854d404c",
+          "phase": "economy",
+          "wallTimeMs": 1790743761630,
+          "bytes": 28257,
+          "sha256": "51526c36b07f92f8181569f8ae13148916e42d0d285d63d7a17d45ca02a3d346",
+          "wallTimeUtc": "2026-09-30T04:49:21.630000+00:00"
+        },
+        {
+          "file": "development-1790743770680-5e51fd16.jsonl",
+          "sessionId": "0434d623-ad21-46c0-ab69-ac3a854d404c",
+          "phase": "development",
+          "wallTimeMs": 1790743770680,
+          "bytes": 70908,
+          "sha256": "08a3640be042697c2a12ce4f917386ee4ab65004daf10a0ae643e21a30877eb2",
+          "wallTimeUtc": "2026-09-30T04:49:30.680000+00:00"
+        },
+        {
+          "file": "battle-1790743783098-ae01b65e.jsonl",
+          "sessionId": "0434d623-ad21-46c0-ab69-ac3a854d404c",
+          "phase": "battle",
+          "wallTimeMs": 1790743783098,
+          "bytes": 129031738,
+          "sha256": "a5a3e05c157b381616837b37a88b29af1dbb597137cc37ad870fa862d4ee1026",
+          "wallTimeUtc": "2026-09-30T04:49:43.098000+00:00"
+        }
+      ]
+    },
+    {
+      "name": "RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip",
+      "bytes": 7511765,
+      "rawBytes": 72529803,
+      "oversize": false,
+      "sessions": [
+        "8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9"
+      ],
+      "reports": [
+        {
+          "file": "economy-1790742779539-61447a69.jsonl",
+          "sessionId": "8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9",
+          "phase": "economy",
+          "wallTimeMs": 1790742779539,
+          "bytes": 28332,
+          "sha256": "cd0726e559079150cd96caeb88add39f8e3c853cb3613791620056e784a0c5e8",
+          "wallTimeUtc": "2026-09-30T04:32:59.539000+00:00"
+        },
+        {
+          "file": "development-1790742788591-990b02bb.jsonl",
+          "sessionId": "8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9",
+          "phase": "development",
+          "wallTimeMs": 1790742788591,
+          "bytes": 70856,
+          "sha256": "e4cf4b5d993261fac15a133dfb5c08ae026be0a3656432803252b16f12e2501f",
+          "wallTimeUtc": "2026-09-30T04:33:08.591000+00:00"
+        },
+        {
+          "file": "battle-1790742800972-4064cebd.jsonl",
+          "sessionId": "8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9",
+          "phase": "battle",
+          "wallTimeMs": 1790742800972,
+          "bytes": 72430615,
+          "sha256": "77e0b142246be8d4fe49f59dbab3cbae890a0071530c22e3f3961a3dae013bf8",
+          "wallTimeUtc": "2026-09-30T04:33:20.972000+00:00"
+        }
+      ]
+    },
+    {
+      "name": "RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip",
+      "bytes": 9733399,
+      "rawBytes": 159860491,
+      "oversize": true,
+      "sessions": [
+        "d37b52f9-e034-402d-8ac4-864312670213"
+      ],
+      "reports": [
+        {
+          "file": "economy-1790741927149-0bc234be.jsonl",
+          "sessionId": "d37b52f9-e034-402d-8ac4-864312670213",
+          "phase": "economy",
+          "wallTimeMs": 1790741927149,
+          "bytes": 30839,
+          "sha256": "9f066350fa7c58f0a167f0c0cde041cffe9326521c52e1eeaf03b865c959fdeb",
+          "wallTimeUtc": "2026-09-30T04:18:47.149000+00:00"
+        },
+        {
+          "file": "development-1790741937274-7d1c4895.jsonl",
+          "sessionId": "d37b52f9-e034-402d-8ac4-864312670213",
+          "phase": "development",
+          "wallTimeMs": 1790741937274,
+          "bytes": 70384,
+          "sha256": "972a4e7bd4fba9fcb095b5db0eae0704fa3500cd32be09d09dfcab351389455f",
+          "wallTimeUtc": "2026-09-30T04:18:57.274000+00:00"
+        },
+        {
+          "file": "battle-1790741949748-c01f222f.jsonl",
+          "sessionId": "d37b52f9-e034-402d-8ac4-864312670213",
+          "phase": "battle",
+          "wallTimeMs": 1790741949748,
+          "bytes": 159759268,
+          "sha256": "198175c984b3b25ca092e8d5509a225e87e3a153bbc0d581f3d3a95b4c45a38e",
+          "wallTimeUtc": "2026-09-30T04:19:09.748000+00:00"
+        }
+      ]
+    }
+  ],
+  "previousBundles": [
+    "RW-Agent-Reports-20260929T180733Z-3a915c-p1of1.zip"
+  ],
+  "note": "One row per raw report. A session is never split across bundles."
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "task": "ASTRA_BREAKTHROUGH_MISSION_GLOBAL_STRATEGY_2026-09-30.md",
+  "baseCommit": "4d80b4e253421ef78b081ee27454eaacfe264180",
+  "sourceCommit": "2f310ec46a4225eb1ef77efe68d1823904e52717",
+  "branch": "astra/global-strategy-20260930",
+  "candidateJar": "astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar",
+  "sha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+  "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+  "contentDigestAlgorithm": "tools.run_headless.jar_content_digest; sorted ZIP entry name plus SHA256, including directory entries, excluding META-INF/MANIFEST.MF",
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "unitCatalogSha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+  "buildCommand": "bash agent/build.sh .engine/rw115/game-lib.jar",
+  "buildJavaRelease": 8,
+  "buildJdk": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+  "deployedToUserDesktop": false,
+  "desktopEvidenceInputSha256": "d4dfb753538bd0a2d11397f9cd43ccafc75aed9d56368b5a176efb481a9c2acd",
+  "productionBuildCommit": "ca00a2003490feb74b02ca2f990fd59575a989f9",
+  "nativeFixtureCommit": "2f310ec46a4225eb1ef77efe68d1823904e52717",
+  "productionInputsIdenticalBetweenBuildAndSourceCommit": true
+}

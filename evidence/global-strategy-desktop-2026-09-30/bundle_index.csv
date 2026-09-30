@@ -1,0 +1,10 @@
+bundle,sessionId,reportFile,phase,wallTimeMs,bytes,oversize
+RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip,0434d623-ad21-46c0-ab69-ac3a854d404c,economy-1790743761630-ec51c708.jsonl,economy,1790743761630,28257,true
+RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip,0434d623-ad21-46c0-ab69-ac3a854d404c,development-1790743770680-5e51fd16.jsonl,development,1790743770680,70908,true
+RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip,0434d623-ad21-46c0-ab69-ac3a854d404c,battle-1790743783098-ae01b65e.jsonl,battle,1790743783098,129031738,true
+RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip,8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9,economy-1790742779539-61447a69.jsonl,economy,1790742779539,28332,false
+RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip,8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9,development-1790742788591-990b02bb.jsonl,development,1790742788591,70856,false
+RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip,8bc1ad58-ea56-4c90-9f66-2fcbcda0a4a9,battle-1790742800972-4064cebd.jsonl,battle,1790742800972,72430615,false
+RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip,d37b52f9-e034-402d-8ac4-864312670213,economy-1790741927149-0bc234be.jsonl,economy,1790741927149,30839,true
+RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip,d37b52f9-e034-402d-8ac4-864312670213,development-1790741937274-7d1c4895.jsonl,development,1790741937274,70384,true
+RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip,d37b52f9-e034-402d-8ac4-864312670213,battle-1790741949748-c01f222f.jsonl,battle,1790741949748,159759268,true

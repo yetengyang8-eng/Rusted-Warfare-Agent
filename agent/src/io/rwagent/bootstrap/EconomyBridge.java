@@ -40,6 +40,10 @@ final class EconomyBridge {
         install(server,"/expansion/plan","GET");
         install(server,"/economy/builder-production","GET");
         install(server,"/economy/builder-actions","GET");
+        install(server,"/economy/investments","GET");
+        install(server,"/economy/construction-plan","GET");
+        install(server,"/command/invest","POST");
+        install(server,"/command/construct","POST");
         install(server,"/command/build-extractor","POST");
         install(server,"/command/build-factory","POST");
         install(server,"/command/produce-builder","POST");
@@ -68,6 +72,13 @@ final class EconomyBridge {
         }
         CommandResult guard=bridge.commandGuard();if(guard!=null)return guard;
         try {
+            if(path.equals("/economy/investments")){
+                requireKeys(q,new String[0]);return investments();
+            }
+            if(path.equals("/economy/construction-plan")){
+                requireKeys(q,new String[]{"unitId","type"});return constructionPlan(Long.parseLong(q.get("unitId")),q.get("type"));
+            }
+            if(path.equals("/command/invest")||path.equals("/command/construct"))return strategicCommand(path,q);
             if(path.equals("/economy/builder-production")) {
                 if(!q.isEmpty())throw new IllegalArgumentException("builder-production accepts no query fields");
                 return builderProduction();
@@ -227,6 +238,77 @@ final class EconomyBridge {
     private static Object buildAction(am unit,ar requested) {
         for(Object a:unit.N())if(BUILD.isInstance(a) && invoke(TYPE,a)==resolved(requested))return a;
         return null;
+    }
+    private static String actionText(Object a){
+        Object id=invoke(ACTION_ID,a);return (String)invoke(method(ACTION_ID.getReturnType(),"a"),id);
+    }
+    private static boolean strategicAction(y unit,Object action,boolean construct){
+        as product=(as)invoke(TYPE,action);if(product==null)return false;
+        String type=product.i(),owner=unit.r().i();
+        if(!construct)return "extractorT1".equals(owner)&&"extractorT2".equals(type)&&!BUILD.isInstance(action);
+        if(!BUILD.isInstance(action))return false;
+        if("builder".equals(owner))return "landFactory".equals(type);
+        return "combatEngineer".equals(owner)&&Arrays.asList("heavyTank","amphibiousJet","repairbay","landFactory").contains(type);
+    }
+    private CommandResult investments(){
+        StringBuilder out=new StringBuilder("{\"status\":\"observed\",\"sessionId\":\"").append(bridge.sessionId)
+            .append("\",\"gameTimeMs\":").append(bridge.engine.by).append(",\"units\":[");
+        boolean first=true;am[] live=am.bE.a();
+        for(int i=0;i<am.bE.size();i++){
+            y unit=ownUnit(live[i].eh);if(unit==null||!"extractorT1".equals(unit.r().i()))continue;
+            for(Object a:unit.N())if(strategicAction(unit,a,false)&&Boolean.TRUE.equals(invoke(AVAILABLE,a,unit))){
+                if(!first)out.append(',');first=false;
+                out.append("{\"id\":").append(unit.eh).append(",\"type\":\"extractorT1\",\"queue\":").append(queueCount(unit))
+                    .append(",\"actionId\":\"").append(escape(actionText(a))).append("\",\"product\":\"extractorT2\",\"cost\":")
+                    .append(invoke(COST,a)).append(",\"affordable\":").append(invoke(AFFORDABLE,a,unit,true)).append('}');
+            }
+        }
+        return CommandResult.ok(out.append("]}").toString());
+    }
+    private CommandResult constructionPlan(long id,String wanted){
+        y unit=ownUnit(id);if(unit==null)return CommandResult.error(409,"completed own constructor required");
+        Object chosen=null;
+        for(Object a:unit.N())if(strategicAction(unit,a,true)&&wanted.equals(((as)invoke(TYPE,a)).i())
+                &&Boolean.TRUE.equals(invoke(AVAILABLE,a,unit))){chosen=a;break;}
+        if(chosen==null)return CommandResult.error(409,"native construction action unavailable");
+        as product=(as)invoke(TYPE,chosen);Site location=null;
+        // Only a currently visible native-legal footprint near this owned constructor is returned.
+        for(int radius=60;radius<=180&&location==null;radius+=40)for(int direction=0;direction<16&&location==null;direction++){
+            double angle=direction*Math.PI/8;
+            location=site(unit,product,(float)(unit.eo+Math.cos(angle)*radius),(float)(unit.ep+Math.sin(angle)*radius),200);
+        }
+        if(location==null)return CommandResult.error(409,"no visible legal local construction position");
+        return CommandResult.ok("{\"status\":\"planned\",\"sessionId\":\""+bridge.sessionId+"\",\"unitId\":"+id
+            +",\"type\":\""+escape(product.i())+"\",\"actionId\":\""+escape(actionText(chosen))+"\",\"cost\":"+invoke(COST,chosen)
+            +",\"affordable\":"+invoke(AFFORDABLE,chosen,unit,true)+",\"x\":"+format(location.x)+",\"y\":"+format(location.y)+"}");
+    }
+    private CommandResult strategicCommand(String path,Map<String,String> q){
+        boolean construct=path.endsWith("construct");
+        requireKeys(q,construct?new String[]{"unitId","actionId","x","y","sessionId","requestId"}
+                :new String[]{"unitId","actionId","sessionId","requestId"});
+        if(!bridge.sessionId.equals(q.get("sessionId")))return CommandResult.error(409,"session changed");
+        if(bridge.engine.dq||bridge.engine.dt)return CommandResult.error(409,"match already ended");
+        String request=q.get("requestId"),fingerprint=path+new TreeMap<String,String>(q);
+        if(!request.matches("[A-Za-z0-9_-]{1,64}"))throw new IllegalArgumentException("invalid requestId");
+        if(!bridge.sessionId.equals(receiptSession)){receipts.clear();receiptSession=bridge.sessionId;}
+        Receipt old=receipts.get(request);if(old!=null)return old.fingerprint.equals(fingerprint)?old.result:CommandResult.error(409,"requestId reused");
+        long id=Long.parseLong(q.get("unitId"));y unit=ownUnit(id);
+        if(unit==null)return CommandResult.error(409,"completed own constructor required");
+        Object chosen=null;
+        for(Object a:unit.N())if(strategicAction(unit,a,construct)&&actionText(a).equals(q.get("actionId"))){chosen=a;break;}
+        if(chosen==null||!usable(chosen,unit))return CommandResult.error(409,"native action unavailable or insufficient credits");
+        if(!construct&&queueCount(unit)!=0)return CommandResult.error(409,"investment queue must be empty");
+        as product=(as)invoke(TYPE,chosen);Site location=null;
+        if(construct){
+            location=site(unit,product,coordinate(q.get("x")),coordinate(q.get("y")),200);
+            if(location==null)return CommandResult.error(409,"no visible legal local footprint");
+        }
+        e command=bridge.engine.cf.b(bridge.engine.bs);command.a(unit);
+        if(construct)command.a(location.x,location.y,product,((Number)invoke(TIER,chosen)).intValue());
+        else invoke(SET_ACTION,command,invoke(ACTION_ID,chosen));
+        CommandResult result=CommandResult.ok("{\"status\":\"queued\",\"sessionId\":\""+bridge.sessionId+"\",\"requestId\":\""+request
+            +"\",\"unitId\":"+id+",\"type\":\""+escape(product.i())+"\",\"actionId\":\""+escape(actionText(chosen))+"\",\"frame\":"+bridge.engine.bx+"}");
+        receipts.put(request,new Receipt(fingerprint,result));if(receipts.size()>256)receipts.remove(receipts.keySet().iterator().next());return result;
     }
     /**
      * P2-C1: the native "produce a builder" action. It is looked up by resolved type rather than by

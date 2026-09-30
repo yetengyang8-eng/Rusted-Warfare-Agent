@@ -1,5 +1,9 @@
 # HANDOFF_FOR_CODEX：Rusted Warfare 1.15 规则型 Agent —— 接手须知（当前状态）
 
+> **最新接手入口（2026-09-30）**：`handoff/HANDOFF_Astra_GlobalStrategy_2026-09-30.md` 与 `project-state/CURRENT_STATE.md` 顶部。
+> 任务依据是根目录 Global Strategy 正式任务，允许修改旧 cap、Builder 数量、矿投资和长局基础设施。源码 `2f310ec`；最终身份与分层证据见 `evidence/global-strategy-2026-09-30/`。没有部署用户桌面，不能继承旧 Windows/E4 结论。
+> 以下保留历史接手说明；旧本机路径和旧策略冻结约束不能覆盖最新授权，战争迷雾、UNKNOWN、控制权与危险反射边界继续有效。
+
 > 写给**第一次进入本工作区的模型**（Codex / Astra）。只写**当前真相**，不写历史。
 > 历史与决策过程在 `助手交接\对话N.txt` / `输出N.txt` / `*_ChatGPT.md`；当前状态速查以
 > 根目录 `CURRENT_STATE.md` 为准。

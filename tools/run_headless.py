@@ -544,6 +544,7 @@ def run_episode(args, game, jar, java, work, number, pair=None, claims=None):
     speed=0 if args.mode=='benchmark' else args.speed
     frames=args.frames if args.mode=='benchmark' else 0
     record={'episode':number,'mode':args.mode,'map':args.map,'status':'RUNNING','phases':[],
+            'pollWallTimeMs':getattr(args,'poll_ms',500),'battleSafetyGameSeconds':getattr(args,'battle_safety_seconds',7200),
             'startedUtc':datetime.now(timezone.utc).isoformat(),'workDirectory':work.name,
             'workDirectoryAbsolute':str(work)}
     loaded=getattr(args,'ab_profiles',None)
@@ -617,7 +618,11 @@ def run_episode(args, game, jar, java, work, number, pair=None, claims=None):
                     if left<=0:raise TimeoutError('Episode wall deadline')
                     if pair:verify_live_owner(proc,work,port,record['sessionId'],record['agentJarSha256'],record['gameJarSha256'])
                     cmd=[java,'-Dfile.encoding=UTF-8','-Drwagent.port='+str(port),'-cp','rw-agent-bootstrap.jar','io.rwagent.client.'+client]+arguments
-                    if client in ('FrontierClient','AutopilotClient','MatchClient','BattleClient'):cmd.insert(1,'-Drwagent.pollMs='+str(max(100,round(500/args.speed))))
+                    if client in ('FrontierClient','AutopilotClient','MatchClient','BattleClient'):
+                        cmd.insert(1,'-Drwagent.pollMs='+str(getattr(args,'poll_ms',500)))
+                    if client in ('MatchClient','BattleClient'):
+                        cmd[1:1]=['-Drwagent.battleSafetyGameSeconds='+str(getattr(args,'battle_safety_seconds',7200)),
+                                  '-Drwagent.battleSafetyWallSeconds='+str(args.timeout)]
                     if profile:
                         cmd[1:1]=['-D%s=%s'%(key,value) for key,value in sorted(profile['jvmProperties'].items())]
                         if label=='match':record['abProfile']['actualJvmArgs']=[part for part in cmd if part.startswith('-D')]
@@ -757,6 +762,8 @@ def main(argv=None):
     p.add_argument('--difficulty',type=int,default=0)
     p.add_argument('--tanks',type=int,default=8);p.add_argument('--mines',type=int,default=3)
     p.add_argument('--battle-seconds',type=int,default=900)
+    p.add_argument('--battle-safety-seconds',type=int,default=7200,help='Explicit game-time safety ceiling, at most 21600')
+    p.add_argument('--poll-ms',type=int,default=500,help='Wall-clock observation interval, independent of simulation speed (60..1000)')
     p.add_argument('--scout-moves',type=int,default=24)
     p.add_argument('--out',type=Path,default=Path('headless-runs'))
     p.add_argument('--reap',type=Path,metavar='RUN_DIR',
@@ -765,7 +772,7 @@ def main(argv=None):
     if args.reap is not None:return reap_run(args.reap)
     if args.game_dir is None:p.error('--game-dir is required unless --reap is used')
     if args.timeout is None:args.timeout=1200 if args.mode=='match' else 180
-    if not (1<=args.episodes<=1000 and 0<args.speed<=8 and 1<=args.timeout<=3600 and 1<=args.tanks<=30 and 0<=args.mines<=10 and 1<=args.scout_moves<=48 and args.frames>0 and -2<=args.difficulty<=3 and 120<=args.battle_seconds<=1800):p.error('Invalid experiment bounds')
+    if not (1<=args.episodes<=1000 and 0<args.speed<=8 and 1<=args.timeout<=3600 and 1<=args.tanks<=30 and 0<=args.mines<=10 and 1<=args.scout_moves<=48 and args.frames>0 and -2<=args.difficulty<=3 and 1800<=args.battle_safety_seconds<=21600 and 120<=args.battle_seconds<=args.battle_safety_seconds and 60<=args.poll_ms<=1000):p.error('Invalid experiment bounds')
     if args.parallel_pair and (args.episodes!=2 or args.mode=='benchmark'):
         p.error('--parallel-pair requires --episodes 2 and a session/report-producing mode')
     if args.profiles and (not args.parallel_pair or args.mode!='match'):

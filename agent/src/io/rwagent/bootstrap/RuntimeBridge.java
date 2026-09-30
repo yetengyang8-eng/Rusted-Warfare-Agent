@@ -33,6 +33,7 @@ public final class RuntimeBridge {
     private static RuntimeBridge instance;
 
     final com.corrodinggames.rts.game.i engine;
+    ScoutBridge scout;
     private final int port;
     private final boolean allowCommands;
     private HttpServer server;
@@ -185,7 +186,7 @@ public final class RuntimeBridge {
                 }
                 respond(exchange, 200,
                         "{\"status\":\"ok\",\"version\":\"0.07-alpha1\",\"port\":"
-                                + port + ",\"allowCommands\":" + allowCommands
+                                + port + ",\"strategyContractVersion\":1,\"allowCommands\":" + allowCommands
                                 + ",\"provenance\":" + provenanceJson() + "}");
             }
         });
@@ -262,7 +263,7 @@ public final class RuntimeBridge {
         });
 
         new EconomyBridge(this).install(server);
-        new ScoutBridge(this).install(server);
+        scout=new ScoutBridge(this);scout.install(server);
         new GuardBridge(this).install(server);
         new CombatBridge(this).install(server);
 

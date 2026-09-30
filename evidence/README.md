@@ -1,10 +1,13 @@
 # Public evidence index for Astra
 
+- **最新 Windows 桌面 E4：[global-strategy-desktop-2026-09-30](global-strategy-desktop-2026-09-30/README.md)**。三场 Global Strategy 最终候选 5x / 2400 秒长局，含专项审计和压缩 raw reports；Spain 两局注明了 Match 前人工补 1 builder 的唯一干预。
+- 最新 Global Strategy 交付证据：[global-strategy-2026-09-30](global-strategy-2026-09-30/README.md)，最终候选与中间原生样本分别标识。
+
 This directory contains public-safe evidence needed to review and continue the current Agent work without access to the user's G: drive.
 
-## Current live desktop evidence
+## Previous desktop evidence (KnowledgeBacked v0, 2026-09-29)
 
-`user-live-2026-09-29/battle-raw-4runs.zip` contains the four latest complete desktop `battle-*.jsonl` reports from the current KnowledgeBacked v0 candidate.
+`user-live-2026-09-29/battle-raw-4runs.zip` contains four complete desktop `battle-*.jsonl` reports from the current KnowledgeBacked v0 candidate.
 
 - `battle-1790676200741-0ae5abf2.jsonl`: 180x180, 841.97 game s, `PASS/VICTORY`, 77 new combat units, 43 losses, 4 frontier tasks / 4 blocked.
 - `battle-1790676924825-0eb20dc0.jsonl`: 400x370, 901.18 game s, `PARTIAL/ONGOING`, 67 new combat units, 34 losses, 10 frontier tasks / 8 blocked / 2 preempted.

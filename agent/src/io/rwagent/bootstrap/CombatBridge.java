@@ -1,6 +1,7 @@
 package io.rwagent.bootstrap;
 
 import io.rwagent.client.TargetCatalog;
+import io.rwagent.client.EngagementGeometry;
 
 import com.corrodinggames.rts.game.units.am;
 import com.corrodinggames.rts.game.units.y;
@@ -27,7 +28,7 @@ final class CombatBridge {
     private final Map<String,Receipt> receipts=new LinkedHashMap<String,Receipt>();
     CombatBridge(RuntimeBridge b){this.b=b;}
     void install(HttpServer server){
-        for(final String path:new String[]{"/combat/observe","/combat/production","/combat/capabilities","/combat/reachability","/command/attack-move","/command/queue"})
+        for(final String path:new String[]{"/combat/observe","/combat/production","/combat/capabilities","/combat/reachability","/combat/engagement","/command/attack-move","/command/queue"})
             server.createContext(path,x -> {
                 if(!path.equals(x.getRequestURI().getPath())){respond(x,404,jsonError("unknown endpoint"));return;}
                 String method=path.startsWith("/command/")?"POST":"GET";
@@ -54,6 +55,7 @@ final class CombatBridge {
         b.refreshSession();CommandResult guard=b.commandGuard();if(guard!=null)return guard;
         if(!b.sessionId.equals(session)){session=b.sessionId;memory.clear();enemyIntel.clear();enemyIntelEvicted=0;receipts.clear();}
         if(path.startsWith("/combat/")){
+            if(path.endsWith("engagement"))return engagement(q);
             if(path.endsWith("capabilities"))return CommandResult.ok(capabilities(q));
             if(path.endsWith("reachability")){
                 // 输出21 §2: read-only raw diagnostic; it never returns a reachable/engageable verdict.
@@ -104,6 +106,76 @@ final class CombatBridge {
         am[] units=am.bE.a();for(int i=0;i<am.bE.size();i++){am u=units[i];
             if(u instanceof y&&u.eh==id&&u.bX==b.engine.bs&&!u.ej&&!u.bV&&!u.cW()&&u.cm>=1)return (y)u;
         }return null;
+    }
+    /** Only own actors and an already legally observed contact. No hidden target lookup. */
+    private CommandResult engagement(Map<String,String> q){
+        if(!q.keySet().equals(new HashSet<String>(Arrays.asList("unitIds","targetId"))))
+            throw new IllegalArgumentException("required: unitIds,targetId");
+        if(b.engine.bL==null||b.engine.bU==null||(long)b.engine.bL.C*b.engine.bL.D>262144)
+            return CommandResult.error(409,"engagement terrain unavailable");
+        Enemy target=memory.get(Long.valueOf(q.get("targetId")));
+        if(target==null){
+            EnemyIntel historical=enemyIntel.get(Long.valueOf(q.get("targetId")));
+            if(historical!=null&&historical.clearedAt<0)target=historical.last;
+        }
+        if(target==null)return CommandResult.error(409,"target absent from legal observation memory");
+        String[] ids=q.get("unitIds").split(",",-1);
+        if(ids.length<1||ids.length>48)throw new IllegalArgumentException("1..48 actors required");
+        List<y> actors=new ArrayList<y>();Set<Long> unique=new HashSet<Long>();
+        for(String value:ids){long id=Long.parseLong(value);y actor=own(id);
+            if(actor==null||!actor.I()||!actor.l())return CommandResult.error(409,"completed own armed mobile required");
+            if(!unique.add(id))throw new IllegalArgumentException("duplicate actor");actors.add(actor);
+        }
+        b.scout.refreshEngagementTerrain(actors);
+        boolean current=target.time==b.engine.by;
+        // HTTP reads may straddle ticks. Re-observe using the same fog-gated adapter, never anyUnit().
+        observe();Enemy latest=memory.get(target.id);
+        if(latest!=null){target=latest;current=target.time==b.engine.by;}
+        StringBuilder out=new StringBuilder("{\"status\":\"observed\",\"sessionId\":\"").append(session)
+            .append("\",\"player\":").append(b.engine.bs.k).append(",\"frame\":").append(b.engine.bx)
+            .append(",\"gameTimeMs\":").append(b.engine.by).append(",\"targetId\":").append(target.id)
+            .append(",\"targetX\":").append(format(target.x)).append(",\"targetY\":").append(format(target.y))
+            .append(",\"targetObservedAtGameTimeMs\":").append(target.time).append(",\"targetVisible\":").append(current)
+            .append(",\"source\":\"LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY\",\"scope\":\"APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF\",\"actors\":[");
+        boolean first=true;
+        Map<String,EngagementGeometry.Field> fields=new HashMap<String,EngagementGeometry.Field>();
+        for(y actor:actors){
+            if(!first)out.append(',');first=false;
+            // Frozen y.o(am) adds collision radii only when aV() (melee range) is true.
+            // aV is a constant false in y, or the custom type's eF field; audited passive reads.
+            double range=actor.m()+(actor.aV()?actor.cj+target.radius:0);boolean submerged="SUBMERGED".equals(target.domain);
+            // These established native capability accessors are also used by the ordinary engine
+            // domain guard. No reflective method discovery or quarantined reachability probe.
+            String compatibility=nativeDomainCompatibility(target.domain,target.touchingWater,current,
+                    actor.af(),actor.ae(),actor.ag(),actor.ah());
+            boolean waterRequired="combatEngineer".equals(actor.r().i())&&submerged;
+            String key=actor.h().name()+":"+range+":"+waterRequired;
+            EngagementGeometry.Field field=fields.get(key);
+            if(field==null){field=b.scout.engagementField(actor,target.x,target.y,range,0,waterRequired);fields.put(key,field);}
+            EngagementGeometry.Result result=field.from(actor.eo,actor.ep);
+            String status=current?result.status:"UNKNOWN";
+            out.append("{\"unitId\":").append(actor.eh).append(",\"unitType\":\"").append(escape(actor.r().i()))
+                .append("\",\"movementType\":\"").append(TerrainSemantics.movementName(actor.h()))
+                .append("\",\"weaponRange\":").append(format(range)).append(",\"compatibility\":\"")
+                .append(compatibility)
+                .append("\",\"status\":\"").append(status).append("\",\"reason\":\"")
+                .append(current?result.reason:"TARGET_NOT_CURRENTLY_VISIBLE").append("\",\"requiresWaterPosition\":").append(waterRequired)
+                .append(",\"lastKnownPositionApproachStatus\":\"").append(result.status).append('"')
+                .append(",\"approachX\":").append(format(result.x)).append(",\"approachY\":").append(format(result.y))
+                .append(",\"distanceTiles\":").append(result.distanceTiles).append('}');
+        }
+        return CommandResult.ok(out.append("]}").toString());
+    }
+    /** A failed domain observation is never silently treated as SURFACE. */
+    private static String nativeDomainCompatibility(String domain,Boolean water,boolean current,
+                                                    boolean air,boolean sub,boolean surface,boolean land){
+        if(!current)return "UNKNOWN";
+        if("AIR".equals(domain))return air?"COMPATIBLE":"INCOMPATIBLE";
+        if("SUBMERGED".equals(domain))return sub?"COMPATIBLE":"INCOMPATIBLE";
+        if(!"SURFACE".equals(domain))return "UNKNOWN";
+        if(!surface)return "INCOMPATIBLE";
+        if(land)return "COMPATIBLE";
+        return water==null?"UNKNOWN":water?"COMPATIBLE":"INCOMPATIBLE";
     }
     private am anyUnit(long id){
         am[] units=am.bE.a();for(int i=0;i<am.bE.size();i++){am u=units[i];
@@ -958,10 +1030,10 @@ final class CombatBridge {
     }
     private static final class Receipt{final String fingerprint;final CommandResult result;Receipt(String f,CommandResult r){fingerprint=f;result=r;}}
     private static final class Enemy{
-        final long id;final float x,y,hp;final boolean building,armed;final String type,domain;
+        final long id;final float x,y,hp,radius;final boolean building,armed;final String type,domain;
         final Boolean touchingWater;final int time;
         Enemy(am u,int time){
-            id=u.eh;x=u.eo;y=u.ep;hp=u.cu;building=u.bI();armed=u.l();type=u.r().i();this.time=time;
+            id=u.eh;x=u.eo;y=u.ep;hp=u.cu;radius=u.cj;building=u.bI();armed=u.l();type=u.r().i();this.time=time;
             String observedDomain="UNKNOWN";Boolean water=null;
             // This constructor is called only after both legal native visibility checks in observe().
             // Never call these dynamic accessors again when the contact is lost in fog.

@@ -1,0 +1,25 @@
+{
+  "source": "evidence/astra-target-stability-desktop-2026-09-30/battle-1790704878629-b0eb25fb.zip",
+  "rawSha256": "d4dfb753538bd0a2d11397f9cd43ccafc75aed9d56368b5a176efb481a9c2acd",
+  "rawBytes": 36261916,
+  "observations": 689,
+  "target": {
+    "id": 230,
+    "type": "seaFactory",
+    "x": 290,
+    "y": 70,
+    "switches": 20,
+    "tacticalIntents": 47,
+    "guardCompatible": 145,
+    "guardUnknown": 2
+  },
+  "last": {
+    "gameTimeMs": 1894276,
+    "credits": 134401,
+    "mobileArmed": 40,
+    "builders": 1,
+    "landFactoryT2": 3,
+    "extractorT1": 10
+  },
+  "conclusion": "Weapon compatibility did not establish any LAND firing position. Runtime E2 uses these coordinates but does not replay an alternative desktop trajectory."
+}

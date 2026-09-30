@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "source": "battle-1790708110001-82c499b7.jsonl",
+  "sourceSha256": "2dd6bf5d65a1a4a55145259130c93e7d3c8b4b78b20352d7baefd695ddd9def5",
+  "evidenceScope": "EVENT_AUDIT_NATIVE_OR_DESKTOP_GRADE_REQUIRES_RUN_PROVENANCE",
+  "candidateProvenance": {
+    "agentVersion": "0.07-alpha1",
+    "agentJar": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/global-strategy/run-20260929T185449-f6f306/episode-001/rw-agent-bootstrap.jar",
+    "agentJarSha256": "1fded78527326aecc45d55ad9a1ce0fec039fe54dfda742b16b86bae184cf091",
+    "gameLibJar": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/.engine/rw115/game-lib.jar",
+    "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "workingDirectory": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/global-strategy/run-20260929T185449-f6f306/episode-001",
+    "reportDirectory": "/workspace/scratch/38eb6df3f883/Rusted-Warfare-Agent-global-strategy/headless-runs/global-strategy/run-20260929T185449-f6f306/episode-001/rw-agent-reports",
+    "osName": "Linux",
+    "javaVersion": "17.0.20"
+  },
+  "battleConfig": {
+    "gameSeconds": 2400,
+    "armyCap": 24,
+    "activeArmyTarget": 24,
+    "reserveTarget": 8,
+    "mobileUnitHardCap": 128,
+    "mineTarget": 3,
+    "expansionIntervalGameMs": 15000,
+    "expansionBuildRangeWorld": 100.0,
+    "landFactoryTarget": 2,
+    "rearFactoryRadiusWorld": 400.0,
+    "builderTarget": 1,
+    "reachabilitySamplingEnabled": true,
+    "reachabilitySampleIntervalSeconds": 30,
+    "reachabilityRepresentativeTypeLimit": 3,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "noProgressEngageRange": 300.0,
+    "noProgressAttentionGapMs": 3000,
+    "decisionIntervalGameMs": 1000,
+    "minimumCommandGapGameMs": 1000,
+    "openingApmLimited": false,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyWindowGameMs": 150000,
+    "factorySaturationMinPct": 80,
+    "landFactoryTargetMax": 5,
+    "reconEnabled": true,
+    "reconFrontierEnabled": true,
+    "reconMinReadyArmy": 7,
+    "reconThreatBufferWorld": 80,
+    "executionContractVersion": 1,
+    "executionPlayerScope": "team:0",
+    "targetEligibilityVersion": 1,
+    "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+    "globalStrategyEnabled": true,
+    "strategyContractVersion": 1,
+    "pollWallTimeMs": 250,
+    "battleSafetyGameSeconds": 7200,
+    "battleSafetyWallSeconds": 900,
+    "reportCommitMemoryMiB": 8,
+    "reportDiskLimitMiB": 1024,
+    "reconExpendableHpMaxFraction": 0.45,
+    "reconFrontierMinMainForce": 6
+  },
+  "summary": {
+    "outcome": "PARTIAL",
+    "reason": "Game-time budget reached without native result",
+    "phase": "battle",
+    "matchOutcome": "ONGOING",
+    "commands": 668,
+    "observations": 909,
+    "ownLosses": 55,
+    "newCombatUnits": 111,
+    "attackOrders": 287,
+    "attackOrdersConfirmed": 266,
+    "retreatOrders": 7,
+    "upgradesCompleted": 3,
+    "completedMines": 12,
+    "newMines": 12,
+    "mineTarget": 3,
+    "minesBeyondFloor": 10,
+    "expansionRefusals": 154,
+    "expansionBlocked": 162,
+    "completedFactories": 2,
+    "newFactories": 2,
+    "landFactoryTarget": 3,
+    "factoryBlocks": 0,
+    "builderTarget": 1,
+    "builderRecoveries": 0,
+    "builderOrders": 0,
+    "battleGameTimeMs": 2401696,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 4,
+    "targetSuppressionsReleased": 0,
+    "targetSuppressedSelections": 43,
+    "targetSuppressionsAtEnd": 4,
+    "targetSwitches": 82,
+    "effectiveDecisionIntervalGameMs": 4576,
+    "noProgressAttentionGapMs": 13728,
+    "maxObservedGameTimeJump": 6368,
+    "observationCount": 909,
+    "spendTotal": 133200,
+    "spendByCategory": {
+      "FACTORY_UPGRADE": {
+        "orders": 3,
+        "cost": 6000
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 100,
+        "cost": 53000
+      },
+      "NEW_MINE": {
+        "orders": 12,
+        "cost": 8400
+      },
+      "NEW_FACTORY": {
+        "orders": 2,
+        "cost": 1400
+      },
+      "STRATEGIC_CAPABILITY": {
+        "orders": 12,
+        "cost": 39000
+      },
+      "MINE_UPGRADE": {
+        "orders": 11,
+        "cost": 15400
+      },
+      "STRATEGIC_CONSTRUCTION": {
+        "orders": 5,
+        "cost": 10000
+      }
+    },
+    "measuredIncomePerGameSecond": 167.56,
+    "investmentIntentions": 16,
+    "investmentCompletions": 8,
+    "investmentCancellations": 8,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "EMERGENCY",
+    "reconEnabled": true,
+    "reconTasksCreated": 96,
+    "reconOrdersQueued": 107,
+    "reconOrdersObserved": 71,
+    "reconMovesCompletedBetweenSamples": 33,
+    "frontierTasksSatisfiedByTeamVision": 25,
+    "reconResolvedAfterObservedMove": 8,
+    "reconReacquired": 12,
+    "reconSitesCleared": 0,
+    "reconBlocked": 0,
+    "reconTaskPendingAtEnd": false,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 84,
+    "frontierTasksRefreshed": 50,
+    "frontierTasksAdvanced": 2,
+    "frontierTasksBlocked": 4,
+    "frontierTasksPreempted": 3,
+    "expendableTransfers": 3,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 1,
+    "factoryTargetIncreaseBlocks": 2,
+    "landFactoryTargetAtEnd": 3,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 5,
+    "factorySaturationPct": 25.96,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_CONSTANT_MINE_WINDOWS_R2_0.999",
+    "minesReadyAtEnd": 12,
+    "productionConsumptionPerGameSecond": 81.3,
+    "sustainableSurplusPerGameSecond": 150.8,
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 68,
+      "activeTarget": 62,
+      "reserveTarget": 6,
+      "hardSafetyCap": 128,
+      "builderTarget": 1,
+      "capabilityNeedsAtEnd": 30,
+      "needsResolvedByLegalEvidence": 1,
+      "investmentOrders": 28,
+      "mineUpgradesObserved": 11,
+      "constructionCompletionsObserved": 5
+    }
+  },
+  "maxObservedMobileArmed": 71,
+  "maxObservedBuilders": 2,
+  "maxObservedCombatEngineers": 2,
+  "endCredits": 272439.0,
+  "capabilityNeeds": {
+    "478": {
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 605520
+    },
+    "1458": {
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 647904
+    },
+    "1774": {
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 650704
+    },
+    "971": {
+      "targetType": "lightSub",
+      "reason": "WEAPON_DOMAIN_GAP",
+      "observedAtGameTimeMs": 751088
+    },
+    "2610": {
+      "targetType": "seaFactory",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1842832
+    },
+    "2061": {
+      "targetType": "scout",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1882784
+    },
+    "2100": {
+      "targetType": "c_artillery",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1883232
+    },
+    "2762": {
+      "targetType": "c_tank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1883680
+    },
+    "2089": {
+      "targetType": "c_helicopter",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1887760
+    },
+    "2091": {
+      "targetType": "c_artillery",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1896496
+    },
+    "2309": {
+      "targetType": "c_artillery",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1896960
+    },
+    "2846": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1897408
+    },
+    "473": {
+      "targetType": "c_antiAirTurretT2",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1925488
+    },
+    "2996": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1926416
+    },
+    "2984": {
+      "targetType": "hoverTank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1930128
+    },
+    "3035": {
+      "targetType": "scout",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1969232
+    },
+    "3054": {
+      "targetType": "gunBoat",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1975056
+    },
+    "3042": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 1980176
+    },
+    "3192": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2042048
+    },
+    "464": {
+      "targetType": "extractorT2",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2044336
+    },
+    "2761": {
+      "targetType": "builder",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2046640
+    },
+    "2764": {
+      "targetType": "builder",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2047088
+    },
+    "3217": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2047520
+    },
+    "3249": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2052240
+    },
+    "3279": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2059344
+    },
+    "3293": {
+      "targetType": "scout",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2062768
+    },
+    "3354": {
+      "targetType": "c_tank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2067216
+    },
+    "3455": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2081088
+    },
+    "3666": {
+      "targetType": "c_artillery",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2171568
+    },
+    "3738": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2172016
+    },
+    "3796": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2182640
+    },
+    "3809": {
+      "targetType": "c_artillery",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2183056
+    },
+    "3965": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2251664
+    },
+    "4278": {
+      "targetType": "c_tank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2345200
+    },
+    "4208": {
+      "targetType": "c_interceptor",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2349520
+    },
+    "4332": {
+      "targetType": "c_helicopter",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2349984
+    },
+    "4371": {
+      "targetType": "c_tank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2370960
+    },
+    "4451": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2384320
+    },
+    "4499": {
+      "targetType": "c_tank",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2402608
+    },
+    "4578": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2414704
+    },
+    "4604": {
+      "targetType": "lightGunship",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2472752
+    },
+    "4624": {
+      "targetType": "gunShip",
+      "reason": "MOVEMENT_APPROACH_GAP",
+      "observedAtGameTimeMs": 2491216
+    }
+  },
+  "terrainSelectionBlocksByTarget": {
+    "2610": 17,
+    "2061": 1,
+    "2089": 2,
+    "2100": 3,
+    "2309": 6,
+    "2846": 1,
+    "2091": 1,
+    "2762": 2,
+    "473": 27,
+    "2996": 2,
+    "2984": 2,
+    "3192": 5,
+    "464": 20,
+    "2764": 18,
+    "3217": 4,
+    "2761": 18,
+    "3249": 9,
+    "3279": 8,
+    "3293": 2,
+    "3354": 1,
+    "3455": 11,
+    "3965": 5,
+    "3738": 4,
+    "3809": 4,
+    "4278": 2,
+    "4332": 1,
+    "4208": 5,
+    "3666": 1,
+    "4499": 2,
+    "4604": 1
+  },
+  "assignedResponseTargets": [
+    464,
+    473,
+    478,
+    1458,
+    2061,
+    2100,
+    2610,
+    2761,
+    2764,
+    3455
+  ],
+  "progressTargets": [
+    464,
+    473,
+    478,
+    1458,
+    2061,
+    2100,
+    2610,
+    2761,
+    2764,
+    3455
+  ],
+  "damageTargets": [
+    473,
+    2061,
+    2100,
+    2610
+  ],
+  "responseObjectiveSemantics": {
+    "LAST_KNOWN_SITE_INVESTIGATION": 18,
+    "CURRENT_CONTACT_APPROACH": 2
+  },
+  "observedInvestmentProducts": {
+    "extractorT2": 11,
+    "amphibiousJet": 5
+  },
+  "events": {
+    "strategy_capacity": 77,
+    "engagement_observation": 1178,
+    "strategy_investment_menu": 23,
+    "strategy_production_menu": 43,
+    "strategy_allocation": 23,
+    "strategy_production_queue_finished": 12,
+    "task_ownership_acquired": 114,
+    "task_ownership_released": 114,
+    "capability_need_created": 42,
+    "strategy_task_assigned": 20,
+    "strategy_response_ordered": 43,
+    "strategy_response_progress": 329,
+    "mine_upgrade_observed": 11,
+    "strategy_task_blocked": 4,
+    "engagement_selection_blocked": 185,
+    "strategy_construction_plan": 5,
+    "strategy_construction_ordered": 5,
+    "strategy_construction_observed": 5,
+    "strategy_target_damage_observed": 25,
+    "strategy_task_preempted": 16,
+    "strategy_task_lost": 14,
+    "capability_need_released": 11,
+    "capability_need_resolved": 1,
+    "strategy_task_completed": 1
+  },
+  "violations": [
+    {
+      "line": 11753,
+      "reason": "MAIN_FORCE_ORDER_AFTER_TERRAIN_REJECTION",
+      "detail": {
+        "targetId": 4332,
+        "unitIds": [
+          1881,
+          1895,
+          1929,
+          3574,
+          3582,
+          3964,
+          3988,
+          4034,
+          4321,
+          4329
+        ]
+      }
+    }
+  ],
+  "pass": false
+}

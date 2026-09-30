@@ -1,0 +1,9 @@
+{
+  "branch": "astra/global-strategy-20260930",
+  "pushAvailable": false,
+  "check": "GIT_TERMINAL_PROMPT=0 git push --dry-run origin HEAD:refs/heads/astra/global-strategy-20260930",
+  "exitCode": 128,
+  "reason": "fatal: could not read Username for 'https://github.com': terminal prompts disabled",
+  "remoteWasModified": false,
+  "fallback": "Source patch plus repository overlay ZIP; no credential request required."
+}

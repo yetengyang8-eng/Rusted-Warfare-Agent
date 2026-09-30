@@ -1,0 +1,78 @@
+{
+  "closedReports": [
+    {
+      "run": "run-20260929T184500-2d3cd8",
+      "file": "battle-1790707520592-e66a8406.jsonl",
+      "sha256": "d6cd2a5d277d389b05204e3132184d6478c81db93083751c00358845147753af",
+      "bytes": 26988673,
+      "classification": "PARTIAL",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T184500-2d3cd8",
+      "file": "development-1790707507848-62cfb70f.jsonl",
+      "sha256": "a2275d4c2c977deb03e041bb9bff2e43bf5b3efc066e9f75c81d06cd2961742e",
+      "bytes": 70596,
+      "classification": "PASS",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T184500-2d3cd8",
+      "file": "economy-1790707501915-c7a92937.jsonl",
+      "sha256": "8c5b695c82008f335ead2175b0822bd690bf3412e1425b6529cd1c673a34f9c0",
+      "bytes": 20876,
+      "classification": "PASS",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T185449-f6f306",
+      "file": "battle-1790708110001-82c499b7.jsonl",
+      "sha256": "2dd6bf5d65a1a4a55145259130c93e7d3c8b4b78b20352d7baefd695ddd9def5",
+      "bytes": 64815882,
+      "classification": "PARTIAL",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T185449-f6f306",
+      "file": "development-1790708097177-60894ff0.jsonl",
+      "sha256": "6fc602e58d3e202a4abe16fd6da5d7b13fcd299873ffddf94067bf8590272c04",
+      "bytes": 70549,
+      "classification": "PASS",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T185449-f6f306",
+      "file": "economy-1790708091246-b37dd920.jsonl",
+      "sha256": "e5b1ce8218a7087d5b8f2213418e6088fb399f705268840c4de1328fcda89874",
+      "bytes": 20866,
+      "classification": "PASS",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T190535-cac969",
+      "file": "battle-1790708756070-c2641ae6.jsonl",
+      "sha256": "d87a8101aba67930244f23cdb7d415e35ac31b704999c9f9f9d9a1f3bc519156",
+      "bytes": 87341909,
+      "classification": "PARTIAL",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T190535-cac969",
+      "file": "development-1790708743323-d49e356b.jsonl",
+      "sha256": "6d8860bb621ba83c4f22829842a2c63d08549232696171bdf1df1dfb439cbe08",
+      "bytes": 70605,
+      "classification": "PASS",
+      "issues": []
+    },
+    {
+      "run": "run-20260929T190535-cac969",
+      "file": "economy-1790708737411-9b0c5662.jsonl",
+      "sha256": "fbe0d1b7bf88a28f34447819577ae4111f80544a910ed9aa414437472c543a6a",
+      "bytes": 20883,
+      "classification": "PASS",
+      "issues": []
+    }
+  ],
+  "pass": true,
+  "scope": "Three non-release native runs, all phases; final release listed separately."
+}

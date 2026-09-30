@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "platform": "Linux",
+  "candidateJarSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+  "sourceCommit": "2f310ec46a4225eb1ef77efe68d1823904e52717",
+  "fullMatrix": {
+    "exitCode": 0,
+    "wallSeconds": 416.68,
+    "logBytes": 368057,
+    "jarSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+    "scope": "Exact immutable delivery JAR; entire agent/test.sh matrix, only rebuild omitted and JAR path substituted.",
+    "executedScriptSha256": "7f4a604c55df8857d466feb49ae81f35441154c3cbd77dc003c80a83c91a5bb3"
+  },
+  "javaHarnessRuns": 21,
+  "pythonSuites": 16,
+  "pythonTests": 281,
+  "pythonPassed": 279,
+  "pythonSkipped": 2,
+  "failedSteps": 0,
+  "pythonSuiteTestsInRunnerOrder": [
+    13,
+    8,
+    12,
+    11,
+    16,
+    8,
+    10,
+    15,
+    78,
+    15,
+    7,
+    22,
+    27,
+    17,
+    14,
+    8
+  ],
+  "javaRunCommands": [
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" SmokeHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" BridgeHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" BridgeHarness disabled",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" EconomyHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" OpeningHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" OpeningHarness replacement",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" ProductionPlanHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" DiagnosticsHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" PreflightHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" ScoutHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" TerrainMemoryHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" GuardHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" CapabilityHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" TargetCompatibilityHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" BuilderHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" ReachabilityHarness",
+    "java --add-modules jdk.httpserver -Drwagent.reachabilityDiagnostics=true -cp \"$classpath:$root/build/tests\" ReachabilityHarness",
+    "java --add-modules jdk.httpserver -cp \"$classpath:$root/build/tests\" CombatHarness",
+    "java -Xmx96m -cp \"$classpath:$root/build/tests\" io.rwagent.client.ReportCommitHarness",
+    "java -cp \"$classpath:$root/build/tests\" io.rwagent.client.ExecutionContractHarness",
+    "java -cp \"$classpath:$root/build/tests\" io.rwagent.client.StrategyContractHarness"
+  ],
+  "skips": [
+    {
+      "suite": "test_headless_parallel.py",
+      "count": 2,
+      "reason": "requires Windows FILE_SHARE_DELETE semantics"
+    }
+  ],
+  "strategyContractChecks": 48,
+  "nativeFixture": {
+    "grade": "E2",
+    "checks": 46,
+    "exitCode": 0,
+    "candidateJarSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+    "fixtureOnly": true,
+    "noSimulationTicks": true,
+    "explicitlyChangesFixtureUnitsFundsAndFog": true
+  },
+  "reportCommit": "72 MiB complete-byte SHA comparison under -Xmx96m, plus stale-journal replacement; passed",
+  "completeLog": "raw-evidence.zip:validation/release-full-regression.log",
+  "completeLogSha256": "7fa233fbfb585c1574c68b1df7c8bbfa6bd194dd85e5b96c085cce847767d654",
+  "windowsStatus": "NOT_RUN_FOR_THIS_CANDIDATE",
+  "notes": [
+    "Exact immutable delivery JAR checked before and after complete matrix; only rebuild omitted and JAR path substituted.",
+    "Native E2 is separate from the 21 ordinary Java harness runs.",
+    "Old Windows 20 Java / 15 Python results are not inherited."
+  ]
+}

@@ -5,8 +5,7 @@ public final class MatchClient {
     public static void main(String[] args){System.exit(run(args));}
     static int run(String[] args){
         try{
-            if(args.length>1)throw new IllegalArgumentException("Usage: MatchClient [battle game seconds 120..1800]");
-            int seconds=args.length==0?900:Integer.parseInt(args[0]);if(seconds<120||seconds>1800)throw new IllegalArgumentException("Battle duration must be 120..1800");
+            int seconds=BattleBudget.seconds(args);
             int port=Integer.getInteger("rwagent.port",47653);
             AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+"/economy/preflight");
             if(r.status!=200)throw new IllegalStateException("Preflight: "+r.body);

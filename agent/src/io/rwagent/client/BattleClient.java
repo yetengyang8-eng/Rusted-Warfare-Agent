@@ -6,12 +6,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /** Bounded rule opponent: legal observations, native orders, losses and replenishment. */
-public final class BattleClient {
+public final class BattleClient implements StrategyDirector.Host {
     private final int port=Integer.getInteger("rwagent.port",47653);
     private BufferedWriter log;private FileOutputStream output;private String session;
     private int commands,observations,losses,recruits,attacks,confirmed,retreats,techs;
     private long time,lastDecision=-1000,lastTactic=-10000,startTime,lastFrame=-1,frameAt=System.nanoTime();
     private final CommandArbiter execution=new CommandArbiter();
+    private final StrategyDirector strategy=new StrategyDirector(this,execution);
     private final Set<Long> seenOwn=new HashSet<Long>(),lost=new HashSet<Long>();
     private final Map<Long,Pending> pending=new LinkedHashMap<Long,Pending>();
     private final Map<Long,Long> resting=new LinkedHashMap<Long,Long>();
@@ -33,7 +34,7 @@ public final class BattleClient {
      * a large credit pool unspent at the cap, so the economic-investment question is still open. The JVM
      * override stays available for 32/40 regression runs.
      */
-    private final int mobileUnitHardCap=Math.max(activeArmyTarget,Integer.getInteger("rwagent.mobileUnitHardCap",40));
+    private int mobileUnitHardCap=Math.max(activeArmyTarget,Integer.getInteger("rwagent.mobileUnitHardCap",40));
     private long lastHeartbeat=-100000,lastIdleEmit=-100000;
     private Map<String,Object> lastScout,lastEnemies,lastPlan;
     /**
@@ -425,7 +426,7 @@ public final class BattleClient {
     private final double economyBaseIncome=doubleProperty("rwagent.baseIncome",26.9);
     private final double economyIncomePerMine=doubleProperty("rwagent.incomePerMine",12.07);
     private static final String ECONOMY_MODEL_SOURCE=
-            "MEASURED_4_MATCHES_2_SPEEDS_CONSTANT_MINE_WINDOWS_R2_0.999";
+            "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS";
     /**
      * Why a long window and never an EMA: the client books a whole production BATCH at order time while the
      * game deducts per finished unit, so a 10-30 game second balance reading is polluted by that rhythm
@@ -495,8 +496,7 @@ public final class BattleClient {
     int run(String[] args){
         File report=null;String outcome="FAIL",reason="not started",matchOutcome="ONGOING";int exit=1;
         try{
-            int seconds=args.length==0?900:Integer.parseInt(args[0]);
-            if(args.length>1||seconds<120||seconds>1800)throw new IllegalArgumentException("Usage: BattleClient [gameSeconds 120..1800]");
+            int seconds=BattleBudget.seconds(args);
             File dir=new File("rw-agent-reports");if(!dir.isDirectory()&&!dir.mkdirs())throw new IOException("Cannot create reports directory");
             try(RandomAccessFile file=new RandomAccessFile(new File(dir,"economy.lock"),"rw");FileChannel channel=file.getChannel();FileLock lock=channel.tryLock()){
                 if(lock==null)throw new IllegalStateException("Another controller is running");
@@ -506,6 +506,10 @@ public final class BattleClient {
                 if(!"0.07-alpha1".equals(health.get("version")))throw new IllegalStateException("Install 0.07-alpha1 and restart");
                 provenance(health);
                 Map<String,Object> state=observe();session=(String)state.get("sessionId");startTime=time;
+                if(StrategyDirector.number(health,"strategyContractVersion",0)>=1
+                        &&!"false".equalsIgnoreCase(System.getProperty("rwagent.globalStrategy","true"))
+                        &&System.getProperty("rwagent.mobileUnitHardCap")==null)mobileUnitHardCap=128;
+                strategy.enable(health,mobileUnitHardCap);
                 Map<String,Object> home=null;for(Map<String,Object> u:units(state))if(alive(u)){seenOwn.add(id(u));if("commandCenter".equals(u.get("type")))home=u;}
                 if(home==null)throw new IllegalStateException("Own commandCenter required at battle start");homeX=n(home,"x");homeY=n(home,"y");
                 event("battle_config","{\"gameSeconds\":"+seconds+",\"armyCap\":"+activeArmyTarget
@@ -536,6 +540,11 @@ public final class BattleClient {
                         +",\"reconMinReadyArmy\":7,\"reconThreatBufferWorld\":80"
                         +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
                         +",\"targetEligibilityVersion\":1,\"targetSuppressionRelease\":\"NEWER_VISIBLE_COMPATIBLE_EVIDENCE\""
+                        +",\"globalStrategyEnabled\":"+strategy.enabled()+",\"strategyContractVersion\":1"
+                        +",\"engagementAssessmentContract\":\"COMMITTED_FORMATION_V1\""
+                        +",\"pollWallTimeMs\":"+Math.max(60,Math.min(1000,Integer.getInteger("rwagent.pollMs",500)))
+                        +",\"battleSafetyGameSeconds\":"+BattleBudget.gameLimit()+",\"battleSafetyWallSeconds\":"+BattleBudget.wallLimit()
+                        +",\"reportCommitMemoryMiB\":8,\"reportDiskLimitMiB\":"+Math.max(64,Math.min(4096,Integer.getInteger("rwagent.reportLimitMiB",1024)))
                         +",\"reconExpendableHpMaxFraction\":0.45,\"reconFrontierMinMainForce\":6"
                         +"}");
                 long wallStart=System.nanoTime();wallStartNanos=wallStart;
@@ -543,7 +552,7 @@ public final class BattleClient {
                 while(true){
                     state=observe();lastState=state;Map<String,Object> match=obj(state.get("match"));matchOutcome=(String)match.get("outcome");                    if(!"ONGOING".equals(matchOutcome)){event("match_terminal",json(match));outcome="PASS";reason="Native result screen: "+matchOutcome;exit=0;break;}
                     if(time-startTime>=seconds*1000L){outcome="PARTIAL";reason="Game-time budget reached without native result";exit=2;break;}
-                    if((System.nanoTime()-wallStart)/1e9>2400)throw new IllegalStateException("Wall-time limit");
+                    if((System.nanoTime()-wallStart)/1e9>BattleBudget.wallLimit())throw new IllegalStateException("Configured wall-time safety limit");
                     account(state);
                     observeReconMotion(state);
                     if(time-lastDecision>=1000){
@@ -562,10 +571,18 @@ public final class BattleClient {
                         lastScout=scoutState;
                         confirm(state);updatePending(state);
                         updateMilitaryUrgency(state,enemies);
+                        strategy.observe(state,enemies,scoutState,mainArmy(state),startTime,seconds*1000L-(time-startTime),
+                                modelledIncomePerGameSecond(state),productionConsumptionPerGameSecond(),strategyReserve(),buildJob!=null);
+                        if(searchTarget!=null&&strategy.rejected(searchTarget.sourceEnemyId)){
+                            event("search_target_suppressed",json(StrategyDirector.map("targetId",searchTarget.targetId,
+                                "sourceEnemyId",searchTarget.sourceEnemyId,"reason","TERRAIN_APPROACH_REJECTION","gameTimeMs",time)));
+                            searchTarget=null;searchNeedsOrder=false;
+                        }
                         if(reconEnabled)updateRecon(state,enemies);
                         // Consume negative evidence even when Economy/Recon spends this tick's command.
                         updateTargetSuppressions(state,enemies);
                         builderRecovery(state);
+                        strategy.act(strategyReserve(),landFactoryTarget);
                         economyLane(state);
                         if(execution.ready(time)){
                             // A frontier scout with a refreshed own position needs its first order
@@ -603,6 +620,7 @@ public final class BattleClient {
         }catch(Exception err){reason=err.toString();System.err.println(reason);}
         finally{
             if(log!=null)try{
+                strategy.close();
                 if(reconAcquisition!=null)cancelReconAcquisition("CONTROLLER_ENDED");
                 if(reconTask!=null)releaseOwnership(reconTask.taskId,"CONTROLLER_ENDED");
                 execution.clear();
@@ -694,6 +712,7 @@ public final class BattleClient {
                     +",\"minesReadyAtEnd\":"+countReadyExtractors(lastState)
                     +",\"productionConsumptionPerGameSecond\":"+round1(productionConsumptionPerGameSecond())
                     +",\"sustainableSurplusPerGameSecond\":"+round1(sustainableSurplusPerGameSecond(lastState))
+                    +",\"strategy\":"+json(strategy.summary())
                     +"}");ReportFiles.finish(log,output,report);
             }catch(Exception err){exit=1;System.err.println("Report commit failed: "+err);}
         }
@@ -948,7 +967,7 @@ public final class BattleClient {
         long primaryReserve=0;
         for(Map<String,Object> f:factories){
             if(id(f)!=primaryProducerId)continue;
-            boolean busy=n(f,"queue")!=0||pending.containsKey(id(f));
+            boolean busy=n(f,"queue")!=0||pending.containsKey(id(f))||strategy.pending(id(f));
             Map<String,Object> pref=preferredAction(f,state,mainCount);
             boolean affordable=pref!=null&&Boolean.TRUE.equals(pref.get("affordable"));
             // The reserve is only held while the primary is idle and waiting for its mainline unit; once it
@@ -960,7 +979,7 @@ public final class BattleClient {
             long fid=id(f);
             // A fallback armed for an earlier factory must never attach to this factory's order.
             pendingFallback=null;
-            if(n(f,"queue")!=0||pending.containsKey(fid)){
+            if(n(f,"queue")!=0||pending.containsKey(fid)||strategy.pending(fid)){
                 // P2-B: a busy factory is the saturation signal itself, so record which unit it would
                 // build next even though no order is placed on this branch.
                 anyQueueBusy=true;
@@ -981,8 +1000,8 @@ public final class BattleClient {
             Map<String,Object> chosen=null;int priority=-1;
             for(Map<String,Object> a:list(f,"actions")){
                 if(!Boolean.TRUE.equals(a.get("affordable")))continue;String type=(String)a.get("type");int score=-1;
-                if(("tank".equals(type)||"c_tank".equals(type))&&army.size()<mobileUnitHardCap&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=1;
-                if("heavyTank".equals(type)&&army.size()<mobileUnitHardCap&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=3;
+                if(("tank".equals(type)||"c_tank".equals(type))&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=1;
+                if("heavyTank".equals(type)&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=3;
                 if("upgrade".equals(type)&&mainCount>=6&&n(obj(state.get("player")),"credits")>=n(a,"cost"))score=5;
                 if(score>priority){priority=score;chosen=a;}
             }
@@ -993,7 +1012,8 @@ public final class BattleClient {
                 // is committed to a chosen investment. This event is the middle link of the success chain.
                 else if(investmentReserve>0&&investment!=null)
                     reportProductionDeferred(f,investmentCandidate(f),state,"INVESTMENT",investmentReserve);
-                if(idleReason==null)idleReason=army.size()>=mobileUnitHardCap?"MOBILE_UNIT_HARD_CAP_REACHED":"NO_AFFORDABLE_ACTION";
+                if(idleReason==null)idleReason=army.size()>=productionLimit()?
+                        (strategy.enabled()&&strategy.safetyCapacityAvailable()?"STRATEGY_ARMY_TARGET_REACHED":"MOBILE_UNIT_HARD_CAP_REACHED"):"NO_AFFORDABLE_ACTION";
                 continue;
             }
             // 杈撳嚭15 搂2/搂3: a secondary upgrade is an opportunistic surplus investment, never a long-term
@@ -1118,8 +1138,8 @@ public final class BattleClient {
         Map<String,Object> best=null;int priority=-1;
         for(Map<String,Object> a:list(factory,"actions")){
             if(!(a.get("cost") instanceof Number))continue;String type=(String)a.get("type");int score=-1;
-            if(("tank".equals(type)||"c_tank".equals(type))&&armySize<mobileUnitHardCap&&!wouldBreachMineReserve(state,n(a,"cost")))score=1;
-            if("heavyTank".equals(type)&&armySize<mobileUnitHardCap&&!wouldBreachMineReserve(state,n(a,"cost")))score=3;
+            if(("tank".equals(type)||"c_tank".equals(type))&&armySize<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost")))score=1;
+            if("heavyTank".equals(type)&&armySize<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost")))score=3;
             if(score>priority){priority=score;best=a;}
         }
         return best;
@@ -1999,6 +2019,14 @@ public final class BattleClient {
                 logTargetGuard(e,candidate);
                 continue;
             }
+            List<Map<String,Object>> eligible=strategy.eligible(e,candidate.assigned);
+            if(eligible.isEmpty()){
+                logTargetGuard(e,candidate);
+                event("engagement_selection_blocked",json(StrategyDirector.map("targetId",id(e),
+                    "reason","PRIOR_OR_CURRENT_TERRAIN_APPROACH_REJECTION","gameTimeMs",time)));
+                continue;
+            }
+            if(eligible.size()!=candidate.assigned.size())candidate=targetGuard(eligible,e,enemies);
             double d=Math.hypot(n(e,"x")-cx,n(e,"y")-cy);
             if(n(e,"lastSeenGameTimeMs")==n(enemies,"gameTimeMs")&&Math.hypot(n(e,"x")-homeX,n(e,"y")-homeY)<450&&Boolean.TRUE.equals(e.get("canAttack")))d-=3000;
             if(Boolean.TRUE.equals(e.get("building")))d-=150;
@@ -2305,6 +2333,7 @@ public final class BattleClient {
         for(Map<String,Object> e:list(enemies,"visibleEnemies")){
             // Do not turn a fresh, clearly incompatible target into a later fog search order.
             if(targetSuppressions.containsKey(Long.valueOf(id(e))))continue;
+            if(strategy.rejected(id(e)))continue;
             if("INCOMPATIBLE".equals(targetGuard(mainArmy(state),e,enemies).status))continue;
             long enemyId=id(e),seen=(long)n(e,"lastSeenGameTimeMs");
             Long consumed=consumedObservations.get(Long.valueOf(enemyId));
@@ -3089,7 +3118,7 @@ public final class BattleClient {
     }
 
     private Map<String,Object> findBuilder(Map<String,Object> state){
-        for(Map<String,Object> u:units(state))if(alive(u)&&"builder".equals(u.get("type")))return u;
+        for(Map<String,Object> u:units(state))if(alive(u)&&"builder".equals(u.get("type"))&&!execution.reserved(id(u)))return u;
         return null;
     }
 
@@ -3191,7 +3220,14 @@ public final class BattleClient {
     }
     /** Income capacity of the economy right now, from the calibrated model - not from a balance delta. */
     private double modelledIncomePerGameSecond(Map<String,Object> state){
-        return economyBaseIncome+economyIncomePerMine*countReadyExtractors(state);
+        double equivalent=0;
+        for(Map<String,Object> u:units(state))if(alive(u)&&n(u,"buildProgress")>=1){
+            String type=String.valueOf(u.get("type"));
+            if("extractorT2".equals(type))equivalent+=1.5;
+            else if(type.startsWith("extractorT3"))equivalent+=2.5;
+            else if(isExtractor(type))equivalent++;
+        }
+        return economyBaseIncome+economyIncomePerMine*equivalent;
     }
     private double sustainableSurplusPerGameSecond(Map<String,Object> state){
         return modelledIncomePerGameSecond(state)-productionConsumptionPerGameSecond();
@@ -3279,6 +3315,13 @@ public final class BattleClient {
     }
 
     private boolean attack(List<Map<String,Object>> force,double x,double y,String why,Map<String,Object> enemy)throws Exception{
+        if(force.size()>48){
+            // Native group commands remain bounded. Units not already on this order are served first;
+            // the following tactic opportunity reinforces the rest through the same command gate.
+            force=new ArrayList<Map<String,Object>>(force);
+            Collections.sort(force,(a,b)->Boolean.compare(onAttackGoal(a,x,y),onAttackGoal(b,x,y)));
+            force=new ArrayList<Map<String,Object>>(force.subList(0,48));
+        }
         StringBuilder ids=new StringBuilder();for(Map<String,Object> u:force){if(ids.length()>0)ids.append(',');ids.append(id(u));}
         event("tactical_intent","{\"reason\":"+Json.quote(why)+",\"targetX\":"+x+",\"targetY\":"+y+",\"enemy\":"+(enemy==null?"null":json(enemy))+"}");
         Map<String,Object> receipt=post("/command/attack-move?unitIds="+ids+"&x="+x+"&y="+y);if(receipt==null)return false;
@@ -3321,6 +3364,22 @@ public final class BattleClient {
         execution.observe(new CommandArbiter.Stamp((String)s.get("sessionId"),playerKey,frame,time),ownIds);
         return s;
     }
+    private static boolean onAttackGoal(Map<String,Object> unit,double x,double y){
+        return "attackMove".equals(unit.get("orderType"))&&unit.get("orderX") instanceof Number&&unit.get("orderY") instanceof Number
+                &&Math.hypot(n(unit,"orderX")-x,n(unit,"orderY")-y)<1;
+    }
+    private int productionLimit(){return strategy.enabled()?(strategy.safetyCapacityAvailable()?Math.min(mobileUnitHardCap,strategy.armyTarget()):0):mobileUnitHardCap;}
+    private double strategyReserve(){return builderReserve+investmentReserve+(buildJob!=null&&!buildJob.started?buildJob.cost:0);}
+    public Map<String,Object> readStrategy(String path,String kind)throws Exception{
+        Map<String,Object> answer=optionalGet(path,kind);if(answer!=null)check(answer);return answer;
+    }
+    public Map<String,Object> orderStrategy(String owner,String path)throws Exception{return post(owner,path,execution.stamp());}
+    public void emitStrategy(String kind,Map<String,Object> data)throws Exception{event(kind,json(data));}
+    public void spendStrategy(String category,long cost,String type,long actor)throws Exception{
+        spend(category,cost,type,actor);
+        if("heavyTank".equals(type)||"combatEngineer".equals(type)||"amphibiousJet".equals(type))productionLedger.add(new long[]{time,cost});
+    }
+    public void strategicAttack(Map<String,Object> receipt){attacks++;awaitingOrder=receipt;}
     private void check(Map<String,Object> s){if(!session.equals(s.get("sessionId")))throw new IllegalStateException("Session changed");}
     private Map<String,Object> post(String path)throws Exception{
         return post(CommandArbiter.DEFAULT_OWNER,path,execution.stamp());
@@ -3337,7 +3396,8 @@ public final class BattleClient {
                     "{\"owner\":"+Json.quote(owner)+",\"reason\":"+Json.quote(denied)+",\"unitIds\":"+actors+",\"gameTimeMs\":"+time+"}");
             return null;
         }
-        path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time+"}");
+        path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time
+                +",\"owner\":"+Json.quote(owner)+",\"observationFrame\":"+stamp.frame+"}");
         AgentClient.Response r=AgentClient.request("POST","http://127.0.0.1:"+port+path);
         if(r.status==409){event("command_rejected","{\"status\":409,\"body\":"+Json.quote(r.body)+"}");return null;}
         if(r.status!=200)throw new IllegalStateException("Command HTTP "+r.status+": "+r.body);
