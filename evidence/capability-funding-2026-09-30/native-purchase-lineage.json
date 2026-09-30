@@ -1,0 +1,721 @@
+{
+  "source": {
+    "report": "run-20260930T073015-ba3296\\episode-001\\rw-agent-reports\\battle-1790753453913-76d22930.jsonl",
+    "sha256": "ec4db720c5378ab36f1521125e85e7e29972dfd5ab6d8dc7fceb189fbbd3cdaa",
+    "bytes": 33990047,
+    "battleStartGameTimeMs": 129984
+  },
+  "candidateJarSha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+  "associationMethod": "Each purchase is the sole outstanding engineer order, followed by producer queue-finished and one new engineer first observed beside that producer in the same tick. The native observation does not export a producedByUnitId field.",
+  "purchases": [
+    {
+      "reserveStartLine": 2445,
+      "needAtFunding": 1655,
+      "producerId": 206,
+      "orderLine": 2706,
+      "receiptLine": 2707,
+      "releaseLine": 2709,
+      "releaseReason": "PURCHASE_ACCEPTED",
+      "fundingGameSeconds": 33.536,
+      "engineerId": 2290,
+      "firstObservationLine": 2899,
+      "combatUnitObservedLine": 2900,
+      "producerQueueFinishedLine": 2904,
+      "ownershipLine": 2905,
+      "taskId": 1000003,
+      "firstResponseAssignmentLine": 2908,
+      "firstResponseTarget": 1655,
+      "firstResponseSemantics": "CURRENT_CONTACT_APPROACH",
+      "laterTaskLines": [
+        3431,
+        3652,
+        4097,
+        5612
+      ]
+    },
+    {
+      "reserveStartLine": 3294,
+      "needAtFunding": 2018,
+      "producerId": 206,
+      "orderLine": 3476,
+      "receiptLine": 3477,
+      "releaseLine": 3479,
+      "releaseReason": "PURCHASE_ACCEPTED",
+      "fundingGameSeconds": 32.448,
+      "engineerId": 3223,
+      "firstObservationLine": 3602,
+      "combatUnitObservedLine": 3603,
+      "producerQueueFinishedLine": 3606,
+      "ownershipLine": 3607,
+      "taskId": 1000005,
+      "firstResponseAssignmentLine": 3609,
+      "firstResponseTarget": 1655,
+      "firstResponseSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+      "laterTaskLines": [
+        4009,
+        4199,
+        5557
+      ],
+      "attributionCaveat": "The second funding need was 2018, but new engineer 3223 first received need 1655. Older engineer 2290 received need 2018 at line 3652."
+    }
+  ],
+  "cancelledCommitment": {
+    "startLine": 2720,
+    "releaseLine": 2920,
+    "producerId": 321,
+    "needId": 1655,
+    "reason": "NEED_ALREADY_SERVED",
+    "ageGameSeconds": 34.352,
+    "newPurchaseFromThisCommitment": false
+  },
+  "events": [
+    {
+      "line": 2445,
+      "wallTimeMs": 1790753578407,
+      "event": "strategy_capability_reserve_started",
+      "data": {
+        "needId": 1655,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 726880,
+        "deadlineGameTimeMs": 816880,
+        "ageGameMs": 0,
+        "reason": "BOUNDED_CAPABILITY_FUNDING",
+        "freeCredits": 993.5,
+        "protectedFunds": 0.0,
+        "incomeEstimate": 75.18,
+        "estimatedFundingGameSeconds": 33.33998403830806,
+        "estimateSemantics": "BUDGET_FEASIBILITY_NOT_OUTCOME_PREDICTION",
+        "gameTimeMs": 726880,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2705,
+      "wallTimeMs": 1790753585348,
+      "event": "strategy_allocation",
+      "data": {
+        "needId": 1655,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 726880,
+        "deadlineGameTimeMs": 816880,
+        "ageGameMs": 33536,
+        "reason": "CAPABILITY_COMMITMENT_READY",
+        "selected": "UNSERVED_CAPABILITY_NEED",
+        "action": {
+          "actionId": "u_combatEngineer",
+          "type": "combatEngineer",
+          "cost": 3500,
+          "affordable": true
+        },
+        "freeCredits": 3606.0,
+        "protectedFunds": 0.0,
+        "gameTimeMs": 760416,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2706,
+      "wallTimeMs": 1790753585348,
+      "event": "action",
+      "data": {
+        "path": "/command/queue?unitId=206&actionId=u_combatEngineer&sessionId=3501903b-8235-43a4-825d-d2b9720e3d13&requestId=c3f03966-9a2e-4a38-95db-8d21a2297914",
+        "gameTimeMs": 760416,
+        "owner": "rule-main",
+        "observationFrame": 47526
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2707,
+      "wallTimeMs": 1790753585363,
+      "event": "command_result",
+      "data": {
+        "status": "queued",
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "requestId": "c3f03966-9a2e-4a38-95db-8d21a2297914",
+        "frame": 47554,
+        "unitId": 206,
+        "actionId": "u_combatEngineer",
+        "type": "combatEngineer"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2708,
+      "wallTimeMs": 1790753585363,
+      "event": "spend",
+      "data": {
+        "gameTimeMs": 760416,
+        "category": "STRATEGIC_CAPABILITY",
+        "cost": 3500,
+        "itemType": "combatEngineer",
+        "producerOrBuilderId": 206
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2709,
+      "wallTimeMs": 1790753585363,
+      "event": "strategy_capability_reserve_released",
+      "data": {
+        "needId": 1655,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 726880,
+        "deadlineGameTimeMs": 816880,
+        "ageGameMs": 33536,
+        "reason": "PURCHASE_ACCEPTED",
+        "gameTimeMs": 760416,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2720,
+      "wallTimeMs": 1790753585932,
+      "event": "strategy_capability_reserve_started",
+      "data": {
+        "needId": 1655,
+        "producerId": 321,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 763376,
+        "deadlineGameTimeMs": 853376,
+        "ageGameMs": 0,
+        "reason": "BOUNDED_CAPABILITY_FUNDING",
+        "freeCredits": 343.5,
+        "protectedFunds": 0.0,
+        "incomeEstimate": 75.18,
+        "estimatedFundingGameSeconds": 41.98590050545357,
+        "estimateSemantics": "BUDGET_FEASIBILITY_NOT_OUTCOME_PREDICTION",
+        "gameTimeMs": 763376,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2899,
+      "wallTimeMs": 1790753592463,
+      "event": "observation",
+      "data": {
+        "gameTimeMs": 794944,
+        "frame": 49684,
+        "player": {
+          "teamId": 0,
+          "name": "Player",
+          "credits": 2809.0
+        },
+        "selectedOwnUnits": [
+          {
+            "id": 206,
+            "type": "landFactory",
+            "x": 3090.0,
+            "y": 3150.0,
+            "hp": 1200.0,
+            "maxHp": 1200.0,
+            "buildProgress": 1.0,
+            "productionQueue": 0,
+            "dead": false,
+            "mobile": false,
+            "canAttack": false,
+            "building": true,
+            "techLevel": 2,
+            "orderType": null,
+            "guardTargetId": null
+          },
+          {
+            "id": 2290,
+            "type": "combatEngineer",
+            "x": 3089.049,
+            "y": 3234.209,
+            "hp": 1000.0,
+            "maxHp": 1000.0,
+            "buildProgress": 1.0,
+            "productionQueue": 0,
+            "dead": false,
+            "mobile": true,
+            "canAttack": true,
+            "building": false,
+            "techLevel": 2,
+            "orderType": null,
+            "guardTargetId": null
+          }
+        ]
+      },
+      "excerptSemantics": "SELECTED_FIELDS_FROM_ORIGINAL_OBSERVATION"
+    },
+    {
+      "line": 2900,
+      "wallTimeMs": 1790753592465,
+      "event": "combat_unit_observed",
+      "data": {
+        "id": 2290,
+        "type": "combatEngineer",
+        "x": 3089.049,
+        "y": 3234.209,
+        "hp": 1000.0,
+        "maxHp": 1000.0,
+        "buildProgress": 1.0,
+        "productionQueue": 0,
+        "dead": false,
+        "mobile": true,
+        "canAttack": true,
+        "building": false,
+        "techLevel": 2,
+        "orderType": null,
+        "guardTargetId": null
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2904,
+      "wallTimeMs": 1790753592497,
+      "event": "strategy_production_queue_finished",
+      "data": {
+        "producerId": 206,
+        "product": "combatEngineer",
+        "gameTimeMs": 794944,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2905,
+      "wallTimeMs": 1790753592497,
+      "event": "task_ownership_acquired",
+      "data": {
+        "taskId": 1000003,
+        "owner": "strategy:1000003",
+        "unitId": 2290,
+        "role": "STRATEGIC_SPECIALIST",
+        "gameTimeMs": 794944,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2908,
+      "wallTimeMs": 1790753592515,
+      "event": "strategy_task_assigned",
+      "data": {
+        "taskId": 1000003,
+        "unitId": 2290,
+        "role": "CROSS_DOMAIN_RESPONSE",
+        "targetId": 1655,
+        "approachX": 2990.0,
+        "approachY": 2570.0,
+        "objectiveSemantics": "CURRENT_CONTACT_APPROACH",
+        "gameTimeMs": 794944,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 2920,
+      "wallTimeMs": 1790753593091,
+      "event": "strategy_capability_reserve_released",
+      "data": {
+        "needId": 1655,
+        "producerId": 321,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 763376,
+        "deadlineGameTimeMs": 853376,
+        "ageGameMs": 34352,
+        "reason": "NEED_ALREADY_SERVED",
+        "gameTimeMs": 797728,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3294,
+      "wallTimeMs": 1790753606122,
+      "event": "strategy_capability_reserve_started",
+      "data": {
+        "needId": 2018,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 859984,
+        "deadlineGameTimeMs": 949984,
+        "ageGameMs": 0,
+        "reason": "BOUNDED_CAPABILITY_FUNDING",
+        "freeCredits": 749.0,
+        "protectedFunds": 0.0,
+        "incomeEstimate": 87.25,
+        "estimatedFundingGameSeconds": 31.530085959885387,
+        "estimateSemantics": "BUDGET_FEASIBILITY_NOT_OUTCOME_PREDICTION",
+        "gameTimeMs": 859984,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3431,
+      "wallTimeMs": 1790753611011,
+      "event": "strategy_task_blocked",
+      "data": {
+        "taskId": 1000003,
+        "targetId": 1655,
+        "reason": "NO_OBSERVED_PROGRESS",
+        "attempts": 1,
+        "gameTimeMs": 883856,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3475,
+      "wallTimeMs": 1790753612812,
+      "event": "strategy_allocation",
+      "data": {
+        "needId": 2018,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 859984,
+        "deadlineGameTimeMs": 949984,
+        "ageGameMs": 32448,
+        "reason": "CAPABILITY_COMMITMENT_READY",
+        "selected": "UNSERVED_CAPABILITY_NEED",
+        "action": {
+          "actionId": "u_combatEngineer",
+          "type": "combatEngineer",
+          "cost": 3500,
+          "affordable": true
+        },
+        "freeCredits": 3737.5,
+        "protectedFunds": 0.0,
+        "gameTimeMs": 892432,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3476,
+      "wallTimeMs": 1790753612812,
+      "event": "action",
+      "data": {
+        "path": "/command/queue?unitId=206&actionId=u_combatEngineer&sessionId=3501903b-8235-43a4-825d-d2b9720e3d13&requestId=1b72b87f-4301-4a1d-a904-528c40990277",
+        "gameTimeMs": 892432,
+        "owner": "rule-main",
+        "observationFrame": 55777
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3477,
+      "wallTimeMs": 1790753612828,
+      "event": "command_result",
+      "data": {
+        "status": "queued",
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "requestId": "1b72b87f-4301-4a1d-a904-528c40990277",
+        "frame": 55793,
+        "unitId": 206,
+        "actionId": "u_combatEngineer",
+        "type": "combatEngineer"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3478,
+      "wallTimeMs": 1790753612828,
+      "event": "spend",
+      "data": {
+        "gameTimeMs": 892432,
+        "category": "STRATEGIC_CAPABILITY",
+        "cost": 3500,
+        "itemType": "combatEngineer",
+        "producerOrBuilderId": 206
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3479,
+      "wallTimeMs": 1790753612828,
+      "event": "strategy_capability_reserve_released",
+      "data": {
+        "needId": 2018,
+        "producerId": 206,
+        "product": "combatEngineer",
+        "actionId": "u_combatEngineer",
+        "cost": 3500.0,
+        "startedAtGameTimeMs": 859984,
+        "deadlineGameTimeMs": 949984,
+        "ageGameMs": 32448,
+        "reason": "PURCHASE_ACCEPTED",
+        "gameTimeMs": 892432,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3602,
+      "wallTimeMs": 1790753619676,
+      "event": "observation",
+      "data": {
+        "gameTimeMs": 925568,
+        "frame": 57848,
+        "player": {
+          "teamId": 0,
+          "name": "Player",
+          "credits": 1286.0
+        },
+        "selectedOwnUnits": [
+          {
+            "id": 206,
+            "type": "landFactory",
+            "x": 3090.0,
+            "y": 3150.0,
+            "hp": 1200.0,
+            "maxHp": 1200.0,
+            "buildProgress": 1.0,
+            "productionQueue": 0,
+            "dead": false,
+            "mobile": false,
+            "canAttack": false,
+            "building": true,
+            "techLevel": 2,
+            "orderType": null,
+            "guardTargetId": null
+          },
+          {
+            "id": 2290,
+            "type": "combatEngineer",
+            "x": 2950.0,
+            "y": 3067.105,
+            "hp": 1000.0,
+            "maxHp": 1000.0,
+            "buildProgress": 1.0,
+            "productionQueue": 0,
+            "dead": false,
+            "mobile": true,
+            "canAttack": true,
+            "building": false,
+            "techLevel": 2,
+            "orderType": null,
+            "guardTargetId": null
+          },
+          {
+            "id": 3223,
+            "type": "combatEngineer",
+            "x": 3089.466,
+            "y": 3199.462,
+            "hp": 1000.0,
+            "maxHp": 1000.0,
+            "buildProgress": 1.0,
+            "productionQueue": 0,
+            "dead": false,
+            "mobile": true,
+            "canAttack": true,
+            "building": false,
+            "techLevel": 2,
+            "orderType": "move",
+            "orderX": 3088.966,
+            "orderY": 3240.0,
+            "guardTargetId": null
+          }
+        ]
+      },
+      "excerptSemantics": "SELECTED_FIELDS_FROM_ORIGINAL_OBSERVATION"
+    },
+    {
+      "line": 3603,
+      "wallTimeMs": 1790753619677,
+      "event": "combat_unit_observed",
+      "data": {
+        "id": 3223,
+        "type": "combatEngineer",
+        "x": 3089.466,
+        "y": 3199.462,
+        "hp": 1000.0,
+        "maxHp": 1000.0,
+        "buildProgress": 1.0,
+        "productionQueue": 0,
+        "dead": false,
+        "mobile": true,
+        "canAttack": true,
+        "building": false,
+        "techLevel": 2,
+        "orderType": "move",
+        "orderX": 3088.966,
+        "orderY": 3240.0,
+        "guardTargetId": null
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3606,
+      "wallTimeMs": 1790753619707,
+      "event": "strategy_production_queue_finished",
+      "data": {
+        "producerId": 206,
+        "product": "combatEngineer",
+        "gameTimeMs": 925568,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3607,
+      "wallTimeMs": 1790753619707,
+      "event": "task_ownership_acquired",
+      "data": {
+        "taskId": 1000005,
+        "owner": "strategy:1000005",
+        "unitId": 3223,
+        "role": "STRATEGIC_SPECIALIST",
+        "gameTimeMs": 925568,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3609,
+      "wallTimeMs": 1790753619725,
+      "event": "strategy_task_assigned",
+      "data": {
+        "taskId": 1000005,
+        "unitId": 3223,
+        "role": "CROSS_DOMAIN_RESPONSE",
+        "targetId": 1655,
+        "approachX": 3010.0,
+        "approachY": 2530.0,
+        "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+        "gameTimeMs": 925568,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 3652,
+      "wallTimeMs": 1790753620976,
+      "event": "strategy_task_assigned",
+      "data": {
+        "taskId": 1000003,
+        "unitId": 2290,
+        "role": "CROSS_DOMAIN_RESPONSE",
+        "targetId": 2018,
+        "approachX": 3190.0,
+        "approachY": 1350.0,
+        "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+        "gameTimeMs": 931200,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 4009,
+      "wallTimeMs": 1790753635501,
+      "event": "strategy_task_blocked",
+      "data": {
+        "taskId": 1000005,
+        "targetId": 1655,
+        "reason": "NO_OBSERVED_PROGRESS",
+        "attempts": 2,
+        "gameTimeMs": 1001376,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 4097,
+      "wallTimeMs": 1790753639620,
+      "event": "strategy_task_blocked",
+      "data": {
+        "taskId": 1000003,
+        "targetId": 2018,
+        "reason": "NO_OBSERVED_PROGRESS",
+        "attempts": 1,
+        "gameTimeMs": 1021168,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 4199,
+      "wallTimeMs": 1790753645449,
+      "event": "strategy_task_assigned",
+      "data": {
+        "taskId": 1000005,
+        "unitId": 3223,
+        "role": "CROSS_DOMAIN_RESPONSE",
+        "targetId": 2916,
+        "approachX": 1010.0,
+        "approachY": 1650.0,
+        "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+        "gameTimeMs": 1048816,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 5557,
+      "wallTimeMs": 1790753688887,
+      "event": "strategy_task_blocked",
+      "data": {
+        "taskId": 1000005,
+        "targetId": 2916,
+        "reason": "NO_OBSERVED_PROGRESS",
+        "attempts": 1,
+        "gameTimeMs": 1257632,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    },
+    {
+      "line": 5612,
+      "wallTimeMs": 1790753690237,
+      "event": "strategy_task_assigned",
+      "data": {
+        "taskId": 1000003,
+        "unitId": 2290,
+        "role": "CROSS_DOMAIN_RESPONSE",
+        "targetId": 2916,
+        "approachX": 2630.0,
+        "approachY": 3310.0,
+        "objectiveSemantics": "LAST_KNOWN_SITE_INVESTIGATION",
+        "gameTimeMs": 1263664,
+        "sessionId": "3501903b-8235-43a4-825d-d2b9720e3d13",
+        "player": "team:0"
+      },
+      "excerptSemantics": "ORIGINAL_EVENT_WITH_LARGE_EVIDENCE_FIELD_OMITTED_IF_PRESENT"
+    }
+  ]
+}

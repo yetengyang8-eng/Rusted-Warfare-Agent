@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-09-30-CAP-FUNDING-v1",
+  "sourceCommit": "fd8572849388d2e7fe04a5d446154602b54d3118",
+  "parentBaselineId": "RW-BASELINE-2026-09-30-GS-v1",
+  "parentBaselineCommit": "6214868170256d5cfeeea279cf814cae2753f2f8",
+  "promotedToBaseline": false,
+  "installedToDesktop": false,
+  "jar": {
+    "path": "deliveries/capability-funding-2026-09-30/rw-agent-bootstrap.jar",
+    "sha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+    "bytes": 258704,
+    "contentDigest": "28bca05142179dbf2640451682ca11b5d4ff440bc7f95321e3dafce356392f06",
+    "contentDigestAlgorithm": "tools/run_headless.py:jar_content_digest"
+  },
+  "frozenGameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "catalogSha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+  "build": {
+    "java": "BellSoft Liberica JDK 17.0.20.1",
+    "release": 8,
+    "platform": "Windows",
+    "nativeRuntimeJava": "bundled original Java 13",
+    "fixedVsFullRegressionContentEqual": true,
+    "nonManifestArchiveEntries": 88,
+    "nonManifestFileEntries": 81
+  },
+  "validatedWorkspaceFiles": [
+    {
+      "path": "agent/src/io/rwagent/client/BattleClient.java",
+      "sha256": "0f246c8e15fe0ebe752a81d3f2befccbcf8bd953b97699889765268e0ea62189"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+      "sha256": "abf9b885ff635cbd6a324332df26cfaf8dcb1ac9503becaea06a09f11c1366a2"
+    },
+    {
+      "path": "agent/tests/StrategyContractHarness.java",
+      "sha256": "0bb4e6b7a40d53847e1c70b80365a6d5aec2078fa0e1f1cc0069afaa2728a476"
+    },
+    {
+      "path": "agent/tests/test_strategy_funding.py",
+      "sha256": "0718d017d6315409dfd9a88435a8cca791b0670dd184a9a12ab2fa6d002d772e"
+    },
+    {
+      "path": "agent/test-win.ps1",
+      "sha256": "06d33258860d915195a89b1cd0680b13bd7e81d51e305ffe460965464cf13d33"
+    },
+    {
+      "path": "agent/test.sh",
+      "sha256": "81e020b210cf21e51829a8a48a6abbbaf87cf3a445e89a81252a354301b063d5"
+    }
+  ],
+  "changedArchiveEntriesFromBaseline": [
+    "io/rwagent/client/BattleClient$BuildJob.class",
+    "io/rwagent/client/BattleClient$GuardSelection.class",
+    "io/rwagent/client/BattleClient$Investment.class",
+    "io/rwagent/client/BattleClient$Pending.class",
+    "io/rwagent/client/BattleClient.class",
+    "io/rwagent/client/StrategyDirector$Assessment.class",
+    "io/rwagent/client/StrategyDirector$Capacity.class",
+    "io/rwagent/client/StrategyDirector$Need.class",
+    "io/rwagent/client/StrategyDirector$Purchase.class",
+    "io/rwagent/client/StrategyDirector$Worker.class",
+    "io/rwagent/client/StrategyDirector.class"
+  ],
+  "addedArchiveEntriesFromBaseline": [
+    "io/rwagent/client/StrategyDirector$CapabilityFunding.class"
+  ],
+  "removedArchiveEntriesFromBaseline": [],
+  "rollback": {
+    "jar": "astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar",
+    "sha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+    "note": "No installed program was replaced."
+  }
+}

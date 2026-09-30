@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-09-30-CAP-FUNDING-v1",
+  "status": "REGRESSION_PASS_AND_BOUNDED_NATIVE_FUNDING_CHAIN_OBSERVED",
+  "sourceCommit": "fd8572849388d2e7fe04a5d446154602b54d3118",
+  "candidateJarSha256": "41c52392d0d9cc7af39b4e726d6bab2537249ca146b5621d890fd2a8851a2141",
+  "targeted": {
+    "strategyContractChecks": 117,
+    "httpCases": 7,
+    "passed": true,
+    "baselinePositiveExpectedFailure": true,
+    "baselineMissingMenuNegativeControlPassed": true,
+    "economicBypassReproducedOnIntermediateCandidate": true,
+    "httpPurchaseAfterReserveGameSeconds": 48,
+    "raw": "raw-evidence.zip:targeted-v2/"
+  },
+  "windows": {
+    "status": "PASS",
+    "runnerExitCode": 0,
+    "stepCount": 41,
+    "javaHarnessRuns": 21,
+    "pythonSuites": 17,
+    "failedSteps": 0,
+    "pythonTestsRun": 288,
+    "pythonSkipped": 0,
+    "strategyContractChecks": 117
+  },
+  "platformBoundary": "POSIX-only open-handle rename simulation skipped in Java; Windows FILE_SHARE_DELETE Python cases ran. Linux regression was not rerun for this candidate.",
+  "jarLineage": {
+    "fixedAndRebuiltContentEqual": true,
+    "contentDigest": "28bca05142179dbf2640451682ca11b5d4ff440bc7f95321e3dafce356392f06",
+    "nonManifestArchiveEntriesCompared": 88
+  },
+  "native": {
+    "classification": "BOUNDED_PARTIAL_WITH_FUNDING_COVERAGE",
+    "battleSeconds": 1202.416,
+    "matchOutcome": "ONGOING",
+    "reportedOutcome": "PARTIAL",
+    "fundingStarted": 3,
+    "fundingReleased": 3,
+    "fundingPurchasesAccepted": 2,
+    "fundingCancelledNeedAlreadyServed": 1,
+    "fundingReserveAtEnd": 0.0,
+    "newEngineerIds": [
+      2290,
+      3223
+    ],
+    "needsResolvedByLegalEvidence": 0,
+    "globalStrategyAuditPassed": true,
+    "engineExitCode": 0,
+    "engineAliveAfterCleanup": false
+  },
+  "naturalResponseLimit": "Both newly produced engineers were assigned tasks but later recorded NO_OBSERVED_PROGRESS; second funding need and first assigned need differ. No response-completion or win-rate gain claim.",
+  "evidenceArchiveSha256": "553ab5091d2b33cb9ae5fe54858140ea7afe0e6821b41e4db356725b5cc88c27",
+  "progressSnapshotNote": "Archived full-regression/summary-progress-snapshot.json is an unfinished progress capture; windows-regression.json and final full-regression/summary.json use the completed transcript and exit code 0."
+}
