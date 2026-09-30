@@ -32,17 +32,19 @@ public final class StrategyContractHarness {
         final CommandArbiter gate=new CommandArbiter();
         final List<Map<String,Object>> events=new ArrayList<Map<String,Object>>();
         final List<String> orders=new ArrayList<String>();
-        Map<String,Object> world;String approach="BLOCKED_TERRAIN";
+        Map<String,Object> world;String approach="BLOCKED_TERRAIN",specialistApproach="APPROACH_PATH_KNOWN";
         boolean visible=true;int upgradeOrders;
         double engineerCost=3500;
-        boolean engineerOffered=true,productionMenuAvailable=true,rejectOrders,minePlan;
+        boolean engineerOffered=true,productionMenuAvailable=true,rejectOrders,minePlan,supportPlan;
         public Map<String,Object> readStrategy(String path,String event){
             if(path.startsWith("/combat/engagement")){
                 String ids=path.split("unitIds=")[1].split("&")[0];List<Map<String,Object>> actors=new ArrayList<Map<String,Object>>();
                 for(String value:ids.split(",")){
-                    long uid=Long.parseLong(value);boolean engineer=uid==80;
-                    actors.add(map("unitId",uid,"status",engineer?"APPROACH_PATH_KNOWN":approach,"compatibility","COMPATIBLE",
-                        "approachX",490,"approachY",90));
+                    long uid=Long.parseLong(value);Map<String,Object> unit=BattleClient.find(world,uid);
+                    boolean specialist=unit!=null&&("combatEngineer".equals(unit.get("type"))||"amphibiousJet".equals(unit.get("type")));
+                    String status=specialist?specialistApproach:approach;
+                    actors.add(map("unitId",uid,"status",visible?status:"UNKNOWN","lastKnownPositionApproachStatus",status,
+                        "compatibility",visible?"COMPATIBLE":"UNKNOWN","approachX",490,"approachY",90));
                 }
                 return map("targetVisible",visible,"targetX",510,"targetY",70,"targetObservedAtGameTimeMs",world.get("gameTimeMs"),"actors",actors);
             }
@@ -56,6 +58,7 @@ public final class StrategyContractHarness {
                 return map("factories",Arrays.asList(map("id",90L,"queue",number(factory,"productionQueue",0),"actions",actions)));
             }
             if(path.startsWith("/expansion/plan")&&minePlan)return map("extractorCost",700,"extractorX",3090,"extractorY",3100);
+            if(path.contains("type=amphibiousJet")&&supportPlan)return map("actionId","jet","affordable",true,"cost",2000,"x",3100,"y",3100);
             if(path.equals("/economy/investments"))return map("units",Arrays.asList(map("id",91L,"queue",0,"actionId","extractorT2_0","cost",1400,"affordable",true)));
             if(path.startsWith("/scout/resource-approach"))return map("pathKnown",true,"x",1890,"y",1890,"tile",17000);
             return null;
@@ -229,8 +232,97 @@ public final class StrategyContractHarness {
         FundingFixture invalidCost=new FundingFixture();invalidCost.f.engineerCost=Double.NaN;invalidCost.strategy.act(500,1);
         require(invalidCost.strategy.capabilityReserve()==0,"invalid native menu price cannot justify funding");
     }
+    static Map<String,Object> specialist(FundingFixture fixture,long id,String type,double x,double y)throws Exception{
+        Map<String,Object> unit=unit(id,type,x,y);fixture.all.add(unit);fixture.observe(121000);return unit;
+    }
+    static long attackCount(Fake fake){return fake.orders.stream().filter(p->p.startsWith("/command/attack-move")).count();}
+    static void specialistLifecycle()throws Exception{
+        FundingFixture investigate=new FundingFixture();Map<String,Object> engineer=specialist(investigate,80,"combatEngineer",490,90);
+        investigate.strategy.act(500,1);long orders=attackCount(investigate.f);
+        investigate.f.visible=false;investigate.enemies.put("visibleEnemies",Collections.emptyList());
+        investigate.observe(132000);investigate.strategy.act(500,1);
+        require(investigate.f.events("strategy_investigation_started")==1,"arrival plus fresh lost contact starts a bounded site investigation");
+        investigate.observe(146999);investigate.strategy.act(500,1);
+        require(investigate.f.events("strategy_investigation_exhausted")==0&&attackCount(investigate.f)==orders,"waiting at last approach never repeats attack-move before deadline");
+        investigate.observe(147000);investigate.strategy.act(500,1);
+        require(investigate.f.events("strategy_investigation_exhausted")==1,"investigation expires exactly after fifteen game seconds");
+        require(investigate.f.events("strategy_task_blocked")==0&&investigate.f.events("capability_need_resolved")==0,"lost contact investigation is neither failure nor clearance");
+        engineer.put("x",2990);engineer.put("y",3070);investigate.observe(163000);investigate.strategy.act(500,1);
+        require(attackCount(investigate.f)==orders&&investigate.strategy.capabilityReserve()==0,"same stale need cannot redispatch or buy a replacement while specialist remains committed");
+        require(investigate.f.events("strategy_worker_commitment_released")==1,"safe home releases stale-site binding so the specialist can serve another need");
+        investigate.f.visible=true;investigate.enemies.put("visibleEnemies",Arrays.asList(map("id",230L,"type","seaFactory","building",true,"canAttack",false,"x",510,"y",70,"hp",1000)));
+        investigate.observe(175000);investigate.strategy.act(500,1);
+        require(attackCount(investigate.f)>orders,"new legal visible evidence re-enables the bound specialist");
+        investigate.enemies.put("enemyIntel",Arrays.asList(map("id",230L,"status","CLEARED")));investigate.enemies.put("visibleEnemies",Collections.emptyList());
+        investigate.observe(177000);
+        require(investigate.f.events("capability_need_resolved")==1,"legal clearance still resolves and releases the bound need");
+
+        FundingFixture restored=new FundingFixture();specialist(restored,80,"combatEngineer",490,90);restored.strategy.act(500,1);
+        restored.f.visible=false;restored.enemies.put("visibleEnemies",Collections.emptyList());restored.observe(132000);
+        restored.f.visible=true;restored.observe(140000);restored.strategy.act(500,1);
+        require(restored.f.events("strategy_investigation_contact_restored")==1&&restored.f.events("strategy_investigation_exhausted")==0,"fresh compatible contact during waiting resumes response without exhausting investigation");
+
+        FundingFixture anotherNeed=new FundingFixture();Map<String,Object> reusable=specialist(anotherNeed,80,"combatEngineer",490,90);anotherNeed.strategy.act(500,1);
+        anotherNeed.f.visible=false;anotherNeed.enemies.put("visibleEnemies",Collections.emptyList());anotherNeed.observe(132000);anotherNeed.observe(147000);anotherNeed.strategy.act(500,1);
+        reusable.put("x",2990);reusable.put("y",3070);anotherNeed.f.visible=true;
+        anotherNeed.enemies.put("visibleEnemies",Arrays.asList(map("id",231L,"type","seaFactory","building",true,"canAttack",false,"x",510,"y",70,"hp",1000)));
+        anotherNeed.observe(163000);anotherNeed.strategy.act(500,1);
+        require(anotherNeed.f.events.stream().anyMatch(e->"strategy_task_assigned".equals(e.get("event"))&&number(BattleClient.obj(e.get("data")),"targetId",-1)==231),
+            "specialist safely returned from an exhausted stale site can dispatch to a different new need");
+
+        FundingFixture recovery=new FundingFixture();Map<String,Object> worker=unit(3,"builder",2990,3070);worker.put("hp",100);recovery.all.add(worker);recovery.observe(121000);
+        recovery.strategy.act(500,1);recovery.observe(180000);recovery.strategy.act(500,1);
+        require(recovery.f.orders.stream().noneMatch(p->p.contains("unitId=3")),"low-health worker at home holds without repeated return commands");
+        worker.put("x",1000);worker.put("y",1000);worker.put("orderType","move");worker.put("orderX",2990);worker.put("orderY",3070);
+        recovery.observe(190000);recovery.strategy.act(500,1);
+        require(recovery.f.orders.stream().noneMatch(p->p.contains("unitId=3")),"native move toward home is preserved without replacement");
+        worker.put("orderType",null);recovery.observe(201000);recovery.strategy.act(500,1);
+        require(recovery.f.orders.stream().anyMatch(p->p.startsWith("/command/move?unitId=3")),"far-away interrupted return receives a recovery command");
+
+        FundingFixture role=new FundingFixture();role.credits(2000);role.enemies.put("visibleEnemies",Collections.emptyList());role.f.specialistApproach="UNKNOWN";role.f.minePlan=true;
+        specialist(role,80,"combatEngineer",2990,3070);role.strategy.act(500,2);
+        require(role.f.orders.stream().noneMatch(p->p.contains("unitId=80")),"idle capability engineer cannot be stolen for mine, prospect, factory or heavy-tank work");
+        Map<String,Object> builder=unit(3,"builder",2990,3070);role.all.add(builder);role.observe(132000);role.strategy.act(500,2);
+        require(role.f.orders.stream().anyMatch(p->p.startsWith("/command/build-extractor?unitId=3")),"additional ordinary builder retains the economic lane");
+
+        FundingFixture purchase=new FundingFixture();purchase.credits(10000);purchase.strategy.act(500,1);
+        require(purchase.f.events("strategy_purchase_committed")==1,"direct purchase records its exact selected capability need");
+        Map<String,Object> second=new LinkedHashMap<String,Object>(BattleClient.list(purchase.enemies,"visibleEnemies").get(0));second.put("id",231L);
+        purchase.enemies.put("visibleEnemies",Arrays.asList(second,BattleClient.list(purchase.enemies,"visibleEnemies").get(0)));
+        Map<String,Object> bought=specialist(purchase,80,"combatEngineer",490,90);purchase.strategy.act(500,1);
+        Map<String,Object> assigned=null;for(Map<String,Object> event:purchase.f.events)if("strategy_task_assigned".equals(event.get("event")))assigned=BattleClient.obj(event.get("data"));
+        require(assigned!=null&&number(assigned,"targetId",-1)==230,"observed available engineer fulfils purchase need before another newly listed objective");
+        bought.put("hp",100);purchase.observe(133000);purchase.strategy.act(500,1);bought.put("x",2990);bought.put("y",3070);purchase.observe(190000);purchase.strategy.act(500,1);
+        long targetPurchases=purchase.f.events.stream().filter(e->"strategy_purchase_committed".equals(e.get("event"))&&number(BattleClient.obj(e.get("data")),"needId",-1)==230).count();
+        require(targetPurchases==1,"returning bound specialist keeps the same need from ordering another engineer");
+
+        FundingFixture losses=new FundingFixture();losses.credits(10000);losses.strategy.act(500,1);
+        for(int attempt=0;attempt<3;attempt++){
+            Map<String,Object> responder=unit(80+attempt,"combatEngineer",490,90);losses.all.add(responder);
+            losses.observe(121000+attempt*24000);losses.strategy.act(500,1);
+            losses.all.remove(responder);losses.observe(133000+attempt*24000);losses.strategy.act(500,1);
+        }
+        require(losses.f.events("strategy_task_lost")==3&&losses.f.events("strategy_purchase_committed")==3,
+            "confirmed bound losses release commitments but respect the three-attempt need budget");
+        FundingFixture missingUnit=new FundingFixture();missingUnit.credits(10000);missingUnit.strategy.act(500,1);
+        Map<String,Object> producer=BattleClient.find(missingUnit.world,90);producer.put("productionQueue",1);missingUnit.observe(130000);
+        producer.put("productionQueue",0);missingUnit.observe(140000);missingUnit.strategy.act(500,1);
+        require(missingUnit.f.events("strategy_purchase_committed")==1&&missingUnit.strategy.pending(90),"empty queue alone does not release an unfulfilled unit commitment");
+        missingUnit.observe(301001);missingUnit.strategy.act(500,1);
+        require(missingUnit.f.events("strategy_purchase_unconfirmed")==1&&missingUnit.f.events("strategy_purchase_committed")==2,
+            "missing-unit timeout releases its bounded commitment and permits a budgeted retry");
+
+        FundingFixture support=new FundingFixture();support.credits(10000);support.f.specialistApproach="BLOCKED_TERRAIN";support.f.supportPlan=true;
+        specialist(support,80,"combatEngineer",2990,3070);support.strategy.act(500,1);
+        require(support.f.events("strategy_support_construction")==1,"an otherwise unable engineer retains explicit movement-gap jet construction");
+        Map<String,Object> jet=unit(81,"amphibiousJet",3100,3100);jet.put("canAttack",true);support.all.add(jet);support.observe(133000);
+        require(support.f.events("strategy_support_transferred")==1,"observed completed support responder inherits the bound need");
+        require(support.f.events("strategy_worker_commitment_released")==1,"support handover explicitly frees the constructing engineer's need binding");
+        support.f.specialistApproach="APPROACH_PATH_KNOWN";support.observe(141000);support.strategy.act(500,1);
+        require(support.f.orders.stream().anyMatch(p->p.startsWith("/command/attack-move?unitIds=81")),"dedicated support responder executes its inherited movement-gap response");
+    }
     public static void main(String[] args)throws Exception{
-        geometry();policy();constructionCapacity();capabilityFunding();
+        geometry();policy();constructionCapacity();capabilityFunding();specialistLifecycle();
         require(BattleBudget.seconds(new String[]{"3600"})==3600,"long product window is independent of old 1800 limit");
         boolean refused=false;try{BattleBudget.seconds(new String[]{"21601"});}catch(IllegalArgumentException e){refused=true;}
         require(refused,"long experiments retain a bounded safety ceiling");

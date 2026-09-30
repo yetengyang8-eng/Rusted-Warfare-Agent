@@ -44,20 +44,21 @@ final class StrategyDirector {
         final Set<Long> blocked=new HashSet<Long>();
     }
     private static final class Need {
-        final long id;String type,reason;double x,y;long seen;int failures;boolean building;
+        final long id;String type,reason;double x,y;long seen,awaitVisibleAfter=-1;int failures;boolean building;
         Need(long id){this.id=id;}
     }
     private static final class Worker {
         final long unit,task;final String owner;
-        String job="IDLE",product;long target=-1,jobAt,lastOrder=-100000,lastProgress,retryAt,lastAssessment=-100000;
+        String job="IDLE",product;long target=-1,jobAt,lastOrder=-100000,lastProgress,retryAt,lastAssessment=-100000,investigateAt,investigateSeen;
         double x,y,best=Double.MAX_VALUE,hp=Double.MAX_VALUE;
         Set<Long> before=new HashSet<Long>();
         Set<Long> prospects=new HashSet<Long>();
         Worker(long unit,long task){this.unit=unit;this.task=task;owner="strategy:"+task;}
     }
     private static final class Purchase {
-        final String product;final long at;boolean active;
-        Purchase(String product,long at){this.product=product;this.at=at;}
+        final String product;final long at,selectedNeed;long need;boolean active,queueFinished,fulfilled;
+        Purchase(String product,long at){this(product,at,-1);}
+        Purchase(String product,long at,long need){this.product=product;this.at=at;this.need=need;selectedNeed=need;}
     }
     StrategyDirector(Host host,CommandArbiter arbiter){this.host=host;this.arbiter=arbiter;}
     void enable(Map<String,Object> health,int hardCap){
@@ -98,7 +99,7 @@ final class StrategyDirector {
         homeEmergency=false;
         for(Map<String,Object> enemy:items(enemies,"visibleEnemies"))if(Boolean.TRUE.equals(enemy.get("canAttack"))
                 &&distance(enemy,homeX,homeY)<500)homeEmergency=true;
-        updatePurchases();claimWorkers();updateWorkers();refreshAssessments(main);clearNeeds();
+        claimWorkers();updatePurchases();refreshAssessments(main);clearNeeds();updateWorkers();
         validateCapabilityFunding();
         if(now-lastCapacity>=30000){
             lastCapacity=now;
@@ -201,7 +202,18 @@ final class StrategyDirector {
             assessments.remove(id);
         }
     }
-    private boolean assigned(long target){for(Worker w:workers.values())if("RESPONSE".equals(w.job)&&w.target==target)return true;return false;}
+    private boolean assigned(long target){
+        for(Worker w:workers.values())if(w.target==target)return true;
+        for(Purchase p:purchases.values())if(p.need==target)return true;
+        return false;
+    }
+    private boolean available(Need need){return need!=null&&need.failures<3&&need.seen>need.awaitVisibleAfter;}
+    private Need eligibleNeed(){for(Need need:needs.values())if(available(need)&&!assigned(need.id))return need;return null;}
+    private void bind(Worker worker,Need need,String reason,long producer)throws Exception{
+        worker.target=need.id;
+        emit("strategy_worker_committed",map("taskId",worker.task,"unitId",worker.unit,"needId",need.id,
+            "reason",reason,"producerId",producer,"assignmentSemantics","OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE"));
+    }
     private void claimWorkers()throws Exception{
         long baselineBuilder=Long.MAX_VALUE;
         for(Map<String,Object> unit:units(state))if(ready(unit)&&"builder".equals(unit.get("type")))baselineBuilder=Math.min(baselineBuilder,id(unit));
@@ -216,18 +228,35 @@ final class StrategyDirector {
         }
         Worker baseline=workers.get(baselineBuilder);
         if(baseline!=null&&"IDLE".equals(baseline.job)){release(baseline,"BASELINE_BUILDER_HANDOVER");workers.remove(baselineBuilder);}
+        for(Map.Entry<Long,Purchase> entry:purchases.entrySet()){
+            Purchase purchase=entry.getValue();Need need=needs.get(purchase.need);
+            if(!"combatEngineer".equals(purchase.product)||need==null||purchase.fulfilled)continue;
+            for(Worker worker:workers.values())if(worker.target<0&&"IDLE".equals(worker.job)){
+                Map<String,Object> actor=find(state,worker.unit);
+                if(actor!=null&&ready(actor)&&"combatEngineer".equals(actor.get("type"))){
+                    purchase.need=-1;purchase.fulfilled=true;bind(worker,need,"PURCHASE_NEED_FULFILMENT",entry.getKey());break;
+                }
+            }
+        }
     }
     private void updatePurchases()throws Exception{
         Iterator<Map.Entry<Long,Purchase>> it=purchases.entrySet().iterator();
         while(it.hasNext()){
             Map.Entry<Long,Purchase> entry=it.next();Purchase p=entry.getValue();Map<String,Object> unit=find(state,entry.getKey());
-            if(unit==null||!alive(unit)){emit("strategy_purchase_lost",map("actorId",entry.getKey(),"product",p.product));it.remove();continue;}
+            if(p.need>=0&&!needs.containsKey(p.need))p.need=-1;
+            if(unit==null||!alive(unit)){Need need=needs.get(p.need);if(need!=null)need.failures++;
+                emit("strategy_purchase_lost",map("actorId",entry.getKey(),"product",p.product,"needId",p.need));it.remove();continue;}
             if(number(unit,"productionQueue",0)>0)p.active=true;
             if("extractorT2".equals(p.product)&&"extractorT2".equals(unit.get("type"))){
                 upgrades++;emit("mine_upgrade_observed",map("unitId",id(unit),"unit",unit));it.remove();
-            }else if(!"extractorT2".equals(p.product)&&p.active&&number(unit,"productionQueue",0)==0){
-                emit("strategy_production_queue_finished",map("producerId",id(unit),"product",p.product));it.remove();
-            }else if(now-p.at>180000){emit("strategy_purchase_unconfirmed",map("actorId",entry.getKey(),"product",p.product,"reason","OBSERVATION_TIMEOUT"));it.remove();}
+            }else if(!"extractorT2".equals(p.product)&&(p.active||p.fulfilled)&&number(unit,"productionQueue",0)==0){
+                if(!p.queueFinished){p.queueFinished=true;emit("strategy_production_queue_finished",map("producerId",id(unit),"product",p.product,
+                    "needId",p.selectedNeed,"evidence",p.active?"QUEUE_BECAME_EMPTY":"AVAILABLE_WORKER_ASSIGNED"));}
+                if(!"combatEngineer".equals(p.product)||p.fulfilled||p.need<0)it.remove();
+                else if(now-p.at>180000){Need need=needs.get(p.need);if(need!=null)need.failures++;
+                    emit("strategy_purchase_unconfirmed",map("actorId",entry.getKey(),"product",p.product,"needId",p.need,"reason","OBSERVATION_TIMEOUT"));it.remove();}
+            }else if(now-p.at>180000){Need need=needs.get(p.need);if(need!=null)need.failures++;
+                emit("strategy_purchase_unconfirmed",map("actorId",entry.getKey(),"product",p.product,"needId",p.need,"reason","OBSERVATION_TIMEOUT"));it.remove();}
         }
     }
     private void updateWorkers()throws Exception{
@@ -238,10 +267,26 @@ final class StrategyDirector {
                 Need need=needs.get(w.target);if(need!=null)need.failures++;
                 emit("strategy_task_lost",map("taskId",w.task,"unitId",w.unit,"job",w.job));release(w,"ACTOR_LOST");it.remove();continue;
             }
+            if(w.target>=0&&!needs.containsKey(w.target)){
+                emit("strategy_task_completed",map("taskId",w.task,"targetId",w.target,"reason","NEED_RELEASED_BY_LEGAL_EVIDENCE"));
+                w.target=-1;if(!"BUILD".equals(w.job))w.job="IDLE";
+            }
+            Need commitment=needs.get(w.target);
+            if(commitment!=null&&commitment.failures>=3){
+                emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,"needId",w.target,"reason","NEED_ATTEMPT_LIMIT"));
+                w.target=-1;if(!"RETURN".equals(w.job)&&!"BUILD".equals(w.job))returnHome(w,15000);
+            }
             if("BUILD".equals(w.job)||"MINE".equals(w.job)){
                 for(Map<String,Object> unit:units(state))if(!w.before.contains(id(unit))&&ready(unit)
                         &&w.product.equals(unit.get("type"))&&distance(unit,w.x,w.y)<120){
                     completedJobs++;emit("strategy_construction_observed",map("taskId",w.task,"builderId",w.unit,"product",w.product,"unit",unit));
+                    Worker responder=workers.get(id(unit));Need supported=needs.get(w.target);
+                    if("amphibiousJet".equals(w.product)&&responder!=null&&responder.target<0&&supported!=null){
+                        w.target=-1;emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,
+                            "needId",supported.id,"reason","SUPPORT_RESPONDER_HANDOVER"));
+                        bind(responder,supported,"OBSERVED_SUPPORT_RESPONDER",-1);
+                        emit("strategy_support_transferred",map("taskId",w.task,"unitId",w.unit,"responderId",responder.unit,"needId",supported.id));
+                    }
                     w.job="IDLE";w.retryAt=now+5000;break;
                 }
                 if(!"IDLE".equals(w.job)&&now-w.jobAt>150000){
@@ -254,8 +299,19 @@ final class StrategyDirector {
                 else if(now-w.lastProgress>45000||now-w.jobAt>120000){
                     emit("strategy_task_blocked",map("taskId",w.task,"job",w.job,"reason","PROSPECT_NO_PROGRESS"));w.job="IDLE";w.retryAt=now+15000;
                 }
-            }else if("RESPONSE".equals(w.job)){
+            }else if("RESPONSE".equals(w.job)||"INVESTIGATE".equals(w.job)){
                 if(!needs.containsKey(w.target)){emit("strategy_task_completed",map("taskId",w.task,"targetId",w.target,"reason","NEED_RESOLVED"));w.job="IDLE";w.target=-1;continue;}
+                assessResponse(w,actor);
+                if("INVESTIGATE".equals(w.job)){
+                    if(now-w.investigateAt>=15000){
+                        Need need=needs.get(w.target);need.awaitVisibleAfter=Math.max(need.awaitVisibleAfter,w.investigateSeen);
+                        emit("strategy_investigation_exhausted",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,
+                            "lastSeenGameTimeMs",w.investigateSeen,"reason","LAST_KNOWN_APPROACH_REACHED_WITHOUT_FRESH_CONTACT"));
+                        returnHome(w,15000);
+                    }
+                    continue;
+                }
+                if(!"RESPONSE".equals(w.job))continue;
                 double d=distance(actor,w.x,w.y);
                 if(d+20<w.best){w.best=d;w.lastProgress=now;emit("strategy_response_progress",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"distance",d,"unit",actor));}
                 for(Map<String,Object> enemy:items(enemies,"visibleEnemies"))if(id(enemy)==w.target){
@@ -267,9 +323,16 @@ final class StrategyDirector {
                 if(now-w.lastProgress>60000||now-w.jobAt>240000){
                     Need need=needs.get(w.target);need.failures++;
                     emit("strategy_task_blocked",map("taskId",w.task,"targetId",w.target,"reason","NO_OBSERVED_PROGRESS","attempts",need.failures));
-                    w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+45000;
+                    returnHome(w,45000);
                 }
-            }else if("RETURN".equals(w.job)&&distance(actor,homeX,homeY)<180&&now>=w.retryAt)w.job="IDLE";
+            }else if("RETURN".equals(w.job)&&distance(actor,homeX,homeY)<180&&now>=w.retryAt){
+                Need waiting=needs.get(w.target);
+                if(waiting!=null&&waiting.seen<=waiting.awaitVisibleAfter){
+                    emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,"needId",w.target,
+                        "reason","STALE_SITE_INVESTIGATION_RETURNED_HOME"));w.target=-1;
+                }
+                if(n(actor,"hp")>=n(actor,"maxHp")*.3)w.job="IDLE";
+            }
         }
     }
     /** One actuator slot for the entire policy. Existing combat/recon use the same arbiter. */
@@ -283,7 +346,7 @@ final class StrategyDirector {
         double credits=n(obj(state.get("player")),"credits"),free=credits-protectedFunds-capabilityReserve();
         int force=army(state).size(),engineers=count("combatEngineer"),builders=count("builder");
         int backlog=resourceBacklog();
-        boolean unserved=false;for(Need need:needs.values())if(need.failures<3&&!assigned(need.id)){unserved=true;break;}
+        Need selectedNeed=eligibleNeed();boolean unserved=selectedNeed!=null;
         // Explicit alternatives: a task capability gap outranks throughput, then safe growth.
         String product=null,reason=null;
         if(capabilityFunding==null&&now>=capabilityFundingRetryAt&&unserved&&engineers+pendingCount("combatEngineer")<Math.min(2,needs.size())&&force>=6&&!homeEmergency&&safetyCapacityAvailable()){product="combatEngineer";reason="UNSERVED_CAPABILITY_NEED";}
@@ -298,7 +361,10 @@ final class StrategyDirector {
                         &&Boolean.TRUE.equals(action.get("affordable"))&&n(action,"cost")<=free){
                     alternatives.put("selected",reason);alternatives.put("action",action);emit("strategy_allocation",alternatives);
                     Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")));
-                    if(receipt!=null){purchases.put(id(factory),new Purchase(product,now));investments++;host.spendStrategy("STRATEGIC_CAPABILITY",(long)n(action,"cost"),product,id(factory));return true;}
+                    if(receipt!=null){long needId="combatEngineer".equals(product)?selectedNeed.id:-1;
+                        purchases.put(id(factory),new Purchase(product,now,needId));
+                        if(needId>=0)emit("strategy_purchase_committed",map("needId",needId,"producerId",id(factory),"product",product));
+                        investments++;host.spendStrategy("STRATEGIC_CAPABILITY",(long)n(action,"cost"),product,id(factory));return true;}
                 }
             }
             if("combatEngineer".equals(product)&&startCapabilityFunding(menu,free))free-=capabilityReserve();
@@ -323,11 +389,15 @@ final class StrategyDirector {
                 if(receipt!=null){purchases.put(id(candidate),new Purchase("extractorT2",now));investments++;host.spendStrategy("MINE_UPGRADE",(long)cost,"extractorT2",id(candidate));return true;}
             }
         }
-        // Additional builders and idle engineers execute independent jobs; the baseline builder
-        // remains with the existing economy lane. A worker never receives two competing intents.
+        // Combat engineers remain capability specialists. Only additional builders enter the
+        // ordinary economic lane; a specialist may construct a responder for its explicit need.
         for(Worker worker:workers.values())if("IDLE".equals(worker.job)&&now>=worker.retryAt){
             Map<String,Object> actor=find(state,worker.unit);if(actor==null)continue;
-            if(!"builder".equals(actor.get("type"))&&!"combatEngineer".equals(actor.get("type")))continue;
+            if("combatEngineer".equals(actor.get("type"))){
+                if(startSupportBuild(worker,actor,free))return true;
+                continue;
+            }
+            if(!"builder".equals(actor.get("type")))continue;
             if(!nearThreat(n(actor,"x"),n(actor,"y"),400)){
                 Map<String,Object> plan=host.readStrategy("/expansion/plan?unitId="+worker.unit,"strategy_expansion_plan");
                 if(plan!=null&&number(plan,"extractorCost",Double.MAX_VALUE)<=free
@@ -335,15 +405,7 @@ final class StrategyDirector {
                     if(startBuild(worker,plan,"/command/build-extractor?unitId="+worker.unit+"&x="+n(plan,"extractorX")+"&y="+n(plan,"extractorY"),
                         "extractorT1",n(plan,"extractorX"),n(plan,"extractorY"),(long)n(plan,"extractorCost"),"MINE"))return true;
                 }
-                boolean engineer="combatEngineer".equals(actor.get("type"));
-                String build=null;
-                // A workshop is worth more than a lone constructor charging a fleet. Native AIR
-                // responders fill surface-water approach gaps; submarine mode control is deferred.
-                boolean surfaceGap=false;for(Need need:needs.values())if("MOVEMENT_APPROACH_GAP".equals(need.reason)&&need.failures<3)surfaceGap=true;
-                int jets=count("amphibiousJet");for(Worker other:workers.values())if("amphibiousJet".equals(other.product)&&"BUILD".equals(other.job))jets++;
-                if(engineer&&surfaceGap&&jets<4&&safetyCapacityAvailable()&&!homeEmergency)build="amphibiousJet";
-                else if(count("landFactory")<factoryTarget)build="landFactory";
-                else if(engineer&&force<armyTarget&&force>=6&&!homeEmergency&&safetyCapacityAvailable())build="heavyTank";
+                String build=count("landFactory")<factoryTarget?"landFactory":null;
                 if(build!=null){
                     Map<String,Object> plan2=host.readStrategy("/economy/construction-plan?unitId="+worker.unit+"&type="+build,"strategy_construction_plan");
                     if(plan2!=null&&Boolean.TRUE.equals(plan2.get("affordable"))&&n(plan2,"cost")<=free){
@@ -380,7 +442,7 @@ final class StrategyDirector {
         Map<String,Object> producer=find(state,capabilityFunding.producer);
         String reason=null;
         if(now>=capabilityFunding.deadline)reason="TIMEOUT";
-        else if(need==null||need.failures>=3)reason="NEED_UNAVAILABLE";
+        else if(!available(need))reason="NEED_UNAVAILABLE";
         else if(assigned(need.id))reason="NEED_ALREADY_SERVED";
         else if(homeEmergency)reason="HOME_EMERGENCY";
         else if(army(state).size()<6)reason="FORCE_BELOW_MINIMUM";
@@ -391,7 +453,7 @@ final class StrategyDirector {
     }
     private boolean startCapabilityFunding(Map<String,Object> menu,double free)throws Exception{
         if(capabilityFunding!=null||now<capabilityFundingRetryAt||!(income>0)||!Double.isFinite(income))return false;
-        Need selected=null;for(Need need:needs.values())if(need.failures<3&&!assigned(need.id)){selected=need;break;}
+        Need selected=eligibleNeed();
         if(selected==null)return false;
         for(Map<String,Object> factory:items(menu,"factories")){
             Map<String,Object> producer=find(state,id(factory));
@@ -430,7 +492,8 @@ final class StrategyDirector {
         emit("strategy_allocation",data);
         Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action));
         if(receipt==null){releaseCapabilityFunding("ORDER_REJECTED");return false;}
-        purchases.put(funding.producer,new Purchase("combatEngineer",now));investments++;
+        purchases.put(funding.producer,new Purchase("combatEngineer",now,funding.need));investments++;
+        emit("strategy_purchase_committed",map("needId",funding.need,"producerId",funding.producer,"product","combatEngineer"));
         host.spendStrategy("STRATEGIC_CAPABILITY",(long)funding.cost,"combatEngineer",funding.producer);
         releaseCapabilityFunding("PURCHASE_ACCEPTED");return true;
     }
@@ -451,17 +514,22 @@ final class StrategyDirector {
             Need interrupted=needs.get(w.target);
             if("RESPONSE".equals(w.job)&&interrupted!=null)interrupted.failures++;
             emit("strategy_task_preempted",map("taskId",w.task,"previousJob",w.job,"reason","CRITICAL_HP"));
-            w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+45000;
+            returnHome(w,45000);
         }
         if("RETURN".equals(w.job)){
+            if(distance(actor,homeX,homeY)<180)return false;
+            if("move".equals(actor.get("orderType"))&&actor.get("orderX") instanceof Number&&actor.get("orderY") instanceof Number
+                    &&Math.hypot(n(actor,"orderX")-homeX,n(actor,"orderY")-homeY)<1)return false;
             if(now-w.lastOrder<10000)return false;
             if(host.orderStrategy(w.owner,"/command/move?unitId="+w.unit+"&x="+homeX+"&y="+homeY)!=null){w.lastOrder=now;return true;}return false;
         }
         boolean engineer="combatEngineer".equals(actor.get("type")),jet="amphibiousJet".equals(actor.get("type"));
         if("IDLE".equals(w.job)&&now>=w.retryAt&&(engineer||jet)){
-            List<Need> ordered=new ArrayList<Need>(needs.values());
+            List<Need> ordered=new ArrayList<Need>();
+            if(w.target>=0){Need bound=needs.get(w.target);if(bound!=null)ordered.add(bound);}
+            else ordered.addAll(needs.values());
             Collections.sort(ordered,(a,b)->Boolean.compare(b.building,a.building));
-            for(Need need:ordered)if(need.failures<3&&!assigned(need.id)){
+            for(Need need:ordered)if(available(need)&&(w.target==need.id||!assigned(need.id))){
                 if(jet&&!"MOVEMENT_APPROACH_GAP".equals(need.reason))continue;
                 if(engineer&&threatCount(need.x,need.y,450)>1)continue;
                 Map<String,Object> response=host.readStrategy("/combat/engagement?unitIds="+w.unit+"&targetId="+need.id,"response_engagement_observation");
@@ -472,27 +540,12 @@ final class StrategyDirector {
                 boolean investigate=!current&&(need.building||now-need.seen<180000)
                         &&"APPROACH_PATH_KNOWN".equals(choice.get("lastKnownPositionApproachStatus"));
                 if(!investigate&&(!"COMPATIBLE".equals(choice.get("compatibility"))||!"APPROACH_PATH_KNOWN".equals(choice.get("status"))))continue;
-                w.job="RESPONSE";w.target=need.id;w.x=n(choice,"approachX");w.y=n(choice,"approachY");
+                if(w.target<0)bind(w,need,"AVAILABLE_SPECIALIST",-1);
+                w.job="RESPONSE";w.x=n(choice,"approachX");w.y=n(choice,"approachY");
                 w.jobAt=w.lastProgress=now;w.lastOrder=-100000;w.best=Double.MAX_VALUE;w.hp=Double.MAX_VALUE;
                 w.lastAssessment=now;
                 emit("strategy_task_assigned",map("taskId",w.task,"unitId",w.unit,"role","CROSS_DOMAIN_RESPONSE","targetId",w.target,
                     "approachX",w.x,"approachY",w.y,"objectiveSemantics",investigate?"LAST_KNOWN_SITE_INVESTIGATION":"CURRENT_CONTACT_APPROACH","evidence",response));break;
-            }
-        }
-        if("RESPONSE".equals(w.job)&&now-w.lastAssessment>=10000){
-            w.lastAssessment=now;
-            Map<String,Object> response=host.readStrategy("/combat/engagement?unitIds="+w.unit+"&targetId="+w.target,"response_engagement_observation");
-            if(response!=null&&Boolean.TRUE.equals(response.get("targetVisible"))&&!items(response,"actors").isEmpty()){
-                Map<String,Object> choice=items(response,"actors").get(0);
-                if("INCOMPATIBLE".equals(choice.get("compatibility"))||"BLOCKED_TERRAIN".equals(choice.get("status"))){
-                    emit("strategy_task_preempted",map("taskId",w.task,"targetId",w.target,"reason","NEW_VISIBLE_NEGATIVE_EVIDENCE","evidence",response));
-                    w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+30000;return false;
-                }
-                if("COMPATIBLE".equals(choice.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(choice.get("status"))
-                        &&Math.hypot(n(choice,"approachX")-w.x,n(choice,"approachY")-w.y)>60){
-                    w.x=n(choice,"approachX");w.y=n(choice,"approachY");w.best=distance(actor,w.x,w.y);
-                    emit("strategy_response_replanned",map("taskId",w.task,"targetId",w.target,"x",w.x,"y",w.y,"reason","SAME_TARGET_NEW_VISIBLE_APPROACH","evidence",response));
-                }
             }
         }
         if("RESPONSE".equals(w.job)&&now-w.lastOrder>=12000){
@@ -501,6 +554,58 @@ final class StrategyDirector {
             emit("tactical_intent",map("reason","STRATEGIC_RESPONSE","targetX",w.x,"targetY",w.y,"targetId",w.target,"taskId",w.task));
             Map<String,Object> receipt=host.orderStrategy(w.owner,"/command/attack-move?unitIds="+w.unit+"&x="+w.x+"&y="+w.y);
             if(receipt!=null){host.strategicAttack(receipt);w.lastOrder=now;emit("strategy_response_ordered",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"receipt",receipt));return true;}
+        }
+        return false;
+    }
+    private void returnHome(Worker w,long cooldown){w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+cooldown;}
+    private void assessResponse(Worker w,Map<String,Object> actor)throws Exception{
+        // Reads are independent of the actuator slot, so an arrival/contact transition cannot
+        // starve behind another task's command. Investigation polls retain the normal decision rate.
+        if(!"INVESTIGATE".equals(w.job)&&now-w.lastAssessment<10000)return;
+        w.lastAssessment=now;
+        Map<String,Object> response=host.readStrategy("/combat/engagement?unitIds="+w.unit+"&targetId="+w.target,"response_engagement_observation");
+        if(response==null)return;
+        Need need=needs.get(w.target);if(need==null)return;
+        if(Boolean.FALSE.equals(response.get("targetVisible"))){
+            if("RESPONSE".equals(w.job)&&distance(actor,w.x,w.y)<=75){
+                w.job="INVESTIGATE";w.investigateAt=now;w.investigateSeen=need.seen;
+                emit("strategy_investigation_started",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,
+                    "lastSeenGameTimeMs",w.investigateSeen,"deadlineGameTimeMs",now+15000,"distance",distance(actor,w.x,w.y)));
+            }
+            return;
+        }
+        if(!Boolean.TRUE.equals(response.get("targetVisible"))||items(response,"actors").isEmpty())return;
+        long seen=(long)number(response,"targetObservedAtGameTimeMs",-1);
+        if(seen>=0)need.seen=Math.max(need.seen,seen);
+        Map<String,Object> choice=items(response,"actors").get(0);
+        if("INCOMPATIBLE".equals(choice.get("compatibility"))||"BLOCKED_TERRAIN".equals(choice.get("status"))){
+            emit("strategy_task_preempted",map("taskId",w.task,"targetId",w.target,"reason","NEW_VISIBLE_NEGATIVE_EVIDENCE","evidence",response));
+            returnHome(w,30000);return;
+        }
+        if("COMPATIBLE".equals(choice.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(choice.get("status"))){
+            boolean resumed="INVESTIGATE".equals(w.job);
+            if(resumed){w.job="RESPONSE";w.lastProgress=now;w.lastOrder=-100000;
+                emit("strategy_investigation_contact_restored",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"observedAtGameTimeMs",seen));}
+            if(resumed||Math.hypot(n(choice,"approachX")-w.x,n(choice,"approachY")-w.y)>60){
+                w.x=n(choice,"approachX");w.y=n(choice,"approachY");w.best=distance(actor,w.x,w.y);
+                emit("strategy_response_replanned",map("taskId",w.task,"targetId",w.target,"x",w.x,"y",w.y,"reason","SAME_TARGET_NEW_VISIBLE_APPROACH","evidence",response));
+            }
+        }
+    }
+    private boolean startSupportBuild(Worker worker,Map<String,Object> actor,double free)throws Exception{
+        if(homeEmergency||nearThreat(n(actor,"x"),n(actor,"y"),400)||!safetyCapacityAvailable())return false;
+        Need need=needs.get(worker.target);
+        if(worker.target<0)for(Need candidate:needs.values())if(available(candidate)&&!assigned(candidate.id)
+                &&"MOVEMENT_APPROACH_GAP".equals(candidate.reason)){need=candidate;break;}
+        if(!available(need)||!"MOVEMENT_APPROACH_GAP".equals(need.reason))return false;
+        int jets=count("amphibiousJet");for(Worker other:workers.values())if("amphibiousJet".equals(other.product)&&"BUILD".equals(other.job))jets++;
+        if(jets>=4)return false;
+        Map<String,Object> plan=host.readStrategy("/economy/construction-plan?unitId="+worker.unit+"&type=amphibiousJet","strategy_construction_plan");
+        if(plan==null||!Boolean.TRUE.equals(plan.get("affordable"))||n(plan,"cost")>free)return false;
+        if(startBuild(worker,plan,"/command/construct?unitId="+worker.unit+"&actionId="+encode(plan.get("actionId"))+"&x="+n(plan,"x")+"&y="+n(plan,"y"),
+                "amphibiousJet",n(plan,"x"),n(plan,"y"),(long)n(plan,"cost"),"BUILD")){
+            if(worker.target<0)bind(worker,need,"MOVEMENT_GAP_SUPPORT_CONSTRUCTION",-1);
+            emit("strategy_support_construction",map("taskId",worker.task,"unitId",worker.unit,"needId",need.id,"product","amphibiousJet"));return true;
         }
         return false;
     }
@@ -534,6 +639,7 @@ final class StrategyDirector {
     private boolean idleWorkerNearResource(){
         for(Worker w:workers.values())if("IDLE".equals(w.job)){
             Map<String,Object> actor=find(state,w.unit);if(actor==null)continue;
+            if(!"builder".equals(actor.get("type")))continue;
             for(Map<String,Object> res:items(scout,"resources"))if(Boolean.TRUE.equals(res.get("currentlyVisible"))
                     &&distance(actor,n(res,"x"),n(res,"y"))<600&&!nearThreat(n(res,"x"),n(res,"y"),350)){
                 boolean occupied=false;for(Map<String,Object> unit:units(state))if(alive(unit)&&String.valueOf(unit.get("type")).startsWith("extractor")&&distance(unit,n(res,"x"),n(res,"y"))<60)occupied=true;
