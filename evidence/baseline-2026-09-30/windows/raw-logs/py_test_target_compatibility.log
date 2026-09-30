@@ -1,0 +1,20 @@
+test_heavy_tank_and_scout_keep_mixed_air_squad_active (__main__.TargetCompatibilityIntegration.test_heavy_tank_and_scout_keep_mixed_air_squad_active) ... ok
+test_missing_dynamic_domain_degrades_without_deadlock (__main__.TargetCompatibilityIntegration.test_missing_dynamic_domain_degrades_without_deadlock) ... ok
+test_session_change_stops_before_reusing_prior_guard_decision (__main__.TargetCompatibilityIntegration.test_session_change_stops_before_reusing_prior_guard_decision) ... ok
+test_stale_air_domain_cannot_be_reused_as_current_state (__main__.TargetCompatibilityIntegration.test_stale_air_domain_cannot_be_reused_as_current_state) ... ok
+test_tanks_keep_surface_water_target (__main__.TargetCompatibilityIntegration.test_tanks_keep_surface_water_target) ... ok
+test_tanks_reject_visible_air_and_submerged (__main__.TargetCompatibilityIntegration.test_tanks_reject_visible_air_and_submerged) ... ok
+test_empty_force_does_not_create_negative_evidence (__main__.TargetEligibilityTransitions.test_empty_force_does_not_create_negative_evidence) ... ok
+test_existing_search_objective_cannot_bypass_later_rejection (__main__.TargetEligibilityTransitions.test_existing_search_objective_cannot_bypass_later_rejection) ... ok
+test_never_rejected_unknown_target_keeps_fallback (__main__.TargetEligibilityTransitions.test_never_rejected_unknown_target_keeps_fallback) ... ok
+test_new_capable_force_requires_current_target_evidence_then_uses_subset (__main__.TargetEligibilityTransitions.test_new_capable_force_requires_current_target_evidence_then_uses_subset) ... ok
+test_new_visible_surface_observation_releases (__main__.TargetEligibilityTransitions.test_new_visible_surface_observation_releases) ... ok
+test_rejection_survives_fog_time_same_type_reinforcements_and_catalog_gap (__main__.TargetEligibilityTransitions.test_rejection_survives_fog_time_same_type_reinforcements_and_catalog_gap) ... ok
+test_unchanged_reacquisition_does_not_reopen_target (__main__.TargetEligibilityTransitions.test_unchanged_reacquisition_does_not_reopen_target) ... ok
+test_unknown_observation_and_unknown_new_attacker_do_not_erase_rejection (__main__.TargetEligibilityTransitions.test_unknown_observation_and_unknown_new_attacker_do_not_erase_rejection) ... ok
+test_visible_candidate_outranks_nearer_remembered_candidate (__main__.TargetEligibilityTransitions.test_visible_candidate_outranks_nearer_remembered_candidate) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 15.165s
+
+OK

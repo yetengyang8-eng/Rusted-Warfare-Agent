@@ -1,5 +1,6 @@
 # Public evidence index for Astra
 
+- **当前基线核验：[baseline-2026-09-30](baseline-2026-09-30/VALIDATION.md)**。候选身份、证据完整性、Windows 隔离重建与回归；权威版本入口为 [BASELINE](../project-state/BASELINE.md)。
 - **最新 Windows 桌面 E4：[global-strategy-desktop-2026-09-30](global-strategy-desktop-2026-09-30/README.md)**。三场 Global Strategy 最终候选 5x / 2400 秒长局，含专项审计和压缩 raw reports；Spain 两局注明了 Match 前人工补 1 builder 的唯一干预。
 - 最新 Global Strategy 交付证据：[global-strategy-2026-09-30](global-strategy-2026-09-30/README.md)，最终候选与中间原生样本分别标识。
 

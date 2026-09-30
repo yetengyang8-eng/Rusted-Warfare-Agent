@@ -1,0 +1,3 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+REPORT_COMMIT_TEST_SKIP posix-only open-handle rename simulation on Windows 11; remaining commit checks still run
+REPORT_COMMIT_TEST_OK 72 MiB bounded-memory commit and stale journal replacement retained complete UTF-8 content (displacement simulation skipped)

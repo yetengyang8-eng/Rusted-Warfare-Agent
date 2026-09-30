@@ -1,0 +1,19 @@
+.gitattributes text eol=lf
+# Keep checked evidence bytes identical across Windows and Linux checkouts.
+candidate-intermediate-audit.json text eol=lf
+candidate-manifest.json text eol=lf
+desktop-input-analysis.json text eol=lf
+final-native-audit.json text eol=lf
+intermediate-coordinate-scoped-audit.json text eol=lf
+intermediate-native-summary.json text eol=lf
+intermediate-report-integrity.json text eol=lf
+intermediate-seaFactory-2610-events.jsonl text eol=lf
+native-range-excerpts.txt text eol=lf
+native-summary.json text eol=lf
+prefinal-native-audit.json text eol=lf
+prototype-audit.json text eol=lf
+raw-evidence-manifest.json text eol=lf
+raw-evidence.zip -text
+README.md text eol=lf
+regression-summary.json text eol=lf
+writeback-status.json text eol=lf

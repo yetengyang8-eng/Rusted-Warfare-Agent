@@ -1,0 +1,14 @@
+.gitattributes text eol=lf
+# Keep checked evidence bytes identical across Windows and Linux checkouts.
+battle-1790741949748-c01f222f.json text eol=crlf
+battle-1790742800972-4064cebd.json text eol=crlf
+battle-1790743783098-ae01b65e.json text eol=crlf
+bundle_index.csv text eol=crlf
+bundle_index.json text eol=crlf
+README.md text eol=lf
+reports.json text eol=crlf
+reports.md text eol=crlf
+RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip -text
+RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip -text
+RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip -text
+SHA256SUMS.txt text eol=crlf

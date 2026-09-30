@@ -1,0 +1,13 @@
+test_completed_mine_lost_during_second_tank_stops (__main__.OpeningTests.test_completed_mine_lost_during_second_tank_stops) ... ok
+test_full_opening_and_distinct_tanks (__main__.OpeningTests.test_full_opening_and_distinct_tanks) ... ok
+test_legacy_extractor_without_replacement (__main__.OpeningTests.test_legacy_extractor_without_replacement) ... ok
+test_no_resource_sends_nothing (__main__.OpeningTests.test_no_resource_sends_nothing) ... ok
+test_preexisting_extractor_not_accepted (__main__.OpeningTests.test_preexisting_extractor_not_accepted) ... ok
+test_session_changed_stops (__main__.OpeningTests.test_session_changed_stops) ... ok
+test_unknown_factory_command_not_retried (__main__.OpeningTests.test_unknown_factory_command_not_retried) ... ok
+test_wait_income_before_mine_and_second_tank (__main__.OpeningTests.test_wait_income_before_mine_and_second_tank) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 29.880s
+
+OK

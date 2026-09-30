@@ -1,0 +1,176 @@
+[
+  {
+    "file": "evidence/global-strategy-2026-09-30/candidate-intermediate-audit.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "493176ec95b796e64e0b6c893d27fb707ad152a67618468f31f1b4a352cb2031",
+    "gitBlobSha256": "493176ec95b796e64e0b6c893d27fb707ad152a67618468f31f1b4a352cb2031"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/candidate-manifest.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "c0c5ae5bf261fc7ffaded668911c9cf3de079cfb23159c1f9b2a9bbf53472582",
+    "gitBlobSha256": "c0c5ae5bf261fc7ffaded668911c9cf3de079cfb23159c1f9b2a9bbf53472582"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/desktop-input-analysis.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "204f7c57807862efbf14fc577c82060a6c47642748f4b2d0015ff4af2e86ca23",
+    "gitBlobSha256": "204f7c57807862efbf14fc577c82060a6c47642748f4b2d0015ff4af2e86ca23"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/final-native-audit.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "3c2421245228369a5697d27b849a60a6244b7e9b51000b05c0506a627b172882",
+    "gitBlobSha256": "3c2421245228369a5697d27b849a60a6244b7e9b51000b05c0506a627b172882"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/intermediate-coordinate-scoped-audit.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "bded28f7397bc99573bc4fc341f103d2f0e265e9da7371f904be62a0cf1b4475",
+    "gitBlobSha256": "bded28f7397bc99573bc4fc341f103d2f0e265e9da7371f904be62a0cf1b4475"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/intermediate-native-summary.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "42d037e9b78ec5457a98d784f442ee4826e58e6b9f65618afbc4fee98db608c0",
+    "gitBlobSha256": "42d037e9b78ec5457a98d784f442ee4826e58e6b9f65618afbc4fee98db608c0"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/intermediate-report-integrity.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "35161c93bfe03e4ce868f92b34e8983b230f7c5de52c8e3cae4a7df51c6e187f",
+    "gitBlobSha256": "35161c93bfe03e4ce868f92b34e8983b230f7c5de52c8e3cae4a7df51c6e187f"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/intermediate-seaFactory-2610-events.jsonl",
+    "attribute": "text eol=lf",
+    "workingSha256": "f0aa29c98fbef24bbbb733527597d1f055775c260d59674c0f8284a8babfe41f",
+    "gitBlobSha256": "f0aa29c98fbef24bbbb733527597d1f055775c260d59674c0f8284a8babfe41f"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/native-range-excerpts.txt",
+    "attribute": "text eol=lf",
+    "workingSha256": "13e0b1727c5fde0162b84f9a0329e3c8179225863c4f0b325d2f75cae296d1e4",
+    "gitBlobSha256": "13e0b1727c5fde0162b84f9a0329e3c8179225863c4f0b325d2f75cae296d1e4"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/native-summary.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "f14a2f39372b4d3707dcede0ba786feedcc90963c1dcef0045273f5f49d870f2",
+    "gitBlobSha256": "f14a2f39372b4d3707dcede0ba786feedcc90963c1dcef0045273f5f49d870f2"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/prefinal-native-audit.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "7c1890fef2ba485a2905a7bf580c17a0b9df3d7e6be0aedf90d7f59f992b09e2",
+    "gitBlobSha256": "7c1890fef2ba485a2905a7bf580c17a0b9df3d7e6be0aedf90d7f59f992b09e2"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/prototype-audit.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "7f309ab3cee52279d923e6926310c23f07dd94e2514818502694994c381f63fc",
+    "gitBlobSha256": "7f309ab3cee52279d923e6926310c23f07dd94e2514818502694994c381f63fc"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/raw-evidence-manifest.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "e67efd822daa9ec23ba2479526ee36ea49f4a817e4940bf93cae930523d968ea",
+    "gitBlobSha256": "e67efd822daa9ec23ba2479526ee36ea49f4a817e4940bf93cae930523d968ea"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/raw-evidence.zip",
+    "attribute": "-text",
+    "workingSha256": "976f8728d1a94b4b9453763cfe93ed9ab10314e1b40e9412726ce0e7659b1372",
+    "gitBlobSha256": "976f8728d1a94b4b9453763cfe93ed9ab10314e1b40e9412726ce0e7659b1372"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/README.md",
+    "attribute": "text eol=lf",
+    "workingSha256": "d0f0912eca9129fd54e53f0763a14b0d74b3c3a088b0348d43afa654b7f3b664",
+    "gitBlobSha256": "d0f0912eca9129fd54e53f0763a14b0d74b3c3a088b0348d43afa654b7f3b664"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/regression-summary.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "188742fb8be9a29e5f61a9f9d291c958e36bb015798aec7263e24d9179fcb6e2",
+    "gitBlobSha256": "188742fb8be9a29e5f61a9f9d291c958e36bb015798aec7263e24d9179fcb6e2"
+  },
+  {
+    "file": "evidence/global-strategy-2026-09-30/writeback-status.json",
+    "attribute": "text eol=lf",
+    "workingSha256": "0c63b96d55f3db73710aed6792e65b81fa5323e739c23416ef86c3942339d686",
+    "gitBlobSha256": "0c63b96d55f3db73710aed6792e65b81fa5323e739c23416ef86c3942339d686"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/battle-1790741949748-c01f222f.json",
+    "attribute": "text eol=crlf",
+    "workingSha256": "3cf5b54b4b575fff740ed93d26f52a7fcc5d2bcfbafd802ab08f5e3e7a449fa6",
+    "gitBlobSha256": "b11244764f81380a5a00b2cfda75bea02b808d11c3d6b36c14c37816df761355"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/battle-1790742800972-4064cebd.json",
+    "attribute": "text eol=crlf",
+    "workingSha256": "75329e300ad50285f17714932d988fe20938718aa75e22b5f516e4b324dce7e4",
+    "gitBlobSha256": "a4cbd31916cf677d372c81b4fe43368859baf0a83e29cab607217b085878ebe4"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/battle-1790743783098-ae01b65e.json",
+    "attribute": "text eol=crlf",
+    "workingSha256": "222b0a42f5b09d1c4986a538a8d4a2e53890a4ef1195c6d7dc29330c2039ee51",
+    "gitBlobSha256": "824dbeebae9ad2cb769358331f37bac694d3dc7301365983d817868a593d9953"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/bundle_index.csv",
+    "attribute": "text eol=crlf",
+    "workingSha256": "eea17dd7abebe53e231dc9ce5a92d5d9cc0988cbd162c9e3a811cf50f1b24544",
+    "gitBlobSha256": "3aee34e58e1961ca3c1d3feee0cc0a81b4986218240d1eeab4014eb41a2dd4d1"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/bundle_index.json",
+    "attribute": "text eol=crlf",
+    "workingSha256": "10d9371bc8c5f41a4a9863d4b08de3d0c4c5cb3c49556ed05a96910ec1e3961c",
+    "gitBlobSha256": "bc2ebd13535b7ea60889031c89f64f6684ba88b4616fc5de3b63fc5c64b5f9ff"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/README.md",
+    "attribute": "text eol=lf",
+    "workingSha256": "7c72cb8759f7386991fe0e4378c6b53b24bf3bad7280d5a91b7e66ed46bb3a39",
+    "gitBlobSha256": "7c72cb8759f7386991fe0e4378c6b53b24bf3bad7280d5a91b7e66ed46bb3a39"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/reports.json",
+    "attribute": "text eol=crlf",
+    "workingSha256": "905e1def6f8387eddce071120fd8a0ed643493ef1f3894c3368e5e56c2ed68bf",
+    "gitBlobSha256": "25970f9ab5147500394f0b9da50335224fd7d1c9615a5ab5f604e9a80de6d003"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/reports.md",
+    "attribute": "text eol=crlf",
+    "workingSha256": "a680a43f72da1afacdfa527583a212c3c31bb80b0dcbfe99d5d56358629fbe34",
+    "gitBlobSha256": "cd4e187b2317f75dbfa614f89a970cbd85578acd93073d280b23af101df833e2"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p1of3-oversize.zip",
+    "attribute": "-text",
+    "workingSha256": "f04a09d278790482339d3d157d4d382ba59714a24c25f44670b2cfa16a6d0df8",
+    "gitBlobSha256": "f04a09d278790482339d3d157d4d382ba59714a24c25f44670b2cfa16a6d0df8"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p2of3.zip",
+    "attribute": "-text",
+    "workingSha256": "81a9be8b185fff3e2fc3526e91bb3d7fb7432e8ae6d40189f1b888ac496b54fb",
+    "gitBlobSha256": "81a9be8b185fff3e2fc3526e91bb3d7fb7432e8ae6d40189f1b888ac496b54fb"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/RW-Agent-Reports-20260930T045820Z-e5f55c-p3of3-oversize.zip",
+    "attribute": "-text",
+    "workingSha256": "8803ea22276938716f1fef34b5a3b68a9c567b49ce70eb49bb5325dbd57b1f3e",
+    "gitBlobSha256": "8803ea22276938716f1fef34b5a3b68a9c567b49ce70eb49bb5325dbd57b1f3e"
+  },
+  {
+    "file": "evidence/global-strategy-desktop-2026-09-30/SHA256SUMS.txt",
+    "attribute": "text eol=crlf",
+    "workingSha256": "5b3bd00cf5df8573602269340e3d9f3ce276088b9bdfa101c4524718ca0a4370",
+    "gitBlobSha256": "508d6fe01f0c3647b6d5f872f9382eab8dc461d94f04ce3a99b006f96c93cd41"
+  }
+]

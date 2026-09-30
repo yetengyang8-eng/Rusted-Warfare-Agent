@@ -1,0 +1,18 @@
+test_completed_mine_death_stops (__main__.DevelopmentTests.test_completed_mine_death_stops) ... ok
+test_default_eight_tanks_three_mines_overlap (__main__.DevelopmentTests.test_default_eight_tanks_three_mines_overlap) ... ok
+test_exhausted_visible_mines_preserves_production (__main__.DevelopmentTests.test_exhausted_visible_mines_preserves_production) ... ok
+test_missing_factory_zero_orders (__main__.DevelopmentTests.test_missing_factory_zero_orders) ... ok
+test_no_visible_mine_reports_zero (__main__.DevelopmentTests.test_no_visible_mine_reports_zero) ... ok
+test_pending_mine_budget_reserved_until_native_charge (__main__.DevelopmentTests.test_pending_mine_budget_reserved_until_native_charge) ... ok
+test_plan_503_stops_zero_orders (__main__.DevelopmentTests.test_plan_503_stops_zero_orders) ... ok
+test_preexisting_mine_not_accepted (__main__.DevelopmentTests.test_preexisting_mine_not_accepted) ... ok
+test_production_only_option (__main__.DevelopmentTests.test_production_only_option) ... ok
+test_queue_interference_stops_both_lanes (__main__.DevelopmentTests.test_queue_interference_stops_both_lanes) ... ok
+test_session_change_stops_both_lanes (__main__.DevelopmentTests.test_session_change_stops_both_lanes) ... ok
+test_type_mismatch_stops_before_other_lane_order (__main__.DevelopmentTests.test_type_mismatch_stops_before_other_lane_order) ... ok
+test_unknown_production_never_retried (__main__.DevelopmentTests.test_unknown_production_never_retried) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 47.041s
+
+OK

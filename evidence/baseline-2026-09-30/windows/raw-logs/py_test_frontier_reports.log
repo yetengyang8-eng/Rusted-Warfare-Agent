@@ -1,0 +1,15 @@
+test_an_oversize_session_is_alone_and_marked (__main__.FrontierReportsTests.test_an_oversize_session_is_alone_and_marked) ... ok
+test_arrival_requires_observed_movement (__main__.FrontierReportsTests.test_arrival_requires_observed_movement) ... ok
+test_bundle_index_lists_bundle_session_phase_and_size (__main__.FrontierReportsTests.test_bundle_index_lists_bundle_session_phase_and_size) ... ok
+test_claimed_guard_requires_native_state (__main__.FrontierReportsTests.test_claimed_guard_requires_native_state) ... ok
+test_complete_evidence (__main__.FrontierReportsTests.test_complete_evidence) ... ok
+test_every_volume_stays_within_the_target (__main__.FrontierReportsTests.test_every_volume_stays_within_the_target) ... ok
+test_feedback_zip_keeps_raw_and_excludes_game_files (__main__.FrontierReportsTests.test_feedback_zip_keeps_raw_and_excludes_game_files) ... ok
+test_one_session_is_never_split_across_bundles (__main__.FrontierReportsTests.test_one_session_is_never_split_across_bundles) ... ok
+test_partial_goal_cannot_pass (__main__.FrontierReportsTests.test_partial_goal_cannot_pass) ... ok
+test_preknown_mine_cannot_be_called_scout_discovery (__main__.FrontierReportsTests.test_preknown_mine_cannot_be_called_scout_discovery) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.106s
+
+OK

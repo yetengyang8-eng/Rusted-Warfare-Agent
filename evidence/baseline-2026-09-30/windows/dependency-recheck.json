@@ -1,0 +1,107 @@
+[
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\game-lib.jar",
+    "sha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\android-platform-lib.jar",
+    "sha256": "a6228cbc27159c42b84c4f77503e05d66429dfcb01205be02ba4ddb1933c3d7f",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\android.jar",
+    "sha256": "bd6e6587f0bf66f23ff64ce300e628b6bba7f16fff463ae7b2c7ff01a751debc",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\commons-codec-1.6.jar",
+    "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\commons-logging-1.1.3.jar",
+    "sha256": "70903f6fc82e9908c8da9f20443f61d90f0870a312642991fe8462a0b9391784",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\fluent-hc-4.3.3.jar",
+    "sha256": "f02dadd2c76d6e84b6e5420c4ea54711b6b797e565acbb92e2e1eb53628154aa",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\httpclient-4.3.3.jar",
+    "sha256": "9844cc9b5440d65a88d28bcba9d771374d2dfdab898848cda164611091633013",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\httpclient-cache-4.3.3.jar",
+    "sha256": "ad5f44c6b196c04526c69be32582f4359c05d4541e41fbbdd83e2b3132feecbf",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\httpcore-4.3.2.jar",
+    "sha256": "abd02320e2356f89d054dae4cf02306bef20a9cf7865b3ac94ec7552b4f1528b",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\httpmime-4.3.3.jar",
+    "sha256": "61434dbb2314cbb8d28025feb6ae53bbc45d1042daa34371d8911e1e7f570b36",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\ibxm.jar",
+    "sha256": "c7bc9730c4af980d587f55e847eb5c3b176c229dfb148745a18858d7112251e0",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\jinput.jar",
+    "sha256": "36b6fbede7a2d2f00949a87b9de83007a1c6b4ce5a96978279c0cc612a9adef5",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\jnlp.jar",
+    "sha256": "78568fcd356adddf4918c1a8c34b4808567707fdf617393facbfd9b8a37a4576",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\jogg-0.0.7.jar",
+    "sha256": "70d92eef7cd61aad1ae4148fb5d91d58fc68b51d0382905d9451d411c57f5608",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\jorbis-0.0.15.jar",
+    "sha256": "d049b2a1c6ddefde3a5cbff320c96fdd5aefa09b0d3bbea3fe44839f7e6713f9",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\lwjgl_util_applet.jar",
+    "sha256": "ea1e08c8251d31439e0d487dd208dea845ebf180657a2a56e31b9ee733aa0aab",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\lwjgl_util.jar",
+    "sha256": "6f4a261384e1688a3359420efce5275c8693b822a8c6eaa1e20d5cc126a51571",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\lwjgl.jar",
+    "sha256": "527d509f60132e5b2653c7fc0f8cf299d6f698f4a8013342bef47705dc57ed3f",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\natives-linux.jar",
+    "sha256": "5a49d36b91f175b01754fe672ab55b90673e4a50c076cb527efb69f4d4ecb590",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\slick.jar",
+    "sha256": "890486a463d94ebc4bb55ba9e4d2bedcfb0e969641a4affb62cc455f722804a6",
+    "unchanged": true
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs\\tinylinepp.jar",
+    "sha256": "4a74d9e265af8bc8ed88229e57dbd78082872263e8a0eeeb7acb45e089bd661f",
+    "unchanged": true
+  }
+]

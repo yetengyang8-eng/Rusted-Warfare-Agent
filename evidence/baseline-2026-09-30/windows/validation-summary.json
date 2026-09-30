@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+  "status": "PASS_COMBINED_MATRIX",
+  "claim": "The initial full runner and the affected-suite retry form a complete passing matrix. This is not a claim that the initial full runner had zero failures.",
+  "initialFullRun": {
+    "runnerExitCode": 1,
+    "totals": {
+      "steps": 40,
+      "javaRuns": 21,
+      "pythonSuites": 16,
+      "failedSteps": 1,
+      "pythonTestsRun": 281,
+      "pythonSkipped": 0,
+      "pythonPassedIfAllSuitesPassed": null
+    },
+    "failedSteps": [
+      "py:test_reports"
+    ],
+    "rawTranscript": "windows-regression-transcript.txt",
+    "rawTranscriptSha256": "f2f6b138f02c91426fe42ce73c5684c61c42ba1516de4aeb854c5b508b214b84"
+  },
+  "setupCorrection": {
+    "cause": "The initial isolated archive omitted historical docs/acceptance JSONL fixtures required by test_reports.py.",
+    "sourceOrProductCodeChanged": false,
+    "restoredFromCommit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+    "restoredPaths": [
+      "docs/acceptance-0.02-alpha2.jsonl",
+      "docs/acceptance-0.03-alpha2.jsonl",
+      "docs/acceptance-0.04"
+    ],
+    "fixtureArchiveSha256": "cb51d42f276e46b4e78c10326afeb3780bf7ef618dd9115cca6d211a3a79e478",
+    "retryStep": "py:test_reports",
+    "retryExitCode": 0,
+    "retryTestsRun": 16,
+    "retryStatus": "PASS",
+    "rawLog": "test_reports-fixtures-restored.log",
+    "rawLogSha256": "6e03f14e010822b602a51b691214bcdb5f6b0f294b4782195bfacf5d965bff88"
+  },
+  "effectiveMatrix": {
+    "expectedSteps": 40,
+    "completedSteps": 40,
+    "failedSteps": [],
+    "buildSteps": 3,
+    "javaHarnessRuns": 21,
+    "pythonSuites": 16,
+    "pythonTestsRun": 281,
+    "pythonSkipped": 0,
+    "pythonPassed": 281,
+    "steps": [
+      {
+        "step": "build:compile",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/build_compile.log",
+        "skipLines": [],
+        "rawLogSha256": "5f4a1217b53a61ba4c05f20f0add48886003fca20297bbcfbe521498eee68f51",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\build_compile.log"
+      },
+      {
+        "step": "build:jar",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/build_jar.log",
+        "skipLines": [],
+        "rawLogSha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\build_jar.log"
+      },
+      {
+        "step": "build:test-classes",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/build_test-classes.log",
+        "skipLines": [],
+        "rawLogSha256": "50df7e649ab55db5295e6d4778e089bf2c271ced3b1f08530a1efe93e770ed0c",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\build_test-classes.log"
+      },
+      {
+        "step": "java:SmokeHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_SmokeHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "687ab07e11c40538b7734d79260ae43b08228b4d2e4de37e2e848fd6c674ec3e",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_SmokeHarness.log"
+      },
+      {
+        "step": "java:BridgeHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_BridgeHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "5f2052079f0d82f2bdf78f3049d2b971c67075da07b0d24df1915fcd83baff2a",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_BridgeHarness.log"
+      },
+      {
+        "step": "java:BridgeHarness-disabled",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_BridgeHarness-disabled.log",
+        "skipLines": [],
+        "rawLogSha256": "5e2317fac12a4767ad965aecb4021029635c25bd37ded5ba4f642ee203c867d7",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_BridgeHarness-disabled.log"
+      },
+      {
+        "step": "java:EconomyHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_EconomyHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "c872b987099ddf8ecaeeda132de8845bc69e19cbee6b4cb12a7b0a62ff091ed3",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_EconomyHarness.log"
+      },
+      {
+        "step": "java:OpeningHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_OpeningHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "2dd9c6969d370ce050a6ea814b53803b3c3fb879a013edaebed661368bfe07c4",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_OpeningHarness.log"
+      },
+      {
+        "step": "java:OpeningHarness-replacement",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_OpeningHarness-replacement.log",
+        "skipLines": [],
+        "rawLogSha256": "7ef6a687d37081063e2001a3a072a951cbd27eae558f6125a003d6a114314bc0",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_OpeningHarness-replacement.log"
+      },
+      {
+        "step": "java:ProductionPlanHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ProductionPlanHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "aa771dfdee9959ff1589dbd32de186696544852445cd6beaebb1fd2d9d41c75c",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ProductionPlanHarness.log"
+      },
+      {
+        "step": "py:test_development",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_development.log",
+        "testsRun": 13,
+        "seconds": 47.041,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "2abfa8dce958d53402208233a82e46052b66a802173ecdd80602780fd34cdfcb",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_development.log"
+      },
+      {
+        "step": "py:test_opening",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_opening.log",
+        "testsRun": 8,
+        "seconds": 29.88,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "17e280daa1bca3867bebefe31607a18ac7d31b9641b796fb90959a603ea180e3",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_opening.log"
+      },
+      {
+        "step": "py:test_economy",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_economy.log",
+        "testsRun": 12,
+        "seconds": 33.522,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "6e187785cf0e027193d1231cfb9bde2a2dcb0e2568c538e4cb9696bf35890d59",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_economy.log"
+      },
+      {
+        "step": "py:test_client",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_client.log",
+        "testsRun": 11,
+        "seconds": 35.507,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "0c5bb073a79ac0fd4959b3f51bb5ec1e8e5bd65e01167c671ca9a4b5f1784613",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_client.log"
+      },
+      {
+        "step": "java:DiagnosticsHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_DiagnosticsHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "dc1f09befcfd4309ecdec770b7f0f55ecaed32d747f97c3253eb5dda1eb4a14b",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_DiagnosticsHarness.log"
+      },
+      {
+        "step": "java:PreflightHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_PreflightHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "c207a8b2c2262f0904e4552c3ac303b50ddf229ef4107a2f8c17bcc951e8f8e7",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_PreflightHarness.log"
+      },
+      {
+        "step": "py:test_reports",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "test_reports-fixtures-restored.log",
+        "testsRun": 16,
+        "seconds": 0.04,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "6e03f14e010822b602a51b691214bcdb5f6b0f294b4782195bfacf5d965bff88",
+        "selectedAttempt": "retry-after-restoring-frozen-fixtures",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\logs\\test_reports-fixtures-restored.log"
+      },
+      {
+        "step": "java:ScoutHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ScoutHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "3d585274836f6f1846f7ae517ea24f512cac751e705222754c4ad19a95d3ae16",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ScoutHarness.log"
+      },
+      {
+        "step": "java:TerrainMemoryHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_TerrainMemoryHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "2083792775c08a589379825a5d387d3de03f3372c7adff191db4a8ec6694ff72",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_TerrainMemoryHarness.log"
+      },
+      {
+        "step": "java:GuardHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_GuardHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "13b07bf006646843c9a9362f2897e9513b4f72c4b3cc1e551df8fd600e69e9cb",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_GuardHarness.log"
+      },
+      {
+        "step": "java:CapabilityHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_CapabilityHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "80e22862f0d8ce13a7582b14768ffa2a487a286a942ada338de91a48a2a8614a",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_CapabilityHarness.log"
+      },
+      {
+        "step": "java:TargetCompatibilityHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_TargetCompatibilityHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "534f7496e2dbcd59b9b2d4b37523c2e0d8603b3aa4078185a6fec0087357f2c9",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_TargetCompatibilityHarness.log"
+      },
+      {
+        "step": "java:BuilderHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_BuilderHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "9d5aabe4ab6a8caf95c1d52fd5d9716cf4e42d81db7ef25505738273c6d19e25",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_BuilderHarness.log"
+      },
+      {
+        "step": "java:ReachabilityHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ReachabilityHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "9bef106266a2599c50cf0aa23cce04d63095b2df7aa82784453116d120334d88",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ReachabilityHarness.log"
+      },
+      {
+        "step": "java:ReachabilityHarness-sandbox",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ReachabilityHarness-sandbox.log",
+        "skipLines": [
+          "PASS GET /combat/reachability?unitId=772&targetId=771&groups=B -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":\"LAND\",\"attackerMovementClassSource\":\"y.h() via y#h\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":\"NONE\",\"targetMovementClassSource\":\"y.h() via y#h\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"B_MOVEMENT_CLASS_AND_PASSABILITY\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[],\"engineAqAResult\":\"BANNED_GROUP_D_DISABLED\",\"engineAqBResult\":\"BANNED_GROUP_E_DISABLED\",\"outerCandidates\":[],\"exactTargetPathRawResult\":\"BANNED_GROUP_C_DISABLED\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[{\"where\":\"attacker\",\"tileX\":47,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":48,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":46,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":90,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":88,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":49,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":45,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":91,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":87,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":61,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":59,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":86,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":84,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":62,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":58,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":87,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":83,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"}],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":72,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"h()=\\\"LAND\\\",r()=\\\"tank\\\",u()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#u\\\",k()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#k\\\",n()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#n\\\",m()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#m\\\",e()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#e\\\",d()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#d\\\",c()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar$53#c\\\",b()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar$53#b\\\",a()=NEVER_CALLED_FACTORY_ACCESSOR\"}",
+          "PASS GET /combat/reachability?unitId=772&targetId=771&groups=D -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":null,\"attackerMovementClassSource\":\"GROUP_B_DISABLED\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":null,\"targetMovementClassSource\":\"GROUP_B_DISABLED\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"D_AQ_A_Y_AM\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[{\"signature\":\"a(y,am)->boolean\",\"rawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\"}],\"engineAqAResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"engineAqBResult\":\"BANNED_GROUP_E_DISABLED\",\"outerCandidates\":[],\"exactTargetPathRawResult\":\"BANNED_GROUP_C_DISABLED\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":82,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\",\"()->com.corrodinggames.rts.game.units.custom.d.b\",\"()->boolean\",\"()->boolean\",\"()->boolean\",\"()->java.lang.String\",\"()->com.corrodinggames.rts.game.units.a.z\",\"()->int\",\"()->void\",\"(com.corrodinggames.rts.game.units.y,com.corrodinggames.rts.game.units.am)->boolean\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"GROUP_B_DISABLED\"}",
+          "PASS GET /combat/reachability?unitId=772&targetId=771&groups=C,E -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":null,\"attackerMovementClassSource\":\"GROUP_B_DISABLED\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":null,\"targetMovementClassSource\":\"GROUP_B_DISABLED\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"C_OUTER_QUERY\",\"E_AQ_B_Y_AM\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[{\"signature\":\"b(y,am)->boolean\",\"rawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\"}],\"engineAqAResult\":\"BANNED_GROUP_D_DISABLED\",\"engineAqBResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"outerCandidates\":[{\"signature\":\"b(ao,float,float,float,float,int,int,int)->boolean\",\"argSemantics\":\"ARG_SEMANTICS_OLD_GUESS\",\"legacyGuessArgs\":[0,0,0],\"legacyGuessRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"enginePatternMode0Args\":[80,0,1],\"enginePatternMode0RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"enginePatternMode3Args\":[80,3,1],\"enginePatternMode3RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\"},{\"signature\":\"a(ao,float,float,float,float,int,int,int)->boolean\",\"argSemantics\":\"ARG_SEMANTICS_OLD_GUESS\",\"legacyGuessArgs\":[0,0,0],\"legacyGuessRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"enginePatternMode0Args\":[80,0,1],\"enginePatternMode0RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"enginePatternMode3Args\":[80,3,1],\"enginePatternMode3RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\"}],\"exactTargetPathRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":91,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\",\"()->com.corrodinggames.rts.game.units.custom.d.b\",\"()->boolean\",\"()->boolean\",\"()->boolean\",\"()->java.lang.String\",\"()->com.corrodinggames.rts.game.units.a.z\",\"()->int\",\"()->void\",\"(com.corrodinggames.rts.game.units.ao,float,float,float,float,int,int,int)->boolean\",\"(com.corrodinggames.rts.game.units.ao,float,float,float,float,int,int,int)->boolean\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"GROUP_B_DISABLED\"}"
+        ],
+        "rawLogSha256": "a0b7c3ae45a1f1ff6465ec132888e0452967975e86ccdc923408d2982e6b1739",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ReachabilityHarness-sandbox.log"
+      },
+      {
+        "step": "py:test_frontier",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_frontier.log",
+        "testsRun": 8,
+        "seconds": 21.791,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "7f7e10caef46389a65a7b95375e217b309f69a993ba953f9ff4559fbc8b6125b",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_frontier.log"
+      },
+      {
+        "step": "py:test_frontier_reports",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_frontier_reports.log",
+        "testsRun": 10,
+        "seconds": 0.106,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "776b1c46a8621e4da7694ac43478c6fead15aab9d22c5db7d1f540f83749fabc",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_frontier_reports.log"
+      },
+      {
+        "step": "java:CombatHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_CombatHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "df8324fc8e7cfec3ed1ee2c7516172aab91dfbe58a79e8f928bdb086a18cc1bf",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_CombatHarness.log"
+      },
+      {
+        "step": "py:test_battle_reports",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_battle_reports.log",
+        "testsRun": 15,
+        "seconds": 0.001,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "94020f9b379fdf44ed145150fc58d11bc665b35114ee88f758f293a631ed5a49",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_battle_reports.log"
+      },
+      {
+        "step": "py:test_battle_client",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_battle_client.log",
+        "testsRun": 78,
+        "seconds": 149.617,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "23e7343b9d201e3d6a2258813c21d4011f7eebf64b0e35c49f3275193bf15967",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_battle_client.log"
+      },
+      {
+        "step": "py:test_target_compatibility",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_target_compatibility.log",
+        "testsRun": 15,
+        "seconds": 15.165,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "01d557863ba7ba8655e755c41bbab9f2030ef3b00ad1be00efe0f259e1ef8139",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_target_compatibility.log"
+      },
+      {
+        "step": "py:test_recon_client",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_recon_client.log",
+        "testsRun": 7,
+        "seconds": 12.77,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "f326e5d68e4b86f3257279d1a82414c8dd74481efb71e944e1a699453df9ca5f",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_recon_client.log"
+      },
+      {
+        "step": "py:test_recon_frontier_client",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_recon_frontier_client.log",
+        "testsRun": 22,
+        "seconds": 54.372,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "eaf53bcfb99e1c43b23647933dedb12db7321d646ae0c852b9ea36119e389768",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_recon_frontier_client.log"
+      },
+      {
+        "step": "py:test_headless_parallel",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_headless_parallel.log",
+        "testsRun": 27,
+        "seconds": 10.114,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "5a246fef56174b6d6162ef0b56e5701d2948d72cfa0de35889cbddaf38b572da",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_headless_parallel.log"
+      },
+      {
+        "step": "py:test_ab_aggregate",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_ab_aggregate.log",
+        "testsRun": 17,
+        "seconds": 0.802,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "6fd1fee4da188a4801ec8fca1989707d1c85d1faa7e5aa6a675d81868d2b68ab",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_ab_aggregate.log"
+      },
+      {
+        "step": "py:test_ab_campaign",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_ab_campaign.log",
+        "testsRun": 14,
+        "seconds": 0.084,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "61b744cf0ff232838a18588f6fffc45f3ed4877919d5acf507c82c1a6b477817",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_ab_campaign.log"
+      },
+      {
+        "step": "java:ReportCommitHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ReportCommitHarness.log",
+        "skipLines": [
+          "REPORT_COMMIT_TEST_SKIP posix-only open-handle rename simulation on Windows 11; remaining commit checks still run"
+        ],
+        "rawLogSha256": "7f21de88f68cc75ecd3d2ecd061a56e40006152eae93694222bfaa20a59b8d3a",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ReportCommitHarness.log"
+      },
+      {
+        "step": "java:ExecutionContractHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_ExecutionContractHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "72e8f194e4f987bac25d3f78d5d3aab012908966fd43eeed64d36b9ba3dd234d",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_ExecutionContractHarness.log"
+      },
+      {
+        "step": "java:StrategyContractHarness",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/java_StrategyContractHarness.log",
+        "skipLines": [],
+        "rawLogSha256": "9a28e7414ea05b9d85d9d7947bf23072b7e315ba47a6f35f8ab6aa0845dcaaa1",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\java_StrategyContractHarness.log"
+      },
+      {
+        "step": "py:test_global_strategy_audit",
+        "status": "PASS",
+        "exitCode": 0,
+        "rawLog": "raw-logs/py_test_global_strategy_audit.log",
+        "testsRun": 8,
+        "seconds": 0.012,
+        "skipped": 0,
+        "skipLines": [],
+        "rawLogSha256": "0d876ee050a15f59f3d76c001a796e34104d826503c2d5ef6018f4c91342eea1",
+        "selectedAttempt": "initial-full-matrix",
+        "rawLogOriginalAbsolute": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\build\\logs\\py_test_global_strategy_audit.log"
+      }
+    ]
+  },
+  "platformCoverage": {
+    "runnerJavaSetsEqual": true,
+    "runnerPythonSetsEqual": true,
+    "windowsOnlyPythonCases": [
+      "AtomicStateWriteTests.test_a_transient_reader_is_retried_until_it_releases",
+      "AtomicStateWriteTests.test_a_permanent_reader_still_fails_loudly"
+    ],
+    "allSkipLines": [
+      "PASS GET /combat/reachability?unitId=772&targetId=771&groups=B -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":\"LAND\",\"attackerMovementClassSource\":\"y.h() via y#h\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":\"NONE\",\"targetMovementClassSource\":\"y.h() via y#h\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"B_MOVEMENT_CLASS_AND_PASSABILITY\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[],\"engineAqAResult\":\"BANNED_GROUP_D_DISABLED\",\"engineAqBResult\":\"BANNED_GROUP_E_DISABLED\",\"outerCandidates\":[],\"exactTargetPathRawResult\":\"BANNED_GROUP_C_DISABLED\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[{\"where\":\"attacker\",\"tileX\":47,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":48,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":46,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":90,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":88,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":49,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":45,\"tileY\":89,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":91,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"attacker\",\"tileX\":47,\"tileY\":87,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":61,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":59,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":86,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":84,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":62,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":58,\"tileY\":85,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":87,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"},{\"where\":\"target\",\"tileX\":60,\"tileY\":83,\"globalPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"classPassable\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#a\",\"gridMoveCost\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.gameFramework.k.l#b\"}],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":72,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"h()=\\\"LAND\\\",r()=\\\"tank\\\",u()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#u\\\",k()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#k\\\",n()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#n\\\",m()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#m\\\",e()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#e\\\",d()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar#d\\\",c()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar$53#c\\\",b()=\\\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.ar$53#b\\\",a()=NEVER_CALLED_FACTORY_ACCESSOR\"}",
+      "PASS GET /combat/reachability?unitId=772&targetId=771&groups=D -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":null,\"attackerMovementClassSource\":\"GROUP_B_DISABLED\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":null,\"targetMovementClassSource\":\"GROUP_B_DISABLED\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"D_AQ_A_Y_AM\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[{\"signature\":\"a(y,am)->boolean\",\"rawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\"}],\"engineAqAResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"engineAqBResult\":\"BANNED_GROUP_E_DISABLED\",\"outerCandidates\":[],\"exactTargetPathRawResult\":\"BANNED_GROUP_C_DISABLED\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":82,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\",\"()->com.corrodinggames.rts.game.units.custom.d.b\",\"()->boolean\",\"()->boolean\",\"()->boolean\",\"()->java.lang.String\",\"()->com.corrodinggames.rts.game.units.a.z\",\"()->int\",\"()->void\",\"(com.corrodinggames.rts.game.units.y,com.corrodinggames.rts.game.units.am)->boolean\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"GROUP_B_DISABLED\"}",
+      "PASS GET /combat/reachability?unitId=772&targetId=771&groups=C,E -> 200 {\"status\":\"raw\",\"sessionId\":\"d9f97b97-c4dd-416d-ab45-1dc242770f3a\",\"concept\":\"output21-raw-reachability-v0\",\"attackerId\":772,\"attackerType\":\"tank\",\"attackerMovementClass\":null,\"attackerMovementClassSource\":\"GROUP_B_DISABLED\",\"attackerPosition\":[941.000,1781.000],\"attackerTile\":9837,\"targetId\":771,\"targetType\":\"commandCenter\",\"targetMovementClass\":null,\"targetMovementClassSource\":\"GROUP_B_DISABLED\",\"targetBuilding\":true,\"targetPosition\":[1200.000,1700.000],\"targetTile\":9410,\"tileWidth\":20,\"mapTilesWide\":110,\"mapTilesHigh\":110,\"groupsEnabled\":[\"A_FIELD_READS\",\"C_OUTER_QUERY\",\"E_AQ_B_Y_AM\"],\"bannedGroups\":[\"C_OUTER_QUERY\",\"D_AQ_A_Y_AM\",\"E_AQ_B_Y_AM\"],\"liveMatchSafe\":false,\"twoArgCandidates\":[{\"signature\":\"b(y,am)->boolean\",\"rawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\"}],\"engineAqAResult\":\"BANNED_GROUP_D_DISABLED\",\"engineAqBResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"outerCandidates\":[{\"signature\":\"b(ao,float,float,float,float,int,int,int)->boolean\",\"argSemantics\":\"ARG_SEMANTICS_OLD_GUESS\",\"legacyGuessArgs\":[0,0,0],\"legacyGuessRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"enginePatternMode0Args\":[80,0,1],\"enginePatternMode0RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\",\"enginePatternMode3Args\":[80,3,1],\"enginePatternMode3RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#b\"},{\"signature\":\"a(ao,float,float,float,float,int,int,int)->boolean\",\"argSemantics\":\"ARG_SEMANTICS_OLD_GUESS\",\"legacyGuessArgs\":[0,0,0],\"legacyGuessRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"enginePatternMode0Args\":[80,0,1],\"enginePatternMode0RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"enginePatternMode3Args\":[80,3,1],\"enginePatternMode3RawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\"}],\"exactTargetPathRawResult\":\"SKIPPED_NOT_ALLOWLISTED:com.corrodinggames.rts.game.units.aq#a\",\"outerArgGuessNames\":[\"fromX\",\"fromY\",\"toX\",\"toY\",\"a\",\"b\",\"budget\"],\"weaponRangeRaw\":\"[]\",\"collisionRadiusRaw\":{\"field\":\"cj\",\"readVia\":\"Field.get\",\"attacker\":11.0,\"target\":30.0},\"targetRadiusRaw\":\"[]\",\"targetFootprintRaw\":\"[]\",\"movementGridClass\":\"com.corrodinggames.rts.gameFramework.k.i\",\"rawPassabilitySamples\":[],\"reflectionGuards\":{\"voidMethodsSkipped\":0,\"factoryAccessorsSkipped\":0,\"notAllowedSkipped\":91,\"counterScope\":\"session_cumulative_process_lifetime\",\"notAllowedSignatures\":[\"(com.corrodinggames.rts.game.units.ao)->com.corrodinggames.rts.gameFramework.k.i\",\"(com.corrodinggames.rts.gameFramework.k.i,int,int)->int\",\"()->com.corrodinggames.rts.game.units.custom.d.b\",\"()->boolean\",\"()->boolean\",\"()->boolean\",\"()->java.lang.String\",\"()->com.corrodinggames.rts.game.units.a.z\",\"()->int\",\"()->void\",\"(com.corrodinggames.rts.game.units.ao,float,float,float,float,int,int,int)->boolean\",\"(com.corrodinggames.rts.game.units.ao,float,float,float,float,int,int,int)->boolean\"]},\"diagnosticStatus\":\"RAW_ONLY_NOT_A_VERDICT\",\"pathMode\":\"EXTENDED_OPT_IN_PATH\",\"movementResolutionTrace\":\"GROUP_B_DISABLED\"}",
+      "REPORT_COMMIT_TEST_SKIP posix-only open-handle rename simulation on Windows 11; remaining commit checks still run"
+    ]
+  },
+  "jarContentIdentity": {
+    "allComparedContentEqual": true,
+    "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120"
+  },
+  "scope": "Offline harnesses and mocked Python timelines only; no desktop game or native match launched.",
+  "environmentFile": "environment.json",
+  "lineageFile": "jar-lineage.json"
+}

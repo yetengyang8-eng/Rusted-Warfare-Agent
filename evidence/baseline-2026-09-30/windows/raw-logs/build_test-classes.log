@@ -1,0 +1,12 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+G:\deepseek 工作台\_baseline_audit\2026-09-30-gs-v1\source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                      ^
+G:\deepseek 工作台\_baseline_audit\2026-09-30-gs-v1\source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                                                                                                         ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+2 个警告

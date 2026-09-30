@@ -1,0 +1,23 @@
+{"episode": 1, "status": "PASS", "wallSeconds": 0.484, "error": null, "matchOutcome": "VICTORY"}
+{"episode": 2, "status": "PASS", "wallSeconds": 0.5, "error": null, "matchOutcome": "VICTORY"}
+Results: G:\deepseek 工作台\_baseline_audit\2026-09-30-gs-v1\temp\tmpvo24lhlx\runs\run-20260930T065149-8b2afd
+{"episode": 2, "status": "FAIL", "wallSeconds": 0.485, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.485, "error": "match profile workflow must produce one battle, development and economy report", "matchOutcome": "NO_REPORT"}
+Results: G:\deepseek 工作台\_baseline_audit\2026-09-30-gs-v1\temp\tmpu2j1saf6\runs\run-20260930T065150-44763e
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.031, "error": "roundtrip report belongs to sessions ['session-a', 'session-b']", "matchOutcome": null}
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.032, "error": "Engine exited during startup; see engine.log", "matchOutcome": null}
+{"episode": 2, "status": "PASS", "wallSeconds": 0.078, "error": null, "matchOutcome": null}
+Results: G:\deepseek 工作台\_baseline_audit\2026-09-30-gs-v1\temp\tmpeok4_gh1\output\run-20260930T065152-4e2281
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpsrrxy5wl", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmp6u6nai4q", "status": "FAIL", "killed": 1, "skipped": 0, "verified": ["post-reap process identity lookup unavailable", "post-reap port ownership lookup unavailable"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpbjbzqw9x", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpbjbzqw9x", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmp_keeofa3\\run-a", "status": "FAIL", "killed": 0, "verified": ["claims batchDirectory differs from requested run directory", "pid 4242 workDirectory does not belong to its episode in this run"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpqnuro33l", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpqnuro33l", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
+{"reap": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmp5mxi02xz", "status": "PASS", "killed": 0, "note": "no live-claims.json; nothing to reap"}
+...........................
+----------------------------------------------------------------------
+Ran 27 tests in 10.114s
+
+OK

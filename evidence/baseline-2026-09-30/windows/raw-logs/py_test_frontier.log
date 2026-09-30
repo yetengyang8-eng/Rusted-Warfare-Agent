@@ -1,0 +1,13 @@
+test_guard_command_must_be_observed_before_departure (__main__.FrontierTests.test_guard_command_must_be_observed_before_departure) ... ok
+test_new_mine_requires_observed_discovery_and_completed_build (__main__.FrontierTests.test_new_mine_requires_observed_discovery_and_completed_build) ... ok
+test_session_change_stops_control (__main__.FrontierTests.test_session_change_stops_control) ... ok
+test_stalled_scout_stops_at_move_budget (__main__.FrontierTests.test_stalled_scout_stops_at_move_budget) ... ok
+test_threat_during_construction_cancels_expansion_and_waits_for_retreat (__main__.FrontierTests.test_threat_during_construction_cancels_expansion_and_waits_for_retreat) ... ok
+test_unknown_move_response_is_not_retried (__main__.FrontierTests.test_unknown_move_response_is_not_retried) ... ok
+test_unreachable_frontier_is_partial_not_pass (__main__.FrontierTests.test_unreachable_frontier_is_partial_not_pass) ... ok
+test_visible_threat_triggers_bounded_retreat (__main__.FrontierTests.test_visible_threat_triggers_bounded_retreat) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 21.791s
+
+OK

@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+  "algorithm": "tools/run_headless.py:jar_content_digest, identical to _analysis/sha_lineage.py; manifest and ZIP metadata excluded",
+  "builds": [
+    {
+      "label": "windowsRebuilt",
+      "path": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source\\agent\\dist\\rw-agent-bootstrap.jar",
+      "exists": true,
+      "bytes": 255842,
+      "wholeSha256": "ba8bbf85709ed7b3975512603534367eab44ac3f3dac72081b5acb1cb9c111f5",
+      "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+      "entryCountExcludingManifest": 87
+    },
+    {
+      "label": "finalDelivery",
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\astra-deliveries\\global-strategy-2026-09-30\\rw-agent-bootstrap.jar",
+      "exists": true,
+      "bytes": 255840,
+      "wholeSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+      "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+      "entryCountExcludingManifest": 87
+    },
+    {
+      "label": "extractedDelivery",
+      "path": "G:\\deepseek 工作台\\助手交接\\网页astra\\_extracted_globalstrategy_20260930\\repository-overlay\\astra-deliveries\\global-strategy-2026-09-30\\rw-agent-bootstrap.jar",
+      "exists": true,
+      "bytes": 255840,
+      "wholeSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+      "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+      "entryCountExcludingManifest": 87
+    },
+    {
+      "label": "installedDesktopAcceptance",
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-Astra-GlobalStrategy-2026-09-30\\rw-agent-bootstrap.jar",
+      "exists": true,
+      "bytes": 255840,
+      "wholeSha256": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+      "contentDigest": "8092b61130c3497b370e12ce249d3ec17e6331d502fefbcb50bbd95a32f03120",
+      "entryCountExcludingManifest": 87
+    }
+  ],
+  "windowsVsOtherEntryDifferences": {
+    "finalDelivery": [],
+    "extractedDelivery": [],
+    "installedDesktopAcceptance": []
+  },
+  "allComparedContentEqual": true,
+  "warning": "Whole-file SHA can vary with archive timestamps and build metadata. Source identity is evaluated using contentDigest."
+}

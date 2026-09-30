@@ -1,0 +1,16 @@
+test_dead_unit_stops_before_return (__main__.ClientTests.test_dead_unit_stops_before_return) ... ok
+test_http_failure_no_retry (__main__.ClientTests.test_http_failure_no_retry) ... ok
+test_manual_long_or_invalid_targets_send_nothing (__main__.ClientTests.test_manual_long_or_invalid_targets_send_nothing) ... ok
+test_manual_nearby_target (__main__.ClientTests.test_manual_nearby_target) ... ok
+test_network_rejected (__main__.ClientTests.test_network_rejected) ... ok
+test_paused_stops (__main__.ClientTests.test_paused_stops) ... ok
+test_record_no_commands (__main__.ClientTests.test_record_no_commands) ... ok
+test_roundtrip (__main__.ClientTests.test_roundtrip) ... ok
+test_session_change_stops_before_return (__main__.ClientTests.test_session_change_stops_before_return) ... ok
+test_three_reported_origins (__main__.ClientTests.test_three_reported_origins) ... ok
+test_wrong_200x200_map_stops_before_any_order (__main__.ClientTests.test_wrong_200x200_map_stops_before_any_order) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 35.507s
+
+OK

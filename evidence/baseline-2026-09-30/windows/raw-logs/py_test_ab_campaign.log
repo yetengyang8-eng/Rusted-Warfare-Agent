@@ -1,0 +1,20 @@
+test_budget_blocks_before_next_pair (__main__.CampaignTests.test_budget_blocks_before_next_pair) ... ok
+test_disk_limit_can_change_on_resume_with_audit_record (__main__.CampaignTests.test_disk_limit_can_change_on_resume_with_audit_record) ... ok
+{"status": "COMPLETE", "campaign": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpvb81iaa7", "aggregate": {"path": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp\\tmpvb81iaa7\\aggregate.json", "sha256": "94df6dccaeca79572bb9949a03e43fdb0921304ae8b4bd2033e079e5eb053562", "batchCount": 2, "profileOrderCounts": {"AB": 1, "BA": 1}, "profiles": {"A": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}, "B": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}}, "metricN": {"A": 0, "B": 0}}}
+test_final_aggregate_retains_zero_native_n_without_winner (__main__.CampaignTests.test_final_aggregate_retains_zero_native_n_without_winner) ... ok
+test_lock_rejects_concurrent_campaign_and_releases (__main__.CampaignTests.test_lock_rejects_concurrent_campaign_and_releases) ... ok
+test_manifest_alternates_and_same_plan_resumes (__main__.CampaignTests.test_manifest_alternates_and_same_plan_resumes) ... ok
+test_missing_report_is_never_adopted (__main__.CampaignTests.test_missing_report_is_never_adopted) ... ok
+test_passing_report_with_nonzero_client_exit_is_not_accepted (__main__.CampaignTests.test_passing_report_with_nonzero_client_exit_is_not_accepted) ... ok
+test_recover_complete_run_does_not_launch_or_reap (__main__.CampaignTests.test_recover_complete_run_does_not_launch_or_reap) ... ok
+test_recover_incomplete_run_reaps_without_deleting_evidence (__main__.CampaignTests.test_recover_incomplete_run_reaps_without_deleting_evidence) ... ok
+test_resource_cache_is_owned_copy_and_mutation_is_detected (__main__.CampaignTests.test_resource_cache_is_owned_copy_and_mutation_is_detected) ... ok
+test_safe_reap_refuses_a_skipped_live_claimed_child (__main__.CampaignTests.test_safe_reap_refuses_a_skipped_live_claimed_child) ... ok
+test_staging_must_point_to_campaign_owned_cache (__main__.CampaignTests.test_staging_must_point_to_campaign_owned_cache) ... ok
+test_unexpected_runner_failure_is_not_normal_partial (__main__.CampaignTests.test_unexpected_runner_failure_is_not_normal_partial) ... ok
+test_valid_partial_counts_as_completed_pair (__main__.CampaignTests.test_valid_partial_counts_as_completed_pair) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.084s
+
+OK

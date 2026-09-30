@@ -1,0 +1,28 @@
+{
+  "sourceCommit": "6214f073d1b76429c0b827268db918e1e90e9f5f",
+  "powerShellVersion": "7.6.5",
+  "powerShellExecutable": "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "os": "Microsoft Windows 10.0.26200",
+  "dotnetOsDescription": "Microsoft Windows 10.0.26200",
+  "javaExecutable": "C:\\Program Files\\BellSoft\\LibericaJDK-17\\bin\\java.exe",
+  "javaVersion": "openjdk version \"17.0.20.1\" 2026-08-18 LTS\r\nOpenJDK Runtime Environment (build 17.0.20.1+1-LTS)\r\nOpenJDK 64-Bit Server VM (build 17.0.20.1+1-LTS, mixed mode, sharing)",
+  "pythonExecutable": "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+  "pythonVersion": "Python 3.12.14",
+  "gameJar": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\game-lib.jar",
+  "libsDirectory": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\libs",
+  "temporaryDirectory": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp",
+  "workingDirectory": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\source",
+  "sourceArchiveCommand": "git archive --format=tar --output=<audit>\\source-snapshot.tar 6214f073d1b76429c0b827268db918e1e90e9f5f agent tools",
+  "testCommand": "& <audit>\\source\\agent\\test-win.ps1 <original>\\game-lib.jar <original>\\libs",
+  "environmentOverrides": {
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "JAVA_HOME": "C:\\Program Files\\BellSoft\\LibericaJDK-17",
+    "PATHPrefix": "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python",
+    "RW_HEADLESS_RUNNER_UNDER_TEST": "unset",
+    "PYTHONUTF8": "1",
+    "TMP": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp",
+    "TEMP": "G:\\deepseek 工作台\\_baseline_audit\\2026-09-30-gs-v1\\temp"
+  },
+  "safety": "Original game dependencies used read-only; source and generated files isolated under audit root; no desktop game launched."
+}
