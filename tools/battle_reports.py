@@ -80,7 +80,7 @@ def validate_battle(rows,summary,issue):
         elif event=='command_rejected':
             # Intent and a rejected POST are not an accepted frontier. In particular a later
             # bookkeeping event must not borrow the rejected action's identity or grant a goal.
-            action=None;action_intent=None;action_frontier=None
+            action=None;action_intent=None;action_frontier=None;intent=None;intent_frontier=None
         elif event=='command_result' and d.get('status')=='queued':
             if action is None:issue('BATTLE_RECEIPT_NO_ACTION',str(d.get('requestId')));continue
             q=parse_qs(action.query)
@@ -104,7 +104,7 @@ def validate_battle(rows,summary,issue):
                         else:accepted_frontiers.pop(cohort,None)
                     receipts[d['requestId']]=d
                 except (KeyError,ValueError,TypeError):issue('BATTLE_INVALID_ATTACK','receipt')
-            action=None;action_intent=None;action_frontier=None
+            action=None;action_intent=None;action_frontier=None;intent=None;intent_frontier=None
         elif event=='attack_order_confirmed':
             receipt=receipts.get(d.get('requestId'));ids=d.get('unitIds',[])
             if not receipt or not ids or d.get('requestId') in confirmed:issue('BATTLE_CONFIRMATION_INVALID',str(d.get('requestId')));continue

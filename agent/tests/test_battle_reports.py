@@ -132,6 +132,17 @@ class BattleEvidence(unittest.TestCase):
         rows[:]=[r for r in rows if r['event']!='attack_order_confirmed']
         rows[-2:-2]=[queued];s.update(attackOrders=0,attackOrdersConfirmed=0)
         self.assertIn('BATTLE_RECEIPT_NO_ACTION',self.issues(rows,s))
+    def test_rejected_intent_cannot_approve_a_new_action_without_fresh_intent(self):
+        rows,s=local_sample()
+        queued=copy.deepcopy(next(r for r in rows if r['event']=='command_result'))
+        queued['data']['requestId']='r2'
+        next(r for r in rows if r['event']=='command_result').update(event='command_rejected',data={'status':409})
+        rows[:]=[r for r in rows if r['event']!='attack_order_confirmed'];s.update(attackOrders=1,attackOrdersConfirmed=0)
+        rows[-2:-2]=[{'event':'action','data':{'gameTimeMs':2000,'path':'/command/attack-move?unitIds=9&x=100&y=200&sessionId=s&requestId=r2'}},queued]
+        append_order(rows,s,request='r3',time=3000)
+        issues=self.issues(rows,s)
+        self.assertIn('BATTLE_ATTACK_NO_INTENT',issues)
+        self.assertIn('BATTLE_REINFORCE_NO_ACCEPTED_FRONTIER',issues)
     def test_reinforcement_requires_the_same_cohorts_accepted_goal(self):
         rows,s=local_sample()
         rows.insert(2,{'event':'local_army_membership','data':{'cohortId':2,'unitIds':[10],'reason':'LOCAL_FORMATION'}})
