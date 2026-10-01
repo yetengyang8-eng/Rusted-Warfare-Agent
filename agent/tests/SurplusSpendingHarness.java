@@ -79,17 +79,5 @@ public final class SurplusSpendingHarness {
         SurplusSpendingPolicy.Decision capped=evaluate(almostFull,enemies("SURFACE"),factory(3100),paid,25,128,24,24,0,false);
         require(!capped.selected&&"NO_ARMY_SLOT".equals(capped.reason),"empty-queue paid slot counts toward global target as well as role quota");
     }
-    static void income(){
-        require(!SurplusSpendingPolicy.incomeExpansion(103017,0,1400,800,268.3,85.3,95,96).selected,"high surplus and one-slot deficit defers mine upgrade");
-        require(SurplusSpendingPolicy.incomeExpansion(103017,0,1400,800,268.3,85.3,85,96).selected,"eleven-slot deficit does not freeze genuine growth");
-        require(!SurplusSpendingPolicy.incomeExpansion(103017,0,1400,800,268.3,85.3,86,96).selected,"ten-slot deficit is the disclosed near-target threshold");
-        require(SurplusSpendingPolicy.incomeExpansion(4000,0,1400,800,100,85,95,96).selected,"cash after upgrade below thirty-second income buffer permits growth");
-        require(!SurplusSpendingPolicy.incomeExpansion(4400,0,1400,800,100,85,95,96).selected,"exact thirty-second buffer is saturated");
-        require(SurplusSpendingPolicy.incomeExpansion(4400,1000,1400,800,100,85,95,96).selected,"hard reserves reduce available cash before saturation");
-        require(SurplusSpendingPolicy.incomeExpansion(103017,0,1400,800,268.3,300,95,96).selected,"production consumption above income permits growth");
-        SurplusSpendingPolicy.Decision unknown=SurplusSpendingPolicy.incomeExpansion(103017,0,1400,-1,268.3,85.3,95,96);
-        require(unknown.selected&&"SATURATION_INPUT_UNKNOWN".equals(unknown.reason),"unknown ordinary quote does not invent a growth refusal");
-        require(SurplusSpendingPolicy.incomeExpansion(103017,0,Double.NaN,800,268.3,85.3,95,96).selected,"unknown native upgrade cost cannot assert saturation");
-    }
-    public static void main(String[] args){policy();paidProducts();income();System.out.println("SurplusSpendingHarness checks="+checks+" PASS");}
+    public static void main(String[] args){policy();paidProducts();System.out.println("SurplusSpendingHarness checks="+checks+" PASS");}
 }

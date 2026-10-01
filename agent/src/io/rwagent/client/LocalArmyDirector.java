@@ -14,7 +14,8 @@ public final class LocalArmyDirector {
         private final LinkedHashSet<Long> members=new LinkedHashSet<Long>();
         public double x,y,goalX,goalY,bestDistance=Double.MAX_VALUE;
         public Long targetId;
-        public long lastAcceptedOrder=-100000,frontierAt,progressAt,lastPlanAt=-100000,frontierTile=-1;
+        public long lastAcceptedOrder=-100000,frontierAt,progressAt,lastPlanAt=-100000,frontierTile=-1,lastIdleRecovery=-100000;
+        public String lastPlanStatus="NOT_QUERIED";
         public boolean frontierActive;
         public final LinkedHashSet<Long> avoided=new LinkedHashSet<Long>();
         private Cohort(long id){this.id=id;}
@@ -25,6 +26,8 @@ public final class LocalArmyDirector {
             return out;
         }
         public boolean due(long now){return now-lastAcceptedOrder>=ORDER_INTERVAL_MS;}
+        /** A real missing native order can recover once before the normal cadence, not every tick. */
+        public boolean idleRecoveryDue(long now){return now-lastAcceptedOrder>=2000&&now-lastIdleRecovery>=ORDER_INTERVAL_MS;}
     }
     private final LinkedHashMap<Long,Cohort> cohorts=new LinkedHashMap<Long,Cohort>();
     private final List<Map<String,Object>> changes=new ArrayList<Map<String,Object>>();

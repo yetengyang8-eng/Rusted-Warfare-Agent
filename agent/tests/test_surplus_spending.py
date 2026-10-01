@@ -1,4 +1,4 @@
-"""Real BattleClient HTTP checks for bounded quality spending and surplus mine refusal.
+"""Real BattleClient HTTP checks for bounded quality spending and local mine payback.
 
 Debit-on-acceptance native menus, two producers, and an empty-queue/new-product gap
 exercise the accepted-product commitment rather than assuming queued equals complete.
@@ -21,19 +21,20 @@ CATALOG_SHA = '263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236'
 
 class SurplusSpendingTests(unittest.TestCase):
     def run_case(self, scenario):
-        tick, credits = [0], [20000.0]
+        mine_scene = scenario.startswith('mine_')
+        tick, credits = [0], [50000.0 if scenario == 'mine_t3' else 20000.0]
         queues, motions, orders, observations, menus = {}, {}, [], [], []
-        products, flights, upgraded = [], [], set()
-        final_tick = 100 if scenario == 'hard_slot' else 30
-        ordinary_force = 127 if scenario == 'hard_slot' else 39 if scenario == 'mine_saturated' else 23 if scenario == 'low_force' else 24
-        artillery_before = 0 if scenario in ('mine_saturated', 'hard_slot') else 2
+        products, flights, upgraded, tier3, ordinary_products = [], [], set(), set(), []
+        final_tick = 160 if scenario == 'mine_t3' else 100 if scenario == 'hard_slot' else 30
+        ordinary_force = 127 if scenario == 'hard_slot' else 39 if mine_scene else 23 if scenario == 'low_force' else 24
+        artillery_before = 0 if mine_scene or scenario == 'hard_slot' else 2
         artillery_cost = 4700  # Deliberately different from the frozen version's price: quote governs.
 
         def now():
             return tick[0] * 4000
 
         def unit(uid, kind, x=100, y=100):
-            building = kind in ('commandCenter', 'landFactory', 'extractorT1', 'extractorT2')
+            building = kind in ('commandCenter', 'landFactory', 'extractorT1', 'extractorT2', 'extractorT3')
             result = dict(id=uid, type=kind, x=x, y=y, hp=600, maxHp=600, dead=False,
                           buildProgress=1, mobile=not building, canAttack=kind in ('heavyTank', 'heavyArtillery'),
                           building=building, techLevel=2 if kind in ('landFactory', 'extractorT2') else 1,
@@ -44,10 +45,11 @@ class SurplusSpendingTests(unittest.TestCase):
         def own_units():
             return ([unit(3, 'commandCenter'), unit(4, 'builder', 120, 120),
                      unit(5, 'landFactory', 180, 100), unit(6, 'landFactory', 250, 100)]
-                    + [unit(10 + i, 'extractorT2' if 10 + i in upgraded else 'extractorT1', 100 + i * 30, 200) for i in range(3)]
+                    + [unit(10 + i, 'extractorT3' if 10 + i in tier3 else 'extractorT2' if 10 + i in upgraded else 'extractorT1', 100 + i * 30, 200) for i in range(3)]
                     + [unit(1000 + i, 'heavyTank', 500, 500) for i in range(ordinary_force)]
                     + [unit(200 + i, 'heavyArtillery', 550, 500) for i in range(artillery_before)]
-                    + [unit(uid, 'heavyArtillery', 200, 150) for uid in products])
+                    + [unit(uid, 'heavyArtillery', 200, 150) for uid in products]
+                    + [unit(uid, 'heavyTank', 500, 500) for uid in ordinary_products])
 
         def contacts():
             result = [dict(id=74, type='landFactory' if scenario != 'air_only' else 'c_helicopter',
@@ -55,7 +57,7 @@ class SurplusSpendingTests(unittest.TestCase):
                            building=scenario != 'air_only', canAttack=scenario == 'air_only',
                            targetDomain='SURFACE' if scenario != 'air_only' else 'AIR', touchingWater=False,
                            domainObservedAtGameTimeMs=now(), lastSeenGameTimeMs=now())]
-            if scenario == 'home_emergency':
+            if scenario in ('home_emergency', 'mine_threat'):
                 result.append(dict(id=75, type='c_tank', x=150, y=120, hp=210, maxHp=210,
                                    dead=False, building=False, canAttack=True, targetDomain='SURFACE',
                                    touchingWater=False, domainObservedAtGameTimeMs=now(), lastSeenGameTimeMs=now()))
@@ -85,6 +87,12 @@ class SurplusSpendingTests(unittest.TestCase):
                         elif entry['type'] == 'extractorT2' and tick[0] >= entry['tick'] + 2:
                             upgraded.add(producer)
                             del queues[producer]
+                        elif entry['type'] == 'extractorT3' and tick[0] >= entry['tick'] + 2:
+                            tier3.add(producer)
+                            del queues[producer]
+                        elif entry['type'] == 'heavyTank' and scenario == 'mine_t3' and tick[0] >= entry['tick'] + 2:
+                            ordinary_products.append(4000 + len(ordinary_products))
+                            del queues[producer]
                     for product in list(flights):
                         if tick[0] >= product['tick']:
                             products.append(product['uid'])
@@ -103,7 +111,9 @@ class SurplusSpendingTests(unittest.TestCase):
                     for producer in (5, 6):
                         actions = [dict(actionId='u_heavyTank', type='heavyTank', cost=800, affordable=credits[0] >= 800),
                                    dict(actionId='u_c_tank', type='c_tank', cost=350, affordable=credits[0] >= 350)]
-                        if scenario != 'mine_saturated':
+                        if scenario == 'mine_noquote':
+                            actions = []
+                        elif not mine_scene:
                             actions.append(dict(actionId='u_heavyArtillery', type='heavyArtillery', cost=artillery_cost,
                                                 affordable=scenario != 'native_unaffordable' and credits[0] >= artillery_cost))
                         factories.append(dict(id=producer, tier=2, queue=1 if producer in queues else 0, actions=actions))
@@ -126,9 +136,12 @@ class SurplusSpendingTests(unittest.TestCase):
                 if parsed.path == '/combat/capabilities':
                     return self.reply(dict(status='observed', sessionId='s', capabilities=[]))
                 if parsed.path == '/economy/investments':
-                    offers = [dict(id=10 + i, type='extractorT1', product='extractorT2', actionId='extractorT2_0', cost=1400,
-                                   queue=1 if 10 + i in queues else 0, affordable=credits[0] >= 1400)
-                              for i in range(3) if 10 + i not in upgraded] if scenario == 'mine_saturated' and tick[0] >= 2 else []
+                    offers = [dict(id=10 + i, type='extractorT2' if 10 + i in upgraded else 'extractorT1',
+                                   product='extractorT3' if 10 + i in upgraded else 'extractorT2',
+                                   actionId='extractorT3_0' if 10 + i in upgraded else 'extractorT2_0',
+                                   cost=5300 if 10 + i in upgraded else 1400,
+                                   queue=1 if 10 + i in queues else 0, affordable=credits[0] >= (5300 if 10 + i in upgraded else 1400))
+                              for i in range(3) if 10 + i not in tier3 and (scenario == 'mine_t3' or 10 + i not in upgraded)] if mine_scene and tick[0] >= 2 else []
                     return self.reply(dict(status='observed', sessionId='s', units=offers))
                 return self.reply(dict(status='error', sessionId='s', message='No legal fixture plan'), 409)
 
@@ -138,7 +151,7 @@ class SurplusSpendingTests(unittest.TestCase):
                     producer, action = int(query['unitId'][0]), query['actionId'][0]
                     product, cost = {'u_heavyTank': ('heavyTank', 800), 'u_c_tank': ('c_tank', 350),
                                      'u_heavyArtillery': ('heavyArtillery', artillery_cost),
-                                     'extractorT2_0': ('extractorT2', 1400)}[action]
+                                     'extractorT2_0': ('extractorT2', 1400), 'extractorT3_0': ('extractorT3', 5300)}[action]
                     if producer in queues or credits[0] < cost or product == 'heavyArtillery' and scenario == 'native_unaffordable':
                         return self.reply(dict(status='error', sessionId='s', message='Native queue or affordability guard'), 409)
                     before = credits[0]
@@ -168,12 +181,12 @@ class SurplusSpendingTests(unittest.TestCase):
                            '-Drwagent.port=' + str(server.server_port)]
                 if scenario == 'hard_slot':
                     command += ['-Drwagent.mobileUnitHardCap=128']
-                elif scenario == 'mine_saturated':
+                elif mine_scene:
                     # This scene holds a one-slot military gap for the entire timeline.
                     # An unrestricted income-based target increase would create a real
                     # new deficit and legitimately allow later mining investment.
                     command += ['-Drwagent.mobileUnitHardCap=40']
-                command += ['-cp', JAR, 'io.rwagent.client.BattleClient', '600']
+                command += ['-cp', JAR, 'io.rwagent.client.BattleClient', '1800' if scenario == 'mine_t3' else '300' if scenario == 'mine_short' else '600']
                 process = subprocess.run(command, cwd=cwd,
                                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=25)
                 reports = list(pathlib.Path(cwd).glob('rw-agent-reports/battle-*.jsonl'))
@@ -228,15 +241,46 @@ class SurplusSpendingTests(unittest.TestCase):
         orders, _ = self.run_case('home_emergency')
         self.assertFalse([order for order in orders if order['type'] == 'heavyArtillery'])
 
-    def test_near_target_rich_economy_does_not_keep_upgrading_income(self):
+    def test_near_target_rich_economy_invests_when_local_payback_window_is_long(self):
         orders, rows = self.run_case('mine_saturated')
-        self.assertFalse([order for order in orders if order['type'] == 'extractorT2'])
+        upgrades = [order for order in orders if order['type'] == 'extractorT2']
+        self.assertEqual(len(upgrades), 3, 'Stable long-lived mines may grow even with surplus cash and near-target army')
+        self.assertTrue(all(order['cost'] == 1400 for order in upgrades))
         refusals = self.events(rows, 'mine_income_investment_deferred')
-        self.assertTrue(refusals, 'The actual native upgrade must be assessed and explicitly deferred')
-        self.assertTrue(all(event['reason'] == 'INCOME_ALREADY_SURPLUS_NEAR_ARMY_TARGET' for event in refusals))
+        self.assertTrue(refusals, 'Initial clear-window wait must remain explicit')
+        self.assertTrue(all(event['reason'] in ('LOCAL_CLEAR_WINDOW_TOO_SHORT', 'MINE_UPGRADE_ALREADY_COMMITTED') for event in refusals))
         self.assertTrue(all(event['armyTarget'] == 40 for event in self.events(rows, 'strategy_capacity')),
                         'The fixture must preserve its near-target premise throughout')
-        self.assertTrue(all(event['armyDeficit'] <= event['nearTargetDeficitLimit'] for event in refusals))
+
+    def test_short_horizon_does_not_pay_for_unrecoverable_upgrade(self):
+        orders, rows = self.run_case('mine_short')
+        self.assertFalse([order for order in orders if order['path'] == '/command/invest'])
+        self.assertTrue([event for event in self.events(rows, 'mine_income_investment_deferred')
+                         if event['reason'] == 'PAYBACK_HORIZON_TOO_SHORT'])
+
+    def test_current_local_raid_blocks_upgrade_without_a_global_income_veto(self):
+        orders, rows = self.run_case('mine_threat')
+        self.assertFalse([order for order in orders if order['path'] == '/command/invest'])
+        self.assertTrue([event for event in self.events(rows, 'mine_income_investment_deferred')
+                         if event['reason'] == 'LOCAL_RISK_OR_HEALTH_UNCONFIRMED'])
+
+    def test_missing_ordinary_quote_keeps_replacement_budget_unknown(self):
+        orders, rows = self.run_case('mine_noquote')
+        self.assertFalse([order for order in orders if order['path'] == '/command/invest'])
+        self.assertTrue([event for event in self.events(rows, 'mine_income_investment_deferred')
+                         if event['reason'] == 'PROTECTED_BUDGET_UNKNOWN'])
+
+    def test_native_t3_quote_and_conversion_observed_after_a_new_clear_window(self):
+        orders, rows = self.run_case('mine_t3')
+        upgrades = [order for order in orders if order['path'] == '/command/invest']
+        self.assertEqual([order['type'] for order in upgrades].count('extractorT2'), 3)
+        self.assertEqual([order['type'] for order in upgrades].count('extractorT3'), 3)
+        self.assertEqual(sum(order['cost'] for order in upgrades), 3 * (1400 + 5300))
+        allocations = [event for event in self.events(rows, 'strategy_allocation')
+                       if event.get('selected') == 'MINE_T3_INCOME_INVESTMENT']
+        self.assertEqual(len(allocations), 3)
+        self.assertTrue(all(abs(event['paybackEstimateGameSeconds'] - 5300 / 12.07) < .001 for event in allocations))
+        self.assertEqual(len(self.events(rows, 'mine_upgrade_observed')), 6)
 
     def test_paid_observation_gap_protects_last_hard_cap_slot_from_ordinary_production(self):
         orders, rows = self.run_case('hard_slot')

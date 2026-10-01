@@ -1,7 +1,7 @@
 import copy,sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'tools'))
-from battle_reports import validate_battle
+from battle_reports import validate_battle, native_coordinate_matches
 
 def sample(outcome='VICTORY'):
     match={'outcome':outcome,'nativeVictory':outcome=='VICTORY','nativeDefeat':outcome=='DEFEAT','source':'native_result_screen'}
@@ -39,6 +39,24 @@ class BattleEvidence(unittest.TestCase):
         issues=[];validate_battle(rows,summary,lambda code,detail:issues.append(code));return issues
     def test_victory(self):
         self.assertEqual(self.issues(*sample()),[])
+    def test_native_float32_and_three_decimal_quantization(self):
+        self.assertTrue(native_coordinate_matches(6291.5715,6291.571))
+        self.assertTrue(native_coordinate_matches(6250.0625,6250.063))
+        self.assertTrue(native_coordinate_matches(100.00024,100))
+        self.assertFalse(native_coordinate_matches(6291.5715,6291.572))
+        self.assertFalse(native_coordinate_matches(float('nan'),0))
+        self.assertFalse(native_coordinate_matches(1e40,0))
+    def test_quantized_native_receipt_keeps_the_same_observed_intent(self):
+        rows,s=sample()
+        for row in rows:
+            d=row['data']
+            if row['event'] in ('army_frontier_plan','tactical_intent'):d['targetX']=6291.5715
+            elif row['event']=='action':d['path']=d['path'].replace('x=100&','x=6291.5715&')
+            elif row['event']=='command_result':d['targetX']=6291.571
+            elif row['event']=='observation':d['ownUnits'][0]['orderX']=6291.571
+        self.assertEqual(self.issues(rows,s),[])
+        next(row['data'] for row in rows if row['event']=='command_result')['targetX']=6291.572
+        self.assertIn('BATTLE_RECEIPT_MISMATCH',self.issues(rows,s))
     def test_defeat_is_complete_not_victory(self):
         self.assertEqual(self.issues(*sample('DEFEAT')),[])
     def test_no_result_not_pass(self):

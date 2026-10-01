@@ -1,6 +1,23 @@
 """Independent evidence checks for completed and interrupted battle reports."""
 import math
+import struct
+from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 from urllib.parse import urlsplit,parse_qs
+
+def native_coordinate_matches(requested,recorded):
+    """Match the frozen bridge's Float.parseFloat followed by Locale.US %.3f.
+
+    Reproduce its quantization; do not grant a broad coordinate-error tolerance.
+    Identity, actor lists and observation provenance are still checked separately.
+    """
+    try:
+        if isinstance(requested,bool) or isinstance(recorded,bool):return False
+        value=float(requested)
+        if not math.isfinite(value) or not isinstance(recorded,(int,float)) or not math.isfinite(recorded):return False
+        native=struct.unpack('!f',struct.pack('!f',value))[0]
+        expected=float(Decimal.from_float(native).quantize(Decimal('.001'),rounding=ROUND_HALF_UP))
+        return recorded==expected
+    except (TypeError,ValueError,OverflowError,InvalidOperation):return False
 
 def validate_battle(rows,summary,issue):
     state=None;enemies=None;plan=None;intent=None;action=None
@@ -90,10 +107,10 @@ def validate_battle(rows,summary,issue):
             if action.path=='/command/attack-move':
                 try:
                     ids=[int(i) for i in q['unitIds'][0].split(',')]
-                    receipt_ok=ids==d.get('unitIds') and float(q['x'][0])==d.get('targetX') and float(q['y'][0])==d.get('targetY')
+                    receipt_ok=ids==d.get('unitIds') and native_coordinate_matches(q['x'][0],d.get('targetX')) and native_coordinate_matches(q['y'][0],d.get('targetY'))
                     if not receipt_ok:
                         issue('BATTLE_RECEIPT_MISMATCH','attack move')
-                    intent_ok=action_intent is not None and all(action_intent.get(k)==d.get(k) for k in ('targetX','targetY'))
+                    intent_ok=action_intent is not None and all(native_coordinate_matches(action_intent.get(k),d.get(k)) for k in ('targetX','targetY'))
                     if not intent_ok:
                         issue('BATTLE_ATTACK_NO_INTENT',str(d.get('requestId')))
                     cohort=(action_intent or {}).get('cohortId')

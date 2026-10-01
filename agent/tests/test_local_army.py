@@ -26,9 +26,10 @@ class LocalArmyTests(unittest.TestCase):
         orders, attempts, motions, delayed = [], [], {}, []
         frontier_counts = {0: 0, 1: 0}
         rejected = [False]
+        factory_queued_at = {}
 
         def unit(uid, kind, x, y):
-            building = kind == 'commandCenter'
+            building = kind == 'commandCenter' or kind.startswith('extractor') or kind == 'landFactory'
             u = dict(id=uid, type=kind, x=x, y=y, hp=1000, maxHp=1000,
                      dead=False, buildProgress=1, mobile=not building,
                      canAttack=kind in ('heavyTank', 'c_tank', 'combatEngineer'),
@@ -43,6 +44,17 @@ class LocalArmyTests(unittest.TestCase):
                 units += [unit(100+i, 'c_tank', 5000+i*5, 1000) for i in range(8)]
             if scenario == 'legality_and_specialist':
                 units.append(unit(9, 'combatEngineer', 1000, 1000))
+            if scenario.startswith('raid'):
+                units.append(unit(5, 'extractor', 600, 1000))
+                units.append(unit(9, 'combatEngineer', 620, 1000))
+            if scenario == 'production_starvation':
+                for uid in (6, 7):
+                    factory = unit(uid, 'landFactory', 100, 200+uid*5)
+                    factory['productionQueue'] = int(tick[0] == factory_queued_at.get(uid, -100)+1)
+                    units.append(factory)
+                for u in units:
+                    if u['mobile']:
+                        u.update(orderType=None, orderX=None, orderY=None)
             return units
 
         def enemy(uid, x, domain='SURFACE'):
@@ -60,6 +72,14 @@ class LocalArmyTests(unittest.TestCase):
                 return [enemy(700, 1000), enemy(800, 5000)]
             if scenario == 'stalled_fronts':
                 return [enemy(700, 1100), enemy(800, 5100)]
+            if scenario.startswith('raid'):
+                contacts = [enemy(700, 1350), enemy(800, 5350)]
+                if scenario != 'raid_loss' or tick[0] < 7:
+                    domain = 'UNKNOWN' if scenario == 'raid_unknown' else 'SUBMERGED' if scenario == 'raid_incompatible' else 'SURFACE'
+                    raid = enemy(970, 650, domain)
+                    raid.update(hp=100, maxHp=100)
+                    contacts.append(raid)
+                return contacts
             contacts = [enemy(700, 1350, 'UNKNOWN' if scenario == 'legality_and_specialist' else 'SURFACE')]
             if scenario != 'single_group':
                 contacts.append(enemy(800, 5350))
@@ -96,10 +116,10 @@ class LocalArmyTests(unittest.TestCase):
                             for uid in ids:
                                 motions[uid] = dict(x=x, y=y, orderType=None)
                             delayed.remove((finish, ids, x, y))
-                    terminal = tick[0] >= 18
+                    terminal = tick[0] >= (60 if scenario == 'production_starvation' else 18)
                     return self.reply(dict(status='running', sessionId='s', frame=tick[0],
                         gameTimeMs=now, networked=False, replay=False,
-                        player=dict(teamId=0, credits=0),
+                        player=dict(teamId=0, credits=100000 if scenario == 'production_starvation' else 0),
                         map=dict(width=10000, height=10000, tilesWide=500, tilesHigh=500,
                                  tileWidth=20, tileHeight=20),
                         match=dict(outcome='DEFEAT' if terminal else 'ONGOING',
@@ -115,10 +135,20 @@ class LocalArmyTests(unittest.TestCase):
                                    compatibility='COMPATIBLE', lastKnownPositionApproachStatus='APPROACH_PATH_KNOWN',
                                    approachX=1300, approachY=1000)
                               for uid in query['unitIds'][0].split(',')]
+                    if scenario == 'raid_native_unknown' and int(query['targetId'][0]) == 970:
+                        for a in actors:
+                            a.update(status='UNKNOWN', compatibility='UNKNOWN')
+                    target = next(e for e in enemies() if e['id'] == int(query['targetId'][0]))
                     return self.reply(dict(status='observed', sessionId='s', gameTimeMs=now,
                         targetId=int(query['targetId'][0]), targetVisible=True,
+                        targetX=target['x'], targetY=target['y'],
                         targetObservedAtGameTimeMs=now, actors=actors))
                 if parsed.path == '/combat/production':
+                    if scenario == 'production_starvation':
+                        return self.reply(dict(status='observed', sessionId='s', factories=[
+                            dict(id=uid, type='landFactory', tier=2,
+                                 queue=int(tick[0] == factory_queued_at.get(uid, -100)+1), actions=[
+                                     dict(actionId='tank', type='c_tank', affordable=True, cost=350)]) for uid in (6, 7)]))
                     return self.reply(dict(status='observed', sessionId='s', factories=[]))
                 if parsed.path == '/scout/observe':
                     return self.reply(dict(status='observed', sessionId='s', gameTimeMs=now,
@@ -140,10 +170,12 @@ class LocalArmyTests(unittest.TestCase):
                 order = dict(path=parsed.path, unitIds=ids, tick=tick[0], gameTimeMs=tick[0]*1000,
                              x=float(query.get('x', ['0'])[0]), y=float(query.get('y', ['0'])[0]))
                 attempts.append(order)
-                if scenario == 'rejected_order' and not rejected[0] and parsed.path == '/command/attack-move':
+                if scenario in ('rejected_order', 'raid_rejected') and not rejected[0] and parsed.path == '/command/attack-move':
                     rejected[0] = True
                     return self.reply(dict(status='rejected', reason='E2_NATIVE_TRANSIENT'), 409)
                 orders.append(order)
+                if parsed.path == '/command/queue':
+                    factory_queued_at[ids[0]] = tick[0]
                 if parsed.path == '/command/attack-move':
                     for uid in ids:
                         motions[uid] = dict(orderType='attackMove', orderX=order['x'], orderY=order['y'])
@@ -255,6 +287,62 @@ class LocalArmyTests(unittest.TestCase):
         for event in stalled:
             x = 1100 if event['targetId'] == 700 else 5100
             self.assertFalse([o for o in orders if o['x'] == x and o['gameTimeMs'] >= event['gameTimeMs']], 'the existing no-progress cooldown stops further orders')
+
+    def test_near_mine_raid_uses_nearest_small_detachment_and_preserves_main(self):
+        orders, _, rows = self.run_case('raid')
+        start = next(r['data'] for r in rows if r['event'] == 'local_crisis_started')
+        self.assertEqual(start['unitIds'], [20, 21])
+        self.assertEqual(start['visibleThreats'], 1)
+        self.assertGreaterEqual(start['mainRemaining'], 6)
+        crisis_orders = [o for o in orders if o['x'] == 650]
+        self.assertTrue(crisis_orders)
+        self.assertTrue(all(o['unitIds'] == [20, 21] for o in crisis_orders))
+        self.assertFalse([o for o in orders if 9 in o['unitIds']], 'real specialist owner is excluded')
+        for r in rows:
+            if r['event'] == 'local_army_order':
+                self.assertFalse({20, 21} & set(r['data']['unitIds']), 'leased responders cannot also receive main orders')
+        acquired = [r['data'] for r in rows if r['event'] == 'task_ownership_acquired' and r['data'].get('role') == 'LOCAL_CRISIS']
+        released = [r['data'] for r in rows if r['event'] == 'task_ownership_released' and r['data'].get('role') == 'LOCAL_CRISIS']
+        self.assertEqual(len({r['taskId'] for r in acquired}), len(acquired))
+        self.assertEqual({(r['taskId'], r['unitId']) for r in acquired}, {(r['taskId'], r['unitId']) for r in released})
+        self.assertTrue([o for o in orders if o['x'] == 1350 and set(o['unitIds']) == set(range(22, 28))])
+
+    def test_unknown_catalog_incompatible_and_native_unknown_cannot_promise_crisis_response(self):
+        for scenario in ('raid_unknown', 'raid_incompatible', 'raid_native_unknown'):
+            with self.subTest(scenario=scenario):
+                _, _, rows = self.run_case(scenario)
+                self.assertFalse([r for r in rows if r['event'] == 'local_crisis_started'])
+
+    def test_contact_loss_returns_and_releases_without_claiming_kill(self):
+        _, _, rows = self.run_case('raid_loss')
+        returns = [r['data'] for r in rows if r['event'] == 'local_crisis_return']
+        self.assertEqual(returns[0]['reason'], 'CONTACT_LOST')
+        self.assertEqual(returns[0]['contactSemantics'], 'LOST_VISIBILITY_IS_UNKNOWN_NOT_KILL_PROOF')
+        self.assertTrue([r for r in rows if r['event'] == 'local_crisis_order' and r['data']['phase'] == 'RETURN'])
+        self.assertTrue([r for r in rows if r['event'] == 'local_crisis_finished'])
+
+    def test_rejected_crisis_order_does_not_advance_accepted_cadence(self):
+        orders, attempts, rows = self.run_case('raid_rejected')
+        self.assertEqual(attempts[0]['unitIds'], [20, 21])
+        self.assertEqual(orders[0]['unitIds'], [20, 21])
+        self.assertEqual(orders[0]['gameTimeMs']-attempts[0]['gameTimeMs'], 1000)
+        self.assertFalse([r for r in rows if r['event'] == 'local_crisis_order' and r['data']['gameTimeMs'] == attempts[0]['gameTimeMs']])
+
+    def test_real_no_order_cohorts_receive_bounded_slots_during_continuous_production(self):
+        orders, _, rows = self.run_case('production_starvation')
+        queues = [o for o in orders if o['path'] == '/command/queue']
+        self.assertGreater(len(queues), 10, 'fixture keeps ordinary production continuously ready')
+        fair = [r['data'] for r in rows if r['event'] == 'local_army_fairness_slot']
+        self.assertEqual({r['cohortId'] for r in fair}, {1, 2})
+        for first, second in zip(fair, fair[1:]):
+            self.assertGreaterEqual(second['gameTimeMs']-first['gameTimeMs'], 8000)
+        diagnostics = [r['data'] for r in rows if r['event'] == 'local_army_diagnostic']
+        self.assertTrue([r for r in diagnostics if r['gatePath'] == '/command/queue' and not r['globalGateReady']])
+        self.assertTrue(all(r['unitsWithNoOrder'] == r['members'] for r in diagnostics))
+        self.assertTrue(all('lastAcceptedAgeMs' in r and 'legalTarget' in r and 'frontierAvailable' in r
+                            and 'cooldownRemainingMs' in r for r in diagnostics))
+        for a, b in zip(orders, orders[1:]):
+            self.assertGreaterEqual(b['gameTimeMs']-a['gameTimeMs'], 1000)
 
 
 if __name__ == '__main__':

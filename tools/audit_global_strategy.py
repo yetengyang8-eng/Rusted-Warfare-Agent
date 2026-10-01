@@ -140,8 +140,10 @@ def audit(path):
                 current = own.get(unit.get('id'))
                 if current is None or current != unit or unit.get('buildProgress', 0) < 1:
                     fail('UNOBSERVED_INVESTMENT_COMPLETION', unit.get('id'))
-                if event == 'mine_upgrade_observed' and unit.get('type') != 'extractorT2':
-                    fail('UPGRADE_TYPE_MISMATCH', unit.get('id'))
+                if event == 'mine_upgrade_observed':
+                    expected = data.get('product', 'extractorT2')
+                    if expected not in ('extractorT2', 'extractorT3') or unit.get('type') != expected:
+                        fail('UPGRADE_TYPE_MISMATCH', unit.get('id'))
                 products[unit.get('type')] += 1
             elif event == 'summary':
                 summary = data

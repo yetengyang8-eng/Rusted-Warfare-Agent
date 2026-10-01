@@ -67,11 +67,19 @@ public final class StrategyNativeHarness {
             call("GET","/economy/builder-actions?unitId=9002",200);
             Map<?,?> upgrade=(Map<?,?>)((List<?>)investments.get("units")).get(0);
             require(((Number)upgrade.get("cost")).intValue()==1400&&"extractorT2_0".equals(upgrade.get("actionId")),"upgrade price/action from real loaded menu");
+            am tier2=unit("extractorT2",9004,engine.bs,450,790);
+            Map<String,Object> tier3Menu=call("GET","/economy/investments",200);Map<?,?> tier3=null;
+            for(Object item:(List<?>)tier3Menu.get("units"))if(((Number)((Map<?,?>)item).get("id")).longValue()==9004)tier3=(Map<?,?>)item;
+            require(tier3!=null&&"extractorT2".equals(tier3.get("type"))&&"extractorT3".equals(tier3.get("product"))
+                &&((Number)tier3.get("cost")).intValue()==4000,"T2 menu exports only native T3 upgrade and live4000quote");
             String suffix="&sessionId="+session+"&requestId=";
             engine.cf.b.clear();String order="/command/invest?unitId=9003&actionId=extractorT2_0"+suffix+"upgrade";
             call("POST",order,200);call("POST",order,200);require(engine.cf.b.size()==1,"upgrade idempotency queues once");
             call("POST",order.replace("unitId=9003","unitId=9230").replace("requestId=upgrade","requestId=foreign"),409);
             call("POST",order.replace(session,"foreign-session").replace("requestId=upgrade","requestId=stale"),409);
+            call("POST","/command/invest?unitId=9004&actionId="+URLEncoder.encode((String)tier3.get("actionId"),"UTF-8")+suffix+"upgrade3",200);
+            require(engine.cf.b.size()==2,"T3 submits ordinary native action");
+            engine.cf.b.remove(1);am.bE.remove(tier2);
             Map<String,Object> plan=call("GET","/economy/construction-plan?unitId=9002&type=heavyTank",200);
             String construction="/command/construct?unitId=9002&actionId="+URLEncoder.encode((String)plan.get("actionId"),"UTF-8")+"&x="+plan.get("x")+"&y="+plan.get("y")+suffix+"build";
             call("POST",construction,200);call("POST",construction,200);require(engine.cf.b.size()==2,"engineer construction idempotency queues once");

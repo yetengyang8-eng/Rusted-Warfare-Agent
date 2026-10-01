@@ -96,6 +96,7 @@ PyStep 'py:test_strategy_funding' 'test_strategy_funding.py' @($distJar)
 PyStep 'py:test_specialist_lifecycle' 'test_specialist_lifecycle.py' @($distJar)
 PyStep 'py:test_local_army' 'test_local_army.py' @($distJar)
 PyStep 'py:test_surplus_spending' 'test_surplus_spending.py' @($distJar)
+PyStep 'py:test_engineer_provider' 'test_engineer_provider.py' @($distJar)
 PyStep 'py:test_target_compatibility' 'test_target_compatibility.py' @($distJar)
 PyStep 'py:test_recon_client' 'test_recon_client.py' @($distJar)
 PyStep 'py:test_recon_frontier_client' 'test_recon_frontier_client.py' @($distJar)
@@ -106,7 +107,13 @@ Step 'java:ReportCommitHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.Repo
 Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
 Step 'java:LocalArmyContractHarness' { & $java -cp $cp io.rwagent.client.LocalArmyContractHarness }
+Step 'java:LocalCrisisContractHarness' { & $java -cp $cp io.rwagent.client.LocalCrisisContractHarness }
 Step 'java:SurplusSpendingHarness' { & $java -cp $cp io.rwagent.client.SurplusSpendingHarness }
+Step 'java:MineInvestmentHarness' { & $java -cp $cp io.rwagent.client.MineInvestmentHarness }
+Step 'java:EngineerProviderHarness' { & $java -cp $cp io.rwagent.client.EngineerProviderHarness }
+JavaStep 'java:NativeMorphHarness' @('NativeMorphHarness')
+JavaStep 'java:StrategyNativeHarness' @('StrategyNativeHarness')
+PyStep 'py:test_feedback_progress_audit' 'test_feedback_progress_audit.py' @()
 PyStep 'py:test_global_strategy_audit' 'test_global_strategy_audit.py' @()
 
 Write-Host ''

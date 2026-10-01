@@ -15,6 +15,21 @@ public final class BattleClient implements StrategyDirector.Host {
     private final StrategyDirector strategy=new StrategyDirector(this,execution);
     private final LocalArmyDirector localArmies=new LocalArmyDirector();
     private boolean localArmyActive;
+    private LocalCrisis localCrisis;
+    private long crisisSequence,lastCrisisProbe=-100000,lastCohortDiagnostic=-100000,lastCommandAt=-100000,lastFairCommand=-100000;
+    private String lastCommandOwner,lastCommandPath;
+    private final Map<Long,Long> crisisRetryAfter=new LinkedHashMap<Long,Long>();
+    private static final class LocalCrisis {
+        final long task,target,asset,created;final String owner;
+        final List<Long> actors;final Map<Long,Long> leases=new LinkedHashMap<Long,Long>();final double returnX,returnY;
+        long lastSeen,lastAccepted=-100000,lastIdleRecovery=-100000,returnAt=-1,returnAccepted=-1;
+        double goalX,goalY;String returnReason;
+        LocalCrisis(long task,long target,long asset,long now,List<Long> actors,double x,double y){
+            this.task=task;this.target=target;this.asset=asset;created=lastSeen=now;
+            owner="local-crisis:"+task;this.actors=actors;returnX=x;returnY=y;
+            int index=0;for(Long uid:actors)leases.put(uid,-(task*100+(++index)));
+        }
+    }
     private final Set<Long> seenOwn=new HashSet<Long>(),lost=new HashSet<Long>();
     private final Map<Long,Pending> pending=new LinkedHashMap<Long,Pending>();
     private SurplusSpendingPolicy.Ledger artilleryLedger=SurplusSpendingPolicy.Ledger.empty();
@@ -597,7 +612,13 @@ public final class BattleClient implements StrategyDirector.Host {
                         if(reconEnabled)updateRecon(state,enemies);
                         // Consume negative evidence even when Economy/Recon spends this tick's command.
                         updateTargetSuppressions(state,enemies);
+                        observeLocalArmies(state);
+                        observeLocalCrisis(state,enemies);
+                        observeLocalArmies(state); // Newly leased responders leave main membership immediately.
                         builderRecovery(state);
+                        issueCriticalMainRetreat(state);
+                        issueLocalCrisis(state,enemies);
+                        issueIdleLocalRecovery(state,enemies);
                         strategy.act(strategyReserve(),landFactoryTarget);
                         economyLane(state);
                         if(execution.ready(time)){
@@ -615,6 +636,7 @@ public final class BattleClient implements StrategyDirector.Host {
                                 if(!reconEnabled||!issueReconOrder(state))tactics(state,enemies);
                             }
                         }
+                        reportLocalArmyState(state,enemies);
                     }
                     if(time-lastHeartbeat>=10000){lastHeartbeat=time;heartbeat(state);}
                     long battleSeconds=(time-startTime)/1000L;
@@ -639,6 +661,7 @@ public final class BattleClient implements StrategyDirector.Host {
                 strategy.close();
                 if(reconAcquisition!=null)cancelReconAcquisition("CONTROLLER_ENDED");
                 if(reconTask!=null)releaseOwnership(reconTask.taskId,"CONTROLLER_ENDED");
+                releaseLocalCrisis("CONTROLLER_ENDED");
                 execution.clear();
                 // Economy v1a guardrail. An intent still pending when the match ends is NORMAL: it was
                 // opened seconds ago and its timeout has not arrived. What would be a defect is a reserve
@@ -2019,7 +2042,7 @@ public final class BattleClient implements StrategyDirector.Host {
         double t=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/length2));
         return Math.hypot(px-(ax+t*dx),py-(ay+t*dy));
     }
-    private void tactics(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+    private List<Map<String,Object>> availableMain(Map<String,Object> state){
         List<Map<String,Object>> army=mainArmy(state);
         if(reconTask!=null){
             long reservedId=reconTask.frontier()&&reconTask.unitId<0
@@ -2028,19 +2051,287 @@ public final class BattleClient implements StrategyDirector.Host {
             for(Map<String,Object> unit:army)if(id(unit)!=reservedId)main.add(unit);
             army=main;
         }
-        if(army.isEmpty())return;
-        for(Map<String,Object> u:army)if(n(u,"hp")<n(u,"maxHp")*.25&&!resting.containsKey(id(u))&&distance(u,homeX,homeY)>220){
-            if(post("/command/move?unitId="+id(u)+"&x="+homeX+"&y="+homeY)!=null){resting.put(id(u),time+45000);retreats++;event("combat_retreat","{\"unitId\":"+id(u)+",\"reason\":\"CRITICAL_HP\"}");return;}
+        List<Map<String,Object>> force=new ArrayList<Map<String,Object>>();
+        for(Map<String,Object> u:army){Long until=resting.get(id(u));if(until==null||time>=until)force.add(u);}
+        return force;
+    }
+    private boolean issueCriticalMainRetreat(Map<String,Object> state)throws Exception{
+        if(!execution.ready(time))return false;
+        for(Map<String,Object> u:availableMain(state))if(n(u,"hp")<n(u,"maxHp")*.25
+                &&!resting.containsKey(id(u))&&distance(u,homeX,homeY)>220){
+            if(post("/command/move?unitId="+id(u)+"&x="+homeX+"&y="+homeY)!=null){
+                resting.put(id(u),time+45000);retreats++;
+                event("combat_retreat",json(StrategyDirector.map("unitId",id(u),"reason","CRITICAL_HP","gameTimeMs",time)));return true;}
         }
-        List<Map<String,Object>> force=new ArrayList<Map<String,Object>>();for(Map<String,Object> u:army){Long until=resting.get(id(u));if(until==null||time>=until)force.add(u);}
-        if(force.isEmpty())return;
-        localArmies.observe(force,time);
+        return false;
+    }
+    private boolean servedByLocalCrisis(Map<String,Object> enemy){
+        return localCrisis!=null&&localCrisis.returnAt<0&&(id(enemy)==localCrisis.target
+                ||distance(enemy,localCrisis.goalX,localCrisis.goalY)<=LocalCrisisPolicy.CLUSTER_RADIUS);
+    }
+    private void observeLocalArmies(Map<String,Object> state)throws Exception{
+        List<Map<String,Object>> main=availableMain(state);localArmies.observe(main,time);
         for(Map<String,Object> change:localArmies.drainChanges())event("local_army_membership",json(change));
         boolean multiple=localArmies.multiple();
-        if(localArmyActive!=multiple){
-            localArmyActive=multiple;targetReady=false;
-            event("local_army_mode",json(StrategyDirector.map("active",multiple,"gameTimeMs",time)));
+        if(localArmyActive!=multiple){localArmyActive=multiple;targetReady=false;
+            event("local_army_mode",json(StrategyDirector.map("active",multiple,"gameTimeMs",time)));}
+        Map<Long,Map<String,Object>> own=LocalArmyDirector.index(main);
+        for(LocalArmyDirector.Cohort c:localArmies.rotation())if(c.frontierActive){
+            double nearest=Double.MAX_VALUE;
+            for(Map<String,Object> u:c.units(own))nearest=Math.min(nearest,distance(u,c.goalX,c.goalY));
+            if(nearest+12<c.bestDistance){c.bestDistance=nearest;c.progressAt=time;}
+            if(nearest<65||time-c.progressAt>20000||time-c.frontierAt>75000){
+                event(nearest<65?"local_army_frontier_arrived":"local_army_frontier_blocked",json(
+                        StrategyDirector.map("cohortId",c.id,"targetTile",c.frontierTile,"distance",nearest,"gameTimeMs",time)));
+                if(c.frontierTile>=0){c.avoided.add(c.frontierTile);
+                    if(c.avoided.size()>16)c.avoided.remove(c.avoided.iterator().next());}
+                c.frontierActive=false;
+            }
         }
+    }
+    private boolean crisisAsset(Map<String,Object> unit){
+        String type=stringOrNull(unit,"type");
+        return alive(unit)&&n(unit,"buildProgress")>=1&&("commandCenter".equals(type)
+                ||type!=null&&type.startsWith("extractor"));
+    }
+    private List<Map<String,Object>> crisisCluster(Map<String,Object> enemies,Map<String,Object> target){
+        List<Map<String,Object>> cluster=new ArrayList<Map<String,Object>>();
+        for(Map<String,Object> e:list(enemies,"visibleEnemies"))if(currentEnemy(e,enemies)
+                &&Boolean.TRUE.equals(e.get("canAttack"))&&!Boolean.TRUE.equals(e.get("building"))
+                &&distance(e,n(target,"x"),n(target,"y"))<=LocalCrisisPolicy.CLUSTER_RADIUS)cluster.add(e);
+        return cluster;
+    }
+    /** Only exact compatible/known native approaches pass. UNKNOWN never becomes a defense promise. */
+    private List<Map<String,Object>> crisisCompatible(List<Map<String,Object>> candidates,
+            List<Map<String,Object>> contacts,Map<String,Object> enemies)throws Exception{
+        List<Map<String,Object>> result=new ArrayList<Map<String,Object>>(candidates);
+        for(Map<String,Object> target:contacts){
+            if(deprioritized(target)||targetSuppressions.containsKey(id(target)))return Collections.emptyList();
+            GuardSelection guard=targetGuard(result,target,enemies);
+            if(!"COMPATIBLE".equals(guard.status))return Collections.emptyList();
+            result=strategy.eligible(target,guard.assigned);
+            if(result.isEmpty())return result;
+            StringBuilder ids=new StringBuilder();for(Map<String,Object> u:result){if(ids.length()>0)ids.append(',');ids.append(id(u));}
+            Map<String,Object> nativeEvidence=optionalGet("/combat/engagement?unitIds="+ids+"&targetId="+id(target),"local_crisis_engagement");
+            if(nativeEvidence==null||!Boolean.TRUE.equals(nativeEvidence.get("targetVisible")))return Collections.emptyList();
+            check(nativeEvidence);
+            Long seen=numberOrNull(nativeEvidence,"targetObservedAtGameTimeMs");
+            if(seen==null||seen.longValue()<(long)n(enemies,"gameTimeMs"))return Collections.emptyList();
+            if(nativeEvidence.get("targetX") instanceof Number&&distance(target,n(nativeEvidence,"targetX"),n(nativeEvidence,"targetY"))>160)
+                return Collections.emptyList();
+            Set<Long> known=new HashSet<Long>();
+            for(Map<String,Object> a:list(nativeEvidence,"actors"))if("COMPATIBLE".equals(a.get("compatibility"))
+                    &&"APPROACH_PATH_KNOWN".equals(a.get("status")))known.add((long)n(a,"unitId"));
+            List<Map<String,Object>> next=new ArrayList<Map<String,Object>>();
+            for(Map<String,Object> u:result)if(known.contains(id(u)))next.add(u);
+            result=next;if(result.isEmpty())return result;
+        }
+        return result;
+    }
+    private void beginCrisisReturn(String reason)throws Exception{
+        if(localCrisis==null||localCrisis.returnAt>=0)return;
+        localCrisis.returnAt=time;localCrisis.returnReason=reason;
+        event("local_crisis_return",json(StrategyDirector.map("taskId",localCrisis.task,"owner",localCrisis.owner,
+                "targetId",localCrisis.target,"unitIds",localCrisis.actors,"reason",reason,"gameTimeMs",time,
+                "contactSemantics","LOST_VISIBILITY_IS_UNKNOWN_NOT_KILL_PROOF")));
+    }
+    private void releaseLocalCrisis(String reason)throws Exception{
+        LocalCrisis c=localCrisis;if(c==null)return;
+        execution.release(c.owner);crisisRetryAfter.put(c.target,time+LocalCrisisPolicy.RETRY_MS);
+        while(crisisRetryAfter.size()>128)crisisRetryAfter.remove(crisisRetryAfter.keySet().iterator().next());
+        for(Long uid:c.actors)event("task_ownership_released",json(StrategyDirector.map("taskId",c.leases.get(uid),
+                "crisisTaskId",c.task,"owner",c.owner,"unitId",uid,"role","LOCAL_CRISIS","reason",reason,"gameTimeMs",time)));
+        event("local_crisis_finished",json(StrategyDirector.map("taskId",c.task,"targetId",c.target,
+                "reason",reason,"gameTimeMs",time)));localCrisis=null;
+    }
+    private void observeLocalCrisis(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        if(localCrisis!=null){
+            LocalCrisis c=localCrisis;List<Map<String,Object>> responders=new ArrayList<Map<String,Object>>();
+            for(Long uid:c.actors){Map<String,Object> u=find(state,uid);if(u!=null&&alive(u)&&execution.owns(c.owner,uid))responders.add(u);}
+            if(responders.isEmpty()){releaseLocalCrisis("NO_SURVIVORS");return;}
+            Map<String,Object> asset=find(state,c.asset),target=null;
+            for(Map<String,Object> e:list(enemies,"visibleEnemies"))if(id(e)==c.target&&currentEnemy(e,enemies))target=e;
+            if(c.returnAt<0){
+                if(asset==null||!crisisAsset(asset))beginCrisisReturn("ASSET_NO_LONGER_READY");
+                else if(time-c.created>=LocalCrisisPolicy.MAX_ACTIVE_MS)beginCrisisReturn("RESPONSE_TIME_LIMIT");
+                else if(target!=null){
+                    c.lastSeen=time;
+                    if(distance(target,n(asset,"x"),n(asset,"y"))>LocalCrisisPolicy.ASSET_RADIUS+150)beginCrisisReturn("CONTACT_LEFT_ASSET");
+                    else if(crisisCluster(enemies,target).size()>LocalCrisisPolicy.MAX_THREATS)beginCrisisReturn("RAID_GREW_BEYOND_SMALL_RESPONSE");
+                    else if(deprioritized(target)||targetSuppressions.containsKey(c.target))beginCrisisReturn("TARGET_GUARD_OR_PROGRESS_REJECTION");
+                    else if("COMPATIBLE".equals(targetGuard(responders,target,enemies).status)
+                            &&trackTargetProgress(responders,enemies,target))beginCrisisReturn("NO_TARGET_PROGRESS");
+                }else if(time-c.lastSeen>=LocalCrisisPolicy.LOST_CONTACT_MS)beginCrisisReturn("CONTACT_LOST");
+                for(Map<String,Object> u:responders)if(n(u,"hp")<n(u,"maxHp")*.25){beginCrisisReturn("CRITICAL_HP");break;}
+            }
+            if(c.returnAt>=0){
+                boolean arrived=c.returnAccepted>=0;
+                for(Map<String,Object> u:responders)if(distance(u,c.returnX,c.returnY)>150)arrived=false;
+                if(arrived)releaseLocalCrisis("RETURN_OBSERVED");
+                else if(c.returnAccepted>=0&&time-c.returnAccepted>=8000)releaseLocalCrisis("RETURN_HANDOFF_TIMEOUT");
+                else if(time-c.returnAt>=LocalCrisisPolicy.RETURN_WAIT_MS)releaseLocalCrisis("RETURN_COMMAND_WAIT_TIMEOUT");
+            }
+            return;
+        }
+        if(time-lastCrisisProbe<3000)return;lastCrisisProbe=time;
+        List<Map<String,Object>> main=availableMain(state);if(main.size()<LocalCrisisPolicy.MIN_MAIN+LocalCrisisPolicy.MIN_RESPONDERS)return;
+        Map<String,Object> target=null,asset=null;double nearest=Double.MAX_VALUE;
+        for(Map<String,Object> e:list(enemies,"visibleEnemies")){
+            Long retry=crisisRetryAfter.get(id(e));
+            if(!currentEnemy(e,enemies)||!Boolean.TRUE.equals(e.get("canAttack"))||Boolean.TRUE.equals(e.get("building"))
+                    ||retry!=null&&time<retry||deprioritized(e)||targetSuppressions.containsKey(id(e)))continue;
+            for(Map<String,Object> a:units(state))if(crisisAsset(a)){
+                double d=distance(e,n(a,"x"),n(a,"y"));
+                if(d<=LocalCrisisPolicy.ASSET_RADIUS&&d<nearest){target=e;asset=a;nearest=d;}
+            }
+        }
+        if(target==null)return;
+        List<Map<String,Object>> cluster=crisisCluster(enemies,target);
+        if(cluster.size()>LocalCrisisPolicy.MAX_THREATS)return;
+        double hp=0;for(Map<String,Object> e:cluster){if(!(n(e,"hp")>0))return;hp+=n(e,"hp");}
+        final double ax=n(asset,"x"),ay=n(asset,"y");
+        List<Map<String,Object>> nearby=new ArrayList<Map<String,Object>>();
+        for(Map<String,Object> u:main)if(distance(u,ax,ay)<=LocalCrisisPolicy.RESPONSE_RADIUS&&n(u,"hp")>=n(u,"maxHp")*.5)nearby.add(u);
+        Collections.sort(nearby,(a,b)->Double.compare(distance(a,ax,ay),distance(b,ax,ay)));
+        if(nearby.size()>48)nearby=new ArrayList<Map<String,Object>>(nearby.subList(0,48));
+        List<Map<String,Object>> compatible=crisisCompatible(nearby,cluster,enemies);
+        Map<Long,Long> membership=new HashMap<Long,Long>();Map<Long,Integer> sizes=new HashMap<Long,Integer>();
+        for(LocalArmyDirector.Cohort c:localArmies.rotation()){sizes.put(c.id,c.memberIds().size());for(Long uid:c.memberIds())membership.put(uid,c.id);}
+        List<Map<String,Object>> chosen=LocalCrisisPolicy.select(compatible,main.size(),hp,ax,ay,membership,sizes);
+        if(chosen.isEmpty())return;
+        List<Long> ids=new ArrayList<Long>();double rx=0,ry=0;
+        for(Map<String,Object> u:chosen){ids.add(id(u));rx+=n(u,"x");ry+=n(u,"y");}
+        LocalCrisis c=new LocalCrisis(++crisisSequence,id(target),id(asset),time,ids,rx/chosen.size(),ry/chosen.size());
+        c.goalX=n(target,"x");c.goalY=n(target,"y");
+        for(Long uid:ids)if(!execution.claim(c.owner,uid)){execution.release(c.owner);return;}
+        localCrisis=c;
+        for(Long uid:ids)event("task_ownership_acquired",json(StrategyDirector.map("taskId",c.leases.get(uid),"crisisTaskId",c.task,"owner",c.owner,"unitId",uid,
+                "role","LOCAL_CRISIS","sessionId",session,"player",execution.stamp().player,"frame",execution.stamp().frame,"gameTimeMs",time)));
+        event("local_crisis_started",json(StrategyDirector.map("taskId",c.task,"owner",c.owner,"targetId",c.target,
+                "assetId",c.asset,"unitIds",ids,"visibleThreats",cluster.size(),"visibleThreatHp",hp,
+                "durabilityFloorHp",hp*LocalCrisisPolicy.HP_FACTOR,"mainRemaining",main.size()-ids.size(),
+                "activeDeadlineGameTimeMs",time+LocalCrisisPolicy.MAX_ACTIVE_MS,"lostContactWaitMs",LocalCrisisPolicy.LOST_CONTACT_MS,
+                "returnWaitLimitMs",LocalCrisisPolicy.RETURN_WAIT_MS,"maximumResponders",LocalCrisisPolicy.MAX_RESPONDERS,
+                "selectionSemantics","NEAREST_COMPATIBLE_KNOWN_APPROACH_HP_FLOOR_NOT_WIN_PREDICTION","gameTimeMs",time)));
+    }
+    private boolean issueLocalCrisis(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        LocalCrisis c=localCrisis;if(c==null||!execution.ready(time))return false;
+        List<Map<String,Object>> actors=new ArrayList<Map<String,Object>>();
+        for(Long uid:c.actors){Map<String,Object> u=find(state,uid);if(u!=null&&alive(u)&&execution.owns(c.owner,uid))actors.add(u);}
+        if(actors.isEmpty())return false;
+        Map<String,Object> target=null;double x=c.returnX,y=c.returnY;
+        if(c.returnAt<0){
+            for(Map<String,Object> e:list(enemies,"visibleEnemies"))if(id(e)==c.target&&currentEnemy(e,enemies))target=e;
+            if(target==null)return false;
+            x=n(target,"x");y=n(target,"y");boolean noOrder=false;
+            for(Map<String,Object> u:actors)if(u.get("orderType")==null&&distance(u,x,y)>180)noOrder=true;
+            if(time-c.lastAccepted<8000&&Math.hypot(x-c.goalX,y-c.goalY)<=160
+                    &&!(noOrder&&time-c.lastAccepted>=2000&&time-c.lastIdleRecovery>=8000))return false;
+            List<Map<String,Object>> compatible=crisisCompatible(actors,crisisCluster(enemies,target),enemies);
+            if(compatible.size()!=actors.size()){beginCrisisReturn("NEW_APPROACH_OR_DOMAIN_UNCERTAINTY");return false;}
+            GuardSelection guard=targetGuard(actors,target,enemies);logTargetGuard(target,guard);
+            if(trackTargetProgress(actors,enemies,target)){beginCrisisReturn("NO_TARGET_PROGRESS");return false;}
+        }else if(c.returnAccepted>=0)return false;
+        StringBuilder ids=new StringBuilder();List<Long> actorIds=new ArrayList<Long>();
+        for(Map<String,Object> u:actors){if(ids.length()>0)ids.append(',');ids.append(id(u));actorIds.add(id(u));}
+        event("tactical_intent",json(StrategyDirector.map("taskId",c.task,"owner",c.owner,
+                "reason",target==null?"REGROUP":"OBSERVED_ENEMY","unitIds",actorIds,"targetX",x,"targetY",y,"enemy",target,"gameTimeMs",time)));
+        Map<String,Object> receipt=post(c.owner,"/command/attack-move?unitIds="+ids+"&x="+x+"&y="+y,execution.stamp());
+        if(receipt==null)return false;
+        if(target!=null&&time-c.lastAccepted<8000)c.lastIdleRecovery=time;
+        boolean first=c.lastAccepted<0;c.lastAccepted=time;c.goalX=x;c.goalY=y;
+        if(target!=null)noteTargetOrder(c.target,first?null:Long.valueOf(c.target));else c.returnAccepted=time;
+        attacks++;awaitingOrder=receipt;
+        event("local_crisis_order",json(StrategyDirector.map("taskId",c.task,"owner",c.owner,"unitIds",actorIds,
+                "targetId",target==null?null:c.target,"phase",target==null?"RETURN":"RESPOND","requestId",receipt.get("requestId"),"gameTimeMs",time)));
+        return true;
+    }
+    private void reportLocalArmyState(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        if(time-lastCohortDiagnostic<10000)return;lastCohortDiagnostic=time;
+        Map<Long,Map<String,Object>> own=LocalArmyDirector.index(availableMain(state));
+        for(LocalArmyDirector.Cohort c:localArmies.rotation()){
+            List<Map<String,Object>> members=c.units(own);int noOrder=0,offGoal=0;
+            for(Map<String,Object> u:members){if(u.get("orderType")==null)noOrder++;
+                if(u.get("orderType")==null&&distance(u,c.goalX,c.goalY)>180)offGoal++;}
+            LocalTarget target=localTarget(c,members,enemies,true);
+            String legal=target==null?"NONE":target.guard.status;
+            event("local_army_diagnostic",json(StrategyDirector.map("cohortId",c.id,"members",members.size(),
+                    "unitsWithNoOrder",noOrder,"unitsWithNoOrderAwayFromGoal",offGoal,
+                    "lastAcceptedAgeMs",c.lastAcceptedOrder<0?null:time-c.lastAcceptedOrder,
+                    "legalTarget",legal,"targetId",target==null?null:id(target.enemy),
+                    "frontierAvailable",c.frontierActive?"ACCEPTED_ACTIVE":c.lastPlanStatus,
+                    "frontierPlanAgeMs",c.lastPlanAt<0?null:time-c.lastPlanAt,
+                    "cooldownRemainingMs",Math.max(0,LocalArmyDirector.ORDER_INTERVAL_MS-(time-c.lastAcceptedOrder)),
+                    "globalGateReady",execution.ready(time),"gateOwner",lastCommandAt==time?lastCommandOwner:null,
+                    "gatePath",lastCommandAt==time?lastCommandPath:null,"gameTimeMs",time)));
+        }
+    }
+    /** Bounded main recovery precedes ordinary lanes so repeated purchases cannot starve a stopped
+     * cohort forever. Null native order alone is not an idle claim: near a contact it may auto-fire.
+     */
+    private boolean issueIdleLocalRecovery(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        if(!localArmies.multiple()||!execution.ready(time)||time-lastFairCommand<8000)return false;
+        Map<Long,Map<String,Object>> own=LocalArmyDirector.index(availableMain(state));
+        for(LocalArmyDirector.Cohort c:localArmies.rotation()){
+            if(!c.idleRecoveryDue(time)||time-c.lastAcceptedOrder<16000)continue;
+            List<Map<String,Object>> members=c.units(own);
+            if(members.size()<LocalArmyDirector.RELEASE_BELOW)continue;
+            List<Map<String,Object>> noOrder=new ArrayList<Map<String,Object>>();
+            for(Map<String,Object> u:members)if(u.get("orderType")==null)noOrder.add(u);
+            if(noOrder.size()<Math.max(2,(members.size()+1)/2))continue;
+            LocalTarget choice=localTarget(c,members,enemies,true);
+            if(choice!=null){
+                if(!currentEnemy(choice.enemy,enemies)||!"COMPATIBLE".equals(choice.guard.status))continue;
+                List<Map<String,Object>> idle=new ArrayList<Map<String,Object>>();
+                for(Map<String,Object> u:choice.guard.assigned)if(u.get("orderType")==null
+                        &&distance(u,n(choice.enemy,"x"),n(choice.enemy,"y"))>180)idle.add(u);
+                if(idle.isEmpty())continue;
+                logTargetGuard(choice.enemy,choice.guard);
+                if(trackTargetProgress(choice.guard.assigned,enemies,choice.enemy))continue;
+                if(attackLocal(c,idle,n(choice.enemy,"x"),n(choice.enemy,"y"),"OBSERVED_ENEMY",choice.enemy)){
+                    c.frontierActive=false;c.lastIdleRecovery=lastFairCommand=time;
+                    event("local_army_fairness_slot",json(StrategyDirector.map("cohortId",c.id,"reason","REAL_NO_ORDER_CURRENT_CONTACT","gameTimeMs",time)));return true;}
+            }else if(c.frontierActive){
+                List<Map<String,Object>> idle=new ArrayList<Map<String,Object>>();double nearest=Double.MAX_VALUE;
+                for(Map<String,Object> u:members){nearest=Math.min(nearest,distance(u,c.goalX,c.goalY));
+                    if(u.get("orderType")==null&&distance(u,c.goalX,c.goalY)>180)idle.add(u);}
+                if(nearest<65||time-c.progressAt>20000||time-c.frontierAt>75000)continue;
+                if(!idle.isEmpty()&&attackLocal(c,idle,c.goalX,c.goalY,"REINFORCE",null)){c.lastIdleRecovery=lastFairCommand=time;
+                    event("local_army_fairness_slot",json(StrategyDirector.map("cohortId",c.id,"reason","REAL_NO_ORDER_ACCEPTED_FRONTIER","gameTimeMs",time)));return true;}
+            }else if(time-c.lastPlanAt>=8000){
+                Map<String,Object> anchor=noOrder.get(0);StringBuilder exclude=new StringBuilder();
+                for(Long tile:c.avoided){if(exclude.length()>0)exclude.append(',');exclude.append(tile);}
+                Map<String,Object> plan=optionalGet("/scout/plan?role=army&unitId="+id(anchor)+"&avoid="+exclude,"local_army_frontier_plan");
+                c.lastPlanAt=time;c.lastPlanStatus=plan==null?"UNKNOWN":stringOrNull(plan,"status");
+                if(plan!=null&&"planned".equals(plan.get("status"))&&Boolean.TRUE.equals(plan.get("pathKnown"))
+                        &&plan.get("targetTile") instanceof Number&&plan.get("targetX") instanceof Number&&plan.get("targetY") instanceof Number){
+                    check(plan);
+                    if(attackLocal(c,members,n(plan,"targetX"),n(plan,"targetY"),"KNOWN_FRONTIER",null)){
+                        c.lastIdleRecovery=lastFairCommand=time;c.frontierActive=true;c.frontierAt=c.progressAt=time;
+                        c.bestDistance=distance(anchor,c.goalX,c.goalY);c.frontierTile=(long)n(plan,"targetTile");
+                        event("local_army_fairness_slot",json(StrategyDirector.map("cohortId",c.id,"reason","REAL_NO_ORDER_NEW_LEGAL_FRONTIER","gameTimeMs",time)));return true;}
+                }else{
+                    LocalTarget distant=localTarget(c,members,enemies,false);
+                    if(distant!=null&&"COMPATIBLE".equals(distant.guard.status)){
+                        logTargetGuard(distant.enemy,distant.guard);
+                        if(!trackTargetProgress(distant.guard.assigned,enemies,distant.enemy)
+                                &&attackLocal(c,distant.guard.assigned,n(distant.enemy,"x"),n(distant.enemy,"y"),"REMOTE_VISIBLE_CONTACT",distant.enemy)){
+                            c.lastIdleRecovery=lastFairCommand=time;
+                            event("local_army_fairness_slot",json(StrategyDirector.map("cohortId",c.id,"reason","REAL_NO_ORDER_REMOTE_VISIBLE_CONTACT","gameTimeMs",time)));return true;}
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    private void tactics(Map<String,Object> state,Map<String,Object> enemies)throws Exception{
+        List<Map<String,Object>> army=availableMain(state);
+        if(army.isEmpty())return;
+        if(issueCriticalMainRetreat(state))return;
+        List<Map<String,Object>> force=new ArrayList<Map<String,Object>>();for(Map<String,Object> u:army){Long until=resting.get(id(u));if(until==null||time>=until)force.add(u);}
+        if(force.isEmpty())return;
+        observeLocalArmies(state);
+        boolean multiple=localArmies.multiple();
         if(multiple){localTactics(state,enemies,force);return;}
         // P1-B: record any fresh legal observation as a search objective. This has to happen before
         // the tactical layers return, because the objective is only used once they have nothing left.
@@ -2049,6 +2340,7 @@ public final class BattleClient implements StrategyDirector.Host {
         Map<String,Object> target=null;GuardSelection targetGuard=null;double score=Double.MAX_VALUE;
         boolean targetVisible=false;
         for(Map<String,Object> e:list(enemies,"rememberedEnemies")){
+            if(servedByLocalCrisis(e))continue;
             TargetProgress tracked=targetProgress.get(Long.valueOf(id(e)));
             if(tracked!=null)tracked.lastSeenAt=time;
             // 杈撳嚭30 搂4: a target whose HP has not moved inside the window is not a candidate until
@@ -2175,8 +2467,12 @@ public final class BattleClient implements StrategyDirector.Host {
                 Map<String,Object> target=choice.enemy;GuardSelection guard=choice.guard;
                 if(stalled.contains(id(target)))continue;
                 boolean changed=cohort.targetId==null||cohort.targetId.longValue()!=id(target);
-                if((cohort.due(time)||changed||Math.hypot(n(target,"x")-cohort.goalX,n(target,"y")-cohort.goalY)>160)
+                boolean recover=false;
+                for(Map<String,Object> u:guard.assigned)if(u.get("orderType")==null
+                        &&distance(u,n(target,"x"),n(target,"y"))>180&&cohort.idleRecoveryDue(time))recover=true;
+                if((cohort.due(time)||changed||recover||Math.hypot(n(target,"x")-cohort.goalX,n(target,"y")-cohort.goalY)>160)
                         &&attackLocal(cohort,guard.assigned,n(target,"x"),n(target,"y"),"OBSERVED_ENEMY",target)){
+                    if(recover&&!cohort.due(time))cohort.lastIdleRecovery=time;
                     cohort.frontierActive=false;return;
                 }
                 continue;
@@ -2196,7 +2492,9 @@ public final class BattleClient implements StrategyDirector.Host {
                     List<Map<String,Object>> idle=new ArrayList<Map<String,Object>>();
                     for(Map<String,Object> unit:members)if(!onAttackGoal(unit,cohort.goalX,cohort.goalY)
                             &&distance(unit,cohort.goalX,cohort.goalY)>180)idle.add(unit);
-                    if(!idle.isEmpty()&&cohort.due(time)&&attackLocal(cohort,idle,cohort.goalX,cohort.goalY,"REINFORCE",null))return;
+                    boolean recover=false;for(Map<String,Object> u:idle)if(u.get("orderType")==null&&cohort.idleRecoveryDue(time))recover=true;
+                    if(!idle.isEmpty()&&(cohort.due(time)||recover)&&attackLocal(cohort,idle,cohort.goalX,cohort.goalY,"REINFORCE",null)){
+                        if(recover)cohort.lastIdleRecovery=time;return;}
                     continue;
                 }
             }
@@ -2206,6 +2504,7 @@ public final class BattleClient implements StrategyDirector.Host {
             StringBuilder exclude=new StringBuilder();for(Long tile:cohort.avoided){if(exclude.length()>0)exclude.append(',');exclude.append(tile);}
             Map<String,Object> plan=optionalGet("/scout/plan?role=army&unitId="+id(anchor)+"&avoid="+exclude,"local_army_frontier_plan");
             cohort.lastPlanAt=time;
+            cohort.lastPlanStatus=plan==null?"UNKNOWN":stringOrNull(plan,"status");
             if(plan==null||!"planned".equals(plan.get("status"))){
                 // Fully explored areas may have no frontier. A real distant current contact still
                 // provides a legal advance objective for this group without replacing other groups.
@@ -2238,6 +2537,7 @@ public final class BattleClient implements StrategyDirector.Host {
         Map<String,Object> target=null,held=null;GuardSelection guard=null,heldGuard=null;
         double score=Double.MAX_VALUE;boolean visibleChoice=false;
         for(Map<String,Object> enemy:list(enemies,"rememberedEnemies")){
+            if(servedByLocalCrisis(enemy))continue;
             if(deprioritized(enemy)||targetSuppressions.containsKey(id(enemy)))continue;
             double d=Math.hypot(n(enemy,"x")-cohort.x,n(enemy,"y")-cohort.y);
             if(localOnly&&d>LocalArmyDirector.LOCAL_TARGET_RADIUS)continue;
@@ -3606,6 +3906,7 @@ public final class BattleClient implements StrategyDirector.Host {
                     "{\"owner\":"+Json.quote(owner)+",\"reason\":"+Json.quote(denied)+",\"unitIds\":"+actors+",\"gameTimeMs\":"+time+"}");
             return null;
         }
+        lastCommandAt=time;lastCommandOwner=owner;lastCommandPath=path.substring(0,path.indexOf('?'));
         path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time
                 +",\"owner\":"+Json.quote(owner)+",\"observationFrame\":"+stamp.frame+"}");
         AgentClient.Response r=AgentClient.request("POST","http://127.0.0.1:"+port+path);

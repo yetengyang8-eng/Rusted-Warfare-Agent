@@ -28,7 +28,7 @@ final class CombatBridge {
     private final Map<String,Receipt> receipts=new LinkedHashMap<String,Receipt>();
     CombatBridge(RuntimeBridge b){this.b=b;}
     void install(HttpServer server){
-        for(final String path:new String[]{"/combat/observe","/combat/production","/combat/capabilities","/combat/reachability","/combat/engagement","/command/attack-move","/command/queue"})
+        for(final String path:new String[]{"/combat/observe","/combat/production","/combat/capabilities","/combat/reachability","/combat/engagement","/combat/unit-modes","/command/attack-move","/command/queue","/command/unit-mode"})
             server.createContext(path,x -> {
                 if(!path.equals(x.getRequestURI().getPath())){respond(x,404,jsonError("unknown endpoint"));return;}
                 String method=path.startsWith("/command/")?"POST":"GET";
@@ -55,6 +55,7 @@ final class CombatBridge {
         b.refreshSession();CommandResult guard=b.commandGuard();if(guard!=null)return guard;
         if(!b.sessionId.equals(session)){session=b.sessionId;memory.clear();enemyIntel.clear();enemyIntelEvicted=0;receipts.clear();}
         if(path.startsWith("/combat/")){
+            if(path.endsWith("unit-modes"))return unitModes(q);
             if(path.endsWith("engagement"))return engagement(q);
             if(path.endsWith("capabilities"))return CommandResult.ok(capabilities(q));
             if(path.endsWith("reachability")){
@@ -67,7 +68,7 @@ final class CombatBridge {
             if(!q.isEmpty())throw new IllegalArgumentException("observation accepts no query fields");
             return CommandResult.ok(path.endsWith("production")?production():observe());
         }
-        boolean attack=path.endsWith("attack-move");
+        boolean attack=path.endsWith("attack-move"),mode=path.endsWith("unit-mode");
         List<String> keys=attack?Arrays.asList("unitIds","x","y","sessionId","requestId"):Arrays.asList("unitId","actionId","sessionId","requestId");
         if(q.size()!=keys.size() || !q.keySet().containsAll(keys))throw new IllegalArgumentException("required: "+keys);
         if(!session.equals(q.get("sessionId")))return CommandResult.error(409,"session changed; observe again");
@@ -88,6 +89,14 @@ final class CombatBridge {
             }
             e command=b.engine.cf.b(b.engine.bs);for(y u:actors)command.a(u);command.b(x,yy);
             extra=",\"unitIds\":"+unique+",\"targetX\":"+format(x)+",\"targetY\":"+format(yy)+",\"orderType\":\"attackMove\"";
+        }else if(mode){
+            y actor=own(Long.parseLong(q.get("unitId")));
+            if(actor==null||!"amphibiousJet".equals(actor.r().i()))return CommandResult.error(409,"completed own amphibiousJet required");
+            Object action=modeAction(actor,q.get("actionId"));
+            if(action==null||!Boolean.TRUE.equals(invoke(AVAILABLE,action,actor))||!Boolean.TRUE.equals(invoke(AFFORDABLE,action,actor,true)))
+                return CommandResult.error(409,"native amphibious mode unavailable at own current position");
+            e command=b.engine.cf.b(b.engine.bs);command.a(actor);invoke(SET_ACTION,command,invoke(ACTION_ID,action));
+            extra=",\"unitId\":"+actor.eh+",\"actionId\":\""+escape(actionId(action))+"\",\"type\":\"amphibiousJet\",\"mode\":\""+("152".equals(q.get("actionId"))?"DIVE":"FLY")+"\"";
         }else{
             long id=Long.parseLong(q.get("unitId"));y factory=own(id);
             if(factory==null||!"landFactory".equals(factory.r().i()))return CommandResult.error(409,"completed own landFactory required");
@@ -162,8 +171,40 @@ final class CombatBridge {
                 .append(current?result.reason:"TARGET_NOT_CURRENTLY_VISIBLE").append("\",\"requiresWaterPosition\":").append(waterRequired)
                 .append(",\"lastKnownPositionApproachStatus\":\"").append(result.status).append('"')
                 .append(",\"approachX\":").append(format(result.x)).append(",\"approachY\":").append(format(result.y))
-                .append(",\"distanceTiles\":").append(result.distanceTiles).append('}');
+                .append(",\"distanceTiles\":").append(result.distanceTiles);
+            if(current&&submerged&&"amphibiousJet".equals(actor.r().i())&&!actor.ae()){
+                // Frozen native b.c Dive=152, Fly=151. Current flight compatibility stays
+                // INCOMPATIBLE. Only the proposed future mode uses its frozen 100-unit range;
+                // wet goal cells come from legally seen terrain, never hidden map queries.
+                Object dive=modeAction(actor,"152");
+                EngagementGeometry.Result wet=b.scout.engagementField(actor,target.x,target.y,100,0,true).from(actor.eo,actor.ep);
+                out.append(",\"requiredMode\":\"DIVE\",\"modeApproachStatus\":\"").append(dive==null?"UNKNOWN":wet.status)
+                    .append("\",\"modeApproachX\":").append(format(wet.x)).append(",\"modeApproachY\":").append(format(wet.y))
+                    .append(",\"modeActionId\":").append(dive==null?"null":"\"152\"")
+                    .append(",\"modeActionReady\":").append(dive!=null&&Boolean.TRUE.equals(invoke(AVAILABLE,dive,actor))&&Boolean.TRUE.equals(invoke(AFFORDABLE,dive,actor,true)))
+                    .append(",\"modePlanSemantics\":\"LEGAL_SEEN_WATER_POSITION_NOT_CURRENT_WEAPON_COMPATIBILITY\"");
+            }
+            out.append('}');
         }
+        return CommandResult.ok(out.append("]}").toString());
+    }
+    /** No new reflective accessors: same audited own-action reads and native dispatcher as queue. */
+    private static Object modeAction(y actor,String id){
+        if(!"amphibiousJet".equals(actor.r().i())||!("151".equals(id)||"152".equals(id)))return null;
+        for(Object action:actor.N())if(id.equals(actionId(action)))return action;return null;
+    }
+    private CommandResult unitModes(Map<String,String> q){
+        if(!q.keySet().equals(Collections.singleton("unitId")))throw new IllegalArgumentException("required: unitId");
+        y actor=own(Long.parseLong(q.get("unitId")));
+        if(actor==null||!"amphibiousJet".equals(actor.r().i()))return CommandResult.error(409,"completed own amphibiousJet required");
+        StringBuilder out=new StringBuilder("{\"status\":\"observed\",\"sessionId\":\"").append(session)
+            .append("\",\"gameTimeMs\":").append(b.engine.by).append(",\"unitId\":").append(actor.eh)
+            .append(",\"submergedWeaponAvailable\":").append(actor.ae()).append(",\"actions\":[");boolean first=true;
+        for(String id:new String[]{"151","152"}){Object action=modeAction(actor,id);if(action==null)continue;
+            if(!first)out.append(',');first=false;
+            out.append("{\"actionId\":\"").append(id).append("\",\"mode\":\"").append("152".equals(id)?"DIVE":"FLY")
+                .append("\",\"cost\":").append(invoke(COST,action)).append(",\"available\":").append(invoke(AVAILABLE,action,actor))
+                .append(",\"affordable\":").append(invoke(AFFORDABLE,action,actor,true)).append('}');}
         return CommandResult.ok(out.append("]}").toString());
     }
     /** A failed domain observation is never silently treated as SURFACE. */

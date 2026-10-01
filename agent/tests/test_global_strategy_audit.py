@@ -53,6 +53,17 @@ class AuditTests(unittest.TestCase):
     def test_missing_summary_is_incomplete(self):
         self.assertFalse(self.run_rows([self.block()])['pass'])
 
+    def test_native_t3_completion_matches_exact_ready_owned_type(self):
+        unit = {'id': 10, 'type': 'extractorT3', 'buildProgress': 1, 'hp': 2000, 'mobile': False, 'canAttack': False}
+        rows = [('observation', {'ownUnits': [unit], 'player': {'credits': 9000}}),
+                ('mine_upgrade_observed', {'product': 'extractorT3', 'unit': unit}),
+                ('summary', {'outcome': 'PARTIAL'})]
+        self.assertTrue(self.run_rows(rows)['pass'])
+        rows[1][1]['product'] = 'extractorT2'
+        self.assertIn('UPGRADE_TYPE_MISMATCH', [v['reason'] for v in self.run_rows(rows)['violations']])
+        rows[1][1]['product'] = 'extractorT3_overclocked'
+        self.assertIn('UPGRADE_TYPE_MISMATCH', [v['reason'] for v in self.run_rows(rows)['violations']])
+
     def test_partial_moving_formation_query_is_not_a_committed_assessment(self):
         rows = [('battle_config', {'engagementAssessmentContract': 'COMMITTED_FORMATION_V1'}), self.block()]
         rows += [('engagement_assessment_deferred', {'targetId': 230})] + self.attack() + [('summary', {'outcome': 'PARTIAL'})]

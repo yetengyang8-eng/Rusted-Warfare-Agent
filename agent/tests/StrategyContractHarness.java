@@ -46,7 +46,8 @@ public final class StrategyContractHarness {
                     actors.add(map("unitId",uid,"status",visible?status:"UNKNOWN","lastKnownPositionApproachStatus",status,
                         "compatibility",visible?"COMPATIBLE":"UNKNOWN","approachX",490,"approachY",90));
                 }
-                return map("targetVisible",visible,"targetX",510,"targetY",70,"targetObservedAtGameTimeMs",world.get("gameTimeMs"),"actors",actors);
+                return map("sessionId","session","gameTimeMs",world.get("gameTimeMs"),"targetId",Long.parseLong(path.split("targetId=")[1].split("&")[0]),
+                    "targetVisible",visible,"targetX",510,"targetY",70,"targetObservedAtGameTimeMs",world.get("gameTimeMs"),"actors",actors);
             }
             if(path.equals("/combat/production")){
                 if(!productionMenuAvailable)return null;

@@ -246,7 +246,9 @@ final class EconomyBridge {
     private static boolean strategicAction(y unit,Object action,boolean construct){
         as product=(as)invoke(TYPE,action);if(product==null)return false;
         String type=product.i(),owner=unit.r().i();
-        if(!construct)return "extractorT1".equals(owner)&&"extractorT2".equals(type)&&!BUILD.isInstance(action);
+        if(!construct)return !BUILD.isInstance(action)&&
+            (("extractorT1".equals(owner)&&"extractorT2".equals(type))
+             ||("extractorT2".equals(owner)&&"extractorT3".equals(type)));
         if(!BUILD.isInstance(action))return false;
         if("builder".equals(owner))return "landFactory".equals(type);
         return "combatEngineer".equals(owner)&&Arrays.asList("heavyTank","amphibiousJet","repairbay","landFactory").contains(type);
@@ -256,11 +258,11 @@ final class EconomyBridge {
             .append("\",\"gameTimeMs\":").append(bridge.engine.by).append(",\"units\":[");
         boolean first=true;am[] live=am.bE.a();
         for(int i=0;i<am.bE.size();i++){
-            y unit=ownUnit(live[i].eh);if(unit==null||!"extractorT1".equals(unit.r().i()))continue;
+            y unit=ownUnit(live[i].eh);if(unit==null||!("extractorT1".equals(unit.r().i())||"extractorT2".equals(unit.r().i())))continue;
             for(Object a:unit.N())if(strategicAction(unit,a,false)&&Boolean.TRUE.equals(invoke(AVAILABLE,a,unit))){
                 if(!first)out.append(',');first=false;
-                out.append("{\"id\":").append(unit.eh).append(",\"type\":\"extractorT1\",\"queue\":").append(queueCount(unit))
-                    .append(",\"actionId\":\"").append(escape(actionText(a))).append("\",\"product\":\"extractorT2\",\"cost\":")
+                out.append("{\"id\":").append(unit.eh).append(",\"type\":\"").append(escape(unit.r().i())).append("\",\"queue\":").append(queueCount(unit))
+                    .append(",\"actionId\":\"").append(escape(actionText(a))).append("\",\"product\":\"").append(escape(((as)invoke(TYPE,a)).i())).append("\",\"cost\":")
                     .append(invoke(COST,a)).append(",\"affordable\":").append(invoke(AFFORDABLE,a,unit,true)).append('}');
             }
         }

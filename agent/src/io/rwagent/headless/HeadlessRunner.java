@@ -31,8 +31,8 @@ public final class HeadlessRunner {
                 throw new IllegalArgumentException("Options: --map PATH --port N --speed 0..8 --max-wall-seconds 1..3600 --frames N --difficulty -2..3");
         }
         String map=options.containsKey("map")?options.get("map"):"maps/skirmish/[p2]Small_Island (2p).tmx";
-        if(!map.startsWith("maps/skirmish/") || map.contains("..") || map.contains("\\") || !map.endsWith(".tmx") || !new File("assets",map).isFile())
-            throw new IllegalArgumentException("Map must exist under assets/maps/skirmish");
+        if(!map.startsWith("maps/") || map.contains("..") || map.contains("\\") || !map.endsWith(".tmx") || !new File("assets",map).isFile())
+            throw new IllegalArgumentException("Map must exist under assets/maps");
         int port=Integer.parseInt(options.containsKey("port")?options.get("port"):"47653");
         int frames=Integer.parseInt(options.containsKey("frames")?options.get("frames"):"0");
         int maxWall=Integer.parseInt(options.containsKey("max-wall-seconds")?options.get("max-wall-seconds"):"300");

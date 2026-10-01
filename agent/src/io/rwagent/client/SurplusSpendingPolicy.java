@@ -131,19 +131,6 @@ final class SurplusSpendingPolicy {
         return new Decision(reason==null,reason==null?"SURPLUS_SIEGE_ROLE":reason,reason==null?artillery:null,evidence);
     }
 
-    static Decision incomeExpansion(double credits,double allReserved,double nativeUpgradeCost,double ordinaryPrice,
-                                    double income,double consumption,int armed,int armyTarget){
-        int gap=Math.max(0,armyTarget-armed),nearLimit=Math.max(2,(int)Math.ceil(armyTarget*.1));
-        double buffer=Math.max(30*income,2*ordinaryPrice),remaining=credits-allReserved-nativeUpgradeCost;
-        Map<String,Object> evidence=map("credits",credits,"allReserved",allReserved,"nativeUpgradeCost",nativeUpgradeCost,
-            "ordinaryUnitNativeCost",ordinaryPrice,"incomeEstimate",income,"productionConsumption",consumption,
-            "armyDeficit",gap,"nearTargetDeficitLimit",nearLimit,"cashBuffer",buffer,"cashAfterInvestment",remaining);
-        boolean known=Double.isFinite(credits)&&Double.isFinite(allReserved)&&allReserved>=0&&positive(nativeUpgradeCost)&&positive(ordinaryPrice)
-            &&positive(income)&&Double.isFinite(consumption)&&consumption>=0&&armyTarget>0;
-        boolean saturated=known&&gap<=nearLimit&&income>consumption&&remaining>=buffer;
-        return new Decision(!saturated,saturated?"INCOME_ALREADY_SURPLUS_NEAR_ARMY_TARGET":known?"INCOME_GROWTH_NOT_SATURATED":"SATURATION_INPUT_UNKNOWN",null,evidence);
-    }
-
     private static boolean surfaceBuildingVisible(Map<String,Object> enemies){
         for(Map<String,Object> enemy:items(enemies,"visibleEnemies"))if(Boolean.TRUE.equals(enemy.get("building"))&&"SURFACE".equals(enemy.get("targetDomain")))return true;
         return false;
