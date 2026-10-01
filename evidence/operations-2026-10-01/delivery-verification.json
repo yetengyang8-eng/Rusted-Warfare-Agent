@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "archiveFilesChecked": 430,
+  "archiveSha256": "c5b1a94dec91ad7dbb3952a8e5b8349826dd7c280c995f868ddf2c9aa582bbb9",
+  "jarSha256": "28668be7c49a2b5d8f7f326fbc3f365a2179d4c1b92a169959c58213ec44ecb7",
+  "protectedGameIdentity": "UNCHANGED",
+  "catalogIdentity": "MATCH",
+  "candidateBaselinePromoted": false
+}

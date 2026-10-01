@@ -1,2 +1,5 @@
 # Preserve byte identity for the knowledge resource whose SHA256 is part of the runtime contract.
 agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json text eol=lf
+deliveries/operations-2026-10-01/*.jar -text
+deliveries/operations-2026-10-01/*.bat -text
+evidence/operations-2026-10-01/*.zip -text

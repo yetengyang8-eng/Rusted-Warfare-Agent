@@ -16,7 +16,7 @@ Rusted Warfare PC 1.15（Build 28 / Game Code 176）的规则型自动对战 Age
 
 基线交付件已有三场 Windows 桌面 5x / 约 2400 游戏秒长局，全部 PARTIAL/ONGOING；峰值移动武装单位为 88 / 21 / 101。Spain 两局在 Match 前人工生产一个 builder，此后自主运行。这些是基线历史证据，不继承为后续候选验收。
 
-最新增量为 [Specialist Lifecycle 候选](deliveries/specialist-lifecycle-2026-09-30/README.md)，基于已完成的有界资金预留，继续修复工程师经济挪用、到点失联后的调查与任务释放、重复返回。源码和验证见 [当前状态](project-state/CURRENT_STATE.md) 与 [本轮交付证据](evidence/specialist-lifecycle-2026-09-30/README.md)。继续任务时保留最新提交，不因基线核对报告增量源码差异而回退。下一主线是有证据的响应者护送。
+最新增量为 [运营与队伍调动候选](deliveries/operations-2026-10-01/README.md)：无建造者自动起步、多队独立目标与前沿、富余资金的少量重炮补位和升矿约束，并提供4800游戏秒入口。此前资金预留与专属生命周期继续保留。验证见 [当前状态](project-state/CURRENT_STATE.md)、[本轮证据](evidence/operations-2026-10-01/README.md)、[GPT / DeepSeek 交接](handoff/HANDOFF_Codex_Operations_2026-10-01.md)。保留最新提交，不因v1源码漂移回退；当前仍为候选，后续先补真实桌面与重复自然样本。
 
 ## 目录
 

@@ -1,5 +1,7 @@
 # 接手入口
 
+最新增量及GPT/DeepSeek交接：[HANDOFF_Codex_Operations_2026-10-01.md](../handoff/HANDOFF_Codex_Operations_2026-10-01.md)。无builder起步、多队控制和富余资金支出已落在当前仓库；先读最新CURRENT_STATE，保留增量。冻结基线未回写或晋级。
+
 从 **RW-BASELINE-2026-09-30-GS-v1** 开始后续任务。
 
 1. 阅读 [BASELINE.md](BASELINE.md)：源码、交付件、环境角色、验证边界和保护规则。

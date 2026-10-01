@@ -1,0 +1,27 @@
+{
+  "algorithm": "tools/run_headless.py:jar_content_digest",
+  "builds": {
+    "fixedCandidate": {
+      "path": "G:\\deepseek 工作台\\_validation\\operations-20261001\\fixed-candidate\\rw-agent-bootstrap.jar",
+      "bytes": 289055,
+      "wholeSha256": "28668be7c49a2b5d8f7f326fbc3f365a2179d4c1b92a169959c58213ec44ecb7",
+      "contentDigest": "5805037b3d360966e161c2fcfba82ec527f84ab340509a5dd298912898b83c93",
+      "entriesExcludingManifest": 98,
+      "directoryEntries": 7,
+      "fileEntriesExcludingManifest": 91
+    },
+    "fullRegressionRebuild": {
+      "path": "G:\\deepseek 工作台\\_validation\\operations-20261001\\source\\agent\\dist\\rw-agent-bootstrap.jar",
+      "bytes": 289055,
+      "wholeSha256": "bfb02cdd7cf85f1d6f5239a6a434784c86a1f08139769b7ecbcdb46dd19f8624",
+      "contentDigest": "5805037b3d360966e161c2fcfba82ec527f84ab340509a5dd298912898b83c93",
+      "entriesExcludingManifest": 98,
+      "directoryEntries": 7,
+      "fileEntriesExcludingManifest": 91
+    }
+  },
+  "manifestExcluded": true,
+  "directoryEntriesIncluded": true,
+  "contentEqual": true,
+  "differingEntries": []
+}
