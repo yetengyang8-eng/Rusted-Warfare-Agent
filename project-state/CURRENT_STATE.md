@@ -1,13 +1,13 @@
 # Current State
 
-Updated: 2026-10-01. This file describes **now**, not project history.
+Updated: 2026-10-02 (Asia/Shanghai), closing the2026-10-01 capacity round. This file describes **now**, not project history.
 
 ## Lineage
 
 - Frozen baseline: `RW-BASELINE-2026-09-30-GS-v1` (`6214868`). Keep for lineage; do not reset current source to it.
 - This round started at verified HEAD `51af35dd3a01f82a5f490a486646dbf06b7ec3cb` with a clean tree; no reset was performed.
 - Active engineering candidate: **RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1** on `codex/production-capacity-v1-20261001`.
-- Production implementation and tests: `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6`.
+- Production implementation and tests: `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6`; candidate/evidence delivery: `a5caf79602947a3ca0acf48d696fa42a28781e73`.
 - Candidate JAR SHA256: `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`.
 - Previous fixed candidate **RW-CANDIDATE-2026-10-01-FEEDBACK-v1** remains frozen, SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`. Its implementation remains `f5b1709` plus `5020820`, delivery `590030d`.
 - Frozen `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`.

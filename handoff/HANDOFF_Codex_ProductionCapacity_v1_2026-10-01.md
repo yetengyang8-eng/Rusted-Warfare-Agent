@@ -1,5 +1,7 @@
 # Production Capacity v1 工程交接 — 2026-10-01
 
+工程轮次始于2026-10-01，闭环于2026-10-02（Asia/Shanghai）；候选ID/目录保留本轮起始日期。
+
 本轮已完成 Spain 原始证据流式分析、源码核对、最小容量修复、专项测试、隔离原生对局和候选整理。当前候选为 `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1`，**桌面 Spain 验收待进行**。下面严格区分源码/fixture 已证与自然/桌面未证。
 
 ## 身份、起点与保护范围
@@ -10,6 +12,7 @@
 | 起始 HEAD | `51af35dd3a01f82a5f490a486646dbf06b7ec3cb`，工作树干净 |
 | 实际分支 | `codex/production-capacity-v1-20261001`，开始时已位于要求的 HEAD，保留分支，无 reset |
 | 实现/测试/分析工具提交 | `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6` |
+| 候选/完整证据/状态交付提交 | `a5caf79602947a3ca0acf48d696fa42a28781e73` |
 | 候选 JAR | [rw-agent-bootstrap.jar](../deliveries/production-capacity-2026-10-01/rw-agent-bootstrap.jar)，317,988 bytes |
 | 候选 SHA256 | `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6` |
 | contentDigest | `cdb11872abddb6df1917023b92f851c7b6d39823d324418d3993cf12828c1cba` |

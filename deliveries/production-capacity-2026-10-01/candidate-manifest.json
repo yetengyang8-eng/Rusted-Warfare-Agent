@@ -108,5 +108,8 @@
     "Operational idle cause",
     "Expected route duration/full fallback/product ready migration",
     "Causal throughput/cash/win-rate improvement"
-  ]
+  ],
+  "coreDeliveryCommit": "a5caf79602947a3ca0acf48d696fa42a28781e73",
+  "closedDate": "2026-10-02",
+  "timezone": "Asia/Shanghai"
 }
