@@ -4,6 +4,8 @@ from urllib.parse import urlsplit,parse_qs
 
 def validate_battle(rows,summary,issue):
     state=None;enemies=None;plan=None;intent=None;action=None
+    cohort_members={};cohort_plans={};accepted_frontiers={}
+    intent_frontier=None;action_intent=None;action_frontier=None
     session=None;last_time=-1;last_action=None;initial=None
     receipts={};confirmed=set();new=set();losses=set();upgrades=set()
     # Units that are known to be ours. combat_unit_observed only marks armed mobile units, so it can
@@ -25,38 +27,84 @@ def validate_battle(rows,summary,issue):
             enemies=d
             if d.get('sessionId')!=session:issue('BATTLE_SESSION_CHANGED','combat observation')
         elif event=='army_frontier_plan':plan=d
+        elif event=='local_army_membership':
+            cohort=d.get('cohortId')
+            if d.get('reason')=='RELEASED_BELOW_THREE':
+                cohort_members.pop(cohort,None);cohort_plans.pop(cohort,None);accepted_frontiers.pop(cohort,None)
+            else:cohort_members[cohort]=set(d.get('unitIds',[]))
+        elif event=='local_army_mode' and d.get('active') is False:
+            cohort_plans.clear()
+            accepted_frontiers={key:value for key,value in accepted_frontiers.items() if key is None}
+        elif event=='local_army_frontier_plan':
+            # The native planner response has an own anchor, not a cohort label. Bind it through
+            # recorded own membership so another group's most recent plan cannot approve this one.
+            anchor=d.get('anchorUnitId',d.get('builderId'))
+            owners=[key for key,members in cohort_members.items() if anchor in members]
+            if len(owners)==1:
+                cohort=owners[0]
+                if d.get('cohortId',cohort)==cohort:cohort_plans[cohort]=d
+            elif d.get('status')!='planned':cohort_plans.clear()
+        elif event in ('army_frontier_arrived','army_frontier_blocked','local_army_frontier_arrived','local_army_frontier_blocked'):
+            accepted_frontiers.pop(d.get('cohortId'),None)
         elif event=='tactical_intent':
-            intent=d
-            if d.get('reason')=='OBSERVED_ENEMY':
+            intent=d;intent_frontier=None
+            if d.get('reason') in ('OBSERVED_ENEMY','REMOTE_VISIBLE_CONTACT'):
                 enemy=d.get('enemy') or {}
                 old=next((u for u in (enemies or {}).get('rememberedEnemies',[]) if u.get('id')==enemy.get('id')),None)
                 if old is None or any(old.get(k)!=enemy.get(k) for k in ('x','y','lastSeenGameTimeMs')):
                     issue('BATTLE_TARGET_NOT_OBSERVED',str(enemy.get('id')))
+                if d.get('reason')=='REMOTE_VISIBLE_CONTACT':
+                    visible=next((u for u in (enemies or {}).get('visibleEnemies',[]) if u.get('id')==enemy.get('id')),None)
+                    if visible is None or visible.get('lastSeenGameTimeMs')!=(enemies or {}).get('gameTimeMs'):
+                        issue('BATTLE_TARGET_NOT_OBSERVED','remote contact must be currently visible')
                 if enemy.get('x')!=d.get('targetX') or enemy.get('y')!=d.get('targetY'):
                     issue('BATTLE_TARGET_COORDINATES','enemy intent')
             if d.get('reason')=='KNOWN_FRONTIER':
-                if not plan or plan.get('status')!='planned' or plan.get('pathKnown') is not True or any(plan.get(k)!=d.get(k) for k in ('targetX','targetY')):
+                cohort=d.get('cohortId')
+                candidate=plan if cohort is None else cohort_plans.pop(cohort,None)
+                if (not candidate or candidate.get('status')!='planned' or candidate.get('pathKnown') is not True
+                    or any(candidate.get(k)!=d.get(k) for k in ('targetX','targetY'))
+                    or (cohort is not None and candidate.get('anchorUnitId',candidate.get('builderId')) not in d.get('unitIds',[]))):
                     issue('BATTLE_FRONTIER_NOT_PLANNED','intent')
+                else:intent_frontier=candidate
+            elif d.get('reason')=='REINFORCE':
+                accepted=accepted_frontiers.get(d.get('cohortId'))
+                if not accepted or any(accepted.get(k)!=d.get(k) for k in ('targetX','targetY')):
+                    issue('BATTLE_REINFORCE_NO_ACCEPTED_FRONTIER',str(d.get('cohortId')))
+                else:intent_frontier=accepted
         elif event=='action':
             t=d.get('gameTimeMs')
             if not isinstance(t,(int,float)) or (last_action is not None and t-last_action<1000):
                 issue('BATTLE_COMMAND_RATE','minimum gap is 1000 game ms')
-            last_action=t;action=urlsplit(d.get('path',''))
+            last_action=t;action=urlsplit(d.get('path',''));action_intent=intent;action_frontier=intent_frontier
+        elif event=='command_rejected':
+            # Intent and a rejected POST are not an accepted frontier. In particular a later
+            # bookkeeping event must not borrow the rejected action's identity or grant a goal.
+            action=None;action_intent=None;action_frontier=None
         elif event=='command_result' and d.get('status')=='queued':
             if action is None:issue('BATTLE_RECEIPT_NO_ACTION',str(d.get('requestId')));continue
             q=parse_qs(action.query)
-            if q.get('requestId')!=[d.get('requestId')] or q.get('sessionId')!=[session] or d.get('sessionId')!=session:
+            identity_ok=q.get('requestId')==[d.get('requestId')] and q.get('sessionId')==[session] and d.get('sessionId')==session
+            if not identity_ok:
                 issue('BATTLE_RECEIPT_IDENTITY',str(d.get('requestId')))
             if action.path=='/command/attack-move':
                 try:
                     ids=[int(i) for i in q['unitIds'][0].split(',')]
-                    if ids!=d.get('unitIds') or float(q['x'][0])!=d.get('targetX') or float(q['y'][0])!=d.get('targetY'):
+                    receipt_ok=ids==d.get('unitIds') and float(q['x'][0])==d.get('targetX') and float(q['y'][0])==d.get('targetY')
+                    if not receipt_ok:
                         issue('BATTLE_RECEIPT_MISMATCH','attack move')
-                    if not intent or any(intent.get(k)!=d.get(k) for k in ('targetX','targetY')):
+                    intent_ok=action_intent is not None and all(action_intent.get(k)==d.get(k) for k in ('targetX','targetY'))
+                    if not intent_ok:
                         issue('BATTLE_ATTACK_NO_INTENT',str(d.get('requestId')))
+                    cohort=(action_intent or {}).get('cohortId')
+                    if cohort is not None and (ids!=(action_intent or {}).get('unitIds') or not set(ids)<=cohort_members.get(cohort,set())):
+                        issue('BATTLE_COHORT_ACTORS_NOT_MEMBERS',str(cohort));intent_ok=False
+                    if identity_ok and receipt_ok and intent_ok:
+                        if action_frontier is not None:accepted_frontiers[cohort]=action_frontier
+                        else:accepted_frontiers.pop(cohort,None)
                     receipts[d['requestId']]=d
                 except (KeyError,ValueError,TypeError):issue('BATTLE_INVALID_ATTACK','receipt')
-            action=None
+            action=None;action_intent=None;action_frontier=None
         elif event=='attack_order_confirmed':
             receipt=receipts.get(d.get('requestId'));ids=d.get('unitIds',[])
             if not receipt or not ids or d.get('requestId') in confirmed:issue('BATTLE_CONFIRMATION_INVALID',str(d.get('requestId')));continue

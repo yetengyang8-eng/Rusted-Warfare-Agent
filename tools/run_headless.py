@@ -77,6 +77,12 @@ def jar_content_digest(path):
     content='\n'.join('%s %s'%(name,entries[name]) for name in sorted(entries))
     return hashlib.sha256(content.encode('utf-8')).hexdigest()
 
+def validate_match_report_tasks(tasks):
+    """Accept the legacy three-stage workflow and the bounded builder bootstrap extension."""
+    if sorted(task for task in tasks if task != 'bootstrap') != ['battle', 'development', 'economy'] or tasks.count('bootstrap') > 1:
+        raise RuntimeError('match workflow must produce one battle, development and economy report, with at most one bootstrap report; partial workflow evidence archived')
+
+
 def battle_config(path):
     rows=[]
     with path.open(encoding='utf-8-sig') as source:
@@ -663,9 +669,9 @@ def run_episode(args, game, jar, java, work, number, pair=None, claims=None):
                         with evidence_path.open('r+b') as evidence_file:os.fsync(evidence_file.fileno())
                         record['phases'][-1]['verifiedReport' if len(verified)==1 else 'verifiedReports']=report
                         write_json(work/(label+'-verified.json'),report)
-                        if len(new_reports)!=expected:raise RuntimeError(label+' produced '+str(len(new_reports))+' / '+str(expected)+' expected reports; partial workflow evidence archived')
-                        if profile and label=='match' and sorted(item.get('task') for item in verified)!=['battle','development','economy']:
-                            raise RuntimeError('match profile workflow must produce one battle, development and economy report')
+                        if label=='match':
+                            validate_match_report_tasks([item.get('task') for item in verified])
+                        elif len(new_reports)!=expected:raise RuntimeError(label+' produced '+str(len(new_reports))+' / '+str(expected)+' expected reports; partial workflow evidence archived')
                         for report in verified:
                             if report['result']!='PASS':raise RuntimeError(label+' '+report['result']+': '+str(report['reason'])+'; integrity issues: '+str(report['issues']))
                     if completed.returncode:raise RuntimeError(label+' failed; see '+label+'.log and rw-agent-reports')

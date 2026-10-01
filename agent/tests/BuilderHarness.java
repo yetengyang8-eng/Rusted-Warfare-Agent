@@ -83,6 +83,16 @@ public final class BuilderHarness {
             String inProduction = check("GET", "/economy/builder-production", 200, "builderOrderPending\":true");
             require(((Number) EconomyHarness.obj(inProduction).get("buildersQueued")).intValue() == 1,
                     "the native queue counts the queued builder");
+            // An idle second command centre must not hide or duplicate the first centre's builder.
+            am second = centre.a(true); second.eh = 92; second.bX = engine.bs; second.cm = 1;
+            am.bE.add(second);
+            int liveBeforePlan = am.bE.size(), ordersBeforePlan = engine.cf.b.size(); double creditsBeforePlan = engine.bs.o;
+            Map<?, ?> global = EconomyHarness.obj(check("GET", "/economy/builder-production", 200, "totalBuildersQueued"));
+            require(((Number) global.get("producerId")).longValue() == 91, "the existing builder queue is selected before an idle second producer");
+            require(((Number) global.get("totalBuildersQueued")).intValue() == 1, "builder queue count covers all own producers");
+            require(am.bE.size() == liveBeforePlan && engine.cf.b.size() == ordersBeforePlan && engine.bs.o == creditsBeforePlan,
+                    "global builder queue inventory does not create units, commands, or charges");
+            check("POST", order.replace("unitId=91", "unitId=92").replace("builder-1", "builder-second"), 409, "already in production");
             check("POST", order.replace("builder-1", "builder-2"), 409, "already in production");
             check("POST", order.replace("unitId=91", "unitId=99").replace("builder-1", "builder-foreign"), 409, "not found");
             check("POST", order.replace(session, "old"), 409, "session changed");
@@ -90,6 +100,8 @@ public final class BuilderHarness {
 
             // The action price is real: with too little money the native action is not usable.
             engine.bs.o = 100;
+            Map<?, ?> poorPlan = EconomyHarness.obj(check("GET", "/economy/builder-production", 200, "builderActionAffordable"));
+            require(Boolean.FALSE.equals(poorPlan.get("builderActionAffordable")), "insufficient native credits are reported independently of menu availability");
             check("POST", order.replace("builder-1", "builder-poor"), 409, "unavailable");
             engine.bs.o = 10000;
 

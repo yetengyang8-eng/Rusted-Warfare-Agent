@@ -73,6 +73,7 @@ PyStep 'py:test_development' 'test_development.py' @($distJar)
 PyStep 'py:test_opening' 'test_opening.py' @($distJar)
 PyStep 'py:test_economy' 'test_economy.py' @($distJar)
 PyStep 'py:test_client' 'test_client.py' @($distJar)
+PyStep 'py:test_match_bootstrap' 'test_match_bootstrap.py' @($distJar)
 JavaStep 'java:DiagnosticsHarness' @('DiagnosticsHarness')
 JavaStep 'java:PreflightHarness' @('PreflightHarness')
 PyStep 'py:test_reports' 'test_reports.py' @()
@@ -93,6 +94,8 @@ PyStep 'py:test_battle_reports' 'test_battle_reports.py' @()
 PyStep 'py:test_battle_client' 'test_battle_client.py' @($distJar)
 PyStep 'py:test_strategy_funding' 'test_strategy_funding.py' @($distJar)
 PyStep 'py:test_specialist_lifecycle' 'test_specialist_lifecycle.py' @($distJar)
+PyStep 'py:test_local_army' 'test_local_army.py' @($distJar)
+PyStep 'py:test_surplus_spending' 'test_surplus_spending.py' @($distJar)
 PyStep 'py:test_target_compatibility' 'test_target_compatibility.py' @($distJar)
 PyStep 'py:test_recon_client' 'test_recon_client.py' @($distJar)
 PyStep 'py:test_recon_frontier_client' 'test_recon_frontier_client.py' @($distJar)
@@ -102,6 +105,8 @@ PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
 Step 'java:ReportCommitHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.ReportCommitHarness }
 Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
+Step 'java:LocalArmyContractHarness' { & $java -cp $cp io.rwagent.client.LocalArmyContractHarness }
+Step 'java:SurplusSpendingHarness' { & $java -cp $cp io.rwagent.client.SurplusSpendingHarness }
 PyStep 'py:test_global_strategy_audit' 'test_global_strategy_audit.py' @()
 
 Write-Host ''

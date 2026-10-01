@@ -112,8 +112,9 @@ final class EconomyBridge {
                 Object action=builderAction(unit);
                 if(action==null)return CommandResult.error(409,"unit has no native builder production action");
                 if(!usable(action,unit))return CommandResult.error(409,"builder action unavailable, locked, or insufficient credits");
-                int queued=queuedCount(unit,action);
-                if(queued>0)return CommandResult.error(409,"a builder is already in production");
+                if(!FACTORY.isInstance(unit))return CommandResult.error(409,"builder production requires a native factory queue");
+                if(allBuildersQueued()>0)return CommandResult.error(409,"a builder is already in production");
+                if(queueCount(unit)!=0)return CommandResult.error(409,"producer queue must be empty before builder production");
                 if(countBuilders()>0)return CommandResult.error(409,"a builder already exists");
                 as type=(as)invoke(TYPE,action);
                 e command=bridge.engine.cf.b(bridge.engine.bs);command.a(unit);invoke(SET_ACTION,command,invoke(ACTION_ID,action));
@@ -336,6 +337,15 @@ final class EconomyBridge {
         try {return ((Number)invoke(method(FACTORY,"a",ACTION_ID.getReturnType(),boolean.class),unit,invoke(ACTION_ID,action),false)).intValue();}
         catch(Exception error){throw new IllegalStateException("Native queued unit mapping failed",error);}
     }
+    /** The recovery/bootstrap contract is global: another producer's builder also prevents an order. */
+    private int allBuildersQueued() {
+        int queued=0;am[] live=am.bE.a();
+        for(int i=0;i<am.bE.size();i++) {
+            am u=live[i];if(u==null || !FACTORY.isInstance(u) || ownUnit(u.eh)==null)continue;
+            Object a=builderAction(u);if(a!=null)queued+=Math.max(0,queuedCount(u,a));
+        }
+        return queued;
+    }
     /**
      * Read-only inventory of one own unit's native actions (输出10 §6). It answers the recovery
      * question honestly: if a builder has no repair/assist/continue-construction action at all, then a
@@ -378,16 +388,23 @@ final class EconomyBridge {
      */
     private CommandResult builderProduction() {
         as builder=resolved(ar.valueOf("builder"));
-        am selected=null;Object selectedAction=null;int builders=0;
+        am selected=null;Object selectedAction=null;int builders=0,totalQueued=0,producers=0,rank=-1;
         am[] live=am.bE.a();
         for(int i=0;i<am.bE.size();i++) {
             am u=live[i];if(u==null)continue;
             y own=ownUnit(u.eh);if(own==null)continue;
             if(u.r()==builder)builders++;
+            if(!FACTORY.isInstance(own))continue;
             Object action=builderAction(own);
-            if(action==null || !Boolean.TRUE.equals(invoke(AVAILABLE,action,own)))continue;
+            if(action==null)continue;
+            producers++;
+            int queued=queuedCount(own,action);totalQueued+=Math.max(0,queued);
+            boolean available=Boolean.TRUE.equals(invoke(AVAILABLE,action,own));
+            if(queued<=0 && !available)continue;
             boolean centre="commandCenter".equals(u.r().i());
-            if(selected==null || centre) { selected=u;selectedAction=action;if(centre)break; }
+            // Observe an existing builder queue first; otherwise prefer an idle native producer.
+            int candidateRank=queued>0?8:(queueCount(own)==0?4:0);if(centre)candidateRank++;
+            if(selected==null || candidateRank>rank) { selected=u;selectedAction=action;rank=candidateRank; }
         }
         if(selected==null)return CommandResult.error(409,"no completed own building exposes an available native builder action");
         as type=(as)invoke(TYPE,selectedAction);
@@ -396,9 +413,12 @@ final class EconomyBridge {
             +",\"producerType\":\""+escape(selected.r().i())+"\",\"queueCount\":"+queueCount(selected)
             +",\"buildersQueued\":"+queued+",\"builderActionId\":\""+escape(String.valueOf(invoke(ACTION_ID,selectedAction)))+"\""
             +",\"builderActionClass\":\""+escape(selectedAction.getClass().getSimpleName())+"\""
-            +",\"builderActionAvailable\":true,\"builderCost\":"+invoke(COST,selectedAction)
+            +",\"builderActionAvailable\":"+Boolean.TRUE.equals(invoke(AVAILABLE,selectedAction,selected))
+            +",\"builderActionAffordable\":"+Boolean.TRUE.equals(invoke(AFFORDABLE,selectedAction,selected,true))
+            +",\"builderCost\":"+invoke(COST,selectedAction)
             +",\"builderType\":\""+escape(type.i())+"\",\"availableCredits\":"+format(bridge.engine.bs.o)
-            +",\"existingBuilders\":"+builders+",\"builderOrderPending\":"+(queued>0)+"}");
+            +",\"existingBuilders\":"+builders+",\"totalBuildersQueued\":"+totalQueued
+            +",\"builderProducers\":"+producers+",\"builderOrderPending\":"+(totalQueued>0)+"}");
     }
     private Site site(y builder,as type,float x,float yy) { return site(builder,type,x,yy,240); }
     private Site site(y builder,as type,float x,float yy,int range) {

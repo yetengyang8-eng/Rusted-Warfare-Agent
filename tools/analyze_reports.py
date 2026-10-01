@@ -11,7 +11,7 @@ import math
 from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 
-KINDS = ('battle', 'frontier', 'development', 'opening', 'economy', 'roundtrip', 'record', 'move')
+KINDS = ('bootstrap', 'battle', 'frontier', 'development', 'opening', 'economy', 'roundtrip', 'record', 'move')
 COMPLETED = {'extractor_completed': 'mines', 'factory_completed': 'factories', 'tank_completed': 'tanks'}
 
 def numeric(v):
@@ -185,6 +185,35 @@ def analyze_file(path, base=None):
     if kind=='battle':
         from battle_reports import validate_battle
         validate_battle(rows,summary,issue)
+    if kind=='bootstrap':
+        modes={'EXISTING_BUILDER','EXISTING_BUILDER_QUEUE','AUTOMATIC_NATIVE_PRODUCTION','UNDETERMINED'}
+        if summary.get('bootstrapMode') not in modes:issue('BOOTSTRAP_MODE_UNKNOWN','Missing explicit startup conditions')
+        commands=summary.get('automaticProductionCommands')
+        if commands not in (0,1) or commands!=observed_commands:issue('BOOTSTRAP_COMMAND_COUNT','At most one accepted native production order')
+        if summary.get('outcome')=='PASS':
+            completed=[r['data'] for r in rows if r['event'] in ('bootstrap_existing_builder','bootstrap_builder_completed')]
+            ready=[r['data'] for r in rows if r['event']=='bootstrap_ready']
+            own=next((r['data'].get('ownUnits',[]) for r in reversed(rows) if r['event']=='observation'),[])
+            unit=next((u for u in own if u.get('id')==summary.get('builderId')),None)
+            if not completed or len(ready)!=1 or ready[0].get('builderId')!=summary.get('builderId'):
+                issue('BOOTSTRAP_READY_EVIDENCE_MISSING','PASS requires observed available builder and fresh preflight')
+            if (unit is None or unit.get('dead') or not numeric(unit.get('buildProgress')) or unit['buildProgress']<1
+                    or not numeric(unit.get('hp')) or unit['hp']<=0
+                    or not isinstance(summary.get('resolvedBuilderType'),str) or unit.get('type')!=summary['resolvedBuilderType']):
+                issue('BOOTSTRAP_READY_UNIT_MISSING','Selected builder must remain complete in final own observation')
+            final_preflight=next((r['data'] for r in reversed(rows) if r['event']=='preflight'),{})
+            if (not final_preflight.get('commandsAllowed') or final_preflight.get('recommendation') not in ('RUN_DEVELOP','RUN_ECONOMY_OR_OPENING')
+                    or not ready or ready[-1].get('recommendation')!=final_preflight.get('recommendation')):
+                issue('BOOTSTRAP_READY_PREFLIGHT_INVALID','PASS requires a fresh allowed continuation preflight')
+            evidence=summary.get('completionEvidence')
+            if evidence=='NEW_OWN_UNIT_AND_NATIVE_QUEUE_CYCLE' and not summary.get('queueObserved'):
+                issue('BOOTSTRAP_UNOBSERVED_QUEUE_CLAIM','Queue cycle evidence requires an observed native queue')
+            if evidence=='NEW_READY_BUILDER_AFTER_ACCEPTED_ORDER' and (commands!=1 or summary.get('queueObserved')):
+                issue('BOOTSTRAP_FAST_COMPLETION_EVIDENCE_INVALID','Fast completion requires one accepted order and an explicit unobserved queue')
+            if summary.get('bootstrapMode')=='AUTOMATIC_NATIVE_PRODUCTION' and commands!=1:
+                issue('BOOTSTRAP_AUTOMATIC_ORDER_MISSING','Automatic bootstrap requires one accepted order')
+            if summary.get('bootstrapMode')=='EXISTING_BUILDER_QUEUE' and commands!=0:
+                issue('BOOTSTRAP_DUPLICATE_EXISTING_QUEUE','Existing pending builder must not trigger a second order')
     overlaps = set()
     for interval in intervals:
         ids = [uid for uid, timestamp in tanks if interval['startWallTimeMs'] <= timestamp <= interval['endWallTimeMs']]

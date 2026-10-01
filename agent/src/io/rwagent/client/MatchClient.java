@@ -6,11 +6,8 @@ public final class MatchClient {
     static int run(String[] args){
         try{
             int seconds=BattleBudget.seconds(args);
-            int port=Integer.getInteger("rwagent.port",47653);
-            AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+"/economy/preflight");
-            if(r.status!=200)throw new IllegalStateException("Preflight: "+r.body);
-            Map<?,?> p=(Map<?,?>)Json.parse(r.body);String recommendation=(String)p.get("recommendation");
-            if(!Boolean.TRUE.equals(p.get("commandsAllowed")))throw new IllegalStateException("Preflight: "+r.body);
+            BootstrapClient bootstrap=new BootstrapClient();int boot=bootstrap.run();if(boot!=0)return boot;
+            Map<?,?> p=bootstrap.preflight();String recommendation=(String)p.get("recommendation");
             if("RUN_ECONOMY_OR_OPENING".equals(recommendation)){
                 int code=new EconomyClient().run(new String[0],false);if(code!=0)return code;
                 code=new DevelopmentClient(false).run(new String[]{"6","1"});if(code!=0)return code;

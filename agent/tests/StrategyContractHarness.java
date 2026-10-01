@@ -136,6 +136,12 @@ public final class StrategyContractHarness {
         builder.put("x",1890);builder.put("y",1890);factory.put("productionQueue",0);world.put("gameTimeMs",130000L);f.stamp(world);
         strategy.observe(world,empty,scout,Collections.emptyList(),0,890000,60,0,0,false);
         require(strategy.safetyCapacityAvailable()&&f.events("strategy_prospect_observed")==1,"only fresh owned arrival and freed capacity complete prospect accounting");
+        int existingCommitment=strategy.committedArmedForPolicy();
+        strategy.noteUnobservedCombatSlots(3-existingCommitment);
+        require(!strategy.safetyCapacityAvailable(),"paid product observation gap reserves capacity for capability and support paths");
+        require(strategy.committedArmedForPolicy()==existingCommitment,"external paid slots stay separate from native bound to avoid duplicate counting");
+        strategy.noteUnobservedCombatSlots(0);
+        require(strategy.safetyCapacityAvailable(),"fulfilled product observation releases external capacity accounting");
         strategy.close();require(!f.gate.reserved(3),"remote construction worker releases at end");
     }
     static final class FundingFixture {

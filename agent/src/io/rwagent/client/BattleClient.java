@@ -13,8 +13,12 @@ public final class BattleClient implements StrategyDirector.Host {
     private long time,lastDecision=-1000,lastTactic=-10000,startTime,lastFrame=-1,frameAt=System.nanoTime();
     private final CommandArbiter execution=new CommandArbiter();
     private final StrategyDirector strategy=new StrategyDirector(this,execution);
+    private final LocalArmyDirector localArmies=new LocalArmyDirector();
+    private boolean localArmyActive;
     private final Set<Long> seenOwn=new HashSet<Long>(),lost=new HashSet<Long>();
     private final Map<Long,Pending> pending=new LinkedHashMap<Long,Pending>();
+    private SurplusSpendingPolicy.Ledger artilleryLedger=SurplusSpendingPolicy.Ledger.empty();
+    private final Map<Long,Long> lastSurplusEvaluation=new HashMap<Long,Long>();
     private final Map<Long,Long> resting=new LinkedHashMap<Long,Long>();
     private final List<Long> avoided=new ArrayList<Long>();
     private double homeX,homeY,targetX,targetY,best=Double.MAX_VALUE;
@@ -553,6 +557,10 @@ public final class BattleClient implements StrategyDirector.Host {
                         +",\"battleSafetyGameSeconds\":"+BattleBudget.gameLimit()+",\"battleSafetyWallSeconds\":"+BattleBudget.wallLimit()
                         +",\"reportCommitMemoryMiB\":8,\"reportDiskLimitMiB\":"+Math.max(64,Math.min(4096,Integer.getInteger("rwagent.reportLimitMiB",1024)))
                         +",\"reconExpendableHpMaxFraction\":0.45,\"reconFrontierMinMainForce\":6"
+                        +",\"localArmyContract\":\"BOUNDED_LOCAL_COHORTS_V1\",\"localArmyMaxCohorts\":4"
+                        +",\"localArmyMaxMembers\":48,\"localArmyFormationMinimum\":6,\"localArmyReleaseBelow\":3"
+                        +",\"localArmyFormationRadiusWorld\":400,\"localArmyTargetRadiusWorld\":1400"
+                        +",\"localArmyOrderIntervalGameMs\":8000,\"localArmyMemoryHoldGameMs\":30000"
                         +"}");
                 long wallStart=System.nanoTime();wallStartNanos=wallStart;
                 startCredits=n(obj(state.get("player")),"credits");
@@ -578,6 +586,7 @@ public final class BattleClient implements StrategyDirector.Host {
                         lastScout=scoutState;
                         confirm(state);updatePending(state);
                         updateMilitaryUrgency(state,enemies);
+                        strategy.noteUnobservedCombatSlots(artilleryLedger.unobservedSlots(state));
                         strategy.observe(state,enemies,scoutState,mainArmy(state),startTime,seconds*1000L-(time-startTime),
                                 modelledIncomePerGameSecond(state),productionConsumptionPerGameSecond(),strategyReserve(),buildJob!=null);
                         if(searchTarget!=null&&strategy.rejected(searchTarget.sourceEnemyId)){
@@ -956,6 +965,12 @@ public final class BattleClient implements StrategyDirector.Host {
         }
         Map<String,Object> menu=get("/combat/production","production_menu");check(menu);
         List<Map<String,Object>> factories=list(menu,"factories");
+        double ordinaryQuote=-1;
+        for(Map<String,Object> factory:factories)for(Map<String,Object> action:list(factory,"actions"))
+            if("heavyTank".equals(action.get("type"))&&n(action,"cost")>0)ordinaryQuote=n(action,"cost");
+        if(ordinaryQuote<0)for(Map<String,Object> factory:factories)for(Map<String,Object> action:list(factory,"actions"))
+            if(("c_tank".equals(action.get("type"))||"tank".equals(action.get("type")))&&n(action,"cost")>0)ordinaryQuote=n(action,"cost");
+        strategy.noteOrdinaryNativePrice(ordinaryQuote);
         List<Long> producerIds=new ArrayList<Long>();for(Map<String,Object> factory:factories)producerIds.add(id(factory));
         execution.observeProductionActors(execution.stamp(),producerIds);
         // P2-B2 Global Production Budget (杈撳嚭13 搂3-搂7). The mainline unit and its primary producer are
@@ -1013,6 +1028,19 @@ public final class BattleClient implements StrategyDirector.Host {
                         &&!wouldBreachCapabilityReserve(state,n(a,"cost")))score=5;
                 if(score>priority){priority=score;chosen=a;}
             }
+            SurplusSpendingPolicy.Decision surplus=null;boolean qualitySelected=false;
+            if(strategy.enabled()&&(chosen==null||!"upgrade".equals(chosen.get("type")))){
+                int ordinary=0;for(Map<String,Object> unit:mainArmy(state))if(!SurplusSpendingPolicy.PRODUCT.equals(unit.get("type")))ordinary++;
+                surplus=SurplusSpendingPolicy.evaluate(new SurplusSpendingPolicy.Inputs(state,lastEnemies,f,artilleryLedger,
+                    strategy.armyTarget(),mobileUnitHardCap,ordinary,strategy.committedArmedForPolicy(),
+                    strategyReserve()+strategy.capabilityReserve()+primaryReserve,URGENCY_EMERGENCY.equals(militaryUrgency)));
+                Long last=lastSurplusEvaluation.get(fid);
+                if(surplus.selected||last==null||time-last>=10000){
+                    Map<String,Object> evidence=new LinkedHashMap<String,Object>(surplus.evidence);evidence.put("gameTimeMs",time);
+                    event("surplus_spending_evaluated",json(evidence));lastSurplusEvaluation.put(fid,time);
+                }
+                if(surplus.selected){chosen=surplus.action;qualitySelected=true;}
+            }
             if(chosen==null){
                 Map<String,Object> blocked=reserveBlockedCandidate(f,state);
                 if(blocked!=null)reportProductionDeferred(f,blocked,state,"BUILDER_RECOVERY",builderReserve);
@@ -1052,7 +1080,7 @@ public final class BattleClient implements StrategyDirector.Host {
             }
             // 杈撳嚭13 搂5: the primary producer never degrades to a cheap unit while its mainline action is
             // merely unaffordable. It waits, and the money is protected for it. Upgrades stay allowed.
-            if(primary&&preferred!=null&&mainlineType!=null&&!mainlineType.equals(chosen.get("type"))
+            if(!qualitySelected&&primary&&preferred!=null&&mainlineType!=null&&!mainlineType.equals(chosen.get("type"))
                &&isUnitAction((String)chosen.get("type"))){
                 reportProductionDeferred(f,preferred,state,"PRIMARY_PRODUCTION",Math.max(0,mainlineCost));
                 if(idleReason==null)idleReason="BANKING_FOR_PRIMARY_UNIT";
@@ -1085,7 +1113,7 @@ public final class BattleClient implements StrategyDirector.Host {
                     reportSecondaryInvestment(f,chosenUpgrade,chosen,state,banked,primaryReserve);
                 }
             }
-            if(preferred!=null&&!preferred.get("type").equals(chosen.get("type"))){
+            if(!qualitySelected&&preferred!=null&&!preferred.get("type").equals(chosen.get("type"))){
                 // 杈撳嚭9 搂8: distinguish "money could not reach the preferred unit" from "policy kept the
                 // money back on purpose"; only the first is a production_decision fallback.
                 if(builderReserve>0&&Boolean.TRUE.equals(preferred.get("affordable"))&&wouldBreachMineReserve(state,n(preferred,"cost")))
@@ -1097,6 +1125,12 @@ public final class BattleClient implements StrategyDirector.Host {
             }
             Map<String,Object> receipt=post("/command/queue?unitId="+fid+"&actionId="+URLEncoder.encode((String)chosen.get("actionId"),"UTF-8"));
             if(receipt==null)return false;
+            if(qualitySelected){
+                artilleryLedger=artilleryLedger.accepted(state,fid,time);
+                Map<String,Object> evidence=new LinkedHashMap<String,Object>(surplus.evidence);
+                evidence.put("gameTimeMs",time);evidence.put("actionId",chosen.get("actionId"));evidence.put("receipt",receipt);
+                event("surplus_role_ordered",json(evidence));
+            }
             spend("upgrade".equals(chosen.get("type"))?SPEND_FACTORY_UPGRADE:SPEND_UNIT,
                   n(chosen,"cost"),String.valueOf(chosen.get("type")),fid);
             if(pendingFallback!=null){
@@ -2000,6 +2034,14 @@ public final class BattleClient implements StrategyDirector.Host {
         }
         List<Map<String,Object>> force=new ArrayList<Map<String,Object>>();for(Map<String,Object> u:army){Long until=resting.get(id(u));if(until==null||time>=until)force.add(u);}
         if(force.isEmpty())return;
+        localArmies.observe(force,time);
+        for(Map<String,Object> change:localArmies.drainChanges())event("local_army_membership",json(change));
+        boolean multiple=localArmies.multiple();
+        if(localArmyActive!=multiple){
+            localArmyActive=multiple;targetReady=false;
+            event("local_army_mode",json(StrategyDirector.map("active",multiple,"gameTimeMs",time)));
+        }
+        if(multiple){localTactics(state,enemies,force);return;}
         // P1-B: record any fresh legal observation as a search objective. This has to happen before
         // the tactical layers return, because the objective is only used once they have nothing left.
         updateSearchTargets(state,enemies);
@@ -2097,6 +2139,151 @@ public final class BattleClient implements StrategyDirector.Host {
         if(attack(force,n(plan,"targetX"),n(plan,"targetY"),"KNOWN_FRONTIER",null)){
             targetReady=true;targetAt=progressAt=time;best=distance(scout,targetX,targetY);targetTile=((Number)plan.get("targetTile")).longValue();
         }
+    }
+
+    /** Multiple main groups keep independent local goals. All commands still use the default main
+     * owner and the single CommandArbiter; a cohort label never grants an actor a task lease.
+     */
+    private void localTactics(Map<String,Object> state,Map<String,Object> enemies,List<Map<String,Object>> force)throws Exception{
+        updateSearchTargets(state,enemies);pruneTargetProgress();marching=true;
+        Map<Long,Map<String,Object>> own=LocalArmyDirector.index(force);
+        Map<Long,LocalTarget> choices=new LinkedHashMap<Long,LocalTarget>();
+        Map<Long,List<Map<String,Object>>> engaging=new LinkedHashMap<Long,List<Map<String,Object>>>();
+        Map<Long,Map<String,Object>> chosenEnemies=new LinkedHashMap<Long,Map<String,Object>>();
+        // Observe progress for every accepted engagement before any one group consumes the command.
+        // Two groups attacking the same target contribute a single own-actor union to the old guard.
+        for(LocalArmyDirector.Cohort cohort:localArmies.rotation()){
+            List<Map<String,Object>> members=cohort.units(own);
+            LocalTarget choice=localTarget(cohort,members,enemies,true);
+            if(choice==null)continue;
+            choices.put(cohort.id,choice);logTargetGuard(choice.enemy,choice.guard);
+            long target=id(choice.enemy);List<Map<String,Object>> combined=engaging.get(target);
+            if(combined==null){combined=new ArrayList<Map<String,Object>>();engaging.put(target,combined);}
+            combined.addAll(choice.guard.assigned);chosenEnemies.put(target,choice.enemy);
+        }
+        Set<Long> stalled=new HashSet<Long>();
+        for(Map.Entry<Long,List<Map<String,Object>>> engagement:engaging.entrySet()){
+            Map<String,Object> target=chosenEnemies.get(engagement.getKey());
+            if(trackTargetProgress(engagement.getValue(),enemies,target))stalled.add(engagement.getKey());
+            else announceRetryIfAny(target);
+        }
+        for(LocalArmyDirector.Cohort cohort:localArmies.rotation()){
+            List<Map<String,Object>> members=cohort.units(own);
+            if(members.size()<LocalArmyDirector.RELEASE_BELOW)continue;
+            LocalTarget choice=choices.get(cohort.id);
+            if(choice!=null){
+                Map<String,Object> target=choice.enemy;GuardSelection guard=choice.guard;
+                if(stalled.contains(id(target)))continue;
+                boolean changed=cohort.targetId==null||cohort.targetId.longValue()!=id(target);
+                if((cohort.due(time)||changed||Math.hypot(n(target,"x")-cohort.goalX,n(target,"y")-cohort.goalY)>160)
+                        &&attackLocal(cohort,guard.assigned,n(target,"x"),n(target,"y"),"OBSERVED_ENEMY",target)){
+                    cohort.frontierActive=false;return;
+                }
+                continue;
+            }
+            if(cohort.frontierActive){
+                double nearest=Double.MAX_VALUE;
+                for(Map<String,Object> unit:members)nearest=Math.min(nearest,distance(unit,cohort.goalX,cohort.goalY));
+                if(nearest+12<cohort.bestDistance){cohort.bestDistance=nearest;cohort.progressAt=time;}
+                if(nearest<65||time-cohort.progressAt>20000||time-cohort.frontierAt>75000){
+                    event(nearest<65?"local_army_frontier_arrived":"local_army_frontier_blocked",json(
+                            StrategyDirector.map("cohortId",cohort.id,"targetTile",cohort.frontierTile,
+                                "distance",nearest,"gameTimeMs",time)));
+                    if(cohort.frontierTile>=0){cohort.avoided.add(cohort.frontierTile);
+                        if(cohort.avoided.size()>16)cohort.avoided.remove(cohort.avoided.iterator().next());}
+                    cohort.frontierActive=false;
+                }else{
+                    List<Map<String,Object>> idle=new ArrayList<Map<String,Object>>();
+                    for(Map<String,Object> unit:members)if(!onAttackGoal(unit,cohort.goalX,cohort.goalY)
+                            &&distance(unit,cohort.goalX,cohort.goalY)>180)idle.add(unit);
+                    if(!idle.isEmpty()&&cohort.due(time)&&attackLocal(cohort,idle,cohort.goalX,cohort.goalY,"REINFORCE",null))return;
+                    continue;
+                }
+            }
+            if(time-cohort.lastPlanAt<8000)continue;
+            Map<String,Object> anchor=members.get(0);
+            for(Map<String,Object> member:members)if(distance(member,cohort.x,cohort.y)<distance(anchor,cohort.x,cohort.y))anchor=member;
+            StringBuilder exclude=new StringBuilder();for(Long tile:cohort.avoided){if(exclude.length()>0)exclude.append(',');exclude.append(tile);}
+            Map<String,Object> plan=optionalGet("/scout/plan?role=army&unitId="+id(anchor)+"&avoid="+exclude,"local_army_frontier_plan");
+            cohort.lastPlanAt=time;
+            if(plan==null||!"planned".equals(plan.get("status"))){
+                // Fully explored areas may have no frontier. A real distant current contact still
+                // provides a legal advance objective for this group without replacing other groups.
+                LocalTarget distant=localTarget(cohort,members,enemies,false);
+                if(distant!=null&&(cohort.due(time)||cohort.targetId==null
+                        ||cohort.targetId.longValue()!=id(distant.enemy))){
+                    logTargetGuard(distant.enemy,distant.guard);
+                    if(attackLocal(cohort,distant.guard.assigned,n(distant.enemy,"x"),n(distant.enemy,"y"),
+                            "REMOTE_VISIBLE_CONTACT",distant.enemy))return;
+                }
+                continue;
+            }
+            check(plan);
+            if(!(plan.get("targetX") instanceof Number)||!(plan.get("targetY") instanceof Number)
+                    ||!(plan.get("targetTile") instanceof Number))continue;
+            if(attackLocal(cohort,members,n(plan,"targetX"),n(plan,"targetY"),"KNOWN_FRONTIER",null)){
+                cohort.frontierActive=true;cohort.frontierAt=cohort.progressAt=time;
+                cohort.bestDistance=distance(anchor,cohort.goalX,cohort.goalY);
+                cohort.frontierTile=((Number)plan.get("targetTile")).longValue();return;
+            }
+        }
+    }
+
+    private static final class LocalTarget {
+        final Map<String,Object> enemy;final GuardSelection guard;
+        LocalTarget(Map<String,Object> enemy,GuardSelection guard){this.enemy=enemy;this.guard=guard;}
+    }
+    private LocalTarget localTarget(LocalArmyDirector.Cohort cohort,List<Map<String,Object>> members,
+                                    Map<String,Object> enemies,boolean localOnly)throws Exception{
+        Map<String,Object> target=null,held=null;GuardSelection guard=null,heldGuard=null;
+        double score=Double.MAX_VALUE;boolean visibleChoice=false;
+        for(Map<String,Object> enemy:list(enemies,"rememberedEnemies")){
+            if(deprioritized(enemy)||targetSuppressions.containsKey(id(enemy)))continue;
+            double d=Math.hypot(n(enemy,"x")-cohort.x,n(enemy,"y")-cohort.y);
+            if(localOnly&&d>LocalArmyDirector.LOCAL_TARGET_RADIUS)continue;
+            boolean visible=currentEnemy(enemy,enemies);
+            if(!localOnly&&!visible)continue;
+            Long seen=numberOrNull(enemy,"lastSeenGameTimeMs");
+            // A local lost contact is a short-lived hypothesis, never a present threat claim.
+            if(!visible&&(seen==null||time-seen.longValue()>LocalArmyDirector.MEMORY_HOLD_MS))continue;
+            GuardSelection candidate=targetGuard(members,enemy,enemies);
+            if("INCOMPATIBLE".equals(candidate.status)){logTargetGuard(enemy,candidate);continue;}
+            List<Map<String,Object>> eligible=strategy.eligible(enemy,candidate.assigned);
+            if(eligible.isEmpty())continue;
+            if(eligible.size()!=candidate.assigned.size())candidate=targetGuard(eligible,enemy,enemies);
+            if(cohort.targetId!=null&&cohort.targetId.longValue()==id(enemy)){held=enemy;heldGuard=candidate;}
+            double rank=d-(Boolean.TRUE.equals(enemy.get("building"))?150:0)+("UNKNOWN".equals(candidate.status)?120:0);
+            if(target==null||visible&&!visibleChoice||visible==visibleChoice&&rank<score){
+                target=enemy;guard=candidate;score=rank;visibleChoice=visible;
+            }
+        }
+        // Fresh contacts retain precedence over a lost-contact hypothesis. Within that tier a
+        // still-local accepted target is sticky instead of reacting to every remote sighting.
+        if(held!=null&&(currentEnemy(held,enemies)||!visibleChoice)){target=held;guard=heldGuard;}
+        return target==null?null:new LocalTarget(target,guard);
+    }
+
+    private boolean attackLocal(LocalArmyDirector.Cohort cohort,List<Map<String,Object>> force,double x,double y,
+                                String why,Map<String,Object> enemy)throws Exception{
+        if(force.isEmpty()||force.size()>LocalArmyDirector.MAX_MEMBERS)throw new IllegalArgumentException("Invalid local command group");
+        List<Long> actors=new ArrayList<Long>();StringBuilder ids=new StringBuilder();
+        for(Map<String,Object> unit:force){
+            if(!cohort.memberIds().contains(id(unit))||execution.reserved(id(unit)))throw new IllegalArgumentException("Actor outside available cohort");
+            actors.add(id(unit));if(ids.length()>0)ids.append(',');ids.append(id(unit));
+        }
+        event("tactical_intent",json(StrategyDirector.map("cohortId",cohort.id,"reason",why,"targetX",x,"targetY",y,
+                "unitIds",actors,"enemy",enemy,"gameTimeMs",time)));
+        Map<String,Object> receipt=post("/command/attack-move?unitIds="+ids+"&x="+x+"&y="+y);
+        if(receipt==null)return false;
+        Long previous=cohort.targetId,next=enemy==null?null:Long.valueOf(id(enemy));
+        if(enemy!=null)noteTargetOrder(id(enemy),previous);
+        localArmies.accepted(cohort,time,x,y,next);
+        // These shared fields are the last-order diagnostics and receipts, not local scheduling state.
+        selectedTargetEnemyId=next;targetX=x;targetY=y;lastTactic=time;attacks++;awaitingOrder=receipt;
+        event("local_army_order",json(StrategyDirector.map("cohortId",cohort.id,"unitIds",actors,"targetId",next,
+                "previousTargetId",previous,"reason",why,"targetX",x,"targetY",y,"gameTimeMs",time,
+                "requestId",receipt.get("requestId"),"receiptStatus",receipt.get("status"))));
+        return true;
     }
 
     private static final class GuardSelection{
@@ -3377,13 +3564,21 @@ public final class BattleClient implements StrategyDirector.Host {
         String playerKey=player.get("teamId") instanceof Number?"team:"+((Number)player.get("teamId")).longValue():"legacy-local";
         List<Long> ownIds=new ArrayList<Long>();for(Map<String,Object> unit:units(s))if(alive(unit))ownIds.add(id(unit));
         execution.observe(new CommandArbiter.Stamp((String)s.get("sessionId"),playerKey,frame,time),ownIds);
+        artilleryLedger=artilleryLedger.observe(s,time);
+        for(Map<String,Object> transition:artilleryLedger.transitions){
+            Map<String,Object> data=new LinkedHashMap<String,Object>(transition);data.put("gameTimeMs",time);
+            event("surplus_role_commitment_update",json(data));
+        }
         return s;
     }
     private static boolean onAttackGoal(Map<String,Object> unit,double x,double y){
         return "attackMove".equals(unit.get("orderType"))&&unit.get("orderX") instanceof Number&&unit.get("orderY") instanceof Number
                 &&Math.hypot(n(unit,"orderX")-x,n(unit,"orderY")-y)<1;
     }
-    private int productionLimit(){return strategy.enabled()?(strategy.safetyCapacityAvailable()?Math.min(mobileUnitHardCap,strategy.armyTarget()):0):mobileUnitHardCap;}
+    private int productionLimit(){
+        if(strategy.enabled()&&lastState!=null&&strategy.committedArmedForPolicy()+artilleryLedger.unobservedSlots(lastState)>=Math.min(mobileUnitHardCap,strategy.armyTarget()))return 0;
+        return strategy.enabled()?(strategy.safetyCapacityAvailable()?Math.min(mobileUnitHardCap,strategy.armyTarget()):0):mobileUnitHardCap;
+    }
     private double strategyReserve(){return builderReserve+investmentReserve+(buildJob!=null&&!buildJob.started?buildJob.cost:0);}
     public Map<String,Object> readStrategy(String path,String kind)throws Exception{
         Map<String,Object> answer=optionalGet(path,kind);if(answer!=null)check(answer);return answer;

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: the same 21 Java runs and 18 Python suites as test-win.ps1.
+# Regression: the same 23 Java runs and 21 Python suites as test-win.ps1.
 set -euo pipefail
 root="$(cd "$(dirname "$0")" && pwd)"
 game_jar="${1:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
@@ -8,6 +8,7 @@ bash "$root/build.sh" "$game_jar"
 classpath="$game_jar:$libs_dir/*:$root/dist/rw-agent-bootstrap.jar"
 mkdir -p "$root/build/tests"
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/SmokeHarness.java" "$root/tests/BridgeHarness.java" "$root/tests/EconomyHarness.java" "$root/tests/OpeningHarness.java" "$root/tests/ProductionPlanHarness.java" "$root/tests/DiagnosticsHarness.java" "$root/tests/PreflightHarness.java" "$root/tests/ScoutHarness.java" "$root/tests/TerrainMemoryHarness.java" "$root/tests/GuardHarness.java" "$root/tests/CapabilityHarness.java" "$root/tests/TargetCompatibilityHarness.java" "$root/tests/BuilderHarness.java" "$root/tests/ReachabilityHarness.java" "$root/tests/CombatHarness.java" "$root/tests/ReportCommitHarness.java" "$root/tests/ExecutionContractHarness.java" "$root/tests/StrategyContractHarness.java"
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/LocalArmyContractHarness.java" "$root/tests/SurplusSpendingHarness.java"
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" SmokeHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" BridgeHarness disabled
@@ -19,6 +20,7 @@ python3 "$root/tests/test_development.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_opening.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_economy.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_client.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_match_bootstrap.py" "$root/dist/rw-agent-bootstrap.jar"
 
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" DiagnosticsHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" PreflightHarness
@@ -43,6 +45,8 @@ python3 "$root/tests/test_battle_reports.py"
 python3 "$root/tests/test_battle_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_strategy_funding.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_specialist_lifecycle.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_local_army.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_surplus_spending.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"
@@ -55,5 +59,7 @@ java -Xmx96m -cp "$classpath:$root/build/tests" io.rwagent.client.ReportCommitHa
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarness
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyContractHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.LocalArmyContractHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.SurplusSpendingHarness
 
 python3 "$root/tests/test_global_strategy_audit.py"

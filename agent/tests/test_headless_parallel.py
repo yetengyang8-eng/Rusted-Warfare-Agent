@@ -270,6 +270,13 @@ class AbProfileLaunchTests(unittest.TestCase):
 
 
 class OwnerAndReportTests(unittest.TestCase):
+    def test_match_reports_accept_bootstrap_and_preserve_legacy_contract(self):
+        runner.validate_match_report_tasks(['battle', 'economy', 'development'])
+        runner.validate_match_report_tasks(['bootstrap', 'battle', 'economy', 'development'])
+        for tasks in (['bootstrap', 'battle', 'economy'], ['bootstrap', 'bootstrap', 'battle', 'economy', 'development'],
+                      ['battle', 'battle', 'economy', 'development'], ['other', 'battle', 'economy', 'development']):
+            with self.subTest(tasks=tasks), self.assertRaises(RuntimeError):
+                runner.validate_match_report_tasks(tasks)
     def test_health_must_prove_the_exact_work_and_report_owner(self):
         with tempfile.TemporaryDirectory() as temporary:
             work = Path(temporary) / '实例 A'

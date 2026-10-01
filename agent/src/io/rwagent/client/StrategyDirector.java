@@ -75,7 +75,13 @@ final class StrategyDirector {
         return capabilityFunding!=null&&credits-cost<capabilityFunding.cost+Math.max(0,otherReserved);
     }
     boolean pending(long actor){return purchases.containsKey(actor);}
-    boolean safetyCapacityAvailable(){return !enabled||state==null||committedArmed()<hardCap;}
+    private double ordinaryNativePrice=-1;
+    private int unobservedCombatSlots;
+    void noteUnobservedCombatSlots(int slots){unobservedCombatSlots=Math.max(0,slots);}
+    private long lastIncomeSurplusHold=-100000;
+    void noteOrdinaryNativePrice(double price){if(Double.isFinite(price)&&price>0)ordinaryNativePrice=price;}
+    int committedArmedForPolicy(){return state==null?0:committedArmed();}
+    boolean safetyCapacityAvailable(){return !enabled||state==null||committedArmed()+unobservedCombatSlots<hardCap;}
     private int committedArmed(){
         int count=0;
         for(Map<String,Object> u:units(state))if(alive(u)){
@@ -374,6 +380,15 @@ final class StrategyDirector {
         double upgradeGain=12.07*.5;
         if(!homeEmergency&&force>=activeTarget&&(!unserved||engineers>0)&&remaining/1000.0>1400/upgradeGain+180
                 &&(force<armyTarget||consumption>income*.3)){
+            if(ordinaryNativePrice<=0){
+                Map<String,Object> nativeProduction=host.readStrategy("/combat/production","strategy_price_menu");
+                double quote=-1;
+                if(nativeProduction!=null)for(Map<String,Object> factory:items(nativeProduction,"factories"))for(Map<String,Object> action:items(factory,"actions"))
+                    if("heavyTank".equals(action.get("type"))&&n(action,"cost")>0)quote=n(action,"cost");
+                if(quote<0&&nativeProduction!=null)for(Map<String,Object> factory:items(nativeProduction,"factories"))for(Map<String,Object> action:items(factory,"actions"))
+                    if(("tank".equals(action.get("type"))||"c_tank".equals(action.get("type")))&&n(action,"cost")>0)quote=n(action,"cost");
+                noteOrdinaryNativePrice(quote);
+            }
             Map<String,Object> menu=host.readStrategy("/economy/investments","strategy_investment_menu");
             if(menu!=null)for(Map<String,Object> candidate:items(menu,"units")){
                 Map<String,Object> mine=find(state,id(candidate));
@@ -383,6 +398,15 @@ final class StrategyDirector {
                 // A near, safe new site is cheaper per added income; leave its funds and builder first.
                 boolean cheaperMineReady=backlog>0&&idleWorkerNearResource();
                 if(cheaperMineReady||free<cost+800||remaining/1000.0<payback+180)continue;
+                SurplusSpendingPolicy.Decision growth=SurplusSpendingPolicy.incomeExpansion(credits,
+                    protectedFunds+capabilityReserve(),cost,ordinaryNativePrice,income,consumption,force,armyTarget);
+                if(!growth.selected){
+                    if(now-lastIncomeSurplusHold>=10000){
+                        lastIncomeSurplusHold=now;Map<String,Object> hold=new LinkedHashMap<String,Object>(growth.evidence);
+                        hold.put("mineId",id(candidate));emit("mine_income_investment_deferred",hold);
+                    }
+                    continue;
+                }
                 alternatives.put("selected","MINE_T2_INCOME_INVESTMENT");alternatives.put("paybackEstimateGameSeconds",payback);
                 alternatives.put("incomeModel","T1_MEASURED_X_FROZEN_12_OVER_8_RATIO");alternatives.put("action",candidate);emit("strategy_allocation",alternatives);
                 Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")));

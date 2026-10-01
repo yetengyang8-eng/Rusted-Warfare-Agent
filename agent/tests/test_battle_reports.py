@@ -17,6 +17,23 @@ def sample(outcome='VICTORY'):
     summary={'outcome':'PASS','matchOutcome':outcome,'ownLosses':0,'newCombatUnits':0,'attackOrders':1,'attackOrdersConfirmed':1,'upgradesCompleted':0,'retreatOrders':0}
     return [{'event':e,'data':copy.deepcopy(d)} for e,d in rows],summary
 
+def local_sample():
+    rows,summary=sample()
+    rows.insert(1,{'event':'local_army_membership','data':{'cohortId':1,'unitIds':[9],'reason':'LOCAL_FORMATION'}})
+    plan=next(r for r in rows if r['event']=='army_frontier_plan')
+    plan['event']='local_army_frontier_plan';plan['data'].update(anchorUnitId=9,targetTile=17)
+    intent=next(r for r in rows if r['event']=='tactical_intent')
+    intent['data'].update(cohortId=1,unitIds=[9])
+    return rows,summary
+
+def append_order(rows,summary,cohort=1,reason='REINFORCE',uid=9,x=100,y=200,request='r2',time=3000):
+    rows[-2]['data']['gameTimeMs']=time+1000
+    rows[-2:-2]=[
+        {'event':'tactical_intent','data':{'cohortId':cohort,'reason':reason,'unitIds':[uid],'targetX':x,'targetY':y}},
+        {'event':'action','data':{'gameTimeMs':time,'path':'/command/attack-move?unitIds=%s&x=%s&y=%s&sessionId=s&requestId=%s'%(uid,x,y,request)}},
+        {'event':'command_result','data':{'status':'queued','sessionId':'s','requestId':request,'unitIds':[uid],'targetX':x,'targetY':y}}]
+    summary['attackOrders']+=1
+
 class BattleEvidence(unittest.TestCase):
     def issues(self,rows,summary):
         issues=[];validate_battle(rows,summary,lambda code,detail:issues.append(code));return issues
@@ -79,4 +96,66 @@ class BattleEvidence(unittest.TestCase):
         rows.insert(len(rows)-1,{'event':'own_loss','data':{'unitId':55,'gameTimeMs':1800}})
         s['ownLosses']=1
         self.assertEqual(self.issues(rows,s),[])
+    def test_local_frontier_binds_plan_through_own_cohort_anchor(self):
+        self.assertEqual(self.issues(*local_sample()),[])
+    def test_local_frontier_cannot_borrow_another_cohorts_plan(self):
+        rows,s=local_sample()
+        rows.insert(2,{'event':'local_army_membership','data':{'cohortId':2,'unitIds':[10],'reason':'LOCAL_FORMATION'}})
+        next(r for r in rows if r['event']=='local_army_frontier_plan')['data']['anchorUnitId']=10
+        self.assertIn('BATTLE_FRONTIER_NOT_PLANNED',self.issues(rows,s))
+    def test_local_frontier_unknown_path_is_still_rejected(self):
+        rows,s=local_sample()
+        next(r for r in rows if r['event']=='local_army_frontier_plan')['data']['pathKnown']=False
+        self.assertIn('BATTLE_FRONTIER_NOT_PLANNED',self.issues(rows,s))
+    def test_accepted_local_frontier_survives_another_cohorts_new_plan(self):
+        rows,s=local_sample()
+        other=copy.deepcopy(rows[0]['data']['ownUnits'][0]);other['id']=10
+        rows[0]['data']['ownUnits'].append(other)
+        rows[-2:-2]=[
+            {'event':'local_army_membership','data':{'cohortId':2,'unitIds':[10],'reason':'LOCAL_FORMATION'}},
+            {'event':'local_army_frontier_plan','data':{'status':'planned','pathKnown':True,'anchorUnitId':10,'targetX':400,'targetY':500}}]
+        append_order(rows,s)
+        self.assertEqual(self.issues(rows,s),[])
+    def test_rejected_frontier_and_bookkeeping_do_not_grant_reinforcement(self):
+        rows,s=local_sample()
+        receipt=next(r for r in rows if r['event']=='command_result')
+        receipt.update(event='command_rejected',data={'status':409,'body':'native rejection'})
+        rows[:]=[r for r in rows if r['event']!='attack_order_confirmed']
+        s.update(attackOrders=0,attackOrdersConfirmed=0)
+        rows[-2:-2]=[{'event':'local_army_order','data':{'cohortId':1,'requestId':'r','reason':'KNOWN_FRONTIER','receiptStatus':'queued','targetX':100,'targetY':200}}]
+        append_order(rows,s)
+        self.assertIn('BATTLE_REINFORCE_NO_ACCEPTED_FRONTIER',self.issues(rows,s))
+    def test_rejected_action_cannot_lend_identity_to_a_later_queued_receipt(self):
+        rows,s=local_sample()
+        queued=copy.deepcopy(next(r for r in rows if r['event']=='command_result'))
+        next(r for r in rows if r['event']=='command_result').update(event='command_rejected',data={'status':409})
+        rows[:]=[r for r in rows if r['event']!='attack_order_confirmed']
+        rows[-2:-2]=[queued];s.update(attackOrders=0,attackOrdersConfirmed=0)
+        self.assertIn('BATTLE_RECEIPT_NO_ACTION',self.issues(rows,s))
+    def test_reinforcement_requires_the_same_cohorts_accepted_goal(self):
+        rows,s=local_sample()
+        rows.insert(2,{'event':'local_army_membership','data':{'cohortId':2,'unitIds':[10],'reason':'LOCAL_FORMATION'}})
+        append_order(rows,s,cohort=2,uid=10)
+        self.assertIn('BATTLE_REINFORCE_NO_ACCEPTED_FRONTIER',self.issues(rows,s))
+    def test_frontier_arrival_or_another_accepted_task_ends_the_goal(self):
+        for end in ('arrival','other-task'):
+            with self.subTest(end=end):
+                rows,s=local_sample()
+                if end=='arrival':
+                    rows[-2:-2]=[{'event':'local_army_frontier_arrived','data':{'cohortId':1,'targetTile':17}}]
+                    append_order(rows,s)
+                else:
+                    append_order(rows,s,reason='REGROUP',x=300,y=400)
+                    append_order(rows,s,request='r3',time=5000)
+                self.assertIn('BATTLE_REINFORCE_NO_ACCEPTED_FRONTIER',self.issues(rows,s))
+    def test_remote_contact_requires_current_visible_evidence(self):
+        for visible,seen in ((False,0),(True,0),(True,1000)):
+            with self.subTest(visible=visible,seen=seen):
+                rows,s=sample();enemy={'id':88,'x':100,'y':200,'lastSeenGameTimeMs':seen}
+                rows[2]['data'].update(reason='REMOTE_VISIBLE_CONTACT',enemy=enemy)
+                rows.insert(1,{'event':'combat_observation','data':{'sessionId':'s','gameTimeMs':1000,
+                    'rememberedEnemies':[enemy],'visibleEnemies':[enemy] if visible else []}})
+                found=self.issues(rows,s)
+                if visible and seen==1000:self.assertEqual(found,[])
+                else:self.assertIn('BATTLE_TARGET_NOT_OBSERVED',found)
 if __name__=='__main__':unittest.main()
