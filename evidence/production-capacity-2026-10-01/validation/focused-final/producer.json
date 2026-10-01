@@ -1,0 +1,1719 @@
+{
+  "scenario": "producer",
+  "orders": [
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 4000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 6000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 8000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 10000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 12000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 14000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 16000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 18000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 20000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 22000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 24000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 26000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 28000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 30000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 32000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 34000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 36000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 38000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 40000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 42000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 44000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 46000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 48000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 50000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 52000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 54000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 56000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 58000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 60000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 62000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/build-factory",
+      "gameTimeMs": 64000,
+      "credits": 99300.0,
+      "unitId": 4
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 66000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 68000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 70000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 72000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 74000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 76000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 78000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 80000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 82000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 84000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 86000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 88000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 90000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 92000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 94000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 96000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 98000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 100000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 102000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 104000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 106000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 108000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 110000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 112000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 114000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 116000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 118000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 120000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 122000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 124000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 126000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 128000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 130000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 132000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 134000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 136000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 138000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 140000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 142000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 144000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 146000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 148000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 150000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 152000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 154000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 156000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 158000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 160000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 162000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 164000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 166000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 168000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 170000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 172000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 174000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 176000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 178000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 180000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 182000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 184000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 186000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 188000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 190000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 192000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 194000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 196000,
+      "credits": 99300.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 198000,
+      "credits": 99300.0,
+      "unitId": 0
+    }
+  ],
+  "events": [
+    {
+      "wallTimeMs": 1790869631197,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 0.0,
+        "observedProducerGameMs": 0,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 0,
+        "capabilityReserve": 0.0,
+        "allReserved": 0.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 0,
+        "surplusGameMs": 0,
+        "usefulDemandGameMs": 0,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 4000
+      }
+    },
+    {
+      "wallTimeMs": 1790869632380,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 60000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 30000,
+        "surplusGameMs": 30000,
+        "usefulDemandGameMs": 30000,
+        "safeGameMs": 30000,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 34000
+      }
+    },
+    {
+      "wallTimeMs": 1790869633471,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 116000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_THROUGHPUT_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "EVALUATE_EXISTING_FACTORY_GATE",
+        "windowGameMs": 60000,
+        "coveredGameMs": 58000,
+        "surplusGameMs": 58000,
+        "usefulDemandGameMs": 58000,
+        "safeGameMs": 58000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 62000
+      }
+    },
+    {
+      "wallTimeMs": 1790869633474,
+      "event": "factory_target_increased",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 116000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_THROUGHPUT_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "INCREASE",
+        "windowGameMs": 60000,
+        "coveredGameMs": 58000,
+        "surplusGameMs": 58000,
+        "usefulDemandGameMs": 58000,
+        "safeGameMs": 58000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 62000,
+        "from": 2,
+        "to": 3,
+        "readyFactories": 2,
+        "saturationPct": 100.0,
+        "observedFactoryGameMs": 116000,
+        "modelledIncomePerGameSecond": 123.5,
+        "minesReady": 8,
+        "landFactoryCost": 700,
+        "factoryCommitmentId": "factory-capacity-1-62000"
+      }
+    },
+    {
+      "wallTimeMs": 1790869633474,
+      "event": "production_facility_committed",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 116000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_THROUGHPUT_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "INCREASE",
+        "windowGameMs": 60000,
+        "coveredGameMs": 58000,
+        "surplusGameMs": 58000,
+        "usefulDemandGameMs": 58000,
+        "safeGameMs": 58000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 62000,
+        "from": 2,
+        "to": 3,
+        "readyFactories": 2,
+        "saturationPct": 100.0,
+        "observedFactoryGameMs": 116000,
+        "modelledIncomePerGameSecond": 123.5,
+        "minesReady": 8,
+        "landFactoryCost": 700,
+        "factoryCommitmentId": "factory-capacity-1-62000"
+      }
+    },
+    {
+      "wallTimeMs": 1790869633475,
+      "event": "production_facility_planned",
+      "data": {
+        "reason": "SURPLUS_WITH_BUSY_FACTORY",
+        "mines": 8,
+        "factories": 2,
+        "builderId": 4,
+        "x": 180.0,
+        "y": 100.0,
+        "factoryCost": 700,
+        "preferredUnit": "heavyTank",
+        "preferredUnitCost": 800,
+        "credits": 100000.0,
+        "distance": 40.0,
+        "factoryCommitmentId": "factory-capacity-1-62000",
+        "capacityExpansion": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "gameTimeMs": 62000
+      }
+    },
+    {
+      "wallTimeMs": 1790869633549,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 1400.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": true,
+        "bottleneck": "CAPACITY_EXPANSION_COMMITTED",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 64000
+      }
+    },
+    {
+      "wallTimeMs": 1790869633551,
+      "event": "production_facility_order_accepted",
+      "data": {
+        "builderId": 4,
+        "x": 180.0,
+        "y": 100.0,
+        "cost": 700,
+        "kind": "landFactory",
+        "gameTimeMs": 64000,
+        "factoryCommitmentId": "factory-capacity-1-62000",
+        "receipt": {
+          "status": "queued",
+          "sessionId": "s",
+          "requestId": "f6201f29-aeaf-4e09-ab65-62020ccd7250",
+          "unitId": 4,
+          "frame": 32
+        },
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0
+      }
+    },
+    {
+      "wallTimeMs": 1790869633783,
+      "event": "production_facility_ready",
+      "data": {
+        "unitId": 90,
+        "type": "landFactory",
+        "x": 180.0,
+        "y": 100.0,
+        "plannedAtGameMs": 62000,
+        "firstSeenGameMs": 66000,
+        "factoriesCompleted": 1,
+        "completedAtGameMs": 70000,
+        "factoryCommitmentId": "factory-capacity-1-62000",
+        "landFactoryTarget": 3
+      }
+    },
+    {
+      "wallTimeMs": 1790869633859,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 11.7,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 98.36,
+        "observedProducerGameMs": 122000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_THROUGHPUT_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "EVALUATE_EXISTING_FACTORY_GATE",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 72000
+      }
+    },
+    {
+      "wallTimeMs": 1790869635034,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 11.7,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 78.95,
+        "observedProducerGameMs": 152000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 102000
+      }
+    },
+    {
+      "wallTimeMs": 1790869636150,
+      "event": "production_capacity_after_expansion",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 66.67,
+        "observedProducerGameMs": 180000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 130000,
+        "factoryCommitmentId": "factory-capacity-1-62000",
+        "factoryReadyAtGameMs": 70000
+      }
+    },
+    {
+      "wallTimeMs": 1790869636228,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 66.67,
+        "observedProducerGameMs": 180000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 132000
+      }
+    },
+    {
+      "wallTimeMs": 1790869637410,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 66.67,
+        "observedProducerGameMs": 180000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 162000
+      }
+    },
+    {
+      "wallTimeMs": 1790869638579,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 99300.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 3,
+        "producerUtilizationPct": 66.67,
+        "observedProducerGameMs": 180000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 2,
+        "routes": [
+          {
+            "producerId": 5,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          },
+          {
+            "producerId": 6,
+            "producerType": "landFactory",
+            "product": "heavyTank",
+            "nativeActionId": "heavy",
+            "nativeCost": 800.0,
+            "observedTech": 2,
+            "nativeQueue": 1,
+            "nativeAffordable": true,
+            "quoteSource": "LEGAL_NATIVE_MENU",
+            "expectedDurationGameMs": null,
+            "expectedThroughput": null,
+            "durationStatus": "UNKNOWN",
+            "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+          }
+        ],
+        "selectedNativeCost": 800.0,
+        "selectedNativeAffordable": true,
+        "builderReserve": 0,
+        "investmentReserve": 0,
+        "capabilityReserve": 0.0,
+        "allReserved": 0.0,
+        "recovery": false,
+        "factoryTarget": 3,
+        "factoryTargetCommitted": false,
+        "bottleneck": "UNKNOWN",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 60000,
+        "sustained": true,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 192000
+      }
+    },
+    {
+      "wallTimeMs": 1790869638890,
+      "event": "summary",
+      "data": {
+        "outcome": "PASS",
+        "reason": "Native result screen: DEFEAT",
+        "phase": "battle",
+        "matchOutcome": "DEFEAT",
+        "commands": 98,
+        "observations": 100,
+        "ownLosses": 0,
+        "newCombatUnits": 0,
+        "attackOrders": 97,
+        "attackOrdersConfirmed": 0,
+        "retreatOrders": 0,
+        "upgradesCompleted": 0,
+        "completedMines": 0,
+        "newMines": 0,
+        "mineTarget": 3,
+        "minesBeyondFloor": 0,
+        "expansionRefusals": 180,
+        "expansionBlocked": 180,
+        "completedFactories": 1,
+        "newFactories": 1,
+        "landFactoryTarget": 3,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 0,
+        "builderOrders": 0,
+        "battleGameTimeMs": 198000,
+        "gameSecondsPerWallSecond": 25.61,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 0,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 0,
+        "targetSwitches": 0,
+        "effectiveDecisionIntervalGameMs": 2000,
+        "noProgressAttentionGapMs": 6000,
+        "maxObservedGameTimeJump": 2000,
+        "observationCount": 100,
+        "spendTotal": 700,
+        "spendByCategory": {
+          "NEW_FACTORY": {
+            "orders": 1,
+            "cost": 700
+          }
+        },
+        "measuredIncomePerGameSecond": 0.0,
+        "investmentIntentions": 1,
+        "investmentCompletions": 0,
+        "investmentCancellations": 1,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "OPEN_EXPANSION",
+        "reconEnabled": true,
+        "reconTasksCreated": 0,
+        "reconOrdersQueued": 0,
+        "reconOrdersObserved": 0,
+        "reconMovesCompletedBetweenSamples": 0,
+        "frontierTasksSatisfiedByTeamVision": 0,
+        "reconResolvedAfterObservedMove": 0,
+        "reconReacquired": 0,
+        "reconSitesCleared": 0,
+        "reconBlocked": 0,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 0,
+        "frontierTasksRefreshed": 0,
+        "frontierTasksAdvanced": 0,
+        "frontierTasksBlocked": 0,
+        "frontierTasksPreempted": 0,
+        "expendableTransfers": 0,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 1,
+        "factoryTargetIncreaseBlocks": 3,
+        "landFactoryTargetAtEnd": 3,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 66.67,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 8,
+        "productionConsumptionPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "productionCapacity": {
+          "incomeEstimate": 123.5,
+          "productionConsumptionPerGameSecond": 0.0,
+          "recentSpendPerGameSecond": 0.0,
+          "sustainableSurplusPerGameSecond": 123.5,
+          "credits": 99300.0,
+          "strategyArmyTarget": 36,
+          "committedArmed": 26,
+          "hardSafetyCap": 128,
+          "readyProducerCount": 3,
+          "producerUtilizationPct": 66.67,
+          "observedProducerGameMs": 180000,
+          "demand": "KNOWN",
+          "backlogSlots": 10,
+          "routeCount": 2,
+          "routes": [
+            {
+              "producerId": 5,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "heavy",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": true,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            },
+            {
+              "producerId": 6,
+              "producerType": "landFactory",
+              "product": "heavyTank",
+              "nativeActionId": "heavy",
+              "nativeCost": 800.0,
+              "observedTech": 2,
+              "nativeQueue": 1,
+              "nativeAffordable": true,
+              "quoteSource": "LEGAL_NATIVE_MENU",
+              "expectedDurationGameMs": null,
+              "expectedThroughput": null,
+              "durationStatus": "UNKNOWN",
+              "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+            }
+          ],
+          "selectedNativeCost": 800.0,
+          "selectedNativeAffordable": true,
+          "builderReserve": 0,
+          "investmentReserve": 0,
+          "capabilityReserve": 0.0,
+          "allReserved": 0.0,
+          "recovery": false,
+          "factoryTarget": 3,
+          "factoryTargetCommitted": false,
+          "bottleneck": "UNKNOWN",
+          "militaryCapacityDecision": "HOLD",
+          "producerCapacityDecision": "HOLD",
+          "windowGameMs": 60000,
+          "coveredGameMs": 60000,
+          "surplusGameMs": 60000,
+          "usefulDemandGameMs": 60000,
+          "safeGameMs": 60000,
+          "sustained": true,
+          "operationalCapacityStatus": "UNKNOWN",
+          "gameTimeMs": 198000
+        },
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 36,
+          "activeTarget": 24,
+          "reserveTarget": 12,
+          "hardSafetyCap": 128,
+          "builderTarget": 1,
+          "militaryCapacityIncreases": 0,
+          "militaryCapacityFloor": 0,
+          "capabilityNeedsAtEnd": 0,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 0,
+          "mineUpgradesObserved": 0,
+          "constructionCompletionsObserved": 0,
+          "capabilityReservesStarted": 0,
+          "capabilityReservesReleased": 0,
+          "capabilityReserveAtEnd": 0.0
+        }
+      }
+    }
+  ]
+}

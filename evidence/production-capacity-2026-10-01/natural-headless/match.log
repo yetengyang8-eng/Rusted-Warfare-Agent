@@ -1,0 +1,29 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Bootstrap report: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\bootstrap-1790868636547-61f333f7.jsonl
+Report: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\economy-1790868636901-8e0d0174.jsonl
+Keep game running. Do not issue other build/production orders during this test.
+Builder 191: landFactory at (3090.0, 3150.0), then 1 tank(s) (c_tank).
+factory progress: 0%
+factory progress: 20%
+factory progress: 40%
+factory progress: 50%
+factory progress: 70%
+factory progress: 80%
+factory progress: 100%
+Factory 201 completed. Starting tank production.
+Tank 1 completed: 205
+PASS: New landFactory completed; its queue was observed active then empty; one new own tank appeared nearby
+Send back: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\economy-1790868636901-8e0d0174.jsonl
+Report: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\development-1790868642722-1a637a6f.jsonl
+Reusing factory 201. New tanks: 6; new visible mines: up to 1
+Tanks completed: 1/6
+Tanks completed: 2/6
+Mines completed: 1/1
+Tanks completed: 3/6
+Tanks completed: 4/6
+Tanks completed: 5/6
+Tanks completed: 6/6
+PASS: Tank target completed; mines 1/1; expansion LIMIT_REACHED; all task units alive
+Send back: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\development-1790868642722-1a637a6f.jsonl
+PASS / VICTORY: Native result screen: VICTORY
+Report: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\rw-agent-reports\battle-1790868655450-ce38cfb6.jsonl

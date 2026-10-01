@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "name": "game-lib.jar",
+      "source": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-engine-20261001\\game-lib.jar",
+      "target": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\game-lib.jar",
+      "method": "copy"
+    },
+    {
+      "name": "libs",
+      "source": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-engine-20261001\\libs",
+      "target": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\libs",
+      "method": "copy"
+    },
+    {
+      "name": "assets",
+      "source": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-engine-20261001\\assets",
+      "target": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\assets",
+      "method": "copy"
+    },
+    {
+      "name": "res",
+      "source": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-engine-20261001\\res",
+      "target": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\res",
+      "method": "copy"
+    },
+    {
+      "name": "rw-agent-bootstrap.jar",
+      "source": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-final-20261001\\agent\\dist\\rw-agent-bootstrap.jar",
+      "target": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\rw-agent-bootstrap.jar",
+      "method": "copy",
+      "sha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6"
+    }
+  ]
+}

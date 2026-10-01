@@ -1,0 +1,3094 @@
+{
+  "schemaVersion": 1,
+  "rawPath": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Feedback-2026-10-01\\rw-agent-reports\\battle-1790844561819-c02d0138.jsonl",
+  "rawBytes": 330145906,
+  "rawSha256": "e8aba1885566d30487cdf696c23f2fde1fced6f5de5bd5991ad142b17e3632aa",
+  "lines": 36346,
+  "malformedJson": 0,
+  "eventCounts": {
+    "report_provenance": 1,
+    "battle_config": 1,
+    "strategy_capacity": 153,
+    "production_decision": 24,
+    "spend": 430,
+    "production_surplus": 374,
+    "production_queue_finished": 302,
+    "surplus_spending_evaluated": 311,
+    "production_facility_move": 3,
+    "production_facility_plan": 1,
+    "production_facility_planned": 1,
+    "production_facility_started": 1,
+    "production_facility_observed": 1,
+    "factory_completed": 1,
+    "production_facility_finished": 1,
+    "factory_target_increase_blocked": 1,
+    "production_deferred": 25,
+    "production_idle": 33,
+    "surplus_role_ordered": 23,
+    "summary": 1
+  },
+  "firstSamples": {
+    "report_provenance": [
+      {
+        "agentVersion": "0.07-alpha1",
+        "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Feedback-2026-10-01\\rw-agent-bootstrap.jar",
+        "agentJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+        "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Feedback-2026-10-01",
+        "javaVersion": "13",
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "gameTimeMs": 0
+      }
+    ],
+    "battle_config": [
+      {
+        "gameSeconds": 4800,
+        "armyCap": 24,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "mineTarget": 3,
+        "expansionIntervalGameMs": 15000,
+        "expansionBuildRangeWorld": 100.0,
+        "landFactoryTarget": 2,
+        "rearFactoryRadiusWorld": 400.0,
+        "builderTarget": 1,
+        "reachabilitySamplingEnabled": true,
+        "reachabilitySampleIntervalSeconds": 30,
+        "reachabilityRepresentativeTypeLimit": 3,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "noProgressEngageRange": 300.0,
+        "noProgressAttentionGapMs": 3000,
+        "decisionIntervalGameMs": 1000,
+        "minimumCommandGapGameMs": 1000,
+        "openingApmLimited": false,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyWindowGameMs": 150000,
+        "factorySaturationMinPct": 80,
+        "landFactoryTargetMax": 5,
+        "reconEnabled": true,
+        "reconFrontierEnabled": true,
+        "reconMinReadyArmy": 7,
+        "reconThreatBufferWorld": 80,
+        "executionContractVersion": 1,
+        "executionPlayerScope": "team:5",
+        "targetEligibilityVersion": 1,
+        "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+        "globalStrategyEnabled": true,
+        "strategyContractVersion": 1,
+        "engagementAssessmentContract": "COMMITTED_FORMATION_V1",
+        "pollWallTimeMs": 500,
+        "battleSafetyGameSeconds": 7200,
+        "battleSafetyWallSeconds": 2400,
+        "reportCommitMemoryMiB": 8,
+        "reportDiskLimitMiB": 1024,
+        "reconExpendableHpMaxFraction": 0.45,
+        "reconFrontierMinMainForce": 6,
+        "localArmyContract": "BOUNDED_LOCAL_COHORTS_V1",
+        "localArmyMaxCohorts": 4,
+        "localArmyMaxMembers": 48,
+        "localArmyFormationMinimum": 6,
+        "localArmyReleaseBelow": 3,
+        "localArmyFormationRadiusWorld": 400,
+        "localArmyTargetRadiusWorld": 1400,
+        "localArmyOrderIntervalGameMs": 8000,
+        "localArmyMemoryHoldGameMs": 30000
+      }
+    ],
+    "strategy_capacity": [
+      {
+        "armyTarget": 40,
+        "activeArmyTarget": 32,
+        "reserveTarget": 8,
+        "hardSafetyCap": 128,
+        "builderTarget": 1,
+        "mapTiles": 148000.0,
+        "incomeEstimate": 38.97,
+        "productionConsumption": 0.0,
+        "knownCapabilityNeeds": 0,
+        "resourceBacklog": 1,
+        "buildBacklog": false,
+        "fixedCapOverride": false,
+        "gameTimeMs": 104174,
+        "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+        "player": "team:5"
+      },
+      {
+        "armyTarget": 40,
+        "activeArmyTarget": 32,
+        "reserveTarget": 8,
+        "hardSafetyCap": 128,
+        "builderTarget": 1,
+        "mapTiles": 148000.0,
+        "incomeEstimate": 51.04,
+        "productionConsumption": 0.0,
+        "knownCapabilityNeeds": 0,
+        "resourceBacklog": 0,
+        "buildBacklog": false,
+        "fixedCapOverride": false,
+        "gameTimeMs": 134254,
+        "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+        "player": "team:5"
+      },
+      {
+        "armyTarget": 40,
+        "activeArmyTarget": 32,
+        "reserveTarget": 8,
+        "hardSafetyCap": 128,
+        "builderTarget": 1,
+        "mapTiles": 148000.0,
+        "incomeEstimate": 51.04,
+        "productionConsumption": 5.333333333333333,
+        "knownCapabilityNeeds": 0,
+        "resourceBacklog": 0,
+        "buildBacklog": false,
+        "fixedCapOverride": false,
+        "gameTimeMs": 164494,
+        "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+        "player": "team:5"
+      }
+    ],
+    "production_decision": [
+      {
+        "factoryId": 570,
+        "factoryTier": 1,
+        "credits": 2982.5,
+        "preferredUnit": "c_tank",
+        "preferredUnitCost": 350,
+        "preferredAffordable": true,
+        "bestAffordableUnit": "c_tank",
+        "bestAffordableCost": 350,
+        "chosenUnit": "upgrade",
+        "reason": "PREFERRED_SUPERSEDED",
+        "gameTimeMs": 104174
+      },
+      {
+        "factoryId": 3274,
+        "factoryTier": 1,
+        "credits": 2007.0,
+        "preferredUnit": "c_tank",
+        "preferredUnitCost": 350,
+        "preferredAffordable": true,
+        "bestAffordableUnit": "c_tank",
+        "bestAffordableCost": 350,
+        "chosenUnit": "upgrade",
+        "reason": "PREFERRED_SUPERSEDED",
+        "gameTimeMs": 376384
+      },
+      {
+        "factoryId": 3274,
+        "factoryTier": 2,
+        "credits": 713.0,
+        "preferredUnit": "heavyTank",
+        "preferredUnitCost": 800,
+        "preferredAffordable": false,
+        "bestAffordableUnit": "c_tank",
+        "bestAffordableCost": 350,
+        "chosenUnit": "c_tank",
+        "reason": "PREFERRED_UNAFFORDABLE_FALLBACK",
+        "gameTimeMs": 438289
+      }
+    ],
+    "spend": [
+      {
+        "gameTimeMs": 104174,
+        "category": "FACTORY_UPGRADE",
+        "cost": 2000,
+        "itemType": "upgrade",
+        "producerOrBuilderId": 570
+      },
+      {
+        "gameTimeMs": 112434,
+        "category": "NEW_MINE",
+        "cost": 700,
+        "itemType": "extractor",
+        "producerOrBuilderId": 569
+      },
+      {
+        "gameTimeMs": 147869,
+        "category": "UNIT_PRODUCTION",
+        "cost": 800,
+        "itemType": "heavyTank",
+        "producerOrBuilderId": 570
+      }
+    ],
+    "production_surplus": [
+      {
+        "credits": 1123.5,
+        "completedMines": 0,
+        "completedFactories": 0,
+        "factoryQueueNonEmpty": true,
+        "preferredUnit": "c_tank",
+        "preferredUnitCost": 350,
+        "factories": 1,
+        "gameTimeMs": 125824
+      },
+      {
+        "credits": 1636.5,
+        "completedMines": 1,
+        "completedFactories": 0,
+        "factoryQueueNonEmpty": true,
+        "preferredUnit": "c_tank",
+        "preferredUnitCost": 350,
+        "factories": 1,
+        "gameTimeMs": 136904
+      },
+      {
+        "credits": 2197.5,
+        "completedMines": 1,
+        "completedFactories": 0,
+        "factoryQueueNonEmpty": true,
+        "preferredUnit": "c_tank",
+        "preferredUnitCost": 350,
+        "factories": 1,
+        "gameTimeMs": 147869
+      }
+    ],
+    "production_queue_finished": [
+      {
+        "factoryId": 570,
+        "type": "upgrade"
+      },
+      {
+        "factoryId": 570,
+        "type": "heavyTank"
+      },
+      {
+        "factoryId": 570,
+        "type": "heavyTank"
+      }
+    ],
+    "surplus_spending_evaluated": [
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 2197.5,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 7,
+        "artilleryObserved": 0,
+        "artilleryPending": 0,
+        "artilleryQuota": 3,
+        "committedArmed": 7,
+        "armyTarget": 40,
+        "hardSafetyCap": 128,
+        "homeEmergency": false,
+        "selected": false,
+        "reason": "ORDINARY_FORCE_BELOW_MINIMUM",
+        "gameTimeMs": 147869
+      },
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 2247.5,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 3,
+        "artilleryObserved": 0,
+        "artilleryPending": 0,
+        "artilleryQuota": 3,
+        "committedArmed": 3,
+        "armyTarget": 40,
+        "hardSafetyCap": 128,
+        "homeEmergency": true,
+        "selected": false,
+        "reason": "HOME_EMERGENCY",
+        "gameTimeMs": 164494
+      },
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 2285.0,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 2,
+        "artilleryObserved": 0,
+        "artilleryPending": 0,
+        "artilleryQuota": 3,
+        "committedArmed": 2,
+        "armyTarget": 40,
+        "hardSafetyCap": 128,
+        "homeEmergency": true,
+        "selected": false,
+        "reason": "HOME_EMERGENCY",
+        "gameTimeMs": 180939
+      }
+    ],
+    "production_facility_move": [
+      {
+        "reason": "RETURNING_TO_REAR",
+        "builderId": 569,
+        "x": 7370.0,
+        "y": 1950.0,
+        "gameTimeMs": 330969
+      },
+      {
+        "builderId": 569,
+        "x": 7190.0,
+        "y": 2050.0,
+        "distance": 163.7516787364331,
+        "gameTimeMs": 349719
+      },
+      {
+        "builderId": 569,
+        "x": 7190.0,
+        "y": 2050.0,
+        "distance": 108.25713198214717,
+        "gameTimeMs": 352384
+      }
+    ],
+    "production_facility_plan": [
+      {
+        "status": "planned",
+        "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+        "builderId": 569,
+        "factoryType": "landFactory",
+        "productType": "c_tank",
+        "targetX": 7190.0,
+        "targetY": 2050.0,
+        "factoryCost": 700,
+        "tankCost": 350,
+        "credits": 2471.5
+      }
+    ],
+    "production_facility_planned": [
+      {
+        "reason": "SURPLUS_WITH_BUSY_FACTORY",
+        "mines": 3,
+        "factories": 1,
+        "builderId": 569,
+        "x": 7190.0,
+        "y": 2050.0,
+        "factoryCost": 700,
+        "preferredUnit": "heavyTank",
+        "preferredUnitCost": 800,
+        "credits": 2459.0,
+        "distance": 104.10148224208912
+      }
+    ],
+    "production_facility_started": [
+      {
+        "builderId": 569,
+        "x": 7190.0,
+        "y": 2050.0,
+        "cost": 700,
+        "kind": "landFactory",
+        "gameTimeMs": 354989
+      }
+    ],
+    "production_facility_observed": [
+      {
+        "unitId": 3274,
+        "type": "landFactory",
+        "x": 7190.0,
+        "y": 2050.0,
+        "plannedX": 7190.0,
+        "plannedY": 2050.0,
+        "gameTimeMs": 357639
+      }
+    ],
+    "factory_completed": [
+      {
+        "unitId": 3274,
+        "type": "landFactory",
+        "x": 7190.0,
+        "y": 2050.0,
+        "plannedAtGameMs": 347059,
+        "firstSeenGameMs": 357639,
+        "factoriesCompleted": 1,
+        "completedAtGameMs": 373734
+      }
+    ],
+    "production_facility_finished": [
+      {
+        "reason": "FACTORY_TARGET_REACHED",
+        "factories": 2,
+        "landFactoryTarget": 2
+      }
+    ],
+    "factory_target_increase_blocked": [
+      {
+        "reason": "FACTORY_NOT_SATURATED",
+        "readyFactories": 2,
+        "landFactoryTarget": 2,
+        "landFactoryTargetMax": 5,
+        "saturationPct": 72.23,
+        "saturationMinPct": 80,
+        "observedFactoryGameMs": 156210,
+        "windowGameMs": 150000,
+        "gameMsSinceStart": 272245,
+        "modelledIncomePerGameSecond": 63.1,
+        "productionConsumptionPerGameSecond": 48.0,
+        "credits": 2007.0,
+        "landFactoryCost": 700,
+        "builderReserve": 0,
+        "investmentReserve": 0,
+        "gameTimeMs": 376384
+      }
+    ],
+    "production_deferred": [
+      {
+        "factoryId": 570,
+        "factoryTier": 2,
+        "credits": 458.5,
+        "candidateUnit": "heavyTank",
+        "candidateCost": 800,
+        "reservedFor": "PRIMARY_PRODUCTION",
+        "reservedCost": 800,
+        "reason": "RESERVED_FOR_PRIMARY_PRODUCTION",
+        "gameTimeMs": 421584
+      },
+      {
+        "factoryId": 570,
+        "factoryTier": 2,
+        "credits": 707.0,
+        "candidateUnit": "heavyTank",
+        "candidateCost": 800,
+        "reservedFor": "PRIMARY_PRODUCTION",
+        "reservedCost": 800,
+        "reason": "RESERVED_FOR_PRIMARY_PRODUCTION",
+        "gameTimeMs": 443759
+      },
+      {
+        "factoryId": 570,
+        "factoryTier": 2,
+        "credits": 726.0,
+        "candidateUnit": "heavyTank",
+        "candidateCost": 800,
+        "reservedFor": "PRIMARY_PRODUCTION",
+        "reservedCost": 800,
+        "reason": "RESERVED_FOR_PRIMARY_PRODUCTION",
+        "gameTimeMs": 480664
+      }
+    ],
+    "production_idle": [
+      {
+        "reason": "BANKING_FOR_PRIMARY_UNIT",
+        "activeArmy": 13,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "credits": 458.5
+      },
+      {
+        "reason": "BANKING_FOR_PRIMARY_UNIT",
+        "activeArmy": 14,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "credits": 707.0
+      },
+      {
+        "reason": "NO_AFFORDABLE_ACTION",
+        "activeArmy": 15,
+        "activeArmyTarget": 24,
+        "reserveTarget": 8,
+        "mobileUnitHardCap": 128,
+        "credits": 272.5
+      }
+    ],
+    "surplus_role_ordered": [
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 9705.0,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 61,
+        "artilleryObserved": 0,
+        "artilleryPending": 0,
+        "artilleryQuota": 6,
+        "committedArmed": 64,
+        "armyTarget": 92,
+        "hardSafetyCap": 128,
+        "homeEmergency": false,
+        "selected": true,
+        "reason": "SURPLUS_SIEGE_ROLE",
+        "gameTimeMs": 1229044,
+        "actionId": "u_heavyArtillery",
+        "receipt": {
+          "status": "queued",
+          "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+          "requestId": "8b499982-b45b-47e1-b634-12c9306303b6",
+          "frame": 70434,
+          "unitId": 570,
+          "actionId": "u_heavyArtillery",
+          "type": "heavyArtillery"
+        }
+      },
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 5004.5,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 62,
+        "artilleryObserved": 1,
+        "artilleryPending": 0,
+        "artilleryQuota": 6,
+        "committedArmed": 70,
+        "armyTarget": 96,
+        "hardSafetyCap": 128,
+        "homeEmergency": false,
+        "selected": true,
+        "reason": "SURPLUS_SIEGE_ROLE",
+        "gameTimeMs": 1327149,
+        "actionId": "u_heavyArtillery",
+        "receipt": {
+          "status": "queued",
+          "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+          "requestId": "b353216f-4727-4245-9952-9ee1d9e87ffe",
+          "frame": 74573,
+          "unitId": 570,
+          "actionId": "u_heavyArtillery",
+          "type": "heavyArtillery"
+        }
+      },
+      {
+        "producerId": 570,
+        "product": "heavyArtillery",
+        "nativeCost": 3100.0,
+        "ordinaryUnitNativeCost": 800.0,
+        "credits": 20733.5,
+        "allReserved": 0.0,
+        "requiredCredits": 4700.0,
+        "ordinaryForce": 66,
+        "artilleryObserved": 2,
+        "artilleryPending": 0,
+        "artilleryQuota": 6,
+        "committedArmed": 76,
+        "armyTarget": 96,
+        "hardSafetyCap": 128,
+        "homeEmergency": false,
+        "selected": true,
+        "reason": "SURPLUS_SIEGE_ROLE",
+        "gameTimeMs": 1503894,
+        "actionId": "u_heavyArtillery",
+        "receipt": {
+          "status": "queued",
+          "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+          "requestId": "472dcd8f-aa6e-4a94-bc3a-ef96d62a9072",
+          "frame": 82065,
+          "unitId": 570,
+          "actionId": "u_heavyArtillery",
+          "type": "heavyArtillery"
+        }
+      }
+    ],
+    "summary": [
+      {
+        "outcome": "PARTIAL",
+        "reason": "Game-time budget reached without native result",
+        "phase": "battle",
+        "matchOutcome": "ONGOING",
+        "commands": 1401,
+        "observations": 1536,
+        "ownLosses": 283,
+        "newCombatUnits": 302,
+        "attackOrders": 630,
+        "attackOrdersConfirmed": 628,
+        "retreatOrders": 112,
+        "upgradesCompleted": 2,
+        "completedMines": 13,
+        "newMines": 13,
+        "mineTarget": 3,
+        "minesBeyondFloor": 11,
+        "expansionRefusals": 258,
+        "expansionBlocked": 275,
+        "completedFactories": 1,
+        "newFactories": 1,
+        "landFactoryTarget": 2,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 0,
+        "builderOrders": 0,
+        "battleGameTimeMs": 4801610,
+        "gameSecondsPerWallSecond": 5.0,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 3,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 3,
+        "targetSwitches": 299,
+        "effectiveDecisionIntervalGameMs": 3380,
+        "noProgressAttentionGapMs": 10140,
+        "maxObservedGameTimeJump": 3920,
+        "observationCount": 1536,
+        "spendTotal": 479600,
+        "spendByCategory": {
+          "FACTORY_UPGRADE": {
+            "orders": 2,
+            "cost": 4000
+          },
+          "NEW_MINE": {
+            "orders": 13,
+            "cost": 9100
+          },
+          "UNIT_PRODUCTION": {
+            "orders": 301,
+            "cost": 282900
+          },
+          "NEW_FACTORY": {
+            "orders": 1,
+            "cost": 700
+          },
+          "STRATEGIC_CAPABILITY": {
+            "orders": 25,
+            "cost": 18500
+          },
+          "STRATEGIC_CONSTRUCTION": {
+            "orders": 34,
+            "cost": 29000
+          },
+          "MINE_UPGRADE": {
+            "orders": 54,
+            "cost": 135400
+          }
+        },
+        "measuredIncomePerGameSecond": 374.41,
+        "investmentIntentions": 25,
+        "investmentCompletions": 6,
+        "investmentCancellations": 19,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "CONTESTED",
+        "reconEnabled": true,
+        "reconTasksCreated": 36,
+        "reconOrdersQueued": 86,
+        "reconOrdersObserved": 64,
+        "reconMovesCompletedBetweenSamples": 21,
+        "frontierTasksSatisfiedByTeamVision": 15,
+        "reconResolvedAfterObservedMove": 8,
+        "reconReacquired": 9,
+        "reconSitesCleared": 1,
+        "reconBlocked": 3,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 23,
+        "frontierTasksRefreshed": 0,
+        "frontierTasksAdvanced": 1,
+        "frontierTasksBlocked": 7,
+        "frontierTasksPreempted": 0,
+        "expendableTransfers": 1,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 0,
+        "factoryTargetIncreaseBlocks": 1,
+        "landFactoryTargetAtEnd": 2,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 47.35,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 14,
+        "productionConsumptionPerGameSecond": 48.0,
+        "sustainableSurplusPerGameSecond": 304.8,
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 96,
+          "activeTarget": 86,
+          "reserveTarget": 10,
+          "hardSafetyCap": 128,
+          "builderTarget": 2,
+          "capabilityNeedsAtEnd": 18,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 113,
+          "mineUpgradesObserved": 54,
+          "constructionCompletionsObserved": 33,
+          "capabilityReservesStarted": 0,
+          "capabilityReservesReleased": 0,
+          "capabilityReserveAtEnd": 0.0
+        }
+      }
+    ]
+  },
+  "last": {
+    "report_provenance": {
+      "agentVersion": "0.07-alpha1",
+      "agentJar": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Feedback-2026-10-01\\rw-agent-bootstrap.jar",
+      "agentJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+      "gameLibJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "workingDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Feedback-2026-10-01",
+      "javaVersion": "13",
+      "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+      "economyBaseIncome": 26.9,
+      "economyIncomePerMine": 12.07,
+      "economyWindowGameMs": 150000,
+      "factorySaturationMinPct": 80,
+      "landFactoryTargetMax": 5,
+      "gameTimeMs": 0
+    },
+    "battle_config": {
+      "gameSeconds": 4800,
+      "armyCap": 24,
+      "activeArmyTarget": 24,
+      "reserveTarget": 8,
+      "mobileUnitHardCap": 128,
+      "mineTarget": 3,
+      "expansionIntervalGameMs": 15000,
+      "expansionBuildRangeWorld": 100.0,
+      "landFactoryTarget": 2,
+      "rearFactoryRadiusWorld": 400.0,
+      "builderTarget": 1,
+      "reachabilitySamplingEnabled": true,
+      "reachabilitySampleIntervalSeconds": 30,
+      "reachabilityRepresentativeTypeLimit": 3,
+      "noProgressWindowMs": 20000,
+      "noProgressCooldownMs": 30000,
+      "noProgressEngageRange": 300.0,
+      "noProgressAttentionGapMs": 3000,
+      "decisionIntervalGameMs": 1000,
+      "minimumCommandGapGameMs": 1000,
+      "openingApmLimited": false,
+      "economyBaseIncome": 26.9,
+      "economyIncomePerMine": 12.07,
+      "economyWindowGameMs": 150000,
+      "factorySaturationMinPct": 80,
+      "landFactoryTargetMax": 5,
+      "reconEnabled": true,
+      "reconFrontierEnabled": true,
+      "reconMinReadyArmy": 7,
+      "reconThreatBufferWorld": 80,
+      "executionContractVersion": 1,
+      "executionPlayerScope": "team:5",
+      "targetEligibilityVersion": 1,
+      "targetSuppressionRelease": "NEWER_VISIBLE_COMPATIBLE_EVIDENCE",
+      "globalStrategyEnabled": true,
+      "strategyContractVersion": 1,
+      "engagementAssessmentContract": "COMMITTED_FORMATION_V1",
+      "pollWallTimeMs": 500,
+      "battleSafetyGameSeconds": 7200,
+      "battleSafetyWallSeconds": 2400,
+      "reportCommitMemoryMiB": 8,
+      "reportDiskLimitMiB": 1024,
+      "reconExpendableHpMaxFraction": 0.45,
+      "reconFrontierMinMainForce": 6,
+      "localArmyContract": "BOUNDED_LOCAL_COHORTS_V1",
+      "localArmyMaxCohorts": 4,
+      "localArmyMaxMembers": 48,
+      "localArmyFormationMinimum": 6,
+      "localArmyReleaseBelow": 3,
+      "localArmyFormationRadiusWorld": 400,
+      "localArmyTargetRadiusWorld": 1400,
+      "localArmyOrderIntervalGameMs": 8000,
+      "localArmyMemoryHoldGameMs": 30000
+    },
+    "strategy_capacity": {
+      "armyTarget": 96,
+      "activeArmyTarget": 86,
+      "reserveTarget": 10,
+      "hardSafetyCap": 128,
+      "builderTarget": 2,
+      "mapTiles": 148000.0,
+      "incomeEstimate": 352.78999999999996,
+      "productionConsumption": 48.0,
+      "knownCapabilityNeeds": 18,
+      "resourceBacklog": 12,
+      "buildBacklog": false,
+      "fixedCapOverride": false,
+      "gameTimeMs": 4896124,
+      "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+      "player": "team:5"
+    },
+    "production_decision": {
+      "factoryId": 3274,
+      "factoryTier": 2,
+      "credits": 603.5,
+      "preferredUnit": "heavyTank",
+      "preferredUnitCost": 800,
+      "preferredAffordable": false,
+      "bestAffordableUnit": "c_tank",
+      "bestAffordableCost": 350,
+      "chosenUnit": "c_tank",
+      "reason": "PREFERRED_UNAFFORDABLE_FALLBACK",
+      "gameTimeMs": 842459
+    },
+    "spend": {
+      "gameTimeMs": 4899414,
+      "category": "UNIT_PRODUCTION",
+      "cost": 800,
+      "itemType": "heavyTank",
+      "producerOrBuilderId": 570
+    },
+    "production_surplus": {
+      "credits": 1320032.5,
+      "completedMines": 13,
+      "completedFactories": 1,
+      "factoryQueueNonEmpty": true,
+      "preferredUnit": "heavyTank",
+      "preferredUnitCost": 800,
+      "factories": 2,
+      "gameTimeMs": 4902474
+    },
+    "production_queue_finished": {
+      "factoryId": 570,
+      "type": "heavyTank"
+    },
+    "surplus_spending_evaluated": {
+      "producerId": 570,
+      "product": "heavyArtillery",
+      "nativeCost": 3100.0,
+      "ordinaryUnitNativeCost": 800.0,
+      "credits": 1319718.0,
+      "allReserved": 0.0,
+      "requiredCredits": 4700.0,
+      "ordinaryForce": 69,
+      "artilleryObserved": 6,
+      "artilleryPending": 0,
+      "artilleryQuota": 6,
+      "committedArmed": 81,
+      "armyTarget": 96,
+      "hardSafetyCap": 128,
+      "homeEmergency": false,
+      "selected": false,
+      "reason": "ARTILLERY_QUOTA_REACHED",
+      "gameTimeMs": 4899414
+    },
+    "production_facility_move": {
+      "builderId": 569,
+      "x": 7190.0,
+      "y": 2050.0,
+      "distance": 108.25713198214717,
+      "gameTimeMs": 352384
+    },
+    "production_facility_plan": {
+      "status": "planned",
+      "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+      "builderId": 569,
+      "factoryType": "landFactory",
+      "productType": "c_tank",
+      "targetX": 7190.0,
+      "targetY": 2050.0,
+      "factoryCost": 700,
+      "tankCost": 350,
+      "credits": 2471.5
+    },
+    "production_facility_planned": {
+      "reason": "SURPLUS_WITH_BUSY_FACTORY",
+      "mines": 3,
+      "factories": 1,
+      "builderId": 569,
+      "x": 7190.0,
+      "y": 2050.0,
+      "factoryCost": 700,
+      "preferredUnit": "heavyTank",
+      "preferredUnitCost": 800,
+      "credits": 2459.0,
+      "distance": 104.10148224208912
+    },
+    "production_facility_started": {
+      "builderId": 569,
+      "x": 7190.0,
+      "y": 2050.0,
+      "cost": 700,
+      "kind": "landFactory",
+      "gameTimeMs": 354989
+    },
+    "production_facility_observed": {
+      "unitId": 3274,
+      "type": "landFactory",
+      "x": 7190.0,
+      "y": 2050.0,
+      "plannedX": 7190.0,
+      "plannedY": 2050.0,
+      "gameTimeMs": 357639
+    },
+    "factory_completed": {
+      "unitId": 3274,
+      "type": "landFactory",
+      "x": 7190.0,
+      "y": 2050.0,
+      "plannedAtGameMs": 347059,
+      "firstSeenGameMs": 357639,
+      "factoriesCompleted": 1,
+      "completedAtGameMs": 373734
+    },
+    "production_facility_finished": {
+      "reason": "FACTORY_TARGET_REACHED",
+      "factories": 2,
+      "landFactoryTarget": 2
+    },
+    "factory_target_increase_blocked": {
+      "reason": "FACTORY_NOT_SATURATED",
+      "readyFactories": 2,
+      "landFactoryTarget": 2,
+      "landFactoryTargetMax": 5,
+      "saturationPct": 72.23,
+      "saturationMinPct": 80,
+      "observedFactoryGameMs": 156210,
+      "windowGameMs": 150000,
+      "gameMsSinceStart": 272245,
+      "modelledIncomePerGameSecond": 63.1,
+      "productionConsumptionPerGameSecond": 48.0,
+      "credits": 2007.0,
+      "landFactoryCost": 700,
+      "builderReserve": 0,
+      "investmentReserve": 0,
+      "gameTimeMs": 376384
+    },
+    "production_deferred": {
+      "factoryId": 570,
+      "factoryTier": 2,
+      "credits": 1360.5,
+      "candidateUnit": "heavyTank",
+      "candidateCost": 800,
+      "reservedFor": "PRIMARY_PRODUCTION",
+      "reservedCost": 800,
+      "reason": "RESERVED_FOR_PRIMARY_PRODUCTION",
+      "gameTimeMs": 814219
+    },
+    "production_idle": {
+      "reason": "STRATEGY_ARMY_TARGET_REACHED",
+      "activeArmy": 89,
+      "activeArmyTarget": 24,
+      "reserveTarget": 8,
+      "mobileUnitHardCap": 128,
+      "credits": 1216530.0
+    },
+    "surplus_role_ordered": {
+      "producerId": 3274,
+      "product": "heavyArtillery",
+      "nativeCost": 3100.0,
+      "ordinaryUnitNativeCost": 800.0,
+      "credits": 1260956.0,
+      "allReserved": 0.0,
+      "requiredCredits": 4700.0,
+      "ordinaryForce": 73,
+      "artilleryObserved": 4,
+      "artilleryPending": 1,
+      "artilleryQuota": 6,
+      "committedArmed": 84,
+      "armyTarget": 96,
+      "hardSafetyCap": 128,
+      "homeEmergency": false,
+      "selected": true,
+      "reason": "SURPLUS_SIEGE_ROLE",
+      "gameTimeMs": 4684334,
+      "actionId": "u_heavyArtillery",
+      "receipt": {
+        "status": "queued",
+        "sessionId": "ae0f1b8e-4c40-4c51-b984-913089d3dca4",
+        "requestId": "828fbd47-dba4-42c8-bb7c-21fdc9445d7e",
+        "frame": 218149,
+        "unitId": 3274,
+        "actionId": "u_heavyArtillery",
+        "type": "heavyArtillery"
+      }
+    },
+    "summary": {
+      "outcome": "PARTIAL",
+      "reason": "Game-time budget reached without native result",
+      "phase": "battle",
+      "matchOutcome": "ONGOING",
+      "commands": 1401,
+      "observations": 1536,
+      "ownLosses": 283,
+      "newCombatUnits": 302,
+      "attackOrders": 630,
+      "attackOrdersConfirmed": 628,
+      "retreatOrders": 112,
+      "upgradesCompleted": 2,
+      "completedMines": 13,
+      "newMines": 13,
+      "mineTarget": 3,
+      "minesBeyondFloor": 11,
+      "expansionRefusals": 258,
+      "expansionBlocked": 275,
+      "completedFactories": 1,
+      "newFactories": 1,
+      "landFactoryTarget": 2,
+      "factoryBlocks": 0,
+      "builderTarget": 1,
+      "builderRecoveries": 0,
+      "builderOrders": 0,
+      "battleGameTimeMs": 4801610,
+      "gameSecondsPerWallSecond": 5.0,
+      "noProgressWindowMs": 20000,
+      "noProgressCooldownMs": 30000,
+      "targetNoProgressTriggers": 0,
+      "targetRetries": 0,
+      "targetSuppressionsStarted": 3,
+      "targetSuppressionsReleased": 0,
+      "targetSuppressedSelections": 0,
+      "targetSuppressionsAtEnd": 3,
+      "targetSwitches": 299,
+      "effectiveDecisionIntervalGameMs": 3380,
+      "noProgressAttentionGapMs": 10140,
+      "maxObservedGameTimeJump": 3920,
+      "observationCount": 1536,
+      "spendTotal": 479600,
+      "spendByCategory": {
+        "FACTORY_UPGRADE": {
+          "orders": 2,
+          "cost": 4000
+        },
+        "NEW_MINE": {
+          "orders": 13,
+          "cost": 9100
+        },
+        "UNIT_PRODUCTION": {
+          "orders": 301,
+          "cost": 282900
+        },
+        "NEW_FACTORY": {
+          "orders": 1,
+          "cost": 700
+        },
+        "STRATEGIC_CAPABILITY": {
+          "orders": 25,
+          "cost": 18500
+        },
+        "STRATEGIC_CONSTRUCTION": {
+          "orders": 34,
+          "cost": 29000
+        },
+        "MINE_UPGRADE": {
+          "orders": 54,
+          "cost": 135400
+        }
+      },
+      "measuredIncomePerGameSecond": 374.41,
+      "investmentIntentions": 25,
+      "investmentCompletions": 6,
+      "investmentCancellations": 19,
+      "investmentReserveAtEnd": 0,
+      "investmentPendingAtEnd": false,
+      "finalUrgency": "CONTESTED",
+      "reconEnabled": true,
+      "reconTasksCreated": 36,
+      "reconOrdersQueued": 86,
+      "reconOrdersObserved": 64,
+      "reconMovesCompletedBetweenSamples": 21,
+      "frontierTasksSatisfiedByTeamVision": 15,
+      "reconResolvedAfterObservedMove": 8,
+      "reconReacquired": 9,
+      "reconSitesCleared": 1,
+      "reconBlocked": 3,
+      "reconTaskPendingAtEnd": false,
+      "reconFrontierEnabled": true,
+      "frontierTasksCreated": 23,
+      "frontierTasksRefreshed": 0,
+      "frontierTasksAdvanced": 1,
+      "frontierTasksBlocked": 7,
+      "frontierTasksPreempted": 0,
+      "expendableTransfers": 1,
+      "expendableScoutsAtEnd": 0,
+      "factoryTargetIncreases": 0,
+      "factoryTargetIncreaseBlocks": 1,
+      "landFactoryTargetAtEnd": 2,
+      "factoryTargetCommittedAtEnd": false,
+      "landFactoryTargetMax": 5,
+      "factorySaturationPct": 47.35,
+      "factorySaturationMinPct": 80,
+      "economyBaseIncome": 26.9,
+      "economyIncomePerMine": 12.07,
+      "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+      "minesReadyAtEnd": 14,
+      "productionConsumptionPerGameSecond": 48.0,
+      "sustainableSurplusPerGameSecond": 304.8,
+      "strategy": {
+        "enabled": true,
+        "armyTarget": 96,
+        "activeTarget": 86,
+        "reserveTarget": 10,
+        "hardSafetyCap": 128,
+        "builderTarget": 2,
+        "capabilityNeedsAtEnd": 18,
+        "needsResolvedByLegalEvidence": 0,
+        "investmentOrders": 113,
+        "mineUpgradesObserved": 54,
+        "constructionCompletionsObserved": 33,
+        "capabilityReservesStarted": 0,
+        "capabilityReservesReleased": 0,
+        "capabilityReserveAtEnd": 0.0
+      }
+    }
+  },
+  "numeric": {
+    "report_provenance.economyBaseIncome": {
+      "n": 1,
+      "first": 26.9,
+      "last": 26.9,
+      "min": 26.9,
+      "max": 26.9,
+      "mean": 26.9
+    },
+    "report_provenance.economyIncomePerMine": {
+      "n": 1,
+      "first": 12.07,
+      "last": 12.07,
+      "min": 12.07,
+      "max": 12.07,
+      "mean": 12.07
+    },
+    "report_provenance.economyWindowGameMs": {
+      "n": 1,
+      "first": 150000,
+      "last": 150000,
+      "min": 150000,
+      "max": 150000,
+      "mean": 150000.0
+    },
+    "report_provenance.factorySaturationMinPct": {
+      "n": 1,
+      "first": 80,
+      "last": 80,
+      "min": 80,
+      "max": 80,
+      "mean": 80.0
+    },
+    "report_provenance.landFactoryTargetMax": {
+      "n": 1,
+      "first": 5,
+      "last": 5,
+      "min": 5,
+      "max": 5,
+      "mean": 5.0
+    },
+    "report_provenance.gameTimeMs": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "battle_config.gameSeconds": {
+      "n": 1,
+      "first": 4800,
+      "last": 4800,
+      "min": 4800,
+      "max": 4800,
+      "mean": 4800.0
+    },
+    "battle_config.armyCap": {
+      "n": 1,
+      "first": 24,
+      "last": 24,
+      "min": 24,
+      "max": 24,
+      "mean": 24.0
+    },
+    "battle_config.activeArmyTarget": {
+      "n": 1,
+      "first": 24,
+      "last": 24,
+      "min": 24,
+      "max": 24,
+      "mean": 24.0
+    },
+    "battle_config.reserveTarget": {
+      "n": 1,
+      "first": 8,
+      "last": 8,
+      "min": 8,
+      "max": 8,
+      "mean": 8.0
+    },
+    "battle_config.mobileUnitHardCap": {
+      "n": 1,
+      "first": 128,
+      "last": 128,
+      "min": 128,
+      "max": 128,
+      "mean": 128.0
+    },
+    "battle_config.mineTarget": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "battle_config.expansionIntervalGameMs": {
+      "n": 1,
+      "first": 15000,
+      "last": 15000,
+      "min": 15000,
+      "max": 15000,
+      "mean": 15000.0
+    },
+    "battle_config.expansionBuildRangeWorld": {
+      "n": 1,
+      "first": 100.0,
+      "last": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "mean": 100.0
+    },
+    "battle_config.landFactoryTarget": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "battle_config.rearFactoryRadiusWorld": {
+      "n": 1,
+      "first": 400.0,
+      "last": 400.0,
+      "min": 400.0,
+      "max": 400.0,
+      "mean": 400.0
+    },
+    "battle_config.builderTarget": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "battle_config.reachabilitySampleIntervalSeconds": {
+      "n": 1,
+      "first": 30,
+      "last": 30,
+      "min": 30,
+      "max": 30,
+      "mean": 30.0
+    },
+    "battle_config.reachabilityRepresentativeTypeLimit": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "battle_config.noProgressWindowMs": {
+      "n": 1,
+      "first": 20000,
+      "last": 20000,
+      "min": 20000,
+      "max": 20000,
+      "mean": 20000.0
+    },
+    "battle_config.noProgressCooldownMs": {
+      "n": 1,
+      "first": 30000,
+      "last": 30000,
+      "min": 30000,
+      "max": 30000,
+      "mean": 30000.0
+    },
+    "battle_config.noProgressEngageRange": {
+      "n": 1,
+      "first": 300.0,
+      "last": 300.0,
+      "min": 300.0,
+      "max": 300.0,
+      "mean": 300.0
+    },
+    "battle_config.noProgressAttentionGapMs": {
+      "n": 1,
+      "first": 3000,
+      "last": 3000,
+      "min": 3000,
+      "max": 3000,
+      "mean": 3000.0
+    },
+    "battle_config.decisionIntervalGameMs": {
+      "n": 1,
+      "first": 1000,
+      "last": 1000,
+      "min": 1000,
+      "max": 1000,
+      "mean": 1000.0
+    },
+    "battle_config.minimumCommandGapGameMs": {
+      "n": 1,
+      "first": 1000,
+      "last": 1000,
+      "min": 1000,
+      "max": 1000,
+      "mean": 1000.0
+    },
+    "battle_config.economyBaseIncome": {
+      "n": 1,
+      "first": 26.9,
+      "last": 26.9,
+      "min": 26.9,
+      "max": 26.9,
+      "mean": 26.9
+    },
+    "battle_config.economyIncomePerMine": {
+      "n": 1,
+      "first": 12.07,
+      "last": 12.07,
+      "min": 12.07,
+      "max": 12.07,
+      "mean": 12.07
+    },
+    "battle_config.economyWindowGameMs": {
+      "n": 1,
+      "first": 150000,
+      "last": 150000,
+      "min": 150000,
+      "max": 150000,
+      "mean": 150000.0
+    },
+    "battle_config.factorySaturationMinPct": {
+      "n": 1,
+      "first": 80,
+      "last": 80,
+      "min": 80,
+      "max": 80,
+      "mean": 80.0
+    },
+    "battle_config.landFactoryTargetMax": {
+      "n": 1,
+      "first": 5,
+      "last": 5,
+      "min": 5,
+      "max": 5,
+      "mean": 5.0
+    },
+    "battle_config.reconMinReadyArmy": {
+      "n": 1,
+      "first": 7,
+      "last": 7,
+      "min": 7,
+      "max": 7,
+      "mean": 7.0
+    },
+    "battle_config.reconThreatBufferWorld": {
+      "n": 1,
+      "first": 80,
+      "last": 80,
+      "min": 80,
+      "max": 80,
+      "mean": 80.0
+    },
+    "battle_config.executionContractVersion": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "battle_config.targetEligibilityVersion": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "battle_config.strategyContractVersion": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "battle_config.pollWallTimeMs": {
+      "n": 1,
+      "first": 500,
+      "last": 500,
+      "min": 500,
+      "max": 500,
+      "mean": 500.0
+    },
+    "battle_config.battleSafetyGameSeconds": {
+      "n": 1,
+      "first": 7200,
+      "last": 7200,
+      "min": 7200,
+      "max": 7200,
+      "mean": 7200.0
+    },
+    "battle_config.battleSafetyWallSeconds": {
+      "n": 1,
+      "first": 2400,
+      "last": 2400,
+      "min": 2400,
+      "max": 2400,
+      "mean": 2400.0
+    },
+    "battle_config.reportCommitMemoryMiB": {
+      "n": 1,
+      "first": 8,
+      "last": 8,
+      "min": 8,
+      "max": 8,
+      "mean": 8.0
+    },
+    "battle_config.reportDiskLimitMiB": {
+      "n": 1,
+      "first": 1024,
+      "last": 1024,
+      "min": 1024,
+      "max": 1024,
+      "mean": 1024.0
+    },
+    "battle_config.reconExpendableHpMaxFraction": {
+      "n": 1,
+      "first": 0.45,
+      "last": 0.45,
+      "min": 0.45,
+      "max": 0.45,
+      "mean": 0.45
+    },
+    "battle_config.reconFrontierMinMainForce": {
+      "n": 1,
+      "first": 6,
+      "last": 6,
+      "min": 6,
+      "max": 6,
+      "mean": 6.0
+    },
+    "battle_config.localArmyMaxCohorts": {
+      "n": 1,
+      "first": 4,
+      "last": 4,
+      "min": 4,
+      "max": 4,
+      "mean": 4.0
+    },
+    "battle_config.localArmyMaxMembers": {
+      "n": 1,
+      "first": 48,
+      "last": 48,
+      "min": 48,
+      "max": 48,
+      "mean": 48.0
+    },
+    "battle_config.localArmyFormationMinimum": {
+      "n": 1,
+      "first": 6,
+      "last": 6,
+      "min": 6,
+      "max": 6,
+      "mean": 6.0
+    },
+    "battle_config.localArmyReleaseBelow": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "battle_config.localArmyFormationRadiusWorld": {
+      "n": 1,
+      "first": 400,
+      "last": 400,
+      "min": 400,
+      "max": 400,
+      "mean": 400.0
+    },
+    "battle_config.localArmyTargetRadiusWorld": {
+      "n": 1,
+      "first": 1400,
+      "last": 1400,
+      "min": 1400,
+      "max": 1400,
+      "mean": 1400.0
+    },
+    "battle_config.localArmyOrderIntervalGameMs": {
+      "n": 1,
+      "first": 8000,
+      "last": 8000,
+      "min": 8000,
+      "max": 8000,
+      "mean": 8000.0
+    },
+    "battle_config.localArmyMemoryHoldGameMs": {
+      "n": 1,
+      "first": 30000,
+      "last": 30000,
+      "min": 30000,
+      "max": 30000,
+      "mean": 30000.0
+    },
+    "strategy_capacity.armyTarget": {
+      "n": 153,
+      "first": 40,
+      "last": 96,
+      "min": 35,
+      "max": 96,
+      "mean": 86.654
+    },
+    "strategy_capacity.activeArmyTarget": {
+      "n": 153,
+      "first": 32,
+      "last": 86,
+      "min": 27,
+      "max": 88,
+      "mean": 77.778
+    },
+    "strategy_capacity.reserveTarget": {
+      "n": 153,
+      "first": 8,
+      "last": 10,
+      "min": 8,
+      "max": 12,
+      "mean": 8.876
+    },
+    "strategy_capacity.hardSafetyCap": {
+      "n": 153,
+      "first": 128,
+      "last": 128,
+      "min": 128,
+      "max": 128,
+      "mean": 128.0
+    },
+    "strategy_capacity.builderTarget": {
+      "n": 153,
+      "first": 1,
+      "last": 2,
+      "min": 1,
+      "max": 2,
+      "mean": 1.869
+    },
+    "strategy_capacity.mapTiles": {
+      "n": 153,
+      "first": 148000.0,
+      "last": 148000.0,
+      "min": 148000.0,
+      "max": 148000.0,
+      "mean": 148000.0
+    },
+    "strategy_capacity.incomeEstimate": {
+      "n": 153,
+      "first": 38.97,
+      "last": 352.78999999999996,
+      "min": 38.97,
+      "max": 636.435,
+      "mean": 373.262
+    },
+    "strategy_capacity.productionConsumption": {
+      "n": 153,
+      "first": 0.0,
+      "last": 48.0,
+      "min": 0.0,
+      "max": 154.66666666666666,
+      "mean": 60.839
+    },
+    "strategy_capacity.knownCapabilityNeeds": {
+      "n": 153,
+      "first": 0,
+      "last": 18,
+      "min": 0,
+      "max": 18,
+      "mean": 6.327
+    },
+    "strategy_capacity.resourceBacklog": {
+      "n": 153,
+      "first": 1,
+      "last": 12,
+      "min": 0,
+      "max": 13,
+      "mean": 5.98
+    },
+    "strategy_capacity.gameTimeMs": {
+      "n": 153,
+      "first": 104174,
+      "last": 4896124,
+      "min": 104174,
+      "max": 4896124,
+      "mean": 2493038.902
+    },
+    "production_decision.factoryId": {
+      "n": 24,
+      "first": 570,
+      "last": 3274,
+      "min": 570,
+      "max": 3274,
+      "mean": 3161.333
+    },
+    "production_decision.factoryTier": {
+      "n": 24,
+      "first": 1,
+      "last": 2,
+      "min": 1,
+      "max": 2,
+      "mean": 1.917
+    },
+    "production_decision.credits": {
+      "n": 24,
+      "first": 2982.5,
+      "last": 603.5,
+      "min": 377.0,
+      "max": 2982.5,
+      "mean": 903.083
+    },
+    "production_decision.preferredUnitCost": {
+      "n": 24,
+      "first": 350,
+      "last": 800,
+      "min": 350,
+      "max": 800,
+      "mean": 762.5
+    },
+    "production_decision.bestAffordableCost": {
+      "n": 24,
+      "first": 350,
+      "last": 350,
+      "min": 350,
+      "max": 800,
+      "mean": 500.0
+    },
+    "production_decision.gameTimeMs": {
+      "n": 24,
+      "first": 104174,
+      "last": 842459,
+      "min": 104174,
+      "max": 842459,
+      "mean": 593505.25
+    },
+    "spend.gameTimeMs": {
+      "n": 430,
+      "first": 104174,
+      "last": 4899414,
+      "min": 104174,
+      "max": 4899414,
+      "mean": 2395681.105
+    },
+    "spend.cost": {
+      "n": 430,
+      "first": 2000,
+      "last": 800,
+      "min": 350,
+      "max": 4000,
+      "mean": 1115.349
+    },
+    "spend.producerOrBuilderId": {
+      "n": 430,
+      "first": 570,
+      "last": 570,
+      "min": 569,
+      "max": 68582,
+      "mean": 8287.349
+    },
+    "production_surplus.credits": {
+      "n": 374,
+      "first": 1123.5,
+      "last": 1320032.5,
+      "min": 1055.0,
+      "max": 1320032.5,
+      "mean": 514974.86
+    },
+    "production_surplus.completedMines": {
+      "n": 374,
+      "first": 0,
+      "last": 13,
+      "min": 0,
+      "max": 13,
+      "mean": 10.238
+    },
+    "production_surplus.completedFactories": {
+      "n": 374,
+      "first": 0,
+      "last": 1,
+      "min": 0,
+      "max": 1,
+      "mean": 0.936
+    },
+    "production_surplus.preferredUnitCost": {
+      "n": 374,
+      "first": 350,
+      "last": 800,
+      "min": 350,
+      "max": 800,
+      "mean": 791.578
+    },
+    "production_surplus.factories": {
+      "n": 374,
+      "first": 1,
+      "last": 2,
+      "min": 1,
+      "max": 2,
+      "mean": 1.941
+    },
+    "production_surplus.gameTimeMs": {
+      "n": 374,
+      "first": 125824,
+      "last": 4902474,
+      "min": 125824,
+      "max": 4902474,
+      "mean": 2601261.821
+    },
+    "production_queue_finished.factoryId": {
+      "n": 302,
+      "first": 570,
+      "last": 570,
+      "min": 570,
+      "max": 3274,
+      "mean": 1760.834
+    },
+    "surplus_spending_evaluated.producerId": {
+      "n": 311,
+      "first": 570,
+      "last": 570,
+      "min": 570,
+      "max": 3274,
+      "mean": 1752.457
+    },
+    "surplus_spending_evaluated.nativeCost": {
+      "n": 311,
+      "first": 3100.0,
+      "last": 3100.0,
+      "min": 3100.0,
+      "max": 3100.0,
+      "mean": 3100.0
+    },
+    "surplus_spending_evaluated.ordinaryUnitNativeCost": {
+      "n": 311,
+      "first": 800.0,
+      "last": 800.0,
+      "min": 800.0,
+      "max": 800.0,
+      "mean": 800.0
+    },
+    "surplus_spending_evaluated.credits": {
+      "n": 311,
+      "first": 2197.5,
+      "last": 1319718.0,
+      "min": 175.0,
+      "max": 1319718.0,
+      "mean": 491557.169
+    },
+    "surplus_spending_evaluated.allReserved": {
+      "n": 311,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 1500.0,
+      "mean": 200.965
+    },
+    "surplus_spending_evaluated.requiredCredits": {
+      "n": 311,
+      "first": 4700.0,
+      "last": 4700.0,
+      "min": 4700.0,
+      "max": 6200.0,
+      "mean": 4900.965
+    },
+    "surplus_spending_evaluated.ordinaryForce": {
+      "n": 311,
+      "first": 7,
+      "last": 69,
+      "min": 2,
+      "max": 88,
+      "mean": 51.617
+    },
+    "surplus_spending_evaluated.artilleryObserved": {
+      "n": 311,
+      "first": 0,
+      "last": 6,
+      "min": 0,
+      "max": 6,
+      "mean": 3.228
+    },
+    "surplus_spending_evaluated.artilleryPending": {
+      "n": 311,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 1,
+      "mean": 0.08
+    },
+    "surplus_spending_evaluated.artilleryQuota": {
+      "n": 311,
+      "first": 3,
+      "last": 6,
+      "min": 2,
+      "max": 6,
+      "mean": 5.36
+    },
+    "surplus_spending_evaluated.committedArmed": {
+      "n": 311,
+      "first": 7,
+      "last": 81,
+      "min": 2,
+      "max": 96,
+      "mean": 60.347
+    },
+    "surplus_spending_evaluated.armyTarget": {
+      "n": 311,
+      "first": 40,
+      "last": 96,
+      "min": 35,
+      "max": 96,
+      "mean": 82.987
+    },
+    "surplus_spending_evaluated.hardSafetyCap": {
+      "n": 311,
+      "first": 128,
+      "last": 128,
+      "min": 128,
+      "max": 128,
+      "mean": 128.0
+    },
+    "surplus_spending_evaluated.gameTimeMs": {
+      "n": 311,
+      "first": 147869,
+      "last": 4899414,
+      "min": 147869,
+      "max": 4899414,
+      "mean": 2422689.322
+    },
+    "production_facility_move.builderId": {
+      "n": 3,
+      "first": 569,
+      "last": 569,
+      "min": 569,
+      "max": 569,
+      "mean": 569.0
+    },
+    "production_facility_move.x": {
+      "n": 3,
+      "first": 7370.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7370.0,
+      "mean": 7250.0
+    },
+    "production_facility_move.y": {
+      "n": 3,
+      "first": 1950.0,
+      "last": 2050.0,
+      "min": 1950.0,
+      "max": 2050.0,
+      "mean": 2016.667
+    },
+    "production_facility_move.gameTimeMs": {
+      "n": 3,
+      "first": 330969,
+      "last": 352384,
+      "min": 330969,
+      "max": 352384,
+      "mean": 344357.333
+    },
+    "production_facility_plan.builderId": {
+      "n": 1,
+      "first": 569,
+      "last": 569,
+      "min": 569,
+      "max": 569,
+      "mean": 569.0
+    },
+    "production_facility_plan.targetX": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "production_facility_plan.targetY": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "production_facility_plan.factoryCost": {
+      "n": 1,
+      "first": 700,
+      "last": 700,
+      "min": 700,
+      "max": 700,
+      "mean": 700.0
+    },
+    "production_facility_plan.tankCost": {
+      "n": 1,
+      "first": 350,
+      "last": 350,
+      "min": 350,
+      "max": 350,
+      "mean": 350.0
+    },
+    "production_facility_plan.credits": {
+      "n": 1,
+      "first": 2471.5,
+      "last": 2471.5,
+      "min": 2471.5,
+      "max": 2471.5,
+      "mean": 2471.5
+    },
+    "production_facility_planned.mines": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "production_facility_planned.factories": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "production_facility_planned.builderId": {
+      "n": 1,
+      "first": 569,
+      "last": 569,
+      "min": 569,
+      "max": 569,
+      "mean": 569.0
+    },
+    "production_facility_planned.x": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "production_facility_planned.y": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "production_facility_planned.factoryCost": {
+      "n": 1,
+      "first": 700,
+      "last": 700,
+      "min": 700,
+      "max": 700,
+      "mean": 700.0
+    },
+    "production_facility_planned.preferredUnitCost": {
+      "n": 1,
+      "first": 800,
+      "last": 800,
+      "min": 800,
+      "max": 800,
+      "mean": 800.0
+    },
+    "production_facility_planned.credits": {
+      "n": 1,
+      "first": 2459.0,
+      "last": 2459.0,
+      "min": 2459.0,
+      "max": 2459.0,
+      "mean": 2459.0
+    },
+    "production_facility_planned.distance": {
+      "n": 1,
+      "first": 104.10148224208912,
+      "last": 104.10148224208912,
+      "min": 104.10148224208912,
+      "max": 104.10148224208912,
+      "mean": 104.101
+    },
+    "production_facility_move.distance": {
+      "n": 2,
+      "first": 163.7516787364331,
+      "last": 108.25713198214717,
+      "min": 108.25713198214717,
+      "max": 163.7516787364331,
+      "mean": 136.004
+    },
+    "production_facility_started.builderId": {
+      "n": 1,
+      "first": 569,
+      "last": 569,
+      "min": 569,
+      "max": 569,
+      "mean": 569.0
+    },
+    "production_facility_started.x": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "production_facility_started.y": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "production_facility_started.cost": {
+      "n": 1,
+      "first": 700,
+      "last": 700,
+      "min": 700,
+      "max": 700,
+      "mean": 700.0
+    },
+    "production_facility_started.gameTimeMs": {
+      "n": 1,
+      "first": 354989,
+      "last": 354989,
+      "min": 354989,
+      "max": 354989,
+      "mean": 354989.0
+    },
+    "production_facility_observed.unitId": {
+      "n": 1,
+      "first": 3274,
+      "last": 3274,
+      "min": 3274,
+      "max": 3274,
+      "mean": 3274.0
+    },
+    "production_facility_observed.x": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "production_facility_observed.y": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "production_facility_observed.plannedX": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "production_facility_observed.plannedY": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "production_facility_observed.gameTimeMs": {
+      "n": 1,
+      "first": 357639,
+      "last": 357639,
+      "min": 357639,
+      "max": 357639,
+      "mean": 357639.0
+    },
+    "factory_completed.unitId": {
+      "n": 1,
+      "first": 3274,
+      "last": 3274,
+      "min": 3274,
+      "max": 3274,
+      "mean": 3274.0
+    },
+    "factory_completed.x": {
+      "n": 1,
+      "first": 7190.0,
+      "last": 7190.0,
+      "min": 7190.0,
+      "max": 7190.0,
+      "mean": 7190.0
+    },
+    "factory_completed.y": {
+      "n": 1,
+      "first": 2050.0,
+      "last": 2050.0,
+      "min": 2050.0,
+      "max": 2050.0,
+      "mean": 2050.0
+    },
+    "factory_completed.plannedAtGameMs": {
+      "n": 1,
+      "first": 347059,
+      "last": 347059,
+      "min": 347059,
+      "max": 347059,
+      "mean": 347059.0
+    },
+    "factory_completed.firstSeenGameMs": {
+      "n": 1,
+      "first": 357639,
+      "last": 357639,
+      "min": 357639,
+      "max": 357639,
+      "mean": 357639.0
+    },
+    "factory_completed.factoriesCompleted": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "factory_completed.completedAtGameMs": {
+      "n": 1,
+      "first": 373734,
+      "last": 373734,
+      "min": 373734,
+      "max": 373734,
+      "mean": 373734.0
+    },
+    "production_facility_finished.factories": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "production_facility_finished.landFactoryTarget": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "factory_target_increase_blocked.readyFactories": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "factory_target_increase_blocked.landFactoryTarget": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "factory_target_increase_blocked.landFactoryTargetMax": {
+      "n": 1,
+      "first": 5,
+      "last": 5,
+      "min": 5,
+      "max": 5,
+      "mean": 5.0
+    },
+    "factory_target_increase_blocked.saturationPct": {
+      "n": 1,
+      "first": 72.23,
+      "last": 72.23,
+      "min": 72.23,
+      "max": 72.23,
+      "mean": 72.23
+    },
+    "factory_target_increase_blocked.saturationMinPct": {
+      "n": 1,
+      "first": 80,
+      "last": 80,
+      "min": 80,
+      "max": 80,
+      "mean": 80.0
+    },
+    "factory_target_increase_blocked.observedFactoryGameMs": {
+      "n": 1,
+      "first": 156210,
+      "last": 156210,
+      "min": 156210,
+      "max": 156210,
+      "mean": 156210.0
+    },
+    "factory_target_increase_blocked.windowGameMs": {
+      "n": 1,
+      "first": 150000,
+      "last": 150000,
+      "min": 150000,
+      "max": 150000,
+      "mean": 150000.0
+    },
+    "factory_target_increase_blocked.gameMsSinceStart": {
+      "n": 1,
+      "first": 272245,
+      "last": 272245,
+      "min": 272245,
+      "max": 272245,
+      "mean": 272245.0
+    },
+    "factory_target_increase_blocked.modelledIncomePerGameSecond": {
+      "n": 1,
+      "first": 63.1,
+      "last": 63.1,
+      "min": 63.1,
+      "max": 63.1,
+      "mean": 63.1
+    },
+    "factory_target_increase_blocked.productionConsumptionPerGameSecond": {
+      "n": 1,
+      "first": 48.0,
+      "last": 48.0,
+      "min": 48.0,
+      "max": 48.0,
+      "mean": 48.0
+    },
+    "factory_target_increase_blocked.credits": {
+      "n": 1,
+      "first": 2007.0,
+      "last": 2007.0,
+      "min": 2007.0,
+      "max": 2007.0,
+      "mean": 2007.0
+    },
+    "factory_target_increase_blocked.landFactoryCost": {
+      "n": 1,
+      "first": 700,
+      "last": 700,
+      "min": 700,
+      "max": 700,
+      "mean": 700.0
+    },
+    "factory_target_increase_blocked.builderReserve": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "factory_target_increase_blocked.investmentReserve": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "factory_target_increase_blocked.gameTimeMs": {
+      "n": 1,
+      "first": 376384,
+      "last": 376384,
+      "min": 376384,
+      "max": 376384,
+      "mean": 376384.0
+    },
+    "production_deferred.factoryId": {
+      "n": 25,
+      "first": 570,
+      "last": 570,
+      "min": 570,
+      "max": 3274,
+      "mean": 1002.64
+    },
+    "production_deferred.factoryTier": {
+      "n": 25,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "production_deferred.credits": {
+      "n": 25,
+      "first": 458.5,
+      "last": 1360.5,
+      "min": 458.5,
+      "max": 1443.5,
+      "mean": 929.74
+    },
+    "production_deferred.candidateCost": {
+      "n": 25,
+      "first": 800,
+      "last": 800,
+      "min": 350,
+      "max": 800,
+      "mean": 656.0
+    },
+    "production_deferred.reservedCost": {
+      "n": 25,
+      "first": 800,
+      "last": 800,
+      "min": 700,
+      "max": 800,
+      "mean": 768.0
+    },
+    "production_deferred.gameTimeMs": {
+      "n": 25,
+      "first": 421584,
+      "last": 814219,
+      "min": 421584,
+      "max": 814219,
+      "mean": 651657.6
+    },
+    "production_idle.activeArmy": {
+      "n": 33,
+      "first": 13,
+      "last": 89,
+      "min": 13,
+      "max": 89,
+      "mean": 23.091
+    },
+    "production_idle.activeArmyTarget": {
+      "n": 33,
+      "first": 24,
+      "last": 24,
+      "min": 24,
+      "max": 24,
+      "mean": 24.0
+    },
+    "production_idle.reserveTarget": {
+      "n": 33,
+      "first": 8,
+      "last": 8,
+      "min": 8,
+      "max": 8,
+      "mean": 8.0
+    },
+    "production_idle.mobileUnitHardCap": {
+      "n": 33,
+      "first": 128,
+      "last": 128,
+      "min": 128,
+      "max": 128,
+      "mean": 128.0
+    },
+    "production_idle.credits": {
+      "n": 33,
+      "first": 458.5,
+      "last": 1216530.0,
+      "min": 175.0,
+      "max": 1216530.0,
+      "mean": 37535.061
+    },
+    "surplus_role_ordered.producerId": {
+      "n": 23,
+      "first": 570,
+      "last": 3274,
+      "min": 570,
+      "max": 3274,
+      "mean": 1628.087
+    },
+    "surplus_role_ordered.nativeCost": {
+      "n": 23,
+      "first": 3100.0,
+      "last": 3100.0,
+      "min": 3100.0,
+      "max": 3100.0,
+      "mean": 3100.0
+    },
+    "surplus_role_ordered.ordinaryUnitNativeCost": {
+      "n": 23,
+      "first": 800.0,
+      "last": 800.0,
+      "min": 800.0,
+      "max": 800.0,
+      "mean": 800.0
+    },
+    "surplus_role_ordered.credits": {
+      "n": 23,
+      "first": 9705.0,
+      "last": 1260956.0,
+      "min": 5004.5,
+      "max": 1261296.0,
+      "mean": 623014.435
+    },
+    "surplus_role_ordered.allReserved": {
+      "n": 23,
+      "first": 0.0,
+      "last": 0.0,
+      "min": 0.0,
+      "max": 700.0,
+      "mean": 121.739
+    },
+    "surplus_role_ordered.requiredCredits": {
+      "n": 23,
+      "first": 4700.0,
+      "last": 4700.0,
+      "min": 4700.0,
+      "max": 5400.0,
+      "mean": 4821.739
+    },
+    "surplus_role_ordered.ordinaryForce": {
+      "n": 23,
+      "first": 61,
+      "last": 73,
+      "min": 41,
+      "max": 75,
+      "mean": 59.696
+    },
+    "surplus_role_ordered.artilleryObserved": {
+      "n": 23,
+      "first": 0,
+      "last": 4,
+      "min": 0,
+      "max": 5,
+      "mean": 3.217
+    },
+    "surplus_role_ordered.artilleryPending": {
+      "n": 23,
+      "first": 0,
+      "last": 1,
+      "min": 0,
+      "max": 1,
+      "mean": 0.391
+    },
+    "surplus_role_ordered.artilleryQuota": {
+      "n": 23,
+      "first": 6,
+      "last": 6,
+      "min": 6,
+      "max": 6,
+      "mean": 6.0
+    },
+    "surplus_role_ordered.committedArmed": {
+      "n": 23,
+      "first": 64,
+      "last": 84,
+      "min": 54,
+      "max": 84,
+      "mean": 70.609
+    },
+    "surplus_role_ordered.armyTarget": {
+      "n": 23,
+      "first": 92,
+      "last": 96,
+      "min": 92,
+      "max": 96,
+      "mean": 94.87
+    },
+    "surplus_role_ordered.hardSafetyCap": {
+      "n": 23,
+      "first": 128,
+      "last": 128,
+      "min": 128,
+      "max": 128,
+      "mean": 128.0
+    },
+    "surplus_role_ordered.gameTimeMs": {
+      "n": 23,
+      "first": 1229044,
+      "last": 4684334,
+      "min": 1229044,
+      "max": 4684334,
+      "mean": 2979152.696
+    },
+    "summary.commands": {
+      "n": 1,
+      "first": 1401,
+      "last": 1401,
+      "min": 1401,
+      "max": 1401,
+      "mean": 1401.0
+    },
+    "summary.observations": {
+      "n": 1,
+      "first": 1536,
+      "last": 1536,
+      "min": 1536,
+      "max": 1536,
+      "mean": 1536.0
+    },
+    "summary.ownLosses": {
+      "n": 1,
+      "first": 283,
+      "last": 283,
+      "min": 283,
+      "max": 283,
+      "mean": 283.0
+    },
+    "summary.newCombatUnits": {
+      "n": 1,
+      "first": 302,
+      "last": 302,
+      "min": 302,
+      "max": 302,
+      "mean": 302.0
+    },
+    "summary.attackOrders": {
+      "n": 1,
+      "first": 630,
+      "last": 630,
+      "min": 630,
+      "max": 630,
+      "mean": 630.0
+    },
+    "summary.attackOrdersConfirmed": {
+      "n": 1,
+      "first": 628,
+      "last": 628,
+      "min": 628,
+      "max": 628,
+      "mean": 628.0
+    },
+    "summary.retreatOrders": {
+      "n": 1,
+      "first": 112,
+      "last": 112,
+      "min": 112,
+      "max": 112,
+      "mean": 112.0
+    },
+    "summary.upgradesCompleted": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "summary.completedMines": {
+      "n": 1,
+      "first": 13,
+      "last": 13,
+      "min": 13,
+      "max": 13,
+      "mean": 13.0
+    },
+    "summary.newMines": {
+      "n": 1,
+      "first": 13,
+      "last": 13,
+      "min": 13,
+      "max": 13,
+      "mean": 13.0
+    },
+    "summary.mineTarget": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "summary.minesBeyondFloor": {
+      "n": 1,
+      "first": 11,
+      "last": 11,
+      "min": 11,
+      "max": 11,
+      "mean": 11.0
+    },
+    "summary.expansionRefusals": {
+      "n": 1,
+      "first": 258,
+      "last": 258,
+      "min": 258,
+      "max": 258,
+      "mean": 258.0
+    },
+    "summary.expansionBlocked": {
+      "n": 1,
+      "first": 275,
+      "last": 275,
+      "min": 275,
+      "max": 275,
+      "mean": 275.0
+    },
+    "summary.completedFactories": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.newFactories": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.landFactoryTarget": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "summary.factoryBlocks": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.builderTarget": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.builderRecoveries": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.builderOrders": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.battleGameTimeMs": {
+      "n": 1,
+      "first": 4801610,
+      "last": 4801610,
+      "min": 4801610,
+      "max": 4801610,
+      "mean": 4801610.0
+    },
+    "summary.gameSecondsPerWallSecond": {
+      "n": 1,
+      "first": 5.0,
+      "last": 5.0,
+      "min": 5.0,
+      "max": 5.0,
+      "mean": 5.0
+    },
+    "summary.noProgressWindowMs": {
+      "n": 1,
+      "first": 20000,
+      "last": 20000,
+      "min": 20000,
+      "max": 20000,
+      "mean": 20000.0
+    },
+    "summary.noProgressCooldownMs": {
+      "n": 1,
+      "first": 30000,
+      "last": 30000,
+      "min": 30000,
+      "max": 30000,
+      "mean": 30000.0
+    },
+    "summary.targetNoProgressTriggers": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.targetRetries": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.targetSuppressionsStarted": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "summary.targetSuppressionsReleased": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.targetSuppressedSelections": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.targetSuppressionsAtEnd": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "summary.targetSwitches": {
+      "n": 1,
+      "first": 299,
+      "last": 299,
+      "min": 299,
+      "max": 299,
+      "mean": 299.0
+    },
+    "summary.effectiveDecisionIntervalGameMs": {
+      "n": 1,
+      "first": 3380,
+      "last": 3380,
+      "min": 3380,
+      "max": 3380,
+      "mean": 3380.0
+    },
+    "summary.noProgressAttentionGapMs": {
+      "n": 1,
+      "first": 10140,
+      "last": 10140,
+      "min": 10140,
+      "max": 10140,
+      "mean": 10140.0
+    },
+    "summary.maxObservedGameTimeJump": {
+      "n": 1,
+      "first": 3920,
+      "last": 3920,
+      "min": 3920,
+      "max": 3920,
+      "mean": 3920.0
+    },
+    "summary.observationCount": {
+      "n": 1,
+      "first": 1536,
+      "last": 1536,
+      "min": 1536,
+      "max": 1536,
+      "mean": 1536.0
+    },
+    "summary.spendTotal": {
+      "n": 1,
+      "first": 479600,
+      "last": 479600,
+      "min": 479600,
+      "max": 479600,
+      "mean": 479600.0
+    },
+    "summary.measuredIncomePerGameSecond": {
+      "n": 1,
+      "first": 374.41,
+      "last": 374.41,
+      "min": 374.41,
+      "max": 374.41,
+      "mean": 374.41
+    },
+    "summary.investmentIntentions": {
+      "n": 1,
+      "first": 25,
+      "last": 25,
+      "min": 25,
+      "max": 25,
+      "mean": 25.0
+    },
+    "summary.investmentCompletions": {
+      "n": 1,
+      "first": 6,
+      "last": 6,
+      "min": 6,
+      "max": 6,
+      "mean": 6.0
+    },
+    "summary.investmentCancellations": {
+      "n": 1,
+      "first": 19,
+      "last": 19,
+      "min": 19,
+      "max": 19,
+      "mean": 19.0
+    },
+    "summary.investmentReserveAtEnd": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.reconTasksCreated": {
+      "n": 1,
+      "first": 36,
+      "last": 36,
+      "min": 36,
+      "max": 36,
+      "mean": 36.0
+    },
+    "summary.reconOrdersQueued": {
+      "n": 1,
+      "first": 86,
+      "last": 86,
+      "min": 86,
+      "max": 86,
+      "mean": 86.0
+    },
+    "summary.reconOrdersObserved": {
+      "n": 1,
+      "first": 64,
+      "last": 64,
+      "min": 64,
+      "max": 64,
+      "mean": 64.0
+    },
+    "summary.reconMovesCompletedBetweenSamples": {
+      "n": 1,
+      "first": 21,
+      "last": 21,
+      "min": 21,
+      "max": 21,
+      "mean": 21.0
+    },
+    "summary.frontierTasksSatisfiedByTeamVision": {
+      "n": 1,
+      "first": 15,
+      "last": 15,
+      "min": 15,
+      "max": 15,
+      "mean": 15.0
+    },
+    "summary.reconResolvedAfterObservedMove": {
+      "n": 1,
+      "first": 8,
+      "last": 8,
+      "min": 8,
+      "max": 8,
+      "mean": 8.0
+    },
+    "summary.reconReacquired": {
+      "n": 1,
+      "first": 9,
+      "last": 9,
+      "min": 9,
+      "max": 9,
+      "mean": 9.0
+    },
+    "summary.reconSitesCleared": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.reconBlocked": {
+      "n": 1,
+      "first": 3,
+      "last": 3,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "summary.frontierTasksCreated": {
+      "n": 1,
+      "first": 23,
+      "last": 23,
+      "min": 23,
+      "max": 23,
+      "mean": 23.0
+    },
+    "summary.frontierTasksRefreshed": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.frontierTasksAdvanced": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.frontierTasksBlocked": {
+      "n": 1,
+      "first": 7,
+      "last": 7,
+      "min": 7,
+      "max": 7,
+      "mean": 7.0
+    },
+    "summary.frontierTasksPreempted": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.expendableTransfers": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.expendableScoutsAtEnd": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.factoryTargetIncreases": {
+      "n": 1,
+      "first": 0,
+      "last": 0,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0
+    },
+    "summary.factoryTargetIncreaseBlocks": {
+      "n": 1,
+      "first": 1,
+      "last": 1,
+      "min": 1,
+      "max": 1,
+      "mean": 1.0
+    },
+    "summary.landFactoryTargetAtEnd": {
+      "n": 1,
+      "first": 2,
+      "last": 2,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "summary.landFactoryTargetMax": {
+      "n": 1,
+      "first": 5,
+      "last": 5,
+      "min": 5,
+      "max": 5,
+      "mean": 5.0
+    },
+    "summary.factorySaturationPct": {
+      "n": 1,
+      "first": 47.35,
+      "last": 47.35,
+      "min": 47.35,
+      "max": 47.35,
+      "mean": 47.35
+    },
+    "summary.factorySaturationMinPct": {
+      "n": 1,
+      "first": 80,
+      "last": 80,
+      "min": 80,
+      "max": 80,
+      "mean": 80.0
+    },
+    "summary.economyBaseIncome": {
+      "n": 1,
+      "first": 26.9,
+      "last": 26.9,
+      "min": 26.9,
+      "max": 26.9,
+      "mean": 26.9
+    },
+    "summary.economyIncomePerMine": {
+      "n": 1,
+      "first": 12.07,
+      "last": 12.07,
+      "min": 12.07,
+      "max": 12.07,
+      "mean": 12.07
+    },
+    "summary.minesReadyAtEnd": {
+      "n": 1,
+      "first": 14,
+      "last": 14,
+      "min": 14,
+      "max": 14,
+      "mean": 14.0
+    },
+    "summary.productionConsumptionPerGameSecond": {
+      "n": 1,
+      "first": 48.0,
+      "last": 48.0,
+      "min": 48.0,
+      "max": 48.0,
+      "mean": 48.0
+    },
+    "summary.sustainableSurplusPerGameSecond": {
+      "n": 1,
+      "first": 304.8,
+      "last": 304.8,
+      "min": 304.8,
+      "max": 304.8,
+      "mean": 304.8
+    }
+  },
+  "spendByCategory": {
+    "FACTORY_UPGRADE": 4000,
+    "NEW_MINE": 9100,
+    "UNIT_PRODUCTION": 282900,
+    "NEW_FACTORY": 700,
+    "STRATEGIC_CAPABILITY": 18500,
+    "STRATEGIC_CONSTRUCTION": 29000,
+    "MINE_UPGRADE": 135400
+  },
+  "productionIdleReasons": {
+    "BANKING_FOR_PRIMARY_UNIT": 16,
+    "NO_AFFORDABLE_ACTION": 15,
+    "BANKING_FOR_SECONDARY_UPGRADE": 1,
+    "STRATEGY_ARMY_TARGET_REACHED": 1
+  },
+  "finalObservation": {
+    "gameTimeMs": 4905749,
+    "credits": 1321176.0,
+    "mobileArmed": 81,
+    "landFactoryQueue": 1,
+    "observableCommitted": 82,
+    "strategyTarget": 96,
+    "hardCap": 128
+  },
+  "firstObservableTargetFull": {
+    "gameTimeMs": 4485884,
+    "credits": 1208601.5,
+    "mobileArmed": 94,
+    "landFactoryQueue": 2,
+    "observableCommitted": 96,
+    "strategyTarget": 96,
+    "hardCap": 128
+  },
+  "observableCapacityDurations": {
+    "sampleHeldAtOrAboveStrategyTargetMs": 47720,
+    "sampleHeldAtOrAboveHardCapMs": 0,
+    "sampleHeldBelowStrategyTargetMs": 4750905
+  },
+  "limitations": [
+    "Counts are exported event counts; old refusal/idle logs emit transitions, not every blocked frame.",
+    "Observable commitment is own mobile armed plus exported landFactory queue; specialist and unobserved paid commitments are omitted.",
+    "Durations hold each sampled observation until the next; missing commitments and between-sample changes prevent exact causal blocked-time attribution.",
+    "PARTIAL/ONGOING is not victory; available slots plus idle factories do not prove a producer bottleneck."
+  ]
+}

@@ -19,7 +19,7 @@ Do not use old root-level Astra mission/review files as current instructions. Th
 
 ## Current engineering state
 
-The active fixed candidate is `RW-CANDIDATE-2026-10-01-FEEDBACK-v1`, JAR SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
+The active engineering candidate is `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1`, JAR SHA256 `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`, implementation `1264b37` on `codex/production-capacity-v1-20261001`. Its [handoff](handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md) and [manifest](deliveries/production-capacity-2026-10-01/candidate-manifest.json) are the current delivery entries. Previous fixed FEEDBACK-v1 remains frozen with SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
 
 The latest user desktop runs show that economy can now grow far beyond the Agent's ability to consume it usefully. Spain reached about 1.32M credits while production and operations remained bounded. The next mainline is therefore production-capacity scaling plus predictable production routes, followed by higher useful parallel operational throughput.
 
@@ -43,9 +43,9 @@ Do not spend this round re-deriving old project history or implementing the next
 
 After orientation passes, advance one substantial engineering breakpoint. The preferred first breakpoint is:
 
-**Production Capacity Controller v1 + minimum ProductionRoute data model.**
+**Spain desktop acceptance of Production Capacity v1, then explanation of UNKNOWN slots-available production intervals.**
 
-The result should expose measurable economic inflow, recent spend/throughput, producer capacity, backlog/bottleneck, and a bounded decision to request more capacity. It should not yet attempt to solve every downstream scheduler/expansion/recon problem.
+The controller and minimum ordinary native route adapter are already implemented. Keep fixture evidence separate from the natural Big Island match, which reached VICTORY without a capacity increase. Do not reimplement the delivered slice or infer OPERATIONAL_CAPACITY_LIMIT from idle time alone.
 
 Follow `project-state/NEXT_STAGE_PLAN.md` for detailed constraints and validation expectations.
 

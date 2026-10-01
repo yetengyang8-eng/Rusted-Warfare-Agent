@@ -1,0 +1,13 @@
+{
+  "status": "preflight",
+  "sessionId": "62aa5abf-3bf0-4451-9480-975d8669af7d",
+  "commandsAllowed": true,
+  "commandGuard": null,
+  "eligibleBuilders": 2,
+  "idleFactories": 1,
+  "busyFactories": 1,
+  "factoriesUnderConstruction": 0,
+  "unavailableFactories": 0,
+  "factoryId": 312,
+  "recommendation": "RUN_DEVELOP"
+}

@@ -1,0 +1,26 @@
+{
+  "pid": 3356,
+  "port": 7369,
+  "startedUtc": "2026-10-01T15:30:33.720576+00:00",
+  "workDirectory": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001",
+  "command": [
+    "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\jvm64\\bin\\java.exe",
+    "-Djava.awt.headless=true",
+    "-Dfile.encoding=UTF-8",
+    "-cp",
+    "game-lib.jar;libs/*;rw-agent-bootstrap.jar",
+    "io.rwagent.headless.HeadlessRunner",
+    "--map",
+    "maps/skirmish/[p2]Big Island (2p).tmx",
+    "--port",
+    "7369",
+    "--speed",
+    "5.0",
+    "--max-wall-seconds",
+    "600",
+    "--frames",
+    "0",
+    "--difficulty",
+    "0"
+  ]
+}

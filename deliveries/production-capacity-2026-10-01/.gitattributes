@@ -1,0 +1,3 @@
+# Keep candidate archive and Windows launcher hashes stable across checkouts.
+*.jar -text
+*.bat -text whitespace=cr-at-eol

@@ -1,0 +1,249 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-01 23:30:34.887: GameEngine:GameEngine()
+2026-10-01 23:30:34.891: Created new gameEngine of:com.corrodinggames.rts.game.i
+2026-10-01 23:30:34.891: --- ----------------- ----
+2026-10-01 23:30:34.891: --- GameEngine:init() ----
+2026-10-01 23:30:34.891: --- ----------------- ----
+2026-10-01 23:30:34.893: Version:v1.15
+2026-10-01 23:30:34.899: ------- createIndex -------
+2026-10-01 23:30:34.899: c:
+2026-10-01 23:30:34.900: densityScaleRaw*densityScaleMultiplier: 1.0
+2026-10-01 23:30:34.900: packageName:dedicatedServer
+2026-10-01 23:30:34.906: slickToAndroidCodes: Could not find keycode for: NUMLOCK, RWIN, CONVERT, STOP, AX, UNDERLINE, DELETE, NOCONVERT, APPS, DECIMAL, SCROLL, END, KANJI, NUMPADDECIMAL, LWIN, CIRCUMFLEX, UNLABELED, F14, F13, COLON, F15, CAPITAL, 
+2026-10-01 23:30:34.907: gdxToAndroidCodes: Could not find keycode for: END, META_ALT_LEFT_ON, COLON, ANY_KEY, META_SHIFT_RIGHT_ON, 
+2026-10-01 23:30:34.907: gdxToSlickCodes: Could not find keycode for: MEDIA_REWIND, MEDIA_PLAY_PAUSE, BUTTON_SELECT, CENTER, BUTTON_X, BUTTON_Z, BUTTON_Y, MEDIA_PREVIOUS, SWITCH_CHARSET, SEARCH, META_ALT_ON, CAMERA, SHIFT_LEFT, BUTTON_START, MUTE, CALL, PICTSYMBOLS, FOCUS, VOLUME_DOWN, ENVELOPE, BUTTON_L2, BUTTON_L1, META_SHIFT_ON, NUM, SOFT_RIGHT, NOTIFICATION, STAR, MENU, DPAD_CENTER, BUTTON_R2, BUTTON_R1, BUTTON_THUMBL, MEDIA_FAST_FORWARD, BUTTON_THUMBR, EXPLORER, BACKSPACE, ENDCALL, FORWARD_DEL, BUTTON_MODE, SYM, SOFT_LEFT, PLUS, MEDIA_NEXT, META_ALT_LEFT_ON, MEDIA_STOP, VOLUME_UP, POUND, META_SHIFT_LEFT_ON, DEL, ANY_KEY, BUTTON_C, SHIFT_RIGHT, BUTTON_B, BUTTON_A, HEADSETHOOK, META_SHIFT_RIGHT_ON, UNKNOWN, CLEAR, 
+2026-10-01 23:30:34.908: getControllerCount:0
+2026-10-01 23:30:34.910: densityScale(): 1.0
+2026-10-01 23:30:34.912: Locale: default targetLocale:zh_CN
+2026-10-01 23:30:34.912: Locale: default targetLocale ISO3:zho
+2026-10-01 23:30:34.920: Locale: Using Strings_zh_cn.properties as locale
+2026-10-01 23:30:34.932: Locale.init took:9.815ms
+2026-10-01 23:30:34.963: AudioEngine took:1.098ms
+2026-10-01 23:30:34.967: We have an initial screen size, can do early setup of image buffers
+2026-10-01 23:30:34.967: Density size changed now: 1.0, refreshing fonts
+2026-10-01 23:30:34.972: Creating minimap image buffers..
+2026-10-01 23:30:34.975: PathEngine:We have 20 cores, creating extra solvers
+2026-10-01 23:30:34.982: smallTextPaint size: 12.0
+2026-10-01 23:30:34.990: disabledSteam - loadWorkshopMods
+2026-10-01 23:30:34.996: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-01 23:30:34.996: Modded Custom '/SD/mods/units' directory not found
+2026-10-01 23:30:34.997: loading mod custom units at:builtin_mods
+2026-10-01 23:30:34.999: openAssetCached: Cache miss for: builtin_mods/mega_builders/mod-info.txt
+2026-10-01 23:30:34.999: openAssetCached: Reading: builtin_mods/mega_builders/mod-info.txt
+2026-10-01 23:30:35.004: Wrote cache file at: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.data
+2026-10-01 23:30:35.006: Wrote cache file at: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.meta
+2026-10-01 23:30:35.009: loading mod custom units at:builtin_mods_enabled
+2026-10-01 23:30:35.009: ========= Mods ===========
+2026-10-01 23:30:35.009: Number of mods:1
+2026-10-01 23:30:35.009: Mod: 'Mega Builders
+2026-10-01 23:30:35.010: ================================
+2026-10-01 23:30:35.010: Disabling all new mods for first/new load
+2026-10-01 23:30:35.010: Loading mod selection
+2026-10-01 23:30:35.013: smoothFog load took:0.460ms
+2026-10-01 23:30:35.025: loadAllUnits took:9.998ms
+2026-10-01 23:30:35.025: disabledSteam - loadWorkshopMods
+2026-10-01 23:30:35.025: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-01 23:30:35.025: Modded Custom '/SD/mods/units' directory not found
+2026-10-01 23:30:35.025: loading mod custom units at:builtin_mods
+2026-10-01 23:30:35.027: loading mod custom units at:builtin_mods_enabled
+2026-10-01 23:30:35.027: ========= Mods ===========
+2026-10-01 23:30:35.027: Number of mods:1
+2026-10-01 23:30:35.027: Mod: 'Mega Builders
+2026-10-01 23:30:35.027: ================================
+2026-10-01 23:30:35.234: Setting missingPlaceHolder
+2026-10-01 23:30:35.324: ==Timing==
+2026-10-01 23:30:35.324: imageLoad: 2.004ms
+2026-10-01 23:30:35.324: imageLoadOrGet: 37.308ms
+2026-10-01 23:30:35.324: soundLoad: 0ms
+2026-10-01 23:30:35.324: soundLoadOrGet: 0.139ms
+2026-10-01 23:30:35.324: iniParse: 22.068ms
+2026-10-01 23:30:35.324: unitParse: 217.728ms
+2026-10-01 23:30:35.324: iniOpen: 14.237ms
+2026-10-01 23:30:35.324: iniClose: 0.123ms
+2026-10-01 23:30:35.324: iniSetup: 20.114ms
+2026-10-01 23:30:35.324: actionParse: 47.472ms
+2026-10-01 23:30:35.324: unitParsePartA: 114.860ms
+2026-10-01 23:30:35.324: unitParsePartB: 136.733ms
+2026-10-01 23:30:35.324: unitParsePartC: 197.968ms
+2026-10-01 23:30:35.324: unitParsePartD: 201.896ms
+2026-10-01 23:30:35.324: enableAll: 
+2026-10-01 23:30:35.343: Done loading custom units. image cacheHits:402 image cacheMisses:305 (in: 316.70792ms)
+2026-10-01 23:30:35.343: ========= Mods data loaded ===========
+2026-10-01 23:30:35.343: Number of mods:1
+2026-10-01 23:30:35.344: Mod: 'Mega Builders' - Memory use:0.00 mb  (disabled)
+2026-10-01 23:30:35.344: ================================
+2026-10-01 23:30:35.363: CustomUnits took:338.333ms
+2026-10-01 23:30:35.363: isOverLiquid called without map loaded
+2026-10-01 23:30:35.363: isOverLiquid called without map loaded
+2026-10-01 23:30:35.363: isOverLiquid called without map loaded
+2026-10-01 23:30:35.363: isOverLiquid called without map loaded
+2026-10-01 23:30:35.363: allUnitsChecksum took:0.293ms
+2026-10-01 23:30:35.374: Init completed
+2026-10-01 23:30:35.374: Loading took:476.057ms
+2026-10-01 23:30:35.382: --- setStoppedIfNotInGameThread ---
+2026-10-01 23:30:35.382: --- setStopped ---
+2026-10-01 23:30:35.382: gameThread already null
+2026-10-01 23:30:35.383: Music:pause()
+2026-10-01 23:30:35.395: enableAll: 
+2026-10-01 23:30:35.395: Music:pause() synchronized
+2026-10-01 23:30:35.401:  --- Loading map ---
+2026-10-01 23:30:35.401: Mapfile: assets/maps/menu_background/menu1.tmx
+2026-10-01 23:30:35.401: ---- Loading map data ----
+2026-10-01 23:30:35.433: Map size: 160, 160
+2026-10-01 23:30:35.433: Setting up team fog..
+2026-10-01 23:30:35.457: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-01 23:30:35.457: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-01 23:30:35.457: FileLoader: Could not find asset:assets/tilesets/../decoration.tsx
+2026-10-01 23:30:35.460: MapLayer create: Ground
+2026-10-01 23:30:35.463: MapLayer create: Items
+2026-10-01 23:30:35.466: MapLayer create: Units
+2026-10-01 23:30:35.473: Map type: mission
+2026-10-01 23:30:35.476: Found 13 map triggers
+2026-10-01 23:30:35.477: global Seed: 55677816
+2026-10-01 23:30:35.477: getMapLevel for :maps/menu_background/menu1.tmx file:menu1.tmx
+2026-10-01 23:30:35.477: StateEngine: get(maps/menu_background/menu1.tmx)=null  (key=maps/menu_background/menu1.tmx)
+2026-10-01 23:30:35.477: PathEngine: Setting up map costs
+2026-10-01 23:30:35.508: PathEngine: Ready
+2026-10-01 23:30:35.509: selectAnyOnScreenBuilder: found builder
+2026-10-01 23:30:35.604: loadAMenuMap took:228.749ms
+2026-10-01 23:30:35.604: --- setStoppedIfNotInGameThread ---
+2026-10-01 23:30:35.604: --- setStopped ---
+2026-10-01 23:30:35.604: gameThread already null
+2026-10-01 23:30:35.619: enableAll: 
+2026-10-01 23:30:35.623: Team(id: 0, name:null):Being replaced
+2026-10-01 23:30:35.623: Team(id: 1, name:null):Being replaced
+2026-10-01 23:30:35.624: Team(id: 2, name:null):Being replaced
+2026-10-01 23:30:35.624: Team(id: 3, name:null):Being replaced
+2026-10-01 23:30:35.624: Team(id: 4, name:null):Being replaced
+2026-10-01 23:30:35.625: Team(id: 5, name:null):Being replaced
+2026-10-01 23:30:35.625: Team(id: 6, name:null):Being replaced
+2026-10-01 23:30:35.625: Team(id: 7, name:null):Being replaced
+2026-10-01 23:30:35.625:  --- Loading map ---
+2026-10-01 23:30:35.625: Mapfile: assets/maps/skirmish/[p2]Big Island (2p).tmx
+2026-10-01 23:30:35.626: ---- Loading map data ----
+2026-10-01 23:30:35.627: Map size: 180, 180
+2026-10-01 23:30:35.627: Setting up team fog..
+2026-10-01 23:30:35.643: MapLayer create: Ground
+2026-10-01 23:30:35.645: MapLayer create: Items
+2026-10-01 23:30:35.646: MapLayer create: Units
+2026-10-01 23:30:35.650: Map type: skirmish
+2026-10-01 23:30:35.651: Found 0 map triggers
+2026-10-01 23:30:35.651: global Seed: 127052449
+2026-10-01 23:30:35.651: there are 4 units on this map and 196 trees
+2026-10-01 23:30:35.651: getMapLevel for :maps/skirmish/[p2]Big Island (2p).tmx file:[p2]Big Island (2p).tmx
+2026-10-01 23:30:35.651: StateEngine: get(maps/skirmish/[p2]Big Island (2p).tmx)=null  (key=maps/skirmish/[p2]Big Island (2p).tmx)
+2026-10-01 23:30:35.651: PathEngine: Setting up map costs
+2026-10-01 23:30:35.665: PathEngine: Ready
+2026-10-01 23:30:35.665: selectAnyOnScreenBuilder: found builder
+2026-10-01 23:30:35.667: Building smoothFog_cache
+2026-10-01 23:30:35.668: Saving settings to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\preferences.ini
+2026-10-01 23:30:36.198 [RW-Agent] Local Agent API ready at http://127.0.0.1:7369
+2026-10-01 23:30:36.203 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\rw-agent-bootstrap.jar","agentJarSha256":"a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6","gameLibJar":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001","reportDirectory":"C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-capacity-natural-20261001\\run-20261001T153033-847455\\episode-001\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+RW_HEADLESS_READY map=maps/skirmish/[p2]Big Island (2p).tmx port=7369 fog=los seed=127052449
+2026-10-01 23:30:36.208: Saving settings to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\preferences.ini
+2026-10-01 23:30:36.212: ai_debug(2):firstRun: no command center found
+2026-10-01 23:30:36.212: Not showing defeated message: AI - Medium had no starting units (Team: C)
+2026-10-01 23:30:36.212: ai_debug(3):firstRun: no command center found
+2026-10-01 23:30:36.213: Not showing defeated message: AI - Medium had no starting units (Team: D)
+2026-10-01 23:30:36.213: ai_debug(4):firstRun: no command center found
+2026-10-01 23:30:36.213: Not showing defeated message: AI - Medium had no starting units (Team: E)
+2026-10-01 23:30:36.213: ai_debug(5):firstRun: no command center found
+2026-10-01 23:30:36.213: Not showing defeated message: AI - Medium had no starting units (Team: F)
+2026-10-01 23:30:36.213: ai_debug(6):firstRun: no command center found
+2026-10-01 23:30:36.213: Not showing defeated message: AI - Medium had no starting units (Team: G)
+2026-10-01 23:30:36.214: ai_debug(7):firstRun: no command center found
+2026-10-01 23:30:36.214: Not showing defeated message: AI - Medium had no starting units (Team: H)
+2026-10-01 23:30:36.214: ai_debug(8):firstRun: no command center found
+2026-10-01 23:30:36.214: Not showing defeated message: AI - Medium had no starting units (Team: I)
+2026-10-01 23:30:36.214: ai_debug(9):firstRun: no command center found
+2026-10-01 23:30:36.214: Not showing defeated message: AI - Medium had no starting units (Team: J)
+2026-10-01 23:30:36.233: Saving settings to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\preferences.ini
+2026-10-01 23:30:36.957 [RW-Agent] Queued economy: /command/build-factory unit=191 request=badf8af3-8430-4cdf-ab53-d527cd542e2f,"targetX":3090.000,"targetY":3150.000,"type":"landFactory"
+2026-10-01 23:30:37.284: reportProblem: Lockup detected in music subsystem
+2026-10-01 23:30:37.284: alert:Lockup detected in music subsystem
+2026-10-01 23:30:40.634 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=799b8684-11b3-4bcb-a15e-886626801074,"type":"c_tank"
+2026-10-01 23:30:42.794 [RW-Agent] Queued economy: /command/build-extractor unit=191 request=6e206b24-f5b6-492e-a857-b71531a5d7b7,"targetX":3110.000,"targetY":2850.000,"type":"extractorT1"
+2026-10-01 23:30:42.809 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=82e91ba2-06cd-4220-9275-3c629c8fbcc8,"type":"c_tank"
+2026-10-01 23:30:44.940 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=8daf9ce0-5503-4129-bd56-d07a108a7f5d,"type":"c_tank"
+2026-10-01 23:30:47.013 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=ebe979c2-680e-48f8-99e7-529c7a9288c3,"type":"c_tank"
+2026-10-01 23:30:49.094 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=df92ac9d-aa3f-45db-87a6-b8fd8b53ebe3,"type":"c_tank"
+2026-10-01 23:30:51.216 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=9e814a0f-3f60-41ff-bc31-0a8334d93f2d,"type":"c_tank"
+2026-10-01 23:30:53.324 [RW-Agent] Queued economy: /command/produce-tank unit=201 request=818d5486-8784-4d3b-ac77-78b0c80325a1,"type":"c_tank"
+2026-10-01 23:31:02.852 [RW-Agent] Queued move: request=7ea7d777-59b4-4724-8340-afd16aadea67 unit=191 target=(2690.0,2010.0) frame=7991
+2026-10-01 23:31:06.468 [RW-Agent] Queued move: request=0122d353-46ee-4232-ba2c-d8e5b6f2f2b2 unit=191 target=(2690.0,2010.0) frame=9075
+2026-10-01 23:31:10.752 [RW-Agent] Queued economy: /command/build-extractor unit=191 request=75e8b72f-8198-4d63-92e5-af36dad2bb7a,"targetX":2690.000,"targetY":2010.000,"type":"extractorT1"
+2026-10-01 23:31:18.515 [RW-Agent] Queued move: request=51e58d19-5a7f-4985-b481-221edce5582d unit=191 target=(1710.0,2950.0) frame=12690
+2026-10-01 23:31:22.869 [RW-Agent] Queued move: request=d13f286c-25c7-49f2-afc2-95fa7adc8c73 unit=191 target=(1710.0,2950.0) frame=13996
+2026-10-01 23:31:23.453 [RW-Agent] Queued move: request=a1496e5b-264f-463d-9569-c26cbc5484ec unit=191 target=(1710.0,2950.0) frame=14171
+2026-10-01 23:31:24.030 [RW-Agent] Queued economy: /command/build-extractor unit=191 request=5e45ac10-4586-4e5b-8771-d0fc6cede52a,"targetX":1710.000,"targetY":2950.000,"type":"extractorT1"
+2026-10-01 23:31:31.207 [RW-Agent] Queued move: request=97717b6f-94f0-445a-8c3e-b2bd896c4e7a unit=191 target=(2990.0,3070.0) frame=16497
+2026-10-01 23:31:34.808 [RW-Agent] Queued move: request=d8abf2e7-8415-44ea-ba18-ed69c42b7676 unit=191 target=(2990.0,3070.0) frame=17577
+2026-10-01 23:31:38.714: Making missing parent dir: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves
+2026-10-01 23:31:38.715: Saving game to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave
+2026-10-01 23:31:38.716: GameSaver:saveCurrentMap took:0
+2026-10-01 23:31:38.718: TeamHistory(0): totalValues written:49
+2026-10-01 23:31:38.718: TeamHistory(1): totalValues written:66
+2026-10-01 23:31:38.718: TeamHistory(2): totalValues written:4
+2026-10-01 23:31:38.718: TeamHistory(3): totalValues written:4
+2026-10-01 23:31:38.718: TeamHistory(4): totalValues written:4
+2026-10-01 23:31:38.719: TeamHistory(5): totalValues written:4
+2026-10-01 23:31:38.719: TeamHistory(6): totalValues written:4
+2026-10-01 23:31:38.719: TeamHistory(7): totalValues written:4
+2026-10-01 23:31:38.719: TeamHistory(8): totalValues written:4
+2026-10-01 23:31:38.719: TeamHistory(9): totalValues written:4
+2026-10-01 23:31:38.727: GameSaver:saveGame took:11
+2026-10-01 23:31:38.727: Finished writing save, renaming to final filename
+2026-10-01 23:31:38.728: renameFile: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave.tmp to:C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave
+2026-10-01 23:31:38.728: Autosaved (14.848ms)
+2026-10-01 23:31:39.025 [RW-Agent] Queued move: request=c4c7cba8-31bf-434b-bf0c-027d210b8a27 unit=191 target=(3030.0,3150.0) frame=18842
+2026-10-01 23:31:39.603 [RW-Agent] Queued economy: /command/build-factory unit=191 request=9f6234d4-c74b-4a14-8679-2e112aa87129,"targetX":3030.000,"targetY":3150.000,"type":"landFactory"
+2026-10-01 23:31:58.749 [RW-Agent] Queued move: request=eed0b1fd-2d38-4bd7-8538-d0b75cd88c9b unit=212 target=(2990.0,3070.0) frame=24760
+2026-10-01 23:32:02.358 [RW-Agent] Queued move: request=05d10911-4b2a-42ec-8663-ee3208240801 unit=302 target=(2990.0,3070.0) frame=25843
+2026-10-01 23:32:04.215 [RW-Agent] Queued move: request=e953b791-875e-4772-98be-8cc7255991c3 unit=209 target=(2990.0,3070.0) frame=26400
+2026-10-01 23:32:09.323 [RW-Agent] Queued move: request=fbeac802-6b55-4d2c-8ea7-7942740f5fcf unit=223 target=(2990.0,3070.0) frame=27932
+2026-10-01 23:32:11.819 [RW-Agent] Queued move: request=b1537708-a085-45d1-8efb-380f1b2eca9a unit=297 target=(2990.0,3070.0) frame=28681
+2026-10-01 23:32:18.836 [RW-Agent] Queued move: request=f3fb234a-a312-4043-bc8c-62c1ae907729 unit=209 target=(2096.19,1190.302) frame=30786
+2026-10-01 23:32:26.682 [RW-Agent] Queued move: request=f2a1b51b-834d-4e0c-9e0e-26544345b3b8 unit=209 target=(1483.791,749.992) frame=33140
+2026-10-01 23:32:27.916 [RW-Agent] Queued move: request=061a6ba8-d3f5-455c-af40-6cd155eed720 unit=209 target=(1470.0,630.0) frame=33509
+2026-10-01 23:32:29.690 [RW-Agent] Queued move: request=b9f7bdff-3b17-4105-b618-1722db6e6eb4 unit=191 target=(1730.0,1930.0) frame=34042
+2026-10-01 23:32:31.496 [RW-Agent] Queued move: request=d28d9cd9-1c49-48c9-a7e8-8f5c477e19fe unit=209 target=(1470.0,750.0) frame=34583
+2026-10-01 23:32:33.296 [RW-Agent] Queued move: request=18ee830f-2a10-4028-a80b-ff13a3441438 unit=191 target=(1730.0,1930.0) frame=35124
+2026-10-01 23:32:35.101 [RW-Agent] Queued move: request=8426ebe9-0702-45e5-a574-c7163e176807 unit=209 target=(1470.0,870.0) frame=35665
+2026-10-01 23:32:37.501 [RW-Agent] Queued move: request=54d614d4-803a-4253-a5cc-362a8d57aa9c unit=191 target=(1730.0,1930.0) frame=36385
+2026-10-01 23:32:38.111 [RW-Agent] Queued move: request=736294e8-d16f-4814-a4f8-bae92dd4cdca unit=191 target=(1730.0,1930.0) frame=36568
+2026-10-01 23:32:38.686 [RW-Agent] Queued move: request=8299c9c2-2d0d-477c-b28d-4375517ea313 unit=191 target=(1730.0,1930.0) frame=36740
+2026-10-01 23:32:39.262 [RW-Agent] Queued economy: /command/build-extractor unit=191 request=a96bcd6c-d90b-426c-8125-00378130e75a,"targetX":1730.000,"targetY":1930.000,"type":"extractorT1"
+2026-10-01 23:32:39.853 [RW-Agent] Queued move: request=7f8090e9-55c2-4907-8230-fe743ef32ec4 unit=209 target=(1470.0,990.0) frame=37091
+2026-10-01 23:32:41.214: Saving game to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave
+2026-10-01 23:32:41.214: GameSaver:saveCurrentMap took:0
+2026-10-01 23:32:41.216: TeamHistory(0): totalValues written:133
+2026-10-01 23:32:41.216: TeamHistory(1): totalValues written:205
+2026-10-01 23:32:41.216: TeamHistory(2): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(3): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(4): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(5): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(6): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(7): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(8): totalValues written:4
+2026-10-01 23:32:41.216: TeamHistory(9): totalValues written:4
+2026-10-01 23:32:41.223: GameSaver:saveGame took:9
+2026-10-01 23:32:41.223: Finished writing save, renaming to final filename
+2026-10-01 23:32:41.223: renameFile: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave.tmp to:C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\saves\autosave.rwsave
+2026-10-01 23:32:41.223: Failed to rename to final file
+2026-10-01 23:32:41.224: Auto save failed: Failed to rename to final file. Check file permissions of storage.
+2026-10-01 23:32:41.224: Autosaved (9.948ms)
+2026-10-01 23:32:42.215 [RW-Agent] Queued move: request=2fd7f090-5298-46e5-8c86-991517517811 unit=209 target=(1470.0,1110.0) frame=37799
+2026-10-01 23:32:44.636 [RW-Agent] Queued move: request=362a80eb-6a69-48a0-ac22-5902e85b8035 unit=191 target=(1970.0,1470.0) frame=38526
+2026-10-01 23:32:45.244 [RW-Agent] Queued move: request=a644f6df-e559-40da-bac3-767f7209ec85 unit=191 target=(1970.0,1470.0) frame=38708
+2026-10-01 23:32:45.812 [RW-Agent] Queued move: request=9634cbef-45dd-4532-a31c-46906f40c1b8 unit=191 target=(1970.0,1470.0) frame=38879
+2026-10-01 23:32:46.389 [RW-Agent] Queued move: request=caa2ad8d-2566-41ef-b74e-4cd2850b27c2 unit=191 target=(1970.0,1470.0) frame=39052
+2026-10-01 23:32:46.999 [RW-Agent] Queued economy: /command/build-extractor unit=191 request=5cbe63db-7c07-4603-a960-cb9f29968a96,"targetX":1970.000,"targetY":1470.000,"type":"extractorT1"
+2026-10-01 23:32:47.577 [RW-Agent] Queued move: request=3c25c0c4-3c71-4edd-b88f-30301374f8ed unit=209 target=(1370.0,1110.0) frame=39408
+2026-10-01 23:32:49.360 [RW-Agent] Queued move: request=6e88bfca-d5eb-4e8b-97dd-60336fbb5d1f unit=209 target=(1370.0,1230.0) frame=39943
+2026-10-01 23:32:50.624 [RW-Agent] Queued move: request=e824e56c-a796-49a6-a68d-429c35805c23 unit=1129 target=(2830.0,1390.0) frame=40324
+2026-10-01 23:32:52.558 [RW-Agent] Queued move: request=e8cf8d0a-c940-4962-9464-cc49843277c2 unit=209 target=(1250.0,1230.0) frame=40902
+2026-10-01 23:32:56.243 [RW-Agent] Queued move: request=0d3081e0-b173-4291-97ba-3ed09feed348 unit=209 target=(1130.0,1230.0) frame=42008
+2026-10-01 23:32:58.753 [RW-Agent] Queued move: request=699a10e0-1ed2-4eed-8185-20db408074e4 unit=191 target=(2870.0,1350.0) frame=42761
+2026-10-01 23:32:58.926: network:cannot send sendSystemMessage:AI - Medium was defeated (Team: B), we are not a server
+2026-10-01 23:32:59.007: Saving settings to: C:\Users\Administrator\AppData\Local\Temp\rw-capacity-natural-20261001\run-20261001T153033-847455\episode-001\preferences.ini
+RW_HEADLESS_FINISHED status=STOP_REQUESTED ticks=42982 frame=42982 gameTimeMs=687712 wallSeconds=143.2877988

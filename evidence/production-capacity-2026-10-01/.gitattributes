@@ -1,0 +1,2 @@
+# Preserve captured/derived evidence bytes and SHA provenance across Git checkouts.
+* -text

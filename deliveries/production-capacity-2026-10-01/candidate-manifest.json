@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1",
+  "status": "ENGINEERING_CANDIDATE_DESKTOP_ACCEPTANCE_PENDING",
+  "branch": "codex/production-capacity-v1-20261001",
+  "startingHead": "51af35dd3a01f82a5f490a486646dbf06b7ec3cb",
+  "sourceCommit": "1264b379752ca4fc3a433f0ab19d2d3ae7582cb6",
+  "jar": {
+    "path": "rw-agent-bootstrap.jar",
+    "bytes": 317988,
+    "sha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6",
+    "contentDigest": "cdb11872abddb6df1917023b92f851c7b6d39823d324418d3993cf12828c1cba",
+    "contentDigestAlgorithm": "SHA256 of LF-joined sorted ZIP entry name + space + entry SHA256, directory entries included, manifest excluded"
+  },
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "previousFrozenCandidate": {
+    "id": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+    "sha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7"
+  },
+  "launchers": {
+    "RW-Agent-Match-1200.bat": {
+      "sha256": "548c9088fd96ef31374e1a7177566869193b06aa02ce5521d51281aa905d0b44",
+      "bytes": 856,
+      "provenance": "byte-identical copy of frozen FEEDBACK launcher; client only"
+    },
+    "RW-Agent-Match-2400.bat": {
+      "sha256": "359b4c1ebbb6c3a8ea6bc885d3e2e3a59e6306104fe6129aa977b1c26450eaf3",
+      "bytes": 856,
+      "provenance": "byte-identical copy of frozen FEEDBACK launcher; client only"
+    },
+    "RW-Agent-Match-4800.bat": {
+      "sha256": "29da75499a6963b0eb48e8061133dc12a9edac2293c36f34f96fa5a901ff1bfa",
+      "bytes": 871,
+      "provenance": "byte-identical copy of frozen FEEDBACK launcher; client only"
+    }
+  },
+  "validation": "../../evidence/production-capacity-2026-10-01/validation-results.json",
+  "handoff": "../../handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md",
+  "completeRegression": {
+    "steps": 56,
+    "failedSteps": 0,
+    "java": 29,
+    "pythonSuites": 24,
+    "pythonTests": 435
+  },
+  "rebuildArchiveSha256": "14beacdae86cafa7abe4b2a960a082f3e5d8b8af3fe21c015163615fa6d88079",
+  "rebuildAllZipEntriesIdentical": true,
+  "naturalEvidence": {
+    "summary": "natural-headless/summary.json",
+    "status": "PASS",
+    "matchOutcome": "VICTORY",
+    "battleGameSeconds": 594.272,
+    "requestedBattleSeconds": 900,
+    "militaryCapacityIncreases": 0,
+    "factoryTargetIncreases": 0,
+    "reportIssues": [],
+    "engineExitCode": 0,
+    "engineAliveAfterCleanup": false,
+    "scope": "One isolated natural Big Island; no capacity expansion naturally triggered; no desktop acceptance or causal improvement"
+  },
+  "productionInputDigest": "a317e3d022045582279569878ed27c6703a01f3994020f1e5a615d62d8f689b4",
+  "productionInputHashes": {
+    "agent/src/io/rwagent/bootstrap/CombatBridge.java": "85df4b30cf658551ac2adee0136836defa5997bcb867b7b133c514c38f7d390b",
+    "agent/src/io/rwagent/bootstrap/EconomyBridge.java": "916848580bb9817a05188036135cbeea9fad2a41dbcd2c3df08874af9f502c46",
+    "agent/src/io/rwagent/bootstrap/GuardBridge.java": "8af15a6b3d74ac7ff5b5bc288a244593386069d088f2264f70f902021e318476",
+    "agent/src/io/rwagent/bootstrap/RuntimeBridge.java": "ba34979aac7c735057cc920be7f32d47589a5c4111704d83d8615daa02ad4f2e",
+    "agent/src/io/rwagent/bootstrap/RwAgent.java": "8203e41a07b737b809f5bcba4ed5581b771baea46e90aaa5be619d97d5c84069",
+    "agent/src/io/rwagent/bootstrap/ScoutBridge.java": "89ba14c476f7e5fcb5c17930af806a40c52d477c783da8ec5a82ee20304709b2",
+    "agent/src/io/rwagent/bootstrap/TerrainSemantics.java": "113f52a71dcd397f53ed367c8f8a2089698769d8b2573fa68a80a54a91157e94",
+    "agent/src/io/rwagent/client/AgentClient.java": "f51ef7990ff17a13142e9eca708a582f99845bd1f8802f431909d5c14704a71d",
+    "agent/src/io/rwagent/client/AutopilotClient.java": "66fd58a8bfa10e5290f591a64cae6eeaaf69408c600a4e2ac17c9b737b1dd191",
+    "agent/src/io/rwagent/client/BattleBudget.java": "e799de040a4c5ef694a5adfc83cb2b72b1f63ef67682aee573b2d11148814b1d",
+    "agent/src/io/rwagent/client/BattleClient.java": "39f1d8c34c5a92bc8fb4452d8845e077c4ca60eb09e3267be102baf4a71ace98",
+    "agent/src/io/rwagent/client/BootstrapClient.java": "8c6c2a9a0f809aa80262161129e46140b08b5a2ba8191094bc9cc99273c1b44b",
+    "agent/src/io/rwagent/client/CommandArbiter.java": "17ef6bced964e4b68b32bff6bc576811531a475dda89e9b0c6fd1c1c8a9be0fe",
+    "agent/src/io/rwagent/client/ControlLoop.java": "b164e52a061bdd30492bf73671b2d1ceec3f5df5323bdfa2b8d1430aac290509",
+    "agent/src/io/rwagent/client/DevelopmentClient.java": "89d3fb0ce4d2a4855737ab0c9fb3210bb1d320f6b054ce13a81bc6cdc45963e8",
+    "agent/src/io/rwagent/client/EconomyClient.java": "3ddfab552248014fbfc55e5dc2a082ec3e078001aa8be9a1435a8b32f7f2efa5",
+    "agent/src/io/rwagent/client/EngagementGeometry.java": "371ffaea5820aa63a40cf03e677e872328daeee23eb623aa01795295f0c8308e",
+    "agent/src/io/rwagent/client/FrontierClient.java": "0592a4264cd8e85408973ac896af28f471e1b7622b1277caf7506f5e4c3bab78",
+    "agent/src/io/rwagent/client/Json.java": "0b82ea66b23fff4ce9d1b370a698bba5c66db09f5927bdbcfa91ccdfc13b1f19",
+    "agent/src/io/rwagent/client/LocalArmyDirector.java": "5b446dd8b301cd82babcc7d8f8ac7eff37f09f42f010eb2ea524db593c18d1b8",
+    "agent/src/io/rwagent/client/LocalCrisisPolicy.java": "3ccffe1ac78be11fcc797008310af688e43a43cfd5c030d3edf904296b896317",
+    "agent/src/io/rwagent/client/MatchClient.java": "875675e49ee7893b420cfb92540bb77520c9630f168b89920c9743d13968b853",
+    "agent/src/io/rwagent/client/MineInvestmentPolicy.java": "dc916d8e4e7c5cfe274b7c2875b79c5edb5835cb874a14fc3119bafe349a5664",
+    "agent/src/io/rwagent/client/MoveExecution.java": "c6ba21768448c2791525e9d2b941c99ebaa2f149a8c9ab0f2270539fe10ca993",
+    "agent/src/io/rwagent/client/OpeningClient.java": "cba4e393ae45cdffbdf03d5955874720713d54b2bd1631367f19491bfb307d69",
+    "agent/src/io/rwagent/client/PreflightClient.java": "1362aa70531a6b95c678ffbab7cb19ae3077ade2a8e4784fed2c01d80d74be93",
+    "agent/src/io/rwagent/client/ProductionCapacity.java": "df5ac0e9ff36e7c58fad898cadc64831fc0274c78b5d5dc4262e86429a8b9ae7",
+    "agent/src/io/rwagent/client/ProductionRoute.java": "175378528adfd2c01d29e7c456166a769ab9b82a12623c18de67bf7e2437593a",
+    "agent/src/io/rwagent/client/ReportFiles.java": "423a74949cb0d2aeb40bb08a3b51dbf375dd01ddcc273681baf1241c8519063b",
+    "agent/src/io/rwagent/client/StrategyDirector.java": "190161c2c13c67e947e2454a2ceb4c290143ae28cca6b4c7fbaca1a7ff07529e",
+    "agent/src/io/rwagent/client/SurplusSpendingPolicy.java": "1b59af8cbde81b9d2730903cc5c90fbe5597598b1fd5614c9b0eff19c0bf5e2b",
+    "agent/src/io/rwagent/client/TargetCatalog.java": "dfbefbc1ac0dd733a7582638ab07c7876236dabafc615290e801d5cf10e4aff0",
+    "agent/src/io/rwagent/headless/HeadlessRunner.java": "b5595fc73e6777133da1ab79c12a5a0904fde9f6288d250df28a976cccd33668",
+    "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+    "agent/MANIFEST.MF": "b61acab3dac18857226ca246ef4d801199d4bea27ebd76f59cdbd67bc43da63c",
+    "agent/test-win.ps1": "7384c4b5ca030f136f8793c3008ea3b58633728ddfee6a5ba8422dae3120ef42",
+    "agent/test.sh": "cfc9759abc625127ad6885e4c07784251d8fb56610d725d518c9cb0fed030eba",
+    "agent/tests/test_production_capacity.py": "7458539953724cbf219e9042f648bcc6cec9fe295a97b95b52842705cad92128",
+    "agent/tests/ProductionCapacityHarness.java": "7d8dc8f39e5b03208b6121727c5d81d22938f2d88adefb0345f24caf2db08e2c",
+    "tools/analyze_production_capacity.py": "c0b29ac2148e18624f7ec19ae4942b1a3db3243842a0be491fcb1b78bffef8cd"
+  },
+  "notInstalled": true,
+  "limitations": [
+    "Spain desktop capacity scaling",
+    "Natural military-capacity increase and producer expansion",
+    "Operational idle cause",
+    "Expected route duration/full fallback/product ready migration",
+    "Causal throughput/cash/win-rate improvement"
+  ]
+}

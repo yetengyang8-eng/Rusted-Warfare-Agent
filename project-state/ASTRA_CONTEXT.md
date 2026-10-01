@@ -7,9 +7,18 @@ This file exists because remote Astra cannot access the user's local workspace. 
 - Game target: Rusted Warfare PC 1.15, Build 28 / Game Code 176.
 - Frozen engine `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`.
 - Frozen baseline: `RW-BASELINE-2026-09-30-GS-v1`.
-- Active candidate: `RW-CANDIDATE-2026-10-01-FEEDBACK-v1`.
-- Production implementation commits: `f5b1709` plus audit/observation fix `5020820`; delivery/docs closeout `590030d`.
-- Candidate JAR SHA256: `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
+- Active engineering candidate: `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1`.
+- Production implementation/test commit: `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6`, branch `codex/production-capacity-v1-20261001`, starting HEAD `51af35dd3a01f82a5f490a486646dbf06b7ec3cb`.
+- Candidate JAR SHA256: `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`; contentDigest `cdb11872abddb6df1917023b92f851c7b6d39823d324418d3993cf12828c1cba`.
+- Frozen previous FEEDBACK-v1 JAR: `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`. The desktop runs below belong to this previous JAR, not the new candidate.
+
+## Production Capacity v1 current evidence
+
+The minimal adapter exposes native ordinary factory/product/action/price/tech/queue evidence. Duration and operational throughput are UNKNOWN. Persistent150s economic/useful-demand/safety windows gate at most8 extra military slots; free slots plus the unchanged80% factory utilization gate can commit one new producer through the existing target/BuildJob. Paid-before-queue-visible ordinary occupancy is protected; original ordinary queue completion, artillery ledger, engineer providers and shared execution semantics remain.
+
+The full330MB Spain raw was independently streamed into [spain-capacity.json](../evidence/production-capacity-2026-10-01/spain-capacity.json). All supplied headline metrics matched. The self-lock is partly correct in source; it does not explain most savings because most observable samples still had military slots. Observable target-full time47.720s is sample-held and omits non-exported commitments. Do not call it exact causal blocked time.
+
+HTTP fixtures prove both capacity behavior chains. One isolated natural Big Island match produced native `PASS / VICTORY` at594.272 Battle seconds with0 military increases and0 factory-target increases. Native extension decisions and desktop Spain acceptance remain pending; no win-rate or causal improvement is claimed. Exact regression/archive identity and retained failures are in [validation-results.json](../evidence/production-capacity-2026-10-01/validation-results.json); use the [current handoff](../handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md).
 
 ## Capabilities already demonstrated
 
@@ -65,8 +74,8 @@ The next architecture should therefore close this loop:
 The objective is not high-end micro first. The objective is a robust RTS macro machine that continuously converts map resources into production throughput and useful military pressure.
 ## Known unresolved breakpoints
 
-1. Production/capacity scaling does not follow economic growth. Only two land factories remained in the latest Spain run despite >1.3M credits.
-2. Production paths are not yet represented as predictable, replaceable routes with throughput/cost/producer/tech/role semantics.
+1. Production Capacity v1 is implemented but lacks Spain desktop/natural capacity-expansion acceptance. In the prior Spain run only two factories remained despite >1.3M credits; slots-available idle periods remain UNKNOWN.
+2. Only the minimum native ordinary factory route adapter is implemented. Expected duration, full fallback, ready-product matching and route substitution remain future work.
 3. The operation layer still shares narrow scheduling. More real-time parallel task execution is needed as armies and logistics grow.
 4. New-mine expansion still has coarse global danger gates; builder loss remained 22 in the latest Spain run.
 5. Capability needs can produce valid amphibious responders, but need-resolution closure is still weak.

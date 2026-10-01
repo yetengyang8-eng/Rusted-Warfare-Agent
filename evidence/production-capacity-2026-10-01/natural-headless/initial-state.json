@@ -1,0 +1,67 @@
+{
+  "status": "running",
+  "schemaVersion": 1,
+  "sessionId": "62aa5abf-3bf0-4451-9480-975d8669af7d",
+  "map": {
+    "width": 3600.0,
+    "height": 3600.0,
+    "tilesWide": 180,
+    "tilesHigh": 180,
+    "tileWidth": 20,
+    "tileHeight": 20
+  },
+  "frame": 38,
+  "gameTimeMs": 608,
+  "networked": false,
+  "replay": false,
+  "player": {
+    "teamId": 0,
+    "name": "Player",
+    "credits": 4013.5
+  },
+  "match": {
+    "outcome": "ONGOING",
+    "nativeVictory": false,
+    "nativeDefeat": false,
+    "ownTeamVictory": false,
+    "ownTeamDefeated": false,
+    "ownTeamWipedOut": false,
+    "source": "native_result_screen"
+  },
+  "ownUnits": [
+    {
+      "id": 184,
+      "type": "commandCenter",
+      "x": 2990.0,
+      "y": 3070.0,
+      "hp": 4000.0,
+      "maxHp": 4000.0,
+      "buildProgress": 1.0,
+      "productionQueue": 0,
+      "dead": false,
+      "mobile": false,
+      "canAttack": true,
+      "building": true,
+      "techLevel": 1,
+      "orderType": null,
+      "guardTargetId": null
+    },
+    {
+      "id": 191,
+      "type": "builder",
+      "x": 2990.0,
+      "y": 3150.0,
+      "hp": 170.0,
+      "maxHp": 170.0,
+      "buildProgress": 1.0,
+      "productionQueue": -1,
+      "dead": false,
+      "mobile": true,
+      "canAttack": false,
+      "building": false,
+      "techLevel": 1,
+      "orderType": null,
+      "guardTargetId": null
+    }
+  ]
+}

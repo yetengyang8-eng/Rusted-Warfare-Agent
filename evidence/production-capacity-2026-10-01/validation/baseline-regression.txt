@@ -1,0 +1,1370 @@
+=== build:compile ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:46 char:5
++     & $java -m jdk.compiler/com.sun.tools.javac.Main --release 8 -enc ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+--> PASS exit=0
+=== build:jar ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:49 char:5
++     & $java -m jdk.jartool/sun.tools.jar.Main --create --file $distJa ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+--> PASS exit=0
+=== build:test-classes ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:54 char:5
++     & $java -m jdk.compiler/com.sun.tools.javac.Main -cp $cp -d $test ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\tests\EconomyHarness.java:22: 
+警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.set
+Accessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                      ^
+C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\tests\EconomyHarness.java:22: 
+警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.set
+Accessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                                                                       
+                                  ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+2 个警告
+--> PASS exit=0
+=== java:SmokeHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:55.837: GameEngine:GameEngine()
+Exception in thread "main" java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at SmokeHarness.main(SmokeHarness.java:38)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 13 more
+--> FAIL exit=1
+=== java:BridgeHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:56.089: GameEngine:GameEngine()
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at BridgeHarness.test(BridgeHarness.java:29)
+	at BridgeHarness.main(BridgeHarness.java:18)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== java:BridgeHarness-disabled ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:56.347: GameEngine:GameEngine()
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at BridgeHarness.test(BridgeHarness.java:29)
+	at BridgeHarness.main(BridgeHarness.java:18)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== java:EconomyHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:56.604: GameEngine:GameEngine()
+2026-10-01 21:25:56.644: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at EconomyHarness.main(EconomyHarness.java:18)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== java:OpeningHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:56.952: GameEngine:GameEngine()
+2026-10-01 21:25:56.990: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at OpeningHarness.main(OpeningHarness.java:14)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:OpeningHarness-replacement ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:57.292: GameEngine:GameEngine()
+2026-10-01 21:25:57.334: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at OpeningHarness.main(OpeningHarness.java:14)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:ProductionPlanHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:25:57.645: GameEngine:GameEngine()
+2026-10-01 21:25:57.684: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at ProductionPlanHarness.main(ProductionPlanHarness.java:8)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== py:test_development ===
+python.exe : test_completed_mine_death_stops (__main__.DevelopmentTests.test_completed_mine_death_stops) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_completed_...h_stops) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_default_eight_tanks_three_mines_overlap (__main__.DevelopmentTests.test_default_eight_tanks_three_mines_overlap) .
+.. ok
+test_exhausted_visible_mines_preserves_production (__main__.DevelopmentTests.test_exhausted_visible_mines_preserves_pro
+duction) ... ok
+test_missing_factory_zero_orders (__main__.DevelopmentTests.test_missing_factory_zero_orders) ... ok
+test_no_visible_mine_reports_zero (__main__.DevelopmentTests.test_no_visible_mine_reports_zero) ... ok
+test_pending_mine_budget_reserved_until_native_charge (__main__.DevelopmentTests.test_pending_mine_budget_reserved_unti
+l_native_charge) ... ok
+test_plan_503_stops_zero_orders (__main__.DevelopmentTests.test_plan_503_stops_zero_orders) ... ok
+test_preexisting_mine_not_accepted (__main__.DevelopmentTests.test_preexisting_mine_not_accepted) ... ok
+test_production_only_option (__main__.DevelopmentTests.test_production_only_option) ... ok
+test_queue_interference_stops_both_lanes (__main__.DevelopmentTests.test_queue_interference_stops_both_lanes) ... ok
+test_session_change_stops_both_lanes (__main__.DevelopmentTests.test_session_change_stops_both_lanes) ... ok
+test_type_mismatch_stops_before_other_lane_order (__main__.DevelopmentTests.test_type_mismatch_stops_before_other_lane_
+order) ... ok
+test_unknown_production_never_retried (__main__.DevelopmentTests.test_unknown_production_never_retried) ... ok
+----------------------------------------------------------------------
+Ran 13 tests in 47.053s
+OK
+--> PASS exit=0
+=== py:test_opening ===
+python.exe : test_completed_mine_lost_during_second_tank_stops (__main__.OpeningTests.test_completed_mine_lost_during_s
+econd_tank_stops) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_completed_...k_stops) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_full_opening_and_distinct_tanks (__main__.OpeningTests.test_full_opening_and_distinct_tanks) ... ok
+test_legacy_extractor_without_replacement (__main__.OpeningTests.test_legacy_extractor_without_replacement) ... ok
+test_no_resource_sends_nothing (__main__.OpeningTests.test_no_resource_sends_nothing) ... ok
+test_preexisting_extractor_not_accepted (__main__.OpeningTests.test_preexisting_extractor_not_accepted) ... ok
+test_session_changed_stops (__main__.OpeningTests.test_session_changed_stops) ... ok
+test_unknown_factory_command_not_retried (__main__.OpeningTests.test_unknown_factory_command_not_retried) ... ok
+test_wait_income_before_mine_and_second_tank (__main__.OpeningTests.test_wait_income_before_mine_and_second_tank) ... o
+k
+----------------------------------------------------------------------
+Ran 8 tests in 29.929s
+OK
+--> PASS exit=0
+=== py:test_economy ===
+python.exe : test_ambiguous_tanks_rejected (__main__.EconomyTests.test_ambiguous_tanks_rejected) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_ambiguous_...ejected) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_builder_dead (__main__.EconomyTests.test_builder_dead) ... ok
+test_existing_factory_not_accepted (__main__.EconomyTests.test_existing_factory_not_accepted) ... ok
+test_existing_tank_not_accepted (__main__.EconomyTests.test_existing_tank_not_accepted) ... ok
+test_factory_destroyed_no_production (__main__.EconomyTests.test_factory_destroyed_no_production) ... ok
+test_legacy_tank_without_replacement (__main__.EconomyTests.test_legacy_tank_without_replacement) ... ok
+test_new_factory_then_new_tank (__main__.EconomyTests.test_new_factory_then_new_tank) ... ok
+test_new_tank_without_queue_cycle_not_accepted (__main__.EconomyTests.test_new_tank_without_queue_cycle_not_accepted) .
+.. ok
+test_other_queue_orders_rejected (__main__.EconomyTests.test_other_queue_orders_rejected) ... ok
+test_poor_no_orders (__main__.EconomyTests.test_poor_no_orders) ... ok
+test_session_change (__main__.EconomyTests.test_session_change) ... ok
+test_unknown_command_not_retried (__main__.EconomyTests.test_unknown_command_not_retried) ... ok
+----------------------------------------------------------------------
+Ran 12 tests in 33.514s
+OK
+--> PASS exit=0
+=== py:test_client ===
+python.exe : test_dead_unit_stops_before_return (__main__.ClientTests.test_dead_unit_stops_before_return) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_dead_unit_..._return) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_http_failure_no_retry (__main__.ClientTests.test_http_failure_no_retry) ... ok
+test_manual_long_or_invalid_targets_send_nothing (__main__.ClientTests.test_manual_long_or_invalid_targets_send_nothing
+) ... ok
+test_manual_nearby_target (__main__.ClientTests.test_manual_nearby_target) ... ok
+test_network_rejected (__main__.ClientTests.test_network_rejected) ... ok
+test_paused_stops (__main__.ClientTests.test_paused_stops) ... ok
+test_record_no_commands (__main__.ClientTests.test_record_no_commands) ... ok
+test_roundtrip (__main__.ClientTests.test_roundtrip) ... ok
+test_session_change_stops_before_return (__main__.ClientTests.test_session_change_stops_before_return) ... ok
+test_three_reported_origins (__main__.ClientTests.test_three_reported_origins) ... ok
+test_wrong_200x200_map_stops_before_any_order (__main__.ClientTests.test_wrong_200x200_map_stops_before_any_order) ... 
+ok
+----------------------------------------------------------------------
+Ran 11 tests in 35.616s
+OK
+--> PASS exit=0
+=== py:test_match_bootstrap ===
+python.exe : ...................................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (...................................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 35 tests in 23.045s
+OK
+--> PASS exit=0
+=== java:DiagnosticsHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:48.295: GameEngine:GameEngine()
+2026-10-01 21:28:48.338: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at DiagnosticsHarness.main(DiagnosticsHarness.java:9)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:PreflightHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:48.650: GameEngine:GameEngine()
+2026-10-01 21:28:48.693: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at PreflightHarness.main(PreflightHarness.java:7)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== py:test_reports ===
+python.exe : test_bad_line (__main__.ReportsTests.test_bad_line) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_bad_line (...ad_line) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_cli_strict_and_outputs (__main__.ReportsTests.test_cli_strict_and_outputs) ... ok
+test_clock_regression (__main__.ReportsTests.test_clock_regression) ... ok
+test_count_mismatch (__main__.ReportsTests.test_count_mismatch) ... ok
+test_duplicate_completion (__main__.ReportsTests.test_duplicate_completion) ... ok
+test_earlier_reports (__main__.ReportsTests.test_earlier_reports) ... ERROR
+test_events_after_summary (__main__.ReportsTests.test_events_after_summary) ... ok
+test_historical_acceptance (__main__.ReportsTests.test_historical_acceptance) ... FAIL
+test_missing_summary (__main__.ReportsTests.test_missing_summary) ... ok
+test_multiple_summaries (__main__.ReportsTests.test_multiple_summaries) ... ok
+test_nonfinite_and_invalid_schema (__main__.ReportsTests.test_nonfinite_and_invalid_schema) ... ok
+test_partial_mine_is_not_complete (__main__.ReportsTests.test_partial_mine_is_not_complete) ... ok
+test_preexisting_unit_not_counted_as_valid_pass (__main__.ReportsTests.test_preexisting_unit_not_counted_as_valid_pass)
+ ... ok
+test_preserve_summary_and_large_ids (__main__.ReportsTests.test_preserve_summary_and_large_ids) ... ok
+test_truncated_tail (__main__.ReportsTests.test_truncated_tail) ... ok
+test_uncommitted_report (__main__.ReportsTests.test_uncommitted_report) ... ok
+======================================================================
+ERROR: test_earlier_reports (__main__.ReportsTests.test_earlier_reports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\tests\test_reports.py"
+, line 40, in test_earlier_reports
+    r=m.analyze_file(ROOT/'docs'/name)
+  File "C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\tools\analyze_reports.py", l
+ine 37, in analyze_file
+    raw = path.read_bytes()
+  File "C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 777, in read_byte
+s
+    with self.open(mode='rb', buffering=0) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\rw-production-
+capacity-20261001\\baseline\\docs\\acceptance-0.02-alpha2.jsonl'
+======================================================================
+FAIL: test_historical_acceptance (__main__.ReportsTests.test_historical_acceptance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\tests\test_reports.py"
+, line 33, in test_historical_acceptance
+    self.assertEqual([r['classification'] for r in results], ['PRECONDITION_REJECTED', 'PASS', 'PASS'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['PRECONDITION_REJECTED', 'PASS', 'PASS']
+Second list contains 3 additional elements.
+First extra element 0:
+'PRECONDITION_REJECTED'
+- []
++ ['PRECONDITION_REJECTED', 'PASS', 'PASS']
+----------------------------------------------------------------------
+Ran 16 tests in 0.044s
+FAILED (failures=1, errors=1)
+{"reports": 1, "results": {"INVALID": 1}, "output": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\tmpznngpuwy\\out"}
+--> FAIL exit=1
+=== java:ScoutHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:49.234: GameEngine:GameEngine()
+2026-10-01 21:28:49.274: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at ScoutHarness.main(ScoutHarness.java:20)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:TerrainMemoryHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:49.588: GameEngine:GameEngine()
+2026-10-01 21:28:49.629: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at TerrainMemoryHarness.main(TerrainMemoryHarness.java:27)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:GuardHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:49.935: GameEngine:GameEngine()
+2026-10-01 21:28:49.976: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at GuardHarness.main(GuardHarness.java:10)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:CapabilityHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:50.281: GameEngine:GameEngine()
+2026-10-01 21:28:50.320: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at CapabilityHarness.main(CapabilityHarness.java:33)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:TargetCompatibilityHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+TargetCompatibilityHarness PASS
+--> PASS exit=0
+=== java:BuilderHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:50.781: GameEngine:GameEngine()
+2026-10-01 21:28:50.822: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at BuilderHarness.main(BuilderHarness.java:22)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:ReachabilityHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:51.137: GameEngine:GameEngine()
+2026-10-01 21:28:51.178: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at ReachabilityHarness.main(ReachabilityHarness.java:33)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== java:ReachabilityHarness-sandbox ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:89 char:43
++ ... -sandbox' { & $java --add-modules jdk.httpserver '-Drwagent.reachabil ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:28:51.498: GameEngine:GameEngine()
+2026-10-01 21:28:51.539: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at ReachabilityHarness.main(ReachabilityHarness.java:33)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 14 more
+--> FAIL exit=1
+=== py:test_frontier ===
+python.exe : test_guard_command_must_be_observed_before_departure (__main__.FrontierTests.test_guard_command_must_be_ob
+served_before_departure) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_guard_comm...parture) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_new_mine_requires_observed_discovery_and_completed_build (__main__.FrontierTests.test_new_mine_requires_observed_d
+iscovery_and_completed_build) ... ok
+test_session_change_stops_control (__main__.FrontierTests.test_session_change_stops_control) ... ok
+test_stalled_scout_stops_at_move_budget (__main__.FrontierTests.test_stalled_scout_stops_at_move_budget) ... ok
+test_threat_during_construction_cancels_expansion_and_waits_for_retreat (__main__.FrontierTests.test_threat_during_cons
+truction_cancels_expansion_and_waits_for_retreat) ... ok
+test_unknown_move_response_is_not_retried (__main__.FrontierTests.test_unknown_move_response_is_not_retried) ... ok
+test_unreachable_frontier_is_partial_not_pass (__main__.FrontierTests.test_unreachable_frontier_is_partial_not_pass) ..
+. ok
+test_visible_threat_triggers_bounded_retreat (__main__.FrontierTests.test_visible_threat_triggers_bounded_retreat) ... 
+ok
+----------------------------------------------------------------------
+Ran 8 tests in 21.897s
+OK
+--> PASS exit=0
+=== py:test_frontier_reports ===
+python.exe : test_an_oversize_session_is_alone_and_marked (__main__.FrontierReportsTests.test_an_oversize_session_is_al
+one_and_marked) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_an_oversiz..._marked) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_arrival_requires_observed_movement (__main__.FrontierReportsTests.test_arrival_requires_observed_movement) ... ok
+test_bundle_index_lists_bundle_session_phase_and_size (__main__.FrontierReportsTests.test_bundle_index_lists_bundle_ses
+sion_phase_and_size) ... ok
+test_claimed_guard_requires_native_state (__main__.FrontierReportsTests.test_claimed_guard_requires_native_state) ... o
+k
+test_complete_evidence (__main__.FrontierReportsTests.test_complete_evidence) ... ok
+test_every_volume_stays_within_the_target (__main__.FrontierReportsTests.test_every_volume_stays_within_the_target) ...
+ ok
+test_feedback_zip_keeps_raw_and_excludes_game_files (__main__.FrontierReportsTests.test_feedback_zip_keeps_raw_and_excl
+udes_game_files) ... ok
+test_one_session_is_never_split_across_bundles (__main__.FrontierReportsTests.test_one_session_is_never_split_across_bu
+ndles) ... ok
+test_partial_goal_cannot_pass (__main__.FrontierReportsTests.test_partial_goal_cannot_pass) ... ok
+test_preknown_mine_cannot_be_called_scout_discovery (__main__.FrontierReportsTests.test_preknown_mine_cannot_be_called_
+scout_discovery) ... ok
+----------------------------------------------------------------------
+Ran 10 tests in 0.138s
+OK
+--> PASS exit=0
+=== java:CombatHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:29:14.323: GameEngine:GameEngine()
+2026-10-01 21:29:14.367: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at CombatHarness.main(CombatHarness.java:18)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== py:test_battle_reports ===
+python.exe : ...........................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (...........................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 27 tests in 0.002s
+OK
+--> PASS exit=0
+=== py:test_battle_client ===
+python.exe : ..............................................................................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.................................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 78 tests in 150.300s
+OK
+--> PASS exit=0
+=== py:test_strategy_funding ===
+python.exe : .......
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.......:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 7 tests in 24.575s
+OK
+--> PASS exit=0
+=== py:test_specialist_lifecycle ===
+python.exe : ....
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (....:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 4 tests in 13.385s
+OK
+--> PASS exit=0
+=== py:test_local_army ===
+python.exe : ............
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (............:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 12 tests in 30.490s
+OK
+--> PASS exit=0
+=== py:test_surplus_spending ===
+python.exe : ...........
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (...........:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 11 tests in 47.567s
+OK
+--> PASS exit=0
+=== py:test_engineer_provider ===
+python.exe : ........
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (........:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 8 tests in 35.587s
+OK
+--> PASS exit=0
+=== py:test_target_compatibility ===
+python.exe : test_heavy_tank_and_scout_keep_mixed_air_squad_active (__main__.TargetCompatibilityIntegration.test_heavy_
+tank_and_scout_keep_mixed_air_squad_active) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_heavy_tank..._active) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_missing_dynamic_domain_degrades_without_deadlock (__main__.TargetCompatibilityIntegration.test_missing_dynamic_dom
+ain_degrades_without_deadlock) ... ok
+test_session_change_stops_before_reusing_prior_guard_decision (__main__.TargetCompatibilityIntegration.test_session_cha
+nge_stops_before_reusing_prior_guard_decision) ... ok
+test_stale_air_domain_cannot_be_reused_as_current_state (__main__.TargetCompatibilityIntegration.test_stale_air_domain_
+cannot_be_reused_as_current_state) ... ok
+test_tanks_keep_surface_water_target (__main__.TargetCompatibilityIntegration.test_tanks_keep_surface_water_target) ...
+ ok
+test_tanks_reject_visible_air_and_submerged (__main__.TargetCompatibilityIntegration.test_tanks_reject_visible_air_and_
+submerged) ... ok
+test_empty_force_does_not_create_negative_evidence (__main__.TargetEligibilityTransitions.test_empty_force_does_not_cre
+ate_negative_evidence) ... ok
+test_existing_search_objective_cannot_bypass_later_rejection (__main__.TargetEligibilityTransitions.test_existing_searc
+h_objective_cannot_bypass_later_rejection) ... ok
+test_never_rejected_unknown_target_keeps_fallback (__main__.TargetEligibilityTransitions.test_never_rejected_unknown_ta
+rget_keeps_fallback) ... ok
+test_new_capable_force_requires_current_target_evidence_then_uses_subset (__main__.TargetEligibilityTransitions.test_ne
+w_capable_force_requires_current_target_evidence_then_uses_subset) ... ok
+test_new_visible_surface_observation_releases (__main__.TargetEligibilityTransitions.test_new_visible_surface_observati
+on_releases) ... ok
+test_rejection_survives_fog_time_same_type_reinforcements_and_catalog_gap (__main__.TargetEligibilityTransitions.test_r
+ejection_survives_fog_time_same_type_reinforcements_and_catalog_gap) ... ok
+test_unchanged_reacquisition_does_not_reopen_target (__main__.TargetEligibilityTransitions.test_unchanged_reacquisition
+_does_not_reopen_target) ... ok
+test_unknown_observation_and_unknown_new_attacker_do_not_erase_rejection (__main__.TargetEligibilityTransitions.test_un
+known_observation_and_unknown_new_attacker_do_not_erase_rejection) ... ok
+test_visible_candidate_outranks_nearer_remembered_candidate (__main__.TargetEligibilityTransitions.test_visible_candida
+te_outranks_nearer_remembered_candidate) ... ok
+----------------------------------------------------------------------
+Ran 15 tests in 15.341s
+OK
+--> PASS exit=0
+=== py:test_recon_client ===
+python.exe : .......
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.......:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 7 tests in 12.862s
+OK
+--> PASS exit=0
+=== py:test_recon_frontier_client ===
+python.exe : ......................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (......................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 22 tests in 54.675s
+OK
+--> PASS exit=0
+=== py:test_headless_parallel ===
+{"episode": 2, "status": "PASS", "wallSeconds": 0.502, "error": null, "matchOutcome": "VICTORY"}
+{"episode": 1, "status": "PASS", "wallSeconds": 0.506, "error": null, "matchOutcome": "VICTORY"}
+Results: C:\Users\Administrator\AppData\Local\Temp\tmpyooiheb1\runs\run-20261001T133541-222980
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.481, "error": "match workflow must produce one battle, development and economy report, with at most one bootstrap report; partial workflow evidence archived", "matchOutcome": "NO_REPORT"}
+{"episode": 2, "status": "FAIL", "wallSeconds": 0.483, "error": "match workflow must produce one battle, development and economy report, with at most one bootstrap report; partial workflow evidence archived", "matchOutcome": "NO_REPORT"}
+Results: C:\Users\Administrator\AppData\Local\Temp\tmpg3o9xewb\runs\run-20261001T133542-bfc0d1
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.037, "error": "roundtrip report belongs to sessions ['session-a', 'session-b']", "matchOutcome": null}
+{"episode": 1, "status": "FAIL", "wallSeconds": 0.027, "error": "Engine exited during startup; see engine.log", "matchOutcome": null}
+{"episode": 2, "status": "PASS", "wallSeconds": 0.064, "error": null, "matchOutcome": null}
+Results: C:\Users\Administrator\AppData\Local\Temp\tmpxtsovh59\output\run-20261001T133544-09e697
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpgpqqhjzs", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmp60v53dp6", "status": "FAIL", "killed": 1, "skipped": 0, "verified": ["post-reap process identity lookup unavailable", "post-reap port ownership lookup unavailable"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpkh3slq83", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpkh3slq83", "status": "PASS", "killed": 0, "skipped": 1, "verified": ["every claimed pid is gone and every claimed engine port is released"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpgqgrgfdh\\run-a", "status": "FAIL", "killed": 0, "verified": ["claims batchDirectory differs from requested run directory", "pid 4242 workDirectory does not belong to its episode in this run"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmp6rugse_y", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmp6rugse_y", "status": "FAIL", "killed": 0, "verified": ["process or port identity lookup unavailable; no process was killed"]}
+{"reap": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmp396d6jwn", "status": "PASS", "killed": 0, "note": "no live-claims.json; nothing to reap"}
+python.exe : ............................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (............................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 28 tests in 11.396s
+OK
+--> PASS exit=0
+=== py:test_ab_aggregate ===
+python.exe : .................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 17 tests in 1.199s
+OK
+{"batches": 2, "episodes": 4, "output": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpi8bdhgdg\\summary.json"}
+--> PASS exit=0
+=== py:test_ab_campaign ===
+python.exe : test_budget_blocks_before_next_pair (__main__.CampaignTests.test_budget_blocks_before_next_pair) ... ok
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_budget_blo...xt_pair) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+test_disk_limit_can_change_on_resume_with_audit_record (__main__.CampaignTests.test_disk_limit_can_change_on_resume_wit
+h_audit_record) ... ok
+{"status": "COMPLETE", "campaign": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\tmpbpnr8sbq", "aggregate": {"path": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\tmpbpnr8sbq\\aggregate.json", "sha256": "94df6dccaeca79572bb9949a03e43fdb0921304ae8b4bd2033e079e5eb053562", "batchCount": 2, "profileOrderCounts": {"AB": 1, "BA": 1}, "profiles": {"A": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}, "B": {"attempted": 2, "validBattleReports": 2, "partial": 2, "invalidOrMissingReports": 0, "nativeCompleted": 0}}, "metricN": {"A": 0, "B": 0}}}
+test_final_aggregate_retains_zero_native_n_without_winner (__main__.CampaignTests.test_final_aggregate_retains_zero_nat
+ive_n_without_winner) ... ok
+test_lock_rejects_concurrent_campaign_and_releases (__main__.CampaignTests.test_lock_rejects_concurrent_campaign_and_re
+leases) ... ok
+test_manifest_alternates_and_same_plan_resumes (__main__.CampaignTests.test_manifest_alternates_and_same_plan_resumes) 
+... ok
+test_missing_report_is_never_adopted (__main__.CampaignTests.test_missing_report_is_never_adopted) ... ok
+test_passing_report_with_nonzero_client_exit_is_not_accepted (__main__.CampaignTests.test_passing_report_with_nonzero_c
+lient_exit_is_not_accepted) ... ok
+test_recover_complete_run_does_not_launch_or_reap (__main__.CampaignTests.test_recover_complete_run_does_not_launch_or_
+reap) ... ok
+test_recover_incomplete_run_reaps_without_deleting_evidence (__main__.CampaignTests.test_recover_incomplete_run_reaps_w
+ithout_deleting_evidence) ... ok
+test_resource_cache_is_owned_copy_and_mutation_is_detected (__main__.CampaignTests.test_resource_cache_is_owned_copy_an
+d_mutation_is_detected) ... ok
+test_safe_reap_refuses_a_skipped_live_claimed_child (__main__.CampaignTests.test_safe_reap_refuses_a_skipped_live_claim
+ed_child) ... ok
+test_staging_must_point_to_campaign_owned_cache (__main__.CampaignTests.test_staging_must_point_to_campaign_owned_cache
+) ... ok
+test_unexpected_runner_failure_is_not_normal_partial (__main__.CampaignTests.test_unexpected_runner_failure_is_not_norm
+al_partial) ... ok
+test_valid_partial_counts_as_completed_pair (__main__.CampaignTests.test_valid_partial_counts_as_completed_pair) ... ok
+----------------------------------------------------------------------
+Ran 14 tests in 0.111s
+OK
+--> PASS exit=0
+=== java:ReportCommitHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:106 char:35
++ ... tHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.ReportCommitHar ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+REPORT_COMMIT_TEST_SKIP posix-only open-handle rename simulation on Windows 11; remaining commit checks still run
+REPORT_COMMIT_TEST_OK 72 MiB bounded-memory commit and stale journal replacement retained complete UTF-8 content (displacement simulation skipped)
+--> PASS exit=0
+=== java:ExecutionContractHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:107 char:40
++ ... tHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarnes ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ExecutionContractHarness PASS checks=35 evidence=E2_NO_ENGINE
+--> PASS exit=0
+=== java:StrategyContractHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:108 char:39
++ ... tHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+STRATEGY_CONTRACT_TEST_OK checks=169
+--> PASS exit=0
+=== java:LocalArmyContractHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:109 char:40
++ ... tHarness' { & $java -cp $cp io.rwagent.client.LocalArmyContractHarnes ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+LocalArmyContractHarness PASS checks=372 evidence=E2_NO_ENGINE
+--> PASS exit=0
+=== java:LocalCrisisContractHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:110 char:42
++ ... tHarness' { & $java -cp $cp io.rwagent.client.LocalCrisisContractHarn ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+LocalCrisisContractHarness: 16 checks passed
+--> PASS exit=0
+=== java:SurplusSpendingHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:111 char:38
++ ... gHarness' { & $java -cp $cp io.rwagent.client.SurplusSpendingHarness  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+SurplusSpendingHarness checks=33 PASS
+--> PASS exit=0
+=== java:MineInvestmentHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:112 char:37
++ ... tHarness' { & $java -cp $cp io.rwagent.client.MineInvestmentHarness } ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+MineInvestmentHarness checks=30 PASS
+--> PASS exit=0
+=== java:EngineerProviderHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:113 char:39
++ ... rHarness' { & $java -cp $cp io.rwagent.client.EngineerProviderHarness ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ENGINEER_PROVIDER_TEST_OK checks=47
+--> PASS exit=0
+=== java:NativeMorphHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:35:56.955: GameEngine:GameEngine()
+2026-10-01 21:35:56.997: MapLayer create: ground
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:103)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:67)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at java.base/sun.nio.ch.PipeImpl.<init>(PipeImpl.java:198)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(WEPollSelectorImpl.java:78)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(WEPollSelectorProvider.java:33)
+	at java.base/java.nio.channels.Selector.open(Selector.java:295)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:147)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:150)
+	at io.rwagent.bootstrap.RuntimeBridge.startServer(RuntimeBridge.java:179)
+	at io.rwagent.bootstrap.RuntimeBridge.start(RuntimeBridge.java:172)
+	at EconomyHarness.test(EconomyHarness.java:45)
+	at OpeningHarness.test(OpeningHarness.java:18)
+	at NativeMorphHarness.main(NativeMorphHarness.java:15)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:148)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:144)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:851)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:285)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(PipeImpl.java:133)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(PipeImpl.java:85)
+	... 15 more
+--> FAIL exit=1
+=== java:StrategyNativeHarness ===
+java.exe : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:59 char:18
++ ... Step $name { & $java --add-modules jdk.httpserver -cp $cp @javaArgs }
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_....encoding=UTF-8:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-01 21:35:57.334: GameEngine:GameEngine()
+2026-10-01 21:35:57.339: Created new gameEngine of:com.corrodinggames.rts.game.i
+2026-10-01 21:35:57.339: --- ----------------- ----
+2026-10-01 21:35:57.339: --- GameEngine:init() ----
+2026-10-01 21:35:57.339: --- ----------------- ----
+2026-10-01 21:35:57.341: Version:v1.15
+2026-10-01 21:35:57.347: ------- createIndex -------
+2026-10-01 21:35:57.347: c:
+2026-10-01 21:35:57.349: densityScaleRaw*densityScaleMultiplier: 1.0
+2026-10-01 21:35:57.349: packageName:dedicatedServer
+2026-10-01 21:35:57.355: slickToAndroidCodes: Could not find keycode for: NUMLOCK, RWIN, CONVERT, STOP, AX, UNDERLINE, DELETE, NOCONVERT, APPS, DECIMAL, SCROLL, END, KANJI, NUMPADDECIMAL, LWIN, CIRCUMFLEX, UNLABELED, F14, F13, COLON, F15, CAPITAL, 
+2026-10-01 21:35:57.356: gdxToAndroidCodes: Could not find keycode for: END, META_ALT_LEFT_ON, COLON, ANY_KEY, META_SHIFT_RIGHT_ON, 
+2026-10-01 21:35:57.356: gdxToSlickCodes: Could not find keycode for: MEDIA_REWIND, MEDIA_PLAY_PAUSE, BUTTON_SELECT, CENTER, BUTTON_X, BUTTON_Z, BUTTON_Y, MEDIA_PREVIOUS, SWITCH_CHARSET, SEARCH, META_ALT_ON, CAMERA, SHIFT_LEFT, BUTTON_START, MUTE, CALL, PICTSYMBOLS, FOCUS, VOLUME_DOWN, ENVELOPE, BUTTON_L2, BUTTON_L1, META_SHIFT_ON, NUM, SOFT_RIGHT, NOTIFICATION, STAR, MENU, DPAD_CENTER, BUTTON_R2, BUTTON_R1, BUTTON_THUMBL, MEDIA_FAST_FORWARD, BUTTON_THUMBR, EXPLORER, BACKSPACE, ENDCALL, FORWARD_DEL, BUTTON_MODE, SYM, SOFT_LEFT, PLUS, MEDIA_NEXT, META_ALT_LEFT_ON, MEDIA_STOP, VOLUME_UP, POUND, META_SHIFT_LEFT_ON, DEL, ANY_KEY, BUTTON_C, SHIFT_RIGHT, BUTTON_B, BUTTON_A, HEADSETHOOK, META_SHIFT_RIGHT_ON, UNKNOWN, CLEAR, 
+2026-10-01 21:35:57.357: getControllerCount:0
+2026-10-01 21:35:57.359: densityScale(): 1.0
+2026-10-01 21:35:57.362: Locale: default targetLocale:zh_CN
+2026-10-01 21:35:57.362: Locale: default targetLocale ISO3:zho
+2026-10-01 21:35:57.364: FileLoader: Could not find asset:assets/translations/Strings.properties
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at StrategyNativeHarness.main(StrategyNativeHarness.java:34)
+Caused by: java.lang.RuntimeException: Root locate file:Strings.properties is missing, it is required
+	at com.corrodinggames.rts.gameFramework.h.a.a(SourceFile:245)
+	at com.corrodinggames.rts.gameFramework.h.a.e(SourceFile:490)
+	at com.corrodinggames.rts.gameFramework.h.a.a(SourceFile:59)
+	at com.corrodinggames.rts.game.i.a(SourceFile:621)
+	at com.corrodinggames.rts.gameFramework.l.a(SourceFile:597)
+	at TerrainNativeCostHarness.initialize(TerrainNativeCostHarness.java:73)
+	... 5 more
+--> FAIL exit=1
+=== py:test_feedback_progress_audit ===
+python.exe : ................................................
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.................................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 48 tests in 0.108s
+OK
+--> PASS exit=0
+=== py:test_global_strategy_audit ===
+python.exe : .........
+At C:\Users\Administrator\AppData\Local\Temp\rw-production-capacity-20261001\baseline\agent\test-win.ps1:62 char:18
++ ...    Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.........:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 9 tests in 0.022s
+OK
+--> PASS exit=0
+
+===== SUMMARY =====
+
+Step                             Exit    Ok
+----                             ----    --
+build:compile                       0  True
+build:jar                           0  True
+build:test-classes                  0  True
+java:SmokeHarness                   1 False
+java:BridgeHarness                  1 False
+java:BridgeHarness-disabled         1 False
+java:EconomyHarness                 1 False
+java:OpeningHarness                 1 False
+java:OpeningHarness-replacement     1 False
+java:ProductionPlanHarness          1 False
+py:test_development                 0  True
+py:test_opening                     0  True
+py:test_economy                     0  True
+py:test_client                      0  True
+py:test_match_bootstrap             0  True
+java:DiagnosticsHarness             1 False
+java:PreflightHarness               1 False
+py:test_reports                     1 False
+java:ScoutHarness                   1 False
+java:TerrainMemoryHarness           1 False
+java:GuardHarness                   1 False
+java:CapabilityHarness              1 False
+java:TargetCompatibilityHarness     0  True
+java:BuilderHarness                 1 False
+java:ReachabilityHarness            1 False
+java:ReachabilityHarness-sandbox    1 False
+py:test_frontier                    0  True
+py:test_frontier_reports            0  True
+java:CombatHarness                  1 False
+py:test_battle_reports              0  True
+py:test_battle_client               0  True
+py:test_strategy_funding            0  True
+py:test_specialist_lifecycle        0  True
+py:test_local_army                  0  True
+py:test_surplus_spending            0  True
+py:test_engineer_provider           0  True
+py:test_target_compatibility        0  True
+py:test_recon_client                0  True
+py:test_recon_frontier_client       0  True
+py:test_headless_parallel           0  True
+py:test_ab_aggregate                0  True
+py:test_ab_campaign                 0  True
+java:ReportCommitHarness            0  True
+java:ExecutionContractHarness       0  True
+java:StrategyContractHarness        0  True
+java:LocalArmyContractHarness       0  True
+java:LocalCrisisContractHarness     0  True
+java:SurplusSpendingHarness         0  True
+java:MineInvestmentHarness          0  True
+java:EngineerProviderHarness        0  True
+java:NativeMorphHarness             1 False
+java:StrategyNativeHarness          1 False
+py:test_feedback_progress_audit     0  True
+py:test_global_strategy_audit       0  True
+
+
+
+Java harness runs: 28   Python suites: 23   failed steps: 20

@@ -1,6 +1,14 @@
 # Next Stage Plan
 
-Updated: 2026-10-01 after independent FEEDBACK-v1 desktop acceptance.
+Updated: 2026-10-01 after Production Capacity v1 implementation; desktop acceptance pending.
+
+## Immediate next breakpoint
+
+Validate `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1` in a fresh Spain desktop environment using the [handoff observation list](../handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md). The capacity controller and minimum ordinary ProductionRoute adapter are now implemented in `1264b37`; do not start by implementing them again.
+
+The next investigation should explain UNKNOWN production intervals with military slots available. Spain's policy-target restriction is real but was observable for only47.720 sampled seconds; it cannot explain most idle time or savings. Instrument scheduling, refill opportunities, native quote eligibility and ownership before selecting a scheduler redesign. Keep OPERATIONAL_CAPACITY_LIMIT UNKNOWN until reliable current evidence exists. No mammoth allocation, engineer route migration or broad parameter search is authorised by this plan alone.
+
+Current evidence proves capacity actions in deterministic HTTP fixtures and one native natural Big Island victory without capacity expansion. Natural long-window army-slot release and factory expansion, desktop behavior, sustained throughput and causal improvement remain unverified.
 
 ## Strategic goal
 
@@ -14,7 +22,7 @@ The next implementation round should advance **one coherent slice** of this loop
 
 ## Priority 1 — Production capacity model
 
-Create an explicit model of current production throughput and backlog. The controller must be able to answer:
+Production Capacity v1 supplies the first ordinary-route diagnosis/window/action integration. Continue validating it against these questions:
 
 - current observed/estimated income rate;
 - recent spend rate and persistent net resource accumulation;
@@ -72,4 +80,4 @@ Every implementation round should add focused contracts, affected regression, an
 
 For the production-capacity work, log enough to reconstruct: income estimate, spend rate, capacity estimate, chosen production route, producer occupancy, backlog, capacity-expansion decision, delivered product, and operational handoff.
 
-The next Astra implementation round should preferably start with **Priority 1 + the minimum data structures needed for Priority 2**, then stop at a verifiable candidate rather than attempting all five priorities at once.
+The minimum Priority1 / Priority2 slice is delivered. Start the next round with desktop acceptance and evidence for the remaining UNKNOWN intervals, then choose one breakpoint rather than attempting all five priorities at once.

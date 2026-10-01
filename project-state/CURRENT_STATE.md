@@ -5,10 +5,11 @@ Updated: 2026-10-01. This file describes **now**, not project history.
 ## Lineage
 
 - Frozen baseline: `RW-BASELINE-2026-09-30-GS-v1` (`6214868`). Keep for lineage; do not reset current source to it.
-- Current repository HEAD before this GitHub refresh: `590030d`.
-- Active candidate: **RW-CANDIDATE-2026-10-01-FEEDBACK-v1**.
-- Production implementation: `f5b1709`; audit/observation correction: `5020820`; delivery/docs closeout: `590030d`.
-- Fixed candidate JAR SHA256: `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
+- This round started at verified HEAD `51af35dd3a01f82a5f490a486646dbf06b7ec3cb` with a clean tree; no reset was performed.
+- Active engineering candidate: **RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1** on `codex/production-capacity-v1-20261001`.
+- Production implementation and tests: `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6`.
+- Candidate JAR SHA256: `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`.
+- Previous fixed candidate **RW-CANDIDATE-2026-10-01-FEEDBACK-v1** remains frozen, SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`. Its implementation remains `f5b1709` plus `5020820`, delivery `590030d`.
 - Frozen `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`.
 
 ## What FEEDBACK-v1 added
@@ -45,7 +46,17 @@ Full remote-readable interpretation is in `ASTRA_CONTEXT.md`; structured desktop
 
 ## Current bottleneck
 
-The Agent is no longer primarily constrained by acquiring economy. It is constrained by **converting a growing economy into growing production throughput and concurrently controlled military power**.
+Production Capacity v1 now distinguishes strategic military slots from hard safety capacity and producer throughput. It extends the existing controllers: sustained fresh native-compatible demand, surplus and safe reserves can add at most8 military slots per150s window; free military slots plus at least80% producer utilization can commit one extra factory through the existing BuildJob. Native action, price, reserves, recovery and hard cap are rechecked before unpaid construction. Idle producers with free slots remain UNKNOWN.
+
+Spain self-lock diagnosis is **partially correct**. Source permits the96-policy-target /128-hard-cap lock, but exported Spain samples were at the policy target for only47.720 sampled game seconds and never at hard cap. Most samples still had slots available, so this mechanism cannot explain most accumulated cash. Scheduler/refill latency remains an unproven follow-up.
+
+The new candidate has one isolated native Big Island `PASS / VICTORY` at594.272 Battle game seconds. Military-capacity increases and producer-target increases were both0; natural capacity scaling has not been demonstrated. Deterministic HTTP fixtures prove bounded military release/restarted production and factory target2→3→one accepted build→ready→after-window. The candidate has **no desktop Spain acceptance** and was not installed into the user's game.
+
+The [current handoff](../handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md), [validation results](../evidence/production-capacity-2026-10-01/validation-results.json), and [delivery manifest](../deliveries/production-capacity-2026-10-01/candidate-manifest.json) carry exact artifact and regression provenance. Earlier FEEDBACK desktop facts above remain historical evidence for that fixed JAR.
+
+Final Windows regression: **56/56 steps**,29 Java harness runs,24 Python suites /435 tests, explicit `failed steps: 0`. The earlier fixture/LocalArmy/environment failures and repairs are retained in evidence; the Windows-only skipped POSIX report-commit displacement simulation is identified.
+
+The Agent is still constrained by **converting a growing economy into useful production throughput and concurrently controlled military power**.
 
 Current mainline objective:
 

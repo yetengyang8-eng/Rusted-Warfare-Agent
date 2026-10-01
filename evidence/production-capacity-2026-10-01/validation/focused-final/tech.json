@@ -1,0 +1,1024 @@
+{
+  "scenario": "tech",
+  "orders": [
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 4000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 6000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 8000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 10000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 12000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 14000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 16000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 18000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 20000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 22000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 24000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 26000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 28000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 30000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 32000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 34000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 36000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 38000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 40000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 42000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 44000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 46000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 48000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 50000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 52000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 54000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 56000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 58000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 60000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 62000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 64000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 66000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 68000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 70000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 72000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 74000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 76000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 78000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 80000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 82000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 84000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 86000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 88000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 90000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 92000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 94000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 96000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 98000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 100000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 102000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 104000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 106000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 108000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 110000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 112000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 114000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 116000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 118000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 120000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 122000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 124000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 126000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 128000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 130000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 132000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 134000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 136000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 138000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 140000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 142000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 144000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 146000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 148000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 150000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 152000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 154000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 156000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 158000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 160000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 162000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 164000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 166000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 168000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 170000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 172000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 174000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 176000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 178000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 180000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 182000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 184000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 186000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 188000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 190000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 192000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 194000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 196000,
+      "credits": 100000.0,
+      "unitId": 0
+    },
+    {
+      "path": "/command/attack-move",
+      "gameTimeMs": 198000,
+      "credits": 100000.0,
+      "unitId": 0
+    }
+  ],
+  "events": [
+    {
+      "wallTimeMs": 1790869588206,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 0.0,
+        "observedProducerGameMs": 0,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 0,
+        "capabilityReserve": 0.0,
+        "allReserved": 0.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 0,
+        "surplusGameMs": 0,
+        "usefulDemandGameMs": 0,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 4000
+      }
+    },
+    {
+      "wallTimeMs": 1790869589391,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 60000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 30000,
+        "surplusGameMs": 30000,
+        "usefulDemandGameMs": 30000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 34000
+      }
+    },
+    {
+      "wallTimeMs": 1790869590566,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 40,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 14,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 64000
+      }
+    },
+    {
+      "wallTimeMs": 1790869591737,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 94000
+      }
+    },
+    {
+      "wallTimeMs": 1790869592946,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 124000
+      }
+    },
+    {
+      "wallTimeMs": 1790869594128,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 154000
+      }
+    },
+    {
+      "wallTimeMs": 1790869595297,
+      "event": "production_capacity_assessment",
+      "data": {
+        "incomeEstimate": 123.5,
+        "productionConsumptionPerGameSecond": 0.0,
+        "recentSpendPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "credits": 100000.0,
+        "strategyArmyTarget": 36,
+        "committedArmed": 26,
+        "hardSafetyCap": 128,
+        "readyProducerCount": 2,
+        "producerUtilizationPct": 100.0,
+        "observedProducerGameMs": 120000,
+        "demand": "KNOWN",
+        "backlogSlots": 10,
+        "routeCount": 0,
+        "routes": [],
+        "selectedNativeCost": null,
+        "selectedNativeAffordable": false,
+        "builderReserve": 0,
+        "investmentReserve": 700,
+        "capabilityReserve": 0.0,
+        "allReserved": 700.0,
+        "recovery": false,
+        "factoryTarget": 2,
+        "factoryTargetCommitted": false,
+        "bottleneck": "PRODUCER_TECH_LIMIT",
+        "militaryCapacityDecision": "HOLD",
+        "producerCapacityDecision": "HOLD",
+        "windowGameMs": 60000,
+        "coveredGameMs": 60000,
+        "surplusGameMs": 60000,
+        "usefulDemandGameMs": 60000,
+        "safeGameMs": 0,
+        "sustained": false,
+        "operationalCapacityStatus": "UNKNOWN",
+        "gameTimeMs": 184000
+      }
+    },
+    {
+      "wallTimeMs": 1790869595917,
+      "event": "summary",
+      "data": {
+        "outcome": "PASS",
+        "reason": "Native result screen: DEFEAT",
+        "phase": "battle",
+        "matchOutcome": "DEFEAT",
+        "commands": 98,
+        "observations": 100,
+        "ownLosses": 0,
+        "newCombatUnits": 0,
+        "attackOrders": 98,
+        "attackOrdersConfirmed": 0,
+        "retreatOrders": 0,
+        "upgradesCompleted": 0,
+        "completedMines": 0,
+        "newMines": 0,
+        "mineTarget": 3,
+        "minesBeyondFloor": 0,
+        "expansionRefusals": 188,
+        "expansionBlocked": 188,
+        "completedFactories": 0,
+        "newFactories": 0,
+        "landFactoryTarget": 2,
+        "factoryBlocks": 0,
+        "builderTarget": 1,
+        "builderRecoveries": 0,
+        "builderOrders": 0,
+        "battleGameTimeMs": 198000,
+        "gameSecondsPerWallSecond": 25.52,
+        "noProgressWindowMs": 20000,
+        "noProgressCooldownMs": 30000,
+        "targetNoProgressTriggers": 0,
+        "targetRetries": 0,
+        "targetSuppressionsStarted": 0,
+        "targetSuppressionsReleased": 0,
+        "targetSuppressedSelections": 0,
+        "targetSuppressionsAtEnd": 0,
+        "targetSwitches": 0,
+        "effectiveDecisionIntervalGameMs": 2000,
+        "noProgressAttentionGapMs": 6000,
+        "maxObservedGameTimeJump": 2000,
+        "observationCount": 100,
+        "spendTotal": 0,
+        "spendByCategory": {},
+        "measuredIncomePerGameSecond": 0.0,
+        "investmentIntentions": 1,
+        "investmentCompletions": 0,
+        "investmentCancellations": 1,
+        "investmentReserveAtEnd": 0,
+        "investmentPendingAtEnd": false,
+        "finalUrgency": "OPEN_EXPANSION",
+        "reconEnabled": true,
+        "reconTasksCreated": 0,
+        "reconOrdersQueued": 0,
+        "reconOrdersObserved": 0,
+        "reconMovesCompletedBetweenSamples": 0,
+        "frontierTasksSatisfiedByTeamVision": 0,
+        "reconResolvedAfterObservedMove": 0,
+        "reconReacquired": 0,
+        "reconSitesCleared": 0,
+        "reconBlocked": 0,
+        "reconTaskPendingAtEnd": false,
+        "reconFrontierEnabled": true,
+        "frontierTasksCreated": 0,
+        "frontierTasksRefreshed": 0,
+        "frontierTasksAdvanced": 0,
+        "frontierTasksBlocked": 0,
+        "frontierTasksPreempted": 0,
+        "expendableTransfers": 0,
+        "expendableScoutsAtEnd": 0,
+        "factoryTargetIncreases": 0,
+        "factoryTargetIncreaseBlocks": 1,
+        "landFactoryTargetAtEnd": 2,
+        "factoryTargetCommittedAtEnd": false,
+        "landFactoryTargetMax": 5,
+        "factorySaturationPct": 100.0,
+        "factorySaturationMinPct": 80,
+        "economyBaseIncome": 26.9,
+        "economyIncomePerMine": 12.07,
+        "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+        "minesReadyAtEnd": 8,
+        "productionConsumptionPerGameSecond": 0.0,
+        "sustainableSurplusPerGameSecond": 123.5,
+        "productionCapacity": {
+          "incomeEstimate": 123.5,
+          "productionConsumptionPerGameSecond": 0.0,
+          "recentSpendPerGameSecond": 0.0,
+          "sustainableSurplusPerGameSecond": 123.5,
+          "credits": 100000.0,
+          "strategyArmyTarget": 36,
+          "committedArmed": 26,
+          "hardSafetyCap": 128,
+          "readyProducerCount": 2,
+          "producerUtilizationPct": 100.0,
+          "observedProducerGameMs": 120000,
+          "demand": "KNOWN",
+          "backlogSlots": 10,
+          "routeCount": 0,
+          "routes": [],
+          "selectedNativeCost": null,
+          "selectedNativeAffordable": false,
+          "builderReserve": 0,
+          "investmentReserve": 0,
+          "capabilityReserve": 0.0,
+          "allReserved": 0.0,
+          "recovery": false,
+          "factoryTarget": 2,
+          "factoryTargetCommitted": false,
+          "bottleneck": "PRODUCER_TECH_LIMIT",
+          "militaryCapacityDecision": "HOLD",
+          "producerCapacityDecision": "HOLD",
+          "windowGameMs": 60000,
+          "coveredGameMs": 60000,
+          "surplusGameMs": 60000,
+          "usefulDemandGameMs": 60000,
+          "safeGameMs": 0,
+          "sustained": false,
+          "operationalCapacityStatus": "UNKNOWN",
+          "gameTimeMs": 198000
+        },
+        "strategy": {
+          "enabled": true,
+          "armyTarget": 36,
+          "activeTarget": 24,
+          "reserveTarget": 12,
+          "hardSafetyCap": 128,
+          "builderTarget": 1,
+          "militaryCapacityIncreases": 0,
+          "militaryCapacityFloor": 0,
+          "capabilityNeedsAtEnd": 0,
+          "needsResolvedByLegalEvidence": 0,
+          "investmentOrders": 0,
+          "mineUpgradesObserved": 0,
+          "constructionCompletionsObserved": 0,
+          "capabilityReservesStarted": 0,
+          "capabilityReservesReleased": 0,
+          "capabilityReserveAtEnd": 0.0
+        }
+      }
+    }
+  ]
+}
