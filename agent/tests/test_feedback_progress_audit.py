@@ -7,6 +7,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools'))
 from audit_feedback_progress import audit
+from audit_operations import audit as operations_audit, MINE_INCOME_MODEL, MINE_SURVIVAL_MODEL
 
 
 def unit(uid, kind='heavyTank', **extra):
@@ -169,6 +170,19 @@ class FeedbackAuditTests(unittest.TestCase):
         rows=self.crisis_rows();rows.insert(4,('task_ownership_acquired',dict(unitId=1,owner='different')))
         self.assert_violation(rows,'ACTOR_LEASE_CONFLICT')
 
+    def test_legacy_recon_owner_still_blocks_main_theft(self):
+        rows=[observation([unit(1)]),('task_ownership_acquired',dict(taskId=3,unitId=1))]
+        rows += command('/command/attack-move?unitIds=1&x=200&y=100','main-1',dict(unitIds=[1]),targetX=200,targetY=100)
+        rows += [('summary',dict(outcome='PARTIAL'))]
+        self.assert_violation(rows,'COMMAND_STOLE_LEASE')
+
+    def test_legacy_recon_release_uses_same_canonical_owner(self):
+        rows=[observation([unit(1)]),('task_ownership_acquired',dict(taskId=3,unitId=1)),
+              ('task_ownership_released',dict(taskId=3,unitId=1))]
+        rows += command('/command/attack-move?unitIds=1&x=200&y=100','main-1',dict(unitIds=[1]),targetX=200,targetY=100)
+        rows += [('summary',dict(outcome='PARTIAL'))]
+        self.assertEqual(self.run_rows(rows)['status'],'PASS')
+
     def test_provider_ready_mode_and_response_chain(self):
         result=self.run_rows(self.provider_rows());self.assertEqual(result['status'],'PASS',result)
         self.assertEqual(result['metrics']['observedSupportJets'],1);self.assertEqual(result['metrics']['jetResponseOrders'],1)
@@ -253,6 +267,65 @@ class FeedbackAuditTests(unittest.TestCase):
     def test_unknown_branches_not_triggered(self):
         result=self.run_rows([('summary',dict(outcome='PARTIAL'))]);self.assertEqual(result['status'],'PASS')
         self.assertTrue(all(q=='NOT_TRIGGERED' for q in result['coverage'].values()))
+
+
+class OperationsMineSchemaTests(unittest.TestCase):
+    def run_deferral(self, data):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'battle-fixture.jsonl'
+            rows=[('mine_income_investment_deferred',data),('summary',dict(outcome='PARTIAL'))]
+            path.write_text(''.join(json.dumps(dict(event=e,data=d,wallTimeMs=i))+'\n'
+                                    for i,(e,d) in enumerate(rows)),encoding='utf-8')
+            return operations_audit(path)
+
+    @staticmethod
+    def legacy():
+        return dict(reason='INCOME_ALREADY_SURPLUS_NEAR_ARMY_TARGET',credits=20000,allReserved=700,
+                    nativeUpgradeCost=1400,ordinaryUnitNativeCost=800,incomeEstimate=100,
+                    productionConsumption=50,armyDeficit=2,nearTargetDeficitLimit=3,
+                    cashBuffer=3000,cashAfterInvestment=17900)
+
+    @staticmethod
+    def payback():
+        data=copy.deepcopy(next(d for e,d in FeedbackAuditTests.mine_rows() if e=='mine_income_investment_evaluated'))
+        data.update(selected=False,reason='LOCAL_CLEAR_WINDOW_TOO_SHORT',observedLocalClearGameSeconds=0,
+                    incomeModel=MINE_INCOME_MODEL,survivalModel=MINE_SURVIVAL_MODEL)
+        return data
+
+    def test_old_saturation_schema_remains_strict_and_passes(self):
+        result=self.run_deferral(self.legacy());self.assertEqual(result['status'],'PASS',result)
+        self.assertEqual(result['metrics']['legacyMineSaturationHolds'],1)
+        self.assertEqual(result['coverage']['legacyMineSaturationContract'],'OBSERVED')
+
+    def test_old_saturation_invalid_buffer_still_fails(self):
+        data=self.legacy();data['cashBuffer']=3001
+        result=self.run_deferral(data);self.assertEqual(result['status'],'FAIL')
+        self.assertIn('SURPLUS_MINE_HOLD_CONTRACT_MISMATCH',result['violationCounts'])
+
+    def test_new_payback_schema_has_no_old_deficit_false_positive(self):
+        result=self.run_deferral(self.payback());self.assertEqual(result['status'],'PASS',result)
+        self.assertEqual(result['violationCounts'],{})
+        self.assertIn('MINE_PAYBACK_CONTRACT_REQUIRES_FEEDBACK_PROGRESS_AUDIT',result['evidenceGaps'])
+        self.assertEqual(result['coverage']['minePaybackDeferral'],'SCHEMA_ONLY_REQUIRES_FEEDBACK_PROGRESS_AUDIT')
+
+    def test_new_unknown_quote_refusal_preserves_minus_one(self):
+        data=self.payback();data.update(nativeCost=-1,paybackEstimateGameSeconds=-1,reason='NATIVE_QUOTE_UNKNOWN')
+        self.assertEqual(self.run_deferral(data)['status'],'PASS')
+
+    def test_new_unknown_reason_is_rejected(self):
+        data=self.payback();data['reason']='UNVERIFIED_SAFE_TO_BUY'
+        result=self.run_deferral(data);self.assertEqual(result['status'],'FAIL')
+        self.assertIn('MINE_PAYBACK_DEFERRAL_REASON_UNKNOWN',result['violationCounts'])
+
+    def test_new_accepted_purchase_cannot_be_logged_as_deferral(self):
+        data=self.payback();data['selected']=True
+        result=self.run_deferral(data);self.assertEqual(result['status'],'FAIL')
+        self.assertIn('MINE_PAYBACK_DEFERRAL_SCHEMA_MISMATCH',result['violationCounts'])
+
+    def test_new_model_name_must_match_recorded_contract(self):
+        data=self.payback();data['survivalModel']='PREDICTED_SURVIVAL'
+        result=self.run_deferral(data);self.assertEqual(result['status'],'FAIL')
+        self.assertIn('MINE_PAYBACK_DEFERRAL_SCHEMA_MISMATCH',result['violationCounts'])
 
 
 if __name__=='__main__':unittest.main()

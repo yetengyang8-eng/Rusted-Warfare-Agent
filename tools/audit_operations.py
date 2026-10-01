@@ -21,6 +21,18 @@ def alive(unit):
     return isinstance(unit, dict) and not unit.get('dead') and number(unit.get('hp')) and unit['hp'] > 0
 
 
+MINE_PAYBACK_DEFERRAL_REASONS = frozenset((
+    'UNSUPPORTED_NATIVE_UPGRADE', 'OWN_MINE_QUOTE_MISMATCH',
+    'LOCAL_RISK_OR_HEALTH_UNCONFIRMED', 'LOCAL_CLEAR_WINDOW_TOO_SHORT',
+    'MINE_UPGRADE_ALREADY_COMMITTED', 'NATIVE_QUOTE_UNKNOWN',
+    'PROTECTED_BUDGET_UNKNOWN', 'MILITARY_FLOOR_RECOVERY',
+    'CHEAPER_LOCAL_NEW_MINE_FIRST', 'REPLACEMENTS_OR_RESERVES_PROTECTED',
+    'PAYBACK_HORIZON_TOO_SHORT',
+))
+MINE_INCOME_MODEL = 'MEASURED_T1_12_07_X_FROZEN_GENERATION_DELTA_OVER_8'
+MINE_SURVIVAL_MODEL = 'OBSERVED_LOCAL_QUIET_WINDOW_AND_BUDGET_HORIZON_NOT_A_SURVIVAL_PREDICTION'
+
+
 def audit(path):
     path = Path(path)
     digest, size = hashlib.sha256(), 0
@@ -33,6 +45,7 @@ def audit(path):
     bootstrap_completed, bootstrap_ready, bootstrap_queue, preflight = [], [], 0, {}
     cohort_orders, cohort_max, quoted_spend, ghost_max, accepted_commands = 0, 0, 0, 0, 0
     waiting_spend = None
+    legacy_mine_holds, payback_mine_deferrals = 0, 0
 
     def bad(line, reason, **detail):
         reasons[reason] += 1
@@ -200,6 +213,29 @@ def audit(path):
                 else: bad(line, 'SURPLUS_COMMITMENT_RELEASE_REASON_UNKNOWN', releaseReason=reason)
                 pending.remove(order)
             elif event == 'mine_income_investment_deferred':
+                # Preserve the old saturation contract. The new payback policy
+                # has its own inputs; armyDeficit is not part of that model.
+                if data.get('reason') != 'INCOME_ALREADY_SURPLUS_NEAR_ARMY_TARGET':
+                    payback_mine_deferrals += 1
+                    if data.get('reason') not in MINE_PAYBACK_DEFERRAL_REASONS:
+                        bad(line, 'MINE_PAYBACK_DEFERRAL_REASON_UNKNOWN'); continue
+                    if (data.get('selected') is not False or data.get('incomeModel') != MINE_INCOME_MODEL
+                            or data.get('survivalModel') != MINE_SURVIVAL_MODEL):
+                        bad(line, 'MINE_PAYBACK_DEFERRAL_SCHEMA_MISMATCH'); continue
+                    keys = ('mineId', 'nativeCost', 'ordinaryUnitNativeCost', 'credits', 'allReserved',
+                            'requiredCredits', 'observedLocalClearGameSeconds', 'requiredLocalClearGameSeconds',
+                            'incomeGainEstimate', 'paybackEstimateGameSeconds', 'upgradeTimeEstimateGameSeconds',
+                            'survivalMarginGameSeconds', 'requiredRemainingGameSeconds', 'remainingGameSeconds',
+                            'armed', 'militaryFloor')
+                    if (not all(number(data.get(k)) for k in keys)
+                            or not isinstance(data.get('sourceType'), str) or not isinstance(data.get('product'), str)
+                            or not isinstance(data.get('cheaperSiteReady'), bool)):
+                        bad(line, 'MINE_PAYBACK_DEFERRAL_INPUT_MISSING'); continue
+                    # Conservative refusal may legitimately record unknown prices
+                    # as -1. Full price/window/reserve proofs are audited separately.
+                    gaps['MINE_PAYBACK_CONTRACT_REQUIRES_FEEDBACK_PROGRESS_AUDIT'] += 1
+                    continue
+                legacy_mine_holds += 1
                 keys = ('credits', 'allReserved', 'nativeUpgradeCost', 'ordinaryUnitNativeCost', 'incomeEstimate',
                         'productionConsumption', 'armyDeficit', 'nearTargetDeficitLimit', 'cashBuffer', 'cashAfterInvestment')
                 if not all(number(data.get(k)) for k in keys): bad(line, 'SURPLUS_MINE_HOLD_INPUT_MISSING'); continue
@@ -239,13 +275,17 @@ def audit(path):
                               surplusEvaluations='OBSERVED' if events['surplus_spending_evaluated'] else 'NOT_TRIGGERED',
                               surplusAcceptedOrders='OBSERVED' if events['surplus_role_ordered'] else 'NOT_TRIGGERED',
                               surplusProductObservations='OBSERVED' if matched else 'NOT_TRIGGERED',
-                              mineSurplusDeferral='OBSERVED' if events['mine_income_investment_deferred'] else 'NOT_TRIGGERED'),
+                              mineSurplusDeferral='OBSERVED' if events['mine_income_investment_deferred'] else 'NOT_TRIGGERED',
+                              legacyMineSaturationContract='OBSERVED' if legacy_mine_holds else 'NOT_TRIGGERED',
+                              minePaybackDeferral='SCHEMA_ONLY_REQUIRES_FEEDBACK_PROGRESS_AUDIT' if payback_mine_deferrals else 'NOT_TRIGGERED'),
                 metrics=dict(acceptedLocalOrders=cohort_orders, maximumActiveCohorts=cohort_max,
                              acceptedSurplusOrders=events['surplus_role_ordered'], surplusQuotedSpend=quoted_spend,
-                             matchedArtilleryProducts=len(matched), pendingArtilleryProducts=len(pending), maximumPaidGhostSlots=ghost_max),
+                             matchedArtilleryProducts=len(matched), pendingArtilleryProducts=len(pending), maximumPaidGhostSlots=ghost_max,
+                             legacyMineSaturationHolds=legacy_mine_holds, paybackMineDeferrals=payback_mine_deferrals),
                 eventCounts=dict(events), violationCounts=dict(reasons), violations=violations,
                 integrityIssues=integrity, evidenceGaps=dict(gaps),
                 limitations=['Recorded contract audit only; existing fog/target legality audit remains separate.',
+                             'New mine-payback deferrals validate schema only; full payback/quiet/reserve proofs require audit_feedback_progress.py.',
                              'No producer birthplace, kills, combat benefit, win-rate, or absent-branch claim.'])
 
 

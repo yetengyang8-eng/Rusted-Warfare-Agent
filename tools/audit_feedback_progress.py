@@ -207,13 +207,17 @@ def audit(path):
                 else: cohorts[data.get('cohortId')] = set(data.get('unitIds',[]))
             elif event == 'task_ownership_acquired':
                 uid, owner = data.get('unitId'), data.get('owner')
+                # Existing Recon events predate the explicit owner field. Their
+                # native lease is canonically recon:<positive taskId>.
+                if owner is None and isinstance(data.get('taskId'),int) and not isinstance(data['taskId'],bool) and data['taskId']>0:
+                    owner='recon:'+str(data['taskId'])
                 if uid is None or not isinstance(owner,str): missing('OWNERSHIP_ACQUIRE_FIELDS_MISSING'); continue
                 if uid in leases and leases[uid] != owner: bad('ACTOR_LEASE_CONFLICT',unitId=uid)
                 leases[uid]=owner
             elif event == 'task_ownership_released':
                 owner=data.get('owner')
-                if owner is None and data.get('taskId') is not None:
-                    owner='strategy:'+str(data['taskId'])
+                if owner is None and isinstance(data.get('taskId'),int) and not isinstance(data['taskId'],bool) and data['taskId']>0:
+                    owner='recon:'+str(data['taskId'])
                 released=data.get('unitIds',[data['unitId']] if 'unitId' in data else None)
                 if released is None:released=[u for u,o in leases.items() if o==owner]
                 for uid in released:
