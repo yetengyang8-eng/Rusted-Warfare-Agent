@@ -1,0 +1,32 @@
+[
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\assets\\units\\extractor\\extractor.ini",
+    "sha256": "37537a6b570c230821c9e2019455b1ff3f6b527a85339e1a50561ab99f63a93b",
+    "bytes": 686
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\assets\\units\\extractor\\extractorT2.ini",
+    "sha256": "96c9b816478e17689a743c29065a3010a9d1c6d7c359cf32548918dfa058d74b",
+    "bytes": 552
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\assets\\units\\extractor\\extractorT3.ini",
+    "sha256": "158b05cfd01455122967c2ca85d7307252368cfd39e3febbd785648c474b9c93",
+    "bytes": 903
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\assets\\units\\extractor\\extractorT3_overclocked.ini",
+    "sha256": "4f45cf55af6d59c22a7b6b0b4011a788b482293a46031eb21831e18fbe9c0ebd",
+    "bytes": 674
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\assets\\units\\mammoth_tank\\mammoth_tank.ini",
+    "sha256": "624f6e07c7212369b3f5257864df4a625b8cb9286cd38ec3348fdc0bd08e7976",
+    "bytes": 2971
+  },
+  {
+    "path": "G:\\deepseek 工作台\\游戏环境\\rustedwarfare PC 1.15 原版\\game-lib.jar",
+    "sha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+    "bytes": 2639503
+  }
+]

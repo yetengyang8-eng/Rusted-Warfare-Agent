@@ -1,0 +1,326 @@
+[
+  {
+    "step": "build:compile",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "build:jar",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "build:test-classes",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:SmokeHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:BridgeHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:BridgeHarness-disabled",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:EconomyHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:OpeningHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:OpeningHarness-replacement",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:ProductionPlanHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "py:test_development",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 13
+  },
+  {
+    "step": "py:test_opening",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 8
+  },
+  {
+    "step": "py:test_economy",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 12
+  },
+  {
+    "step": "py:test_client",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 11
+  },
+  {
+    "step": "py:test_match_bootstrap",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 35
+  },
+  {
+    "step": "java:DiagnosticsHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:PreflightHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "py:test_reports",
+    "passed": false,
+    "exitCode": 1,
+    "pythonTests": 16
+  },
+  {
+    "step": "java:ScoutHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:TerrainMemoryHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:GuardHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:CapabilityHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:TargetCompatibilityHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:BuilderHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:ReachabilityHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:ReachabilityHarness-sandbox",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "py:test_frontier",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 8
+  },
+  {
+    "step": "py:test_frontier_reports",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 10
+  },
+  {
+    "step": "java:CombatHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "py:test_battle_reports",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 25
+  },
+  {
+    "step": "py:test_battle_client",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 78
+  },
+  {
+    "step": "py:test_strategy_funding",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 7
+  },
+  {
+    "step": "py:test_specialist_lifecycle",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 4
+  },
+  {
+    "step": "py:test_local_army",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 12
+  },
+  {
+    "step": "py:test_surplus_spending",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 11
+  },
+  {
+    "step": "py:test_engineer_provider",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 8
+  },
+  {
+    "step": "py:test_target_compatibility",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 15
+  },
+  {
+    "step": "py:test_recon_client",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 7
+  },
+  {
+    "step": "py:test_recon_frontier_client",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 22
+  },
+  {
+    "step": "py:test_headless_parallel",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 28
+  },
+  {
+    "step": "py:test_ab_aggregate",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 17
+  },
+  {
+    "step": "py:test_ab_campaign",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 14
+  },
+  {
+    "step": "java:ReportCommitHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:ExecutionContractHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:StrategyContractHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:LocalArmyContractHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:LocalCrisisContractHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:SurplusSpendingHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:MineInvestmentHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:EngineerProviderHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:NativeMorphHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "java:StrategyNativeHarness",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": null
+  },
+  {
+    "step": "py:test_feedback_progress_audit",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 35
+  },
+  {
+    "step": "py:test_global_strategy_audit",
+    "passed": true,
+    "exitCode": 0,
+    "pythonTests": 9
+  }
+]

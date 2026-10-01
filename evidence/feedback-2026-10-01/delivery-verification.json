@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+  "candidateJarMatchesFixedAndBothNativeRuns": true,
+  "productionSourceMatchesCompiledSnapshotFiles": 32,
+  "archiveEntriesVerifiedAgainstSha256": 515,
+  "commercialAssetsAndPlayerStateExcluded": true,
+  "baselineProtectedFilesVerified": 106,
+  "finalNativeReportsAudited": 8,
+  "finalNativeFiveAuditAssertionsPassed": true,
+  "expectedSourceDriftOnly": true,
+  "externalHandoffSynchronizedWithAbsoluteLinks": "G:\\deepseek 工作台\\助手交接\\HANDOFF_Codex_Feedback_2026-10-01.md",
+  "archive": {
+    "file": "raw-evidence.zip",
+    "bytes": 20238694,
+    "sha256": "285e52a627470e3f8d959407b8618e765420a7eaff3de337ebd7904faa05bd46"
+  }
+}

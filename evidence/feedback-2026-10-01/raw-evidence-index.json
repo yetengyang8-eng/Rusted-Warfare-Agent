@@ -1,0 +1,3106 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+  "commercialAssetsExcluded": true,
+  "playerPreferencesSavesCachesExcluded": true,
+  "inputDesktopRawIncluded": false,
+  "inputDesktopRawProvenance": "INPUT_ANALYSIS.md and metrics.json; source path, SHA and line numbers retained",
+  "selection": "Explicit reports/logs/audits/contract fixtures, failures and provenance. No game-lib/JAR/assets/maps/libs/res or isolated player state.",
+  "files": [
+    {
+      "entry": "identity/mine-mechanism-sources.json",
+      "origin": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\evidence\\feedback-2026-10-01\\mine-mechanism-sources.json",
+      "bytes": 1423,
+      "sha256": "a554ba078dea36c3c072f7df52f28c991e812e834a064f5d63d893e3fb719e6d"
+    },
+    {
+      "entry": "inputs/architecture-v4-original.txt",
+      "origin": "C:\\Users\\Administrator\\Desktop\\agent 思维架构 仓库 4.txt",
+      "bytes": 10300,
+      "sha256": "53cded0c6043ec5d2ab54ea45c6aadfb9d20b177bba076960cb82ce1d2097a03"
+    },
+    {
+      "entry": "inputs/feedback-original.txt",
+      "origin": "C:\\Users\\Administrator\\Desktop\\反馈.txt",
+      "bytes": 18494,
+      "sha256": "1fae7d027d58cd51f67283751262d17a29c0f7af963a65ada9d947ea6bfbe13e"
+    },
+    {
+      "entry": "validation/CRISIS_IMPLEMENTATION.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\CRISIS_IMPLEMENTATION.md",
+      "bytes": 7714,
+      "sha256": "da7c0ef498fe62f03c4f93007b6a1be0e94b4d73825acb365c9d61ba2eb517d7"
+    },
+    {
+      "entry": "validation/EVIDENCE_DELIVERY_MANIFEST.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\EVIDENCE_DELIVERY_MANIFEST.json",
+      "bytes": 2629,
+      "sha256": "61324ca6e056de2e62b45800c60e31bb026c9ce44eae54061e68ed17adf8abb9"
+    },
+    {
+      "entry": "validation/INPUT_ANALYSIS.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\INPUT_ANALYSIS.md",
+      "bytes": 12414,
+      "sha256": "85d19a0e9c62129dd116ecd1eed438fb6dbec78e8451745705878eb570cccb0f"
+    },
+    {
+      "entry": "validation/analyze_inputs.py",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\analyze_inputs.py",
+      "bytes": 15887,
+      "sha256": "14e61b025f279bcb00e1c84026c6d5c0922159e90ab11e585ffb9f66b81038de"
+    },
+    {
+      "entry": "validation/audit-targeted/crisis-v3.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit-targeted\\crisis-v3.json",
+      "bytes": 51442,
+      "sha256": "76c18b6e32be2ea8ec419984ec575e6c6468ef05473dc5987b22f67415afd6c2"
+    },
+    {
+      "entry": "validation/audit-targeted/engineer-fresh-chain-with-query-clock.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit-targeted\\engineer-fresh-chain-with-query-clock.json",
+      "bytes": 4019,
+      "sha256": "5da8dea35346540e3cb96aadeb447cb32ddee8a1c63a0e63b006c78ac08f78a9"
+    },
+    {
+      "entry": "validation/audit-targeted/engineer-fresh-chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit-targeted\\engineer-fresh-chain.json",
+      "bytes": 4536,
+      "sha256": "42b1c9db7c6c998a85a5ccb3d0cdc7ee97de9595dd6bff3ed96fbfe8241f934c"
+    },
+    {
+      "entry": "validation/audit-targeted/mine-saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit-targeted\\mine-saturated.json",
+      "bytes": 3865,
+      "sha256": "633fee2f5c2c6c5cc7b36cc34f53dfba1d6c8f1f00e1d097f8d807b65c2bbd07"
+    },
+    {
+      "entry": "validation/audit-targeted/reconstructed-mine-saturated-events.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit-targeted\\reconstructed-mine-saturated-events.jsonl",
+      "bytes": 739817,
+      "sha256": "241535f30f04d15929a5ebca1e5b7382fe6976f1f8c5c1f896e762406590215e"
+    },
+    {
+      "entry": "validation/audit_completed_fixtures.py",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit_completed_fixtures.py",
+      "bytes": 5074,
+      "sha256": "2eaba87a6f2461dd856dbdfa95d9222234a64d82bc050bb455cd2dc484df0d57"
+    },
+    {
+      "entry": "validation/audit_completed_native.py",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\audit_completed_native.py",
+      "bytes": 10562,
+      "sha256": "9ade1a87891dae3a6e64d580148902ca5a406c31927613909015ea10f68063b3"
+    },
+    {
+      "entry": "validation/candidate-identity.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\candidate-identity.json",
+      "bytes": 12654,
+      "sha256": "50383e20e30068ad92525814709450ced3a26fb95a20b9df5e19ab27f2e364ad"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http.log",
+      "bytes": 1442,
+      "sha256": "4dae6d9d3c5e3040d3928ea802d61a89c5c1dacb3e7e7f473dfa28206d0d2b89"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/air_only.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\air_only.json",
+      "bytes": 1459967,
+      "sha256": "9f4a29aa384427edbcceed6fd5a4d14b43afcb054b15332c6646dcee7036f964"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/air_only.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\air_only.stdout.txt",
+      "bytes": 263,
+      "sha256": "72c9a93d2d03e4bf7270e8add79a84d7eb697bcad583ceb66646c9e30648f532"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/hard_slot.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\hard_slot.json",
+      "bytes": 17039347,
+      "sha256": "9896f3409e08b88d5d7a8d036053ceabce354a5556376fe0ea1d27e0a7f27a17"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/hard_slot.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\hard_slot.stdout.txt",
+      "bytes": 263,
+      "sha256": "3aee4b18830e8f6f9020848b340180342cc4d2a0bb007f3d97bf74ab479ab605"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/home_emergency.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\home_emergency.json",
+      "bytes": 1958638,
+      "sha256": "e9e70d64f6f90b433ab2b279b6dcac56083f70075e4c0c1b82b9e317e8b41b31"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/home_emergency.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\home_emergency.stdout.txt",
+      "bytes": 263,
+      "sha256": "cd0d7791257c6f151ff5d0614c9e5a1c27d222b77a34071fc9c7494fb7b88f10"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/low_force.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\low_force.json",
+      "bytes": 1398118,
+      "sha256": "1b0c9771a8549bf75779beef06d3d3bc887132b164c31da37c451b3453428996"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/low_force.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\low_force.stdout.txt",
+      "bytes": 263,
+      "sha256": "1f21ea57306add74ee691f7008c2092f513b8247f30eaea5d89e4e9fcf807187"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_noquote.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_noquote.json",
+      "bytes": 2031881,
+      "sha256": "98567fbb66063558c2ccdd62ecb01cb8c085d5cf5ec2482c57fd8b89a1eeb6ba"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_noquote.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_noquote.stdout.txt",
+      "bytes": 263,
+      "sha256": "fdc0b78df09d6913badd0151fb36981e6fb1a51fc2df87641cfe9e2b5d37cd90"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_saturated.json",
+      "bytes": 1965430,
+      "sha256": "95b3fe0a3d5ec61d97ba1943d12dd4096b98d40d9ba085fdd894e5a6dac0f908"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_saturated.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_saturated.stdout.txt",
+      "bytes": 263,
+      "sha256": "2cf95f37e9596f9d54fe3a4dda785278f65264d15c91ab95e35236817d6e4894"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_short.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_short.json",
+      "bytes": 2023885,
+      "sha256": "f647ba8c54dbc23b72d71bc90f4612b05e23f78d60f49e8730fc6fe4ca2f0c64"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_short.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_short.stdout.txt",
+      "bytes": 263,
+      "sha256": "1f96a660281be49265d427f876fc35912756134ac136d3bd0df8a6f8b6b7212b"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_t3.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_t3.json",
+      "bytes": 3242029,
+      "sha256": "78129542b9908c288789ae2da630b0a580b184adca6d816c9df9511eb58262e8"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_t3.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_t3.stdout.txt",
+      "bytes": 416,
+      "sha256": "d67284928db5f83b31fc3c60fa828f30f474d8cf2f1aa257dcc38479534171b3"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_threat.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_threat.json",
+      "bytes": 2780539,
+      "sha256": "984adeeb20181ef5617ca2af8c1db644236dd65db7a3e4d91166e31a7580637c"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/mine_threat.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\mine_threat.stdout.txt",
+      "bytes": 263,
+      "sha256": "b7e34c22adaaf10232cdcb1a8784f9b78663c9af05caa654b22480c6f3744ac2"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/native_unaffordable.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\native_unaffordable.json",
+      "bytes": 1437043,
+      "sha256": "34210efc3cb3d9ffd41478cb57b4b0d5056a46d91d429b88070f825adbf948d7"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/native_unaffordable.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\native_unaffordable.stdout.txt",
+      "bytes": 263,
+      "sha256": "fa36fe32cc5ada72b6c0c9d8b7fcfbfb412fecbbbbadae04d4194e7efe62e1b2"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/rich.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\rich.json",
+      "bytes": 1458564,
+      "sha256": "f02f3f9a529009034d08208254083e206be3044bf7120585633de42d60b3e980"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/mine-http/rich.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\mine-http\\rich.stdout.txt",
+      "bytes": 263,
+      "sha256": "4eac86d6a5f04cb867003555c3fddbfdb64b1bebd5cbf44fb8729f3bb4ad6bdb"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/strategy-native-short-temp.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\strategy-native-short-temp.log",
+      "bytes": 26770,
+      "sha256": "c8436862bb34bd54ab2659c9ccb3ac07aab0a370975b83639a094c50e2030279"
+    },
+    {
+      "entry": "validation/combined-targeted-fixed/strategy-native.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted-fixed\\strategy-native.log",
+      "bytes": 11319,
+      "sha256": "b2e0e00af92e5483f73789a4bf82e3c2b5f603df5e4a344cdee00abd240d093c"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http.log",
+      "bytes": 6153,
+      "sha256": "79db2cee98b2bc7b1662dadf84bd6b68f41df729d3d4ec14b59545bb5dc76b77"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/air_only.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\air_only.json",
+      "bytes": 1459961,
+      "sha256": "6ec73b8ed2b986c66fd1cadac5a23b93ce20795a19e47b0ef6394637719a8f36"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/air_only.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\air_only.stdout.txt",
+      "bytes": 263,
+      "sha256": "7de2abe1787e595a2b618c25c5d43e42907144bc65addea284a9c5fdf9b78964"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/hard_slot.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\hard_slot.json",
+      "bytes": 17039341,
+      "sha256": "40d5b7c827d3ebb4b5948ec7b5ae625b9c0f7f3118620920547cec838403360e"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/hard_slot.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\hard_slot.stdout.txt",
+      "bytes": 263,
+      "sha256": "b994e0eeaf356a69b0bf6c87e677d0ca8508437d372d9bdfab78e2fcbd4f9d65"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/home_emergency.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\home_emergency.json",
+      "bytes": 1958632,
+      "sha256": "61137e4872eb289a044a2766aa1db2853be419d5492a10ddca73c350d720b8c0"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/home_emergency.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\home_emergency.stdout.txt",
+      "bytes": 263,
+      "sha256": "6396d2b0f2eba96b5d78aa99982792c1318ff93984c0d5668f3daf5cb2b6f5e0"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/low_force.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\low_force.json",
+      "bytes": 1398112,
+      "sha256": "6d58b25ae645e593857ccf098af934d89dc92cc7c614546847c7b98fdcbaf9e6"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/low_force.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\low_force.stdout.txt",
+      "bytes": 263,
+      "sha256": "4d897158229367b1c55c56a0b1f41b5cee54278963842fd63b7704985c691c7d"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_noquote.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_noquote.json",
+      "bytes": 107389,
+      "sha256": "6ac3e60472a6673c0ceeb48411514bef8eb923c2fb0f66c67afb82b2d6edcd9f"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_noquote.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_noquote.stdout.txt",
+      "bytes": 316,
+      "sha256": "2fbdabd063b5fd7f58c1496983d538225eefdca6ebacfc656ed69f54374335a8"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_saturated.json",
+      "bytes": 108831,
+      "sha256": "7713495c89caad9d42b2d4762282544d9be5f5b38b17cd20e2fca61fe4f6149b"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_saturated.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_saturated.stdout.txt",
+      "bytes": 316,
+      "sha256": "b5125733f01cf862a6c303e4aa2183535389d6e5329f6bd0945132c881f1ac0f"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_short.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_short.json",
+      "bytes": 108827,
+      "sha256": "08f32a6a77b80a9724678b001e53c6604c4e67a2f1c17a1e6641bd4c54cfe06c"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_short.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_short.stdout.txt",
+      "bytes": 316,
+      "sha256": "85121f3e933df6b3b7d8a8a64c6e78e184b276d49475621eff8d89c7b749b269"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_t3.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_t3.json",
+      "bytes": 108825,
+      "sha256": "7e6bd1cfced63cf1869383f053787826c790de0912f96c326c1f8b880a5fd62b"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_t3.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_t3.stdout.txt",
+      "bytes": 316,
+      "sha256": "b6b1740b516fda5eabd35dbc5622e7484ed19b54c950da8c06c31a3bda3fa228"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_threat.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_threat.json",
+      "bytes": 136204,
+      "sha256": "eae4d2826b0e08c9a26444cbd0dea2136d777f7d953761055cd5fbc9c4afb257"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/mine_threat.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\mine_threat.stdout.txt",
+      "bytes": 316,
+      "sha256": "192e4bafe8ef079445c96b8205060b042054c7d216650f009bd58e03e505a4e3"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/native_unaffordable.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\native_unaffordable.json",
+      "bytes": 1437036,
+      "sha256": "372d426541b4d1ba283b19066f6d9403814b1981f1a22e98f49f4ac0caa8749f"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/native_unaffordable.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\native_unaffordable.stdout.txt",
+      "bytes": 263,
+      "sha256": "afa3a39e9de43909951b7bd86cb8e197c84e1fd7797a62aa6a0392c446910913"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/rich.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\rich.json",
+      "bytes": 1458558,
+      "sha256": "0f9b1049906f35bb559472ce40ef2fdad6400f70822382714f377fb8a36515ce"
+    },
+    {
+      "entry": "validation/combined-targeted/mine-http/rich.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\combined-targeted\\mine-http\\rich.stdout.txt",
+      "bytes": 263,
+      "sha256": "c1c29d401fb992f5382457367eb07d95f84d072f163bf48d7c6ddab86ebedec0"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/frontier/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\frontier\\battle.jsonl",
+      "bytes": 109421,
+      "sha256": "289f54fecd41429bc6d8349c90188df7d4034c4815f70ef49c7863a76e8867b0"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/frontier/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\frontier\\orders.json",
+      "bytes": 2255,
+      "sha256": "fe2e602b44f9ca7de13b698e3ee75f404c7da265fd8e9ac9cee924e95fc01309"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/frontier/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\frontier\\process.txt",
+      "bytes": 158,
+      "sha256": "3669f6daf2d498e4fb956862276fa264b6bb8d97211047b0a729cf51b84d1ff6"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/legality_and_specialist/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\legality_and_specialist\\battle.jsonl",
+      "bytes": 227525,
+      "sha256": "36d4bcc33740b72f97c048ff388162dbf8005e1dcad71a4d18e280faaf8e3de2"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/legality_and_specialist/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\legality_and_specialist\\orders.json",
+      "bytes": 2255,
+      "sha256": "535fef9b7fb0a01c2355d38973aa45363fe23dd9d5d5623122b2b358d373919c"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/legality_and_specialist/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\legality_and_specialist\\process.txt",
+      "bytes": 158,
+      "sha256": "b40538e16ad0dd3158121df9380501131b7045a71d60327095861099f63b9752"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/production_starvation/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\production_starvation\\battle.jsonl",
+      "bytes": 592849,
+      "sha256": "daf3449dcbe518d7b849d562f35ed82abc64536b73af5dec4fdcd356436584bd"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/production_starvation/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\production_starvation\\orders.json",
+      "bytes": 21347,
+      "sha256": "d168b30ceb81e14c66f643289b6aaa6151b95beb17643247b853330b467e6e99"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/production_starvation/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\production_starvation\\process.txt",
+      "bytes": 158,
+      "sha256": "5d4c165590fd61e444d58ee964619c919d96c4bc4d6fbf8ea800e667cfc9b1a5"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid\\battle.jsonl",
+      "bytes": 242935,
+      "sha256": "4c0238c678a1f04632c134a1047d60150fc1d64582cd116b0ed4db0e3b2fdf19"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid\\orders.json",
+      "bytes": 2923,
+      "sha256": "5fe63b4caabb8e0665a0656fb8d93e66dbafa09b146c5264f971b09be7ab7ad6"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid\\process.txt",
+      "bytes": 158,
+      "sha256": "fd83e9e76844b7dc7a17865623f6d99e3510daacc5ab9adfedfeee824a50137a"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_incompatible/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_incompatible\\battle.jsonl",
+      "bytes": 231905,
+      "sha256": "647a552660f9e8c41eb739e15ad9930b8ba8a95aece487dfc7c86ef180871230"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_incompatible/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_incompatible\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_incompatible/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_incompatible\\process.txt",
+      "bytes": 158,
+      "sha256": "0e0800fad71b677e9ac3c6dd08f9f4a736e0fec4dd429b61899b2b0a7564dc11"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_loss/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_loss\\battle.jsonl",
+      "bytes": 234038,
+      "sha256": "04d466eff08da20e48f7d1c0b4226db24efb590e3497b4379ff1f3a8045f2cef"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_loss/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_loss\\orders.json",
+      "bytes": 2977,
+      "sha256": "535f0f763d64cc424a4e3ef2f6ab7d09b4e5241a52a2410e18100aef512def81"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_loss/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_loss\\process.txt",
+      "bytes": 158,
+      "sha256": "b49d089e6512d6a49087ddad8501b9fd2e504d69cb15494d17a6b2198e2415b1"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_native_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_native_unknown\\battle.jsonl",
+      "bytes": 237971,
+      "sha256": "da665254009bf775eee4b3c7905ec2a01f9419a5d6ed79ecb80183781b86fab3"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_native_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_native_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_native_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_native_unknown\\process.txt",
+      "bytes": 158,
+      "sha256": "e2f775a69d46e5d7cc413f5fd54bdf85e31fad09027286b7cba2b8808d56dc99"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_rejected/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_rejected\\battle.jsonl",
+      "bytes": 241712,
+      "sha256": "f72a1fb0ac1e20ef48b7ca03d23df892ed72a24c4107e7d62016efa8a5af2a6f"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_rejected/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_rejected\\orders.json",
+      "bytes": 3115,
+      "sha256": "3885659546d976c805532aac5eeefb39ae96eff2f85cb0cf1ea4d4c8577d35d2"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_rejected/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_rejected\\process.txt",
+      "bytes": 158,
+      "sha256": "07726875158cae2cb47a05c433306f6fbe3a6893dac0000098f01bd2e4af0a87"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_unknown\\battle.jsonl",
+      "bytes": 229684,
+      "sha256": "99836f02568775c1f67eb941e74f7e57028610669ce45068712be9f14b4ee455"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/raid_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\raid_unknown\\process.txt",
+      "bytes": 158,
+      "sha256": "b2361d8733383513a89db7015dbf8d4fa485ec5416be612976c3e49acb502de2"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/rejected_order/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\rejected_order\\battle.jsonl",
+      "bytes": 201816,
+      "sha256": "e8a8196ae359a270e65381867b7d2e3f1683e3bdf69277bb2ad374fe0ea5bf6b"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/rejected_order/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\rejected_order\\orders.json",
+      "bytes": 2526,
+      "sha256": "453519fbe549f7601e2d2d2072d1a14f070bbe40f9a62d36bf8c386ec5c550ad"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/rejected_order/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\rejected_order\\process.txt",
+      "bytes": 158,
+      "sha256": "2787147c1d699c3575a1dbe30b7790ebe258a129036fb2e9cbd826ed50311b48"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/remote_contact/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\remote_contact\\battle.jsonl",
+      "bytes": 163727,
+      "sha256": "d3867428e5e419db60581a4858656d208f821e275162f865f0b715ed437e913c"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/remote_contact/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\remote_contact\\orders.json",
+      "bytes": 2255,
+      "sha256": "d67f4ca86e33bbe768a5b9aa71128d7949999443d54c09e67460448c4d8f64d3"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/remote_contact/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\remote_contact\\process.txt",
+      "bytes": 158,
+      "sha256": "e323590dcdf6f8b6383247c41503782c7450e195a9c642ea66e9e29d563eeefb"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/single_group/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\single_group\\battle.jsonl",
+      "bytes": 112106,
+      "sha256": "56e08d483fc334cb2009be61ed4d57aa0d706da1f722c93056b7e294d37cd1d6"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/single_group/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\single_group\\orders.json",
+      "bytes": 1135,
+      "sha256": "a8f691afbbf07788fb1acc4b3ea283a735474c5f87b6b0ce2b43df35dcb521c2"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/single_group/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\single_group\\process.txt",
+      "bytes": 158,
+      "sha256": "7d87e5656e817bf2b442dbeaa1460653f1f10817a9cbc22907d40ee073fe3018"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/stalled_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\stalled_fronts\\battle.jsonl",
+      "bytes": 174304,
+      "sha256": "1f4c73134ed7c5067c2fa608e49ea6c907d830a30f4ff561af6fcf6dfe4d256f"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/stalled_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\stalled_fronts\\orders.json",
+      "bytes": 1147,
+      "sha256": "91c28a854a603694d8b3e8ab6b4231aaf63231e6dc252550a79ec6dd89a6ec86"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/stalled_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\stalled_fronts\\process.txt",
+      "bytes": 158,
+      "sha256": "2119a85d92b35813867eec1e86c3e63771edbf3b8be246acec7107bbbfcad91d"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/two_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\two_fronts\\battle.jsonl",
+      "bytes": 236324,
+      "sha256": "f32397d103855bb9908de21c67e205f5b82462c78aafa3b14f8d3ccde33c818a"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/two_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\two_fronts\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http-v3/two_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http-v3\\two_fronts\\process.txt",
+      "bytes": 158,
+      "sha256": "69b1926494112b8f12567b6a10c8d4a2ec21d40a5127f0b46d2127946c3ef73f"
+    },
+    {
+      "entry": "validation/crisis/logs/http/frontier/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\frontier\\battle.jsonl",
+      "bytes": 109421,
+      "sha256": "eb2f4f5423210b9fec398b518de3a44e74e7db03adadfbe38f5d7b1b0c1e2b05"
+    },
+    {
+      "entry": "validation/crisis/logs/http/frontier/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\frontier\\orders.json",
+      "bytes": 2255,
+      "sha256": "fe2e602b44f9ca7de13b698e3ee75f404c7da265fd8e9ac9cee924e95fc01309"
+    },
+    {
+      "entry": "validation/crisis/logs/http/frontier/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\frontier\\process.txt",
+      "bytes": 158,
+      "sha256": "0397bc8659037334dccbbb1e0dbee5f747dac4e1fb6ee1d4947642066df8267a"
+    },
+    {
+      "entry": "validation/crisis/logs/http/legality_and_specialist/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\legality_and_specialist\\battle.jsonl",
+      "bytes": 474143,
+      "sha256": "bad338188728356f7d6c0e00f5f29afecf835c00262e69d50da4fe48b6015e6f"
+    },
+    {
+      "entry": "validation/crisis/logs/http/legality_and_specialist/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\legality_and_specialist\\orders.json",
+      "bytes": 2255,
+      "sha256": "535fef9b7fb0a01c2355d38973aa45363fe23dd9d5d5623122b2b358d373919c"
+    },
+    {
+      "entry": "validation/crisis/logs/http/legality_and_specialist/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\legality_and_specialist\\process.txt",
+      "bytes": 158,
+      "sha256": "6b5262c67263c2558cd2095a387f2d9cf23feed5777c96f48fe8d9db236192bd"
+    },
+    {
+      "entry": "validation/crisis/logs/http/production_starvation/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\production_starvation\\battle.jsonl",
+      "bytes": 1203856,
+      "sha256": "487be49da924166e85bedf633bfb607e61125df9fd6fee7b32bc7811b07125b3"
+    },
+    {
+      "entry": "validation/crisis/logs/http/production_starvation/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\production_starvation\\orders.json",
+      "bytes": 21347,
+      "sha256": "d168b30ceb81e14c66f643289b6aaa6151b95beb17643247b853330b467e6e99"
+    },
+    {
+      "entry": "validation/crisis/logs/http/production_starvation/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\production_starvation\\process.txt",
+      "bytes": 158,
+      "sha256": "cebbb236fd6691621a2ac697f7cfff14851d917772fdca8fa37d742c7c67a7c7"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid\\battle.jsonl",
+      "bytes": 445111,
+      "sha256": "a34d11bd0a91b6b0f5d86f53bc8cbdb194e5a71192bfd5987c00ea87739f4824"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid\\orders.json",
+      "bytes": 2923,
+      "sha256": "5fe63b4caabb8e0665a0656fb8d93e66dbafa09b146c5264f971b09be7ab7ad6"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid\\process.txt",
+      "bytes": 158,
+      "sha256": "f751e29fc586a8fbb842fda49ecbecfdfe424409fe93fc6b226a73e81c52d6ed"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_incompatible/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_incompatible\\battle.jsonl",
+      "bytes": 478527,
+      "sha256": "59ad52e0264f73502fad6ea753f051a66a112af30dfff1266dea75e3adcf48f2"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_incompatible/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_incompatible\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_incompatible/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_incompatible\\process.txt",
+      "bytes": 158,
+      "sha256": "a5147dd8d4750279b3ad02fa652eae2f4d38fa4a8b305487f04a66255fef7b69"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_loss/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_loss\\battle.jsonl",
+      "bytes": 389731,
+      "sha256": "1e0246e67928bcf77f4e298c9651d88a68f295e20eece92b8c75c639830bea25"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_loss/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_loss\\orders.json",
+      "bytes": 2977,
+      "sha256": "535f0f763d64cc424a4e3ef2f6ab7d09b4e5241a52a2410e18100aef512def81"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_loss/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_loss\\process.txt",
+      "bytes": 158,
+      "sha256": "767c89e37a8f14f2fd56c2af6e5a788032f3a5314b68d533b78785120d12c3c8"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_native_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_native_unknown\\battle.jsonl",
+      "bytes": 477675,
+      "sha256": "3a932b1a271c2936a093d918447ce1bf624c99664e1b81db83fdaaf483f42a7b"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_native_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_native_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_native_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_native_unknown\\process.txt",
+      "bytes": 158,
+      "sha256": "1b3654d924372296b3b28290f62578579cdd472b6f069e7e4b597d6c03c1521b"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_rejected/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_rejected\\battle.jsonl",
+      "bytes": 443855,
+      "sha256": "0612fdea59e5ac8c3f5d632ecf360f51c3c53b166dd5ae9623254a3f72da1b93"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_rejected/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_rejected\\orders.json",
+      "bytes": 3115,
+      "sha256": "3885659546d976c805532aac5eeefb39ae96eff2f85cb0cf1ea4d4c8577d35d2"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_rejected/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_rejected\\process.txt",
+      "bytes": 158,
+      "sha256": "1c2f61bce2bd439cda16ade8fdb92952f860402e14c54cf3661707d99d11dcf1"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_unknown\\battle.jsonl",
+      "bytes": 476307,
+      "sha256": "ff7498aebfb72b7f93139d9b062802a32527fc5d76e02364768d4610e895cd13"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http/raid_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\raid_unknown\\process.txt",
+      "bytes": 158,
+      "sha256": "72403aee09a11cb502ef28cb145f4e42b4172a4b65594d6cf1847a145af1f062"
+    },
+    {
+      "entry": "validation/crisis/logs/http/rejected_order/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\rejected_order\\battle.jsonl",
+      "bytes": 366228,
+      "sha256": "bd2abe294b7ca14377c1ae0fc5f806a13ba7345f2771be39db9443b8ba08ce5a"
+    },
+    {
+      "entry": "validation/crisis/logs/http/rejected_order/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\rejected_order\\orders.json",
+      "bytes": 2526,
+      "sha256": "453519fbe549f7601e2d2d2072d1a14f070bbe40f9a62d36bf8c386ec5c550ad"
+    },
+    {
+      "entry": "validation/crisis/logs/http/rejected_order/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\rejected_order\\process.txt",
+      "bytes": 158,
+      "sha256": "cdfeab175c0b0488f4512b7b5503f1a80d2887c5f63cc74f4e3fe236a33c2140"
+    },
+    {
+      "entry": "validation/crisis/logs/http/remote_contact/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\remote_contact\\battle.jsonl",
+      "bytes": 328139,
+      "sha256": "84c1368d0cd81db9b2cbaf557be8a6036ae4810c1ba6df7092335fa608cdf7fe"
+    },
+    {
+      "entry": "validation/crisis/logs/http/remote_contact/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\remote_contact\\orders.json",
+      "bytes": 2255,
+      "sha256": "d67f4ca86e33bbe768a5b9aa71128d7949999443d54c09e67460448c4d8f64d3"
+    },
+    {
+      "entry": "validation/crisis/logs/http/remote_contact/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\remote_contact\\process.txt",
+      "bytes": 158,
+      "sha256": "851e9142d59849dcd33178ed5935dc269eaecdb3e4fa36dd423f4a8d03dedc71"
+    },
+    {
+      "entry": "validation/crisis/logs/http/single_group/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\single_group\\battle.jsonl",
+      "bytes": 156008,
+      "sha256": "76a68820de2ee961d663b52c87dce8c9d17722776d18a35f63fa985251afa3f1"
+    },
+    {
+      "entry": "validation/crisis/logs/http/single_group/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\single_group\\orders.json",
+      "bytes": 1135,
+      "sha256": "a8f691afbbf07788fb1acc4b3ea283a735474c5f87b6b0ce2b43df35dcb521c2"
+    },
+    {
+      "entry": "validation/crisis/logs/http/single_group/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\single_group\\process.txt",
+      "bytes": 158,
+      "sha256": "cac433c5f802fee1aea69533eea2bb3329fb82cb2e484a75a55b82251e495b7b"
+    },
+    {
+      "entry": "validation/crisis/logs/http/stalled_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\stalled_fronts\\battle.jsonl",
+      "bytes": 338716,
+      "sha256": "d21750d74df40466602049c36ad110324b1989f4707440557e46815c1921b6f8"
+    },
+    {
+      "entry": "validation/crisis/logs/http/stalled_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\stalled_fronts\\orders.json",
+      "bytes": 1147,
+      "sha256": "91c28a854a603694d8b3e8ab6b4231aaf63231e6dc252550a79ec6dd89a6ec86"
+    },
+    {
+      "entry": "validation/crisis/logs/http/stalled_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\stalled_fronts\\process.txt",
+      "bytes": 158,
+      "sha256": "02d9da5d258d8276d560ed9ce614f0e2d092afb68e1494f2aeaea88654c06f8f"
+    },
+    {
+      "entry": "validation/crisis/logs/http/two_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\two_fronts\\battle.jsonl",
+      "bytes": 506358,
+      "sha256": "1bdc4528fd8affd4f2dc5457fe7706c108fbbc52a6850bdf1b431f7bf9b36876"
+    },
+    {
+      "entry": "validation/crisis/logs/http/two_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\two_fronts\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/crisis/logs/http/two_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\http\\two_fronts\\process.txt",
+      "bytes": 158,
+      "sha256": "72958199eca514636b5c18f93424749c9d0290cd8024b7926290ba0084174351"
+    },
+    {
+      "entry": "validation/crisis/logs/local-army-tests-v3.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\local-army-tests-v3.txt",
+      "bytes": 2081,
+      "sha256": "b36a58da27efda43209a33c926eb9dc70a2702d1a149b5e8ed2686ce6ba5f98d"
+    },
+    {
+      "entry": "validation/crisis/logs/local-army-tests.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\logs\\local-army-tests.txt",
+      "bytes": 2081,
+      "sha256": "c3f42aca177947e4cb118ebcc74bb3d55206a754118ce08a06a6bd49a16969d4"
+    },
+    {
+      "entry": "validation/crisis/validation-summary.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\crisis\\validation-summary.json",
+      "bytes": 11258,
+      "sha256": "0013b9b912f974c9c991371e1d82e27316353595b6ff75df62088dce9ca748be"
+    },
+    {
+      "entry": "validation/engineer-amphibious.javap.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer-amphibious.javap.txt",
+      "bytes": 52731,
+      "sha256": "8b50ed2a6585fbf0224784e63b34dd880fce3302f353ef71d568e874110e0b08"
+    },
+    {
+      "entry": "validation/engineer/ENGINEER_PROVIDER_NOTES.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\ENGINEER_PROVIDER_NOTES.md",
+      "bytes": 7427,
+      "sha256": "c1f76d9e77467a70a701b3f5778e97d8fba2689840d82bde704b49116817ec72"
+    },
+    {
+      "entry": "validation/engineer/amphibious-native-metadata.javap.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\amphibious-native-metadata.javap.txt",
+      "bytes": 1286,
+      "sha256": "6defeb199177e00dff9668895e0e4e42206968b0025c6a9b9ff225ebd9357aea"
+    },
+    {
+      "entry": "validation/engineer/build-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-first.log",
+      "bytes": 2054,
+      "sha256": "017f534d25ea6685a47a62d72b1634c7a3910304722b37132ba1d347120482ce"
+    },
+    {
+      "entry": "validation/engineer/build-fresh-commit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-fresh-commit.log",
+      "bytes": 1747,
+      "sha256": "0d15300431237b2929d2af78cad0d19d51a4c8f296bdcff7246a681b40b7ac00"
+    },
+    {
+      "entry": "validation/engineer/build-isolated.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-isolated.log",
+      "bytes": 1747,
+      "sha256": "0d15300431237b2929d2af78cad0d19d51a4c8f296bdcff7246a681b40b7ac00"
+    },
+    {
+      "entry": "validation/engineer/build-merged-mine.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-merged-mine.log",
+      "bytes": 1747,
+      "sha256": "0d15300431237b2929d2af78cad0d19d51a4c8f296bdcff7246a681b40b7ac00"
+    },
+    {
+      "entry": "validation/engineer/build-second.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-second.log",
+      "bytes": 1747,
+      "sha256": "0d15300431237b2929d2af78cad0d19d51a4c8f296bdcff7246a681b40b7ac00"
+    },
+    {
+      "entry": "validation/engineer/build-targeted.ps1",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-targeted.ps1",
+      "bytes": 1288,
+      "sha256": "6249f3c509aa452158dcc5c759ff219463f7eac4c949205924011fbabed543de"
+    },
+    {
+      "entry": "validation/engineer/build-third.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\build-third.log",
+      "bytes": 1747,
+      "sha256": "0d15300431237b2929d2af78cad0d19d51a4c8f296bdcff7246a681b40b7ac00"
+    },
+    {
+      "entry": "validation/engineer/compile-native-morph-extended.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\compile-native-morph-extended.log",
+      "bytes": 264,
+      "sha256": "f55d28b609b7ff8b0efe06476583f3d19c85cda13a75ecd13301056d4a01342e"
+    },
+    {
+      "entry": "validation/engineer/compile-native-morph-final.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\compile-native-morph-final.log",
+      "bytes": 264,
+      "sha256": "f55d28b609b7ff8b0efe06476583f3d19c85cda13a75ecd13301056d4a01342e"
+    },
+    {
+      "entry": "validation/engineer/dive-native-action.javap.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\dive-native-action.javap.txt",
+      "bytes": 1259,
+      "sha256": "67167da995230042666c0c8833f9a6aa592ac723b5f74015bbb7fd649116db8a"
+    },
+    {
+      "entry": "validation/engineer/fly-native-action.javap.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\fly-native-action.javap.txt",
+      "bytes": 1015,
+      "sha256": "c6789f8a315c2c975ae64ce3d0e684c12c0eaa59432f4db9ee8f75c7b971b303"
+    },
+    {
+      "entry": "validation/engineer/http-final.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final.log",
+      "bytes": 112,
+      "sha256": "2b88f0fc517365c610b535262618a0ad1ba2cc7ddf849ffa1ffbf4dcb991a4de"
+    },
+    {
+      "entry": "validation/engineer/http-final/chain-feedback-audit.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\chain-feedback-audit.json",
+      "bytes": 6616,
+      "sha256": "cc334411ff9a7c9a7bd77539b7dd3a36a3fece8419df34bcdeb39cf7d7dcf4de"
+    },
+    {
+      "entry": "validation/engineer/http-final/chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\chain.json",
+      "bytes": 1134818,
+      "sha256": "dc7b3afd07b31467993c620ae3f89e8c7f8fb9c9b394fc8a5830e86e35662e2f"
+    },
+    {
+      "entry": "validation/engineer/http-final/chain.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\chain.jsonl",
+      "bytes": 461747,
+      "sha256": "b944faa55452bcf5ebc3b707e4e4865ab239af5c0afd57b678e1ad2ac4fe7ea8"
+    },
+    {
+      "entry": "validation/engineer/http-final/chain.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\chain.stdout.txt",
+      "bytes": 287,
+      "sha256": "bbc39bc8806038e131307202b9bf1ebd2420e25fcfe5fb525a73d45025f3711a"
+    },
+    {
+      "entry": "validation/engineer/http-final/funding.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\funding.json",
+      "bytes": 1134451,
+      "sha256": "325c80f5706b22ce0149545e2910dfc32db62b67fe58b4e93b28256e1f9fe5f6"
+    },
+    {
+      "entry": "validation/engineer/http-final/funding.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\funding.jsonl",
+      "bytes": 463355,
+      "sha256": "fed063669a211ef859e5d7acf321c1b11b5be30c5b74cfcb2ae6cc6afab7ad3a"
+    },
+    {
+      "entry": "validation/engineer/http-final/funding.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\funding.stdout.txt",
+      "bytes": 287,
+      "sha256": "8597a8edcb7aec9bcf7a7c776a9abd2b1fc5ded250e214523a443c842600981c"
+    },
+    {
+      "entry": "validation/engineer/http-final/hidden.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\hidden.json",
+      "bytes": 1070400,
+      "sha256": "f7b8cbae4802618d0459348457de51779ec0090bb1a84bc7b2bda434f404e813"
+    },
+    {
+      "entry": "validation/engineer/http-final/hidden.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\hidden.jsonl",
+      "bytes": 421872,
+      "sha256": "f8dc971e9801d3f7c4933eda9ded2f4fde87c8af78e720e56952724d0d000b8d"
+    },
+    {
+      "entry": "validation/engineer/http-final/hidden.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\hidden.stdout.txt",
+      "bytes": 287,
+      "sha256": "3967400189b6b94fd130b3db6fb73a4ba0467b96183e20a5fb2667663055e7ec"
+    },
+    {
+      "entry": "validation/engineer/http-final/missing_product.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\missing_product.json",
+      "bytes": 1075424,
+      "sha256": "51c4914d5d805497a377bc62e0affc6c4f0280d8158bb7c2944ece0e21777604"
+    },
+    {
+      "entry": "validation/engineer/http-final/missing_product.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\missing_product.jsonl",
+      "bytes": 441304,
+      "sha256": "283c03bd28e3a1492011760b72a8a3bd46d0010116174878692845f1e6d0ef0a"
+    },
+    {
+      "entry": "validation/engineer/http-final/missing_product.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\missing_product.stdout.txt",
+      "bytes": 287,
+      "sha256": "3d12cb67bc12bd9f220cc1dabdb6cb2adbea7cbd0cf8bc8e48b5461fa551a6dc"
+    },
+    {
+      "entry": "validation/engineer/http-final/mode_timeout.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\mode_timeout.json",
+      "bytes": 1152130,
+      "sha256": "24d4107ff578ee367fb61fc5c57fccdcffa62c0b55d257dd0307a7236144c9aa"
+    },
+    {
+      "entry": "validation/engineer/http-final/mode_timeout.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\mode_timeout.jsonl",
+      "bytes": 473079,
+      "sha256": "87cdd23b37b2e047d728ed50225cb24170b8f11c19f40689fa6224a2421f8668"
+    },
+    {
+      "entry": "validation/engineer/http-final/mode_timeout.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\mode_timeout.stdout.txt",
+      "bytes": 287,
+      "sha256": "99db106528bd0f09810f77e6f6280ddbdb7e4278e600f8238a887dfd5277c1f5"
+    },
+    {
+      "entry": "validation/engineer/http-final/rear.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\rear.json",
+      "bytes": 1135753,
+      "sha256": "5cde5be2a9a461945868bb8710ae11d39fe7d17f801a2a16a9bd0e9b59819799"
+    },
+    {
+      "entry": "validation/engineer/http-final/rear.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\rear.jsonl",
+      "bytes": 460715,
+      "sha256": "846578a260c9c4880e0c9bffbcbf76b72969126cc2146ee847dbe8ffd1675e8b"
+    },
+    {
+      "entry": "validation/engineer/http-final/rear.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\rear.stdout.txt",
+      "bytes": 287,
+      "sha256": "53a8d5e56dee1681599d0e9024265f990f134d0f7f9a2703f3391365d4801532"
+    },
+    {
+      "entry": "validation/engineer/http-final/unfinished.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unfinished.json",
+      "bytes": 1115933,
+      "sha256": "a54403da8cf713ffe670c47f15c7fa8433536b91c62825cc10760c7db0c6189a"
+    },
+    {
+      "entry": "validation/engineer/http-final/unfinished.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unfinished.jsonl",
+      "bytes": 452442,
+      "sha256": "bfe63b0a5dfd4f7acf0c8809674a2c461ed465017996db0456d4a7030d21b22f"
+    },
+    {
+      "entry": "validation/engineer/http-final/unfinished.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unfinished.stdout.txt",
+      "bytes": 287,
+      "sha256": "4bf5d3998c263acc7e18f0a1503105f7747ba08bdf0f17d72f679e5cfb81684c"
+    },
+    {
+      "entry": "validation/engineer/http-final/unknown_water.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unknown_water.json",
+      "bytes": 1158774,
+      "sha256": "69a02ab9be479525906f4eaf2dbbe0e74890b4634bc6455be110f57dd56f0ed8"
+    },
+    {
+      "entry": "validation/engineer/http-final/unknown_water.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unknown_water.jsonl",
+      "bytes": 480304,
+      "sha256": "cf56a31cc83bfe36791e7c9373a5f793b3890625b53072e41706b6219a1666ef"
+    },
+    {
+      "entry": "validation/engineer/http-final/unknown_water.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-final\\unknown_water.stdout.txt",
+      "bytes": 287,
+      "sha256": "e274dd7b89e998fd4364d126a9c9136d4323bd1d69ff69a919301112ebfafc35"
+    },
+    {
+      "entry": "validation/engineer/http-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first.log",
+      "bytes": 3188,
+      "sha256": "7565b5f0d05712934e15a2911301778d7e6a3ed5a8e2e8d064c0674354c0573e"
+    },
+    {
+      "entry": "validation/engineer/http-first/chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\chain.json",
+      "bytes": 1121602,
+      "sha256": "cac5acacb34b396e377268cf17ba8b304ff37b858687e57ae30d26bd1c35e884"
+    },
+    {
+      "entry": "validation/engineer/http-first/chain.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\chain.jsonl",
+      "bytes": 453536,
+      "sha256": "a2226aba5803708a78d4978d555bfd0fba2537bcaf87873d8420005f13125240"
+    },
+    {
+      "entry": "validation/engineer/http-first/chain.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\chain.stdout.txt",
+      "bytes": 287,
+      "sha256": "f1c5dc67879b87053c6600316e7682e1ca3faa01a1ffb81c621de633506c5ef0"
+    },
+    {
+      "entry": "validation/engineer/http-first/funding.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\funding.json",
+      "bytes": 1122622,
+      "sha256": "0eac2aa19b7544cf6585d95cb95b07c9f7b30162e015f2c36808d57ac26d3740"
+    },
+    {
+      "entry": "validation/engineer/http-first/funding.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\funding.jsonl",
+      "bytes": 456093,
+      "sha256": "074f7bbc6cd858e37b068b4208f73c0e1729ed46d3d1f81bae63b54e6af2561e"
+    },
+    {
+      "entry": "validation/engineer/http-first/funding.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\funding.stdout.txt",
+      "bytes": 287,
+      "sha256": "b1724f17161a6126ee2e5695ee43131367641a85e91a845d704cd1b9f93280d9"
+    },
+    {
+      "entry": "validation/engineer/http-first/hidden.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\hidden.json",
+      "bytes": 1043592,
+      "sha256": "422294e489f3f5a616604cd76b2f872e52c94034e26046fca03025bd8aecada5"
+    },
+    {
+      "entry": "validation/engineer/http-first/hidden.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\hidden.jsonl",
+      "bytes": 405177,
+      "sha256": "f32087ff30f95fdcabb31c56c7ada1cf3b2ce9bf93d552a68ea8d9e3f7fc77bf"
+    },
+    {
+      "entry": "validation/engineer/http-first/hidden.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\hidden.stdout.txt",
+      "bytes": 287,
+      "sha256": "4cbc14c05b94536d1d2b60c73932688a7f91495ca857c3d6230dd3b7e04a3290"
+    },
+    {
+      "entry": "validation/engineer/http-first/missing_product.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\missing_product.json",
+      "bytes": 1062632,
+      "sha256": "01ddd265777210b34a97f276efe374ae4f672f10651e90f231a2655addea5cb4"
+    },
+    {
+      "entry": "validation/engineer/http-first/missing_product.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\missing_product.jsonl",
+      "bytes": 434200,
+      "sha256": "2f183d4a692dff6963b0532d485512d625c48f53259c9a9ff5d02aaf22e7c5c9"
+    },
+    {
+      "entry": "validation/engineer/http-first/missing_product.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\missing_product.stdout.txt",
+      "bytes": 287,
+      "sha256": "9ac110381ff85782c146d63ea217ab2c1b8636d92b211eb7bed588e998bf5aee"
+    },
+    {
+      "entry": "validation/engineer/http-first/mode_timeout.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\mode_timeout.json",
+      "bytes": 1140403,
+      "sha256": "e36d0ad5be8567ab7cf5d8d05f77ebbcc45eefa9132783f8dec89751b379fd47"
+    },
+    {
+      "entry": "validation/engineer/http-first/mode_timeout.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\mode_timeout.jsonl",
+      "bytes": 466566,
+      "sha256": "3e3d6a5342739574e3bcd2c845d6b871f4c7f84112f7bede2a14ffa157896188"
+    },
+    {
+      "entry": "validation/engineer/http-first/mode_timeout.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\mode_timeout.stdout.txt",
+      "bytes": 287,
+      "sha256": "220939f45ad01f3af6b9e3c365b11f0d9bb93c8ea47e5da4989a853f65766637"
+    },
+    {
+      "entry": "validation/engineer/http-first/rear.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\rear.json",
+      "bytes": 1123453,
+      "sha256": "98d7c68753ff60c0b7213a064560eee2fe4f2cd9d7527d1f68724df8d2615f4b"
+    },
+    {
+      "entry": "validation/engineer/http-first/rear.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\rear.jsonl",
+      "bytes": 453048,
+      "sha256": "9a53fdf8ccf810103d4b5bcd33de585fdaffc9852e7ab6ff4701b6c951769e5a"
+    },
+    {
+      "entry": "validation/engineer/http-first/rear.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\rear.stdout.txt",
+      "bytes": 287,
+      "sha256": "83d9a5ef8c85ad3421f78660e8f1d92c21075e686b28fb824443eeeb105e3dc2"
+    },
+    {
+      "entry": "validation/engineer/http-first/unfinished.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unfinished.json",
+      "bytes": 1103140,
+      "sha256": "20a29a8dab40012aca7e72e303a18c842d17198073dbc6ade228a9b0e6523f91"
+    },
+    {
+      "entry": "validation/engineer/http-first/unfinished.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unfinished.jsonl",
+      "bytes": 445337,
+      "sha256": "33a9c2918b57d03faa0f4c243f3d1ef274d2191af0b277f38e4c6e5c01052c41"
+    },
+    {
+      "entry": "validation/engineer/http-first/unfinished.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unfinished.stdout.txt",
+      "bytes": 287,
+      "sha256": "eccbb74ae7d3753af9f5bcef306e3ef032508c2cf7824ae9634394cfa508bfa2"
+    },
+    {
+      "entry": "validation/engineer/http-first/unknown_water.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unknown_water.json",
+      "bytes": 1145982,
+      "sha256": "161dbc79ad178ef0315eb97dd47d1f87f5c5cbd520c94d99ba5e08f4661da517"
+    },
+    {
+      "entry": "validation/engineer/http-first/unknown_water.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unknown_water.jsonl",
+      "bytes": 473200,
+      "sha256": "823cd291f63137c2fb9436c0219a04a5063fc1fb3dd1783d2d9959e4b03ae286"
+    },
+    {
+      "entry": "validation/engineer/http-first/unknown_water.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-first\\unknown_water.stdout.txt",
+      "bytes": 287,
+      "sha256": "8f58e05bd304ef157d35d9edad4227322fd4c41db395f7b797683cf8e458f2b2"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit.log",
+      "bytes": 112,
+      "sha256": "44947c5e02d3da935dd5a7c55fc650d7ee774fe6f4ba065aab627ea49032b724"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\chain.json",
+      "bytes": 1143685,
+      "sha256": "f098569ec93a97d1c5e5c4d2a7f5e665a4e3db7ccb715ecf836c3b692f529f3e"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/chain.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\chain.jsonl",
+      "bytes": 467468,
+      "sha256": "4c6c3c0fd2e006f2e0443ed8979e56f822787f8121310536587fa144ed854748"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/chain.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\chain.stdout.txt",
+      "bytes": 287,
+      "sha256": "128dfd7e357466e006fe0d9d0c6056893a7c97227cc845ffdb03bfd1f965103c"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/funding.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\funding.json",
+      "bytes": 1141957,
+      "sha256": "1eab605f586c9919afc7b9c8b1c07dd35b37fbd4b9a224a92ebb65cc32d1ca03"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/funding.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\funding.jsonl",
+      "bytes": 468199,
+      "sha256": "24c7d6de5ad08fa1e20540e8c937b41728cc52a58202340367e9a437c39604b8"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/funding.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\funding.stdout.txt",
+      "bytes": 287,
+      "sha256": "b4cbf63a49552e5e1e4a9e92dac739f0095a39a55599ffafa1bd51cece535ffc"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/hidden.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\hidden.json",
+      "bytes": 1070399,
+      "sha256": "36ad734cc2296d8cd5c722166a74fb958d6fa29cd991a96d61d6c4ee8d875946"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/hidden.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\hidden.jsonl",
+      "bytes": 421871,
+      "sha256": "a4f55d0d08e4d6631e172d894805da1e45ee63508c33573751343d22838dc834"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/hidden.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\hidden.stdout.txt",
+      "bytes": 287,
+      "sha256": "0f8fa656fc6476e7533b29f924407082316a262dde0e31798869843bda476950"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/missing_product.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\missing_product.json",
+      "bytes": 1075424,
+      "sha256": "b3a6889bce3fb13e1e3f42fbe6caac2595ea4ee53a8229efecfed684abbba4a2"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/missing_product.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\missing_product.jsonl",
+      "bytes": 441304,
+      "sha256": "e6dca37ea38ca39f613bbdf0f5aa7413e0d039d61231dc49d171cd76b633815b"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/missing_product.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\missing_product.stdout.txt",
+      "bytes": 287,
+      "sha256": "98f30432b34cafbe0a632a1182e1609513e78bf79194bcf4fd0d0fb52bebf098"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/mode_timeout.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\mode_timeout.json",
+      "bytes": 1152129,
+      "sha256": "6f0de3a5d6d0108e5df81aec77eb943d4254848d28f31f90c93dc747fa70272e"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/mode_timeout.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\mode_timeout.jsonl",
+      "bytes": 473078,
+      "sha256": "134550c9f23336af182076ac78ab5e55873dcb035024b50d81aa46439d4efa08"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/mode_timeout.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\mode_timeout.stdout.txt",
+      "bytes": 287,
+      "sha256": "4d13e980b35aeba0fbb7067ef8920bf2d7d3c8749bed3eea7da41d49dc0686b7"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/rear.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\rear.json",
+      "bytes": 1145307,
+      "sha256": "56259cf3c3aec1ff3213e186ac561853441ed66bc5c24a40ecb295cef6e47a76"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/rear.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\rear.jsonl",
+      "bytes": 466881,
+      "sha256": "8237b7210389a591255a319f36815d3af9caa1c6285e9888440e380c26d14efd"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/rear.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\rear.stdout.txt",
+      "bytes": 287,
+      "sha256": "db6fbb6376ce2ca01d076e099eea8ef2115c3f2cf44227b6b729c2c1ce260dda"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unfinished.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unfinished.json",
+      "bytes": 1115933,
+      "sha256": "a91090c10d28259f25be1717978c15aadce0a2775c75df4b81f81a51c12e1c9a"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unfinished.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unfinished.jsonl",
+      "bytes": 452442,
+      "sha256": "f1daa79fea6dadb70f777a53a8fe5e4180ab394324e17e9674272014e82a15be"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unfinished.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unfinished.stdout.txt",
+      "bytes": 287,
+      "sha256": "aa6cb9c50c2665881f23f3060368fcc2ae7d2d273979c77e4d325e3a297a3dfa"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unknown_water.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unknown_water.json",
+      "bytes": 1158774,
+      "sha256": "2e60d3567015de9b8b5e68686679eff2597a0175fe9348ef695f41746bb96206"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unknown_water.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unknown_water.jsonl",
+      "bytes": 480304,
+      "sha256": "ba4cdf9fd7d9ea2d0db98724d0faedab7e15aa69c662bc66bbba85a293ba3829"
+    },
+    {
+      "entry": "validation/engineer/http-fresh-commit/unknown_water.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\http-fresh-commit\\unknown_water.stdout.txt",
+      "bytes": 287,
+      "sha256": "07e60496107e230264efd30eb76a55d23ffe5fe384f1a146f6b7ab98ded018e9"
+    },
+    {
+      "entry": "validation/engineer/native-morph-extended.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\native-morph-extended.log",
+      "bytes": 26657,
+      "sha256": "30b4af622c659eae9a8aa05263c0eaec35fc6e2678679b4a63fd78f17cc4b120"
+    },
+    {
+      "entry": "validation/engineer/native-morph-final.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\native-morph-final.log",
+      "bytes": 27373,
+      "sha256": "ac027ea9275364fa55495502de13bebf2c63484ae4c37722505a9dd8c56c15a0"
+    },
+    {
+      "entry": "validation/engineer/native-morph-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\native-morph-first.log",
+      "bytes": 17150,
+      "sha256": "152c6b498d3294d591d46b602142381acc38d5ec4bb98cf6c5c6e823ea872e7f"
+    },
+    {
+      "entry": "validation/engineer/native-morph-second.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\native-morph-second.log",
+      "bytes": 2078,
+      "sha256": "4eaf3d6c77558b278526d8b9aa67b6ada3d4c4697ed3b18d23f8c05f6b3767d7"
+    },
+    {
+      "entry": "validation/engineer/native-morph-third.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\native-morph-third.log",
+      "bytes": 20704,
+      "sha256": "11a6742bdbea1db3e13ba03bb424ae4923951f5b0e24023ead448e92bab7b911"
+    },
+    {
+      "entry": "validation/engineer/provider-contract-final.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\provider-contract-final.log",
+      "bytes": 145,
+      "sha256": "cec1a4d0fa59dd88394d4474b23e8c368e036fd3c5ff89648708ca8a55321110"
+    },
+    {
+      "entry": "validation/engineer/provider-contract-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\provider-contract-first.log",
+      "bytes": 145,
+      "sha256": "cec1a4d0fa59dd88394d4474b23e8c368e036fd3c5ff89648708ca8a55321110"
+    },
+    {
+      "entry": "validation/engineer/provider-contract-fresh-commit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\provider-contract-fresh-commit.log",
+      "bytes": 145,
+      "sha256": "cec1a4d0fa59dd88394d4474b23e8c368e036fd3c5ff89648708ca8a55321110"
+    },
+    {
+      "entry": "validation/engineer/rw-agent-bootstrap.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\rw-agent-bootstrap.log",
+      "bytes": 5174,
+      "sha256": "2c4babc2ef1c062cf398d106c2d8d777c925264e6bba7d961c6cb608eee19c27"
+    },
+    {
+      "entry": "validation/engineer/specialist-final.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final.log",
+      "bytes": 108,
+      "sha256": "f6801bd7a5646bc51f22222ef03a0c55a74ea614360b5d54c396789d634ac1aa"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/economic_isolation.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\economic_isolation.json",
+      "bytes": 618576,
+      "sha256": "f23e118843d8f886ff161781ed0f1528c765a77cc7244c85f6225f00e020a7d7"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/economic_isolation.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\economic_isolation.stdout.txt",
+      "bytes": 287,
+      "sha256": "9d650cff145a38552147c58cc107230ff6cee3d1651d9cb815ef108a32e144ee"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/fresh_contact.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\fresh_contact.json",
+      "bytes": 638167,
+      "sha256": "8cdc73587f1364b3e693ab997a9d1ab1082e805d40c607b2ccfb0315cb1a9ff9"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/fresh_contact.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\fresh_contact.stdout.txt",
+      "bytes": 287,
+      "sha256": "4bc8376f71f85d302f83ec547b00ee183c8a0a6b6819f40652e1601a869cb73a"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/lost_contact.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\lost_contact.json",
+      "bytes": 493856,
+      "sha256": "31c7546ffdefe56e474476a0c9f49b756eddc1e05fb3eee5512182c3ce115aa0"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/lost_contact.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\lost_contact.stdout.txt",
+      "bytes": 287,
+      "sha256": "21d7b70be8dec1431feb400207dc3e7b4f7038f49fbfdff975876223badbd395"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/return_home.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\return_home.json",
+      "bytes": 396855,
+      "sha256": "e62cb8347bea5ac1319d87ff1b23ebeaa99c1a25b06bc002a27aaa08605e3658"
+    },
+    {
+      "entry": "validation/engineer/specialist-final/return_home.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\specialist-final\\return_home.stdout.txt",
+      "bytes": 287,
+      "sha256": "af1735a02dad940afc74240122dc2450bfcb78fa23914f7275a5d997c301aa28"
+    },
+    {
+      "entry": "validation/engineer/strategy-contract-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\engineer\\strategy-contract-first.log",
+      "bytes": 146,
+      "sha256": "fa3eb0efd116f707f4ef26b5968c918ac1f5bd7ebfebb747e2ce797b98efa5d9"
+    },
+    {
+      "entry": "validation/final-baseline-verification.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\final-baseline-verification.json",
+      "bytes": 2474,
+      "sha256": "dd0e45476c5e97d27d5c4ed8398a25b48530ffa691a2af29fb2b91ef080e9678"
+    },
+    {
+      "entry": "validation/finalize_delivery.py",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\finalize_delivery.py",
+      "bytes": 14138,
+      "sha256": "bcc2bfe8d45f5723101a0a6c6efeed3a904c76197daeff3b3c489c5d5202c06d"
+    },
+    {
+      "entry": "validation/first-matrix.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\first-matrix.json",
+      "bytes": 6250,
+      "sha256": "a856cf83167a2a1cbccd51b2c0a06379a384a15f8679e8f70a95aa3e302ea401"
+    },
+    {
+      "entry": "validation/full-http-audit/SUMMARY.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\SUMMARY.json",
+      "bytes": 68815,
+      "sha256": "855c3cf41c617c3c39c5a4c06872ae09d0114d28805d575cbf3007942f9c0592"
+    },
+    {
+      "entry": "validation/full-http-audit/SUMMARY.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\SUMMARY.md",
+      "bytes": 2119,
+      "sha256": "0ad20ee6efbf1532f92a18d3ec27f407e40e24dcee4ac77644b01b814d81f3af"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-frontier.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-frontier.json",
+      "bytes": 32257,
+      "sha256": "397dae0ae7fa51d709bf0d33383ba2837978ccd9b6df372e5e31e5684f9a1846"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-legality_and_specialist.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-legality_and_specialist.json",
+      "bytes": 33563,
+      "sha256": "4f3a283fb10f6e49c029266789e7f19aa515bb8260599996e86c731684fda44e"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-production_starvation.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-production_starvation.json",
+      "bytes": 33278,
+      "sha256": "5d79f1aa406f1808884ac1b273abfc38719b8de9e182aac2a1baf957f5179b89"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid.json",
+      "bytes": 33770,
+      "sha256": "c2f7774e865d0601c9a9c8e83b8c66ff05a74436590da215283cacf159fa35cd"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid_incompatible.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid_incompatible.json",
+      "bytes": 33533,
+      "sha256": "ebad75ae441331001277e37e8afed6b99057af0f4df8225b8562fe8b8e44b52c"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid_loss.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid_loss.json",
+      "bytes": 34020,
+      "sha256": "62b077706f891ad560b5a96dafd604e2c042e590f61ef29cc3284a47b940bfb9"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid_native_unknown.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid_native_unknown.json",
+      "bytes": 33534,
+      "sha256": "433597a9f757e07530abb3ce7a03287b494e1f4d58f472d6d960f5b4f7225c53"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid_rejected.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid_rejected.json",
+      "bytes": 33911,
+      "sha256": "f13b280fc440dea2b38334b53ab70fe10bd9c272b6a74eac6d5719572e97b786"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-raid_unknown.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-raid_unknown.json",
+      "bytes": 33382,
+      "sha256": "a723de0b17a74c6a550bc68e59dc7e36abd81fe6a3e40028e79f87bc5efea644"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-rejected_order.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-rejected_order.json",
+      "bytes": 32719,
+      "sha256": "8674d72f0248903b5c8cac02af97a97fe086686a65cbd6aab9ed092d2b62712f"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-remote_contact.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-remote_contact.json",
+      "bytes": 32740,
+      "sha256": "d8bb7a01df4fcc479d7beb312961193452137758cc4906dad36267d37794e3b4"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-single_group.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-single_group.json",
+      "bytes": 32311,
+      "sha256": "d8f7cfd6e6aa34364baaf1c97e04c49d52d213cfcce16353ade41966edd6f4d7"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-stalled_fronts.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-stalled_fronts.json",
+      "bytes": 32833,
+      "sha256": "6153c064be9678fdce520cbeb32afbde50aeb3118ab12782349b17c00c30c111"
+    },
+    {
+      "entry": "validation/full-http-audit/local-army-two_fronts.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\local-army-two_fronts.json",
+      "bytes": 32723,
+      "sha256": "f69a23ae18e03e043a1e2a138666c75e1f49db9b09d21a4d7b3ad55288d45dbc"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-chain.json",
+      "bytes": 47515,
+      "sha256": "5dc69492952c0af75475189db4e11623c7a94ec0088e680eeede671edff55590"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-funding.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-funding.json",
+      "bytes": 46901,
+      "sha256": "33c7e377abe681d8aaa42f8cf1ebdf9e2e01c1aec104fff643c8c14128e2737f"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-hidden.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-hidden.json",
+      "bytes": 38494,
+      "sha256": "7122c1ab998a032070290d73ba5f79b52369ad2dd94648152a09453a2283134e"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-missing_product.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-missing_product.json",
+      "bytes": 37668,
+      "sha256": "6c26337915a2dc47c99a4821136781e2e39a52027bd92d730885eb0884e4438a"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-mode_timeout.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-mode_timeout.json",
+      "bytes": 38731,
+      "sha256": "c3defdd26ad4dae045d318f742e354022544e2381ed36fd3ba99245e111b17f8"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-rear.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-rear.json",
+      "bytes": 47701,
+      "sha256": "ce0732d21f0c7779478cc1f69bd6ef36263d46c13901916970a7814579739e63"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-unfinished.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-unfinished.json",
+      "bytes": 37634,
+      "sha256": "33ec81420e103210bb1252bca29c87c9e84bbda7932c0ec63add237118c99167"
+    },
+    {
+      "entry": "validation/full-http-audit/provider-unknown_water.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\provider-unknown_water.json",
+      "bytes": 37847,
+      "sha256": "7fa45fe9ed4d76880a72722534ad98f3beb94b23d6e85870c63d3a6542e82c63"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/air_only.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\air_only.jsonl",
+      "bytes": 546831,
+      "sha256": "6868d00f2ad32f650a7e9cafde2202a5e0600dc28755e0f34ea8a8dcf3dcbe46"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/hard_slot.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\hard_slot.jsonl",
+      "bytes": 5902514,
+      "sha256": "bac55e1aa8aa02d984c86e205de0a77584df8db9690b521a1b0a4055e2f7d236"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/home_emergency.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\home_emergency.jsonl",
+      "bytes": 836308,
+      "sha256": "f8e19b9ac1edcf98d8b99a0913e482b8381ba228e9ed90f69774cc9da2193ac4"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/low_force.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\low_force.jsonl",
+      "bytes": 521749,
+      "sha256": "bbcc1119a689d41c47244321ffad646d37214a02c93f8c2949a8daeeaeef1181"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/mine_noquote.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\mine_noquote.jsonl",
+      "bytes": 794036,
+      "sha256": "ff615a3df123ff6b06d4cc52e5eff711db77160ed9c325598e9c3c4ca101a599"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/mine_saturated.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\mine_saturated.jsonl",
+      "bytes": 739817,
+      "sha256": "3d801b32e9d36afed366597a79921f12ca99e3d264b737383025afa4efe75bbd"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/mine_short.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\mine_short.jsonl",
+      "bytes": 775765,
+      "sha256": "3a65d2de5e69d22530a64222dbba1e6a9fd3931be6e81796232c03cfb5282030"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/mine_t3.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\mine_t3.jsonl",
+      "bytes": 4182564,
+      "sha256": "57d15bb8a6b65996c0d310aa116bc99ee8081f859518dc0e62bfef1b05e734f2"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/mine_threat.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\mine_threat.jsonl",
+      "bytes": 1211452,
+      "sha256": "bcf7afb28d6e89471b54ac43ace836c901260ed82254f96ac8b08ee1b62d76c5"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/native_unaffordable.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\native_unaffordable.jsonl",
+      "bytes": 535408,
+      "sha256": "a0c1b827be31702396c1168e28330f1a85f8cff799dce93fc7c553d63ccfdd94"
+    },
+    {
+      "entry": "validation/full-http-audit/reconstructed-surplus/rich.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\reconstructed-surplus\\rich.jsonl",
+      "bytes": 542729,
+      "sha256": "3e742a170b25e23844df1412e317ea434f99738cd68dc2c4a1e7ae9f237a9b81"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-air_only.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-air_only.json",
+      "bytes": 33623,
+      "sha256": "cb7203bbac4925d42f9dde9ac37876247266fba6f61ad34419532c90c6ca6c61"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-hard_slot.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-hard_slot.json",
+      "bytes": 34655,
+      "sha256": "81f63e3941e05b8a7cc78614b5e27ee25b63565685a33e6f2b591682ff2d5c4f"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-home_emergency.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-home_emergency.json",
+      "bytes": 33554,
+      "sha256": "562ceb5879d9c236c57f0af6a55dd16c9925284d3f8bca24c79368580c703760"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-low_force.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-low_force.json",
+      "bytes": 33630,
+      "sha256": "7945c498dc166443c88ad0d3d2f7a632d75a2ef0d7d2b49b02a68fd48ce8b450"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-mine_noquote.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-mine_noquote.json",
+      "bytes": 33715,
+      "sha256": "7ef5483074a3e796d88de144692a9d941eba82e5563048226c18fb8e38b90d25"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-mine_saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-mine_saturated.json",
+      "bytes": 34944,
+      "sha256": "e55fed8e0eb3a60fba0cfd04a41bed840a6e0115d38b80d8e445da7640e456b7"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-mine_short.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-mine_short.json",
+      "bytes": 34207,
+      "sha256": "3f3afe618d5d6f2d2cb94b33e21fb1c7225e924130846b13e1bff5dca6759c06"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-mine_t3.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-mine_t3.json",
+      "bytes": 35214,
+      "sha256": "7d5899e5b216685e6eea06f66bfb89d7a9112571f20614dfc2c86806e203598c"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-mine_threat.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-mine_threat.json",
+      "bytes": 34001,
+      "sha256": "bd73381c55b0496ba6699dbdd4bddf64c964422ccda9224bdf3dde37f038d677"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-native_unaffordable.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-native_unaffordable.json",
+      "bytes": 33695,
+      "sha256": "e4091fec8ca12d4befc92986abe8af173116be309436def9898b638c89d550b7"
+    },
+    {
+      "entry": "validation/full-http-audit/surplus-rich.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http-audit\\surplus-rich.json",
+      "bytes": 34067,
+      "sha256": "0a6ffed062c6890be313c6faa07d8951a45bd9c5ec9e59bfbe06b8a819068e80"
+    },
+    {
+      "entry": "validation/full-http/local-army/frontier/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\frontier\\battle.jsonl",
+      "bytes": 109899,
+      "sha256": "ed198a1a394025d81238db7c176f986b2f3fee6a39607519d1cfd1ba8e957923"
+    },
+    {
+      "entry": "validation/full-http/local-army/frontier/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\frontier\\orders.json",
+      "bytes": 2255,
+      "sha256": "fe2e602b44f9ca7de13b698e3ee75f404c7da265fd8e9ac9cee924e95fc01309"
+    },
+    {
+      "entry": "validation/full-http/local-army/frontier/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\frontier\\process.txt",
+      "bytes": 285,
+      "sha256": "867b636c2ceb47e06958f0d12699b436a0ca101912522f397f56709ca5fb9f2c"
+    },
+    {
+      "entry": "validation/full-http/local-army/legality_and_specialist/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\legality_and_specialist\\battle.jsonl",
+      "bytes": 228003,
+      "sha256": "cc1d61542f033f0735cf4862f8d55168e90c52a9abe5c497a7a1aac928cfc84e"
+    },
+    {
+      "entry": "validation/full-http/local-army/legality_and_specialist/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\legality_and_specialist\\orders.json",
+      "bytes": 2255,
+      "sha256": "535fef9b7fb0a01c2355d38973aa45363fe23dd9d5d5623122b2b358d373919c"
+    },
+    {
+      "entry": "validation/full-http/local-army/legality_and_specialist/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\legality_and_specialist\\process.txt",
+      "bytes": 285,
+      "sha256": "fcd46514db1a6093b2cd2d0621192f0d32d36af7014bae441f076e8526e46382"
+    },
+    {
+      "entry": "validation/full-http/local-army/production_starvation/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\production_starvation\\battle.jsonl",
+      "bytes": 594177,
+      "sha256": "5e335211de506524d2bbf3ba97e596b786ac0799aa9bb89851ba91a6beda7008"
+    },
+    {
+      "entry": "validation/full-http/local-army/production_starvation/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\production_starvation\\orders.json",
+      "bytes": 21347,
+      "sha256": "d168b30ceb81e14c66f643289b6aaa6151b95beb17643247b853330b467e6e99"
+    },
+    {
+      "entry": "validation/full-http/local-army/production_starvation/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\production_starvation\\process.txt",
+      "bytes": 285,
+      "sha256": "530f772527692b15ad82e88e73a2b784fe09e76d37105fb1e6f1e6a1d05dc1a7"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid\\battle.jsonl",
+      "bytes": 243413,
+      "sha256": "5ba18ee52aab8aa8ca891d569b2f47075d09e1c30dc532be65d15181c0027e62"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid\\orders.json",
+      "bytes": 2923,
+      "sha256": "5fe63b4caabb8e0665a0656fb8d93e66dbafa09b146c5264f971b09be7ab7ad6"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid\\process.txt",
+      "bytes": 285,
+      "sha256": "9248faa7fa04194dfe3ae09ea4b5ea5f79698f3c0e6dd97781c51bda4f7be37c"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_incompatible/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_incompatible\\battle.jsonl",
+      "bytes": 232383,
+      "sha256": "9e11b4f20374ea4e3d4bbead62214671ec41cf0fa1b8688d20f0f20f04c01753"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_incompatible/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_incompatible\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_incompatible/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_incompatible\\process.txt",
+      "bytes": 285,
+      "sha256": "1f47e8c36007b87baf959dbb6cdc72277550edcaa90dd71e722208d44d6bf981"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_loss/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_loss\\battle.jsonl",
+      "bytes": 234516,
+      "sha256": "c0622aa15a8a075e71b490ed8ee15f8dbba7c77eac539d85d4557dd4d7d41078"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_loss/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_loss\\orders.json",
+      "bytes": 2977,
+      "sha256": "535f0f763d64cc424a4e3ef2f6ab7d09b4e5241a52a2410e18100aef512def81"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_loss/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_loss\\process.txt",
+      "bytes": 285,
+      "sha256": "24939875f8b5b9e910c586f30b65d253343cb780bfbdff364b4f132f095806c2"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_native_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_native_unknown\\battle.jsonl",
+      "bytes": 238449,
+      "sha256": "42a4ec4e7222b6a73c5ce4148907d5ee9ef7000d120d0c8c3a3680199143111e"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_native_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_native_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_native_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_native_unknown\\process.txt",
+      "bytes": 285,
+      "sha256": "3fbdc4876069d2d1dab294cb419c82ea511ac99f99d629ffe629e818b6dd0f91"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_rejected/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_rejected\\battle.jsonl",
+      "bytes": 242190,
+      "sha256": "1070bbb488567cdd7865569ae2b2012efc198244623d0a326c6dd06de65f48bc"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_rejected/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_rejected\\orders.json",
+      "bytes": 3115,
+      "sha256": "3885659546d976c805532aac5eeefb39ae96eff2f85cb0cf1ea4d4c8577d35d2"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_rejected/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_rejected\\process.txt",
+      "bytes": 285,
+      "sha256": "db33eda6435ccbe5d021064f8ab19e69c28a477d6e778701625d9d7db08056b3"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_unknown/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_unknown\\battle.jsonl",
+      "bytes": 230163,
+      "sha256": "1de6ce2d0a9758e7265a1376adfd05c8b6230ebbeca8c03ab609c20a21265e23"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_unknown/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_unknown\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/full-http/local-army/raid_unknown/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\raid_unknown\\process.txt",
+      "bytes": 285,
+      "sha256": "b0f8b56e58d87e7120e2eb502793a301eb10a3b0be5bf595154d905f3c38a366"
+    },
+    {
+      "entry": "validation/full-http/local-army/rejected_order/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\rejected_order\\battle.jsonl",
+      "bytes": 202294,
+      "sha256": "8fb0fff806f1080efe11da38d07e2348d0abbd2c8fc226d4b4c1c3b710386eb0"
+    },
+    {
+      "entry": "validation/full-http/local-army/rejected_order/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\rejected_order\\orders.json",
+      "bytes": 2526,
+      "sha256": "453519fbe549f7601e2d2d2072d1a14f070bbe40f9a62d36bf8c386ec5c550ad"
+    },
+    {
+      "entry": "validation/full-http/local-army/rejected_order/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\rejected_order\\process.txt",
+      "bytes": 285,
+      "sha256": "26ecce9653af6cbcf4ddd865808e6f820ba1ea6196edb7b8ff61386144f1c090"
+    },
+    {
+      "entry": "validation/full-http/local-army/remote_contact/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\remote_contact\\battle.jsonl",
+      "bytes": 164205,
+      "sha256": "1b0582b3fd33e9e16df1101755e42e6be422f427f45da59fa1c038ac5c0a41c4"
+    },
+    {
+      "entry": "validation/full-http/local-army/remote_contact/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\remote_contact\\orders.json",
+      "bytes": 2255,
+      "sha256": "d67f4ca86e33bbe768a5b9aa71128d7949999443d54c09e67460448c4d8f64d3"
+    },
+    {
+      "entry": "validation/full-http/local-army/remote_contact/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\remote_contact\\process.txt",
+      "bytes": 285,
+      "sha256": "ab74db162cb1838bfa763c0d6f4b9499602ca1ba85f1651f9a1763ad506b7091"
+    },
+    {
+      "entry": "validation/full-http/local-army/single_group/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\single_group\\battle.jsonl",
+      "bytes": 112584,
+      "sha256": "8e224f54b9267e5e84a1810ee6a6e4229c8e7deebfa77e86bb2accd647aa70d2"
+    },
+    {
+      "entry": "validation/full-http/local-army/single_group/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\single_group\\orders.json",
+      "bytes": 1135,
+      "sha256": "a8f691afbbf07788fb1acc4b3ea283a735474c5f87b6b0ce2b43df35dcb521c2"
+    },
+    {
+      "entry": "validation/full-http/local-army/single_group/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\single_group\\process.txt",
+      "bytes": 285,
+      "sha256": "0e2eb3f9ecea28fdabeef3294273038e8ed9c95a094722cf6e51aec422b691c0"
+    },
+    {
+      "entry": "validation/full-http/local-army/stalled_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\stalled_fronts\\battle.jsonl",
+      "bytes": 174782,
+      "sha256": "1e4818903ebc0f111393d8a9f84d52dfa622e2a48015e2978a6455628199ba14"
+    },
+    {
+      "entry": "validation/full-http/local-army/stalled_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\stalled_fronts\\orders.json",
+      "bytes": 1147,
+      "sha256": "91c28a854a603694d8b3e8ab6b4231aaf63231e6dc252550a79ec6dd89a6ec86"
+    },
+    {
+      "entry": "validation/full-http/local-army/stalled_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\stalled_fronts\\process.txt",
+      "bytes": 285,
+      "sha256": "9b7dbd06aec94fffec214404279c62de59fa7e8ffac468af70cc89461965a374"
+    },
+    {
+      "entry": "validation/full-http/local-army/two_fronts/battle.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\two_fronts\\battle.jsonl",
+      "bytes": 236802,
+      "sha256": "f1d3df55beb89312a6b4ab5c07511ae15f696009fcac187268f40ef108a60417"
+    },
+    {
+      "entry": "validation/full-http/local-army/two_fronts/orders.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\two_fronts\\orders.json",
+      "bytes": 2255,
+      "sha256": "71485770d3b26b8091bbbcb881a309aba5b93a2515167d166b82b63b72667565"
+    },
+    {
+      "entry": "validation/full-http/local-army/two_fronts/process.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\local-army\\two_fronts\\process.txt",
+      "bytes": 285,
+      "sha256": "f788ecd31736f225000c277e892fdc6f25bcdb60f6c105c701e4c89df9337ad7"
+    },
+    {
+      "entry": "validation/full-http/provider/chain.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\chain.json",
+      "bytes": 1152889,
+      "sha256": "e8af486e8aecf3bf24a43396629b2e91ab149c0d6053d82f00d208082efce302"
+    },
+    {
+      "entry": "validation/full-http/provider/chain.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\chain.jsonl",
+      "bytes": 473435,
+      "sha256": "6f25036dd8a47d9ba6156f90aa2d2640f299c9ad6ca919d3bcdf6dae9218eb4c"
+    },
+    {
+      "entry": "validation/full-http/provider/chain.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\chain.stdout.txt",
+      "bytes": 282,
+      "sha256": "f5b67ce628b7f1c0e995d86646edffc4379af799275adea9ffa4c2ef00977a93"
+    },
+    {
+      "entry": "validation/full-http/provider/funding.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\funding.json",
+      "bytes": 1151533,
+      "sha256": "aee53f338eed81f43d6185ecb48d6249b58eaca8af570b888db075201f8c2075"
+    },
+    {
+      "entry": "validation/full-http/provider/funding.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\funding.jsonl",
+      "bytes": 474538,
+      "sha256": "98d4f32310a45cb624c99335d34c8ca73c6e257e9f928dc3b94ab39325a775c5"
+    },
+    {
+      "entry": "validation/full-http/provider/funding.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\funding.stdout.txt",
+      "bytes": 282,
+      "sha256": "1d46dd3bd65d8537ce9ca30092d9ec88b4083f56d1c4f199f9aaf3ca589cb1b6"
+    },
+    {
+      "entry": "validation/full-http/provider/hidden.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\hidden.json",
+      "bytes": 1079604,
+      "sha256": "dc2d510a697583fa463aae3e383f6c71625fe0fa9dd879d26887a248313b4e29"
+    },
+    {
+      "entry": "validation/full-http/provider/hidden.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\hidden.jsonl",
+      "bytes": 427839,
+      "sha256": "e2ad14de268cc4d5d9807f7381a1ed5df6633ae2c913f13e35a03d160fc1d58f"
+    },
+    {
+      "entry": "validation/full-http/provider/hidden.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\hidden.stdout.txt",
+      "bytes": 282,
+      "sha256": "3fcbad231ae98642d61001724036052a9b49b6217ecdea086ca96a4e7b73caaf"
+    },
+    {
+      "entry": "validation/full-http/provider/missing_product.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\missing_product.json",
+      "bytes": 1084602,
+      "sha256": "197573e9f33e5f40e73bc1bb734ccb0829857050fd465fa1b6110dee957039eb"
+    },
+    {
+      "entry": "validation/full-http/provider/missing_product.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\missing_product.jsonl",
+      "bytes": 447245,
+      "sha256": "e0443ecec3e311a458ac2ed9b293ab52a864b4d2c3614441f0794ba4f5278538"
+    },
+    {
+      "entry": "validation/full-http/provider/missing_product.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\missing_product.stdout.txt",
+      "bytes": 282,
+      "sha256": "6e633e2eb86959c5f75c9b4e1a84e867e93f085cd04fff5c9224fd3bb07791a3"
+    },
+    {
+      "entry": "validation/full-http/provider/mode_timeout.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\mode_timeout.json",
+      "bytes": 1161386,
+      "sha256": "6887d25550df172c860ba4d786d5a7d1c34966b8ee0385149d5b9326cd729fc0"
+    },
+    {
+      "entry": "validation/full-http/provider/mode_timeout.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\mode_timeout.jsonl",
+      "bytes": 479098,
+      "sha256": "94ed515d3d5c93a6947fa34b7ecdef7f851d2ce7617332d556fb5b36a6269700"
+    },
+    {
+      "entry": "validation/full-http/provider/mode_timeout.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\mode_timeout.stdout.txt",
+      "bytes": 282,
+      "sha256": "5f8bff3e3a54f904ac9c7b8bbc06dd28822b411f10433667bfe85c6334546273"
+    },
+    {
+      "entry": "validation/full-http/provider/rear.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\rear.json",
+      "bytes": 1154480,
+      "sha256": "fb1f69bab5ba7ac844cb9d2a787b36e4c7beeb0c9e12f190f3e6068655a9c18e"
+    },
+    {
+      "entry": "validation/full-http/provider/rear.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\rear.jsonl",
+      "bytes": 472817,
+      "sha256": "a188af401af137d9839fb82e2d35c3caaa2de5851af4a9b8a7330ff7c0b9829e"
+    },
+    {
+      "entry": "validation/full-http/provider/rear.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\rear.stdout.txt",
+      "bytes": 282,
+      "sha256": "c5f4a59dfad545ca203062d008dc3026a8466f831854779dc4d2b55f5168e6a8"
+    },
+    {
+      "entry": "validation/full-http/provider/unfinished.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unfinished.json",
+      "bytes": 1125111,
+      "sha256": "f8147e76c114610bb183e3d577a0c32c0b9096607836e23ea1aeb8e6ce6f2f5a"
+    },
+    {
+      "entry": "validation/full-http/provider/unfinished.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unfinished.jsonl",
+      "bytes": 458383,
+      "sha256": "73e3ac08e99387df0e5063e63a2e23ee97c92ddd88b40c7c1c597200aeb3fade"
+    },
+    {
+      "entry": "validation/full-http/provider/unfinished.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unfinished.stdout.txt",
+      "bytes": 282,
+      "sha256": "cb80e8fd4fa46e2cc83e83060ab084027aeebdf3c591f5704dbcab99039a8644"
+    },
+    {
+      "entry": "validation/full-http/provider/unknown_water.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unknown_water.json",
+      "bytes": 1167952,
+      "sha256": "d0409432524638775e1658a0e9f618fedc5471eea6a54905f7d082d1620aa78b"
+    },
+    {
+      "entry": "validation/full-http/provider/unknown_water.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unknown_water.jsonl",
+      "bytes": 486245,
+      "sha256": "2e2b675d28370b7a238c4c11538ab949da5a4e9c1429a888afaaed1044ab1a20"
+    },
+    {
+      "entry": "validation/full-http/provider/unknown_water.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\provider\\unknown_water.stdout.txt",
+      "bytes": 282,
+      "sha256": "d2a4992e76b7096a72a433454e1bce50e74a02d62770f71ad462b9bfefc148e4"
+    },
+    {
+      "entry": "validation/full-http/surplus/air_only.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\air_only.json",
+      "bytes": 1459963,
+      "sha256": "23e8c38ef913bdb874c5ff8577616385648d457a865b00e00e36ab77d6da7e35"
+    },
+    {
+      "entry": "validation/full-http/surplus/air_only.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\air_only.stdout.txt",
+      "bytes": 282,
+      "sha256": "bda3e0601eb9bc44d49c74ebd5f8f7edb02cca955caf49b265d06b507bccb8ca"
+    },
+    {
+      "entry": "validation/full-http/surplus/hard_slot.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\hard_slot.json",
+      "bytes": 17039343,
+      "sha256": "b32da492999e4d79673bb1f8e27fbf3f43af441d10069d0c7e98fb29c9f98aaa"
+    },
+    {
+      "entry": "validation/full-http/surplus/hard_slot.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\hard_slot.stdout.txt",
+      "bytes": 282,
+      "sha256": "6723d114d98388159cb84a1a94bcd20681ea0567402a054fea7850b67100017c"
+    },
+    {
+      "entry": "validation/full-http/surplus/home_emergency.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\home_emergency.json",
+      "bytes": 1958634,
+      "sha256": "cc66c5c7ace1d741e7bfaeb0d319b1971dd4dbc96687284d41b4f770477128e8"
+    },
+    {
+      "entry": "validation/full-http/surplus/home_emergency.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\home_emergency.stdout.txt",
+      "bytes": 282,
+      "sha256": "8747e368068ec49731aa8b7d48611d410d3757b4aef2199ad247cde16f6caac1"
+    },
+    {
+      "entry": "validation/full-http/surplus/low_force.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\low_force.json",
+      "bytes": 1398114,
+      "sha256": "6605850d931b6ebdba1503d924298820e54036b82a96f14b72feaa57e025cdc9"
+    },
+    {
+      "entry": "validation/full-http/surplus/low_force.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\low_force.stdout.txt",
+      "bytes": 282,
+      "sha256": "1dc167fc84ef4bf216e28f30cfb137af88a3d9bfdaa83e3f74ae46be8123f89b"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_noquote.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_noquote.json",
+      "bytes": 2031877,
+      "sha256": "5f0c6df5f4d98322f294f785749be3d25b78dd27d92cd66f85941e1591969d38"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_noquote.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_noquote.stdout.txt",
+      "bytes": 282,
+      "sha256": "307ac0317009a5cdf4da6d9819aa5c930c9c38e238973e5f69e810be2e20bff6"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_saturated.json",
+      "bytes": 1965426,
+      "sha256": "4e4ca5c5d356e39cfbe68f04e7953af8e31922e232cd160224e1cb74bad234db"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_saturated.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_saturated.stdout.txt",
+      "bytes": 282,
+      "sha256": "bc45f98bf33d233331420196d9a4d2da5b79b4f574229d6e693a6c21488a750e"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_short.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_short.json",
+      "bytes": 2023881,
+      "sha256": "821de6c97766ae6ceac89d3ee6025658e214f4f346c8d8f6ac5d9528b7a383dc"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_short.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_short.stdout.txt",
+      "bytes": 282,
+      "sha256": "76a042289f6a995a89b38c6e67faf8a8899a6eabd64044b91a08a3b4e6ec6dc6"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_t3.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_t3.json",
+      "bytes": 11024323,
+      "sha256": "bc65c2a6c8abab1a22f34d9e26e89e21b7ec30ba40878df4d06a91253953afe1"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_t3.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_t3.stdout.txt",
+      "bytes": 282,
+      "sha256": "39b7ae951b5281a823ea73b982a59621fee68bccacbb9d29c71d6984dbca5722"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_threat.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_threat.json",
+      "bytes": 2780535,
+      "sha256": "6f65beb837f5b0b37234d1ac8857300df18b0b4c6018a35c13f89804f9f46c57"
+    },
+    {
+      "entry": "validation/full-http/surplus/mine_threat.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\mine_threat.stdout.txt",
+      "bytes": 282,
+      "sha256": "5a747c1825e38bf75ee467e5e1711378d2557a8a1b40eb2324a47138f2e286bb"
+    },
+    {
+      "entry": "validation/full-http/surplus/native_unaffordable.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\native_unaffordable.json",
+      "bytes": 1437038,
+      "sha256": "c332d8c06872de5b7921b619e9309bdae9cae4ba5fd0609e6950f6589a9e57ff"
+    },
+    {
+      "entry": "validation/full-http/surplus/native_unaffordable.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\native_unaffordable.stdout.txt",
+      "bytes": 282,
+      "sha256": "30427fd28b21eb8160fff818b3182e72bc4d71f8d458032acd713e25e87ef1ba"
+    },
+    {
+      "entry": "validation/full-http/surplus/rich.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\rich.json",
+      "bytes": 1458560,
+      "sha256": "eb50194bc19e58cbd4ea1293e1aa2baa271512e880e516faae15081d1526dd13"
+    },
+    {
+      "entry": "validation/full-http/surplus/rich.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-http\\surplus\\rich.stdout.txt",
+      "bytes": 282,
+      "sha256": "9cec3ce77b508d29f8c9f869a88f95fd755761b25232cb83959df8b2e37989e3"
+    },
+    {
+      "entry": "validation/full-regression-first.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\full-regression-first.log",
+      "bytes": 438756,
+      "sha256": "3c359fb698285ca8c6cd569842058ae05ae29bd07a5428b1d0ba8c1307bac4ab"
+    },
+    {
+      "entry": "validation/late-fixture-schema-refresh.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\late-fixture-schema-refresh.log",
+      "bytes": 108,
+      "sha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca"
+    },
+    {
+      "entry": "validation/metrics-summary.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\metrics-summary.log",
+      "bytes": 10673,
+      "sha256": "6c4ee578c304647438c254c067009499cecaf1d03ee59139b991174cab995b3b"
+    },
+    {
+      "entry": "validation/metrics.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\metrics.json",
+      "bytes": 519717,
+      "sha256": "bf825863f5a74e96e47cc6849ba6b5a808841ce6205e2c95969fd390c74124d1"
+    },
+    {
+      "entry": "validation/native-audit/big-island/NATIVE_SUMMARY.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\big-island\\NATIVE_SUMMARY.md",
+      "bytes": 3240,
+      "sha256": "20f806357ac817b80345a9e7f10690b9d77619a016b2a2effa215aa332cd494e"
+    },
+    {
+      "entry": "validation/native-audit/big-island/metrics-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\big-island\\metrics-final.json",
+      "bytes": 40774,
+      "sha256": "2679a2f16b30e28ef0d6739c219f94a38e07157adcc509e5fd70f973136c11e3"
+    },
+    {
+      "entry": "validation/native-audit/big-island/suite-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\big-island\\suite-final.json",
+      "bytes": 125968,
+      "sha256": "d87cc2cbb5cb9df78cfb8fc234cd008adc33c9d82632cabc3ecae3a9926b2829"
+    },
+    {
+      "entry": "validation/native-audit/spain/NATIVE_SUMMARY.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\NATIVE_SUMMARY.md",
+      "bytes": 3503,
+      "sha256": "310119033bc070a5ac3a8aec02ccf08ba04816151d7c1a9246ff97949288fc4d"
+    },
+    {
+      "entry": "validation/native-audit/spain/feedback-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\feedback-final.json",
+      "bytes": 16948,
+      "sha256": "3c54e4a15d6a91f903c0f0328504a543162abd2aa9eb22a53334dee162da4ea6"
+    },
+    {
+      "entry": "validation/native-audit/spain/feedback.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\feedback.json",
+      "bytes": 16987,
+      "sha256": "3e385deff63ec740caf06628dcddbc7f2da06b79ae4d4cf1359c45edb41f44c1"
+    },
+    {
+      "entry": "validation/native-audit/spain/global.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\global.json",
+      "bytes": 10773,
+      "sha256": "a90c846128615a53cfba0147aeb363bd80786d84cddaab1b080de4376fca93bc"
+    },
+    {
+      "entry": "validation/native-audit/spain/metrics-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\metrics-final.json",
+      "bytes": 28563,
+      "sha256": "fb504e1407b5ca8d4660e6b9aa4ce4d789588a13ce3af035ccc9b6b764676133"
+    },
+    {
+      "entry": "validation/native-audit/spain/operations-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\operations-final.json",
+      "bytes": 18128,
+      "sha256": "5a4c05a039576958f05ab6c1e5d15deb71d8efcb492e6c11341e73fe6504bfcf"
+    },
+    {
+      "entry": "validation/native-audit/spain/operations.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\operations.json",
+      "bytes": 30951,
+      "sha256": "97cef1c5fb12348b4fa2e53fd2c6be8284a2a502bd491cba23f444edf46edd8d"
+    },
+    {
+      "entry": "validation/native-audit/spain/parsed-final/reports.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\parsed-final\\reports.json",
+      "bytes": 25926,
+      "sha256": "94ba881e98c7d721e097b970676e6b063df384a8d23ffc4ed9144bdb5ebd5623"
+    },
+    {
+      "entry": "validation/native-audit/spain/parsed-final/reports.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\parsed-final\\reports.md",
+      "bytes": 7155,
+      "sha256": "80b529120c136ccd7ac7473fd64d522fd356d7c69136c98e7756f07b21b018e3"
+    },
+    {
+      "entry": "validation/native-audit/spain/parsed.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\parsed.json",
+      "bytes": 30358,
+      "sha256": "e624de33744ec372e3b786374792921d1c9a1d9a1a15ef7dc249b8ad78512f52"
+    },
+    {
+      "entry": "validation/native-audit/spain/specialist.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\specialist.json",
+      "bytes": 24128,
+      "sha256": "493199bcf22be8aa641426c3472c69440a3dac67bd93bb70e1ed15f2977b88ea"
+    },
+    {
+      "entry": "validation/native-audit/spain/suite-final.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-audit\\spain\\suite-final.json",
+      "bytes": 127702,
+      "sha256": "8d82f0a245abb6494a7c45632f60a3257d546659e2cc878e07c358c17283bb70"
+    },
+    {
+      "entry": "validation/native-big-island-runner.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island-runner.log",
+      "bytes": 288,
+      "sha256": "bc0f54ec02eaccb10fbb9bfa4384770e07aaff63f4da930b8a3e627acafcc734"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/batch.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\batch.json",
+      "bytes": 34258,
+      "sha256": "d041b1b1aecd3496888566e21c7afd7b299a8dacd2fac5ac8e63f5f0bf25c203"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/engine-process.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\engine-process.json",
+      "bytes": 704,
+      "sha256": "9829b2e4a8388a6cf83f7327a53d000e635d477e197e254df0a47f1d34fbc24d"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/engine.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\engine.log",
+      "bytes": 42948,
+      "sha256": "c56081898a5014ac35e730fb805f85d0881249999d665d14a99221dcfd2ae91d"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/episode.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\episode.json",
+      "bytes": 30723,
+      "sha256": "2866591ee25d6b4120f9b98c2632f5e181b1109ff22fcd60ef3d27575bdbd4f0"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/initial-state.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\initial-state.json",
+      "bytes": 1376,
+      "sha256": "d62fa527085fc3ee2a7e6a184dfd95dcae34187d55e16b6cfe03658c9868b76d"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/match-verified.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\match-verified.json",
+      "bytes": 24192,
+      "sha256": "82510f11246faf2944952b71a00a48f54fcaddbb9aa67baf04afe6116bc2ecf0"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/match.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\match.log",
+      "bytes": 1924,
+      "sha256": "c0f8303dc0c76fa6c6bdc404f42ba6cc4ba81da45628ae9034a77e9a5b49daa8"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/preflight.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\preflight.log",
+      "bytes": 612,
+      "sha256": "555fb5726754f0bccf3a76e5f9e3c422df8b614287d0946e234bfe0519a66b7a"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/runtime.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\runtime.json",
+      "bytes": 478,
+      "sha256": "519f48e486e41b9b577f01d0632051c1fefaee3f7f8d1875e5428071e1c3ff1a"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/rw-agent-bootstrap.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-bootstrap.log",
+      "bytes": 22058,
+      "sha256": "a808b6afc1a1f8949354bdf713b6319c73b20f285e1e8526700cc07b3cb861eb"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/rw-agent-reports/battle-1790841115932-ef9fa504.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-reports\\battle-1790841115932-ef9fa504.jsonl",
+      "bytes": 55637671,
+      "sha256": "9906324b5a3fd763070c076b993814bc89a9ab13c9e968bbf6afa13c8b2b33cb"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/rw-agent-reports/bootstrap-1790841096920-c8925ebe.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-reports\\bootstrap-1790841096920-c8925ebe.jsonl",
+      "bytes": 4543,
+      "sha256": "889e5a8d3b434dc312a7efac646c8f9dc8e97c44aaea1f1b48b8e9d1a0ae1211"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/rw-agent-reports/development-1790841103153-d14722af.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-reports\\development-1790841103153-d14722af.jsonl",
+      "bytes": 70612,
+      "sha256": "43203fa7fcba545753d165c83872eff9b98f3a81e28066f94f4214e8b93202c1"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/rw-agent-reports/economy-1790841097261-04b9ea0a.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-reports\\economy-1790841097261-04b9ea0a.jsonl",
+      "bytes": 20859,
+      "sha256": "92087efe661d9ecd7ee61211a722f92c71a07fa984364a6c36fe44ac9889db85"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/episode-001/staging.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\staging.json",
+      "bytes": 1698,
+      "sha256": "f3b97dc4ab3978539b8d521bad6c1612ea4ebdda01ab6c2a953384def18a4740"
+    },
+    {
+      "entry": "validation/native-big-island/run-20261001T075134-711ad7/live-claims.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\live-claims.json",
+      "bytes": 1148,
+      "sha256": "d11edf8c1a984295ac4f216b6291de45d6db8d0569392c644f60a22d7bb47a1d"
+    },
+    {
+      "entry": "validation/native-spain-runner.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain-runner.log",
+      "bytes": 3112,
+      "sha256": "6b09d6c5d971c7483b17340cfdc841d4a07654d637d8028d62f695e027322bc3"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/batch.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\batch.json",
+      "bytes": 44175,
+      "sha256": "491693a0759ee73d1379d815d144e626aaff2139361045f2e3e21aabce5a33bd"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/engine-process.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\engine-process.json",
+      "bytes": 707,
+      "sha256": "f3577eb3611bfdc7ecbdd14c2651342a66c5266a02b7ffead017df9129c6cc4f"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/engine.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\engine.log",
+      "bytes": 54677,
+      "sha256": "61fe30e352c6f19d555daa343012da79e3c6b62b08e39a042d0edb8e35cba14d"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/episode.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\episode.json",
+      "bytes": 39904,
+      "sha256": "e100319fb0d56976ed29f49e9cdf0553b8ed6446459ec7dc51f15a7622f293d6"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/initial-state.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\initial-state.json",
+      "bytes": 1016,
+      "sha256": "a217b0a5aadba32b7b49eefa154400f32da0a2713f1862f56ec9522244eaee8b"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/match-verified.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\match-verified.json",
+      "bytes": 29444,
+      "sha256": "8889820800acef4125a2b62ad9e32c5628bf368e7ead18533631864fe2668739"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/match.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\match.log",
+      "bytes": 1894,
+      "sha256": "9c50d0559524adc74ae1d091f16e77a6b856db04ae212dd5043900b588a6a997"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/preflight.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\preflight.log",
+      "bytes": 520,
+      "sha256": "9bb59fd7c2f8d3d5ae69eb7a493df8dad050decb46a77c715d2648c3036acb5c"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/runtime.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\runtime.json",
+      "bytes": 483,
+      "sha256": "e6c970bcc94995b902871052b124cdac18c1df0bbbc22134cdc0b61a934b4a9e"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/rw-agent-bootstrap.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-bootstrap.log",
+      "bytes": 31639,
+      "sha256": "2a74454a1b69436fe10abf725b033157487c2ca1ce8e09a8877540c03c71cc45"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/rw-agent-reports/battle-1790840173749-2178e924.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-reports\\battle-1790840173749-2178e924.jsonl",
+      "bytes": 72662935,
+      "sha256": "9cead6aca2db590cfd4c2ff476e6cf4c0a3bcb1787b2bd36f65f9f342beb746a"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/rw-agent-reports/bootstrap-1790840152686-bdf42005.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-reports\\bootstrap-1790840152686-bdf42005.jsonl",
+      "bytes": 12303,
+      "sha256": "c14db62ff11d0d93fc80029085d5033207cdc38391d8fe4db90f01c9781e4917"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/rw-agent-reports/development-1790840161076-3b59c48f.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-reports\\development-1790840161076-3b59c48f.jsonl",
+      "bytes": 70797,
+      "sha256": "75586cc820b2409e300c52bb452c20fa65982ff8b556cf00baa51bb905ce6b0b"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/rw-agent-reports/economy-1790840155257-4f893af0.jsonl",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-reports\\economy-1790840155257-4f893af0.jsonl",
+      "bytes": 20846,
+      "sha256": "674a3f99be2c9d3133bc0a646c488120ffdc3a0c30a7a4281b473fc418b3d73f"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/episode-001/staging.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\staging.json",
+      "bytes": 1673,
+      "sha256": "06811b0823ae7f8907e4df45ef18fb9f9362fcff34d1500e8da02f5d749a353a"
+    },
+    {
+      "entry": "validation/native-spain/run-20261001T073550-151146/live-claims.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\live-claims.json",
+      "bytes": 1139,
+      "sha256": "c56b956457aa91019dac9217a92017273480575a8c64222c0c1fee01a5f249e3"
+    },
+    {
+      "entry": "validation/old-mine-control/mine_saturated.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\old-mine-control\\mine_saturated.json",
+      "bytes": 1963665,
+      "sha256": "22728f8dbdd5293f65b7dd49434c383960d6342ad5eb69e428616c71e2cadb43"
+    },
+    {
+      "entry": "validation/old-mine-control/mine_saturated.stdout.txt",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\old-mine-control\\mine_saturated.stdout.txt",
+      "bytes": 263,
+      "sha256": "8047483dd15ae259f977682a4397bbdaa6b19f2f4777c3fe5cff3ec6c272d6c9"
+    },
+    {
+      "entry": "validation/old-mine-control/result.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\old-mine-control\\result.log",
+      "bytes": 897,
+      "sha256": "21c654fe48e224eeb17f90ac10d7df9e414d1eab6d0d0d7603fc26711bb36ff1"
+    },
+    {
+      "entry": "validation/recheck-battle-reports.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\recheck-battle-reports.log",
+      "bytes": 131,
+      "sha256": "ca3dcf0eab6de0cb7c18c0a8ebd0545d8d0cee3fb6bf339722fdaf30dc3c8b66"
+    },
+    {
+      "entry": "validation/recheck-feedback-audit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\recheck-feedback-audit.log",
+      "bytes": 152,
+      "sha256": "9674981c27b63fed07eec634ad3d64452cd5aa90f017db2e00e7d83d416de6a9"
+    },
+    {
+      "entry": "validation/recheck-local-army.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\recheck-local-army.log",
+      "bytes": 117,
+      "sha256": "f8d0091ac35afc404975c79194fd52f0c7b399d126fc83121720bae2f9f94690"
+    },
+    {
+      "entry": "validation/recheck-reports.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\recheck-reports.log",
+      "bytes": 1600,
+      "sha256": "cf7810f9f34d3f8eaa9d3d933e133bd14cceb5ff49ece64731f0e860b2a3dfcb"
+    },
+    {
+      "entry": "validation/source-candidate-comparison.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source-candidate-comparison.json",
+      "bytes": 6082,
+      "sha256": "9e00d5892e204840a28128f58587c326de6320858c98a6ffc82d01154118ff89"
+    },
+    {
+      "entry": "validation/source/AGENTS.md",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\AGENTS.md",
+      "bytes": 1218,
+      "sha256": "2eb6a09b485d759f6fcaaf40d3d1b6a5d934deac4b21bf0468012e646183cc55"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/build_compile.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\build_compile.log",
+      "bytes": 247,
+      "sha256": "5f4a1217b53a61ba4c05f20f0add48886003fca20297bbcfbe521498eee68f51"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/build_jar.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\build_jar.log",
+      "bytes": 108,
+      "sha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/build_test-classes.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\build_test-classes.log",
+      "bytes": 1388,
+      "sha256": "1b91fb52677021067480453b1b9a5b41b0bfa973cb9546939db9f0ab042d0c41"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_BridgeHarness-disabled.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_BridgeHarness-disabled.log",
+      "bytes": 2342,
+      "sha256": "9a59f623efff3043fd5f518e8eadeca2e02a6ae5a51ac17142bfb6bfe0bc1b86"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_BridgeHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_BridgeHarness.log",
+      "bytes": 10798,
+      "sha256": "535586db0a89390bd06cefc06cc4b55fe4a4bcd066f880a17e8ab07dec709fe9"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_BuilderHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_BuilderHarness.log",
+      "bytes": 25374,
+      "sha256": "1abe7db6394eda59cac82d3fb09f29dfd47d6ca3a7ec326f38b4c97b596fb9e4"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_CapabilityHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_CapabilityHarness.log",
+      "bytes": 28084,
+      "sha256": "ab3dd1051240aa67dc4dbee4233eabe61ee4cb7841075d0ecf13d3112526ef2f"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_CombatHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_CombatHarness.log",
+      "bytes": 43521,
+      "sha256": "45575cb34ff996b25d185682e6aa55a6b2ff3586bf99eb772fd091e5115dca0e"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_DiagnosticsHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_DiagnosticsHarness.log",
+      "bytes": 19536,
+      "sha256": "57f26854acfb591048dbfbb8893e3674feca7a6a986f2f557c46655df0099733"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_EconomyHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_EconomyHarness.log",
+      "bytes": 8727,
+      "sha256": "e5c6c55ee317d3a3e35cb16384d7032053f9dc9bc902d940f425b9444f398014"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_EngineerProviderHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_EngineerProviderHarness.log",
+      "bytes": 145,
+      "sha256": "cec1a4d0fa59dd88394d4474b23e8c368e036fd3c5ff89648708ca8a55321110"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ExecutionContractHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ExecutionContractHarness.log",
+      "bytes": 171,
+      "sha256": "72e8f194e4f987bac25d3f78d5d3aab012908966fd43eeed64d36b9ba3dd234d"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_GuardHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_GuardHarness.log",
+      "bytes": 22280,
+      "sha256": "20cfc7966fce10fd16f2a67e7b05e55d09bb1047b027e4ea5012c990a6da56ba"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_LocalArmyContractHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_LocalArmyContractHarness.log",
+      "bytes": 172,
+      "sha256": "dfe70a092665197c6b8b00ed66439b283e746a0a67b201bef5d3a32bfa3b7725"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_LocalCrisisContractHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_LocalCrisisContractHarness.log",
+      "bytes": 154,
+      "sha256": "31abc99847b12493b37edba68418e98c53302e59f234f6db6d95d74a20075722"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_MineInvestmentHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_MineInvestmentHarness.log",
+      "bytes": 146,
+      "sha256": "fcb2d39f632125568a206bb2897232b8fb8fee4096708a41c4d6e88717169de2"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_NativeMorphHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_NativeMorphHarness.log",
+      "bytes": 27428,
+      "sha256": "52b5e4269e0d574c80c7f086c149650f840ce783b7438a30de6a034f33967ba7"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_OpeningHarness-replacement.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_OpeningHarness-replacement.log",
+      "bytes": 15506,
+      "sha256": "17954a243d80cc80dcb5c5cd364ea3dc06c4057ace61a50854a3c5f226e926de"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_OpeningHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_OpeningHarness.log",
+      "bytes": 15429,
+      "sha256": "818959ac4aad7511d8ffe064deaef59959f0c560bee64fb52116199ccee75141"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_PreflightHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_PreflightHarness.log",
+      "bytes": 12389,
+      "sha256": "874772d75229c9303d69e7ff6360dc19106611956d5e4d3994e943c3549c7cd4"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ProductionPlanHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ProductionPlanHarness.log",
+      "bytes": 10206,
+      "sha256": "2d94598983f5faccf5ae4af3ed4c3404bd458fec0233348cc07b22ed2df7841f"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ReachabilityHarness-sandbox.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ReachabilityHarness-sandbox.log",
+      "bytes": 35762,
+      "sha256": "af5466a8f001e10ff8f9c8de621709a73d6d41baaabc80656b258c2228852eb9"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ReachabilityHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ReachabilityHarness.log",
+      "bytes": 21976,
+      "sha256": "6e62cedfb0b0f9231f923506383eefb8a3d4c898c740fd8aee3e415a33ef888f"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ReportCommitHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ReportCommitHarness.log",
+      "bytes": 371,
+      "sha256": "7f21de88f68cc75ecd3d2ecd061a56e40006152eae93694222bfaa20a59b8d3a"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_ScoutHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_ScoutHarness.log",
+      "bytes": 54383,
+      "sha256": "0a38ca4e65e102bf8d6b57481689d1ae76604a86020bd3456ac7e53ac57b64b7"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_SmokeHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_SmokeHarness.log",
+      "bytes": 2219,
+      "sha256": "0c7103dd79f94c3118675a33e8b01aded032744a3a07130edf12cdb3324f5fee"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_StrategyContractHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_StrategyContractHarness.log",
+      "bytes": 146,
+      "sha256": "fa3eb0efd116f707f4ef26b5968c918ac1f5bd7ebfebb747e2ce797b98efa5d9"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_StrategyNativeHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_StrategyNativeHarness.log",
+      "bytes": 26761,
+      "sha256": "57e6ffa187dcd9eb570f25d290ea1bd67f32e0e4e060b32e8f4f5d8244db4d01"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_SurplusSpendingHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_SurplusSpendingHarness.log",
+      "bytes": 147,
+      "sha256": "e80cf7e3369b901a6c12e1ef027b5cc4d14a017b687c86fa371aa7bfce6cb539"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_TargetCompatibilityHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_TargetCompatibilityHarness.log",
+      "bytes": 141,
+      "sha256": "534f7496e2dbcd59b9b2d4b37523c2e0d8603b3aa4078185a6fec0087357f2c9"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/java_TerrainMemoryHarness.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\java_TerrainMemoryHarness.log",
+      "bytes": 26174,
+      "sha256": "e432fe34990278f89243f4f0b5703f2984a1e03e0560f4d1fa4e4c962cd50630"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_ab_aggregate.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_ab_aggregate.log",
+      "bytes": 252,
+      "sha256": "4bf900ae9c478f1de89fd6ae51c8777bea9cc02e934b22a7061258a0fb69df55"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_ab_campaign.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_ab_campaign.log",
+      "bytes": 2623,
+      "sha256": "3861e006664af906ef9562eedd327bb67fa886afebcaba3ecab0bc7277fab048"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_battle_client.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_battle_client.log",
+      "bytes": 184,
+      "sha256": "8bbdd9d4f33a4f61e54736cf44e88408fdb33027ccf83f646813426dd3b7b391"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_battle_reports.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_battle_reports.log",
+      "bytes": 129,
+      "sha256": "e6127ae208f39639675b9c9e48a931e26ea1c94d37cedb85daa5378f0bce8067"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_client.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_client.log",
+      "bytes": 1106,
+      "sha256": "aa682b3669c4be63f23d914280eb82b29cf769f98ef6effa45a8428e1e063bd4"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_development.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_development.log",
+      "bytes": 1589,
+      "sha256": "0e8b97e67dc9ba621e3e7cc1a62697f989a35bfe53b54a01e9e440b8027f8ce7"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_economy.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_economy.log",
+      "bytes": 1235,
+      "sha256": "11263268782159a76661a65a50cf852aba86f37f845b0bb603292b5046e4c9ff"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_engineer_provider.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_engineer_provider.log",
+      "bytes": 112,
+      "sha256": "05b058f49953ad036079e0cd90443027b55bf048081bdcfd9167c94dbd46d6ed"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_feedback_progress_audit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_feedback_progress_audit.log",
+      "bytes": 139,
+      "sha256": "f4a7aff97f24d5a61abf9a90275ff369c4ce0b1fe3f8db4621f21c6feac4dcf0"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_frontier.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_frontier.log",
+      "bytes": 1156,
+      "sha256": "926a92db5b747e17ec80f54cb768ba882ea308c5e0fcb9571f0dc312fae1cb44"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_frontier_reports.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_frontier_reports.log",
+      "bytes": 1356,
+      "sha256": "fb4f19150929f5d35e5cfb6994c994227766c8a16aa4a326586e9d93efa98ef2"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_global_strategy_audit.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_global_strategy_audit.log",
+      "bytes": 112,
+      "sha256": "a912dd14b7ecae35d69f4a2f565f20831ad43b581983dc42e86d469390c70c8d"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_headless_parallel.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_headless_parallel.log",
+      "bytes": 3246,
+      "sha256": "20e6fc7a428a8810ba53ce7face80fd95ef441d9f76d5d1c16f79d69683a4267"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_local_army.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_local_army.log",
+      "bytes": 117,
+      "sha256": "18fc9f6225e51f21796b1f2e4dbf98b4f1b93e0a5e706af0433f9a0e670728c4"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_match_bootstrap.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_match_bootstrap.log",
+      "bytes": 140,
+      "sha256": "17b12029b92f34e5d973005d76f83e64882e4ceff8a2cc40c83ed4013ee98ffe"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_opening.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_opening.log",
+      "bytes": 986,
+      "sha256": "e061980feb9bec3329ad7cb66d5c34353eb3bcd0c062543da4b20920695be8be"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_recon_client.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_recon_client.log",
+      "bytes": 111,
+      "sha256": "dc5487bf094434f056e497a1e95b9c380751802c22951d35408918e2aec6aafb"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_recon_frontier_client.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_recon_frontier_client.log",
+      "bytes": 127,
+      "sha256": "6b2e0fcec58d5a1e90a6076f20e04c384e7ea9c6d210681effc0945ef8c78521"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_reports.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_reports.log",
+      "bytes": 3650,
+      "sha256": "a32723915f4036562edc5e70d49bfc1024057e57946e967c93d60b132ae5e2fb"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_specialist_lifecycle.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_specialist_lifecycle.log",
+      "bytes": 108,
+      "sha256": "060055061fd08f67df7e036105d33508027728d4358ff9cb9be1a111c5ac1c57"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_strategy_funding.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_strategy_funding.log",
+      "bytes": 111,
+      "sha256": "5a13e7502b172bd16a5c05f1db261df03decaf3a95203812aaf17ab8cce3b520"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_surplus_spending.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_surplus_spending.log",
+      "bytes": 116,
+      "sha256": "005010076f36a1b0ac6eed40ce5fe4ea87877ac4a0276bff835cea071e1371d8"
+    },
+    {
+      "entry": "validation/source/agent/build/logs/py_test_target_compatibility.log",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\agent\\build\\logs\\py_test_target_compatibility.log",
+      "bytes": 2531,
+      "sha256": "f0d3b4628479621be267ccc8d6eefc12a290b8d268628c217378957bda2222a1"
+    },
+    {
+      "entry": "validation/source/source-snapshot.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\source\\source-snapshot.json",
+      "bytes": 22065,
+      "sha256": "8bf2d9c4a7a341b6dc42eee4a7113d2b67466aa987eca216a9e7d1ff4ee0ad0a"
+    },
+    {
+      "entry": "validation/starting-baseline-verification.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\starting-baseline-verification.json",
+      "bytes": 1715,
+      "sha256": "9b85586b9a24327a7eb3eb0e2cd81d2eb275727d0a5cc6a23f3377e98212093b"
+    },
+    {
+      "entry": "validation/validation-summary.json",
+      "origin": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\validation-summary.json",
+      "bytes": 8079,
+      "sha256": "e05503cc7506599dd7eb2c1a8a1f13f66c8d32acf3d6a560ae6380205c22b3e0"
+    }
+  ],
+  "archive": {
+    "file": "raw-evidence.zip",
+    "bytes": 20238694,
+    "sha256": "285e52a627470e3f8d959407b8618e765420a7eaff3de337ebd7904faa05bd46"
+  }
+}

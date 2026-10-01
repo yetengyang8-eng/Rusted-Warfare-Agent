@@ -3,3 +3,6 @@ agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json text eol=lf
 deliveries/operations-2026-10-01/*.jar -text
 deliveries/operations-2026-10-01/*.bat -text
 evidence/operations-2026-10-01/*.zip -text
+deliveries/feedback-2026-10-01/* -text
+deliveries/feedback-2026-10-01/*.bat whitespace=cr-at-eol
+evidence/feedback-2026-10-01/*.zip -text

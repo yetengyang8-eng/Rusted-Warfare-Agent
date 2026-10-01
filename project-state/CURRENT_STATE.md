@@ -1,36 +1,46 @@
 # 当前状态
 
-更新：2026-10-01（Asia/Shanghai）。冻结基线仍是 **RW-BASELINE-2026-09-30-GS-v1**。先读 BASELINE、baseline-manifest、本文件和 NEXT_STAGE_PLAN；从本仓库最新增量提交继续，保留已有改动。
+更新：2026-10-01（Asia/Shanghai）。冻结基线仍是 **RW-BASELINE-2026-09-30-GS-v1**。本仓库最新增量是接续起点；基线只读核对发现 source_drift 不授权重置或覆盖。先读 AGENTS、BASELINE、baseline-manifest、本文件和 NEXT_STAGE_PLAN。
 
-## 最新候选：运营与队伍调动
+## 最新候选：反馈驱动的运营与调度
 
-- **RW-CANDIDATE-2026-10-01-OPERATIONS-v1**，从 `8109e11` / Specialist Lifecycle 继续；实现提交 `3d96d98fc05d87569145c09f9f60d3e4a9fd185a`。
-- 固定 JAR SHA256 `28668be7c49a2b5d8f7f326fbc3f365a2179d4c1b92a169959c58213ec44ecb7`，contentDigest `5805037b3d360966e161c2fcfba82ec527f84ab340509a5dd298912898b83c93`。
-- Match 前有界 bootstrap：无建造者最多接受一次原生生产，确认新 ready builder 后重做 preflight；已有 builder / 待产队列不重复购买。
-- 多队主力稳定编组，各队独立目标、前沿、进展和轮转；最多4队、每队48人，原专属 owner、合法视野、Target Guard 和共享命令预算保留。
-- 富余资金在已有军力槽内少量补重炮，保护全部储备与两次普通补兵价；已付款未观察产品同时占用普通生产/能力采购容量。军力接近目标且收入富余时推迟升矿。
-- 三项范围由本轮用户明确授权；此前单主题计划不覆盖这次新授权。hard cap、冻结引擎和专属单位生命周期保持原语义。
+**RW-CANDIDATE-2026-10-01-FEEDBACK-v1** 从 `82c8ff8` 继续，生产实现 `f5b1709cbab3a08db78d49fb59e1f3c23e553a88`，最终审计修正 `5020820f70a7e227c65ccd9168752149b3d29d04`。文档/证据收尾提交请读当前 HEAD；审计修正不改变 JAR。
 
-完整 Windows 回归 **47/47步通过**：23 Java runs、21 Python suites、342 Python tests、0 Python skipped、failed steps=0。最终报告解析器补做 **25/25** 契约及 **7/7** 控兵联动，合并矩阵为352个不同Python用例；没有把重跑次数相加成新增覆盖。策略169项、编队372项、经济42项合同通过，98个非manifest归档项与固定JAR相同。Windows文件锁真实执行；POSIX-only Java模拟按平台跳过，Linux本轮未运行。
+固定 JAR SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`，contentDigest `4533010dc6d6717e90ea40c48e406ca6bddfa99aef2a0b05127cad2575957e4d`，307981字节、103个非manifest归档项；32个生产Java/resource文件与编译快照逐字节一致。冻结game-lib与知识目录身份不变。
 
-两次普通Big Island原生局Battle均为VICTORY，修正运行器报告数量兼容后的复核整轮PASS。两次无builder夹具局都自动只生产1 builder，经济/发展PASS，Battle在1201.040/1201.104游戏秒预算到期PARTIAL/ONGOING。最新夹具局实际最多4队、106次局部命令、5笔原生报价3100重炮采购共15500、5个ready成品，末pending为0。该局矿富余拒绝和付款空窗未自然采到；前者有7场经济专项覆盖，后者有hard-slot时间线覆盖。4组16份报告运营审计与原全局/专属策略审计无违规，最终严格离线解析没有issues。
+- 后方工程师成为 WEAPON_DOMAIN_GAP 生产提供者：正常报价、付款、ready成品转交；两栖战机到合法已观察水域，再正常 Dive，必须观察当前目标兼容/接近证明后才响应。UNKNOWN不放行；目标切换领域时的自身mode联合确认尚待补齐。
+- T2/T3旧矿投资改为局部威胁、连续安静窗、原生价格、估计回本和剩余预算决策，保护共享预留与普通替补价；不再因钱多或全局接敌一刀切拒绝健康远矿。新矿点全局门禁仍未改。
+- 基地/矿附近小规模袭击借用2–6名主力有界响应，独立owner/lease，保留主力，失联/扩大/低血量/无进展撤回或有界交还。
+- 多队至少半队无订单且远离旧目标、16秒没有accepted指令，获得每8秒最多一次公平机会；保留全局1游戏秒门禁及合法目标/ownership。成员/前沿每decision观察，闲置诊断加入原因字段。
 
-原运行器失败原样保留：旧三报告检查及旧单前沿解析都未适配新增报告/多队；修正后的离线结论另存。原始无builder地图只删除隔离副本中的己方初始builder，不能当作未修改Spain桌面验收。
+此前无builder自动起步、最多4队稳定编组、重炮余钱支出、资金储备及付款空窗占额保持。原生Spain未改图、初始只有commandCenter，本轮自动正常生产1个builder后完成预检/经济/发展并进入Battle。
 
-交付见 [候选目录](../deliveries/operations-2026-10-01/README.md)、[证据](../evidence/operations-2026-10-01/README.md)、[输入分析](../evidence/operations-2026-10-01/INPUT_ANALYSIS.md)、[GPT / DeepSeek 交接](../handoff/HANDOFF_Codex_Operations_2026-10-01.md)。候选未替换桌面JAR，未晋级基线。
+## 本轮验证
 
-用户临时追加的4800游戏秒入口已新增在现有 Specialist Lifecycle 独立游戏目录，原900/1200/2400入口保留。该入口运行目录里已安装的候选；本轮没有把它替换成新JAR。最终交付也带同一4800入口。预算合同4项通过，实际4800长局尚未执行。
+有效Windows矩阵 **54/54步，failedSteps=0；28 Java runs、23 Python suites、420个不同Python用例、0 Python skipped**。首次完整入口53/54：隔离快照缺历史文档夹具；补齐后test_reports16/16，再复核变更解析/审计/控兵套件。原完整失败与受影响复核分别保留，不写成一次全绿或累计重跑数。POSIX-only Java模拟按平台跳过，Linux本轮未运行。
 
-## 最新桌面输入及历史身份
+33个最终HTTP场景（army14/provider8/surplus11）通过五项审计；原生对象潜水/矿报价合同与实际自然触发分别登记。两个原生局使用同一固定JAR、未改原图、difficulty1/speed5，前置三阶段PASS，Battle都预算到期 **PARTIAL/ONGOING**，最终严格解析issues=[]。原runner FAIL和首次旧schema/量化误报保留，没有改raw。
 
-本轮只读确认 `游戏环境/P1F-Astra-SpecialistLifecycle-2026-10-01` 已由外部安装 `b3e172de…`。两场旧候选raw分别522.465游戏秒 PASS/VICTORY、2401.120游戏秒 PARTIAL/ONGOING；实际mapPath/difficulty及未记录人工起步条件 UNKNOWN。它们是本轮输入，不是新候选验收。
+| 自然行为 | Spain 2401.328游戏秒 | Big Island 1802.160游戏秒 |
+| --- | ---: | ---: |
+| T2 / T3 observed ready | 2 / 0 | 5 / 2 |
+| provider jet 下单 / ready / 转交 | 6 / 6 / 6 | 4 / 4 / 4 |
+| Dive accepted / 当前compatible / jet响应 | 0 / 0 / 0 | 3 / 3 / 3 |
+| 危机开始 / accepted响应 / accepted撤回 | 24 / 30 / 24 | 7 / 9 / 6 |
+| 最大同时cohort / fairness grants | 1 / 0 | 4 / 49 |
 
-长局存在同48人跨三千多地图距离切换目标、末余额222397且三座工厂空闲、接近军力目标仍升矿。43次拉扯按固定诊断口径复算，不能当成战损因果结论。
+Spain成品接手后目标不可见，保持UNKNOWN，没有自然反潜全链；自然全链来自Big Island，同一架1241复用3次，WATER/range100证实潜水，并非3架独立反潜成品。275.264秒旧cohort年龄跨过单队模式，期间主控制器20次attack/27次queue，最大诊断30人仅4人无订单且远离目标，不能作整队停摆结论。Spain accepted age无样本为null，不是0。没有自然终局、用户桌面新候选验收或胜率因果证据；Big Island末现金61678说明现金出口仍待完善。
 
-此前实现保留：Specialist Lifecycle `db0f6eec006a4f61f85134c38adc5c0f88a99e8a`、Capability Funding `fd8572849388d2e7fe04a5d446154602b54d3118`；各自历史验证见 [专属单位交付](../deliveries/specialist-lifecycle-2026-09-30/README.md) 与 [资金证据](../evidence/capability-funding-2026-09-30/README.md)。
+入口：[完整交接](../handoff/HANDOFF_Codex_Feedback_2026-10-01.md)、[候选使用/回退](../deliveries/feedback-2026-10-01/README.md)、[证据及原始包](../evidence/feedback-2026-10-01/README.md)、[身份清单](../evidence/feedback-2026-10-01/candidate-manifest.json)。1200/2400/4800游戏秒入口随固定交付；本轮未运行新候选4800自然局。
+
+## 新鲜输入与环境身份
+
+只读确认 `游戏环境/P1F-GPTSol61-Operations-2026-10-01` 已由外部安装上一Operations JAR `28668be7…`。反馈两份桌面raw为1201.480/4800.980秒、team0/team5，均PARTIAL；地图路径/难度/seed/人工操作未记录，保持UNKNOWN。长局84次 blanket mine拒绝、ready工程师却无建造菜单读取和26人全队133.295秒无指令支持本轮修复，不能只靠末余额判优。
+
+实际Spain地图已找到，该环境mods/maps中的 `[10p] 10p 西班牙混战_by_MP97.tmx` SHA `342db6d8…`、400×370，同字节复制供隔离原生局。它不自动证明旧桌面长局使用同图。新候选本轮未安装到用户桌面；没有启停用户游戏、改原图/难度/用户设置/存档/回放。测试只在 `_validation/feedback-20261001`；两测试引擎已由运行器清理，106保护文件核对无冻结身份失败，只有增量源码漂移。
 
 ## 后续起点
 
-v1源起点 `6214f073d1b76429c0b827268db918e1e90e9f5f`、冻结JAR `76711a8e…` 和原验收保持原样。只读核对106文件及环境，只有已完成增量源码漂移；不据此reset。默认开发仍是本仓库agent/tools，旧developer或解压目录不替代当前起点。
+优先处理新矿点HOME/WORKER/ROUTE/SITE局部风险门禁，再把所有cohort连续HP/no-progress观察与命令排队分离；随后择一做可回收早期坦克侦察或少量猛犸质量消费。猛犸本轮只核对机制，没有采购实现；局部危机、fairness不是所有情况的控兵保障。详见 [NEXT_STAGE_PLAN](NEXT_STAGE_PLAN.md)。
 
-下一阶段补新候选真实桌面上下文及重复自然样本，比较队伍拉扯、成品和合法任务完成，再按证据处理护送、撤退和终局，见 [NEXT_STAGE_PLAN](NEXT_STAGE_PLAN.md)。本轮前状态/计划保存在 [归档](archive/2026-10-01-before-operations/CURRENT_STATE.md)，旧“当前”“未部署”仅代表历史时点。
+原v1源码6214f07、冻结JAR76711a8e及其证据保持原样，不晋级。本轮前Operations状态/计划存入 [归档](archive/2026-10-01-before-feedback/CURRENT_STATE.md)；旧“当前”“未部署”“Spain未找到”只代表历史时点。默认生产起点始终是本仓库agent/tools，不是旧developer或解压目录。

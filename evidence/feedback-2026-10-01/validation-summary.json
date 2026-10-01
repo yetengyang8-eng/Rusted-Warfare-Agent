@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+  "implementationCommit": "f5b1709cbab3a08db78d49fb59e1f3c23e553a88",
+  "auditCommit": "5020820f70a7e227c65ccd9168752149b3d29d04",
+  "firstFullRun": {
+    "steps": 54,
+    "passed": 53,
+    "failedSteps": 1,
+    "cause": "ISOLATED_SNAPSHOT_MISSING_HISTORICAL_DOCS_FIXTURES",
+    "log": "full-regression-first.log"
+  },
+  "effectiveMatrix": {
+    "steps": 54,
+    "passed": 54,
+    "failedSteps": 0,
+    "javaRuns": 28,
+    "pythonSuites": 23,
+    "distinctPythonTests": 420,
+    "pythonSkipped": 0
+  },
+  "method": "Retain original failed full run; replace only repaired/changed suites with their verified targeted recheck, no summed rerun counts. Two late pure test-host schema classes were recompiled before execution; production JAR unchanged.",
+  "steps": [
+    {
+      "step": "build:compile",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "build:jar",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "build:test-classes",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:SmokeHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:BridgeHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:BridgeHarness-disabled",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:EconomyHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:OpeningHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:OpeningHarness-replacement",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:ProductionPlanHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "py:test_development",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 13
+    },
+    {
+      "step": "py:test_opening",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 8
+    },
+    {
+      "step": "py:test_economy",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 12
+    },
+    {
+      "step": "py:test_client",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 11
+    },
+    {
+      "step": "py:test_match_bootstrap",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 35
+    },
+    {
+      "step": "java:DiagnosticsHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:PreflightHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "py:test_reports",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 16,
+      "latestEvidence": "recheck-reports.log"
+    },
+    {
+      "step": "java:ScoutHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:TerrainMemoryHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:GuardHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:CapabilityHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:TargetCompatibilityHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:BuilderHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:ReachabilityHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:ReachabilityHarness-sandbox",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "py:test_frontier",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 8
+    },
+    {
+      "step": "py:test_frontier_reports",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 10
+    },
+    {
+      "step": "java:CombatHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "py:test_battle_reports",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 27,
+      "latestEvidence": "recheck-battle-reports.log"
+    },
+    {
+      "step": "py:test_battle_client",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 78
+    },
+    {
+      "step": "py:test_strategy_funding",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 7
+    },
+    {
+      "step": "py:test_specialist_lifecycle",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 4
+    },
+    {
+      "step": "py:test_local_army",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 12,
+      "latestEvidence": "recheck-local-army.log"
+    },
+    {
+      "step": "py:test_surplus_spending",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 11
+    },
+    {
+      "step": "py:test_engineer_provider",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 8
+    },
+    {
+      "step": "py:test_target_compatibility",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 15
+    },
+    {
+      "step": "py:test_recon_client",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 7
+    },
+    {
+      "step": "py:test_recon_frontier_client",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 22
+    },
+    {
+      "step": "py:test_headless_parallel",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 28
+    },
+    {
+      "step": "py:test_ab_aggregate",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 17
+    },
+    {
+      "step": "py:test_ab_campaign",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 14
+    },
+    {
+      "step": "java:ReportCommitHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:ExecutionContractHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:StrategyContractHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:LocalArmyContractHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:LocalCrisisContractHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:SurplusSpendingHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:MineInvestmentHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:EngineerProviderHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:NativeMorphHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "java:StrategyNativeHarness",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": null
+    },
+    {
+      "step": "py:test_feedback_progress_audit",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 48,
+      "latestEvidence": "recheck-feedback-audit.log"
+    },
+    {
+      "step": "py:test_global_strategy_audit",
+      "passed": true,
+      "exitCode": 0,
+      "pythonTests": 9
+    }
+  ],
+  "candidateSourceComparison": "source-candidate-comparison.json",
+  "frozenBaselineNotPromoted": true
+}

@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+  "date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "frozenBaselineId": "RW-BASELINE-2026-09-30-GS-v1",
+  "baselinePromoted": false,
+  "inputCommit": "82c8ff80cdcdd4d18d32d18bf5ddd082427690f3",
+  "implementationCommit": "f5b1709cbab3a08db78d49fb59e1f3c23e553a88",
+  "auditCommit": "5020820f70a7e227c65ccd9168752149b3d29d04",
+  "documentationCommit": "Read repository HEAD; documentation commit is not the JAR compilation input",
+  "agentJar": {
+    "agentJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+    "agentJarBytes": 307981,
+    "contentDigest": "4533010dc6d6717e90ea40c48e406ca6bddfa99aef2a0b05127cad2575957e4d",
+    "nonManifestEntries": 103
+  },
+  "jarEntryIdentity": "candidate-identity.json",
+  "productionSourceExactComparison": {
+    "passed": true,
+    "files": 32,
+    "evidence": "source-candidate-comparison.json"
+  },
+  "gameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "catalogSha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+  "regression": {
+    "steps": 54,
+    "passed": 54,
+    "failedSteps": 0,
+    "javaRuns": 28,
+    "pythonSuites": 23,
+    "distinctPythonTests": 420,
+    "pythonSkipped": 0
+  },
+  "originalFullRun": {
+    "steps": 54,
+    "passed": 53,
+    "failedSteps": 1,
+    "cause": "ISOLATED_SNAPSHOT_MISSING_HISTORICAL_DOCS_FIXTURES",
+    "log": "full-regression-first.log"
+  },
+  "regressionMethod": "Retain original failed full run; replace only repaired/changed suites with their verified targeted recheck, no summed rerun counts. Two late pure test-host schema classes were recompiled before execution; production JAR unchanged.",
+  "finalHttpFixtures": {
+    "army": 14,
+    "provider": 8,
+    "surplus": 11,
+    "total": 33,
+    "auditKindsPerFixture": 5,
+    "violations": 0
+  },
+  "nativeRuns": [
+    {
+      "name": "native-spain",
+      "actualRunDirectory": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146",
+      "runtime": {
+        "runnerVersion": "0.07-alpha1",
+        "gameVersion": "1.15",
+        "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "map": "maps/[10p] 10p 西班牙混战_by_MP97.tmx",
+        "port": 14960,
+        "requestedSpeed": 5.0,
+        "aiDifficulty": 1,
+        "seed": 310313847,
+        "seedReproducibilityVerified": false,
+        "fogEnabled": true,
+        "lineOfSightFog": true,
+        "status": "STOP_REQUESTED",
+        "ticks": 157026,
+        "frame": 157026,
+        "gameTimeMs": 2512416,
+        "wallSeconds": 523.4326958,
+        "simulatedSecondsPerWallSecond": 4.79988357655055
+      },
+      "battleRaw": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-spain\\run-20261001T073550-151146\\episode-001\\rw-agent-reports\\battle-1790840173749-2178e924.jsonl",
+      "battleSha256": "9cead6aca2db590cfd4c2ff476e6cf4c0a3bcb1787b2bd36f65f9f342beb746a",
+      "candidateJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+      "allOwnedTestProcessesRecordedExited": true,
+      "result": "PARTIAL",
+      "outcome": "ONGOING",
+      "originalRunnerFailurePreserved": true,
+      "finalOfflineParserIntegrityIssues": []
+    },
+    {
+      "name": "native-big-island",
+      "actualRunDirectory": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7",
+      "runtime": {
+        "runnerVersion": "0.07-alpha1",
+        "gameVersion": "1.15",
+        "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+        "map": "maps/skirmish/[p2]Big Island (2p).tmx",
+        "port": 4045,
+        "requestedSpeed": 5.0,
+        "aiDifficulty": 1,
+        "seed": 819463964,
+        "seedReproducibilityVerified": false,
+        "fogEnabled": true,
+        "lineOfSightFog": true,
+        "status": "STOP_REQUESTED",
+        "ticks": 118885,
+        "frame": 118885,
+        "gameTimeMs": 1902160,
+        "wallSeconds": 396.2949821,
+        "simulatedSecondsPerWallSecond": 4.799858907928373
+      },
+      "battleRaw": "G:\\deepseek 工作台\\_validation\\feedback-20261001\\native-big-island\\run-20261001T075134-711ad7\\episode-001\\rw-agent-reports\\battle-1790841115932-ef9fa504.jsonl",
+      "battleSha256": "9906324b5a3fd763070c076b993814bc89a9ab13c9e968bbf6afa13c8b2b33cb",
+      "candidateJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+      "allOwnedTestProcessesRecordedExited": true,
+      "result": "PARTIAL",
+      "outcome": "ONGOING",
+      "originalRunnerFailurePreserved": true,
+      "finalOfflineParserIntegrityIssues": []
+    }
+  ],
+  "naturalDiveEvidence": {
+    "accepted": 3,
+    "uniqueResponders": 1,
+    "unitId": 1241,
+    "rawLines": [
+      6625,
+      8756,
+      10421
+    ],
+    "observedMovementType": "WATER",
+    "observedWeaponRange": 100
+  },
+  "spainMap": {
+    "actualSource": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-Operations-2026-10-01\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "sha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+    "bytes": 365704,
+    "width": 400,
+    "height": 370,
+    "modified": false,
+    "nativeCopyOnly": true,
+    "provesInputDesktopUsedThisMap": false
+  },
+  "deliveryFiles": [
+    {
+      "file": "README.md",
+      "bytes": 2907,
+      "sha256": "5a25d1edbb364983ef06c36d5ab65182c0be236eea61ad2154ec198ef02e900d"
+    },
+    {
+      "file": "rw-agent-bootstrap.jar",
+      "bytes": 307981,
+      "sha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7"
+    },
+    {
+      "file": "RW-Agent-Match-1200.bat",
+      "bytes": 856,
+      "sha256": "548c9088fd96ef31374e1a7177566869193b06aa02ce5521d51281aa905d0b44"
+    },
+    {
+      "file": "RW-Agent-Match-2400.bat",
+      "bytes": 856,
+      "sha256": "359b4c1ebbb6c3a8ea6bc885d3e2e3a59e6306104fe6129aa977b1c26450eaf3"
+    },
+    {
+      "file": "RW-Agent-Match-4800.bat",
+      "bytes": 871,
+      "sha256": "29da75499a6963b0eb48e8061133dc12a9edac2293c36f34f96fa5a901ff1bfa"
+    }
+  ],
+  "evidenceArchive": {
+    "file": "raw-evidence.zip",
+    "bytes": 20238694,
+    "sha256": "285e52a627470e3f8d959407b8618e765420a7eaff3de337ebd7904faa05bd46"
+  },
+  "rawIndex": "raw-evidence-index.json",
+  "desktopInstalledByThisTask": false,
+  "userDesktopGameStartedOrClosed": false,
+  "verifiedNaturalOutcome": "Two budget-limited PARTIAL/ONGOING samples; no native final result",
+  "unimplemented": [
+    "local new-site expansion",
+    "early multi-direction recoverable tank probes",
+    "mammoth spending",
+    "generic engineer heavy reinforcement",
+    "continuous all-cohort HP/no-progress observation independent of actuator"
+  ],
+  "limitations": [
+    "No desktop acceptance or win-rate causal evidence",
+    "Spain hidden targets did not naturally trigger Dive",
+    "Big Island 3 Dive chains reuse 1 responder, not 3 independent products",
+    "Mode completion mainly uses current target engagement; own mode and changed target domain joint confirmation still needed",
+    "Ready matching is unique role/site/time evidence, not strict producer birth lineage",
+    "Big Island accepted age crosses inactive mode and is not whole-cohort idle",
+    "seed repeatability unverified",
+    "new candidate 4800 natural run not executed"
+  ]
+}

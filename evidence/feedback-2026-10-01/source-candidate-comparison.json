@@ -1,0 +1,166 @@
+{
+  "implementationCommit": "f5b1709cbab3a08db78d49fb59e1f3c23e553a88",
+  "passed": true,
+  "files": [
+    {
+      "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
+      "same": true,
+      "sha256": "85df4b30cf658551ac2adee0136836defa5997bcb867b7b133c514c38f7d390b"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/EconomyBridge.java",
+      "same": true,
+      "sha256": "916848580bb9817a05188036135cbeea9fad2a41dbcd2c3df08874af9f502c46"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/GuardBridge.java",
+      "same": true,
+      "sha256": "8af15a6b3d74ac7ff5b5bc288a244593386069d088f2264f70f902021e318476"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RuntimeBridge.java",
+      "same": true,
+      "sha256": "ba34979aac7c735057cc920be7f32d47589a5c4111704d83d8615daa02ad4f2e"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RwAgent.java",
+      "same": true,
+      "sha256": "8203e41a07b737b809f5bcba4ed5581b771baea46e90aaa5be619d97d5c84069"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
+      "same": true,
+      "sha256": "89ba14c476f7e5fcb5c17930af806a40c52d477c783da8ec5a82ee20304709b2"
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/TerrainSemantics.java",
+      "same": true,
+      "sha256": "113f52a71dcd397f53ed367c8f8a2089698769d8b2573fa68a80a54a91157e94"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AgentClient.java",
+      "same": true,
+      "sha256": "f51ef7990ff17a13142e9eca708a582f99845bd1f8802f431909d5c14704a71d"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AutopilotClient.java",
+      "same": true,
+      "sha256": "66fd58a8bfa10e5290f591a64cae6eeaaf69408c600a4e2ac17c9b737b1dd191"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleBudget.java",
+      "same": true,
+      "sha256": "e799de040a4c5ef694a5adfc83cb2b72b1f63ef67682aee573b2d11148814b1d"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleClient.java",
+      "same": true,
+      "sha256": "b86d095ab75937c4800d9784bda0f6e0f935182971b8ef0047461c34f26c733e"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BootstrapClient.java",
+      "same": true,
+      "sha256": "8c6c2a9a0f809aa80262161129e46140b08b5a2ba8191094bc9cc99273c1b44b"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CommandArbiter.java",
+      "same": true,
+      "sha256": "17ef6bced964e4b68b32bff6bc576811531a475dda89e9b0c6fd1c1c8a9be0fe"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ControlLoop.java",
+      "same": true,
+      "sha256": "b164e52a061bdd30492bf73671b2d1ceec3f5df5323bdfa2b8d1430aac290509"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/DevelopmentClient.java",
+      "same": true,
+      "sha256": "89d3fb0ce4d2a4855737ab0c9fb3210bb1d320f6b054ce13a81bc6cdc45963e8"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EconomyClient.java",
+      "same": true,
+      "sha256": "3ddfab552248014fbfc55e5dc2a082ec3e078001aa8be9a1435a8b32f7f2efa5"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EngagementGeometry.java",
+      "same": true,
+      "sha256": "371ffaea5820aa63a40cf03e677e872328daeee23eb623aa01795295f0c8308e"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/FrontierClient.java",
+      "same": true,
+      "sha256": "0592a4264cd8e85408973ac896af28f471e1b7622b1277caf7506f5e4c3bab78"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/Json.java",
+      "same": true,
+      "sha256": "0b82ea66b23fff4ce9d1b370a698bba5c66db09f5927bdbcfa91ccdfc13b1f19"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalArmyDirector.java",
+      "same": true,
+      "sha256": "5b446dd8b301cd82babcc7d8f8ac7eff37f09f42f010eb2ea524db593c18d1b8"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalCrisisPolicy.java",
+      "same": true,
+      "sha256": "3ccffe1ac78be11fcc797008310af688e43a43cfd5c030d3edf904296b896317"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MatchClient.java",
+      "same": true,
+      "sha256": "875675e49ee7893b420cfb92540bb77520c9630f168b89920c9743d13968b853"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MineInvestmentPolicy.java",
+      "same": true,
+      "sha256": "dc916d8e4e7c5cfe274b7c2875b79c5edb5835cb874a14fc3119bafe349a5664"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MoveExecution.java",
+      "same": true,
+      "sha256": "c6ba21768448c2791525e9d2b941c99ebaa2f149a8c9ab0f2270539fe10ca993"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/OpeningClient.java",
+      "same": true,
+      "sha256": "cba4e393ae45cdffbdf03d5955874720713d54b2bd1631367f19491bfb307d69"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/PreflightClient.java",
+      "same": true,
+      "sha256": "1362aa70531a6b95c678ffbab7cb19ae3077ade2a8e4784fed2c01d80d74be93"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ReportFiles.java",
+      "same": true,
+      "sha256": "423a74949cb0d2aeb40bb08a3b51dbf375dd01ddcc273681baf1241c8519063b"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+      "same": true,
+      "sha256": "bc31d450de4a49378238a39aac83c7415a600f0ea5db0c97e78e3e14b2b91669"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SurplusSpendingPolicy.java",
+      "same": true,
+      "sha256": "1b59af8cbde81b9d2730903cc5c90fbe5597598b1fd5614c9b0eff19c0bf5e2b"
+    },
+    {
+      "path": "agent/src/io/rwagent/client/TargetCatalog.java",
+      "same": true,
+      "sha256": "dfbefbc1ac0dd733a7582638ab07c7876236dabafc615290e801d5cf10e4aff0"
+    },
+    {
+      "path": "agent/src/io/rwagent/headless/HeadlessRunner.java",
+      "same": true,
+      "sha256": "b5595fc73e6777133da1ab79c12a5a0904fde9f6288d250df28a976cccd33668"
+    },
+    {
+      "path": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json",
+      "same": true,
+      "sha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236"
+    }
+  ]
+}
