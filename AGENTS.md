@@ -1,18 +1,48 @@
-# 本仓库接手规则
+# Remote Agent Operating Contract
 
-后续任务默认从 `project-state/BASELINE.md` 定义的 `RW-BASELINE-2026-09-30-GS-v1` 开始。
+This repository is the complete working surface for remote Astra / Codex / other engineering agents. Remote agents must assume they **cannot access the user's local `G:\deepseek 工作台`** unless a file has been copied into GitHub.
 
-开始修改前依次阅读：
+## Read order
 
-1. `project-state/BASELINE.md`
-2. `project-state/baseline-manifest.json`
+1. `ASTRA_START_HERE.md`
+2. `project-state/ASTRA_CONTEXT.md`
 3. `project-state/CURRENT_STATE.md`
 4. `project-state/NEXT_STAGE_PLAN.md`
+5. the source and evidence referenced by the current task
 
-先检查 Git 状态，并运行 `python project-state/verify_baseline.py` 做只读身份核对。若用户已修改源码，保留改动并报告与基线的差异；核对失败不授权重置或覆盖。
+Do not start from historical mission files, old handoffs, old candidate names, or Git history unless the current files explicitly send you there.
 
-此仓库的 `agent/`、`tools/` 是默认生产源码。工作区的旧 `游戏环境/.../developer`、旧解压包和历史 worktree 不作为任务起点。`project-state/archive/` 与旧交接中“当前候选”“未部署”“复制到冒烟环境”等措辞只代表历史时点。
+## Source of truth
 
-遵守 BASELINE 中的迷雾、危险反射、冻结引擎、用户桌面与证据边界。在独立目录构建/验证；不自动替换旧环境或用户当前程序。原始报告不可改写；最终、中间、重建候选按身份分别记录。
+- Production source: `agent/` and `tools/` on latest `main` or a task branch from it.
+- Current state: `project-state/CURRENT_STATE.md`.
+- Current direction: `project-state/NEXT_STAGE_PLAN.md`.
+- Remote-project context and latest desktop facts: `project-state/ASTRA_CONTEXT.md`.
+- Evidence: `evidence/`.
+- Historical material is context only and never overrides current state.
 
-完成任务时更新 CURRENT_STATE 和必要证据。只有满足 BASELINE 的晋级规则才替换基线；普通任务报告不能暗中改变基线。
+Frozen baseline `RW-BASELINE-2026-09-30-GS-v1` is retained for lineage. The active candidate is newer and must not be reset merely because source drift exists.
+## Engineering rules
+
+- Preserve fog-of-war and legal-observation boundaries. UNKNOWN remains UNKNOWN. Static assets may describe unit mechanics; they may not reveal hidden live enemy state.
+- Do not modify or redistribute commercial Rusted Warfare binaries/assets. Use existing manifests and user-supplied compatible resources.
+- Preserve validated behavior unless the task explicitly replaces it: bootstrap builder recovery, bounded local cohorts, local crisis response, rear engineer providers, amphibious Dive chain, T2/T3 mine investment, surplus artillery, ownership/lease rules, Target Guard, and bounded fairness scheduling.
+- Runtime prices/actions should come from legal native menus when available. Frozen INI/JAR/community mechanism notes are validation inputs, not automatic hard-coded truth.
+- Do not infer kills, win rate, causal improvement, or hidden-target resolution from proxy metrics.
+- Keep failures, PARTIAL runs, parser corrections, and evidence limitations visible.
+
+## Scope discipline
+
+Work on one coherent engineering breakpoint per implementation round. Do not simultaneously redesign economy, combat, recon, and the entire scheduler unless the task explicitly requires their integration.
+
+If a new issue is discovered outside the current task, record it as a follow-up rather than silently expanding scope.
+
+## Validation expectations
+
+For production changes: add/update focused tests; run affected regression; run the broader matrix when subsystems cross; preserve raw outputs; distinguish synthetic fixtures from natural native runs; update state/plan/evidence when a stable candidate is reached.
+
+A parser/auditor PASS is not a game victory. A desktop observation is not automatically a controlled A/B result.
+
+## Git workflow
+
+Prefer `astra/<task>-YYYYMMDD` for substantial Astra work. Commit in reviewable units. Do not force-push `main`. At handoff report branch, commit SHA(s), files changed, tests run, evidence, limitations, and one recommended next breakpoint.

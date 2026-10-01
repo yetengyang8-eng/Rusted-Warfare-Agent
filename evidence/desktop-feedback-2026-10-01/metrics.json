@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "candidate": "RW-CANDIDATE-2026-10-01-FEEDBACK-v1",
+  "agentJarSha256": "0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7",
+  "gameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "spain": {
+    "battleGameSeconds": 4801.6, "result": "PARTIAL/ONGOING", "team": 5, "tiles": [400,370],
+    "finalCredits": 1321176.0, "cumulativeSpend": 479600.0, "newMines": 13, "t2Ready": 31, "t3Ready": 23, "readyMinesAtEnd": 14,
+    "mobileArmedAtEnd": 81, "ownLosses": 283, "heavyTankLosses": 184, "builderLosses": 22, "engineerLosses": 0,
+    "localCrisisTasks": 43, "localArmyOrders": 423, "fairnessGrants": 287, "maxCohorts": 4,
+    "providerJetsReadyTransferred": 4, "acceptedDive": 0, "surplusArtilleryReady": 23
+  },
+  "bigIsland": {
+    "battleGameSeconds": 2402.4, "result": "PARTIAL/ONGOING", "team": 0, "tiles": [180,180],
+    "finalCredits": 401708.0, "t2Ready": 13, "t3Ready": 10, "mobileArmedAtEnd": 66, "ownLosses": 47, "engineerLosses": 0,
+    "localCrisisTasks": 26, "localArmyOrders": 295, "fairnessGrants": 81,
+    "providerJetsReadyTransferred": 6, "acceptedDive": 3, "compatibleDiveObserved": 1, "jetResponseOrders": 3,
+    "observedTargetHpChange": {"before": 260.0, "after": 170.0, "attribution": "TEAM_DAMAGE_NOT_EXCLUSIVE_TO_RESPONDER"}
+  },
+  "limitations": ["not controlled same-seed A/B", "both runs budget-ended without native terminal result", "large raw desktop JSONL not mirrored", "lastAcceptedAgeMs diagnostics incomplete"]
+}

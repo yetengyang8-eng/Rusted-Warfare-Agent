@@ -1,23 +1,49 @@
-# 跨环境接手入口
+# Astra Start Here
 
-本仓库是 G:\deepseek 工作台 的工程中转仓库。以后任务统一从 **RW-BASELINE-2026-09-30-GS-v1** 开始。
+You are working through GitHub only. Assume you cannot inspect the user's local machine, desktop test folders, or `G:\deepseek 工作台` unless the needed facts have been copied into this repository.
 
-## 阅读顺序
+## First reading pass
 
-1. [BASELINE.md](project-state/BASELINE.md)：固定源码、运行件和证据边界。
-2. [baseline-manifest.json](project-state/baseline-manifest.json)：机器可读身份。
-3. [CURRENT_STATE.md](project-state/CURRENT_STATE.md)：当前进度。
-4. [NEXT_STAGE_PLAN.md](project-state/NEXT_STAGE_PLAN.md)：下一阶段依赖、交付与验收标准。
-5. [最新桌面证据](evidence/global-strategy-desktop-2026-09-30/README.md) 和 [本轮基线核验](evidence/baseline-2026-09-30/VALIDATION.md)。
+Read in this order:
 
-基线生产输入已保存于 6214f07；最终运行件为 astra-deliveries/global-strategy-2026-09-30/rw-agent-bootstrap.jar（SHA256 76711a8e…）。交付来源声明 2f310ec 的原始 Git 对象在本地缺失，不能用未解析的提交代替可取得的基线。
+1. `AGENTS.md`
+2. `project-state/ASTRA_CONTEXT.md`
+3. `project-state/CURRENT_STATE.md`
+4. `project-state/NEXT_STAGE_PLAN.md`
+5. `evidence/desktop-feedback-2026-10-01/README.md`
+6. only then inspect the source files relevant to the task
 
-最新三场桌面长局均 PARTIAL/ONGOING，Spain A/B 的方差是下一阶段首要诊断对象。旧交付说明“未桌面验证”只代表历史时点；不得覆盖后补桌面证据，也不得改写旧 manifest 破坏原始 SHA。
+Do not use old root-level Astra mission/review files as current instructions. They were removed from `main`; the pre-refresh public state is preserved on branch `archive/pre-astra-refresh-20261001` and in Git history.
 
-## 执行边界
+## Current engineering state
 
-阅读仓库 AGENTS.md。先做只读基线核对，再在隔离目录构建和运行授权验证。不要从历史 developer 树或旧解压包起步，不覆盖用户环境。
+The active fixed candidate is `RW-CANDIDATE-2026-10-01-FEEDBACK-v1`, JAR SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
 
-无画面引擎准备入口仍为 [astra-relay/HEADLESS_ENGINE_README.md](astra-relay/HEADLESS_ENGINE_README.md)。引擎包存在不授权读取迷雾隐藏动态信息。直接远程回写流程见 [ASTRA_WRITEBACK.md](ASTRA_WRITEBACK.md)，是否发布按当前任务授权执行。
+The latest user desktop runs show that economy can now grow far beyond the Agent's ability to consume it usefully. Spain reached about 1.32M credits while production and operations remained bounded. The next mainline is therefore production-capacity scaling plus predictable production routes, followed by higher useful parallel operational throughput.
+## Expected first conversation with the operator
 
-知识、历史对话、Replay 语料入口分别为 knowledge/README.md、project-history/raw-dialogue/README.md 和 REPLAY_CORPUS_README.md；它们不定义当前候选。
+The first Astra conversation is **orientation and capability confirmation**, not a broad rewrite.
+
+Astra should:
+
+- confirm the files above are readable and internally consistent;
+- state the current candidate/baseline/HEAD it sees;
+- confirm it can inspect `agent/`, `tools/`, `evidence/`, and Git history;
+- confirm whether it can create a branch, edit files, commit, push, and optionally open a PR;
+- identify the minimum source surface for the production-capacity/production-route task;
+- point out material contradictions or missing GitHub evidence before implementation;
+- avoid spending the first round re-deriving old project history.
+
+## Expected second conversation
+
+After orientation, advance one substantial engineering breakpoint. The preferred first breakpoint is:
+
+**Production Capacity Controller v1 + minimum ProductionRoute data model.**
+
+The result should expose measurable economic inflow, recent spend/throughput, producer capacity, backlog/bottleneck, and a bounded decision to request more capacity. It should not yet attempt to solve every downstream scheduler/expansion/recon problem.
+
+Follow `project-state/NEXT_STAGE_PLAN.md` for detailed constraints and validation expectations.
+
+## Writeback
+
+Use `ASTRA_WRITEBACK.md`. Prefer a branch `astra/<task>-20261001`; do not force-push `main`. Preserve failures and evidence boundaries in the handoff.

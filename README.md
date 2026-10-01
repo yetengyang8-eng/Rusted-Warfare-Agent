@@ -1,31 +1,49 @@
 # Rusted Warfare Agent
 
-Rusted Warfare PC 1.15（Build 28 / Game Code 176）的规则型自动对战 Agent。Java Agent 与独立客户端通过本地桥接读取合法观察并执行命令；工程目标是行为可解释、证据可复算、修改可回归。
+A research/engineering project for a controllable Rusted Warfare PC 1.15 Agent. The project prioritizes legal observation, explainable state, reproducible evidence, bounded ownership, and native-command execution.
 
-## 当前工程基线
+## Current status
 
-**RW-BASELINE-2026-09-30-GS-v1 — Global Strategy / Feasibility / Combat Engineer**
+- Frozen lineage baseline: `RW-BASELINE-2026-09-30-GS-v1`.
+- Active candidate: **RW-CANDIDATE-2026-10-01-FEEDBACK-v1**.
+- Candidate JAR SHA256: `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
+- Frozen compatible `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`.
+- Latest independent desktop acceptance includes a ~4801.6s Spain run and ~2402.4s Big Island run. Both were `PARTIAL / ONGOING`; see `evidence/desktop-feedback-2026-10-01/`.
 
-- [基线定义、候选身份与环境角色](project-state/BASELINE.md)
-- [当前状态](project-state/CURRENT_STATE.md)
-- [下一阶段工程计划](project-state/NEXT_STAGE_PLAN.md)
-- [本次基线验收](evidence/baseline-2026-09-30/VALIDATION.md)
-- [构建与回归入口](agent/README_CN.md)
+The current bottleneck is no longer simply obtaining economy. The Agent can build a large economy, but production capacity and concurrent operational throughput do not scale fast enough to consume it.
 
-生产输入起点为 Git 6214f073d1b76429c0b827268db918e1e90e9f5f；交付 JAR SHA256 为 76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed。后续任务先核对 project-state/baseline-manifest.json，不使用旧环境副本作为最新源码。
+Current macro direction:
 
-基线交付件已有三场 Windows 桌面 5x / 约 2400 游戏秒长局，全部 PARTIAL/ONGOING；峰值移动武装单位为 88 / 21 / 101。Spain 两局在 Match 前人工生产一个 builder，此后自主运行。这些是基线历史证据，不继承为后续候选验收。
+`economic growth → production capacity → predictable/interchangeable production routes → unit delivery → parallel operations → map control → more economic growth`
 
-最新增量为 [运营与队伍调动候选](deliveries/operations-2026-10-01/README.md)：无建造者自动起步、多队独立目标与前沿、富余资金的少量重炮补位和升矿约束，并提供4800游戏秒入口。此前资金预留与专属生命周期继续保留。验证见 [当前状态](project-state/CURRENT_STATE.md)、[本轮证据](evidence/operations-2026-10-01/README.md)、[GPT / DeepSeek 交接](handoff/HANDOFF_Codex_Operations_2026-10-01.md)。保留最新提交，不因v1源码漂移回退；当前仍为候选，后续先补真实桌面与重复自然样本。
+## For Astra / remote engineering agents
 
-## 目录
+**Start with `ASTRA_START_HERE.md`.** Remote agents should assume GitHub is their entire project view and should not depend on local `G:` paths.
 
-- agent/：Java 源码、资源、测试与构建入口。
-- tools/：分析、无画面运行、A/B 编排和战术查看器。
-- project-state/：唯一当前基线、状态、计划与历史入口归档。
-- evidence/：按候选区分的原始证据、索引和审计。
-- astra-deliveries/：不可变交付件。
-- handoff/、project-history/：历史合同和交接。
-- knowledge/：有来源的静态知识；不替代合法动态观察。
+The repository now contains the latest desktop-derived context that older Astra mission files did not contain.
+## Canonical reading order
 
-兼容 game-lib.jar 的 SHA256 固定为 8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9。运行资源和原版资产的获取、身份、使用边界见 astra-relay/HEADLESS_ENGINE_README.md。
+1. `AGENTS.md` — operating contract and evidence rules.
+2. `project-state/ASTRA_CONTEXT.md` — latest desktop facts and remote context.
+3. `project-state/CURRENT_STATE.md` — what is current now.
+4. `project-state/NEXT_STAGE_PLAN.md` — what should be built next.
+5. `agent/` and `tools/` — production source and analysis/runner tooling.
+6. `evidence/` — candidate and desktop evidence.
+
+## Repository layout
+
+- `agent/` — Java Agent source, test harnesses, build scripts.
+- `tools/` — parsing, auditing, native/headless runners and analysis tooling.
+- `project-state/` — current control plane plus archived state snapshots.
+- `evidence/` — evidence indexed by candidate/run family.
+- `deliveries/` — fixed candidate deliverables and usage notes.
+- `knowledge/` — static mechanics/terrain/capability knowledge; never substitutes for legal live observation.
+- `handoff/` — engineering handoffs; current state/plan override old handoffs.
+- `project-history/` — history only.
+- `astra-relay/` — remote/native relay resources where legally distributable.
+
+## Build
+
+Supply your own compatible Rusted Warfare 1.15 `game-lib.jar`. See `agent/README_CN.md` for build and regression workflow.
+
+Commercial game binaries/assets are not project source. Fog-of-war, UNKNOWN state, ownership, and evidence boundaries remain part of the engineering contract.

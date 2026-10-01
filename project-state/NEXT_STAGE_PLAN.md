@@ -1,35 +1,75 @@
-# 下一阶段工程规划
+# Next Stage Plan
 
-更新：2026-10-01。当前候选 **RW-CANDIDATE-2026-10-01-FEEDBACK-v1**，冻结基线 **RW-BASELINE-2026-09-30-GS-v1** 保留。接续本仓库最新HEAD和 [本轮交接](../handoff/HANDOFF_Codex_Feedback_2026-10-01.md)，不要回退到旧源码。上一计划已 [归档](archive/2026-10-01-before-feedback/NEXT_STAGE_PLAN.md)。
+Updated: 2026-10-01 after independent FEEDBACK-v1 desktop acceptance.
 
-## 1. 下一施工项：新矿点扩张的局部风险
+## Strategic goal
 
-本轮T2/T3旧矿升级已局部化；新矿点仍只在STABLE/OPEN创建，已有投资遇CONTESTED/EMERGENCY仍取消。优先用最小改动解决“另一战区接敌，却拒绝安全一侧开矿”。
+Build the first closed-loop macro system where economic growth automatically causes production capacity and useful military throughput to grow, while the operation layer can concurrently control the resulting larger force.
 
-拆分HOME、WORKER、ROUTE、SITE风险，消费当前合法视野和有时间/位置的记忆威胁，区分静态可达、动态路线阻断与敌情未知。现有目标300范围检测不足以证明工人当前位置和完整路线安全，不能简单删除全局veto。保留资金预留、普通替补价、建造者恢复优先、当前原生报价、单owner和退出/撤回上限。
+The target loop is:
 
-先在HTTP/native fixture复现远端接触、本地健康工人与合法空矿址；验收真正接受normal build、付款占额、新ready矿。对HOME受袭、路段未知/被阻断、SITE当前/记忆武装威胁、工人低血量、资金不足逐项拒绝。再用同一候选未改Spain原图观察自然建造，不以矿数或现金下降单独宣称策略收益。
+`economic growth → capacity demand → production routes → unit delivery → parallel operations → map control → more economic growth`
 
-## 2. 多队观察与空闲统计
+The next implementation round should advance **one coherent slice** of this loop rather than simultaneously redesigning every subsystem.
 
-把所有当前合法engagement的HP/no-progress union观察抽到decision阶段，与是否获得actuator分离。会员/前沿已经每轮观察，全队HP窗口仍主要在localTactics；持续生产/侦察可能断开连续窗。不要因缺伤害推断隐藏目标已死，继续保留Target Guard与负证据解除规则。
+## Priority 1 — Production capacity model
 
-accepted age按multi-cohort active-mode窗口统计，纳入rule-main实际命令和补兵加入时间。Big Island275.264秒跨单队模式，不能当整队公平失败；Spain没有accepted-age样本为null。分别统计全队/半队真实无指令、少数补兵、旧native命令仍在但堵路、有合法目标但被lane占用、没有目标/前沿的保守等待。
+Create an explicit model of current production throughput and backlog. The controller must be able to answer:
 
-当前fairness是至少半队null-order且远离旧目标、16秒无accepted、每8秒最多一槽。继续保留全局1秒门禁；不靠放大指令频率消除诊断值。局部危机只覆盖单任务、基地/矿附近小簇，不覆盖并发多矿/工厂/工人护送或大军；撤回超时交还不等于已到安全位置。
+- current observed/estimated income rate;
+- recent spend rate and persistent net resource accumulation;
+- producers available by route and their queue/availability state;
+- sustainable resource-consumption capacity;
+- military demand/backlog that could use more production;
+- whether the bottleneck is money, producer throughput, army slots, capability constraints, or operations.
 
-## 3. 再择一推进侦察或质量消费
+Do not start with a fixed `credits > X => build factory` threshold. Use sustained mismatch between economic inflow and useful production throughput as the main signal.
+## Priority 2 — Predictable, replaceable production routes
 
-早期开局健康坦克多方向可回收探针未做，当前仍单reconTask，前沿偏向受损普通坦克。若选侦察：固定少量预算/ownership，保留至少6主力，短航段、可见接触后根据真实单位武器/位置/血量做有限进退，退出到附近友军或已观察路径；不以价格、HP总和代替DPS或胜负预测。
+Represent production as routes rather than hard-coded unit special cases. A route should expose at least:
 
-若选经济：现有余钱出口只有heavyArtillery，Big Island末现金61678。猛犸native机制已核，但策略/配额/账本/成品参战链均未做。先做少量mammothTank配额，实时合法菜单报价、付费ghost占额、保护全部预留及普通替补价、ready转交、兼容目标和合法参战。冻结INI3900/hp2600/T2/GROUND/range190只作为核验线索；不提高hard cap，不硬编码社区DPS。工程师通用重型后方增援同样后置，当前只实现武器领域缺口生产者。
+- requested military/capability role;
+- eligible producer type(s) and required tech/mode;
+- current legal native action/quote;
+- expected production/build duration where observable or safely estimated;
+- resource throughput and capacity occupancy;
+- ready-product matching and task handoff;
+- fallback route(s) when the preferred producer is unavailable.
 
-## 4. 证据、交付与晋级
+Initial routes should cover landFactory→heavyTank, upgraded landFactory→mammothTank candidate, combatEngineer→heavyTank, combatEngineer→amphibiousJet, and existing heavyArtillery surplus production. Runtime menu evidence overrides static price assumptions.
 
-本轮Big Island自然3次Dive/当前兼容/jet响应来自同一架1241，另有2次T3升级；Spain6次provider成品转交及24次危机开始，证明对应分支执行。未证明击杀、整体胜率或资金消费闭环。模式完成现在主要按目标engagement判定；应补自身mode和目标领域联合证明，覆盖目标在切换过程中浮出水面，防止DIVE标签与自身状态不一致。两局均PARTIAL/ONGOING。新桌面安装须记录实际JAR/mapPath/mapSHA/difficulty/player/team/出生状态/速度/人工操作；不自动启动或关闭用户游戏。
+## Priority 3 — Capacity scaling and quality spending
 
-固定候选带4800入口，Battle游戏秒与墙钟安全分开，推荐5x，原生胜负提前结束；新候选4800自然长局尚未跑。需要时优先少量同条件复核，保留失败/PARTIAL，避免大规模扫参和无变化重复全矩阵。
+When sustained economic inflow exceeds useful consumption capacity, increase **capacity itself** before allowing balance to grow without bound.
 
-源码变更做相关专项、完整必要矩阵；已有生产源码与JAR不变，只复核受影响工具。原始日志/runner失败/修复复核分别保存；HTTP重建流保留原件和SHA，不写成原字节。Windows有效矩阵54步/420不同Python已全绿，不重复累加覆盖。
+Candidate actions include additional land factories, factory upgrades where justified, bounded engineer-provider throughput, and a small high-value mammoth allocation. Preserve all existing reserves, hard safety caps, native menu legality, paid-but-not-ready occupancy, and role compatibility.
 
-每轮更新CURRENT_STATE、候选manifest、不可变交付、raw证据和GPT/DeepSeek交接；root和助手交接只作同步导航。新基线须满足代码/JAR/资源/安装谱系、Windows回归、自然触发和用户桌面复核共同门槛，普通候选不晋级v1。冻结引擎、商业资产、原地图、用户设置/存档/回放保护；测试仅独立目录，最多2引擎，不读迷雾隐藏敌情。
+The controller should be able to substitute routes: if one producer is blocked/lost, remaining demand should be reassigned rather than abandoned or duplicated.
+
+Success is not “cash decreased”. Success is that production throughput rises in response to persistent surplus and delivered units enter legal operational ownership.
+## Priority 4 — Operational throughput and parallel execution
+
+The Agent must control more units without making every subsystem wait behind one monolithic reasoning loop.
+
+First fix instrumentation: accepted-age metrics must include fairness/local accepted orders, active-mode windows, rule-main commands, and newly joined reinforcements. Distinguish no target, no frontier, cooldown, global gate occupancy, ownership conflict, and genuine no-order starvation.
+
+Then separate planning from execution. Strategic decisions can remain slower, while already-approved tasks should have persistent execution state and compete fairly for command opportunities. Keep ownership and legal-target checks centralized; do not create multiple uncontrolled actuators.
+
+Do not assume “higher APM” alone is the solution. The goal is more **useful concurrent task progress**: multiple cohorts, local defense, recon, expansion, provider production, and replacement production should continue without starving each other.
+
+## Priority 5 — Expansion safety and secondary gaps
+
+After the production/operations slice is stable, continue these known gaps:
+
+- replace coarse global new-mine veto with HOME / WORKER / ROUTE / SITE local risk; latest Spain still lost 22 builders;
+- improve capability-need closure after a legal responder is produced;
+- add bounded recoverable multi-direction early tank reconnaissance;
+- tighten local-crisis return/regroup observation instead of relying heavily on handoff timeout.
+
+## Validation and evidence
+
+Every implementation round should add focused contracts, affected regression, and a small number of natural native/desktop checks. Preserve PARTIAL/failure evidence. Do not claim causality from unmatched desktop runs.
+
+For the production-capacity work, log enough to reconstruct: income estimate, spend rate, capacity estimate, chosen production route, producer occupancy, backlog, capacity-expansion decision, delivered product, and operational handoff.
+
+The next Astra implementation round should preferably start with **Priority 1 + the minimum data structures needed for Priority 2**, then stop at a verifiable candidate rather than attempting all five priorities at once.
