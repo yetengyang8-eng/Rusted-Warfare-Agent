@@ -20,6 +20,7 @@ final class StrategyDirector {
     private boolean enabled;
     private long now,started,remaining,lastCapacity=-100000,lastAllocation=-100000,taskSequence=1000000;
     private int hardCap=40,armyTarget=40,activeTarget=24,reserveTarget=8,builderTarget=1;
+    private int militaryCapacityFloor,militaryCapacityIncreases;
     private double income,consumption,protectedFunds,homeX,homeY;
     private boolean homeEmergency;
     private Map<String,Object> state,enemies,scout;
@@ -45,6 +46,9 @@ final class StrategyDirector {
     private static final class Assessment {
         long checked=-100000;String signature="";double x,y;
         final Set<Long> blocked=new HashSet<Long>();
+        final Set<String> usefulProducts=new HashSet<String>();
+        final Set<String> checkedProducts=new HashSet<String>(),unknownProducts=new HashSet<String>();
+        boolean complete;
     }
     private static final class Need {
         final long id;String type,reason;double x,y;long seen,awaitVisibleAfter=-1;int failures;boolean building;
@@ -127,13 +131,36 @@ final class StrategyDirector {
             Capacity value=capacity(area,income,threats,needs.size(),backlog,buildBacklog,armed,
                     now-started,hardCap,System.getProperty("rwagent.mobileUnitHardCap")!=null);
             // Grow at most eight slots per evaluation. Never cancel already paid units when income falls.
-            armyTarget=Math.min(value.total,armyTarget+8);activeTarget=Math.min(value.active,armyTarget);
+            armyTarget=Math.min(hardCap,Math.min(Math.max(value.total,militaryCapacityFloor),armyTarget+8));activeTarget=Math.min(value.active,armyTarget);
             reserveTarget=Math.max(0,armyTarget-activeTarget);builderTarget=value.builders;
             emit("strategy_capacity",map("armyTarget",armyTarget,"activeArmyTarget",activeTarget,"reserveTarget",reserveTarget,
                 "hardSafetyCap",hardCap,"builderTarget",builderTarget,"mapTiles",area,"incomeEstimate",income,
                 "productionConsumption",consumption,"knownCapabilityNeeds",needs.size(),"resourceBacklog",backlog,
                 "buildBacklog",buildBacklog,"fixedCapOverride",System.getProperty("rwagent.mobileUnitHardCap")!=null));
         }
+    }
+    /** Only current-visible, native-compatible ordinary actors with a known approach create
+     * ordinary route demand. Capability needs and hidden contacts alone cannot authorize tanks.
+     */
+    String ordinaryDemand(String product){
+        boolean visible=false,unknown=false;
+        for(Map<String,Object> enemy:items(enemies,"visibleEnemies")){
+            visible=true;Assessment a=assessments.get(id(enemy));
+            if(a==null||!a.complete||now-a.checked>15000||Math.hypot(n(enemy,"x")-a.x,n(enemy,"y")-a.y)>20){unknown=true;continue;}
+            if(a.usefulProducts.contains(product))return "KNOWN";
+            if(!a.checkedProducts.contains(product)||a.unknownProducts.contains(product))unknown=true;
+        }
+        return !visible?"NONE":unknown?"UNKNOWN":"ROUTE_UNAVAILABLE";
+    }
+    boolean increaseMilitaryCapacity(int committed,int slots,Map<String,Object> evidence)throws Exception{
+        if(!enabled||homeEmergency||committed>=hardCap||committed<armyTarget||armyTarget>=hardCap||slots<=0)return false;
+        int old=armyTarget;armyTarget=Math.min(hardCap,armyTarget+Math.min(8,slots));
+        militaryCapacityFloor=armyTarget;militaryCapacityIncreases++;
+        activeTarget=Math.min(armyTarget-8,activeTarget+(armyTarget-old));reserveTarget=Math.max(0,armyTarget-activeTarget);
+        Map<String,Object> data=new LinkedHashMap<String,Object>(evidence);
+        data.put("oldTarget",old);data.put("newTarget",armyTarget);data.put("slotsAdded",armyTarget-old);
+        data.put("reason","ARMY_CAPACITY_LIMIT");data.put("decision","BOUNDED_MILITARY_CAPACITY_INCREASE");
+        emit("military_capacity_increased",data);return true;
     }
     /** Bounded policy targets. Area/observed threats/tasks create demand; income supports capacity. */
     static final class Capacity {
@@ -172,6 +199,7 @@ final class StrategyDirector {
             }
             assessment.checked=now;assessment.signature=ids;
             if(!complete||answer==null){
+                assessment.complete=false;assessment.usefulProducts.clear();
                 emit("engagement_assessment_deferred",map("targetId",eid,"reason","CONTACT_LOST_OR_MOVED_BETWEEN_FORMATION_BATCHES"));
                 continue;
             }
@@ -180,14 +208,26 @@ final class StrategyDirector {
             if(Math.hypot(number(answer,"targetX",0)-assessment.x,number(answer,"targetY",0)-assessment.y)>20)
                 assessment.blocked.clear();
             assessment.x=number(answer,"targetX",0);assessment.y=number(answer,"targetY",0);
-            int blocked=0,incompatible=0,total=0;boolean possible=false;
+            int blocked=0,incompatible=0,total=0;boolean possible=false;assessment.complete=true;
+            assessment.usefulProducts.clear();assessment.checkedProducts.clear();assessment.unknownProducts.clear();
             for(Map<String,Object> actor:items(answer,"actors")){
                 long uid=(long)n(actor,"unitId");total++;
+                Map<String,Object> own=find(state,uid);
+                if(own!=null){
+                    String product=String.valueOf(own.get("type"));assessment.checkedProducts.add(product);
+                    if(!"INCOMPATIBLE".equals(actor.get("compatibility"))&&!"BLOCKED_TERRAIN".equals(actor.get("status"))
+                            &&!("COMPATIBLE".equals(actor.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(actor.get("status"))))
+                        assessment.unknownProducts.add(product);
+                }
                 if("BLOCKED_TERRAIN".equals(actor.get("status"))){assessment.blocked.add(uid);blocked++;}
                 else if("APPROACH_PATH_KNOWN".equals(actor.get("status")))assessment.blocked.remove(uid);
                 // UNKNOWN cannot release a prior terrain rejection for the same last-known objective.
                 if("INCOMPATIBLE".equals(actor.get("compatibility")))incompatible++;
-                if("APPROACH_PATH_KNOWN".equals(actor.get("status"))&&"COMPATIBLE".equals(actor.get("compatibility")))possible=true;
+                if("APPROACH_PATH_KNOWN".equals(actor.get("status"))&&"COMPATIBLE".equals(actor.get("compatibility"))){
+                    possible=true;
+                    if(own!=null&&("heavyTank".equals(own.get("type"))||"c_tank".equals(own.get("type"))||"tank".equals(own.get("type"))))
+                        assessment.usefulProducts.add(String.valueOf(own.get("type")));
+                }
             }
             if(total>0&&(blocked==total||incompatible==total)){
                 Need need=needs.get(eid);boolean fresh=need==null;
@@ -814,7 +854,8 @@ final class StrategyDirector {
     void close()throws Exception{releaseCapabilityFunding("CONTROLLER_ENDED");for(Worker w:workers.values()){
         releaseSupportReserve(w,"CONTROLLER_ENDED");release(w,"CONTROLLER_ENDED");}workers.clear();}
     Map<String,Object> summary(){return map("enabled",enabled,"armyTarget",armyTarget,"activeTarget",activeTarget,"reserveTarget",reserveTarget,
-        "hardSafetyCap",hardCap,"builderTarget",builderTarget,"capabilityNeedsAtEnd",needs.size(),"needsResolvedByLegalEvidence",resolvedNeeds,
+        "hardSafetyCap",hardCap,"builderTarget",builderTarget,"militaryCapacityIncreases",militaryCapacityIncreases,
+        "militaryCapacityFloor",militaryCapacityFloor,"capabilityNeedsAtEnd",needs.size(),"needsResolvedByLegalEvidence",resolvedNeeds,
         "investmentOrders",investments,"mineUpgradesObserved",upgrades,"constructionCompletionsObserved",completedJobs,
         "capabilityReservesStarted",capabilityReservesStarted,"capabilityReservesReleased",capabilityReservesReleased,"capabilityReserveAtEnd",capabilityReserve());}
     private void emit(String event,Map<String,Object> data)throws Exception{

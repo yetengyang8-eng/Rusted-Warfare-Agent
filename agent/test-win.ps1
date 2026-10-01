@@ -92,6 +92,7 @@ PyStep 'py:test_frontier_reports' 'test_frontier_reports.py' @()
 JavaStep 'java:CombatHarness' @('CombatHarness')
 PyStep 'py:test_battle_reports' 'test_battle_reports.py' @()
 PyStep 'py:test_battle_client' 'test_battle_client.py' @($distJar)
+PyStep 'py:test_production_capacity' 'test_production_capacity.py' @($distJar)
 PyStep 'py:test_strategy_funding' 'test_strategy_funding.py' @($distJar)
 PyStep 'py:test_specialist_lifecycle' 'test_specialist_lifecycle.py' @($distJar)
 PyStep 'py:test_local_army' 'test_local_army.py' @($distJar)
@@ -106,6 +107,7 @@ PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
 Step 'java:ReportCommitHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.ReportCommitHarness }
 Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
+Step 'java:ProductionCapacityHarness' { & $java -cp $cp io.rwagent.client.ProductionCapacityHarness }
 Step 'java:LocalArmyContractHarness' { & $java -cp $cp io.rwagent.client.LocalArmyContractHarness }
 Step 'java:LocalCrisisContractHarness' { & $java -cp $cp io.rwagent.client.LocalCrisisContractHarness }
 Step 'java:SurplusSpendingHarness' { & $java -cp $cp io.rwagent.client.SurplusSpendingHarness }

@@ -43,6 +43,7 @@ java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" CombatHarne
 python3 "$root/tests/test_battle_reports.py"
 
 python3 "$root/tests/test_battle_client.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_production_capacity.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_strategy_funding.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_specialist_lifecycle.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_local_army.py" "$root/dist/rw-agent-bootstrap.jar"
@@ -60,6 +61,8 @@ java -Xmx96m -cp "$classpath:$root/build/tests" io.rwagent.client.ReportCommitHa
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarness
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyContractHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/ProductionCapacityHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.ProductionCapacityHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.LocalArmyContractHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.LocalCrisisContractHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.SurplusSpendingHarness
