@@ -2,7 +2,7 @@ package io.rwagent.bootstrap;
 
 import com.corrodinggames.rts.game.units.ao;
 
-/** Meaning of a legally observed native tile; no static map grid is loaded at runtime. */
+/** Native terrain rules. Observation history and authorized static map knowledge stay separate. */
 final class TerrainSemantics {
     static final String PACKET_SHA256 =
             "ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9";
@@ -12,6 +12,30 @@ final class TerrainSemantics {
     static final int WATER=1,BRIDGE=2,LAVA=4,CLIFF=8,LARGE_OBSTACLE=16,RESOURCE=32,
             SMALL_ROCK=64,HARD_BLOCK=128,BLOCK_BUILDINGS=256;
     private TerrainSemantics() {}
+    /** Frozen gameFramework.k.i.d mirror: terrain only, never building/unit/path grids.
+     * A non-null override replaces the complete Ground+Items result, including resource blocking.
+     * Raw j is retained separately because native tiles can carry costs beyond the named flags. */
+    static byte staticCost(ao movement,int ground,byte groundCost,int items,byte itemCost,
+                           boolean overridePresent,int override,byte overrideCost) {
+        if(movement==ao.a||movement==ao.d)return 0;
+        byte cost=baseCost(movement,ground);
+        if(movement==ao.b&&(items&RESOURCE)!=0)cost=-1;
+        if((items&LARGE_OBSTACLE)!=0&&movement!=ao.g&&movement!=ao.h)cost=-1;
+        if(cost==0)cost=itemCost;
+        if(cost==0)cost=groundCost;
+        if(overridePresent){cost=baseCost(movement,override);if(cost==0)cost=overrideCost;}
+        return cost;
+    }
+    private static byte baseCost(ao movement,int flags) {
+        if((flags&WATER)!=0&&movement!=ao.e&&movement!=ao.f&&movement!=ao.h)return -1;
+        if((flags&CLIFF)!=0&&movement!=ao.f&&movement!=ao.g&&movement!=ao.h)return -1;
+        if((flags&LARGE_OBSTACLE)!=0&&movement!=ao.g&&movement!=ao.h)return -1;
+        if((flags&LAVA)!=0)return -1;
+        // Native null Ground skips the WATER test. Callers encode absent tiles explicitly.
+        if(movement==ao.e&&(flags&(WATER|BRIDGE|ABSENT))==0)return -1;
+        return 0;
+    }
+    static final int ABSENT=512;
     static int flags(boolean water,boolean bridge,boolean lava,boolean cliff,
                      boolean largeObstacle,boolean resource,byte rawCost,boolean blockBuildings) {
         int result=0;

@@ -34,6 +34,7 @@ public final class RuntimeBridge {
 
     final com.corrodinggames.rts.game.i engine;
     ScoutBridge scout;
+    StaticMapKnowledge staticMap;
     private final int port;
     private final boolean allowCommands;
     private HttpServer server;
@@ -264,6 +265,7 @@ public final class RuntimeBridge {
 
         new EconomyBridge(this).install(server);
         scout=new ScoutBridge(this);scout.install(server);
+        staticMap=new StaticMapKnowledge(this);staticMap.install(server);
         new GuardBridge(this).install(server);
         new CombatBridge(this).install(server);
 
