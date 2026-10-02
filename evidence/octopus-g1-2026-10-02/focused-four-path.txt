@@ -1,0 +1,9 @@
+test_local_crisis_trace_preserves_original_commands (__main__.G1TraceTests.test_local_crisis_trace_preserves_original_commands) ... ok
+test_ordinary_production_trace_preserves_original_commands (__main__.G1TraceTests.test_ordinary_production_trace_preserves_original_commands) ... ok
+test_provider_trace_preserves_original_commands (__main__.G1TraceTests.test_provider_trace_preserves_original_commands) ... ok
+test_recon_trace_preserves_original_commands (__main__.G1TraceTests.test_recon_trace_preserves_original_commands) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 54.350s
+
+OK

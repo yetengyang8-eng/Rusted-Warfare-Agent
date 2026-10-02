@@ -1,0 +1,366 @@
+{
+  "sourceCodeFileCount": 106,
+  "repositorySourceUnchangedSinceFreeze": true,
+  "repositorySourceChangedFiles": [],
+  "stagedSourceMatchesFrozenRepository": true,
+  "stagedSourceChangedFiles": [],
+  "fullMatrix": {
+    "stepCount": 58,
+    "javaRuns": 30,
+    "pythonSuites": 25,
+    "pythonTests": 439,
+    "failedSteps": 0,
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\final-full-regression.log",
+    "logSha256": "a12cce9c14dc27a864c03ba5b0c23cca21518a952f06f24c6994b9c35830788f",
+    "steps": [
+      {
+        "step": "build:compile",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "build:jar",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "build:test-classes",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:SmokeHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:BridgeHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:BridgeHarness-disabled",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:EconomyHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:OpeningHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:OpeningHarness-replacement",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ProductionPlanHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_development",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_opening",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_economy",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_client",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_match_bootstrap",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:DiagnosticsHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:PreflightHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_reports",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ScoutHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:TerrainMemoryHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:GuardHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:CapabilityHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:TargetCompatibilityHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:BuilderHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ReachabilityHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ReachabilityHarness-sandbox",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_frontier",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_frontier_reports",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:CombatHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_battle_reports",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_battle_client",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_production_capacity",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_strategy_funding",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_specialist_lifecycle",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_local_army",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_surplus_spending",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_engineer_provider",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_target_compatibility",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_recon_client",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_recon_frontier_client",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_g1_trace",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_headless_parallel",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_ab_aggregate",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_ab_campaign",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ReportCommitHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ExecutionContractHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:G1TraceHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:StrategyContractHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:ProductionCapacityHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:LocalArmyContractHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:LocalCrisisContractHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:SurplusSpendingHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:MineInvestmentHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:EngineerProviderHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:NativeMorphHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "java:StrategyNativeHarness",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_feedback_progress_audit",
+        "result": "PASS",
+        "exit": 0
+      },
+      {
+        "step": "py:test_global_strategy_audit",
+        "result": "PASS",
+        "exit": 0
+      }
+    ]
+  },
+  "candidateJarSha256": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a",
+  "frozenGameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "fullMatrixG1FourPath": {
+    "variantCount": 12,
+    "logicalTests": 4,
+    "commandStreamAndLegacyOutcomesEquivalentToTraceOffAndBe7ba94": true,
+    "explicitSidecarFailures": 0,
+    "evidenceDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\final-full-four-path",
+    "chains": {
+      "local_crisis-trace-on": {
+        "rows": 230,
+        "commands": 6,
+        "attempts": 6,
+        "nativeReceipts": 6,
+        "witnesses": {
+          "g1_local_crisis_witness": 3
+        },
+        "traceRows": 230,
+        "rawSha256": "ba50d45e7b1b07e2d7a3776d95c359d3bb11fbea8257ae204ab215df97ebc99c"
+      },
+      "ordinary_production-trace-on": {
+        "rows": 1637,
+        "commands": 78,
+        "attempts": 78,
+        "nativeReceipts": 78,
+        "witnesses": {
+          "g1_production_witness": 39
+        },
+        "traceRows": 1637,
+        "rawSha256": "828456a6674bbee1235d3234524c9689b0c7347e4d6c764f2616195a54d1e8b6"
+      },
+      "recon-trace-on": {
+        "rows": 136,
+        "commands": 1,
+        "attempts": 1,
+        "nativeReceipts": 1,
+        "witnesses": {
+          "g1_recon_witness": 1
+        },
+        "traceRows": 136,
+        "rawSha256": "46e1692bedb18a8c06426ff1cb96edd7bf718540fe87185c240abb01289d0dea"
+      },
+      "strategy_provider-trace-on": {
+        "rows": 645,
+        "commands": 17,
+        "attempts": 17,
+        "nativeReceipts": 17,
+        "witnesses": {
+          "g1_strategy_ready_match_witness": 1,
+          "g1_strategy_mode_evidence_witness": 5
+        },
+        "traceRows": 645,
+        "rawSha256": "05cede76eccd8057416cc44e140dad325df19f38d2dfe5d7f1cc362c520d8c55"
+      }
+    }
+  },
+  "focusedJarIdentityLimitation": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\focused-build-identity-limit.json",
+  "nativeNaturalAcceptance": "NOT_RUN_THIS_G1"
+}

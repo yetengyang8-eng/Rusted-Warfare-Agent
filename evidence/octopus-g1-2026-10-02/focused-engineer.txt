@@ -1,0 +1,2 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+ENGINEER_PROVIDER_TEST_OK checks=61

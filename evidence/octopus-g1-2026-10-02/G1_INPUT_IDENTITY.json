@@ -1,0 +1,46 @@
+{
+  "startingHead": "be7ba9485c9a589483d9a586c4a35a975e061a5b",
+  "branch": "codex/octopus-g1-clock-trace-20261002",
+  "inputDocuments": [
+    {
+      "path": "C:\\Users\\Administrator\\Downloads\\八爪鱼系统_工程语义_v0.1_G0校准版.docx",
+      "sha256": "9fa76aa43a0eb78ed105e8d7eb9c9f2ef1c7e45f8f0f3fcf76d7fac61133f831"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Downloads\\八爪鱼系统_工程迁移梯度_v0.1.docx",
+      "sha256": "19f13480356bc8f3cc14a17abf16af196f5ee5d97389ea7ed2d91a399b0ba613"
+    }
+  ],
+  "protectedFiles": [
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar",
+      "sha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\rw-agent-bootstrap.jar",
+      "sha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\preferences.ini",
+      "sha256": "2299290bcf8edbcedaf11976e52ee70d77a84c1594288f3e9e597d16e551c081"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\parameter.ini",
+      "sha256": "4fa0351cf7c28472fbda04c48522dc2eaa863c854b1c448a1b9125610e49320b"
+    }
+  ],
+  "auditInput": [
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\G0_AUDIT.md",
+      "sha256": "d64ec50c581592d4f720f9bc75db8115ce5a8dc5a3cbb551c5b586f58bd2dcb3"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\SEMANTIC_CROSSWALK.md",
+      "sha256": "81661471d7f73e310f9e62aa9d4f4a06ad0a0fdbc2efd46995a6f781efd200f7"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\notes-time.md",
+      "sha256": "28c54a0a211483c93e2a73458ea3995192f6d5fbbcc156f80ed51b415a4ea1db"
+    }
+  ]
+}

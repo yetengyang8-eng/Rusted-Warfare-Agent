@@ -1,0 +1,13 @@
+{
+  "focusedWholeJarSha256": null,
+  "focusedWholeJarIdentityStatus": "NOT_CAPTURED_BEFORE_FULL_BUILD_OVERWRITE",
+  "focusedClassFiles": 104,
+  "fullClassFiles": 104,
+  "classContentHashesEqual": true,
+  "differentClasses": [],
+  "sourceFreezeManifest": "G:\\deepseek \u5de5\u4f5c\u53f0\\_validation\\octopus-g1-20261002\\final-source-code-hashes-before.json",
+  "fullBuiltJarSha256": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a",
+  "focusedExports": "G:\\deepseek \u5de5\u4f5c\u53f0\\_validation\\octopus-g1-20261002\\final-focused-four-path",
+  "fullExports": "G:\\deepseek \u5de5\u4f5c\u53f0\\_validation\\octopus-g1-20261002\\final-full-four-path",
+  "noRetrospectiveWholeJarAttribution": true
+}

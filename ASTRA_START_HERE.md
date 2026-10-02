@@ -1,5 +1,7 @@
 # Astra Start Here
 
+Latest engineering checkpoint: **Octopus G1**, implementation`5cc3e3f`, branch`codex/octopus-g1-clock-trace-20261002`. Read current state and [G1 handoff](handoff/HANDOFF_Octopus_G1_2026-10-02.md) first; [G2 boundary](project-state/NEXT_STAGE_PLAN.md) is the recommended next breakpoint. Remaining capacity/orientation material is preceding context and does not authorize implementing a different stage.
+
 You are working through GitHub only. Assume you cannot inspect the user's local machine, desktop test folders, or `G:\deepseek 工作台` unless the needed facts have been copied into this repository.
 
 ## First reading pass
@@ -19,7 +21,7 @@ Do not use old root-level Astra mission/review files as current instructions. Th
 
 ## Current engineering state
 
-The active engineering candidate is `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1`, JAR SHA256 `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`, implementation `1264b37` on `codex/production-capacity-v1-20261001`. Its [handoff](handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md) and [manifest](deliveries/production-capacity-2026-10-01/candidate-manifest.json) are the current delivery entries. Previous fixed FEEDBACK-v1 remains frozen with SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
+The preceding engineering candidate was `RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1`, JAR SHA256 `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`, implementation `1264b37` on `codex/production-capacity-v1-20261001`. Its [handoff](handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md) and [manifest](deliveries/production-capacity-2026-10-01/candidate-manifest.json) are the current delivery entries. Previous fixed FEEDBACK-v1 remains frozen with SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`.
 
 The latest user desktop runs show that economy can now grow far beyond the Agent's ability to consume it usefully. Spain reached about 1.32M credits while production and operations remained bounded. The next mainline is therefore production-capacity scaling plus predictable production routes, followed by higher useful parallel operational throughput.
 

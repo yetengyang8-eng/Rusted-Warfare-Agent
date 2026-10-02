@@ -1,0 +1,32 @@
+{
+  "baselineHead": "be7ba9485c9a589483d9a586c4a35a975e061a5b",
+  "baselineJarSha256": "3f890a3f13a16929ec7e4f263cc2eccf270d0e8b49a27f8a99a9cc1b2e1567c6",
+  "initialFull": {
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-full-regression.log",
+    "sha256": "9c81fae3af66baf9fff70f31e756435212cff43b0da3fde6ea34435db7b5b811",
+    "stepCount": 56,
+    "javaRuns": 29,
+    "pythonSuites": 24,
+    "pythonTests": 435,
+    "failedSteps": 1,
+    "failedStep": "java:StrategyNativeHarness",
+    "cause": "Isolated working directory lacked assets/translations/Strings.properties"
+  },
+  "environmentRecheck": {
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-StrategyNativeHarness-environment-recheck.log",
+    "sha256": "b5768400dc7c3ab6d852d2bf16ad8561405acb0a642423ed2a0a42f536f93a78",
+    "result": "PASS",
+    "checks": 51,
+    "evidence": "E2_NATIVE_FIXTURE_NO_SIMULATION_TICKS",
+    "repair": "Copy existing engine assets into isolated baseline-source/assets only; no production edits"
+  },
+  "effectiveMatrix": {
+    "stepCount": 56,
+    "failedSteps": 0
+  },
+  "firstFourPathCapture": {
+    "log": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-four-path.log",
+    "result": "FAILED_NORMALIZATION_ORACLE",
+    "cause": "Baseline repeat ordinary-production requestWallTimeMs differed; later normalizer explicitly excludes this wall diagnostic; final strengthened trace-on/off/pre-G1 comparisons pass"
+  }
+}

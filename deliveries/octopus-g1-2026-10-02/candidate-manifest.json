@@ -1,0 +1,32 @@
+{
+  "baselineBuild": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "sha256": "3f890a3f13a16929ec7e4f263cc2eccf270d0e8b49a27f8a99a9cc1b2e1567c6",
+    "bytes": 317988,
+    "contentDigest": "cdb11872abddb6df1917023b92f851c7b6d39823d324418d3993cf12828c1cba",
+    "entriesExcludingManifest": 106
+  },
+  "installedPreG1Candidate": {
+    "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\rw-agent-bootstrap.jar",
+    "sha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6",
+    "bytes": 317988,
+    "contentDigest": "cdb11872abddb6df1917023b92f851c7b6d39823d324418d3993cf12828c1cba",
+    "entriesExcludingManifest": 106
+  },
+  "baselineContentMatchesInstalledCapacityCandidate": true,
+  "fullRegressionCandidate": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "sha256": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a",
+    "bytes": 336094,
+    "contentDigest": "43da2c441785314a2089f5fab01715103b5d2e82af252fd49daf98e65e1eec13",
+    "entriesExcludingManifest": 112
+  },
+  "contentDigestAlgorithm": "Sorted ZIP entry names plus entry SHA256, directory entries included, META-INF/MANIFEST.MF excluded",
+  "candidateId": "RW-CANDIDATE-2026-10-02-OCTOPUS-G1-v1",
+  "branch": "codex/octopus-g1-clock-trace-20261002",
+  "startingHead": "be7ba9485c9a589483d9a586c4a35a975e061a5b",
+  "implementationCommit": "5cc3e3fa3836f1f82b0db069f86bdbea7fef185c",
+  "status": "G1_VALIDATED_NOT_DEPLOYED",
+  "naturalGame": "NOT_RUN",
+  "desktopInstalled": false
+}

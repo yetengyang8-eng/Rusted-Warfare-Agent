@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "path": "C:\\Users\\Administrator\\Downloads\\八爪鱼系统_工程语义_v0.1_G0校准版.docx",
+      "beforeSha256": "9fa76aa43a0eb78ed105e8d7eb9c9f2ef1c7e45f8f0f3fcf76d7fac61133f831",
+      "afterSha256": "9fa76aa43a0eb78ed105e8d7eb9c9f2ef1c7e45f8f0f3fcf76d7fac61133f831",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Downloads\\八爪鱼系统_工程迁移梯度_v0.1.docx",
+      "beforeSha256": "19f13480356bc8f3cc14a17abf16af196f5ee5d97389ea7ed2d91a399b0ba613",
+      "afterSha256": "19f13480356bc8f3cc14a17abf16af196f5ee5d97389ea7ed2d91a399b0ba613",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar",
+      "beforeSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "afterSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\rw-agent-bootstrap.jar",
+      "beforeSha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6",
+      "afterSha256": "a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\preferences.ini",
+      "beforeSha256": "2299290bcf8edbcedaf11976e52ee70d77a84c1594288f3e9e597d16e551c081",
+      "afterSha256": "2299290bcf8edbcedaf11976e52ee70d77a84c1594288f3e9e597d16e551c081",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\parameter.ini",
+      "beforeSha256": "4fa0351cf7c28472fbda04c48522dc2eaa863c854b1c448a1b9125610e49320b",
+      "afterSha256": "4fa0351cf7c28472fbda04c48522dc2eaa863c854b1c448a1b9125610e49320b",
+      "unchanged": true
+    }
+  ],
+  "allUnchanged": true,
+  "desktopGameControlled": false,
+  "gameSettingsSavesReplaysWritten": false,
+  "buildsAndTestsIsolated": true
+}

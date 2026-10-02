@@ -1,0 +1,104 @@
+{
+  "implementationCommit": "5cc3e3fa3836f1f82b0db069f86bdbea7fef185c",
+  "codeFileHashChecks": 106,
+  "codeMatchesTestedFreeze": true,
+  "markdownLinksChecked": 11,
+  "markdownLinkErrors": [],
+  "files": [
+    {
+      "name": "baseline-initial-regression.txt",
+      "bytes": 413431,
+      "sha256": "9c81fae3af66baf9fff70f31e756435212cff43b0da3fde6ea34435db7b5b811"
+    },
+    {
+      "name": "baseline-native-environment-recheck.txt",
+      "bytes": 27266,
+      "sha256": "b5768400dc7c3ab6d852d2bf16ad8561405acb0a642423ed2a0a42f536f93a78"
+    },
+    {
+      "name": "baseline-validation-helper.json",
+      "bytes": 1521,
+      "sha256": "ce07565131cf884384c9a3120a583ab38c034fa1bc2ef2734e3b18d97f55d19b"
+    },
+    {
+      "name": "final-source-code-hashes-after.json",
+      "bytes": 12060,
+      "sha256": "b6e6b03e8a1b27dc06d656b4b8ffa310a06d19c9039d988d0f55fe10abc5a626"
+    },
+    {
+      "name": "final-source-code-hashes-before.json",
+      "bytes": 12060,
+      "sha256": "b6e6b03e8a1b27dc06d656b4b8ffa310a06d19c9039d988d0f55fe10abc5a626"
+    },
+    {
+      "name": "final-validation-helper.json",
+      "bytes": 8953,
+      "sha256": "fbe73684f1acfd2d9c8e78496f978620544877522c97cdc28950a61e57c18401"
+    },
+    {
+      "name": "focused-build-identity-limit.json",
+      "bytes": 733,
+      "sha256": "8ed3a26bd31f1fdc66fe05397cdfe74d8e9350d02cd2dd3f2e5913976d6cfc63"
+    },
+    {
+      "name": "focused-engineer.txt",
+      "bytes": 145,
+      "sha256": "79c6ce597475846ed893c392c4bb74e2630c408dd6806d4d22774e930b5b2349"
+    },
+    {
+      "name": "focused-four-path.txt",
+      "bytes": 640,
+      "sha256": "50644034b566260902b146ce75b5ea5b03a9fbfd0dffb8f5fd261568e021daa1"
+    },
+    {
+      "name": "focused-GameClock-Trace.txt",
+      "bytes": 161,
+      "sha256": "c405a62020ad5ad0343e7c56a5cd488198d0537d976a15cdddec14f97beb7eac"
+    },
+    {
+      "name": "focused-strategy.txt",
+      "bytes": 146,
+      "sha256": "fa3eb0efd116f707f4ef26b5968c918ac1f5bd7ebfebb747e2ce797b98efa5d9"
+    },
+    {
+      "name": "four-path-equivalence.json",
+      "bytes": 12460,
+      "sha256": "28891e62b038067f89714206180bc97c70825583c795c426d83328bf759f1439"
+    },
+    {
+      "name": "full-windows-regression.txt",
+      "bytes": 438350,
+      "sha256": "a12cce9c14dc27a864c03ba5b0c23cca21518a952f06f24c6994b9c35830788f"
+    },
+    {
+      "name": "G1_INPUT_IDENTITY.json",
+      "bytes": 2026,
+      "sha256": "85da86685e25d277b5fa9abb9a98e800cc12583df3dbd89a10556f25ab1b34bb"
+    },
+    {
+      "name": "jar-identities.json",
+      "bytes": 1370,
+      "sha256": "66c076f1d608d4acfd7de8b0e56ee64bd2ebfec7b7cabc011860dbe26a09d28d"
+    },
+    {
+      "name": "policy-preservation-checks.json",
+      "bytes": 2068,
+      "sha256": "596088fceb70de5537354b9cbe54bf0e5446ac2236a13304d04af89714bfa543"
+    },
+    {
+      "name": "PROTECTED_FINAL_VERIFICATION.json",
+      "bytes": 2163,
+      "sha256": "d6919e7f8ede1946aa509f484f289f32a61c7c8dea7b885133c079625ba1c8cb"
+    },
+    {
+      "name": "README.md",
+      "bytes": 3742,
+      "sha256": "dd534a97d3f9c5bc519dc70a4185e053a126ee8533e3f19ec4ac1ddef064d64e"
+    },
+    {
+      "name": "trace-chain-examples.json",
+      "bytes": 266076,
+      "sha256": "782608aeafab3a259d3042ab9fa903607d995028bb1ebb6d046ba9386950e351"
+    }
+  ]
+}

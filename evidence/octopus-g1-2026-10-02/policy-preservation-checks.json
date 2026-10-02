@@ -1,0 +1,63 @@
+{
+  "startingHead": "be7ba94",
+  "battleLoopIncludingLaneOrderDecisionGateAndPollUnchanged": true,
+  "unchangedMechanisms": [
+    {
+      "path": "agent/src/io/rwagent/client/CommandArbiter.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MoveExecution.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalArmyDirector.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalCrisisPolicy.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionCapacity.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionRoute.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MineInvestmentPolicy.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SurplusSpendingPolicy.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RuntimeBridge.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/EconomyBridge.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/GuardBridge.java",
+      "normalizedSourceUnchanged": true
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/TerrainSemantics.java",
+      "normalizedSourceUnchanged": true
+    }
+  ],
+  "reviewNote": "Trace fields are observational only; deterministic four-path equivalence tests verify remaining integration. Source equality does not establish identical wall-time cost."
+}

@@ -1,65 +1,36 @@
 # Current State
 
-Updated: 2026-10-02 (Asia/Shanghai), closing the2026-10-01 capacity round. This file describes **now**, not project history.
+Updated: 2026-10-02 (Asia/Shanghai). Current engineering breakpoint is Octopus G1, not a new war strategy.
 
-## Lineage
+## Current identity
 
-- Frozen baseline: `RW-BASELINE-2026-09-30-GS-v1` (`6214868`). Keep for lineage; do not reset current source to it.
-- This round started at verified HEAD `51af35dd3a01f82a5f490a486646dbf06b7ec3cb` with a clean tree; no reset was performed.
-- Active engineering candidate: **RW-CANDIDATE-2026-10-01-PRODUCTION-CAPACITY-v1** on `codex/production-capacity-v1-20261001`.
-- Production implementation and tests: `1264b379752ca4fc3a433f0ab19d2d3ae7582cb6`; candidate/evidence delivery: `a5caf79602947a3ca0acf48d696fa42a28781e73`.
-- Candidate JAR SHA256: `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`.
-- Previous fixed candidate **RW-CANDIDATE-2026-10-01-FEEDBACK-v1** remains frozen, SHA256 `0116e7c67f6fbd778d6956a9770205b31a458365c196d4063caa625f643c0cc7`. Its implementation remains `f5b1709` plus `5020820`, delivery `590030d`.
-- Frozen `game-lib.jar` SHA256: `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9`.
+- Branch: `codex/octopus-g1-clock-trace-20261002`, started from clean `be7ba9485c9a589483d9a586c4a35a975e061a5b`.
+- Implementation: `5cc3e3fa3836f1f82b0db069f86bdbea7fef185c`.
+- Candidate: **RW-CANDIDATE-2026-10-02-OCTOPUS-G1-v1**, validated in isolation, **NOT DEPLOYED**.
+- Full-matrix JAR SHA256: `ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a`; contentDigest: `43da2c441785314a2089f5fab01715103b5d2e82af252fd49daf98e65e1eec13`.
+- Previous production-capacity candidate remains frozen: JAR `a392f692e010c8429a7a93072e60323c83a9deb1ed471bbcbddbd3bbbaf6adb6`, implementation1264b37, deliverya5caf79/be7ba94. Desktop remains this previous JAR.
+- Frozen baseline `RW-BASELINE-2026-09-30-GS-v1` and game-lib SHA `8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9` remain lineage; source drift does not authorize reset.
 
-## What FEEDBACK-v1 added
+## What G1 changed
 
-- Rear engineer providers for weapon-domain gaps; native-priced amphibiousJet production, legal-water approach, Dive/Fly mode handling, and current actor/target compatibility checks.
-- Local T2/T3 mine investment using local threat, quiet windows, native quotes, reserves and remaining-payback budget.
-- `LocalCrisisPolicy`: bounded 2–6-unit responses to small visible raids near mines/base, with ownership and return lifecycle.
-- Cohort fairness scheduling and diagnostics while preserving the shared command gate.
-- Inherited Operations behavior: missing-builder bootstrap, up to four local cohorts, independent local targets/frontiers, bounded surplus heavyArtillery.
+GameClock and Trace describe endpoint source time/frame/session/player, independent observation IDs, wall read intervals, the latest-state detection anchor, command attempts/admission/native receipts and later witnesses. Missing source time remains UNKNOWN/null. A snapshot detection time is never claimed as exact event occurrence.
 
-Windows development matrix for the fixed candidate was 54/54 effective steps, 28 Java runs, 23 Python suites, 420 distinct Python tests, 0 Python skipped/failed after affected recheck. Synthetic/native-fixture evidence remains distinct from natural desktop evidence.
-## Latest user desktop acceptance
+Recon, LocalCrisis, existing engineer/amphibious providers and ordinary production now have representative linked traces. Task/need/paid commitment identity and state changes are observational. Ready matching records ambiguity without changing its first-match choice; queue empty is not product ready; the legacy DIVE label is not actual native mode proof.
 
-A fresh independent FEEDBACK-v1 desktop environment was tested after the candidate delivery. Both runs used the fixed JAR above and ended `PARTIAL / ONGOING` at the requested budget.
+No WorldState/event adapter, generation, FREE/General, Intent queue/scheduler, accumulated command budget, batch credit/slot transaction or new Capability behavior was implemented. Existing builder recovery, bounded cohorts, crisis return, Recon takeover, provider funding/paid ghost, mine investment, artillery and production-capacity strategy remain. Main lane order and decision/poll logic are unchanged; 14 key mechanism files including the command gate and bridges match be7ba94.
 
-### Spain long run — ~4801.6 game seconds
+## Fresh validation and limitations
 
-- Final credits: **1,321,176**; recorded spend: **479,600**.
-- 13 new mines; 54 observed mine upgrades = **31 T2 + 23 T3**; 14 ready mines at end.
-- 81 mobile armed units at end; 283 own losses, including 184 heavyTank and 22 builder.
-- 43 local-crisis tasks; 423 LocalArmy accepted orders; 287 fairness grants; max four cohorts.
-- 4 rear-provider amphibious jets constructed/ready/transferred; no Dive because relevant underwater targets were not legally current-visible.
-- 23 surplus heavyArtillery purchases/products.
+**Final full Windows: 58/58 steps,30 Java runs,25 Python suites/439 tests,failed steps:0,exit0.** Four deterministic HTTP paths compare the exact final JAR Trace on/off with immutable be7ba94: all wire commands and legacy event/data/outcomes equal. Sidecar failures0;106 source/test/runner hashes unchanged during testing. NativeMorph102 and StrategyNative51 are native fixtures, not autonomous matches.
 
-### Big Island — ~2402.4 game seconds
+The initial immutable baseline lacked local assets for StrategyNative;55/56 initially, then51 native checks after isolated environment repair -> effective56/56. This failure and an early wall-field normalization failure are retained. Focused whole-JAR identity was not captured before rebuild;104 retained class hashes equal final classes, and the exact final JAR was independently retested in the full matrix.
 
-- Final credits: **401,708**.
-- 23 mine upgrades = **13 T2 + 10 T3**.
-- 66 mobile armed units at end; 47 own losses.
-- 26 local-crisis tasks; 295 LocalArmy orders; 81 fairness grants.
-- 6 provider jets produced/transferred; 3 Dive commands accepted; 1 jet was observed WATER/range100/COMPATIBLE and received response orders; target HP later changed 260→170 with attribution explicitly recorded as team damage.
+Natural game/headless match/desktop G1 acceptance: **NOT_RUN**. JSON/flush adds wall cost; deterministic equality does not prove identical natural polling. Fixture export volume is about2.25–3.01 times trace-off. Trace-off suppresses output but does not promise zero optional Strategy allocation overhead.
 
-Full remote-readable interpretation is in `ASTRA_CONTEXT.md`; structured desktop evidence is in `../evidence/desktop-feedback-2026-10-01/`.
+G0 also found a newer local Spain4800.845s derived summary for the previous a392 candidate (the older repository statement that it had no desktop sample was stale). That evidence remains previous-candidate context, was not rerun or independently rescanned as raw by G1, and provides no G1 acceptance.
 
-## Current bottleneck
+## Next authorized interface boundary
 
-Production Capacity v1 now distinguishes strategic military slots from hard safety capacity and producer throughput. It extends the existing controllers: sustained fresh native-compatible demand, surplus and safe reserves can add at most8 military slots per150s window; free military slots plus at least80% producer utilization can commit one extra factory through the existing BuildJob. Native action, price, reserves, recovery and hard cap are rechecked before unpaid construction. Idle producers with free slots remain UNKNOWN.
+The recommended next engineering breakpoint is **G2 WorldState + Event Adapter** with validated raw response plus immutable Observation identity, initially read-only/double-write equality. Source authority/freshness, reset/rollback/gap/ordering and UNKNOWN must be explicit. G3 ownership generations/bandwidth/credits/scheduler and G3.5 Capability pilot remain separate future work.
 
-Spain self-lock diagnosis is **partially correct**. Source permits the96-policy-target /128-hard-cap lock, but exported Spain samples were at the policy target for only47.720 sampled game seconds and never at hard cap. Most samples still had slots available, so this mechanism cannot explain most accumulated cash. Scheduler/refill latency remains an unproven follow-up.
-
-The new candidate has one isolated native Big Island `PASS / VICTORY` at594.272 Battle game seconds. Military-capacity increases and producer-target increases were both0; natural capacity scaling has not been demonstrated. Deterministic HTTP fixtures prove bounded military release/restarted production and factory target2→3→one accepted build→ready→after-window. The candidate has **no desktop Spain acceptance** and was not installed into the user's game.
-
-The [current handoff](../handoff/HANDOFF_Codex_ProductionCapacity_v1_2026-10-01.md), [validation results](../evidence/production-capacity-2026-10-01/validation-results.json), and [delivery manifest](../deliveries/production-capacity-2026-10-01/candidate-manifest.json) carry exact artifact and regression provenance. Earlier FEEDBACK desktop facts above remain historical evidence for that fixed JAR.
-
-Final Windows regression: **56/56 steps**,29 Java harness runs,24 Python suites /435 tests, explicit `failed steps: 0`. The earlier fixture/LocalArmy/environment failures and repairs are retained in evidence; the Windows-only skipped POSIX report-commit displacement simulation is identified.
-
-The Agent is still constrained by **converting a growing economy into useful production throughput and concurrently controlled military power**.
-
-Current mainline objective:
-
-`economy growth → production capacity → predictable/interchangeable production routes → military delivery → parallel operations → map control → further economy growth`
-
-Do not treat the old Global Strategy or Operations next-step lists as the current overall priority. See `NEXT_STAGE_PLAN.md`.
+[Handoff](../handoff/HANDOFF_Octopus_G1_2026-10-02.md), [Trace contract](../docs/OCTOPUS_G1_TRACE.md), [fresh evidence](../evidence/octopus-g1-2026-10-02/README.md), [manifest](../deliveries/octopus-g1-2026-10-02/candidate-manifest.json). Historical strategy/capacity context is available at be7ba94 and the retained capacity handoff; do not reimplement G1 from an older copy.

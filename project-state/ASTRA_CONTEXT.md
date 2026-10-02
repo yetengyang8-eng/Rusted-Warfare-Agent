@@ -1,4 +1,12 @@
-# Astra Context — 2026-10-01
+# Astra Context — Octopus G1 2026-10-02
+
+Current engineering candidate: RW-CANDIDATE-2026-10-02-OCTOPUS-G1-v1, implementation5cc3e3f on codex/octopus-g1-clock-trace-20261002 from be7ba94. Full Windows58/58,30Java,25Python/439tests,failedsteps0. Four HTTP paths prove deterministic command/legacy equality; no natural G1 game or desktop deployment. JAR SHA ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a.
+
+Read CURRENT_STATE.md, NEXT_STAGE_PLAN.md, ../handoff/HANDOFF_Octopus_G1_2026-10-02.md and ../docs/OCTOPUS_G1_TRACE.md first. G2 is the next proposed interface breakpoint; G3/G3.5 and new war behaviors remain future stages.
+
+The remainder is the preceding capacity context preserved for interpretation, not current G1 identity. G0 subsequently found a local a392 Spain4800.845-second derived sample; earlier no-desktop wording below is historical and not a current absence claim. G1 did not rerun or rescan that natural raw.
+
+# Earlier capacity context — frozen 2026-10-01
 
 This file exists because remote Astra cannot access the user's local workspace. It contains the latest desktop acceptance facts and the engineering direction that have not existed in older GitHub-only handoffs.
 

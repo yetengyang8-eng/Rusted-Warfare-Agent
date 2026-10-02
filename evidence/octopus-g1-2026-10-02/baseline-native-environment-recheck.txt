@@ -1,0 +1,168 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 16:28:24.304: GameEngine:GameEngine()
+2026-10-02 16:28:24.308: Created new gameEngine of:com.corrodinggames.rts.game.i
+2026-10-02 16:28:24.308: --- ----------------- ----
+2026-10-02 16:28:24.308: --- GameEngine:init() ----
+2026-10-02 16:28:24.308: --- ----------------- ----
+2026-10-02 16:28:24.310: Version:v1.15
+2026-10-02 16:28:24.316: ------- createIndex -------
+2026-10-02 16:28:24.316: c:
+2026-10-02 16:28:24.318: densityScaleRaw*densityScaleMultiplier: 1.0
+2026-10-02 16:28:24.319: packageName:dedicatedServer
+2026-10-02 16:28:24.325: slickToAndroidCodes: Could not find keycode for: NUMLOCK, RWIN, CONVERT, STOP, AX, UNDERLINE, DELETE, NOCONVERT, APPS, DECIMAL, SCROLL, END, KANJI, NUMPADDECIMAL, LWIN, CIRCUMFLEX, UNLABELED, F14, F13, COLON, F15, CAPITAL, 
+2026-10-02 16:28:24.325: gdxToAndroidCodes: Could not find keycode for: END, META_ALT_LEFT_ON, COLON, ANY_KEY, META_SHIFT_RIGHT_ON, 
+2026-10-02 16:28:24.325: gdxToSlickCodes: Could not find keycode for: MEDIA_REWIND, MEDIA_PLAY_PAUSE, BUTTON_SELECT, CENTER, BUTTON_X, BUTTON_Z, BUTTON_Y, MEDIA_PREVIOUS, SWITCH_CHARSET, SEARCH, META_ALT_ON, CAMERA, SHIFT_LEFT, BUTTON_START, MUTE, CALL, PICTSYMBOLS, FOCUS, VOLUME_DOWN, ENVELOPE, BUTTON_L2, BUTTON_L1, META_SHIFT_ON, NUM, SOFT_RIGHT, NOTIFICATION, STAR, MENU, DPAD_CENTER, BUTTON_R2, BUTTON_R1, BUTTON_THUMBL, MEDIA_FAST_FORWARD, BUTTON_THUMBR, EXPLORER, BACKSPACE, ENDCALL, FORWARD_DEL, BUTTON_MODE, SYM, SOFT_LEFT, PLUS, MEDIA_NEXT, META_ALT_LEFT_ON, MEDIA_STOP, VOLUME_UP, POUND, META_SHIFT_LEFT_ON, DEL, ANY_KEY, BUTTON_C, SHIFT_RIGHT, BUTTON_B, BUTTON_A, HEADSETHOOK, META_SHIFT_RIGHT_ON, UNKNOWN, CLEAR, 
+2026-10-02 16:28:24.326: getControllerCount:0
+2026-10-02 16:28:24.329: densityScale(): 1.0
+2026-10-02 16:28:24.331: Locale: default targetLocale:zh_CN
+2026-10-02 16:28:24.332: Locale: default targetLocale ISO3:zho
+2026-10-02 16:28:24.340: Locale: Using Strings_zh_cn.properties as locale
+2026-10-02 16:28:24.353: Locale.init took:10.673ms
+2026-10-02 16:28:24.381: AudioEngine took:1.232ms
+2026-10-02 16:28:24.386: We have an initial screen size, can do early setup of image buffers
+2026-10-02 16:28:24.386: Density size changed now: 1.0, refreshing fonts
+2026-10-02 16:28:24.391: Creating minimap image buffers..
+2026-10-02 16:28:24.394: PathEngine:We have 20 cores, creating extra solvers
+2026-10-02 16:28:24.404: smallTextPaint size: 12.0
+2026-10-02 16:28:24.413: disabledSteam - loadWorkshopMods
+2026-10-02 16:28:24.420: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-02 16:28:24.420: Modded Custom '/SD/mods/units' directory not found
+2026-10-02 16:28:24.420: loading mod custom units at:builtin_mods
+2026-10-02 16:28:24.427: openAssetCached: Cache miss for: builtin_mods/mega_builders/mod-info.txt
+2026-10-02 16:28:24.428: openAssetCached: Reading: builtin_mods/mega_builders/mod-info.txt
+2026-10-02 16:28:24.431: Wrote cache file at: G:\deepseek 工作台\_validation\octopus-g1-20261002\baseline-source\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.data
+2026-10-02 16:28:24.432: Wrote cache file at: G:\deepseek 工作台\_validation\octopus-g1-20261002\baseline-source\cache\mods-info.cachedata\builtin_mods%47mega_builders%47mod-info.txt.meta
+2026-10-02 16:28:24.435: loading mod custom units at:builtin_mods_enabled
+2026-10-02 16:28:24.435: ========= Mods ===========
+2026-10-02 16:28:24.435: Number of mods:1
+2026-10-02 16:28:24.435: Mod: 'Mega Builders
+2026-10-02 16:28:24.436: ================================
+2026-10-02 16:28:24.436: Disabling all new mods for first/new load
+2026-10-02 16:28:24.436: Loading mod selection
+2026-10-02 16:28:24.440: smoothFog load took:0.884ms
+2026-10-02 16:28:24.451: loadAllUnits took:9.717ms
+2026-10-02 16:28:24.451: disabledSteam - loadWorkshopMods
+2026-10-02 16:28:24.451: FileLoader: isDirectory: file doesn't exist:mods/units
+2026-10-02 16:28:24.451: Modded Custom '/SD/mods/units' directory not found
+2026-10-02 16:28:24.452: loading mod custom units at:builtin_mods
+2026-10-02 16:28:24.453: loading mod custom units at:builtin_mods_enabled
+2026-10-02 16:28:24.453: ========= Mods ===========
+2026-10-02 16:28:24.453: Number of mods:1
+2026-10-02 16:28:24.453: Mod: 'Mega Builders
+2026-10-02 16:28:24.453: ================================
+2026-10-02 16:28:24.673: Setting missingPlaceHolder
+2026-10-02 16:28:24.781: ==Timing==
+2026-10-02 16:28:24.781: imageLoad: 2.294ms
+2026-10-02 16:28:24.781: imageLoadOrGet: 43.878ms
+2026-10-02 16:28:24.781: soundLoad: 0ms
+2026-10-02 16:28:24.781: soundLoadOrGet: 0.170ms
+2026-10-02 16:28:24.781: iniParse: 35.369ms
+2026-10-02 16:28:24.781: unitParse: 254.937ms
+2026-10-02 16:28:24.781: iniOpen: 14.591ms
+2026-10-02 16:28:24.781: iniClose: 0.668ms
+2026-10-02 16:28:24.781: iniSetup: 19.858ms
+2026-10-02 16:28:24.781: actionParse: 51.463ms
+2026-10-02 16:28:24.782: unitParsePartA: 136.116ms
+2026-10-02 16:28:24.782: unitParsePartB: 159.415ms
+2026-10-02 16:28:24.782: unitParsePartC: 227.014ms
+2026-10-02 16:28:24.782: unitParsePartD: 231.570ms
+2026-10-02 16:28:24.782: enableAll: 
+2026-10-02 16:28:24.803: Done loading custom units. image cacheHits:402 image cacheMisses:305 (in: 348.96268ms)
+2026-10-02 16:28:24.803: ========= Mods data loaded ===========
+2026-10-02 16:28:24.803: Number of mods:1
+2026-10-02 16:28:24.804: Mod: 'Mega Builders' - Memory use:0.00 mb  (disabled)
+2026-10-02 16:28:24.804: ================================
+2026-10-02 16:28:24.833: CustomUnits took:381.498ms
+2026-10-02 16:28:24.833: isOverLiquid called without map loaded
+2026-10-02 16:28:24.833: isOverLiquid called without map loaded
+2026-10-02 16:28:24.833: isOverLiquid called without map loaded
+2026-10-02 16:28:24.833: isOverLiquid called without map loaded
+2026-10-02 16:28:24.834: allUnitsChecksum took:0.532ms
+2026-10-02 16:28:24.848: Init completed
+2026-10-02 16:28:24.848: Loading took:532.505ms
+2026-10-02 16:28:24.857: --- setStoppedIfNotInGameThread ---
+2026-10-02 16:28:24.857: --- setStopped ---
+2026-10-02 16:28:24.857: gameThread already null
+2026-10-02 16:28:24.858: Music:pause()
+2026-10-02 16:28:24.873: enableAll: 
+2026-10-02 16:28:24.873: Music:pause() synchronized
+2026-10-02 16:28:24.881:  --- Loading map ---
+2026-10-02 16:28:24.881: Mapfile: assets/maps/menu_background/menu1.tmx
+2026-10-02 16:28:24.882: ---- Loading map data ----
+2026-10-02 16:28:24.936: Map size: 160, 160
+2026-10-02 16:28:24.937: Setting up team fog..
+2026-10-02 16:28:24.964: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-02 16:28:24.964: FileLoader: Could not find asset:assets/tilesets/../../decoration.tsx
+2026-10-02 16:28:24.964: FileLoader: Could not find asset:assets/tilesets/../decoration.tsx
+2026-10-02 16:28:24.967: MapLayer create: Ground
+2026-10-02 16:28:24.972: MapLayer create: Items
+2026-10-02 16:28:24.975: MapLayer create: Units
+2026-10-02 16:28:24.982: Map type: mission
+2026-10-02 16:28:24.986: Found 13 map triggers
+2026-10-02 16:28:24.987: global Seed: 430147872
+2026-10-02 16:28:24.987: getMapLevel for :maps/menu_background/menu1.tmx file:menu1.tmx
+2026-10-02 16:28:24.987: StateEngine: get(maps/menu_background/menu1.tmx)=null  (key=maps/menu_background/menu1.tmx)
+2026-10-02 16:28:24.987: PathEngine: Setting up map costs
+2026-10-02 16:28:25.019: PathEngine: Ready
+2026-10-02 16:28:25.020: selectAnyOnScreenBuilder: found builder
+2026-10-02 16:28:25.128: loadAMenuMap took:278.654ms
+2026-10-02 16:28:25.128: --- setStoppedIfNotInGameThread ---
+2026-10-02 16:28:25.128: --- setStopped ---
+2026-10-02 16:28:25.128: gameThread already null
+2026-10-02 16:28:25.145: enableAll: 
+2026-10-02 16:28:25.150: Team(id: 0, name:null):Being replaced
+2026-10-02 16:28:25.150: Team(id: 1, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 2, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 3, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 4, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 5, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 6, name:null):Being replaced
+2026-10-02 16:28:25.151: Team(id: 7, name:null):Being replaced
+2026-10-02 16:28:25.152:  --- Loading map ---
+2026-10-02 16:28:25.152: Mapfile: assets/maps/skirmish/[p2]Big Island (2p).tmx
+2026-10-02 16:28:25.152: ---- Loading map data ----
+2026-10-02 16:28:25.154: Map size: 180, 180
+2026-10-02 16:28:25.154: Setting up team fog..
+2026-10-02 16:28:25.171: MapLayer create: Ground
+2026-10-02 16:28:25.173: MapLayer create: Items
+2026-10-02 16:28:25.175: MapLayer create: Units
+2026-10-02 16:28:25.179: Map type: skirmish
+2026-10-02 16:28:25.179: Found 0 map triggers
+2026-10-02 16:28:25.179: global Seed: 165490820
+2026-10-02 16:28:25.179: there are 4 units on this map and 196 trees
+2026-10-02 16:28:25.179: getMapLevel for :maps/skirmish/[p2]Big Island (2p).tmx file:[p2]Big Island (2p).tmx
+2026-10-02 16:28:25.179: StateEngine: get(maps/skirmish/[p2]Big Island (2p).tmx)=null  (key=maps/skirmish/[p2]Big Island (2p).tmx)
+2026-10-02 16:28:25.179: PathEngine: Setting up map costs
+2026-10-02 16:28:25.195: PathEngine: Ready
+2026-10-02 16:28:25.195: selectAnyOnScreenBuilder: found builder
+2026-10-02 16:28:25.197: Building smoothFog_cache
+2026-10-02 16:28:25.198: Saving settings to: G:\deepseek 工作台\_validation\octopus-g1-20261002\baseline-source\preferences.ini
+2026-10-02 16:28:25.842 [RW-Agent] Local Agent API ready at http://127.0.0.1:47659
+2026-10-02 16:28:25.851 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"3f890a3f13a16929ec7e4f263cc2eccf270d0e8b49a27f8a99a9cc1b2e1567c6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+NATIVE_STRATEGY_E2 /health {"status":"ok","version":"0.07-alpha1","port":47659,"strategyContractVersion":1,"allowCommands":true,"provenance":{"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"3f890a3f13a16929ec7e4f263cc2eccf270d0e8b49a27f8a99a9cc1b2e1567c6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\baseline-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}}
+NATIVE_STRATEGY_E2 /state {"status":"running","schemaVersion":1,"sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","map":{"width":3600.000,"height":3600.000,"tilesWide":180,"tilesHigh":180,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"Player","credits":20000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":9001,"type":"heavyTank","x":450.000,"y":350.000,"hp":600.000,"maxHp":600.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":true,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":9002,"type":"combatEngineer","x":450.000,"y":350.000,"hp":1000.000,"maxHp":1000.000,"buildProgress":1.0,"productionQueue":0,"dead":false,"mobile":true,"canAttack":true,"building":false,"techLevel":2,"orderType":null,"guardTargetId":null},{"id":9003,"type":"extractorT1","x":410.000,"y":790.000,"hp":800.000,"maxHp":800.000,"buildProgress":1.0,"productionQueue":0,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+NATIVE_STRATEGY_E2 /combat/observe {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","frame":0,"gameTimeMs":0,"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"catalogSha256":"263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236","catalogGameJarMatched":true,"visibleEnemies":[{"id":9230,"x":290.000,"y":70.000,"hp":1000.000,"building":true,"canAttack":false,"type":"seaFactory","lastSeenGameTimeMs":0,"targetDomain":"SURFACE","touchingWater":true,"domainObservedAtGameTimeMs":0,"domainSourceId":"native:am.i/Q/cH_after_legal_visibility"}],"rememberedEnemies":[{"id":9230,"x":290.000,"y":70.000,"hp":1000.000,"building":true,"canAttack":false,"type":"seaFactory","lastSeenGameTimeMs":0,"targetDomain":"SURFACE","touchingWater":true,"domainObservedAtGameTimeMs":0,"domainSourceId":"native:am.i/Q/cH_after_legal_visibility"}],"enemyIntel":[{"id":9230,"lastKnownType":"seaFactory","status":"VISIBLE","firstSeenGameTimeMs":0,"lastSeenGameTimeMs":0,"lastKnownX":290.000,"lastKnownY":70.000,"lastKnownHp":1000.000,"lastKnownBuilding":true,"lastKnownCanAttack":false,"lastKnownSiteVisible":true,"clearedGameTimeMs":null}],"enemyIntelVisible":1,"enemyIntelLostContact":0,"enemyIntelCleared":0,"enemyIntelEvicted":0}
+NATIVE_STRATEGY_E2 /combat/engagement?unitIds=9001,9002&targetId=9230 {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","player":0,"frame":0,"gameTimeMs":0,"targetId":9230,"targetX":290.000,"targetY":70.000,"targetObservedAtGameTimeMs":0,"targetVisible":true,"source":"LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY","scope":"APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF","actors":[{"unitId":9001,"unitType":"heavyTank","movementType":"LAND","weaponRange":160.000,"compatibility":"COMPATIBLE","status":"BLOCKED_TERRAIN","reason":"NO_APPROACH_EVEN_WITH_UNKNOWN_TERRAIN_PASSABLE","requiresWaterPosition":false,"lastKnownPositionApproachStatus":"BLOCKED_TERRAIN","approachX":450.000,"approachY":350.000,"distanceTiles":-1},{"unitId":9002,"unitType":"combatEngineer","movementType":"HOVER","weaponRange":170.000,"compatibility":"COMPATIBLE","status":"APPROACH_PATH_KNOWN","reason":"LEGAL_TERRAIN_ROUTE_NOT_FIRE_PROOF","requiresWaterPosition":false,"lastKnownPositionApproachStatus":"APPROACH_PATH_KNOWN","approachX":370.000,"approachY":190.000,"distanceTiles":12}]}
+NATIVE_STRATEGY_E2 /combat/observe {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","frame":0,"gameTimeMs":1000,"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"catalogSha256":"263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236","catalogGameJarMatched":true,"visibleEnemies":[{"id":9230,"x":410.000,"y":170.000,"hp":1000.000,"building":true,"canAttack":false,"type":"seaFactory","lastSeenGameTimeMs":1000,"targetDomain":"SURFACE","touchingWater":true,"domainObservedAtGameTimeMs":1000,"domainSourceId":"native:am.i/Q/cH_after_legal_visibility"}],"rememberedEnemies":[{"id":9230,"x":410.000,"y":170.000,"hp":1000.000,"building":true,"canAttack":false,"type":"seaFactory","lastSeenGameTimeMs":1000,"targetDomain":"SURFACE","touchingWater":true,"domainObservedAtGameTimeMs":1000,"domainSourceId":"native:am.i/Q/cH_after_legal_visibility"}],"enemyIntel":[{"id":9230,"lastKnownType":"seaFactory","status":"VISIBLE","firstSeenGameTimeMs":0,"lastSeenGameTimeMs":1000,"lastKnownX":410.000,"lastKnownY":170.000,"lastKnownHp":1000.000,"lastKnownBuilding":true,"lastKnownCanAttack":false,"lastKnownSiteVisible":true,"clearedGameTimeMs":null}],"enemyIntelVisible":1,"enemyIntelLostContact":0,"enemyIntelCleared":0,"enemyIntelEvicted":0}
+NATIVE_STRATEGY_E2 /combat/engagement?unitIds=9001&targetId=9230 {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","player":0,"frame":0,"gameTimeMs":1000,"targetId":9230,"targetX":410.000,"targetY":170.000,"targetObservedAtGameTimeMs":1000,"targetVisible":true,"source":"LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY","scope":"APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF","actors":[{"unitId":9001,"unitType":"heavyTank","movementType":"LAND","weaponRange":160.000,"compatibility":"COMPATIBLE","status":"APPROACH_PATH_KNOWN","reason":"LEGAL_TERRAIN_ROUTE_NOT_FIRE_PROOF","requiresWaterPosition":false,"lastKnownPositionApproachStatus":"APPROACH_PATH_KNOWN","approachX":450.000,"approachY":290.000,"distanceTiles":3}]}
+NATIVE_STRATEGY_E2 /combat/observe {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","frame":0,"gameTimeMs":2000,"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"catalogSha256":"263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236","catalogGameJarMatched":true,"visibleEnemies":[],"rememberedEnemies":[{"id":9230,"x":410.000,"y":170.000,"hp":1000.000,"building":true,"canAttack":false,"type":"seaFactory","lastSeenGameTimeMs":1000,"targetDomain":"SURFACE","touchingWater":true,"domainObservedAtGameTimeMs":1000,"domainSourceId":"native:am.i/Q/cH_after_legal_visibility"}],"enemyIntel":[{"id":9230,"lastKnownType":"seaFactory","status":"LOST_CONTACT","firstSeenGameTimeMs":0,"lastSeenGameTimeMs":1000,"lastKnownX":410.000,"lastKnownY":170.000,"lastKnownHp":1000.000,"lastKnownBuilding":true,"lastKnownCanAttack":false,"lastKnownSiteVisible":false,"clearedGameTimeMs":null}],"enemyIntelVisible":0,"enemyIntelLostContact":1,"enemyIntelCleared":0,"enemyIntelEvicted":0}
+NATIVE_STRATEGY_E2 /combat/engagement?unitIds=9001&targetId=9230 {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","player":0,"frame":0,"gameTimeMs":2000,"targetId":9230,"targetX":410.000,"targetY":170.000,"targetObservedAtGameTimeMs":1000,"targetVisible":false,"source":"LEGAL_TERRAIN_MEMORY_AND_OWN_NATIVE_CAPABILITY","scope":"APPROACH_ONLY_NOT_FIRE_OR_KILL_PROOF","actors":[{"unitId":9001,"unitType":"heavyTank","movementType":"LAND","weaponRange":160.000,"compatibility":"UNKNOWN","status":"UNKNOWN","reason":"TARGET_NOT_CURRENTLY_VISIBLE","requiresWaterPosition":false,"lastKnownPositionApproachStatus":"APPROACH_PATH_KNOWN","approachX":450.000,"approachY":290.000,"distanceTiles":3}]}
+NATIVE_STRATEGY_E2 /combat/engagement?unitIds=9230&targetId=9230 {"status":"error","message":"completed own armed mobile required"}
+NATIVE_STRATEGY_E2 /economy/investments {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","gameTimeMs":2000,"units":[{"id":9003,"type":"extractorT1","queue":0,"actionId":"extractorT2_0","product":"extractorT2","cost":1400,"affordable":true}]}
+NATIVE_STRATEGY_E2 /economy/builder-actions?unitId=9002 {"status":"planned","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","unitId":9002,"unitType":"combatEngineer","actions":[{"class":"m","type":"upgrade","actionId":"ActionId(c_2)","cost":0,"available":true,"affordable":true,"buildAction":false,"recoveryCandidate":false},{"class":"v","type":"heavyTank","actionId":"ActionId(b_heavyTank)","cost":800,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"amphibiousJet","actionId":"ActionId(b_amphibiousJet)","cost":2000,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"builder","actionId":"ActionId(b_builder)","cost":500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"extractorT1","actionId":"ActionId(b_extractorT1)","cost":700,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"extractorT2","actionId":"ActionId(b_extractorT2)","cost":2100,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"c_turret_t2_gun","actionId":"ActionId(b_c_turret_t2_gun)","cost":1500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"c_turret_t1","actionId":"ActionId(b_c_turret_t1)","cost":500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"c_turret_t1_lightning","actionId":"ActionId(b_c_turret_t1_lightning)","cost":2700,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"c_antiAirTurret","actionId":"ActionId(b_c_antiAirTurret)","cost":600,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"landFactory","actionId":"ActionId(ActionId(b_landFactory)_2)","cost":2700,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"airFactory","actionId":"ActionId(ActionId(b_airFactory)_2)","cost":2500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"mechFactoryT2","actionId":"ActionId(b_mechFactoryT2)","cost":5000,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"seaFactory","actionId":"ActionId(ActionId(b_seaFactory)_2)","cost":3000,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"fabricatorT1","actionId":"ActionId(b_fabricatorT1)","cost":2200,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"repairbay","actionId":"ActionId(b_repairbay)","cost":1500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"laserDefence","actionId":"ActionId(b_laserDefence)","cost":1200,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"outpostT1","actionId":"ActionId(b_outpostT1)","cost":1500,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"experimentalLandFactory","actionId":"ActionId(b_experimentalLandFactory)","cost":11000,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"antiNukeLauncherC","actionId":"ActionId(b_antiNukeLauncherC)","cost":15000,"available":true,"affordable":true,"buildAction":true,"recoveryCandidate":true},{"class":"v","type":"nukeLauncherC","actionId":"ActionId(b_nukeLauncherC)","cost":45000,"available":true,"affordable":false,"buildAction":true,"recoveryCandidate":true}],"actionCount":21,"hasRecoveryPath":true,"recoveryPath":"SAME_BUILD_COMMAND"}
+NATIVE_STRATEGY_E2 /economy/investments {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","gameTimeMs":2000,"units":[{"id":9003,"type":"extractorT1","queue":0,"actionId":"extractorT2_0","product":"extractorT2","cost":1400,"affordable":true},{"id":9004,"type":"extractorT2","queue":0,"actionId":"extractorT3_0","product":"extractorT3","cost":4000,"affordable":true}]}
+NATIVE_STRATEGY_E2 /command/invest?unitId=9003&actionId=extractorT2_0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=upgrade {"status":"queued","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","requestId":"upgrade","unitId":9003,"type":"extractorT2","actionId":"extractorT2_0","frame":0}
+NATIVE_STRATEGY_E2 /command/invest?unitId=9003&actionId=extractorT2_0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=upgrade {"status":"queued","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","requestId":"upgrade","unitId":9003,"type":"extractorT2","actionId":"extractorT2_0","frame":0}
+NATIVE_STRATEGY_E2 /command/invest?unitId=9230&actionId=extractorT2_0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=foreign {"status":"error","message":"completed own constructor required"}
+NATIVE_STRATEGY_E2 /command/invest?unitId=9003&actionId=extractorT2_0&sessionId=foreign-session&requestId=stale {"status":"error","message":"session changed"}
+NATIVE_STRATEGY_E2 /command/invest?unitId=9004&actionId=extractorT3_0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=upgrade3 {"status":"queued","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","requestId":"upgrade3","unitId":9004,"type":"extractorT3","actionId":"extractorT3_0","frame":0}
+NATIVE_STRATEGY_E2 /economy/construction-plan?unitId=9002&type=heavyTank {"status":"planned","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","unitId":9002,"type":"heavyTank","actionId":"b_heavyTank","cost":800,"affordable":true,"x":510.000,"y":350.000}
+NATIVE_STRATEGY_E2 /command/construct?unitId=9002&actionId=b_heavyTank&x=510.0&y=350.0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=build {"status":"queued","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","requestId":"build","unitId":9002,"type":"heavyTank","actionId":"b_heavyTank","frame":0}
+NATIVE_STRATEGY_E2 /command/construct?unitId=9002&actionId=b_heavyTank&x=510.0&y=350.0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=build {"status":"queued","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","requestId":"build","unitId":9002,"type":"heavyTank","actionId":"b_heavyTank","frame":0}
+NATIVE_STRATEGY_E2 /economy/construction-plan?unitId=9002&type=amphibiousJet {"status":"planned","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","unitId":9002,"type":"amphibiousJet","actionId":"b_amphibiousJet","cost":2000,"affordable":true,"x":510.000,"y":350.000}
+NATIVE_STRATEGY_E2 /scout/observe {"status":"observed","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","frame":0,"fogEnabled":true,"lineOfSightFog":true,"visibleTiles":1598,"exploredTiles":1600,"initialVisibleTiles":1600,"newlyObservedTiles":0,"mapMemoryCurrentVisibleTiles":1598,"mapMemoryRecentFogTiles":2,"mapMemoryStaleFogTiles":0,"mapMemoryDeepFogTiles":0,"mapMemoryNeverSeenTiles":30800,"mapMemoryStaleAfterMs":45000,"mapMemoryDeepAfterMs":120000,"resources":[{"tile":3639,"x":410.000,"y":790.000,"firstSeenFrame":0,"initiallyVisible":true,"currentlyVisible":true}],"visibleThreats":[],"rememberedThreats":[]}
+NATIVE_STRATEGY_E2 /scout/resource-approach?unitId=9002&tile=3639 {"status":"planned","sessionId":"601ec304-6ad6-4802-b1c8-c36aea4d8e1a","unitId":9002,"tile":3639,"x":450.000,"y":750.000,"pathKnown":true,"movementType":"HOVER","distanceTiles":20,"gameTimeMs":2000}
+NATIVE_STRATEGY_E2 /scout/resource-approach?unitId=9230&tile=3639 {"status":"error","message":"completed own mobile extractor constructor required"}
+NATIVE_STRATEGY_E2 /scout/resource-approach?unitId=9002&tile=32399 {"status":"error","message":"resource was never legally observed"}
+NATIVE_STRATEGY_E2 /command/construct?unitId=9002&actionId=b_heavyTank&x=510.0&y=350.0&sessionId=601ec304-6ad6-4802-b1c8-c36aea4d8e1a&requestId=fog {"status":"error","message":"no visible legal local footprint"}
+STRATEGY_NATIVE_E2_OK checks=51 noSimulationTicks=true fixtureOnly=true
