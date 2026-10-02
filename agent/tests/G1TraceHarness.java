@@ -94,6 +94,23 @@ public final class G1TraceHarness {
         check(Boolean.FALSE.equals(denied.metadata().get("receiptRequestIdMatches")),"echo mismatch only marked as evidence, never modifies admission");
         check("DENIED".equals(denied.metadata().get("admission")),"receipt diagnostics never replace gate result");
 
+        CommandArbiter arbiter=new CommandArbiter();
+        CommandArbiter.Stamp stamp=new CommandArbiter.Stamp("session-b","2",3,20);
+        arbiter.observe(stamp,Arrays.asList(7L));
+        arbiter.claim("recon:7",7L);
+        Intent executionIntent=Intent.create("g3-test-1","recon:7",arbiter.snapshotGenerations("recon:7",Arrays.asList(7L)),
+                Arrays.asList(7L),"MOVE","recon",40,stamp,later.id,"/state","/command/move",Intent.Commitment.none());
+        G1Trace.CommandSpan attached=trace.beginCommand("recon:7",Arrays.asList(7L),"/command/move",null);
+        attached.executionIntent(executionIntent);
+        Long proposedGeneration=(Long)attached.metadata().get("ownerGeneration");
+        check("g3-test-1".equals(attached.metadata().get("executionIntentId")),"G1 command joins explicit G3 intent");
+        check(proposedGeneration.equals(arbiter.ownerGeneration(7L)),"trace records actual per actor generation at proposal");
+        arbiter.release("recon:7");
+        arbiter.claim("recon:7",7L);
+        check(!proposedGeneration.equals(arbiter.ownerGeneration(7L)),"release and reacquire advances ABA generation");
+        check(proposedGeneration.equals(attached.metadata().get("ownerGeneration")),"later witness preserves proposal generation after transfer");
+        check(Boolean.FALSE.equals(attached.metadata().get("receiptProvesExecution")),"explicit Intent does not turn receipt into execution witness");
+
         for(int i=0;i<400;i++){
             G1Trace.CommandSpan x=trace.beginCommand("rule-main",Arrays.asList(1L),"/produce",null);
             trace.rememberReceipt(x,"bounded-"+i,receipt);

@@ -24,6 +24,7 @@ def validate_battle(rows,summary,issue):
     cohort_members={};cohort_plans={};accepted_frontiers={}
     intent_frontier=None;action_intent=None;action_frontier=None
     session=None;last_time=-1;last_action=None;initial=None
+    execution_budget=None;execution_tokens=1;execution_anchor=None;execution_actors=set();execution_batch_time=None
     receipts={};confirmed=set();new=set();losses=set();upgrades=set()
     # Units that are known to be ours. combat_unit_observed only marks armed mobile units, so it can
     # never be the sole birth evidence for mines and factories; those are known from any observation
@@ -31,7 +32,14 @@ def validate_battle(rows,summary,issue):
     seen=set()
     for row in rows:
         event,d=row['event'],row['data']
-        if event=='observation':
+        if event=='battle_config' and d.get('g3Execution') is True:
+            interval=d.get('commandBudgetIntervalGameMs');burst=d.get('commandBudgetBurst')
+            anchor=d.get('commandBudgetAnchorGameTimeMs');tokens=d.get('commandBudgetInitialTokens')
+            if (type(interval) is not int or interval<=0 or type(burst) is not int or not 1<=burst<=16
+                    or type(tokens) is not int or not 0<=tokens<=burst or not isinstance(anchor,(int,float))):
+                issue('BATTLE_EXECUTION_BUDGET_INVALID','invalid G3 token budget declaration')
+            else:execution_budget=(interval,burst);execution_tokens=tokens;execution_anchor=anchor
+        elif event=='observation':
             if session is None:session=d.get('sessionId')
             if d.get('sessionId')!=session:issue('BATTLE_SESSION_CHANGED','observation')
             t=d.get('gameTimeMs')
@@ -91,7 +99,23 @@ def validate_battle(rows,summary,issue):
                 else:intent_frontier=accepted
         elif event=='action':
             t=d.get('gameTimeMs')
-            if not isinstance(t,(int,float)) or (last_action is not None and t-last_action<1000):
+            if execution_budget:
+                interval,burst=execution_budget
+                if not isinstance(t,(int,float)) or t<execution_anchor or (last_action is not None and t<last_action):
+                    issue('BATTLE_COMMAND_RATE','G3 command time invalid or backwards')
+                else:
+                    intervals=int((t-execution_anchor)//interval)
+                    execution_tokens=min(burst,execution_tokens+intervals);execution_anchor+=intervals*interval
+                    if execution_tokens<=0:issue('BATTLE_COMMAND_RATE','G3 elapsed-game-time budget exhausted')
+                    else:execution_tokens-=1
+                    if execution_batch_time!=t:execution_actors.clear();execution_batch_time=t
+                    query=parse_qs(urlsplit(d.get('path','')).query)
+                    raw=query.get('unitIds',query.get('unitId',[]))
+                    try:actors={int(actor) for value in raw for actor in value.split(',')}
+                    except ValueError:actors=set();issue('BATTLE_ACTOR_INVALID','invalid G3 actor identity')
+                    if execution_actors.intersection(actors):issue('BATTLE_ACTOR_CONFLICT','same actor attempted twice at one native game time')
+                    execution_actors.update(actors)
+            elif not isinstance(t,(int,float)) or (last_action is not None and t-last_action<1000):
                 issue('BATTLE_COMMAND_RATE','minimum gap is 1000 game ms')
             last_action=t;action=urlsplit(d.get('path',''));action_intent=intent;action_frontier=intent_frontier
         elif event=='command_rejected':

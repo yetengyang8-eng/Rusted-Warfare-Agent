@@ -11,6 +11,10 @@ final class StrategyDirector {
     interface Host {
         Map<String,Object> readStrategy(String path,String event)throws Exception;
         Map<String,Object> orderStrategy(String owner,String path)throws Exception;
+        default Map<String,Object> orderStrategy(String owner,String path,Map<String,Object> context)throws Exception{return orderStrategy(owner,path);}
+        default WorldState worldStrategy(){return null;}
+        default boolean parallelStrategy(){return false;}
+        default double effectiveStrategyCredits(double nativeCredits){return nativeCredits;}
         void emitStrategy(String event,Map<String,Object> data)throws Exception;
         void spendStrategy(String category,long cost,String type,long actor)throws Exception;
         void strategicAttack(Map<String,Object> receipt);
@@ -29,6 +33,7 @@ final class StrategyDirector {
     private final Map<Long,Need> needs=new LinkedHashMap<Long,Need>();
     private final Map<Long,Assessment> assessments=new LinkedHashMap<Long,Assessment>();
     private final Map<Long,Worker> workers=new LinkedHashMap<Long,Worker>();
+    private final Map<Long,CapabilityTask> capabilityTasks=new LinkedHashMap<Long,CapabilityTask>();
     private final Map<Long,Purchase> purchases=new LinkedHashMap<Long,Purchase>();
     private final Set<Long> matchedConstructionProducts=new HashSet<Long>();
     private final Set<Long> matchedPurchasedWorkers=new HashSet<Long>();
@@ -66,8 +71,9 @@ final class StrategyDirector {
         double supportReserve;
         long supportDeadline;
         String modeAction;
+        final CapabilityUnitMode mode;
         boolean paidConstruction;
-        Worker(long unit,long task){this.unit=unit;this.task=task;owner="strategy:"+task;}
+        Worker(long unit,long task){this.unit=unit;this.task=task;owner="strategy:"+task;mode=new CapabilityUnitMode(unit);}
     }
     private static final class Purchase {
         final String product;final long at,selectedNeed;long need;boolean active,queueFinished,fulfilled;
@@ -248,7 +254,7 @@ final class StrategyDirector {
                 if(fresh)emit("capability_need_created",map("targetId",eid,"targetType",need.type,"reason",need.reason,
                     "x",need.x,"y",need.y,"observedAtGameTimeMs",need.seen,"evidence",answer));
             }else if(possible&&needs.containsKey(eid)&&!assigned(eid)){
-                needs.remove(eid);emit("capability_need_released",map("targetId",eid,"reason","CURRENT_FORCE_HAS_NEW_APPROACH_EVIDENCE"));
+                needs.remove(eid);capabilityTasks.remove(eid);emit("capability_need_released",map("targetId",eid,"reason","CURRENT_FORCE_HAS_NEW_APPROACH_EVIDENCE"));
             }
         }
         // Bound historical geometry without forgetting an unresolved need.
@@ -264,7 +270,7 @@ final class StrategyDirector {
     boolean rejected(long enemyId){Assessment a=assessments.get(enemyId);return enabled&&a!=null&&!a.blocked.isEmpty()&&needs.containsKey(enemyId);}
     private void clearNeeds()throws Exception{
         for(Map<String,Object> intel:items(enemies,"enemyIntel"))if("CLEARED".equals(intel.get("status"))){
-            long id=id(intel);if(needs.remove(id)!=null){resolvedNeeds++;emit("capability_need_resolved",map("targetId",id,"reason","LEGAL_SITE_CLEARED","evidence",intel));}
+            long id=id(intel);CapabilityTask task=capabilityTasks.remove(id);if(task!=null)task.legalSiteCleared();if(needs.remove(id)!=null){resolvedNeeds++;emit("capability_need_resolved",map("targetId",id,"reason","LEGAL_SITE_CLEARED","evidence",intel));}
             assessments.remove(id);
         }
     }
@@ -276,9 +282,20 @@ final class StrategyDirector {
     private boolean available(Need need){return need!=null&&need.failures<3&&need.seen>need.awaitVisibleAfter;}
     private Need eligibleNeed(){for(Need need:needs.values())if(available(need)&&!assigned(need.id))return need;return null;}
     private void bind(Worker worker,Need need,String reason,long producer)throws Exception{
-        worker.target=need.id;
+        detachCapability(worker);worker.target=need.id;
+        CapabilityTask collective=capabilityTasks.get(need.id);
+        if(collective==null){collective=new CapabilityTask(need.id,need.id,need.reason);capabilityTasks.put(need.id,collective);}
+        collective.attach(worker.unit,worker.mode);
         emit("strategy_worker_committed",map("taskId",worker.task,"unitId",worker.unit,"needId",need.id,
             "reason",reason,"producerId",producer,"assignmentSemantics","OBSERVED_AVAILABLE_ROLE_NOT_FACTORY_PROVENANCE"));
+    }
+    private void detachCapability(Worker worker){CapabilityTask task=capabilityTasks.get(worker.target);if(task!=null)task.detach(worker.unit);}
+    private double effectiveCredits(){return host.effectiveStrategyCredits(n(obj(state.get("player")),"credits"));}
+    private boolean joinableResponse(Need need){
+        if(!host.parallelStrategy())return false;
+        CapabilityTask task=capabilityTasks.get(need.id);if(task==null)return false;
+        for(Long unit:task.members().keySet()){Map<String,Object> actor=find(state,unit);if(actor!=null&&"amphibiousJet".equals(actor.get("type")))return true;}
+        return false;
     }
     private void claimWorkers()throws Exception{
         long baselineBuilder=Long.MAX_VALUE;
@@ -340,12 +357,12 @@ final class StrategyDirector {
             }
             if(w.target>=0&&!needs.containsKey(w.target)){
                 emit("strategy_task_completed",map("taskId",w.task,"targetId",w.target,"reason","NEED_RELEASED_BY_LEGAL_EVIDENCE"));
-                releaseSupportReserve(w,"NEED_RELEASED");w.target=-1;if(!"BUILD".equals(w.job))w.job="IDLE";
+                releaseSupportReserve(w,"NEED_RELEASED");detachCapability(w);w.target=-1;if(!"BUILD".equals(w.job))w.job="IDLE";
             }
             Need commitment=needs.get(w.target);
             if(commitment!=null&&commitment.failures>=3){
                 emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,"needId",w.target,"reason","NEED_ATTEMPT_LIMIT"));
-                w.target=-1;if(!"RETURN".equals(w.job)&&!"BUILD".equals(w.job))returnHome(w,15000);
+                detachCapability(w);w.target=-1;if(!"RETURN".equals(w.job)&&!"BUILD".equals(w.job))returnHome(w,15000);
             }
             if(w.paidConstruction){
                 for(Map<String,Object> unit:units(state))if(!w.before.contains(id(unit))&&!matchedConstructionProducts.contains(id(unit))&&ready(unit)
@@ -355,7 +372,7 @@ final class StrategyDirector {
                     completedJobs++;emit("strategy_construction_observed",map("taskId",w.task,"builderId",w.unit,"product",w.product,"unit",unit));
                     Worker responder=workers.get(id(unit));Need supported=needs.get(w.target);
                     if("amphibiousJet".equals(w.product)&&responder!=null&&responder.target<0&&supported!=null){
-                        w.target=-1;emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,
+                        detachCapability(w);w.target=-1;emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,
                             "needId",supported.id,"reason","SUPPORT_RESPONDER_HANDOVER"));
                         bind(responder,supported,"OBSERVED_SUPPORT_RESPONDER",-1);
                         emit("strategy_support_transferred",map("taskId",w.task,"unitId",w.unit,"responderId",responder.unit,"needId",supported.id));
@@ -366,7 +383,7 @@ final class StrategyDirector {
                     emit("strategy_task_blocked",map("taskId",w.task,"job",w.job,"reason","CONSTRUCTION_TIMEOUT"));
                     Need failed=needs.get(w.target);if(failed!=null)failed.failures++;
                     if(w.target>=0)emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,"needId",w.target,"reason","CONSTRUCTION_TIMEOUT"));
-                    w.target=-1;w.paidConstruction=false;if(!"RETURN".equals(w.job))w.job="IDLE";w.retryAt=now+30000;
+                    detachCapability(w);w.target=-1;w.paidConstruction=false;if(!"RETURN".equals(w.job))w.job="IDLE";w.retryAt=now+30000;
                 }
             }else if("MODE_APPROACH".equals(w.job)||"MODE_WAIT".equals(w.job)){
                 double d=distance(actor,w.x,w.y);if(d+20<w.best){w.best=d;w.lastProgress=now;}
@@ -412,7 +429,7 @@ final class StrategyDirector {
                 Need waiting=needs.get(w.target);
                 if(waiting!=null&&waiting.seen<=waiting.awaitVisibleAfter){
                     emit("strategy_worker_commitment_released",map("taskId",w.task,"unitId",w.unit,"needId",w.target,
-                        "reason","STALE_SITE_INVESTIGATION_RETURNED_HOME"));w.target=-1;
+                        "reason","STALE_SITE_INVESTIGATION_RETURNED_HOME"));detachCapability(w);w.target=-1;
                 }
                 if(n(actor,"hp")>=n(actor,"maxHp")*.3)w.job="IDLE";
             }
@@ -420,7 +437,7 @@ final class StrategyDirector {
                 releaseSupportReserve(w,now>=w.supportDeadline?"FUNDING_TIMEOUT":homeEmergency?"HOME_EMERGENCY":"NEED_OR_CAPACITY_UNAVAILABLE");
         }
     }
-    /** One actuator slot for the entire policy. Existing combat/recon use the same arbiter. */
+    /** Legacy hosts retain one slot; scheduler hosts admit independent workers in one observation. */
     boolean act(double reserved,long factoryTarget)throws Exception{
         Map<String,Map<String,Object>> before=traceStates();
         try{return actPolicy(reserved,factoryTarget);}
@@ -429,11 +446,13 @@ final class StrategyDirector {
     private boolean actPolicy(double reserved,long factoryTarget)throws Exception{
         if(!enabled||!arbiter.ready(now))return false;
         protectedFunds=reserved;
-        if(capabilityFunding!=null&&fulfilCapabilityFunding())return true;
-        for(Worker worker:workers.values())if(workerAction(worker))return true;
-        if(now-lastAllocation<8000)return false;
+        boolean acted=false;
+        if(capabilityFunding!=null&&fulfilCapabilityFunding()){acted=true;if(!host.parallelStrategy())return true;}
+        for(Worker worker:workers.values()){if(!arbiter.ready(now))break;if(workerAction(worker)){acted=true;if(!host.parallelStrategy())return true;}}
+        if(!arbiter.ready(now))return acted;
+        if(now-lastAllocation<8000)return acted;
         lastAllocation=now;
-        double credits=n(obj(state.get("player")),"credits"),free=credits-protectedFunds-capabilityReserve();
+        double credits=effectiveCredits(),free=credits-protectedFunds-capabilityReserve();
         int force=army(state).size(),engineers=count("combatEngineer"),builders=count("builder");
         int backlog=resourceBacklog();
         Need selectedNeed=eligibleNeed();boolean unserved=selectedNeed!=null;
@@ -446,17 +465,18 @@ final class StrategyDirector {
             "freeCredits",free,"protectedFunds",protectedFunds,"remainingGameSeconds",remaining/1000);
         if(product!=null){
             Map<String,Object> menu=host.readStrategy("/combat/production","strategy_production_menu");
-            if(menu!=null)for(Map<String,Object> factory:items(menu,"factories"))if(number(factory,"queue",-1)==0&&!pending(id(factory))){
+            providerAllocation: if(menu!=null)for(Map<String,Object> factory:items(menu,"factories"))if(number(factory,"queue",-1)==0&&!pending(id(factory))){
                 for(Map<String,Object> action:items(factory,"actions"))if(product.equals(action.get("type"))
                         &&Boolean.TRUE.equals(action.get("affordable"))&&n(action,"cost")<=free){
                     alternatives.put("selected",reason);alternatives.put("action",action);emit("strategy_allocation",alternatives);
-                    Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")),map("needId","combatEngineer".equals(product)?selectedNeed.id:-1,"commitmentId",purchaseTraceId(id(factory),now),"product",product));
+                    Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")),map("needId","combatEngineer".equals(product)?selectedNeed.id:-1,"commitmentId",purchaseTraceId(id(factory),now),"product",product,"cost",n(action,"cost"),"producerSlots",1,"militarySlots","combatEngineer".equals(product)?1:0));
                     if(receipt!=null){long needId="combatEngineer".equals(product)?selectedNeed.id:-1;
                         purchases.put(id(factory),purchase(product,needId));
                         if(needId>=0)emit("strategy_purchase_committed",map("needId",needId,"producerId",id(factory),"product",product));
-                        investments++;host.spendStrategy("STRATEGIC_CAPABILITY",(long)n(action,"cost"),product,id(factory));return true;}
+                        investments++;host.spendStrategy("STRATEGIC_CAPABILITY",(long)n(action,"cost"),product,id(factory));acted=true;if(!host.parallelStrategy())return true;break providerAllocation;}
                 }
             }
+            credits=effectiveCredits();free=credits-protectedFunds-capabilityReserve();
             if("combatEngineer".equals(product)&&startCapabilityFunding(menu,free))free-=capabilityReserve();
         }
         // Local risk and the disclosed payback window replace the blanket cash-surplus veto.
@@ -488,16 +508,17 @@ final class StrategyDirector {
                 }
                 alternatives.putAll(growth.evidence);alternatives.put("selected","extractorT3".equals(growth.product)?"MINE_T3_INCOME_INVESTMENT":"MINE_T2_INCOME_INVESTMENT");
                 alternatives.put("action",candidate);emit("strategy_allocation",alternatives);
-                Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")));
-                if(receipt!=null){purchases.put(id(candidate),new Purchase(growth.product,now));investments++;host.spendStrategy("MINE_UPGRADE",(long)cost,growth.product,id(candidate));return true;}
+                Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")),map("cost",cost,"product",growth.product,"producerSlots",1,"quotedProducerQueue",candidate.get("queue"),"investmentSlotAvailable",pending(id(candidate))?0:1,"slotEvidenceSource","EXISTING_PURCHASE_COMMITMENT","commitmentId",purchaseTraceId(id(candidate),now)));
+                if(receipt!=null){purchases.put(id(candidate),new Purchase(growth.product,now));investments++;host.spendStrategy("MINE_UPGRADE",(long)cost,growth.product,id(candidate));acted=true;if(!host.parallelStrategy())return true;credits=effectiveCredits();free=credits-protectedFunds-capabilityReserve();}
             }
         }
         // Combat engineers remain capability specialists. Only additional builders enter the
         // ordinary economic lane; a specialist may construct a responder for its explicit need.
-        for(Worker worker:workers.values())if("IDLE".equals(worker.job)&&now>=worker.retryAt){
+        workerAllocation: for(Worker worker:workers.values())if("IDLE".equals(worker.job)&&now>=worker.retryAt){
+            credits=effectiveCredits();free=credits-protectedFunds-capabilityReserve();
             Map<String,Object> actor=find(state,worker.unit);if(actor==null)continue;
             if("combatEngineer".equals(actor.get("type"))){
-                if(startSupportBuild(worker,actor,free+worker.supportReserve))return true;
+                if(startSupportBuild(worker,actor,free+worker.supportReserve)){acted=true;if(!host.parallelStrategy())return true;}
                 continue;
             }
             if(!"builder".equals(actor.get("type")))continue;
@@ -506,14 +527,14 @@ final class StrategyDirector {
                 if(plan!=null&&number(plan,"extractorCost",Double.MAX_VALUE)<=free
                         &&!nearThreat(n(plan,"extractorX"),n(plan,"extractorY"),350)){
                     if(startBuild(worker,plan,"/command/build-extractor?unitId="+worker.unit+"&x="+n(plan,"extractorX")+"&y="+n(plan,"extractorY"),
-                        "extractorT1",n(plan,"extractorX"),n(plan,"extractorY"),(long)n(plan,"extractorCost"),"MINE"))return true;
+                        "extractorT1",n(plan,"extractorX"),n(plan,"extractorY"),(long)n(plan,"extractorCost"),"MINE")){acted=true;if(!host.parallelStrategy())return true;continue workerAllocation;}
                 }
                 String build=count("landFactory")<factoryTarget?"landFactory":null;
                 if(build!=null){
                     Map<String,Object> plan2=host.readStrategy("/economy/construction-plan?unitId="+worker.unit+"&type="+build,"strategy_construction_plan");
                     if(plan2!=null&&Boolean.TRUE.equals(plan2.get("affordable"))&&n(plan2,"cost")<=free){
                         if(startBuild(worker,plan2,"/command/construct?unitId="+worker.unit+"&actionId="+encode(plan2.get("actionId"))+"&x="+n(plan2,"x")+"&y="+n(plan2,"y"),
-                            build,n(plan2,"x"),n(plan2,"y"),(long)n(plan2,"cost"),"BUILD"))return true;
+                            build,n(plan2,"x"),n(plan2,"y"),(long)n(plan2,"cost"),"BUILD")){acted=true;if(!host.parallelStrategy())return true;continue workerAllocation;}
                     }
                 }
                 // Additional construction capacity must actually reach its backlog, not stand at
@@ -530,14 +551,14 @@ final class StrategyDirector {
                     if(approach==null||!Boolean.TRUE.equals(approach.get("pathKnown")))continue;
                     if(traceOrder(worker.owner,"/command/move?unitId="+worker.unit+"&x="+n(approach,"x")+"&y="+n(approach,"y"))!=null){
                         worker.job="PROSPECT";worker.x=n(approach,"x");worker.y=n(approach,"y");worker.jobAt=worker.lastProgress=now;worker.best=distance(actor,worker.x,worker.y);
-                        emit("strategy_prospect_ordered",map("taskId",worker.task,"unitId",worker.unit,"tile",tile,"evidence",approach));return true;
+                        emit("strategy_prospect_ordered",map("taskId",worker.task,"unitId",worker.unit,"tile",tile,"evidence",approach));acted=true;if(!host.parallelStrategy())return true;continue workerAllocation;
                     }
                     break;
                 }
             }
             worker.retryAt=now+15000;
         }
-        return false;
+        return acted;
     }
     private void validateCapabilityFunding()throws Exception{
         if(capabilityFunding==null)return;
@@ -588,12 +609,12 @@ final class StrategyDirector {
             if("combatEngineer".equals(action.get("type"))&&funding.action.equals(action.get("actionId"))){chosen=action;break;}
         if(chosen==null){releaseCapabilityFunding("ACTION_UNAVAILABLE");return false;}
         if(number(chosen,"cost",Double.NaN)!=funding.cost){releaseCapabilityFunding("PRICE_CHANGED");return false;}
-        double free=n(obj(state.get("player")),"credits")-protectedFunds-(capabilityReserve()-funding.cost);
+        double free=effectiveCredits()-protectedFunds-(capabilityReserve()-funding.cost);
         if(number(producer,"queue",-1)!=0||pending(funding.producer)||!Boolean.TRUE.equals(chosen.get("affordable"))||free<funding.cost)return false;
         Map<String,Object> data=capabilityFundingData("CAPABILITY_COMMITMENT_READY");
         data.put("selected","UNSERVED_CAPABILITY_NEED");data.put("action",chosen);data.put("freeCredits",free);data.put("protectedFunds",protectedFunds);
         emit("strategy_allocation",data);
-        Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action),map("needId",funding.need,"commitmentId",purchaseTraceId(funding.producer,now),"product","combatEngineer"));
+        Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action),map("needId",funding.need,"commitmentId",purchaseTraceId(funding.producer,now),"product","combatEngineer","cost",funding.cost,"producerSlots",1,"militarySlots",1));
         if(receipt==null){releaseCapabilityFunding("ORDER_REJECTED");return false;}
         purchases.put(funding.producer,purchase("combatEngineer",funding.need));investments++;
         emit("strategy_purchase_committed",map("needId",funding.need,"producerId",funding.producer,"product","combatEngineer"));
@@ -626,7 +647,7 @@ final class StrategyDirector {
                 if(modes!=null&&Boolean.TRUE.equals(modes.get("submergedWeaponAvailable")))for(Map<String,Object> action:items(modes,"actions"))
                     if("FLY".equals(action.get("mode"))&&Boolean.TRUE.equals(action.get("available"))&&Boolean.TRUE.equals(action.get("affordable"))){
                         if(traceOrder(w.owner,"/command/unit-mode?unitId="+w.unit+"&actionId="+encode(action.get("actionId")))!=null){
-                            w.lastOrder=now;emit("strategy_responder_mode_ordered",map("taskId",w.task,"unitId",w.unit,"mode","FLY","reason","RETURN_TO_OWN_REAR","evidence",modes));return true;}
+                            w.mode.flyAccepted();w.lastOrder=now;emit("strategy_responder_mode_ordered",map("taskId",w.task,"unitId",w.unit,"mode","FLY","reason","RETURN_TO_OWN_REAR","evidence",modes));return true;}
                         return false;
                     }
             }
@@ -652,7 +673,7 @@ final class StrategyDirector {
                         "reason","RETURN_TO_OWN_REAR_BEFORE_PRODUCTION","x",homeX,"y",homeY));
                     returnHome(w,0);return workerAction(w);
                 }
-                return startSupportBuild(w,actor,n(obj(state.get("player")),"credits")-protectedFunds-capabilityReserve()+w.supportReserve);
+                return startSupportBuild(w,actor,effectiveCredits()-protectedFunds-capabilityReserve()+w.supportReserve);
             }
         }
         if("IDLE".equals(w.job)&&now>=w.retryAt&&(engineer||jet)){
@@ -660,19 +681,20 @@ final class StrategyDirector {
             if(w.target>=0){Need bound=needs.get(w.target);if(bound!=null)ordered.add(bound);}
             else ordered.addAll(needs.values());
             Collections.sort(ordered,(a,b)->Boolean.compare(b.building,a.building));
-            for(Need need:ordered)if(available(need)&&(w.target==need.id||!assigned(need.id))){
+            for(Need need:ordered)if(available(need)&&(w.target==need.id||!assigned(need.id)||jet&&joinableResponse(need))){
                 if(engineer&&"WEAPON_DOMAIN_GAP".equals(need.reason))continue;
                 if(engineer&&threatCount(need.x,need.y,450)>1)continue;
                 Map<String,Object> response=host.readStrategy("/combat/engagement?unitIds="+w.unit+"&targetId="+need.id,"response_engagement_observation");
                 if(response==null)continue;
                 List<Map<String,Object>> options=items(response,"actors");if(options.isEmpty())continue;
                 Map<String,Object> choice=options.get(0);
+                if(jet)traceMode(w,response,choice,"ENGAGEMENT_NATIVE_FIELDS");
                 boolean current=Boolean.TRUE.equals(response.get("targetVisible"));
                 if(jet&&"WEAPON_DOMAIN_GAP".equals(need.reason)&&!current)continue;
                 if(jet&&current&&"DIVE".equals(choice.get("requiredMode"))
                         &&"APPROACH_PATH_KNOWN".equals(choice.get("modeApproachStatus"))&&choice.get("modeActionId") instanceof String){
                     if(w.target<0)bind(w,need,"AVAILABLE_MODE_CAPABLE_RESPONDER",-1);
-                    w.job="MODE_APPROACH";w.modeAction=String.valueOf(choice.get("modeActionId"));
+                    w.job="MODE_APPROACH";w.mode.approachingWater();w.modeAction=String.valueOf(choice.get("modeActionId"));
                     w.x=n(choice,"modeApproachX");w.y=n(choice,"modeApproachY");w.jobAt=w.lastProgress=now;w.best=distance(actor,w.x,w.y);w.lastOrder=-100000;
                     emit("strategy_responder_mode_planned",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"mode","DIVE",
                         "x",w.x,"y",w.y,"evidence",response));return modeResponse(w,actor);
@@ -699,6 +721,7 @@ final class StrategyDirector {
                 Map<String,Object> chosen=items(fresh,"actors").get(0);
                 if(number(chosen,"unitId",-1)!=w.unit||!"COMPATIBLE".equals(chosen.get("compatibility"))
                         ||!"APPROACH_PATH_KNOWN".equals(chosen.get("status")))return false;
+                traceMode(w,fresh,chosen,"ENGAGEMENT_NATIVE_FIELDS");
                 double x=n(chosen,"approachX"),y=n(chosen,"approachY");
                 if(x!=w.x||y!=w.y)emit("strategy_response_replanned",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"x",x,"y",y,"evidence",fresh));
                 w.x=x;w.y=y;w.lastAssessment=now;
@@ -718,7 +741,9 @@ final class StrategyDirector {
         if("COMPATIBLE".equals(choice.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(choice.get("status"))){
             worker.job="RESPONSE";worker.x=n(choice,"approachX");worker.y=n(choice,"approachY");worker.lastOrder=-100000;
             worker.jobAt=worker.lastProgress=now;worker.best=Double.MAX_VALUE;worker.hp=Double.MAX_VALUE;
-            emit("strategy_responder_mode_observed",map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,"mode","DIVE","evidence",response));
+            Map<String,Object> observed=map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,"mode","DIVE","evidence",response);
+            if(host.parallelStrategy()){observed.put("actualModeProof",false);observed.put("unitMode",worker.mode.snapshot());}
+            emit("strategy_responder_mode_observed",observed);
             emit("strategy_task_assigned",map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,
                 "approachX",worker.x,"approachY",worker.y,"role","CROSS_DOMAIN_RESPONSE","objectiveSemantics","CURRENT_CONTACT_APPROACH","evidence",response));return workerAction(worker);
         }
@@ -726,7 +751,7 @@ final class StrategyDirector {
         if(!"DIVE".equals(choice.get("requiredMode"))||!"APPROACH_PATH_KNOWN".equals(choice.get("modeApproachStatus")))return false;
         if(Boolean.TRUE.equals(choice.get("modeActionReady"))){
             if(traceOrder(worker.owner,"/command/unit-mode?unitId="+worker.unit+"&actionId="+encode(choice.get("modeActionId")))!=null){
-                worker.job="MODE_WAIT";worker.lastOrder=worker.lastProgress=now;
+                worker.job="MODE_WAIT";worker.mode.diveAccepted();worker.lastOrder=worker.lastProgress=now;
                 emit("strategy_responder_mode_ordered",map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,"mode","DIVE","evidence",response));return true;}
             return false;
         }
@@ -739,7 +764,7 @@ final class StrategyDirector {
                 "x",worker.x,"y",worker.y,"evidence",response));return true;}
         return false;
     }
-    private void returnHome(Worker w,long cooldown){w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+cooldown;}
+    private void returnHome(Worker w,long cooldown){w.mode.repositioning();w.job="RETURN";w.x=homeX;w.y=homeY;w.lastOrder=-100000;w.retryAt=now+cooldown;}
     private void assessResponse(Worker w,Map<String,Object> actor)throws Exception{
         // Reads are independent of the actuator slot, so an arrival/contact transition cannot
         // starve behind another task's command. Investigation polls retain the normal decision rate.
@@ -829,7 +854,7 @@ final class StrategyDirector {
         worker.supportReserve=0;worker.supportQuote=null;
     }
     private boolean startBuild(Worker w,Map<String,Object> evidence,String path,String product,double x,double y,long cost,String job)throws Exception{
-        if(traceOrder(w.owner,path,map("commitmentId",constructionTraceId(w,now),"product",product))==null)return false;
+        if(traceOrder(w.owner,path,map("commitmentId",constructionTraceId(w,now),"product",product,"cost",cost,"producerSlots",1,"constructionSlotAvailable",w.paidConstruction?0:1,"slotEvidenceSource","EXISTING_WORKER_CONSTRUCTION_COMMITMENT","militarySlots",("heavyTank".equals(product)||"amphibiousJet".equals(product))?1:0))==null)return false;
         w.job=job;w.product=product;w.paidConstruction=true;w.x=w.buildX=x;w.y=w.buildY=y;w.jobAt=now;w.before.clear();for(Map<String,Object> u:units(state))w.before.add(id(u));
         investments++;host.spendStrategy("STRATEGIC_CONSTRUCTION",cost,product,w.unit);
         emit("strategy_construction_ordered",map("taskId",w.task,"unitId",w.unit,"product",product,"x",x,"y",y,"evidence",evidence));return true;
@@ -867,15 +892,18 @@ final class StrategyDirector {
         }return false;
     }
     private void release(Worker w,String reason)throws Exception{
+        detachCapability(w);
         if(arbiter.release(w.owner))emit("task_ownership_released",map("taskId",w.task,"owner",w.owner,"reason",reason));
     }
     void close()throws Exception{releaseCapabilityFunding("CONTROLLER_ENDED");for(Worker w:workers.values()){
-        releaseSupportReserve(w,"CONTROLLER_ENDED");release(w,"CONTROLLER_ENDED");}workers.clear();}
-    Map<String,Object> summary(){return map("enabled",enabled,"armyTarget",armyTarget,"activeTarget",activeTarget,"reserveTarget",reserveTarget,
+        releaseSupportReserve(w,"CONTROLLER_ENDED");release(w,"CONTROLLER_ENDED");}workers.clear();capabilityTasks.clear();}
+    Map<String,Object> summary(){Map<String,Object> result=map("enabled",enabled,"armyTarget",armyTarget,"activeTarget",activeTarget,"reserveTarget",reserveTarget,
         "hardSafetyCap",hardCap,"builderTarget",builderTarget,"militaryCapacityIncreases",militaryCapacityIncreases,
         "militaryCapacityFloor",militaryCapacityFloor,"capabilityNeedsAtEnd",needs.size(),"needsResolvedByLegalEvidence",resolvedNeeds,
         "investmentOrders",investments,"mineUpgradesObserved",upgrades,"constructionCompletionsObserved",completedJobs,
-        "capabilityReservesStarted",capabilityReservesStarted,"capabilityReservesReleased",capabilityReservesReleased,"capabilityReserveAtEnd",capabilityReserve());}
+        "capabilityReservesStarted",capabilityReservesStarted,"capabilityReservesReleased",capabilityReservesReleased,"capabilityReserveAtEnd",capabilityReserve());
+        if(host.parallelStrategy()){result.put("capabilityTasksAtEnd",capabilityTasks.size());result.put("capabilityModeScope","PER_UNIT");
+            result.put("searchAreaPolicy","CONTRACT_ONLY_NEEDS_LEGAL_COVERAGE_INPUT");}return result;}
     private void emit(String event,Map<String,Object> data)throws Exception{
         data.put("gameTimeMs",now);data.put("sessionId",arbiter.stamp().session);data.put("player",arbiter.stamp().player);host.emitStrategy(event,data);
     }
@@ -894,14 +922,30 @@ final class StrategyDirector {
         for(Worker worker:workers.values())if(worker.owner.equals(owner)){
             context.putAll(workerTrace(worker));break;
         }
-        context.putAll(extra);trace("command_context",context);
-        return host.orderStrategy(owner,path);
+        context.putAll(extra);
+        WorldState world=host.worldStrategy();
+        if(world!=null){
+            context.put("worldRevision",world.revision);context.put("worldEpoch",world.epoch);
+            context.put("worldEpochIsOwnerGeneration",false);context.put("worldSessionId",world.sessionId);
+            Object unit=context.get("unitId");
+            if(unit instanceof Number){WorldState.UnitFact fact=world.ownUnits().get(((Number)unit).longValue());
+                context.put("worldActorAvailability",fact==null?"UNKNOWN":fact.availability);
+                if(fact!=null){WorldState.SourceView source=world.views().get(fact.sourceScope);
+                    context.put("worldActorSourceObservationId",source==null?null:source.observation.id);}}
+            Object need=context.get("needId");
+            if(need instanceof Number){WorldState.EnemyFact fact=world.enemies().get(((Number)need).longValue());
+                context.put("worldTargetVisibility",fact==null?"UNKNOWN":fact.visibility);
+                context.put("worldTargetCurrentKnown",fact!=null&&!fact.current.isEmpty());}
+            context.put("worldUnknownSemantics","NO_HIDDEN_COORDINATES_OR_PRODUCTION_LINEAGE");
+        }
+        trace("command_context",context);
+        return host.orderStrategy(owner,path,context);
     }
     private static String constructionTraceId(Worker worker,long at){return "strategy-construction:"+worker.task+":"+at;}
     private static String purchaseTraceId(long producer,long at){return "strategy-purchase:"+producer+":"+at;}
     private Map<String,Object> workerTrace(Worker worker){
         return map("taskId",worker.task,"unitId",worker.unit,"owner",worker.owner,"needId",worker.target,
-            "job",worker.job,"paidConstruction",worker.paidConstruction,"product",worker.product,
+            "job",worker.job,"capabilityTaskId",worker.target<0?null:worker.target,"unitMode",worker.mode.snapshot(),"paidConstruction",worker.paidConstruction,"product",worker.product,
             "commitmentId",worker.paidConstruction?constructionTraceId(worker,worker.jobAt):null);
     }
     private Map<String,Map<String,Object>> traceStates(){
@@ -926,6 +970,10 @@ final class StrategyDirector {
             data.put("transitionSemantics","NET_CHANGE_DURING_EXISTING_POLICY_CALL");trace("state_transition",data);
         }
     }
+    Map<String,Object> capabilitySnapshot(){Map<String,Object> result=new LinkedHashMap<String,Object>();
+        for(CapabilityTask task:capabilityTasks.values())result.put(String.valueOf(task.taskId),task.snapshot());return result;}
+    Map<Long,Map<String,Object>> unitModes(){Map<Long,Map<String,Object>> result=new LinkedHashMap<Long,Map<String,Object>>();
+        for(Worker worker:workers.values()){Map<String,Object> actor=find(state,worker.unit);if(actor!=null&&"amphibiousJet".equals(actor.get("type")))result.put(worker.unit,worker.mode.snapshot());}return result;}
     private void traceReadyMatch(Worker worker,Map<String,Object> selected){
         List<Long> candidates=new ArrayList<Long>();
         for(Map<String,Object> unit:units(state))if(!worker.before.contains(id(unit))&&!matchedConstructionProducts.contains(id(unit))&&ready(unit)
@@ -949,6 +997,7 @@ final class StrategyDirector {
             "sourceGameTimeMs",state.get("gameTimeMs"),"sourceFrame",state.get("frame")));
     }
     private void traceMode(Worker worker,Map<String,Object> response,Map<String,Object> choice,String source){
+        if(arbiter.stamp().session.equals(response.get("sessionId")))worker.mode.witness(response,choice,now);
         Map<String,Object> data=workerTrace(worker);data.put("sourceKind",source);data.put("sourceGameTimeMs",response.get("gameTimeMs"));
         data.put("sourceFrame",response.get("frame"));data.put("nativeSubmergedWeaponAvailable",response.get("submergedWeaponAvailable"));
         data.put("nativeMovementType",choice==null?null:choice.get("movementType"));

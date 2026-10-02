@@ -74,6 +74,26 @@ class BattleEvidence(unittest.TestCase):
     def test_command_spacing(self):
         rows,s=sample();rows.insert(5,{'event':'action','data':{'gameTimeMs':1500,'path':'/command/move'}})
         self.assertIn('BATTLE_COMMAND_RATE',self.issues(rows,s))
+    def g3_rate_sample(self,commands):
+        rows,s=sample()
+        config={'g3Execution':True,'commandBudgetIntervalGameMs':1000,'commandBudgetBurst':4,
+                'commandBudgetInitialTokens':1,'commandBudgetAnchorGameTimeMs':0}
+        rows.insert(1,{'event':'battle_config','data':config})
+        rows[5:5]=[{'event':'action','data':{'gameTimeMs':t,'path':'/command/move?unitId='+str(actor)}} for t,actor in commands]
+        return rows,s
+    def test_g3_independent_actors_can_use_accumulated_budget(self):
+        rows,s=self.g3_rate_sample([(1000,10)])
+        self.assertNotIn('BATTLE_COMMAND_RATE',self.issues(rows,s))
+        self.assertNotIn('BATTLE_ACTOR_CONFLICT',self.issues(rows,s))
+    def test_g3_no_unlimited_long_gap_burst(self):
+        rows,s=self.g3_rate_sample([(60000,10+i) for i in range(5)])
+        self.assertIn('BATTLE_COMMAND_RATE',self.issues(rows,s))
+    def test_g3_same_actor_conflict_is_not_legal_parallelism(self):
+        rows,s=self.g3_rate_sample([(1000,9)])
+        self.assertIn('BATTLE_ACTOR_CONFLICT',self.issues(rows,s))
+    def test_g3_budget_declaration_must_be_bounded(self):
+        rows,s=self.g3_rate_sample([]);rows[1]['data']['commandBudgetBurst']=100000
+        self.assertIn('BATTLE_EXECUTION_BUDGET_INVALID',self.issues(rows,s))
     def test_fake_new_unit(self):
         rows,s=sample();rows.insert(1,{'event':'combat_unit_observed','data':{'id':9}})
         self.assertIn('BATTLE_NEW_UNIT_NOT_OBSERVED',self.issues(rows,s))

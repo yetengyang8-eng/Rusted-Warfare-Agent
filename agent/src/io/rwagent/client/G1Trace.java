@@ -32,6 +32,7 @@ public final class G1Trace {
         private String denial,receiptStatus,receiptSessionId,receiptRequestIdFromBody;
         private Long receiptFrame,receiptSourceGameTimeMs;
         private boolean admissionRecorded,receiptRecorded;
+        private Intent executionIntent;
         private CommandSpan(String intentId,String commandId,String owner,List<Long> actors,String endpoint,
                             List<String> inputs,GameClock.Observation state){
             this.intentId=intentId;this.commandId=commandId;this.owner=owner;this.endpoint=endpoint;
@@ -41,6 +42,12 @@ public final class G1Trace {
             proposedAtGameTimeMs=state==null?null:state.sourceGameTimeMs;
         }
         public void admission(String denial){admissionRecorded=true;this.denial=denial;}
+        /** G3 attaches the real proposal; retain its generation snapshot for later witnesses. */
+        public void executionIntent(Intent intent){
+            if(intent==null||!owner.equals(intent.owner)||!actors.equals(intent.actorIds))throw new IllegalArgumentException("Execution intent differs from trace command");
+            if(executionIntent!=null)throw new IllegalStateException("Execution intent already attached");
+            executionIntent=intent;
+        }
         public void nativeReceipt(String requestId,Map<String,Object> receipt){
             this.requestId=requestId;receiptRecorded=true;
             receiptStatus=receipt==null?null:GameClock.string(receipt.get("status"));
@@ -53,6 +60,12 @@ public final class G1Trace {
             Map<String,Object> m=new LinkedHashMap<String,Object>();
             m.put("intentId",intentId);m.put("intentSemantics","TRACE_ONLY_DIRECT_PROPOSAL");m.put("commandId",commandId);
             m.put("owner",owner);m.put("ownerGeneration",null);m.put("ownerGenerationStatus","NOT_IMPLEMENTED_G3");
+            if(executionIntent!=null){
+                m.put("intentSemantics","G3_EXPLICIT_EXECUTION_PROPOSAL");m.put("executionIntentId",executionIntent.intentId);
+                m.put("ownerGenerations",executionIntent.ownerGenerations);m.put("ownerGenerationStatus","PER_ACTOR_MONOTONIC_AT_PROPOSAL");
+                m.put("ownerGeneration",actors.size()==1?executionIntent.ownerGenerations.get(actors.get(0)):null);
+                m.put("commitment",executionIntent.commitment.metadata());
+            }
             m.put("actors",actors);m.put("endpoint",endpoint);m.put("inputObservationIds",inputObservationIds);
             m.put("inputObservationSemantics","AVAILABLE_READ_CONTEXT_NOT_EXCLUSIVE_CAUSAL_PROOF");
             m.put("stateObservationId",stateObservationId);m.put("proposedAtGameTimeMs",proposedAtGameTimeMs);
