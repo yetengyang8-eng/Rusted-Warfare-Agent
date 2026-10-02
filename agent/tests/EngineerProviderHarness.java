@@ -14,8 +14,9 @@ public final class EngineerProviderHarness {
         final CommandArbiter gate=new CommandArbiter();final StrategyDirector strategy=new StrategyDirector(this,gate);
         final List<Map<String,Object>> own=new ArrayList<Map<String,Object>>(),force=new ArrayList<Map<String,Object>>(),events=new ArrayList<Map<String,Object>>();
         final List<String> orders=new ArrayList<String>();
+        final List<Map<String,Object>> traces=new ArrayList<Map<String,Object>>();
         final Map<String,Object> world,enemies,scout;Map<String,Object> engineer;
-        boolean visible=true,submerged,waterKnown=true,reject,planAvailable=true,jetOffered;
+        boolean visible=true,submerged,waterKnown=true,reject,planAvailable=true,jetOffered,traceFailure;
         double jetCost=2000,reserved=500,income=100;long now;
         Fixture()throws Exception{
             own.add(unit(1,"commandCenter",100,100));own.add(unit(2,"builder",120,100));
@@ -54,6 +55,10 @@ public final class EngineerProviderHarness {
             return map("status","queued","unitIds",ids,"requestId","r"+orders.size());
         }
         public void emitStrategy(String event,Map<String,Object> data){events.add(map("event",event,"data",new LinkedHashMap<String,Object>(data)));}
+        public void traceStrategy(String event,Map<String,Object> data){
+            if(traceFailure)throw new IllegalStateException("sidecar unavailable");
+            traces.add(map("event",event,"data",new LinkedHashMap<String,Object>(data)));
+        }
         public void spendStrategy(String category,long cost,String type,long actor){require(cost>0&&"amphibiousJet".equals(type),"construction spends native quoted product price");}
         public void strategicAttack(Map<String,Object> receipt){}
     }
@@ -109,5 +114,33 @@ public final class EngineerProviderHarness {
         Fixture existing=new Fixture();existing.addJet(81,1);existing.observe(121000);existing.strategy.act(500,1);
         require(existing.orders("/command/construct")==0&&existing.orders("/command/move?unitId=81")==1,"usable existing jet responds before buying another product");
     }
-    public static void main(String[] args)throws Exception{completeChain();budgets();visibilityAndRear();System.out.println("ENGINEER_PROVIDER_TEST_OK checks="+checks);}
+    static Map<String,Object> trace(Fixture fixture,String event){
+        for(Map<String,Object> item:fixture.traces)if(event.equals(item.get("event")))return BattleClient.obj(item.get("data"));
+        throw new AssertionError("missing trace "+event);
+    }
+    static void traceEvidenceAndEquivalence()throws Exception{
+        Fixture fixture=new Fixture();fixture.strategy.act(500,1);
+        Map<String,Object> context=trace(fixture,"command_context");
+        require(context.get("taskId") instanceof Number&&number(context,"needId",-1)==230&&context.get("commitmentId") instanceof String,
+            "construction command context binds existing owner task need and paid commitment identity");
+        require(context.get("eventOccurredAtGameTimeMs")==null&&number(context,"detectedAtGameTimeMs",-1)==120000,
+            "policy detection time is never asserted as exact event occurrence time");
+        fixture.addJet(81,1);fixture.addJet(82,1);fixture.observe(124000);
+        Map<String,Object> matched=trace(fixture,"ready_match_witness");
+        require(number(matched,"candidateCount",0)==2&&Boolean.TRUE.equals(matched.get("matchAmbiguous"))&&number(matched,"selectedUnitId",0)==81,
+            "ambiguous ready candidates are recorded while the existing first match remains selected");
+        require(Boolean.FALSE.equals(matched.get("producerLineageConfirmed"))&&context.get("commitmentId").equals(matched.get("commitmentId")),
+            "paid commitment links witness without inventing strict native producer ancestry");
+        fixture.strategy.act(500,1);
+        Map<String,Object> mode=trace(fixture,"mode_evidence_witness");
+        require(mode.get("nativeSubmergedWeaponAvailable")==null&&mode.get("nativeMovementType")==null
+                &&Boolean.FALSE.equals(mode.get("legacyDiveObservedIsActualModeProof")),
+            "missing native mode facts remain unknown despite mode plan or compatibility evidence");
+        Fixture healthy=new Fixture(),broken=new Fixture();broken.traceFailure=true;
+        healthy.strategy.act(500,1);broken.strategy.act(500,1);
+        require(healthy.orders.equals(broken.orders)&&healthy.strategy.summary().equals(broken.strategy.summary()),
+            "optional failing trace sink does not change command sequence or strategy outcome");
+        require(trace(fixture,"state_transition").containsKey("oldState"),"net state transition includes before and after policy snapshot");
+    }
+    public static void main(String[] args)throws Exception{completeChain();budgets();visibilityAndRear();traceEvidenceAndEquivalence();System.out.println("ENGINEER_PROVIDER_TEST_OK checks="+checks);}
 }

@@ -14,6 +14,8 @@ final class StrategyDirector {
         void emitStrategy(String event,Map<String,Object> data)throws Exception;
         void spendStrategy(String category,long cost,String type,long actor)throws Exception;
         void strategicAttack(Map<String,Object> receipt);
+        /** Optional G1 sidecar. Its data must never be read by strategy policy. */
+        default void traceStrategy(String event,Map<String,Object> data){}
     }
     private final Host host;
     private final CommandArbiter arbiter;
@@ -110,6 +112,13 @@ final class StrategyDirector {
         return count;
     }
     void observe(Map<String,Object> state,Map<String,Object> enemies,Map<String,Object> scout,
+                 List<Map<String,Object>> main,long start,long remainingMs,double income,double consumption,
+                 double reserved,boolean buildBacklog)throws Exception{
+        Map<String,Map<String,Object>> before=traceStates();
+        try{observePolicy(state,enemies,scout,main,start,remainingMs,income,consumption,reserved,buildBacklog);}
+        finally{traceStateChanges(before,"OBSERVE");}
+    }
+    private void observePolicy(Map<String,Object> state,Map<String,Object> enemies,Map<String,Object> scout,
                  List<Map<String,Object>> main,long start,long remainingMs,double income,double consumption,
                  double reserved,boolean buildBacklog)throws Exception{
         if(!enabled)return;
@@ -292,6 +301,7 @@ final class StrategyDirector {
                 Map<String,Object> actor=find(state,worker.unit);
                 if(actor!=null&&ready(actor)&&"combatEngineer".equals(actor.get("type"))
                         &&!purchase.before.contains(worker.unit)&&!matchedPurchasedWorkers.contains(worker.unit)){
+                    tracePurchaseMatch(entry.getKey(),purchase,worker);
                     matchedPurchasedWorkers.add(worker.unit);
                     purchase.need=-1;purchase.fulfilled=true;bind(worker,need,"PURCHASE_NEED_FULFILMENT",entry.getKey());break;
                 }
@@ -340,6 +350,7 @@ final class StrategyDirector {
             if(w.paidConstruction){
                 for(Map<String,Object> unit:units(state))if(!w.before.contains(id(unit))&&!matchedConstructionProducts.contains(id(unit))&&ready(unit)
                         &&w.product.equals(unit.get("type"))&&distance(unit,w.buildX,w.buildY)<120){
+                    traceReadyMatch(w,unit);
                     matchedConstructionProducts.add(id(unit));
                     completedJobs++;emit("strategy_construction_observed",map("taskId",w.task,"builderId",w.unit,"product",w.product,"unit",unit));
                     Worker responder=workers.get(id(unit));Need supported=needs.get(w.target);
@@ -411,6 +422,11 @@ final class StrategyDirector {
     }
     /** One actuator slot for the entire policy. Existing combat/recon use the same arbiter. */
     boolean act(double reserved,long factoryTarget)throws Exception{
+        Map<String,Map<String,Object>> before=traceStates();
+        try{return actPolicy(reserved,factoryTarget);}
+        finally{traceStateChanges(before,"ACT");}
+    }
+    private boolean actPolicy(double reserved,long factoryTarget)throws Exception{
         if(!enabled||!arbiter.ready(now))return false;
         protectedFunds=reserved;
         if(capabilityFunding!=null&&fulfilCapabilityFunding())return true;
@@ -434,7 +450,7 @@ final class StrategyDirector {
                 for(Map<String,Object> action:items(factory,"actions"))if(product.equals(action.get("type"))
                         &&Boolean.TRUE.equals(action.get("affordable"))&&n(action,"cost")<=free){
                     alternatives.put("selected",reason);alternatives.put("action",action);emit("strategy_allocation",alternatives);
-                    Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")));
+                    Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")),map("needId","combatEngineer".equals(product)?selectedNeed.id:-1,"commitmentId",purchaseTraceId(id(factory),now),"product",product));
                     if(receipt!=null){long needId="combatEngineer".equals(product)?selectedNeed.id:-1;
                         purchases.put(id(factory),purchase(product,needId));
                         if(needId>=0)emit("strategy_purchase_committed",map("needId",needId,"producerId",id(factory),"product",product));
@@ -472,7 +488,7 @@ final class StrategyDirector {
                 }
                 alternatives.putAll(growth.evidence);alternatives.put("selected","extractorT3".equals(growth.product)?"MINE_T3_INCOME_INVESTMENT":"MINE_T2_INCOME_INVESTMENT");
                 alternatives.put("action",candidate);emit("strategy_allocation",alternatives);
-                Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")));
+                Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")));
                 if(receipt!=null){purchases.put(id(candidate),new Purchase(growth.product,now));investments++;host.spendStrategy("MINE_UPGRADE",(long)cost,growth.product,id(candidate));return true;}
             }
         }
@@ -512,7 +528,7 @@ final class StrategyDirector {
                     worker.prospects.add(tile);
                     Map<String,Object> approach=host.readStrategy("/scout/resource-approach?unitId="+worker.unit+"&tile="+tile,"strategy_resource_approach");
                     if(approach==null||!Boolean.TRUE.equals(approach.get("pathKnown")))continue;
-                    if(host.orderStrategy(worker.owner,"/command/move?unitId="+worker.unit+"&x="+n(approach,"x")+"&y="+n(approach,"y"))!=null){
+                    if(traceOrder(worker.owner,"/command/move?unitId="+worker.unit+"&x="+n(approach,"x")+"&y="+n(approach,"y"))!=null){
                         worker.job="PROSPECT";worker.x=n(approach,"x");worker.y=n(approach,"y");worker.jobAt=worker.lastProgress=now;worker.best=distance(actor,worker.x,worker.y);
                         emit("strategy_prospect_ordered",map("taskId",worker.task,"unitId",worker.unit,"tile",tile,"evidence",approach));return true;
                     }
@@ -577,7 +593,7 @@ final class StrategyDirector {
         Map<String,Object> data=capabilityFundingData("CAPABILITY_COMMITMENT_READY");
         data.put("selected","UNSERVED_CAPABILITY_NEED");data.put("action",chosen);data.put("freeCredits",free);data.put("protectedFunds",protectedFunds);
         emit("strategy_allocation",data);
-        Map<String,Object> receipt=host.orderStrategy(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action));
+        Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action),map("needId",funding.need,"commitmentId",purchaseTraceId(funding.producer,now),"product","combatEngineer"));
         if(receipt==null){releaseCapabilityFunding("ORDER_REJECTED");return false;}
         purchases.put(funding.producer,purchase("combatEngineer",funding.need));investments++;
         emit("strategy_purchase_committed",map("needId",funding.need,"producerId",funding.producer,"product","combatEngineer"));
@@ -606,9 +622,10 @@ final class StrategyDirector {
         if("RETURN".equals(w.job)){
             if("amphibiousJet".equals(actor.get("type"))&&now-w.lastOrder>=10000){
                 Map<String,Object> modes=host.readStrategy("/combat/unit-modes?unitId="+w.unit,"strategy_unit_modes");
+                if(modes!=null)traceMode(w,modes,null,"UNIT_MODES_NATIVE_FIELDS");
                 if(modes!=null&&Boolean.TRUE.equals(modes.get("submergedWeaponAvailable")))for(Map<String,Object> action:items(modes,"actions"))
                     if("FLY".equals(action.get("mode"))&&Boolean.TRUE.equals(action.get("available"))&&Boolean.TRUE.equals(action.get("affordable"))){
-                        if(host.orderStrategy(w.owner,"/command/unit-mode?unitId="+w.unit+"&actionId="+encode(action.get("actionId")))!=null){
+                        if(traceOrder(w.owner,"/command/unit-mode?unitId="+w.unit+"&actionId="+encode(action.get("actionId")))!=null){
                             w.lastOrder=now;emit("strategy_responder_mode_ordered",map("taskId",w.task,"unitId",w.unit,"mode","FLY","reason","RETURN_TO_OWN_REAR","evidence",modes));return true;}
                         return false;
                     }
@@ -617,7 +634,7 @@ final class StrategyDirector {
             if("move".equals(actor.get("orderType"))&&actor.get("orderX") instanceof Number&&actor.get("orderY") instanceof Number
                     &&Math.hypot(n(actor,"orderX")-homeX,n(actor,"orderY")-homeY)<1)return false;
             if(now-w.lastOrder<10000)return false;
-            if(host.orderStrategy(w.owner,"/command/move?unitId="+w.unit+"&x="+homeX+"&y="+homeY)!=null){w.lastOrder=now;return true;}return false;
+            if(traceOrder(w.owner,"/command/move?unitId="+w.unit+"&x="+homeX+"&y="+homeY)!=null){w.lastOrder=now;return true;}return false;
         }
         boolean engineer="combatEngineer".equals(actor.get("type")),jet="amphibiousJet".equals(actor.get("type"));
         if(jet&&("MODE_APPROACH".equals(w.job)||"MODE_WAIT".equals(w.job)))return modeResponse(w,actor);
@@ -687,7 +704,7 @@ final class StrategyDirector {
                 w.x=x;w.y=y;w.lastAssessment=now;
             }
             emit("tactical_intent",map("reason","STRATEGIC_RESPONSE","targetX",w.x,"targetY",w.y,"targetId",w.target,"taskId",w.task));
-            Map<String,Object> receipt=host.orderStrategy(w.owner,"/command/attack-move?unitIds="+w.unit+"&x="+w.x+"&y="+w.y);
+            Map<String,Object> receipt=traceOrder(w.owner,"/command/attack-move?unitIds="+w.unit+"&x="+w.x+"&y="+w.y);
             if(receipt!=null){host.strategicAttack(receipt);w.lastOrder=now;emit("strategy_response_ordered",map("taskId",w.task,"unitId",w.unit,"targetId",w.target,"receipt",receipt));return true;}
         }
         return false;
@@ -697,6 +714,7 @@ final class StrategyDirector {
         Map<String,Object> response=host.readStrategy("/combat/engagement?unitIds="+worker.unit+"&targetId="+worker.target,"response_engagement_observation");
         if(response==null||!Boolean.TRUE.equals(response.get("targetVisible"))||items(response,"actors").isEmpty())return false;
         Map<String,Object> choice=items(response,"actors").get(0);
+        traceMode(worker,response,choice,"ENGAGEMENT_NATIVE_FIELDS");
         if("COMPATIBLE".equals(choice.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(choice.get("status"))){
             worker.job="RESPONSE";worker.x=n(choice,"approachX");worker.y=n(choice,"approachY");worker.lastOrder=-100000;
             worker.jobAt=worker.lastProgress=now;worker.best=Double.MAX_VALUE;worker.hp=Double.MAX_VALUE;
@@ -707,7 +725,7 @@ final class StrategyDirector {
         if("MODE_WAIT".equals(worker.job))return false;
         if(!"DIVE".equals(choice.get("requiredMode"))||!"APPROACH_PATH_KNOWN".equals(choice.get("modeApproachStatus")))return false;
         if(Boolean.TRUE.equals(choice.get("modeActionReady"))){
-            if(host.orderStrategy(worker.owner,"/command/unit-mode?unitId="+worker.unit+"&actionId="+encode(choice.get("modeActionId")))!=null){
+            if(traceOrder(worker.owner,"/command/unit-mode?unitId="+worker.unit+"&actionId="+encode(choice.get("modeActionId")))!=null){
                 worker.job="MODE_WAIT";worker.lastOrder=worker.lastProgress=now;
                 emit("strategy_responder_mode_ordered",map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,"mode","DIVE","evidence",response));return true;}
             return false;
@@ -716,7 +734,7 @@ final class StrategyDirector {
         if(Math.hypot(x-worker.x,y-worker.y)>60){worker.x=x;worker.y=y;worker.best=distance(actor,x,y);worker.lastProgress=now;}
         if(now-worker.lastOrder<10000)return false;
         if("move".equals(actor.get("orderType"))&&number(actor,"orderX",-1)==worker.x&&number(actor,"orderY",-1)==worker.y)return false;
-        if(host.orderStrategy(worker.owner,"/command/move?unitId="+worker.unit+"&x="+worker.x+"&y="+worker.y)!=null){
+        if(traceOrder(worker.owner,"/command/move?unitId="+worker.unit+"&x="+worker.x+"&y="+worker.y)!=null){
             worker.lastOrder=now;emit("strategy_responder_water_approach_ordered",map("taskId",worker.task,"unitId",worker.unit,"targetId",worker.target,
                 "x",worker.x,"y",worker.y,"evidence",response));return true;}
         return false;
@@ -811,7 +829,7 @@ final class StrategyDirector {
         worker.supportReserve=0;worker.supportQuote=null;
     }
     private boolean startBuild(Worker w,Map<String,Object> evidence,String path,String product,double x,double y,long cost,String job)throws Exception{
-        if(host.orderStrategy(w.owner,path)==null)return false;
+        if(traceOrder(w.owner,path,map("commitmentId",constructionTraceId(w,now),"product",product))==null)return false;
         w.job=job;w.product=product;w.paidConstruction=true;w.x=w.buildX=x;w.y=w.buildY=y;w.jobAt=now;w.before.clear();for(Map<String,Object> u:units(state))w.before.add(id(u));
         investments++;host.spendStrategy("STRATEGIC_CONSTRUCTION",cost,product,w.unit);
         emit("strategy_construction_ordered",map("taskId",w.task,"unitId",w.unit,"product",product,"x",x,"y",y,"evidence",evidence));return true;
@@ -860,6 +878,85 @@ final class StrategyDirector {
         "capabilityReservesStarted",capabilityReservesStarted,"capabilityReservesReleased",capabilityReservesReleased,"capabilityReserveAtEnd",capabilityReserve());}
     private void emit(String event,Map<String,Object> data)throws Exception{
         data.put("gameTimeMs",now);data.put("sessionId",arbiter.stamp().session);data.put("player",arbiter.stamp().player);host.emitStrategy(event,data);
+    }
+    // G1 sidecars below never feed policy state, timing, matching, funding or command admission.
+    private void trace(String event,Map<String,Object> data){
+        try{data.put("detectedAtGameTimeMs",now);data.put("eventOccurredAtGameTimeMs",null);
+            data.put("timeSemantics","DETECTED_BY_EXISTING_POLICY_NOT_EXACT_EVENT_TIME");
+            host.traceStrategy(event,data);
+        }catch(RuntimeException ignored){/* Optional diagnostics cannot alter existing actuation. */}
+    }
+    private Map<String,Object> traceOrder(String owner,String path)throws Exception{
+        return traceOrder(owner,path,Collections.<String,Object>emptyMap());
+    }
+    private Map<String,Object> traceOrder(String owner,String path,Map<String,Object> extra)throws Exception{
+        Map<String,Object> context=map("lane","Strategy","owner",owner,"path",path);
+        for(Worker worker:workers.values())if(worker.owner.equals(owner)){
+            context.putAll(workerTrace(worker));break;
+        }
+        context.putAll(extra);trace("command_context",context);
+        return host.orderStrategy(owner,path);
+    }
+    private static String constructionTraceId(Worker worker,long at){return "strategy-construction:"+worker.task+":"+at;}
+    private static String purchaseTraceId(long producer,long at){return "strategy-purchase:"+producer+":"+at;}
+    private Map<String,Object> workerTrace(Worker worker){
+        return map("taskId",worker.task,"unitId",worker.unit,"owner",worker.owner,"needId",worker.target,
+            "job",worker.job,"paidConstruction",worker.paidConstruction,"product",worker.product,
+            "commitmentId",worker.paidConstruction?constructionTraceId(worker,worker.jobAt):null);
+    }
+    private Map<String,Map<String,Object>> traceStates(){
+        Map<String,Map<String,Object>> snapshots=new LinkedHashMap<String,Map<String,Object>>();
+        for(Worker worker:workers.values())snapshots.put("worker:"+worker.unit,workerTrace(worker));
+        for(Need need:needs.values())snapshots.put("need:"+need.id,map("needId",need.id,"targetType",need.type,
+            "reason",need.reason,"failures",need.failures,"awaitVisibleAfterGameTimeMs",need.awaitVisibleAfter));
+        for(Map.Entry<Long,Purchase> entry:purchases.entrySet()){
+            Purchase purchase=entry.getValue();snapshots.put("purchase:"+entry.getKey(),map("producerId",entry.getKey(),
+                "needId",purchase.selectedNeed,"boundNeedId",purchase.need,"product",purchase.product,
+                "active",purchase.active,"queueFinished",purchase.queueFinished,"fulfilled",purchase.fulfilled,
+                "commitmentId",purchaseTraceId(entry.getKey(),purchase.at)));
+        }
+        return snapshots;
+    }
+    private void traceStateChanges(Map<String,Map<String,Object>> before,String phase){
+        Map<String,Map<String,Object>> after=traceStates();Set<String> keys=new LinkedHashSet<String>(before.keySet());keys.addAll(after.keySet());
+        for(String key:keys)if(!Objects.equals(before.get(key),after.get(key))){
+            Map<String,Object> identity=after.containsKey(key)?after.get(key):before.get(key);
+            Map<String,Object> data=new LinkedHashMap<String,Object>(identity);
+            data.put("objectKey",key);data.put("phase",phase);data.put("oldState",before.get(key));data.put("newState",after.get(key));
+            data.put("transitionSemantics","NET_CHANGE_DURING_EXISTING_POLICY_CALL");trace("state_transition",data);
+        }
+    }
+    private void traceReadyMatch(Worker worker,Map<String,Object> selected){
+        List<Long> candidates=new ArrayList<Long>();
+        for(Map<String,Object> unit:units(state))if(!worker.before.contains(id(unit))&&!matchedConstructionProducts.contains(id(unit))&&ready(unit)
+                &&worker.product.equals(unit.get("type"))&&distance(unit,worker.buildX,worker.buildY)<120)candidates.add(id(unit));
+        Map<String,Object> data=workerTrace(worker);data.put("selectedUnitId",id(selected));data.put("candidateUnitIds",candidates);
+        data.put("candidateCount",candidates.size());data.put("matchAmbiguous",candidates.size()>1);data.put("observedUnit",selected);
+        data.put("matchSemantics","EXISTING_FIRST_MATCH_NEW_READY_TYPE_WITHIN_120");data.put("producerLineageConfirmed",false);
+        data.put("sourceGameTimeMs",state.get("gameTimeMs"));data.put("sourceFrame",state.get("frame"));trace("ready_match_witness",data);
+    }
+    private void tracePurchaseMatch(long producer,Purchase purchase,Worker selected){
+        List<Long> candidates=new ArrayList<Long>();
+        for(Worker worker:workers.values())if(worker.target<0&&"IDLE".equals(worker.job)){
+            Map<String,Object> actor=find(state,worker.unit);
+            if(actor!=null&&ready(actor)&&"combatEngineer".equals(actor.get("type"))
+                    &&!purchase.before.contains(worker.unit)&&!matchedPurchasedWorkers.contains(worker.unit))candidates.add(worker.unit);
+        }
+        trace("purchase_ready_match_witness",map("producerId",producer,"needId",purchase.selectedNeed,
+            "commitmentId",purchaseTraceId(producer,purchase.at),"taskId",selected.task,"unitId",selected.unit,"owner",selected.owner,
+            "candidateUnitIds",candidates,"candidateCount",candidates.size(),"matchAmbiguous",candidates.size()>1,
+            "matchSemantics","EXISTING_FIRST_AVAILABLE_NEW_READY_WORKER","producerLineageConfirmed",false,
+            "sourceGameTimeMs",state.get("gameTimeMs"),"sourceFrame",state.get("frame")));
+    }
+    private void traceMode(Worker worker,Map<String,Object> response,Map<String,Object> choice,String source){
+        Map<String,Object> data=workerTrace(worker);data.put("sourceKind",source);data.put("sourceGameTimeMs",response.get("gameTimeMs"));
+        data.put("sourceFrame",response.get("frame"));data.put("nativeSubmergedWeaponAvailable",response.get("submergedWeaponAvailable"));
+        data.put("nativeMovementType",choice==null?null:choice.get("movementType"));
+        data.put("nativeWeaponRange",choice==null?null:choice.get("weaponRange"));
+        data.put("targetVisible",response.get("targetVisible"));data.put("targetDomain",response.get("targetDomain"));
+        data.put("compatibility",choice==null?null:choice.get("compatibility"));data.put("approachStatus",choice==null?null:choice.get("status"));
+        data.put("actualModeEvidence","ONLY_EXPLICIT_NATIVE_FIELDS_ABSENT_IS_UNKNOWN");
+        data.put("legacyDiveObservedIsActualModeProof",false);trace("mode_evidence_witness",data);
     }
     static Map<String,Object> map(Object... kv){Map<String,Object> m=new LinkedHashMap<String,Object>();for(int i=0;i<kv.length;i+=2)m.put((String)kv[i],kv[i+1]);return m;}
     static double number(Map<String,Object> value,String key,double fallback){return value!=null&&value.get(key) instanceof Number?((Number)value.get(key)).doubleValue():fallback;}

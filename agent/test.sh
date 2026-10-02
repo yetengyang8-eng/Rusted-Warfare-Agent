@@ -52,6 +52,7 @@ python3 "$root/tests/test_engineer_provider.py" "$root/dist/rw-agent-bootstrap.j
 python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_g1_trace.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_headless_parallel.py"
 python3 "$root/tests/test_ab_aggregate.py"
 python3 "$root/tests/test_ab_campaign.py"
@@ -59,6 +60,8 @@ python3 "$root/tests/test_ab_campaign.py"
 java -Xmx96m -cp "$classpath:$root/build/tests" io.rwagent.client.ReportCommitHarness
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyContractHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/ProductionCapacityHarness.java"

@@ -12,6 +12,18 @@ public final class BattleClient implements StrategyDirector.Host {
     private int commands,observations,losses,recruits,attacks,confirmed,retreats,techs;
     private long time,lastDecision=-1000,lastTactic=-10000,startTime,lastFrame=-1,frameAt=System.nanoTime();
     private final CommandArbiter execution=new CommandArbiter();
+    // G1 sidecar only: no trace field participates in policy, admission or native requests.
+    private final boolean traceEnabled=!"false".equalsIgnoreCase(System.getProperty("rwagent.g1Trace","true"));
+    private final String traceRunId=UUID.randomUUID().toString();
+    private final GameClock gameClock=new GameClock(traceRunId);
+    private final G1Trace trace=new G1Trace(gameClock,traceRunId);
+    private GameClock.Observation traceObservation;
+    private G1Trace.CommandSpan activeTraceCommand,lastTraceCommand;
+    private Map<String,Object> traceContext=Collections.emptyMap(),nextTraceCommandContext=Collections.emptyMap();
+    private String tracePhase="EXISTING_EVENT";
+    private final Set<String> traceWitnesses=new LinkedHashSet<String>();
+    private final Map<String,G1Trace.CommandSpan> traceCommitments=new LinkedHashMap<String,G1Trace.CommandSpan>();
+    private final Map<String,G1Trace.CommandSpan> traceStrategyCommands=new LinkedHashMap<String,G1Trace.CommandSpan>();
     private final StrategyDirector strategy=new StrategyDirector(this,execution);
     private final LocalArmyDirector localArmies=new LocalArmyDirector();
     private boolean localArmyActive;
@@ -24,6 +36,7 @@ public final class BattleClient implements StrategyDirector.Host {
         final List<Long> actors;final Map<Long,Long> leases=new LinkedHashMap<Long,Long>();final double returnX,returnY;
         long lastSeen,lastAccepted=-100000,lastIdleRecovery=-100000,returnAt=-1,returnAccepted=-1;
         double goalX,goalY;String returnReason;
+        G1Trace.CommandSpan traceCommand;
         LocalCrisis(long task,long target,long asset,long now,List<Long> actors,double x,double y){
             this.task=task;this.target=target;this.asset=asset;created=lastSeen=now;
             owner="local-crisis:"+task;this.actors=actors;returnX=x;returnY=y;
@@ -980,13 +993,21 @@ public final class BattleClient implements StrategyDirector.Host {
         Iterator<Map.Entry<Long,Pending>> it=pending.entrySet().iterator();while(it.hasNext()){
             Map.Entry<Long,Pending> entry=it.next();Pending p=entry.getValue();Map<String,Object> f=find(state,entry.getKey());
             if(f==null||!alive(f)){event("production_interrupted","{\"factoryId\":"+entry.getKey()+"}");it.remove();continue;}
-            if(n(f,"productionQueue")>0)p.active=true;
+            if(n(f,"productionQueue")>0){
+                traceWitness("g1_production_witness",p.traceCommand,"QUEUE_NONEMPTY_OBSERVED",
+                        StrategyDirector.map("factoryId",entry.getKey(),"type",p.type,"commitmentId","ordinary-production:"+entry.getKey()+":"+p.started,"queueCount",f.get("productionQueue"),
+                                "productReadyProven",false,"producerProductLineageConfirmed",false));
+                p.active=true;
+            }
             if(p.active&&n(f,"productionQueue")==0){
                 if("upgrade".equals(p.type)){
                     if(n(f,"techLevel")<=p.tier)throw new IllegalStateException("Upgrade queue emptied without native tier increase");
                     techs++;event("upgrade_completed","{\"factoryId\":"+entry.getKey()+",\"tier\":"+n(f,"techLevel")+"}");
                 }
-                event("production_queue_finished","{\"factoryId\":"+entry.getKey()+",\"type\":"+Json.quote(p.type)+"}");it.remove();
+                event("production_queue_finished","{\"factoryId\":"+entry.getKey()+",\"type\":"+Json.quote(p.type)+"}");
+                traceWitness("g1_production_witness",p.traceCommand,"QUEUE_EMPTY_AFTER_NONEMPTY_OBSERVED",
+                        StrategyDirector.map("factoryId",entry.getKey(),"type",p.type,"commitmentId","ordinary-production:"+entry.getKey()+":"+p.started,"queueCount",0,
+                                "productReadyProven",false,"producerProductLineageConfirmed",false));it.remove();
             }else if(time-p.started>180000)throw new IllegalStateException("Native production did not finish within 180 game seconds");
         }
     }
@@ -1161,6 +1182,9 @@ public final class BattleClient implements StrategyDirector.Host {
                 else
                     event("production_decision",decisionJson(f,preferred,chosen,state));
             }
+            if(traceEnabled)nextTraceCommandContext=StrategyDirector.map("lane","ORDINARY_PRODUCTION","factoryId",fid,
+                    "product",chosen.get("type"),"actionId",chosen.get("actionId"),"nativeCost",chosen.get("cost"),
+                    "commitmentId","ordinary-production:"+fid+":"+time);
             Map<String,Object> receipt=post("/command/queue?unitId="+fid+"&actionId="+URLEncoder.encode((String)chosen.get("actionId"),"UTF-8"));
             if(receipt==null)return false;
             if(qualitySelected){
@@ -1178,6 +1202,7 @@ public final class BattleClient implements StrategyDirector.Host {
                 pendingFallback=null;
             }
             Pending p=new Pending();p.started=time;p.type=(String)chosen.get("type");p.tier=(int)n(f,"tier");pending.put(fid,p);
+            p.traceCommand=lastTraceCommand;
             productionIdleReason=null;return true;
         }
         lastFactoryQueueNonEmpty=anyQueueBusy;
@@ -1527,10 +1552,14 @@ public final class BattleClient implements StrategyDirector.Host {
     private static String reconOwner(long taskId){return "recon:"+taskId;}
     private void releaseOwnership(long taskId,String reason)throws Exception{
         if(!execution.release(reconOwner(taskId)))return;
+        traceTransition("g1_recon_owner",reconOwner(taskId),"LEASE_HELD","RELEASED",
+                StrategyDirector.map("taskId",taskId,"reason",reason,"nativePreviousOrderCancelled",false));
         event("task_ownership_released","{\"taskId\":"+taskId+",\"reason\":"+Json.quote(reason)+",\"gameTimeMs\":"+time+"}");
     }
     private boolean claimRecon(long taskId,long unitId)throws Exception{
         if(!execution.claim(reconOwner(taskId),unitId))return false;
+        traceTransition("g1_recon_owner",reconOwner(taskId),"LEASE_NOT_RECORDED_BY_G1","LEASE_HELD",
+                StrategyDirector.map("taskId",taskId,"unitId",unitId,"nativeTakeoverProven",false));
         event("task_ownership_acquired","{\"taskId\":"+taskId+",\"unitId\":"+unitId+",\"sessionId\":"+Json.quote(execution.stamp().session)
                 +",\"player\":"+Json.quote(execution.stamp().player)+",\"frame\":"+execution.stamp().frame+",\"gameTimeMs\":"+time+"}");
         return true;
@@ -1556,9 +1585,13 @@ public final class BattleClient implements StrategyDirector.Host {
     }
     private MoveExecution.Witness moveWitness(MoveExecution move,Map<String,Object> actor){
         if(move==null||actor==null||!armed(actor))return MoveExecution.Witness.NONE;
-        return move.observe(execution.stamp(),id(actor),n(actor,"x"),n(actor,"y"),stringOrNull(actor,"orderType"),
+        MoveExecution.Witness witness=move.observe(execution.stamp(),id(actor),n(actor,"x"),n(actor,"y"),stringOrNull(actor,"orderType"),
                 actor.get("orderX") instanceof Number?Double.valueOf(n(actor,"orderX")):null,
                 actor.get("orderY") instanceof Number?Double.valueOf(n(actor,"orderY")):null);
+        if(witness!=MoveExecution.Witness.NONE)traceWitness("g1_recon_witness",trace.commandForRequest(move.requestId),witness.name(),
+                StrategyDirector.map("unitId",id(actor),"owner",move.intent.owner,"acceptedFrame",move.acceptedFrame,
+                        "observedFrame",execution.stamp().frame,"observedOrderType",actor.get("orderType"),"x",n(actor,"x"),"y",n(actor,"y")));
+        return witness;
     }
     /** Observe execution on every poll, including samples between policy decisions. */
     private void observeReconMotion(Map<String,Object> state)throws Exception{
@@ -2276,6 +2309,8 @@ public final class BattleClient implements StrategyDirector.Host {
     private void beginCrisisReturn(String reason)throws Exception{
         if(localCrisis==null||localCrisis.returnAt>=0)return;
         localCrisis.returnAt=time;localCrisis.returnReason=reason;
+        traceTransition("g1_local_crisis_state",localCrisis.owner,"RESPOND","RETURN",
+                StrategyDirector.map("taskId",localCrisis.task,"targetId",localCrisis.target,"reason",reason));
         event("local_crisis_return",json(StrategyDirector.map("taskId",localCrisis.task,"owner",localCrisis.owner,
                 "targetId",localCrisis.target,"unitIds",localCrisis.actors,"reason",reason,"gameTimeMs",time,
                 "contactSemantics","LOST_VISIBILITY_IS_UNKNOWN_NOT_KILL_PROOF")));
@@ -2283,6 +2318,8 @@ public final class BattleClient implements StrategyDirector.Host {
     private void releaseLocalCrisis(String reason)throws Exception{
         LocalCrisis c=localCrisis;if(c==null)return;
         execution.release(c.owner);crisisRetryAfter.put(c.target,time+LocalCrisisPolicy.RETRY_MS);
+        traceTransition("g1_local_crisis_state",c.owner,c.returnAt<0?"RESPOND":"RETURN","RELEASED",
+                StrategyDirector.map("taskId",c.task,"reason",reason,"arrivalProven","RETURN_OBSERVED".equals(reason)));
         while(crisisRetryAfter.size()>128)crisisRetryAfter.remove(crisisRetryAfter.keySet().iterator().next());
         for(Long uid:c.actors)event("task_ownership_released",json(StrategyDirector.map("taskId",c.leases.get(uid),
                 "crisisTaskId",c.task,"owner",c.owner,"unitId",uid,"role","LOCAL_CRISIS","reason",reason,"gameTimeMs",time)));
@@ -2294,6 +2331,7 @@ public final class BattleClient implements StrategyDirector.Host {
             LocalCrisis c=localCrisis;List<Map<String,Object>> responders=new ArrayList<Map<String,Object>>();
             for(Long uid:c.actors){Map<String,Object> u=find(state,uid);if(u!=null&&alive(u)&&execution.owns(c.owner,uid))responders.add(u);}
             if(responders.isEmpty()){releaseLocalCrisis("NO_SURVIVORS");return;}
+            traceLocalCrisisWitness(c,responders);
             Map<String,Object> asset=find(state,c.asset),target=null;
             for(Map<String,Object> e:list(enemies,"visibleEnemies"))if(id(e)==c.target&&currentEnemy(e,enemies))target=e;
             if(c.returnAt<0){
@@ -2350,6 +2388,8 @@ public final class BattleClient implements StrategyDirector.Host {
         c.goalX=n(target,"x");c.goalY=n(target,"y");
         for(Long uid:ids)if(!execution.claim(c.owner,uid)){execution.release(c.owner);return;}
         localCrisis=c;
+        traceTransition("g1_local_crisis_state",c.owner,"UNASSIGNED","RESPOND",
+                StrategyDirector.map("taskId",c.task,"targetId",c.target,"unitIds",ids));
         for(Long uid:ids)event("task_ownership_acquired",json(StrategyDirector.map("taskId",c.leases.get(uid),"crisisTaskId",c.task,"owner",c.owner,"unitId",uid,
                 "role","LOCAL_CRISIS","sessionId",session,"player",execution.stamp().player,"frame",execution.stamp().frame,"gameTimeMs",time)));
         event("local_crisis_started",json(StrategyDirector.map("taskId",c.task,"owner",c.owner,"targetId",c.target,
@@ -2386,7 +2426,7 @@ public final class BattleClient implements StrategyDirector.Host {
         if(target!=null&&time-c.lastAccepted<8000)c.lastIdleRecovery=time;
         boolean first=c.lastAccepted<0;c.lastAccepted=time;c.goalX=x;c.goalY=y;
         if(target!=null)noteTargetOrder(c.target,first?null:Long.valueOf(c.target));else c.returnAccepted=time;
-        attacks++;awaitingOrder=receipt;
+        attacks++;awaitingOrder=receipt;c.traceCommand=lastTraceCommand;
         event("local_crisis_order",json(StrategyDirector.map("taskId",c.task,"owner",c.owner,"unitIds",actorIds,
                 "targetId",target==null?null:c.target,"phase",target==null?"RETURN":"RESPOND","requestId",receipt.get("requestId"),"gameTimeMs",time)));
         return true;
@@ -4131,20 +4171,43 @@ public final class BattleClient implements StrategyDirector.Host {
             if(field.startsWith("unitId=")||field.startsWith("unitIds="))
                 for(String value:field.substring(field.indexOf('=')+1).split(","))actors.add(Long.valueOf(value));
         }
-        String denied=execution.admit(stamp,owner,actors);
-        if(denied!=null){
-            if(!"COMMAND_GAME_TIME_BUDGET".equals(denied))event("command_arbitration_denied",
-                    "{\"owner\":"+Json.quote(owner)+",\"reason\":"+Json.quote(denied)+",\"unitIds\":"+actors+",\"gameTimeMs\":"+time+"}");
-            return null;
-        }
-        lastCommandAt=time;lastCommandOwner=owner;lastCommandPath=path.substring(0,path.indexOf('?'));
-        path+="&sessionId="+session+"&requestId="+UUID.randomUUID();event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time
-                +",\"owner\":"+Json.quote(owner)+",\"observationFrame\":"+stamp.frame+"}");
-        AgentClient.Response r=AgentClient.request("POST","http://127.0.0.1:"+port+path);
-        if(r.status==409){event("command_rejected","{\"status\":409,\"body\":"+Json.quote(r.body)+"}");return null;}
-        if(r.status!=200)throw new IllegalStateException("Command HTTP "+r.status+": "+r.body);
-        Map<String,Object> result=obj(Json.parse(r.body));event("command_result",r.body);
-        if(!"queued".equals(result.get("status")))throw new IllegalStateException("Invalid command receipt");check(result);commands++;return result;
+        G1Trace.CommandSpan span=traceEnabled?trace.beginCommand(owner,actors,path.substring(0,path.indexOf('?')),gameClock.latestObservationIds()):null;
+        Map<String,Object> commandContext=new LinkedHashMap<String,Object>(nextTraceCommandContext);
+        nextTraceCommandContext=Collections.emptyMap();
+        commandContext.put("owner",owner);commandContext.put("ownerGeneration",null);
+        commandContext.put("ownerGenerationStatus","NOT_IMPLEMENTED_G3");
+        commandContext.put("sourceStamp",StrategyDirector.map("sessionId",stamp.session,"player",stamp.player,"frame",stamp.frame,"gameTimeMs",stamp.gameTimeMs));
+        if(owner.startsWith("recon:")){commandContext.put("lane","RECON");commandContext.put("taskId",owner.substring(6));}
+        else if(owner.startsWith("local-crisis:")){commandContext.put("lane","LOCAL_CRISIS");commandContext.put("taskId",owner.substring(13));}
+        else if(!commandContext.containsKey("lane"))commandContext.put("lane",path.startsWith("/command/queue?")?"ORDINARY_PRODUCTION":"LEGACY_MAIN");
+        G1Trace.CommandSpan previousSpan=activeTraceCommand;Map<String,Object> previousContext=traceContext;
+        activeTraceCommand=span;traceContext=commandContext;
+        try{
+            String denied=execution.admit(stamp,owner,actors);
+            if(span!=null){span.admission(denied);safeTraceEvent("g1_command_attempt",span,"COMMAND_ATTEMPT",commandContext);}
+            if(denied!=null){
+                if(!"COMMAND_GAME_TIME_BUDGET".equals(denied))event("command_arbitration_denied",
+                        "{\"owner\":"+Json.quote(owner)+",\"reason\":"+Json.quote(denied)+",\"unitIds\":"+actors+",\"gameTimeMs\":"+time+"}");
+                return null;
+            }
+            lastCommandAt=time;lastCommandOwner=owner;lastCommandPath=path.substring(0,path.indexOf('?'));
+            String requestId=UUID.randomUUID().toString();
+            path+="&sessionId="+session+"&requestId="+requestId;event("action","{\"path\":"+Json.quote(path)+",\"gameTimeMs\":"+time
+                    +",\"owner\":"+Json.quote(owner)+",\"observationFrame\":"+stamp.frame+"}");
+            AgentClient.Response r;
+            try{r=AgentClient.request("POST","http://127.0.0.1:"+port+path);}
+            catch(Exception failure){safeTraceEvent("g1_command_transport_failure",span,"TRANSPORT_FAILURE",StrategyDirector.map("exceptionType",failure.getClass().getName()));throw failure;}
+            if(r.status==409){commandContext.put("nativeHttpStatus",409);if(span!=null)trace.rememberReceipt(span,requestId,traceReceiptBody(r.body));event("command_rejected","{\"status\":409,\"body\":"+Json.quote(r.body)+"}");return null;}
+            if(r.status!=200){safeTraceEvent("g1_command_http_failure",span,"NATIVE_HTTP_FAILURE",StrategyDirector.map("status",r.status,"body",r.body));throw new IllegalStateException("Command HTTP "+r.status+": "+r.body);}
+            Map<String,Object> result=obj(Json.parse(r.body));commandContext.put("nativeHttpStatus",r.status);if(span!=null)trace.rememberReceipt(span,requestId,result);event("command_result",r.body);
+            if(!"queued".equals(result.get("status")))throw new IllegalStateException("Invalid command receipt");check(result);commands++;lastTraceCommand=span;
+            if(span!=null){
+                Object commitment=commandContext.get("commitmentId");
+                if(commitment instanceof String){traceCommitments.put((String)commitment,span);trimTraceMap(traceCommitments);}
+                if(owner.startsWith("strategy:")){traceStrategyCommands.put(owner,span);trimTraceMap(traceStrategyCommands);}
+            }
+            return result;
+        }finally{activeTraceCommand=previousSpan;traceContext=previousContext;}
     }
     /** The Recon policy emits a typed intent; the same ownership/time gate serves legacy commands. */
     private MoveExecution submitMove(CommandArbiter.MoveIntent intent,Map<String,Object> actor,boolean takeover)throws Exception{
@@ -4157,12 +4220,105 @@ public final class BattleClient implements StrategyDirector.Host {
                 n(actor,"x"),n(actor,"y"),takeover);
     }
     private Map<String,Object> optionalGet(String path,String kind)throws Exception{
+        long requestedWallTimeMs=System.currentTimeMillis();
         AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+path);
+        long receivedWallTimeMs=System.currentTimeMillis();
         if(r.status==409){event("plan_unavailable","{\"path\":"+Json.quote(path)+",\"body\":"+Json.quote(r.body)+"}");return null;}
-        if(r.status!=200)throw new IllegalStateException("GET HTTP "+r.status+": "+r.body);event(kind,r.body);return obj(Json.parse(r.body));
+        if(r.status!=200)throw new IllegalStateException("GET HTTP "+r.status+": "+r.body);
+        // Preserve legacy logging/parse-failure ordering while parsing successful payloads once.
+        Map<String,Object> parsed=null;Exception parseFailure=null;
+        try{parsed=obj(Json.parse(r.body));}catch(Exception failure){parseFailure=failure;}
+        GameClock.Observation previousObservation=traceObservation;
+        if(traceEnabled&&parsed!=null){
+            GameClock.Observation previousState=gameClock.latestState();
+            Long detected="/state".equals(path)?GameClock.number(parsed.get("gameTimeMs")):
+                    previousState==null?null:previousState.sourceGameTimeMs;
+            traceObservation=gameClock.observe(path,parsed,requestedWallTimeMs,receivedWallTimeMs,detected);
+        }
+        try{event(kind,r.body);}finally{traceObservation=previousObservation;}
+        if(parseFailure!=null)throw parseFailure;return parsed;
     }
     private Map<String,Object> get(String path,String kind)throws Exception{Map<String,Object> r=optionalGet(path,kind);if(r==null)throw new IllegalStateException("Unavailable "+path);return r;}
-    private void event(String kind,String data)throws Exception{log.write("{\"wallTimeMs\":"+System.currentTimeMillis()+",\"event\":"+Json.quote(kind)+",\"data\":"+data+"}\n");log.flush();}
+    private void event(String kind,String data)throws Exception{
+        long wall=System.currentTimeMillis();
+        String metadata="";
+        if(traceEnabled){
+            String phase=traceObservation!=null?"OBSERVATION":activeTraceCommand!=null?
+                    ("command_result".equals(kind)||"command_rejected".equals(kind)?"NATIVE_RECEIPT":"COMMAND_ATTEMPT"):tracePhase;
+            metadata=",\"trace\":"+json(trace.event(kind,wall,traceObservation!=null?traceObservation:gameClock.latestState(),activeTraceCommand,phase,traceContext));
+        }
+        log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+data+metadata+"}\n");log.flush();
+    }
+    private void traceEvent(String kind,G1Trace.CommandSpan command,String phase,Map<String,Object> data)throws Exception{
+        if(!traceEnabled)return;
+        G1Trace.CommandSpan previous=activeTraceCommand;Map<String,Object> previousContext=traceContext;String previousPhase=tracePhase;
+        activeTraceCommand=command;traceContext=data;tracePhase=phase;
+        try{
+            long wall=System.currentTimeMillis();
+            log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+json(data)
+                    +",\"trace\":"+json(trace.event(kind,wall,gameClock.latestState(),command,phase,data))+"}\n");log.flush();
+        }finally{activeTraceCommand=previous;traceContext=previousContext;tracePhase=previousPhase;}
+    }
+    private static Map<String,Object> traceReceiptBody(String body){
+        try{Object value=Json.parse(body);return value instanceof Map?obj(value):Collections.<String,Object>emptyMap();}
+        catch(RuntimeException malformed){return Collections.emptyMap();}
+    }
+    private void safeTraceEvent(String kind,G1Trace.CommandSpan command,String phase,Map<String,Object> data){
+        try{traceEvent(kind,command,phase,data);}catch(Exception failure){recordTraceFailure(failure);}
+    }
+    private static void trimTraceMap(Map<String,G1Trace.CommandSpan> data){while(data.size()>256)data.remove(data.keySet().iterator().next());}
+    private void traceWitness(String kind,G1Trace.CommandSpan command,String witness,Map<String,Object> data){
+        if(!traceEnabled||command==null)return;
+        String key=command.commandId+":"+witness;if(!traceWitnesses.add(key))return;
+        while(traceWitnesses.size()>512)traceWitnesses.remove(traceWitnesses.iterator().next());
+        Map<String,Object> context=new LinkedHashMap<String,Object>(data);context.put("witness",witness);
+        context.put("ownerGeneration",null);context.put("ownerGenerationStatus","NOT_IMPLEMENTED_G3");
+        try{traceEvent(kind,command,"LATER_WITNESS",context);}catch(Exception failure){recordTraceFailure(failure);}
+    }
+    private void traceTransition(String kind,String owner,String oldState,String newState,Map<String,Object> data){
+        Map<String,Object> context=new LinkedHashMap<String,Object>(data);context.put("owner",owner);
+        context.put("oldState",oldState);context.put("newState",newState);context.put("ownerGeneration",null);
+        context.put("ownerGenerationStatus","NOT_IMPLEMENTED_G3");
+        try{traceEvent(kind,null,"EXISTING_STATE_TRANSITION",context);}catch(Exception failure){recordTraceFailure(failure);}
+    }
+    private void traceLocalCrisisWitness(LocalCrisis crisis,List<Map<String,Object>> responders){
+        if(!traceEnabled||crisis.traceCommand==null)return;
+        Long acceptedFrame=GameClock.number(crisis.traceCommand.metadata().get("nativeReceiptFrame"));
+        if(acceptedFrame==null||gameClock.latestState()==null||gameClock.latestState().sourceFrame==null
+                ||gameClock.latestState().sourceFrame<=acceptedFrame)return;
+        boolean active=true,arrived=crisis.returnAccepted>=0;
+        List<Long> observedResponderIds=new ArrayList<Long>();
+        for(Map<String,Object> actor:responders){
+            observedResponderIds.add(id(actor));
+            if(!onAttackGoal(actor,crisis.goalX,crisis.goalY))active=false;
+            if(distance(actor,crisis.returnX,crisis.returnY)>150)arrived=false;
+        }
+        if(active)traceWitness("g1_local_crisis_witness",crisis.traceCommand,"ACTIVE_ORDER_OBSERVED",
+                StrategyDirector.map("taskId",crisis.task,"originalActorIds",crisis.actors,"observedResponderIds",observedResponderIds,"acceptedFrame",acceptedFrame,"observedFrame",gameClock.latestState().sourceFrame,"oldState",crisis.returnAt<0?"RESPOND":"RETURN",
+                        "newState",crisis.returnAt<0?"RESPOND":"RETURN","goalX",crisis.goalX,"goalY",crisis.goalY));
+        if(arrived)traceWitness("g1_local_crisis_witness",crisis.traceCommand,"RETURN_LOCATION_OBSERVED",
+                StrategyDirector.map("taskId",crisis.task,"originalActorIds",crisis.actors,"observedResponderIds",observedResponderIds,"acceptedFrame",acceptedFrame,"observedFrame",gameClock.latestState().sourceFrame,"arrivalRadius",150,"taskCompletionProven",false));
+    }
+    private long traceFailures;
+    private void recordTraceFailure(Exception failure){traceFailures++;System.err.println("G1 trace sidecar failure "+traceFailures+": "+failure.getClass().getName());}
+    public void traceStrategy(String kind,Map<String,Object> data){
+        if(!traceEnabled)return;
+        if("command_context".equals(kind)){nextTraceCommandContext=new LinkedHashMap<String,Object>(data);return;}
+        G1Trace.CommandSpan command=null;
+        if(data.get("commitmentId") instanceof String)command=traceCommitments.get(data.get("commitmentId"));
+        if(command==null&&kind.contains("mode")&&data.get("owner") instanceof String)command=traceStrategyCommands.get(data.get("owner"));
+        Map<String,Object> context=new LinkedHashMap<String,Object>(data);
+        context.put("ownerGeneration",null);context.put("ownerGenerationStatus","NOT_IMPLEMENTED_G3");
+        context.put("commandLinkSemantics",command==null?"NO_LINK_AVAILABLE":kind.contains("mode")?"LATEST_ACCEPTED_OWNER_COMMAND_NOT_EXCLUSIVE_CAUSALITY":"EXISTING_PAID_COMMITMENT");
+        String modeEndpoint="UNIT_MODES_NATIVE_FIELDS".equals(data.get("sourceKind"))?"/combat/unit-modes":"/combat/engagement";
+        GameClock.Observation observation=kind.contains("mode")?gameClock.latest(modeEndpoint):gameClock.latestState();
+        if(observation==null)observation=gameClock.latestState();
+        try{
+            long wall=System.currentTimeMillis();
+            log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote("g1_strategy_"+kind)+",\"data\":"+json(data)
+                    +",\"trace\":"+json(trace.event("g1_strategy_"+kind,wall,observation,command,kind.contains("witness")?"LATER_WITNESS":"EXISTING_STRATEGY_EVIDENCE",context))+"}\n");log.flush();
+        }catch(Exception failure){recordTraceFailure(failure);}
+    }
     static String json(Object v){
         if(v==null)return "null";if(v instanceof String)return Json.quote((String)v);if(v instanceof Number||v instanceof Boolean)return v.toString();
         StringBuilder s=new StringBuilder();if(v instanceof Map){s.append('{');for(Object entry:((Map<?,?>)v).entrySet()){Map.Entry<?,?> e=(Map.Entry<?,?>)entry;if(s.length()>1)s.append(',');s.append(Json.quote((String)e.getKey())).append(':').append(json(e.getValue()));}return s.append('}').toString();}
@@ -4178,5 +4334,5 @@ public final class BattleClient implements StrategyDirector.Host {
     static boolean armed(Map<String,Object> u){return alive(u)&&Boolean.TRUE.equals(u.get("mobile"))&&Boolean.TRUE.equals(u.get("canAttack"))&&n(u,"buildProgress")>=1;}
     static List<Map<String,Object>> army(Map<String,Object> s){List<Map<String,Object>> out=new ArrayList<Map<String,Object>>();for(Map<String,Object> u:units(s))if(armed(u))out.add(u);return out;}
     static double distance(Map<String,Object> u,double x,double y){return Math.hypot(n(u,"x")-x,n(u,"y")-y);}
-    static final class Pending{long started;boolean active;String type;int tier;}
+    static final class Pending{long started;boolean active;String type;int tier;G1Trace.CommandSpan traceCommand;}
 }
