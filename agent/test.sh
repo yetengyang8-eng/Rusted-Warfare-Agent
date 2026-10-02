@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: the same 33 Java runs and 27 Python suites as test-win.ps1.
+# Regression: the same 37 Java runs and 28 Python suites as test-win.ps1.
 set -euo pipefail
 # Historical policy tests cover legacy behavior; the G3 suite explicitly enables the scheduler.
 compat_python() { JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-} -Drwagent.g3Execution=false" python3 "$@"; }
@@ -57,6 +57,7 @@ compat_python "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-b
 compat_python "$root/tests/test_g1_trace.py" "$root/dist/rw-agent-bootstrap.jar"
 compat_python "$root/tests/test_g2_world_state.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g3_execution.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_g4_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
 compat_python "$root/tests/test_headless_parallel.py"
 compat_python "$root/tests/test_ab_aggregate.py"
 compat_python "$root/tests/test_ab_campaign.py"
@@ -67,6 +68,11 @@ java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarne
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/ExecutionSchedulerHarness.java" "$root/tests/CapabilityLifecycleHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionSchedulerHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.CapabilityLifecycleHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/NativeCreditWitnessHarness.java" "$root/tests/StrategyQuoteProvenanceHarness.java" "$root/tests/GeneralRegistryHarness.java" "$root/tests/ForceControllerHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.NativeCreditWitnessHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyQuoteProvenanceHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.GeneralRegistryHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceControllerHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/WorldStateHarness.java"

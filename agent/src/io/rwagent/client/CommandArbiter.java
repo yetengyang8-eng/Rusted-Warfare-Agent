@@ -72,6 +72,12 @@ public final class CommandArbiter {
     }
     public boolean reserved(long unitId){return owners.containsKey(unitId);}
     public boolean owns(String owner,long unitId){return owner.equals(owners.get(unitId));}
+    /** Release one actor, including one no longer present in the latest own observation.
+     * Shared owners such as the FREE pool must not release their unrelated actors. */
+    public boolean releaseActor(String owner,long unitId){
+        if(owner==null||!owns(owner,unitId))return false;
+        advance(unitId);owners.remove(unitId);return true;
+    }
     public boolean release(String owner){
         boolean released=false;
         Iterator<Map.Entry<Long,String>> it=owners.entrySet().iterator();

@@ -137,6 +137,7 @@ class G3ExecutionTests(unittest.TestCase):
             with tempfile.TemporaryDirectory(prefix='rw-g3-http-') as cwd:
                 command = ['java', '-Dfile.encoding=UTF-8', '-Drwagent.pollMs=60',
                     '-Drwagent.g3Execution=' + str(enabled).lower(),
+                    '-Drwagent.g4Forces=false',
                     '-Drwagent.g1Trace=' + str(trace).lower(), '-Drwagent.g2WorldState=' + str(world and trace).lower(),
                     '-Drwagent.additionalDiagnostics=' + str(diagnostics).lower(),
                     '-Drwagent.reachabilitySample=false', '-Drwagent.reconEnabled=false',
@@ -283,6 +284,7 @@ class G3ExecutionTests(unittest.TestCase):
             command = list(command)
             if command and pathlib.Path(command[0]).stem.lower() == 'java':
                 command.insert(1, '-Drwagent.g3Execution=true')
+                command.insert(1, '-Drwagent.g4Forces=false')
             result = original_run(command, *args, **kwargs)
             if EVIDENCE_DIR and command and pathlib.Path(command[0]).stem.lower() == 'java':
                 directory = pathlib.Path(EVIDENCE_DIR)
