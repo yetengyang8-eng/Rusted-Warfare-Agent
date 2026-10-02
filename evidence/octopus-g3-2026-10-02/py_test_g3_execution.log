@@ -1,0 +1,16 @@
+test_accepted_g2_and_g3_throughput_uses_same_native_product (__main__.G3ExecutionTests.test_accepted_g2_and_g3_throughput_uses_same_native_product) ... ok
+test_batch_credits_and_paid_queue_gap_remain_protected (__main__.G3ExecutionTests.test_batch_credits_and_paid_queue_gap_remain_protected) ... ok
+test_batch_military_slots_include_paid_before_queue_visible (__main__.G3ExecutionTests.test_batch_military_slots_include_paid_before_queue_visible) ... ok
+test_existing_local_crisis_lost_contact_semantics_under_g3 (__main__.G3ExecutionTests.test_existing_local_crisis_lost_contact_semantics_under_g3) ... ok
+test_existing_ordinary_production_reserve_under_g3 (__main__.G3ExecutionTests.test_existing_ordinary_production_reserve_under_g3) ... ok
+test_existing_provider_funding_and_native_mode_under_g3 (__main__.G3ExecutionTests.test_existing_provider_funding_and_native_mode_under_g3) ... ok
+test_existing_recon_legal_clear_witness_under_g3 (__main__.G3ExecutionTests.test_existing_recon_legal_clear_witness_under_g3) ... ok
+test_game_time_jumps_multi_factory_and_long_gap_burst_cap (__main__.G3ExecutionTests.test_game_time_jumps_multi_factory_and_long_gap_burst_cap) ... ok
+test_native_nonfactory_negative_queue_preserves_mine_commitments (__main__.G3ExecutionTests.test_native_nonfactory_negative_queue_preserves_mine_commitments) ... ok
+test_native_nonfactory_negative_queue_preserves_provider_chain (__main__.G3ExecutionTests.test_native_nonfactory_negative_queue_preserves_provider_chain) ... ok
+test_trace_and_diagnostics_do_not_change_native_choices (__main__.G3ExecutionTests.test_trace_and_diagnostics_do_not_change_native_choices) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 46.486s
+
+OK

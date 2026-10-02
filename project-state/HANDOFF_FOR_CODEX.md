@@ -1,3 +1,11 @@
+# 当前 G3/G3.5 接手入口 — 2026-10-02
+
+从当前最新G3/G3.5交付继续：最终测试源码95a917e，分支codex/octopus-g3-execution-20261002。有效63/63验证（历史fixture环境补验另列），未部署/自然验收，未进入G4。
+
+请先读[CURRENT_STATE](CURRENT_STATE.md)、[G3 handoff](../handoff/HANDOFF_Octopus_G3_G35_2026-10-02.md)及[契约](../docs/OCTOPUS_G3_EXECUTION_INTENT.md)。子智能体优先gpt-6.1-sol/high，禁Astra；旧文件名不代表模型授权。下面仅保留历史导航，current/latest/next表述以本段与当前project-state为准。
+
+---
+
 # 接手入口
 
 最新增量及GPT/DeepSeek交接：[HANDOFF_Codex_Feedback_2026-10-01.md](../handoff/HANDOFF_Codex_Feedback_2026-10-01.md)。无builder起步、多队控制、局部危机、公平调度、后方生产与T2/T3局部投资已落在当前仓库；先读最新CURRENT_STATE，保留增量。冻结基线未回写或晋级。

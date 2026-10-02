@@ -6,3 +6,7 @@ evidence/operations-2026-10-01/*.zip -text
 deliveries/feedback-2026-10-01/* -text
 deliveries/feedback-2026-10-01/*.bat whitespace=cr-at-eol
 evidence/feedback-2026-10-01/*.zip -text
+
+# Preserve native Windows regression evidence, including transcript header whitespace.
+evidence/octopus-g3-2026-10-02/*.log -text whitespace=-blank-at-eol
+evidence/octopus-g3-2026-10-02/full-win-transcript.txt -text whitespace=-blank-at-eol

@@ -1,0 +1,245 @@
+{
+  "candidateId": "RW-CANDIDATE-2026-10-02-OCTOPUS-G3-G35-v1",
+  "testedSourceCommit": "95a917ef1157b7a7dcebcce50bf5fff4ff8bc80d",
+  "passedSteps": 63,
+  "expectedSteps": 63,
+  "failedSteps": 0,
+  "exitCode": 0,
+  "javaHarnessRuns": 33,
+  "fullRawPassedSteps": 62,
+  "fullRawFailedSteps": 1,
+  "fullRawExitCode": 1,
+  "repairedEnvironmentStep": "py:test_reports: five historical docs fixtures omitted from isolated copy; copied unchanged then16/16PASS, exit0. No source edits or full repeat.",
+  "pythonSuites": 27,
+  "pythonTests": 463,
+  "pythonSkipped": 0,
+  "pythonSuiteResults": [
+    {
+      "suite": "py_test_ab_aggregate",
+      "tests": 17,
+      "elapsedSeconds": 0.756,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_ab_aggregate.log"
+    },
+    {
+      "suite": "py_test_ab_campaign",
+      "tests": 14,
+      "elapsedSeconds": 0.079,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_ab_campaign.log"
+    },
+    {
+      "suite": "py_test_battle_client",
+      "tests": 78,
+      "elapsedSeconds": 169.573,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_battle_client.log"
+    },
+    {
+      "suite": "py_test_battle_reports",
+      "tests": 31,
+      "elapsedSeconds": 0.003,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_battle_reports.log"
+    },
+    {
+      "suite": "py_test_client",
+      "tests": 11,
+      "elapsedSeconds": 40.112,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_client.log"
+    },
+    {
+      "suite": "py_test_development",
+      "tests": 13,
+      "elapsedSeconds": 50.191,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_development.log"
+    },
+    {
+      "suite": "py_test_economy",
+      "tests": 12,
+      "elapsedSeconds": 36.185,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_economy.log"
+    },
+    {
+      "suite": "py_test_engineer_provider",
+      "tests": 8,
+      "elapsedSeconds": 38.181,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_engineer_provider.log"
+    },
+    {
+      "suite": "py_test_feedback_progress_audit",
+      "tests": 48,
+      "elapsedSeconds": 0.077,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_feedback_progress_audit.log"
+    },
+    {
+      "suite": "py_test_frontier",
+      "tests": 8,
+      "elapsedSeconds": 23.657,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_frontier.log"
+    },
+    {
+      "suite": "py_test_frontier_reports",
+      "tests": 10,
+      "elapsedSeconds": 0.102,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_frontier_reports.log"
+    },
+    {
+      "suite": "py_test_g1_trace",
+      "tests": 4,
+      "elapsedSeconds": 55.689,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_g1_trace.log"
+    },
+    {
+      "suite": "py_test_g2_world_state",
+      "tests": 9,
+      "elapsedSeconds": 75.916,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_g2_world_state.log"
+    },
+    {
+      "suite": "py_test_g3_execution",
+      "tests": 11,
+      "elapsedSeconds": 46.486,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_g3_execution.log"
+    },
+    {
+      "suite": "py_test_global_strategy_audit",
+      "tests": 9,
+      "elapsedSeconds": 0.017,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_global_strategy_audit.log"
+    },
+    {
+      "suite": "py_test_headless_parallel",
+      "tests": 28,
+      "elapsedSeconds": 16.433,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_headless_parallel.log"
+    },
+    {
+      "suite": "py_test_local_army",
+      "tests": 12,
+      "elapsedSeconds": 34.719,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_local_army.log"
+    },
+    {
+      "suite": "py_test_match_bootstrap",
+      "tests": 35,
+      "elapsedSeconds": 29.14,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_match_bootstrap.log"
+    },
+    {
+      "suite": "py_test_opening",
+      "tests": 8,
+      "elapsedSeconds": 31.679,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_opening.log"
+    },
+    {
+      "suite": "py_test_production_capacity",
+      "tests": 15,
+      "elapsedSeconds": 134.727,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_production_capacity.log"
+    },
+    {
+      "suite": "py_test_recon_client",
+      "tests": 7,
+      "elapsedSeconds": 14.374,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_recon_client.log"
+    },
+    {
+      "suite": "py_test_recon_frontier_client",
+      "tests": 22,
+      "elapsedSeconds": 60.274,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_recon_frontier_client.log"
+    },
+    {
+      "suite": "py_test_reports",
+      "tests": 16,
+      "elapsedSeconds": 0.033,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-full\\py_test_reports-repaired-input.log"
+    },
+    {
+      "suite": "py_test_specialist_lifecycle",
+      "tests": 4,
+      "elapsedSeconds": 14.728,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_specialist_lifecycle.log"
+    },
+    {
+      "suite": "py_test_strategy_funding",
+      "tests": 7,
+      "elapsedSeconds": 27.333,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_strategy_funding.log"
+    },
+    {
+      "suite": "py_test_surplus_spending",
+      "tests": 11,
+      "elapsedSeconds": 53.019,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_surplus_spending.log"
+    },
+    {
+      "suite": "py_test_target_compatibility",
+      "tests": 15,
+      "elapsedSeconds": 19.489,
+      "skipped": 0,
+      "evidenceLog": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs\\py_test_target_compatibility.log"
+    }
+  ],
+  "historicalPythonMode": "Explicit rwagent.g3Execution=false; G1/G2 equivalence uses frozen baseline JARs",
+  "g3EnabledPythonSuite": "test_g3_execution.py, 11/11 actual HTTP fixtures; explicit true",
+  "focusedChecks": {
+    "ExecutionScheduler": 87,
+    "CapabilityLifecycle": 32,
+    "WorldState": 144,
+    "G1Trace": 46,
+    "StrategyContract": 169,
+    "EngineerProvider": 61
+  },
+  "platformSpecificSkip": "Existing ReportCommitHarness POSIX displacement subcase on Windows",
+  "sourceFilesVerified": 142,
+  "historicalFixtureFilesVerified": 5,
+  "sourceIdenticalBeforeAfter": true,
+  "protectedFilesVerified": 7,
+  "readonlyAssetsAndLibsVerified": 888,
+  "protectedInputsUnchanged": true,
+  "jarUnchangedDuringFullRegression": true,
+  "jar": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 394924,
+    "sha256": "7b51bf4a34db9fbae860cf559ab9fa9eb94e02c97f2898182201a4287136703d",
+    "contentDigest": "ffcfea8260fd6617a6c66ec77b2dde1d12aa7bb9c027e397e31d2aa7129124d8",
+    "entriesExcludingManifest": 137
+  },
+  "benchmarkJar": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\focused-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 394924,
+    "sha256": "85ed0fb44145193ec835882ab9f6c0f03a876481b709509269b872a872670f91",
+    "contentDigest": "ffcfea8260fd6617a6c66ec77b2dde1d12aa7bb9c027e397e31d2aa7129124d8",
+    "entriesExcludingManifest": 137
+  },
+  "benchmarkAndFullNonManifestContentIdentical": true,
+  "naturalGame": "NOT_RUN",
+  "desktopAcceptance": "NOT_RUN",
+  "deliveryStatus": "VALIDATED_NOT_DEPLOYED",
+  "fullTranscript": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-full\\transcript.txt",
+  "fullLogDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\build\\logs"
+}

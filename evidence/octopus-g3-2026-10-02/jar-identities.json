@@ -1,0 +1,17 @@
+{
+  "focused": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\focused-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 394924,
+    "sha256": "85ed0fb44145193ec835882ab9f6c0f03a876481b709509269b872a872670f91",
+    "contentDigest": "ffcfea8260fd6617a6c66ec77b2dde1d12aa7bb9c027e397e31d2aa7129124d8",
+    "entriesExcludingManifest": 137
+  },
+  "final": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 394924,
+    "sha256": "7b51bf4a34db9fbae860cf559ab9fa9eb94e02c97f2898182201a4287136703d",
+    "contentDigest": "ffcfea8260fd6617a6c66ec77b2dde1d12aa7bb9c027e397e31d2aa7129124d8",
+    "entriesExcludingManifest": 137
+  },
+  "identicalNonManifestContent": true
+}

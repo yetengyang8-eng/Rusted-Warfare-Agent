@@ -1,0 +1,37 @@
+{
+  "localRoot": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002",
+  "raw": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\events\\test_g3_execution.log",
+      "bytes": 4372,
+      "sha256": "b1a769a9a7c32297c7881f54dcf3b80ecc4899ee04dfbec540e16a1d727ef72d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\events\\test_g3_execution-final.log",
+      "bytes": 3541,
+      "sha256": "46599473aa6bb3c7c76e96ec728bafc234091ea544611903354ecb2d1809b06b"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\events\\test_g3-native-corrected.log",
+      "bytes": 431,
+      "sha256": "691eaaf42cda427b5b29fbdebe92d12276c6b07d9641cebba4cd63f5bb531279"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\events\\WorldStateHarness.log",
+      "bytes": 57,
+      "sha256": "6fa18921161046e9578d79f71489cd682bd52a27835ea6ae31072e3f9f3940c8"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g3-20261002\\focused-test-compile-initial-release8-failure.log",
+      "bytes": 1145,
+      "sha256": "59e4a09762b29502ec233fa9bbab39ff3ae0684f983d1572ec29e833838995c9"
+    }
+  ],
+  "notes": [
+    "Initial fixture cap10 was clamped to mature target24; corrected fixture uses22/24 without policy changes.",
+    "Provider native queue -1 initially exposed missing construction-slot integration; repaired with existing paidConstruction contract.",
+    "Initial mine mutation incorrectly changed extractor nativeFactory queue; only mobile nonfactory actors are now mutated.",
+    "Initial test javac --release8 could not resolve old sun.misc.Unsafe harness; corrected to existing Windows test compiler mode.",
+    "Large raw HTTP reports and all15 cost runs are retained locally rather than copied into a new audit package."
+  ]
+}

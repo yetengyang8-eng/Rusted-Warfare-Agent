@@ -1,3 +1,11 @@
+# 当前 G3/G3.5 接手入口 — 2026-10-02
+
+从当前最新G3/G3.5交付继续：最终测试源码95a917e，分支codex/octopus-g3-execution-20261002。有效63/63验证（历史fixture环境补验另列），未部署/自然验收，未进入G4。
+
+请先读[CURRENT_STATE](project-state/CURRENT_STATE.md)、[G3 handoff](handoff/HANDOFF_Octopus_G3_G35_2026-10-02.md)及[契约](docs/OCTOPUS_G3_EXECUTION_INTENT.md)。子智能体优先gpt-6.1-sol/high，禁Astra；旧文件名不代表模型授权。下面仅保留历史导航，current/latest/next表述以本段与当前project-state为准。
+
+---
+
 # Shared Agent Start Here
 
 当前工程断点为 **Octopus G2**；源码 `5dd76e41`，分支 `codex/octopus-g2-world-state-20261002`，起点用户验收的 ff693c8。当前仓库的 docs 提交可能在源码之后，构建身份以候选 manifest 为准。

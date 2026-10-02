@@ -1,0 +1,2 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+ExecutionSchedulerHarness PASS checks=87 evidence=E2_SYNTHETIC_NATIVE_CALLBACK receiptIsExecution=false

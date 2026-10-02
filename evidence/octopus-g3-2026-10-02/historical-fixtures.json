@@ -1,0 +1,22 @@
+[
+  {
+    "relativePath": "docs/acceptance-0.02-alpha2.jsonl",
+    "sha256": "36904cb658201d4a6c6159b39240f0293a8134d7b51003ad9e909c93cef9c6b4"
+  },
+  {
+    "relativePath": "docs/acceptance-0.03-alpha2.jsonl",
+    "sha256": "26b7cc235964b20028ea09c0ea175be4ffe896bf18e308416b2a3fea388443d0"
+  },
+  {
+    "relativePath": "docs/acceptance-0.04/development-1789915769479-b2cf8dd8.jsonl",
+    "sha256": "d5a03d537dae39646b8f11a6a456c4193d559924bf7585f58335a23443bee49f"
+  },
+  {
+    "relativePath": "docs/acceptance-0.04/development-1789915894952-9f623f78.jsonl",
+    "sha256": "b08b0271d90416e51a276f63ca21f2bfaca99710d900cc2abfcb91058c818e0a"
+  },
+  {
+    "relativePath": "docs/acceptance-0.04/development-1789915982349-fc2d3b43.jsonl",
+    "sha256": "968431a15e3c369fb8468acadcf084bfc1bb76b4f6235dd14e5edb92c53a1fbb"
+  }
+]
