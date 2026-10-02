@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: the same 28 Java runs and 23 Python suites as test-win.ps1.
+# Regression: the same 31 Java runs and 26 Python suites as test-win.ps1.
 set -euo pipefail
 root="$(cd "$(dirname "$0")" && pwd)"
 game_jar="${1:?usage: test.sh /path/to/game-lib.jar /path/to/libs}"
@@ -53,6 +53,7 @@ python3 "$root/tests/test_target_compatibility.py" "$root/dist/rw-agent-bootstra
 python3 "$root/tests/test_recon_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_recon_frontier_client.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g1_trace.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_g2_world_state.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_headless_parallel.py"
 python3 "$root/tests/test_ab_aggregate.py"
 python3 "$root/tests/test_ab_campaign.py"
@@ -62,6 +63,8 @@ java -Xmx96m -cp "$classpath:$root/build/tests" io.rwagent.client.ReportCommitHa
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ExecutionContractHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/WorldStateHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.WorldStateHarness
 
 java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyContractHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/ProductionCapacityHarness.java"

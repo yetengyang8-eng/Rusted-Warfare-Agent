@@ -17,6 +17,12 @@ public final class BattleClient implements StrategyDirector.Host {
     private final String traceRunId=UUID.randomUUID().toString();
     private final GameClock gameClock=new GameClock(traceRunId);
     private final G1Trace trace=new G1Trace(gameClock,traceRunId);
+    // G2 double-write only. No policy, ownership or command path reads this state.
+    private final boolean worldStateEnabled=traceEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g2WorldState","true"));
+    private final EventAdapter worldAdapter=worldStateEnabled?new EventAdapter(traceRunId):null;
+    private Map<String,Object> worldReadPayload;
+    private GameClock.Observation worldReadObservation;
+    private long worldSidecarFailures;
     private GameClock.Observation traceObservation;
     private G1Trace.CommandSpan activeTraceCommand,lastTraceCommand;
     private Map<String,Object> traceContext=Collections.emptyMap(),nextTraceCommandContext=Collections.emptyMap();
@@ -4140,6 +4146,7 @@ public final class BattleClient implements StrategyDirector.Host {
             Map<String,Object> data=new LinkedHashMap<String,Object>(transition);data.put("gameTimeMs",time);
             event("surplus_role_commitment_update",json(data));
         }
+        observeWorldState(s);
         return s;
     }
     private static boolean onAttackGoal(Map<String,Object> unit,double x,double y){
@@ -4161,7 +4168,12 @@ public final class BattleClient implements StrategyDirector.Host {
         if("heavyTank".equals(type)||"combatEngineer".equals(type)||"amphibiousJet".equals(type))productionLedger.add(new long[]{time,cost});
     }
     public void strategicAttack(Map<String,Object> receipt){attacks++;awaitingOrder=receipt;}
-    private void check(Map<String,Object> s){if(!session.equals(s.get("sessionId")))throw new IllegalStateException("Session changed");}
+    private void check(Map<String,Object> s){
+        if(!session.equals(s.get("sessionId")))throw new IllegalStateException("Session changed");
+        // /state has additional active-match/frame guards in observe(); ingest it there.
+        // Command receipts never match the successful GET payload identity.
+        if(worldReadObservation!=null&&!"/state".equals(worldReadObservation.endpoint))observeWorldState(s);
+    }
     private Map<String,Object> post(String path)throws Exception{
         return post(CommandArbiter.DEFAULT_OWNER,path,execution.stamp());
     }
@@ -4220,6 +4232,7 @@ public final class BattleClient implements StrategyDirector.Host {
                 n(actor,"x"),n(actor,"y"),takeover);
     }
     private Map<String,Object> optionalGet(String path,String kind)throws Exception{
+        worldReadPayload=null;worldReadObservation=null;
         long requestedWallTimeMs=System.currentTimeMillis();
         AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+path);
         long receivedWallTimeMs=System.currentTimeMillis();
@@ -4235,8 +4248,34 @@ public final class BattleClient implements StrategyDirector.Host {
                     previousState==null?null:previousState.sourceGameTimeMs;
             traceObservation=gameClock.observe(path,parsed,requestedWallTimeMs,receivedWallTimeMs,detected);
         }
+        GameClock.Observation readObservation=traceObservation;
         try{event(kind,r.body);}finally{traceObservation=previousObservation;}
+        if(worldStateEnabled&&parsed!=null){worldReadPayload=parsed;worldReadObservation=readObservation;}
         if(parseFailure!=null)throw parseFailure;return parsed;
+    }
+    /** Consume only a GET packet that reached its existing caller's validation point.
+     * Optional reads without that validation remain outside the G2 world.
+     */
+    private void observeWorldState(Map<String,Object> validatedPayload){
+        if(!worldStateEnabled||validatedPayload!=worldReadPayload||worldReadObservation==null)return;
+        GameClock.Observation observation=worldReadObservation;
+        worldReadPayload=null;worldReadObservation=null;
+        GameClock.Observation previous=traceObservation;
+        traceObservation=observation;
+        try{
+            EventAdapter.Update update=worldAdapter.accept(observation,validatedPayload);
+            worldRecord("g2_world_update",update.toMap(),observation);
+            for(EventAdapter.DerivedEvent derived:update.events)worldRecord("g2_event",derived.toMap(),observation);
+        }catch(Exception failure){
+            worldSidecarFailures++;
+            System.err.println("G2 world sidecar failure "+worldSidecarFailures+": "+failure);
+        }finally{traceObservation=previous;}
+    }
+    private void worldRecord(String kind,Map<String,Object> data,GameClock.Observation observation)throws IOException{
+        long wall=System.currentTimeMillis();
+        String phase="OBSERVED".equals(data.get("evidenceLevel"))?"OBSERVATION":"DERIVED_STATE";
+        log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+json(data)
+                +",\"trace\":"+json(trace.event(kind,wall,observation,null,phase,data))+"}\n");log.flush();
     }
     private Map<String,Object> get(String path,String kind)throws Exception{Map<String,Object> r=optionalGet(path,kind);if(r==null)throw new IllegalStateException("Unavailable "+path);return r;}
     private void event(String kind,String data)throws Exception{

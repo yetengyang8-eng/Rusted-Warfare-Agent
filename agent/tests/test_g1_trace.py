@@ -70,7 +70,7 @@ def command_stream(rows):
 
 def legacy_events(rows):
     return [dict(event=row['event'], data=normalize(row['data']))
-            for row in rows if not row['event'].startswith('g1_')]
+            for row in rows if not row['event'].startswith(('g1_', 'g2_'))]
 
 
 class G1TraceTests(unittest.TestCase):
@@ -115,7 +115,7 @@ class G1TraceTests(unittest.TestCase):
     def assert_equivalence(self, label):
         traced = self.run_fixture(label, JAR, True, 'trace-on')
         disabled = self.run_fixture(label, JAR, False, 'trace-off')
-        self.assertFalse([row for row in disabled if row['event'].startswith('g1_')])
+        self.assertFalse([row for row in disabled if row['event'].startswith(('g1_', 'g2_'))])
         self.assertFalse([row for row in disabled if 'trace' in row])
         self.assertEqual(command_stream(disabled), command_stream(traced), 'trace cannot change wire commands')
         self.assertEqual(legacy_events(disabled), legacy_events(traced), 'trace cannot change legacy events/outcomes')
@@ -144,7 +144,7 @@ class G1TraceTests(unittest.TestCase):
                 self.assertIn('sourceRangeStartGameTimeMs', observation)
                 self.assertIn('sourceRangeEndGameTimeMs', observation)
                 self.assertTrue(observation['endpoint'].startswith('/'))
-                if trace['phase'] == 'OBSERVATION':
+                if trace['phase'] == 'OBSERVATION' and not row['event'].startswith('g2_'):
                     self.assertEqual(row['data'].get('gameTimeMs'), observation['sourceGameTimeMs'])
                     self.assertEqual(row['data'].get('frame'), observation['sourceFrame'])
                     self.assertEqual(row['data'].get('sessionId'), observation['sourceSessionId'])

@@ -102,12 +102,14 @@ PyStep 'py:test_target_compatibility' 'test_target_compatibility.py' @($distJar)
 PyStep 'py:test_recon_client' 'test_recon_client.py' @($distJar)
 PyStep 'py:test_recon_frontier_client' 'test_recon_frontier_client.py' @($distJar)
 PyStep 'py:test_g1_trace' 'test_g1_trace.py' @($distJar)
+PyStep 'py:test_g2_world_state' 'test_g2_world_state.py' @($distJar)
 PyStep 'py:test_headless_parallel' 'test_headless_parallel.py' @()
 PyStep 'py:test_ab_aggregate' 'test_ab_aggregate.py' @()
 PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
 Step 'java:ReportCommitHarness' { & $java -Xmx96m -cp $cp io.rwagent.client.ReportCommitHarness }
 Step 'java:ExecutionContractHarness' { & $java -cp $cp io.rwagent.client.ExecutionContractHarness }
 Step 'java:G1TraceHarness' { & $java -cp $cp io.rwagent.client.G1TraceHarness }
+Step 'java:WorldStateHarness' { & $java -cp $cp io.rwagent.client.WorldStateHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
 Step 'java:ProductionCapacityHarness' { & $java -cp $cp io.rwagent.client.ProductionCapacityHarness }
 Step 'java:LocalArmyContractHarness' { & $java -cp $cp io.rwagent.client.LocalArmyContractHarness }
