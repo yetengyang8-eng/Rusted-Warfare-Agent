@@ -58,6 +58,7 @@ compat_python "$root/tests/test_g1_trace.py" "$root/dist/rw-agent-bootstrap.jar"
 compat_python "$root/tests/test_g2_world_state.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g3_execution.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g4_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_g41_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
 compat_python "$root/tests/test_headless_parallel.py"
 compat_python "$root/tests/test_ab_aggregate.py"
 compat_python "$root/tests/test_ab_campaign.py"
@@ -73,6 +74,9 @@ java -cp "$classpath:$root/build/tests" io.rwagent.client.NativeCreditWitnessHar
 java -cp "$classpath:$root/build/tests" io.rwagent.client.StrategyQuoteProvenanceHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.GeneralRegistryHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceControllerHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/GeneralFormationHarness.java" "$root/tests/ForceFormationHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.GeneralFormationHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceFormationHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/WorldStateHarness.java"

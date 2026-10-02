@@ -62,7 +62,7 @@ function PyStep([string]$name, [string]$script, [string[]]$pyArgs) {
     # Historical policy suites prove the explicit legacy path. G3 has its own enabled HTTP contracts.
     $previousJavaOptions = $env:JAVA_TOOL_OPTIONS
     try {
-        if ($script -notin @('test_g3_execution.py','test_g4_runtime.py')) { $env:JAVA_TOOL_OPTIONS = "$previousJavaOptions -Drwagent.g3Execution=false" }
+        if ($script -notin @('test_g3_execution.py','test_g4_runtime.py','test_g41_runtime.py')) { $env:JAVA_TOOL_OPTIONS = "$previousJavaOptions -Drwagent.g3Execution=false" }
         Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
     } finally { $env:JAVA_TOOL_OPTIONS = $previousJavaOptions }
 }
@@ -110,6 +110,7 @@ PyStep 'py:test_g1_trace' 'test_g1_trace.py' @($distJar)
 PyStep 'py:test_g2_world_state' 'test_g2_world_state.py' @($distJar)
 PyStep 'py:test_g3_execution' 'test_g3_execution.py' @($distJar)
 PyStep 'py:test_g4_runtime' 'test_g4_runtime.py' @($distJar)
+PyStep 'py:test_g41_runtime' 'test_g41_runtime.py' @($distJar)
 PyStep 'py:test_headless_parallel' 'test_headless_parallel.py' @()
 PyStep 'py:test_ab_aggregate' 'test_ab_aggregate.py' @()
 PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
@@ -121,6 +122,8 @@ Step 'java:NativeCreditWitnessHarness' { & $java -cp $cp io.rwagent.client.Nativ
 Step 'java:StrategyQuoteProvenanceHarness' { & $java -cp $cp io.rwagent.client.StrategyQuoteProvenanceHarness }
 Step 'java:GeneralRegistryHarness' { & $java -cp $cp io.rwagent.client.GeneralRegistryHarness }
 Step 'java:ForceControllerHarness' { & $java -cp $cp io.rwagent.client.ForceControllerHarness }
+Step 'java:GeneralFormationHarness' { & $java -cp $cp io.rwagent.client.GeneralFormationHarness }
+Step 'java:ForceFormationHarness' { & $java -cp $cp io.rwagent.client.ForceFormationHarness }
 Step 'java:G1TraceHarness' { & $java -cp $cp io.rwagent.client.G1TraceHarness }
 Step 'java:WorldStateHarness' { & $java -cp $cp io.rwagent.client.WorldStateHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }
