@@ -1,0 +1,35 @@
+{
+  "passedSteps": 68,
+  "failedSteps": 0,
+  "exitCode": 0,
+  "javaHarnessRuns": 37,
+  "pythonSuites": 28,
+  "pythonTests": 466,
+  "pythonSkipped": 0,
+  "fullRuns": 2,
+  "correctiveFullReruns": 1,
+  "verifiedTestInputs": 159,
+  "previousFull": {
+    "failedSteps": 2,
+    "failedSuites": [
+      "test_g1_trace",
+      "test_g2_world_state"
+    ],
+    "cause": "New G4 battle_config fields emitted while G4 disabled; fixed by 54b9de1 without changing commands",
+    "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full-before-log-compatibility\\launch-output.log",
+    "retained": true
+  },
+  "historicalFixtures": 5,
+  "protectedInputs": 895,
+  "protectedInputsUnchanged": true,
+  "nativeChecks": 298,
+  "nativeEvidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP / NO_NATURAL_MATCH",
+  "nativeAutonomousMainLoop": false,
+  "g4HttpMainLoopTests": 3,
+  "jarSha256": "b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd",
+  "contentDigest": "d001cd3a3d280e3994a32d5f906aef5fd4b1212eea8607d69b9a860a6496c09b",
+  "rawFullLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full\\launch-output.log",
+  "inputManifest": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full\\input-manifest.json",
+  "nativeManifest": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\G4_FULL_NATIVE_MANIFEST.json",
+  "protectedAfter": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\protected-after.json"
+}

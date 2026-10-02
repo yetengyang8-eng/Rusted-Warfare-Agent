@@ -1,3 +1,13 @@
+# 当前 G4 接手入口 — 2026-10-02
+
+从当前最新G4交付继续：分支codex/octopus-g3-execution-20261002，测试源码54b9de1；Windows68/68、37Java/28Python466 tests、同JAR原生298checks绿灯。首遍日志兼容失败及修正完整重跑均保留；未部署/push/自然验收，未进入G5。
+
+先读[CURRENT_STATE](project-state/CURRENT_STATE.md)、[G4 handoff](handoff/HANDOFF_Octopus_G4_2026-10-02.md)、[force契约](docs/OCTOPUS_G4_FORCE_LIFECYCLE.md)。force batch有真实priority，其他lane仍immediate；入口零兵无General自动birth。子智能体Sol6.1/high或用户指定同级，禁Astra；旧文件名不代表模型授权。
+
+以下内容完整保留为历史导航，其中current/latest/next只对各历史阶段有效。
+
+---
+
 # 当前 G3/G3.5 接手入口 — 2026-10-02
 
 从当前最新G3/G3.5交付继续：最终测试源码95a917e，分支codex/octopus-g3-execution-20261002。有效63/63验证（历史fixture环境补验另列），未部署/自然验收，未进入G4。

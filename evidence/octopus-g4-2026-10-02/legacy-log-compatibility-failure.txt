@@ -1,0 +1,19 @@
+Preserved first full: 66/68 passed; G1 four and G2 nine assertions failed at battle_config only.
+Disabled G4 still emitted g4Forces=false/forcePriorityScope. 54b9de1 makes them G4-only.
+No ignored assertion or normalizer relaxation. Corrected full and same-JAR native rerun both required.
+Raw log: G:\deepseek 工作台\_validation\octopus-g4-20261002\final-full-before-log-compatibility\launch-output.log
+Raw SHA256: dafafef6b89e05e07a7624a802fe6884a33f00ef02610b93ed5d1ecec43a8a17=== py:test_g1_trace ===
+
+--> FAIL exit=1
+
+=== py:test_g2_world_state ===
+
+--> FAIL exit=1
+
+=== py:test_g3_execution ===
+
+=== py:test_g4_runtime ===
+
+=== py:test_global_strategy_audit ===
+
+Java harness runs: 37   Python suites: 28   failed steps: 2

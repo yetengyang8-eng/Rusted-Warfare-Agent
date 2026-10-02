@@ -1,20 +1,19 @@
 # Current State
 
-Updated: 2026-10-02 (Asia/Shanghai). 当前工程断点 **Octopus G3 / G3.5**，已验证，未部署。
+Updated: 2026-10-02 (Asia/Shanghai). 当前断点 **Octopus G4**，已验证、未部署、未push。
 
-- 分支 `codex/octopus-g3-execution-20261002`；起点用户验收 G2 `cdb9252e19ffcfaceba7f0d74f6523b7b0ae606d`。
-- 实施 `5678998`；最终测试源码 `95a917ef1157b7a7dcebcce50bf5fff4ff8bc80d`。后续 docs 提交不改变已测试输入。
-- 候选 `RW-CANDIDATE-2026-10-02-OCTOPUS-G3-G35-v1 / VALIDATED_NOT_DEPLOYED`；JAR SHA256 `7b51bf4a34db9fbae860cf559ab9fa9eb94e02c97f2898182201a4287136703d`，394924 bytes，contentDigest `ffcfea8260fd6617a6c66ec77b2dde1d12aa7bb9c027e397e31d2aa7129124d8`。
-- 原桌面安装仍为 capacity JAR `a392f692…`；冻结 `RW-BASELINE-2026-09-30-GS-v1` 只核血统，不授权回滚新源码。
+- 分支 `codex/octopus-g3-execution-20261002`；用户验收起点b7c5f51。
+- G3原生硬化b3d0a3b → G4实现893c473 → 旧日志兼容54b9de1（最终测试源码）；后续交付文档不改测试输入。
+- 候选 `RW-CANDIDATE-2026-10-02-OCTOPUS-G4-v1`；JAR SHA256 `b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd`，隔离位置和contentDigest见manifest。
+- 完整Windows **68/68、37Java、28Python/466 tests、skip0、failedsteps0、exit0**；首遍66/68因G4关闭分支两项日志字段不兼容而失败，修正后完整重跑，首遍证据保留。159测试输入、5历史fixture一致；895保护输入未变。
+- 同一最终JAR native五类298 checks全部PASS；E2原版对象/真实HTTP/显式fixture，不是自然局或桌面验收。
 
-已实际迁移 owner generation/显式 Intent/统一 native dispatch、elapsed game time 每1000ms一token/默认burst4、批内credits与producer/military slots。原 Pending/Purchase/paidConstruction/ghost 保留，主 caller 多 actor 可继续。运行时同步按原 lane 顺序，首次实际 native attempt 裁决同 actor；没有全局异步收集/抢占。原 bridge guards 未改，receipt 不证明执行。
+G3修正跨observation延迟付款unsettled credits、独立实际两栖mode witness、真实报价来源。G4建立General独立owner/generation、出生FREE、pending与LocalResponse共存、visibility clear→JOINING/ FREE、后帧到达→ATTACHED、General detach任务结束FREE、失效General清reservation。LastObservation不冒充当前敌情。
 
-成熟 engineer→jet→Dive/Fly/return 纵向接入；CapabilityTask 集体目标、Mode 逐 actor。SearchAreaNeed/SearchTask 仅契约，未激活；coverage adapter/水下发现规则 NEEDS_EVIDENCE。持续相同敌情只更新来源/LastObservation，关键变化才 ENEMY_UPDATED。没有 G4/General/FREE/JOINING/ThreatTask/HOT/COLD 或新生产偏好。
+G4 force controllers真实collect/priority/dispatch；其他成熟lane仍caller traversal immediate，非全局优先级。入口已ready兵做General seed；入口零兵无自动birth，后来生产FREE。无固定FREE下限或General数量上限，无G5；SearchArea仍未激活。JOINING严重危机/伤残中断未定义，当前不打断自治。
 
-有效 Windows 验证 **63/63，33 Java，27 Python/463 tests，Python skip0，校正汇总failedsteps0**。首遍raw full为62/63/exit1，仅因隔离复制漏5份历史docs夹具；补齐并仅重跑test_reports16/16PASS，源码/JAR不变，失败原始记录保留。历史Python显式旧gate；新G3 suite显式true且11/11。142份测试输入与5份历史fixture一致，7保护文件/888只读assets+libs未变。
+Spain附带custom map水陆bridge直接Dive拒绝、稳定潜水fixture仍潜水；潜水jet可被选作可攻击目标，不能断言任何目标不可打。自然进入/开火伤害NEEDS_EVIDENCE，不改策略。
 
-合成HTTP截至7000game ms旧2命令→新7；总7→12；long-gap批次最多4。15次成本测量中关闭附加导出约减少95.1%日志字节；elapsed非CPU，不证明自然局/墙钟因果。自然局/桌面验收NOT_RUN，未push/部署，未启停用户桌面游戏。
+接手：[G4 handoff](../handoff/HANDOFF_Octopus_G4_2026-10-02.md)、[force契约](../docs/OCTOPUS_G4_FORCE_LIFECYCLE.md)、[G3 native硬化](../docs/OCTOPUS_G3_NATIVE_ACCEPTANCE.md)、[证据](../evidence/octopus-g4-2026-10-02/README.md)、[manifest](../deliveries/octopus-g4-2026-10-02/candidate-manifest.json)、[下一阶段](NEXT_STAGE_PLAN.md)。历史G1/G2/G3身份保留其manifest与交接，不覆盖。
 
-接手：[G3/G3.5 handoff](../handoff/HANDOFF_Octopus_G3_G35_2026-10-02.md)、[Execution/Intent契约](../docs/OCTOPUS_G3_EXECUTION_INTENT.md)、[证据](../evidence/octopus-g3-2026-10-02/README.md)、[manifest](../deliveries/octopus-g3-2026-10-02/candidate-manifest.json)、[下一阶段](NEXT_STAGE_PLAN.md)。G1/G2历史身份保留原交接与manifest。
-
-后续子智能体优先 `gpt-6.1-sol / high`，不使用Astra；ASTRA_*只是历史导航文件名。
+未修改原引擎/冻结件/设置/存档/回放，未自行启停桌面游戏，未deploy/push。`-Drwagent.g4Forces=false`退到本轮硬化G3；`g3Execution=false`历史gate。冻结RW-BASELINE-2026-09-30-GS-v1仅核血统，不授权回滚。后续子智能体Sol6.1/high，禁Astra；ASTRA_*为历史文件名。

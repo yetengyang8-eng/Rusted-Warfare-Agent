@@ -1,14 +1,13 @@
 # Next Stage Plan
 
-Updated: 2026-10-02 after Octopus G3/G3.5. 本轮施工已结束，下列规划不自动授权G4或桌面部署。
+Updated: 2026-10-02 after Octopus G4. 当前授权已完成；以下是下一断点建议，不自动授权G5或部署。
 
-先读[G3/G3.5交接](../handoff/HANDOFF_Octopus_G3_G35_2026-10-02.md)和[Execution/Intent契约](../docs/OCTOPUS_G3_EXECUTION_INTENT.md)。从当前最新提交继续，最终测试源码95a917e，不回到cdb9252或旧解压目录。
+先读 [G4 handoff](../handoff/HANDOFF_Octopus_G4_2026-10-02.md)、[状态契约](../docs/OCTOPUS_G4_FORCE_LIFECYCLE.md)、[manifest](../deliveries/octopus-g4-2026-10-02/candidate-manifest.json)。从当前分支最新提交继续，测试源码54b9de1，保留G3硬化与G4迁移；不从旧解压、9/30冻结源码重做。
 
-1. 推荐先做独立受控native验收：隔离引擎/地图/固定候选，多厂在高倍速下的有界game-time预算、真实付款先于队列可见、两架jet的湿/干独立Dive与Fly/return，记录actual receipt及later witness。不开用户桌面游戏，结果不冒充自然局获益。
-2. 对比全导出/尽量关闭附加导出，记录poll间隔、report体积、采样/执行elapsed；现有15次小样本只证明HTTP命令与日志体积，不是CPU因果。保持原策略/偏好，必要时再单独优化copy/JSON/flush。
-3. SearchArea激活前，把合法地图/探索覆盖接成显式coverage/lastSearched/confidence来源，证明“陆军无合法可达目标”的触发，确认水下发现是否需Dive；缺项NEEDS_EVIDENCE。当前契约未自动搜索，Pool血缘匹配也未实现。
-4. G4的General/FREE/JOINING及后续ThreatTask/HOT/COLD需要新授权。若安排全局延后收集Intent/抢占，必须重定义同步caller的receipt、commitment和取消语义；不能把现有dispatchBatch单测说成运行时已有全局排序。
+1. 优先明确下一阶段两个真实接口：严重危机/health能否中断JOINING及reservation取消；入口零军队与FREE积累何时birth新General。G4未发明这两类策略，现有回归固定此边界。
+2. 新授权G5时，把CombatLedger/Performance、ThreatTask/HOT-COLD建立在合法WorldState事实上；敌失联不算死亡，receipt不算mode/arrival，队列空不算产品ready。不要重复G0～G3全仓审计。
+3. 若需全runtime调度，先定义成熟经济/Strategy同步返回receipt与commitment、paid/ghost的收集取消语义，再扩大batch。当前仅G4 force有真实priority裁决，不能宣传global arbitrate。
+4. 独立小范围补证据可关注Spain自然潜水route和实际fire/damage、施工effect缺失与unknown transport长持credit。当前受控原版native验收不证明自然5×、自然生产耗时或战争获益；桌面部署/自然验收另需授权。
+5. SearchArea继续contract-only；coverage/终局触发/水下发现与每成员path证据缺项仍NEEDS_EVIDENCE。无Scout/Reclaim、动态编制或将军数量上限。
 
-兼容开关 `-Drwagent.g3Execution=false` 保留旧gate/caller。G3启用时WorldState计算与导出开关分离；回退不能丢现有paid/ghost。跨session/player/回退仍按现有guard停止，不自动用world epoch重建控制权。
-
-回归范围已覆盖63项（62首遍PASS+历史fixture修复后16/16补验），33Java、27Python/463。后续不要重复G0/G2全局审计或同一未改源码的完整矩阵；新增风险或源码变化时跑相应focused和必要完整回归。子智能体仅Sol6.1/high或用户指定同级，禁Astra。
+当前Windows68/68和同JAR native298checks绿；首遍日志兼容失败保留、必要修正后完整重跑一次。无新代码风险不重复完整矩阵。子智能体仅Sol6.1/high或用户指定同级，禁Astra；主智能体统一full。兼容开关g4Forces=false保留硬化G3，g3Execution=false历史gate。不部署、不push、不启停桌面游戏。

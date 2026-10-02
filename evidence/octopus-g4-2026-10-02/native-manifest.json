@@ -1,0 +1,443 @@
+{
+  "nativeGateStatus": "PASS",
+  "revisionReason": "G4 disabled battle_config log compatibility; root-owned configuration output only",
+  "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+  "naturalMatch": "NO_NATURAL_MATCH",
+  "fullAutonomousMainLoop": false,
+  "productRecompiledByNativeAgent": false,
+  "officialFullJar": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+  "officialFullJarSha256": "b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd",
+  "isolatedJar": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-final.jar",
+  "isolatedJarSha256": "b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd",
+  "sourceTree": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-source",
+  "sourceAggregateSha256": "dc2bf3cf0b548eb565cdefba05f7414d52fbe88173bfed4d48e6f070debcdbba",
+  "aggregateDefinition": "UTF8 path|lowercase sha256 in sourceFiles array order separated by LF, no final LF",
+  "sourceFiles": [
+    {
+      "path": "agent/MANIFEST.MF",
+      "sha256": "b61acab3dac18857226ca246ef4d801199d4bea27ebd76f59cdbd67bc43da63c",
+      "bytes": 126
+    },
+    {
+      "path": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json",
+      "sha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+      "bytes": 108801
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
+      "sha256": "85df4b30cf658551ac2adee0136836defa5997bcb867b7b133c514c38f7d390b",
+      "bytes": 72806
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/EconomyBridge.java",
+      "sha256": "916848580bb9817a05188036135cbeea9fad2a41dbcd2c3df08874af9f502c46",
+      "bytes": 40484
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/GuardBridge.java",
+      "sha256": "8af15a6b3d74ac7ff5b5bc288a244593386069d088f2264f70f902021e318476",
+      "bytes": 4040
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RuntimeBridge.java",
+      "sha256": "22e6de88499a6b3be55cefbd27a586204cad16ac5e88c2401c02a18c1a72ee92",
+      "bytes": 27152
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RwAgent.java",
+      "sha256": "8203e41a07b737b809f5bcba4ed5581b771baea46e90aaa5be619d97d5c84069",
+      "bytes": 3512
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
+      "sha256": "89ba14c476f7e5fcb5c17930af806a40c52d477c783da8ec5a82ee20304709b2",
+      "bytes": 41904
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/TerrainSemantics.java",
+      "sha256": "113f52a71dcd397f53ed367c8f8a2089698769d8b2573fa68a80a54a91157e94",
+      "bytes": 2894
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AgentClient.java",
+      "sha256": "f51ef7990ff17a13142e9eca708a582f99845bd1f8802f431909d5c14704a71d",
+      "bytes": 3248
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AutopilotClient.java",
+      "sha256": "66fd58a8bfa10e5290f591a64cae6eeaaf69408c600a4e2ac17c9b737b1dd191",
+      "bytes": 1863
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleBudget.java",
+      "sha256": "e799de040a4c5ef694a5adfc83cb2b72b1f63ef67682aee573b2d11148814b1d",
+      "bytes": 698
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleClient.java",
+      "sha256": "6b60cb3245473e6e01867cac81a24673d1861fe3b2f5917e8ad409ef6d747cfa",
+      "bytes": 341347
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BootstrapClient.java",
+      "sha256": "8c6c2a9a0f809aa80262161129e46140b08b5a2ba8191094bc9cc99273c1b44b",
+      "bytes": 16036
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CapabilityTask.java",
+      "sha256": "227e1f8bc02ece44cc63796422f8551f6217ed15c8866547c70b9a7c22df394a",
+      "bytes": 1405
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CapabilityUnitMode.java",
+      "sha256": "97c36e16bddaa99f255fdfa6fa71f61f01f6b446b4cd4fb67b838228914146f4",
+      "bytes": 3095
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CommandArbiter.java",
+      "sha256": "8600e08ea0a275847dc23b30791a52847a9b49d849821d816f2ccf1fc1fd2d10",
+      "bytes": 7866
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ControlLoop.java",
+      "sha256": "b164e52a061bdd30492bf73671b2d1ceec3f5df5323bdfa2b8d1430aac290509",
+      "bytes": 12509
+    },
+    {
+      "path": "agent/src/io/rwagent/client/DevelopmentClient.java",
+      "sha256": "89d3fb0ce4d2a4855737ab0c9fb3210bb1d320f6b054ce13a81bc6cdc45963e8",
+      "bytes": 27876
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EconomyClient.java",
+      "sha256": "3ddfab552248014fbfc55e5dc2a082ec3e078001aa8be9a1435a8b32f7f2efa5",
+      "bytes": 15831
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EngagementGeometry.java",
+      "sha256": "371ffaea5820aa63a40cf03e677e872328daeee23eb623aa01795295f0c8308e",
+      "bytes": 5642
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EventAdapter.java",
+      "sha256": "5086046d14d08c0636263bafbf3a9d09809b737d2decb4687a0101a2d4344b82",
+      "bytes": 34414
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ExecutionScheduler.java",
+      "sha256": "bb743d10db150dbe58dd0a0f994485c1f62f87f98cd54855e3c81feda42ca52c",
+      "bytes": 10831
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ForceController.java",
+      "sha256": "aa9ecb0b0e9974ed55f2ef764323cfd0ecd45696670b5ab5069f6afc67204333",
+      "bytes": 18226
+    },
+    {
+      "path": "agent/src/io/rwagent/client/FrontierClient.java",
+      "sha256": "0592a4264cd8e85408973ac896af28f471e1b7622b1277caf7506f5e4c3bab78",
+      "bytes": 245
+    },
+    {
+      "path": "agent/src/io/rwagent/client/G1Trace.java",
+      "sha256": "4f59641d74cbba027c7c9720f6bf6c9708494610670c200fbc7e7a100618cd45",
+      "bytes": 8500
+    },
+    {
+      "path": "agent/src/io/rwagent/client/GameClock.java",
+      "sha256": "8ce8ab39edfae1121d9120a14fce323ce13bb3005608597fde57b614d940aa29",
+      "bytes": 7174
+    },
+    {
+      "path": "agent/src/io/rwagent/client/GeneralRegistry.java",
+      "sha256": "f7f0014fd31f788d3bd0a9d9435059d077c4214ae608be4194eb303240684bb1",
+      "bytes": 19961
+    },
+    {
+      "path": "agent/src/io/rwagent/client/Intent.java",
+      "sha256": "6b64d801417a4874b96d87c5018646df4f5792b8b54cd4a34a7b4309e1a9ead5",
+      "bytes": 5663
+    },
+    {
+      "path": "agent/src/io/rwagent/client/Json.java",
+      "sha256": "0b82ea66b23fff4ce9d1b370a698bba5c66db09f5927bdbcfa91ccdfc13b1f19",
+      "bytes": 4224
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalArmyDirector.java",
+      "sha256": "5b446dd8b301cd82babcc7d8f8ac7eff37f09f42f010eb2ea524db593c18d1b8",
+      "bytes": 8471
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalCrisisPolicy.java",
+      "sha256": "3ccffe1ac78be11fcc797008310af688e43a43cfd5c030d3edf904296b896317",
+      "bytes": 2524
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MatchClient.java",
+      "sha256": "875675e49ee7893b420cfb92540bb77520c9630f168b89920c9743d13968b853",
+      "bytes": 1091
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MineInvestmentPolicy.java",
+      "sha256": "dc916d8e4e7c5cfe274b7c2875b79c5edb5835cb874a14fc3119bafe349a5664",
+      "bytes": 7352
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MoveExecution.java",
+      "sha256": "c6ba21768448c2791525e9d2b941c99ebaa2f149a8c9ab0f2270539fe10ca993",
+      "bytes": 2120
+    },
+    {
+      "path": "agent/src/io/rwagent/client/NativeCreditWitness.java",
+      "sha256": "cb43a6c1e018b95e724a245d52ebe0762a387a76b976ebb51584dd34232c21be",
+      "bytes": 6840
+    },
+    {
+      "path": "agent/src/io/rwagent/client/OpeningClient.java",
+      "sha256": "cba4e393ae45cdffbdf03d5955874720713d54b2bd1631367f19491bfb307d69",
+      "bytes": 242
+    },
+    {
+      "path": "agent/src/io/rwagent/client/PreflightClient.java",
+      "sha256": "1362aa70531a6b95c678ffbab7cb19ae3077ade2a8e4784fed2c01d80d74be93",
+      "bytes": 2431
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionCapacity.java",
+      "sha256": "df5ac0e9ff36e7c58fad898cadc64831fc0274c78b5d5dc4262e86429a8b9ae7",
+      "bytes": 1687
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionRoute.java",
+      "sha256": "175378528adfd2c01d29e7c456166a769ab9b82a12623c18de67bf7e2437593a",
+      "bytes": 2426
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ReportFiles.java",
+      "sha256": "423a74949cb0d2aeb40bb08a3b51dbf375dd01ddcc273681baf1241c8519063b",
+      "bytes": 4654
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SearchAreaNeed.java",
+      "sha256": "1d37b3a1b53f55408eac5924ac5184950b010376e05c21dbaaae7ee9c96b7f88",
+      "bytes": 2809
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SearchTask.java",
+      "sha256": "345ac93efdae83c3106f5c49ea4dccc23168f498b09d94fcd3df6a86b5cad5f6",
+      "bytes": 3036
+    },
+    {
+      "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+      "sha256": "cb38df1fa5f4891ad94819893f0c5c3b3542de76433b0506ede0bec1505d5f9f",
+      "bytes": 85947
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SurplusSpendingPolicy.java",
+      "sha256": "1b59af8cbde81b9d2730903cc5c90fbe5597598b1fd5614c9b0eff19c0bf5e2b",
+      "bytes": 10406
+    },
+    {
+      "path": "agent/src/io/rwagent/client/TargetCatalog.java",
+      "sha256": "dfbefbc1ac0dd733a7582638ab07c7876236dabafc615290e801d5cf10e4aff0",
+      "bytes": 8550
+    },
+    {
+      "path": "agent/src/io/rwagent/client/WorldState.java",
+      "sha256": "45c791026665ac53597117068a4da413cbd09d3aaed17584ce2e3a64d853c3aa",
+      "bytes": 11132
+    },
+    {
+      "path": "agent/src/io/rwagent/headless/HeadlessRunner.java",
+      "sha256": "b5595fc73e6777133da1ab79c12a5a0904fde9f6288d250df28a976cccd33668",
+      "bytes": 7030
+    },
+    {
+      "path": "agent/tests/G3NativeAcceptanceHarness.java",
+      "sha256": "1a72156d32a9d7a585e5c9132108b0a891cd70eb41eb7abf2e36a71ddccae3ab",
+      "bytes": 28934
+    },
+    {
+      "path": "agent/tests/G3SpainTerrainNativeHarness.java",
+      "sha256": "a50331488d609cf67865432174d8103b2f951d92da8f5de9fd411fefcda9be40",
+      "bytes": 10158
+    },
+    {
+      "path": "agent/tests/G4ForceNativeHarness.java",
+      "sha256": "e3bf61c73808a4eaa688b8d4bcfc6d4ec46b2cb9a1117ed0ce32fc1ec778630d",
+      "bytes": 18920
+    },
+    {
+      "path": "agent/tests/TerrainNativeCostHarness.java",
+      "sha256": "d0bf74cd59fbe6c58d0434b6966e42c856bc7764ef859bff0b01f14345b8ddd1",
+      "bytes": 9116
+    }
+  ],
+  "checksTotal": 298,
+  "scenarios": [
+    {
+      "scenario": "g4",
+      "g4Forces": true,
+      "status": "PASS",
+      "checks": 60,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4.log",
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4\\g4-force-summary.json"
+    },
+    {
+      "scenario": "production",
+      "g4Forces": false,
+      "status": "PASS",
+      "checks": 168,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production.log",
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-summary.json"
+    },
+    {
+      "scenario": "modes",
+      "g4Forces": false,
+      "status": "PASS",
+      "checks": 30,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes.log",
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes\\modes-summary.json"
+    },
+    {
+      "scenario": "competition",
+      "g4Forces": false,
+      "status": "PASS",
+      "checks": 31,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition.log",
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition\\competition-summary.json"
+    },
+    {
+      "scenario": "spain",
+      "g4Forces": false,
+      "status": "PASS_BOUNDED_ACCESSORS",
+      "checks": 9,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain.log",
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain\\spain-summary.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition.log",
+      "bytes": 12738,
+      "sha256": "6417f06cdd79cde89d06e6590408df1e0e48cda033d704aeaaf33f6d42e3077a"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition\\competition-battle.jsonl",
+      "bytes": 345162,
+      "sha256": "3507142caf0e3d3007680d5b283aeac7ae25777b5bbb2433bf04011ba85f4402"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition\\competition-fixture.jsonl",
+      "bytes": 2864,
+      "sha256": "600d986b5693fe954bff29a8a74e76e860628a711f2a91af94460790509ace76"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-competition\\competition-summary.json",
+      "bytes": 251,
+      "sha256": "ddec68b38d949dc042e7b90b69f82fa0f436d5048a486c9ef4ae7f38b94bc8b4"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4.log",
+      "bytes": 55838,
+      "sha256": "ef2031c4d9a72fb6b3205a1468ef1a58bfdb2e0bc16cac83d5a0295274e46e1d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4\\g4-force-fixture.jsonl",
+      "bytes": 46171,
+      "sha256": "f73f0450001f6f29f02f47f110f0a7fddf2c08b2357cd62b23914ec3f8ae0340"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4\\g4-force-summary.json",
+      "bytes": 296,
+      "sha256": "3adecee869d0cf56b6bc9419bc03a2a846e4211e82cc7fd2749851988c2dde85"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-g4\\g4-forces-battle.jsonl",
+      "bytes": 1143342,
+      "sha256": "8b1e9f030c3df8e9abc1ef312d08065b4308312d7187c5b6c34a2c12864b08f5"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes.log",
+      "bytes": 21108,
+      "sha256": "4208a1fb1adec3c272641308eab76f96a335d96ca67a81b62f68bd53148c062d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes\\modes-battle.jsonl",
+      "bytes": 993520,
+      "sha256": "7a789868e035fa0740e0db73b9a416aa1213e640824dd8d46f34670ce87547c9"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes\\modes-fixture.jsonl",
+      "bytes": 11254,
+      "sha256": "a27178179b2b91d062b97b6ca46fe095aaadbb171be349eb32fc454c27b134ec"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-modes\\modes-summary.json",
+      "bytes": 239,
+      "sha256": "d20cadf444a96eb9ea5f63cb36e8d5c9b088239eb15b0f2433ddd7b051792769"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production.log",
+      "bytes": 19084,
+      "sha256": "4530abfeba167117d503df768e3e0a4f0a7f89c571fab6fd5768f25c520d232a"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-abundant-battle.jsonl",
+      "bytes": 811444,
+      "sha256": "7bac400f8ab3def2e5120d42e28303615760a64bfae8d80c8f23cf118b8164c6"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-construction-battle.jsonl",
+      "bytes": 127654,
+      "sha256": "8cc83c2162483bd4d15d6c24d105bd5cca3cb8824a15cf080673db6e4420aa10"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-credits-battle.jsonl",
+      "bytes": 496187,
+      "sha256": "1b69a492a9fa325d976411b145508821f3f41577a1bcbb652917a3a35bc33701"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-fixture.jsonl",
+      "bytes": 9578,
+      "sha256": "3562cc23185a0772d60b78cb90be8b755d78a393f03f432d71674fc07688497d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-slots-battle.jsonl",
+      "bytes": 502314,
+      "sha256": "c3c63e336f181afc00939dca37f0a19725228d573da940c450b450d9b7e17a61"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-production\\production-summary.json",
+      "bytes": 250,
+      "sha256": "9e9e6ef832402360d53a8a28a04e6ec314e77062166427e936fa7be147217785"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain.log",
+      "bytes": 28674,
+      "sha256": "01418952bca4a36081dcfa0b9dad2a6cf61286f2575bb31dcf63ae757bf77744"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain\\spain-battle.jsonl",
+      "bytes": 336006,
+      "sha256": "04e99afc3ab395434e4ec554bf3844730c20c751ba57302c3b28f65ab89b9c12"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain\\spain-fixture.jsonl",
+      "bytes": 18860,
+      "sha256": "9da167eaa7813b99270fe446dfb7193c88c4e3d75f3207a26b6a0b25d251d125"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\g4-full-spain\\spain-summary.json",
+      "bytes": 597,
+      "sha256": "4cbf315348ff3046566442852f723da76818c802e89a7fcced945e8b273bcad1"
+    }
+  ],
+  "predecessorArchive": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\pre-log-compatibility",
+  "predecessorJarSha256": "c13af09fa69e0c40eed34fa930bd3aa940ac17f548dd9f7477c611e1b7405651",
+  "nativeEngine": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02",
+  "nativeEngineSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "spainOriginalMapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+  "spainCopiedMapSha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746"
+}

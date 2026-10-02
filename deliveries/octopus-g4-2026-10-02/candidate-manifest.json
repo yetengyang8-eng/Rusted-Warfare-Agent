@@ -1,0 +1,73 @@
+{
+  "candidateId": "RW-CANDIDATE-2026-10-02-OCTOPUS-G4-v1",
+  "date": "2026-10-02",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "startingCommit": "b7c5f518c5a538996ef228be20522bf5222decb3",
+  "g3NativeGreenCommit": "b3d0a3b",
+  "g4ImplementationCommit": "893c473",
+  "testedSourceCommit": "54b9de1",
+  "deliveryStatus": "VALIDATED_NOT_DEPLOYED",
+  "jar": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 438932,
+    "sha256": "b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd",
+    "contentDigest": "d001cd3a3d280e3994a32d5f906aef5fd4b1212eea8607d69b9a860a6496c09b",
+    "entriesExcludingManifest": 161,
+    "contentDigestAlgorithm": "Sorted ZIP names plus per-entry SHA256; directories included; META-INF/MANIFEST.MF excluded"
+  },
+  "jarBundledInRepository": false,
+  "validation": {
+    "passedSteps": 68,
+    "failedSteps": 0,
+    "exitCode": 0,
+    "javaHarnessRuns": 37,
+    "pythonSuites": 28,
+    "pythonTests": 466,
+    "pythonSkipped": 0,
+    "fullRuns": 2,
+    "correctiveFullReruns": 1,
+    "verifiedTestInputs": 159,
+    "previousFull": {
+      "failedSteps": 2,
+      "failedSuites": [
+        "test_g1_trace",
+        "test_g2_world_state"
+      ],
+      "cause": "New G4 battle_config fields emitted while G4 disabled; fixed by 54b9de1 without changing commands",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full-before-log-compatibility\\launch-output.log",
+      "retained": true
+    },
+    "historicalFixtures": 5,
+    "protectedInputs": 895,
+    "protectedInputsUnchanged": true,
+    "nativeChecks": 298,
+    "nativeEvidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP / NO_NATURAL_MATCH",
+    "nativeAutonomousMainLoop": false,
+    "g4HttpMainLoopTests": 3,
+    "jarSha256": "b3f6a344ddd2236f68828b3745ab2f150063c850b8483a0c9c946d9befa6b4cd",
+    "contentDigest": "d001cd3a3d280e3994a32d5f906aef5fd4b1212eea8607d69b9a860a6496c09b",
+    "rawFullLog": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full\\launch-output.log",
+    "inputManifest": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\final-full\\input-manifest.json",
+    "nativeManifest": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\native\\G4_FULL_NATIVE_MANIFEST.json",
+    "protectedAfter": "G:\\deepseek 工作台\\_validation\\octopus-g4-20261002\\protected-after.json"
+  },
+  "nativeGameLibSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "handoff": "../../handoff/HANDOFF_Octopus_G4_2026-10-02.md",
+  "contract": "../../docs/OCTOPUS_G4_FORCE_LIFECYCLE.md",
+  "defaultG4Forces": true,
+  "forceRollbackFlag": "-Drwagent.g4Forces=false",
+  "legacyExecutionFlag": "-Drwagent.g3Execution=false",
+  "executionBurst": 4,
+  "intervalGameMs": 1000,
+  "runtimeOrdering": {
+    "force": "COLLECT_THEN_PRIORITY_DISPATCH",
+    "otherLanes": "CALLER_TRAVERSAL_IMMEDIATE"
+  },
+  "generalBirth": "INITIAL_READY_SEEDS_ONLY",
+  "searchArea": "CONTRACT_ONLY_INACTIVE",
+  "g5": "NOT_IMPLEMENTED",
+  "naturalMatch": "NOT_RUN",
+  "desktopAcceptance": "NOT_RUN",
+  "deployed": false,
+  "pushed": false
+}
