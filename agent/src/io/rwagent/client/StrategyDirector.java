@@ -15,6 +15,9 @@ final class StrategyDirector {
         default WorldState worldStrategy(){return null;}
         default boolean parallelStrategy(){return false;}
         default double effectiveStrategyCredits(double nativeCredits){return nativeCredits;}
+        /** Identity of the actual validated native menu/plan packet; absent metadata is UNKNOWN.
+         * A later unrelated GET and the state observation are never this quote's price source. */
+        default Map<String,Object> costSourceStrategy(Map<String,Object> nativeResponse){return Collections.emptyMap();}
         void emitStrategy(String event,Map<String,Object> data)throws Exception;
         void spendStrategy(String category,long cost,String type,long actor)throws Exception;
         void strategicAttack(Map<String,Object> receipt);
@@ -469,7 +472,7 @@ final class StrategyDirector {
                 for(Map<String,Object> action:items(factory,"actions"))if(product.equals(action.get("type"))
                         &&Boolean.TRUE.equals(action.get("affordable"))&&n(action,"cost")<=free){
                     alternatives.put("selected",reason);alternatives.put("action",action);emit("strategy_allocation",alternatives);
-                    Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")),map("needId","combatEngineer".equals(product)?selectedNeed.id:-1,"commitmentId",purchaseTraceId(id(factory),now),"product",product,"cost",n(action,"cost"),"producerSlots",1,"militarySlots","combatEngineer".equals(product)?1:0));
+                    Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+id(factory)+"&actionId="+encode(action.get("actionId")),costContext(menu,map("needId","combatEngineer".equals(product)?selectedNeed.id:-1,"commitmentId",purchaseTraceId(id(factory),now),"product",product,"cost",n(action,"cost"),"producerSlots",1,"militarySlots","combatEngineer".equals(product)?1:0)));
                     if(receipt!=null){long needId="combatEngineer".equals(product)?selectedNeed.id:-1;
                         purchases.put(id(factory),purchase(product,needId));
                         if(needId>=0)emit("strategy_purchase_committed",map("needId",needId,"producerId",id(factory),"product",product));
@@ -508,7 +511,7 @@ final class StrategyDirector {
                 }
                 alternatives.putAll(growth.evidence);alternatives.put("selected","extractorT3".equals(growth.product)?"MINE_T3_INCOME_INVESTMENT":"MINE_T2_INCOME_INVESTMENT");
                 alternatives.put("action",candidate);emit("strategy_allocation",alternatives);
-                Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")),map("cost",cost,"product",growth.product,"producerSlots",1,"quotedProducerQueue",candidate.get("queue"),"investmentSlotAvailable",pending(id(candidate))?0:1,"slotEvidenceSource","EXISTING_PURCHASE_COMMITMENT","commitmentId",purchaseTraceId(id(candidate),now)));
+                Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/invest?unitId="+id(candidate)+"&actionId="+encode(candidate.get("actionId")),costContext(menu,map("cost",cost,"product",growth.product,"producerSlots",1,"quotedProducerQueue",candidate.get("queue"),"investmentSlotAvailable",pending(id(candidate))?0:1,"slotEvidenceSource","EXISTING_PURCHASE_COMMITMENT","commitmentId",purchaseTraceId(id(candidate),now))));
                 if(receipt!=null){purchases.put(id(candidate),new Purchase(growth.product,now));investments++;host.spendStrategy("MINE_UPGRADE",(long)cost,growth.product,id(candidate));acted=true;if(!host.parallelStrategy())return true;credits=effectiveCredits();free=credits-protectedFunds-capabilityReserve();}
             }
         }
@@ -614,7 +617,7 @@ final class StrategyDirector {
         Map<String,Object> data=capabilityFundingData("CAPABILITY_COMMITMENT_READY");
         data.put("selected","UNSERVED_CAPABILITY_NEED");data.put("action",chosen);data.put("freeCredits",free);data.put("protectedFunds",protectedFunds);
         emit("strategy_allocation",data);
-        Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action),map("needId",funding.need,"commitmentId",purchaseTraceId(funding.producer,now),"product","combatEngineer","cost",funding.cost,"producerSlots",1,"militarySlots",1));
+        Map<String,Object> receipt=traceOrder(CommandArbiter.DEFAULT_OWNER,"/command/queue?unitId="+funding.producer+"&actionId="+encode(funding.action),costContext(menu,map("needId",funding.need,"commitmentId",purchaseTraceId(funding.producer,now),"product","combatEngineer","cost",funding.cost,"producerSlots",1,"militarySlots",1)));
         if(receipt==null){releaseCapabilityFunding("ORDER_REJECTED");return false;}
         purchases.put(funding.producer,purchase("combatEngineer",funding.need));investments++;
         emit("strategy_purchase_committed",map("needId",funding.need,"producerId",funding.producer,"product","combatEngineer"));
@@ -854,7 +857,7 @@ final class StrategyDirector {
         worker.supportReserve=0;worker.supportQuote=null;
     }
     private boolean startBuild(Worker w,Map<String,Object> evidence,String path,String product,double x,double y,long cost,String job)throws Exception{
-        if(traceOrder(w.owner,path,map("commitmentId",constructionTraceId(w,now),"product",product,"cost",cost,"producerSlots",1,"constructionSlotAvailable",w.paidConstruction?0:1,"slotEvidenceSource","EXISTING_WORKER_CONSTRUCTION_COMMITMENT","militarySlots",("heavyTank".equals(product)||"amphibiousJet".equals(product))?1:0))==null)return false;
+        if(traceOrder(w.owner,path,costContext(evidence,map("commitmentId",constructionTraceId(w,now),"product",product,"cost",cost,"producerSlots",1,"constructionSlotAvailable",w.paidConstruction?0:1,"slotEvidenceSource","EXISTING_WORKER_CONSTRUCTION_COMMITMENT","militarySlots",("heavyTank".equals(product)||"amphibiousJet".equals(product))?1:0)))==null)return false;
         w.job=job;w.product=product;w.paidConstruction=true;w.x=w.buildX=x;w.y=w.buildY=y;w.jobAt=now;w.before.clear();for(Map<String,Object> u:units(state))w.before.add(id(u));
         investments++;host.spendStrategy("STRATEGIC_CONSTRUCTION",cost,product,w.unit);
         emit("strategy_construction_ordered",map("taskId",w.task,"unitId",w.unit,"product",product,"x",x,"y",y,"evidence",evidence));return true;
@@ -913,6 +916,16 @@ final class StrategyDirector {
             data.put("timeSemantics","DETECTED_BY_EXISTING_POLICY_NOT_EXACT_EVENT_TIME");
             host.traceStrategy(event,data);
         }catch(RuntimeException ignored){/* Optional diagnostics cannot alter existing actuation. */}
+    }
+    private Map<String,Object> costContext(Map<String,Object> nativeResponse,Map<String,Object> extra){
+        Map<String,Object> context=new LinkedHashMap<String,Object>(extra);
+        Map<String,Object> source=nativeResponse==null?null:host.costSourceStrategy(nativeResponse);
+        Object id=source==null?null:source.get("costSourceObservationId"),path=source==null?null:source.get("costSourceRequestPath");
+        boolean known=id instanceof String&&!((String)id).isEmpty()&&path instanceof String&&!((String)path).isEmpty()
+                &&!"/state".equals(path)&&!((String)path).startsWith("/state?");
+        context.put("costSourceObservationId",known?id:null);context.put("costSourceRequestPath",known?path:null);
+        context.put("costSourceStatus",known?"VALIDATED_NATIVE_QUOTE_PACKET":"UNKNOWN_PRICE_SOURCE");
+        return context;
     }
     private Map<String,Object> traceOrder(String owner,String path)throws Exception{
         return traceOrder(owner,path,Collections.<String,Object>emptyMap());
@@ -996,15 +1009,28 @@ final class StrategyDirector {
             "matchSemantics","EXISTING_FIRST_AVAILABLE_NEW_READY_WORKER","producerLineageConfirmed",false,
             "sourceGameTimeMs",state.get("gameTimeMs"),"sourceFrame",state.get("frame")));
     }
-    private void traceMode(Worker worker,Map<String,Object> response,Map<String,Object> choice,String source){
-        if(arbiter.stamp().session.equals(response.get("sessionId")))worker.mode.witness(response,choice,now);
-        Map<String,Object> data=workerTrace(worker);data.put("sourceKind",source);data.put("sourceGameTimeMs",response.get("gameTimeMs"));
+    private void traceMode(Worker worker,Map<String,Object> response,Map<String,Object> choice,String source)throws Exception{
+        boolean responseWitnessAccepted=arbiter.stamp().session.equals(response.get("sessionId"))&&worker.mode.witness(response,choice,now);
+        // Engagement movement is a desired flag, not native height completion. Only G3 obtains
+        // the independent own-mode witness; the legacy toggle retains its exact GET sequence.
+        if(host.parallelStrategy()&&choice!=null&&number(choice,"unitId",-1)==worker.unit){
+            Map<String,Object> modes=host.readStrategy("/combat/unit-modes?unitId="+worker.unit,"strategy_unit_modes");
+            if(modes!=null&&arbiter.stamp().session.equals(modes.get("sessionId"))){
+                boolean actualAccepted=worker.mode.witness(modes,null,now);
+                Map<String,Object> actual=workerTrace(worker);actual.put("nativeModeWitnessAccepted",actualAccepted);actual.put("sourceKind","UNIT_MODES_NATIVE_FIELDS");
+                actual.put("sourceGameTimeMs",modes.get("gameTimeMs"));actual.put("sourceFrame",modes.get("frame"));
+                actual.put("nativeSubmergedWeaponAvailable",modes.get("submergedWeaponAvailable"));
+                actual.put("actualModeEvidence","NATIVE_OWN_SUBMERGED_THRESHOLD_NOT_EXACT_HEIGHT_OR_TERRAIN_PERMISSION");
+                actual.put("legacyDiveObservedIsActualModeProof",false);trace("mode_evidence_witness",actual);
+            }
+        }
+        Map<String,Object> data=workerTrace(worker);data.put("nativeModeWitnessAccepted",responseWitnessAccepted);data.put("sourceKind",source);data.put("sourceGameTimeMs",response.get("gameTimeMs"));
         data.put("sourceFrame",response.get("frame"));data.put("nativeSubmergedWeaponAvailable",response.get("submergedWeaponAvailable"));
         data.put("nativeMovementType",choice==null?null:choice.get("movementType"));
         data.put("nativeWeaponRange",choice==null?null:choice.get("weaponRange"));
         data.put("targetVisible",response.get("targetVisible"));data.put("targetDomain",response.get("targetDomain"));
         data.put("compatibility",choice==null?null:choice.get("compatibility"));data.put("approachStatus",choice==null?null:choice.get("status"));
-        data.put("actualModeEvidence","ONLY_EXPLICIT_NATIVE_FIELDS_ABSENT_IS_UNKNOWN");
+        data.put("actualModeEvidence",choice==null?"OWN_UNIT_MODES_BOOLEAN_ONLY":"DESIRED_MOVEMENT_ONLY_PHYSICAL_MODE_NEEDS_EVIDENCE");
         data.put("legacyDiveObservedIsActualModeProof",false);trace("mode_evidence_witness",data);
     }
     static Map<String,Object> map(Object... kv){Map<String,Object> m=new LinkedHashMap<String,Object>();for(int i=0;i<kv.length;i+=2)m.put((String)kv[i],kv[i+1]);return m;}

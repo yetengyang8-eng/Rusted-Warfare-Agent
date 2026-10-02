@@ -370,7 +370,8 @@ public final class RuntimeBridge {
             json.append(",\"techLevel\":").append(unit.V());
             com.corrodinggames.rts.game.units.au order=unit instanceof y?((y)unit).ar():null;
             json.append(",\"orderType\":").append(order==null?"null":"\""+escape(order.d().name())+"\"");
-            if(order!=null && ("attackMove".equals(order.d().name()) || "move".equals(order.d().name()))) {
+            if(order!=null && ("attackMove".equals(order.d().name()) || "move".equals(order.d().name())
+                    || "build".equals(order.d().name()))) {
                 json.append(",\"orderX\":").append(format(order.g())).append(",\"orderY\":").append(format(order.h()));
             }
             am guardTarget=order!=null && "guard".equals(order.d().name())?order.i():null;

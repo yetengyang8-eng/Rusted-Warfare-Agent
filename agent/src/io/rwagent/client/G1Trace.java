@@ -65,6 +65,8 @@ public final class G1Trace {
                 m.put("ownerGenerations",executionIntent.ownerGenerations);m.put("ownerGenerationStatus","PER_ACTOR_MONOTONIC_AT_PROPOSAL");
                 m.put("ownerGeneration",actors.size()==1?executionIntent.ownerGenerations.get(actors.get(0)):null);
                 m.put("commitment",executionIntent.commitment.metadata());
+                m.put("costSourceObservationId",executionIntent.costSourceObservationId);
+                m.put("costSourceRequestPath",executionIntent.costSourceRequestPath);
             }
             m.put("actors",actors);m.put("endpoint",endpoint);m.put("inputObservationIds",inputObservationIds);
             m.put("inputObservationSemantics","AVAILABLE_READ_CONTEXT_NOT_EXCLUSIVE_CAUSAL_PROOF");

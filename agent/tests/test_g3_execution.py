@@ -181,6 +181,11 @@ class G3ExecutionTests(unittest.TestCase):
             self.assertTrue(execution['ownerGenerations'])
             self.assertTrue(execution['actorIds'])
             self.assertIsNone(execution['executionWitness'], 'receipt is not later execution proof')
+            if execution['commitment']['spending'] and execution['nativeAttempted']:
+                self.assertTrue(execution['costSourceObservationId'])
+                self.assertTrue(execution['costSourceRequestPath'])
+                self.assertNotEqual(execution['costSourceRequestPath'].split('?')[0], '/state',
+                    'native price provenance cannot be supplied by the state snapshot')
         return executions
 
     def test_game_time_jumps_multi_factory_and_long_gap_burst_cap(self):

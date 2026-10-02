@@ -20,6 +20,10 @@ public final class BattleClient implements StrategyDirector.Host {
     private GameClock.Observation stateObservation;
     private String executingLane="LEGACY_MAIN";
     private final Map<String,Map<String,Object>> actionQuotes=new LinkedHashMap<String,Map<String,Object>>();
+    private final IdentityHashMap<Map<String,Object>,GameClock.Observation> quoteObservations=new IdentityHashMap<Map<String,Object>,GameClock.Observation>();
+    private final Deque<Map<String,Object>> quoteObservationOrder=new ArrayDeque<Map<String,Object>>();
+    private final NativeCreditWitness creditWitness=new NativeCreditWitness();
+    private Map<String,Object> executionObservationState=Collections.emptyMap();
     // G1 sidecar only: no trace field participates in policy, admission or native requests.
     private final boolean traceEnabled=!"false".equalsIgnoreCase(System.getProperty("rwagent.g1Trace","true"));
     private final String traceRunId=UUID.randomUUID().toString();
@@ -449,6 +453,7 @@ public final class BattleClient implements StrategyDirector.Host {
         final String kind;final double x,y;final long cost,plannedAt;final String diagnostics;
         long candidateId=-1;boolean started,moving,reserveLogged,stalled;long firstSeenGameMs;
         boolean capacityExpansion,orderAccepted;String commitmentId,lastHold;
+        Map<String,Object> costSource=Collections.emptyMap();
         boolean probeAttempted;String probeState;double probeProgress;long probeAt;boolean wasStalled;double probeCredits;
         BuildJob(String kind,double x,double y,long cost,long plannedAt,String diagnostics){
             this.kind=kind;this.x=x;this.y=y;this.cost=cost;this.plannedAt=plannedAt;this.diagnostics=diagnostics;
@@ -3246,6 +3251,7 @@ public final class BattleClient implements StrategyDirector.Host {
             if(refusal!=null){reportExpansionBlocked(refusal,mines,true);return false;}
         }
         buildJob=new BuildJob(JOB_EXTRACTOR,x,y,cost,time,String.valueOf(plan.get("diagnostics")));
+        if(g3ExecutionEnabled){check(plan);buildJob.costSource=costSourceStrategy(plan);}
         snapshotKnownUnits(state,JOB_EXTRACTOR);
         Map<String,Object> data=new LinkedHashMap<String,Object>();
         data.put("reason",beyondFloor?"ABOVE_MINE_FLOOR":"BELOW_MINE_TARGET");
@@ -3342,6 +3348,7 @@ public final class BattleClient implements StrategyDirector.Host {
             reportFactoryBlocked(state,"RESERVE_PROTECTED",mines,factories);return;
         }
         buildJob=new BuildJob(JOB_LAND_FACTORY,x,y,(long)n(plan,"factoryCost"),time,String.valueOf(plan.get("diagnostics")));
+        if(g3ExecutionEnabled){check(plan);buildJob.costSource=costSourceStrategy(plan);}
         buildJob.capacityExpansion=factoryTargetCommitted;buildJob.commitmentId=factoryCommitmentId;
         snapshotKnownUnits(state,JOB_LAND_FACTORY);
         Map<String,Object> data=new LinkedHashMap<String,Object>();
@@ -3507,7 +3514,7 @@ public final class BattleClient implements StrategyDirector.Host {
             return;
         }
         String path=JOB_EXTRACTOR.equals(job.kind)?"/command/build-extractor":"/command/build-factory";
-        if(g3ExecutionEnabled)nextTraceCommandContext=StrategyDirector.map("nativeCost",job.cost,"commitmentId",job.commitmentId,"product",job.kind);
+        if(g3ExecutionEnabled){nextTraceCommandContext=StrategyDirector.map("nativeCost",job.cost,"commitmentId",job.commitmentId,"product",job.kind);nextTraceCommandContext.putAll(job.costSource);}
         Map<String,Object> receipt=post(path+"?unitId="+id(builder)+"&x="+job.x+"&y="+job.y);
         if(receipt!=null){
             job.orderAccepted=true;
@@ -3567,7 +3574,7 @@ public final class BattleClient implements StrategyDirector.Host {
             event(prefix+"_recovery_probe",json(data));
             String path=JOB_EXTRACTOR.equals(job.kind)?"/command/build-extractor":"/command/build-factory";
             // The legacy resume probe may be charged again. Reserve its native quoted upper bound.
-            if(g3ExecutionEnabled)nextTraceCommandContext=StrategyDirector.map("nativeCost",job.cost,"product",job.kind,"recoveryProbe",true);
+            if(g3ExecutionEnabled){nextTraceCommandContext=StrategyDirector.map("nativeCost",job.cost,"product",job.kind,"recoveryProbe",true);nextTraceCommandContext.putAll(job.costSource);}
             Map<String,Object> receipt=post(path+"?unitId="+id(builder)+"&x="+job.x+"&y="+job.y);
             Map<String,Object> result=new LinkedHashMap<String,Object>();
             result.put("unitId",job.candidateId);result.put("kind",job.kind);result.put("x",job.x);result.put("y",job.y);
@@ -3809,9 +3816,8 @@ public final class BattleClient implements StrategyDirector.Host {
         if(credits<builderReserve){reportBuilderWaiting("INSUFFICIENT_CREDITS",credits,queueCount,alive);return;}
         if(g3ExecutionEnabled){
             scheduler.observeProducerSlots(Collections.singletonMap(builderProducerId,queueCount==0?1:0));
-            GameClock.Observation source=gameClock.latest("/economy/builder-production");
-            nextTraceCommandContext=StrategyDirector.map("nativeCost",plan.get("builderCost"),"product","builder","producerSlots",1,
-                    "costSourceObservationId",source==null?null:source.observationId,"costSourceRequestPath","/economy/builder-production");
+            nextTraceCommandContext=StrategyDirector.map("nativeCost",plan.get("builderCost"),"product","builder","producerSlots",1);
+            nextTraceCommandContext.putAll(costSourceStrategy(plan));
         }
         Map<String,Object> receipt=post("/command/produce-builder?unitId="+builderProducerId);
         if(receipt!=null){
@@ -4213,6 +4219,11 @@ public final class BattleClient implements StrategyDirector.Host {
         return post(owner,path,execution.stamp());
     }
     public boolean parallelStrategy(){return g3ExecutionEnabled;}
+    public Map<String,Object> costSourceStrategy(Map<String,Object> nativeResponse){
+        GameClock.Observation source=quoteObservations.get(nativeResponse);
+        if(source==null||"/state".equals(source.endpoint))return StrategyDirector.map("costSourceObservationId",null,"costSourceRequestPath",null,"costSourceStatus","UNKNOWN");
+        return StrategyDirector.map("costSourceObservationId",source.observationId,"costSourceRequestPath",source.requestPath,"costSourceStatus","LEGAL_NATIVE_QUOTE");
+    }
     public WorldState worldStrategy(){return worldAdapter==null?null:worldAdapter.snapshot();}
     public double effectiveStrategyCredits(double nativeCredits){return g3ExecutionEnabled&&scheduler.effectiveCredits()!=null?Math.min(nativeCredits,scheduler.effectiveCredits()):nativeCredits;}
     public void emitStrategy(String kind,Map<String,Object> data)throws Exception{event(kind,json(data));}
@@ -4225,7 +4236,11 @@ public final class BattleClient implements StrategyDirector.Host {
         if(!session.equals(s.get("sessionId")))throw new IllegalStateException("Session changed");
         // /state has additional active-match/frame guards in observe(); ingest it there.
         // Command receipts never match the successful GET payload identity.
-        if(g3ExecutionEnabled&&s==worldReadPayload&&worldReadObservation!=null)observeCommandQuotes(s,worldReadObservation);
+        if(g3ExecutionEnabled&&s==worldReadPayload&&worldReadObservation!=null){
+            if(!quoteObservations.containsKey(s)){quoteObservations.put(s,worldReadObservation);quoteObservationOrder.addLast(s);
+                while(quoteObservationOrder.size()>128)quoteObservations.remove(quoteObservationOrder.removeFirst());}
+            observeCommandQuotes(s,worldReadObservation);
+        }
         if(worldReadObservation!=null&&!"/state".equals(worldReadObservation.endpoint))observeWorldState(s);
     }
     private Map<String,Object> post(String path)throws Exception{
@@ -4283,6 +4298,9 @@ public final class BattleClient implements StrategyDirector.Host {
         player.put("credits",effectiveStrategyCredits(n(player,"credits")));copy.put("player",player);return copy;
     }
     private void beginExecutionObservation(Map<String,Object> state)throws Exception{
+        for(Map<String,Object> settled:creditWitness.observe(execution.stamp(),stateObservation.observationId,state,scheduler))
+            event("g3_credit_settled",json(settled));
+        executionObservationState=state;
         Map<Long,Integer> slots=new LinkedHashMap<Long,Integer>();
         for(Map<String,Object> unit:units(state))if(alive(unit)&&unit.get("productionQueue") instanceof Number&&n(unit,"productionQueue")>=0)
             slots.put(id(unit),n(unit,"productionQueue")==0?1:0);
@@ -4340,10 +4358,13 @@ public final class BattleClient implements StrategyDirector.Host {
             scheduler.observeProducerSlots(Collections.singletonMap(actors.get(0),Math.max(0,((Number)context.get("constructionSlotAvailable")).intValue())));
         if(!actors.isEmpty()&&context.get("investmentSlotAvailable") instanceof Number)
             scheduler.observeProducerSlots(Collections.singletonMap(actors.get(0),Math.max(0,((Number)context.get("investmentSlotAvailable")).intValue())));
+        boolean explicitSource=context.containsKey("costSourceObservationId")||context.containsKey("costSourceRequestPath");
+        String costSource=explicitSource?(context.get("costSourceObservationId") instanceof String?(String)context.get("costSourceObservationId"):null):quote!=null?(String)quote.get("sourceObservationId"):null;
+        String costPath=explicitSource?(context.get("costSourceRequestPath") instanceof String?(String)context.get("costSourceRequestPath"):null):quote!=null?(String)quote.get("sourceRequestPath"):null;
+        if(costSource==null||costPath==null||"/state".equals(costPath)||costPath.startsWith("/state?")){costSource=null;costPath=null;if(spending)price=null;}
         Intent.Commitment commitment=spending?Intent.Commitment.spending(price,producerSlots,military):Intent.Commitment.none();
-        String source=context.get("costSourceObservationId") instanceof String?(String)context.get("costSourceObservationId"):quote!=null?String.valueOf(quote.get("sourceObservationId")):stateObservation.observationId;
-        String sourcePath=context.get("costSourceRequestPath") instanceof String?(String)context.get("costSourceRequestPath"):quote!=null?String.valueOf(quote.get("sourceRequestPath")):"/state";
-        final Intent intent=Intent.create(traceRunId+":i:"+(++intentSequence),owner,execution.snapshotGenerations(owner,actors),actors,kind,lane,intentLanePriority(lane),stamp,source,sourcePath,path,commitment);
+        String source=costSource==null?stateObservation.observationId:costSource,sourcePath=costPath==null?"/state":costPath;
+        final Intent intent=new Intent(traceRunId+":i:"+(++intentSequence),owner,execution.snapshotGenerations(owner,actors),actors,kind,lane,intentLanePriority(lane),stamp,source,sourcePath,path,commitment,spending?costSource:null,spending?costPath:null);
         context.putAll(intent.metadata());context.put("ownerGenerationStatus","PER_ACTOR_MONOTONIC");context.put("sourceObservationIds",gameClock.latestObservationIds());context.put("executionOrdering","EXISTING_CALLER_ORDER_FIRST_NATIVE_ATTEMPT_WINS");
         if(worldAdapter!=null)context.put("worldRevision",worldAdapter.snapshot().revision);
         final G1Trace.CommandSpan span=traceEnabled?trace.beginCommand(owner,actors,kind,gameClock.latestObservationIds()):null;
@@ -4372,6 +4393,7 @@ public final class BattleClient implements StrategyDirector.Host {
             if(!outcome.nativeAttempted&&span!=null){span.admission(outcome.cancelReason);safeTraceEvent("g1_command_attempt",span,"COMMAND_ATTEMPT",context);}
             Map<String,Object> result=new LinkedHashMap<String,Object>(outcome.metadata());result.put("effectiveCredits",scheduler.effectiveCredits());result.put("availableTokens",scheduler.availableTokens());result.put("militarySlots",scheduler.availableMilitarySlots());
             if(additionalDiagnostics)event("g3_execution",json(result));
+            if(outcome.commitmentApplied)creditWitness.accepted(intent,outcome.receipt,context,executionObservationState);
             if(outcome.failure!=null)throw outcome.failure;
             return outcome.accepted?outcome.receipt:null;
         }finally{executionCalls++;executionNanos+=System.nanoTime()-started;activeTraceCommand=previousSpan;traceContext=previousContext;}

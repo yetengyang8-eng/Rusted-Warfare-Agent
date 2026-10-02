@@ -13,8 +13,9 @@ public final class CapabilityLifecycleHarness {
         final CommandArbiter gate=new CommandArbiter();final ExecutionScheduler scheduler=new ExecutionScheduler(gate);
         final StrategyDirector strategy=new StrategyDirector(this,gate);
         final GameClock clock=new GameClock("capability");final EventAdapter adapter=new EventAdapter("capability");
-        final Set<Long> submerged=new HashSet<Long>();final List<String> orders=new ArrayList<String>();
+        final Set<Long> submerged=new HashSet<Long>(),desiredDive=new HashSet<Long>();final List<String> orders=new ArrayList<String>();
         final List<Map<String,Object>> contexts=new ArrayList<Map<String,Object>>();long sequence;
+        boolean probeTrue,probeStale,probeForeign,probeWrongActor;int modeReads;
         Fixture()throws Exception{BattleClient.obj(legacy.world.get("player")).put("teamId",0);legacy.world.put("sessionId","s");
             strategy.enable(map("strategyContractVersion",1),128);observe(120000);}
         void observe(long now)throws Exception{
@@ -34,11 +35,11 @@ public final class CapabilityLifecycleHarness {
                 String actors=path.split("unitIds=")[1].split("&")[0];long first=Long.parseLong(actors.split(",")[0]);legacy.submerged=submerged.contains(first);
                 Map<String,Object> packet=legacy.readStrategy(path,event);
                 for(Map<String,Object> a:items(packet,"actors")){Map<String,Object> own=BattleClient.find(legacy.world,(long)BattleClient.n(a,"unitId"));
-                    a.put("movementType",own!=null&&"amphibiousJet".equals(own.get("type"))?(submerged.contains((long)BattleClient.n(a,"unitId"))?"WATER":"AIR"):"LAND");}
+                    a.put("movementType",own!=null&&"amphibiousJet".equals(own.get("type"))?(desiredDive.contains((long)BattleClient.n(a,"unitId"))?"WATER":"AIR"):"LAND");}
                 return packet;
             }
-            if(path.startsWith("/combat/unit-modes")){long actor=Long.parseLong(path.split("unitId=")[1]);
-                return map("sessionId","s","gameTimeMs",legacy.now,"unitId",actor,"submergedWeaponAvailable",submerged.contains(actor),
+            if(path.startsWith("/combat/unit-modes")){long actor=Long.parseLong(path.split("unitId=")[1]);modeReads++;
+                return map("sessionId",probeForeign?"foreign":"s","gameTimeMs",probeStale?legacy.now-1:legacy.now,"unitId",probeWrongActor?actor+100:actor,"submergedWeaponAvailable",probeTrue||submerged.contains(actor),
                     "actions",Arrays.asList(map("mode","FLY","actionId","151","cost",0,"available",true,"affordable",true)));}
             return legacy.readStrategy(path,event);
         }
@@ -51,7 +52,10 @@ public final class CapabilityLifecycleHarness {
             Intent intent=Intent.create("capability-intent:"+(++sequence),owner,gate.snapshotGenerations(owner,actors),actors,"CAPABILITY","Strategy",40,
                 gate.stamp(),scheduler.observationId(),"/state",path,commitment);
             ExecutionScheduler.Result result=scheduler.dispatch(intent,i->{orders.add(i.path);return map("status","queued","requestId",i.intentId);});
-            if(result.accepted)contexts.add(new LinkedHashMap<String,Object>(context));return result.receipt;
+            if(result.accepted){contexts.add(new LinkedHashMap<String,Object>(context));
+                if(path.startsWith("/command/unit-mode")&&path.contains("actionId=152"))desiredDive.add(actor);
+                if(path.startsWith("/command/unit-mode")&&path.contains("actionId=151"))desiredDive.remove(actor);}
+            return result.receipt;
         }
         public void emitStrategy(String event,Map<String,Object> data){legacy.emitStrategy(event,data);}
         public void spendStrategy(String category,long cost,String type,long actor){}
@@ -73,7 +77,7 @@ public final class CapabilityLifecycleHarness {
         check(f.legacy.events("strategy_support_transferred")==1,"first ready construction match retains existing handover semantics");
         f.submerged.add(81L);f.observe(125000);f.strategy.act(500,1);
         check(f.ordered("/command/attack-move?unitIds=81")&&!f.ordered("/command/attack-move?unitIds=82"),"native submerged actor engages without waiting for dry partner");
-        check("SUBMERGED_READY".equals(f.strategy.unitModes().get(81L).get("phase")),"explicit native movement witness advances own mode");
+        check("SUBMERGED_READY".equals(f.strategy.unitModes().get(81L).get("phase")),"fresh own unit-modes Boolean advances own mode independently of desired movement");
         dry.put("x",1200);f.observe(128000);f.strategy.act(500,1);
         check(f.ordered("/command/unit-mode?unitId=82&actionId=152"),"second specialist independently reaches water and dives");
         f.submerged.add(82L);f.observe(132000);f.strategy.act(500,1);
@@ -91,7 +95,30 @@ public final class CapabilityLifecycleHarness {
         check(mode.phase()==CapabilityUnitMode.Phase.DIVE_REQUESTED&&"UNKNOWN".equals(mode.nativeMode()),"receipt preserves unknown native mode");
         check(!mode.witness(map("gameTimeMs",9,"unitId",1,"submergedWeaponAvailable",true),null,10),"old native witness rejected");
         check(!mode.witness(map("gameTimeMs",10,"unitId",2,"submergedWeaponAvailable",true),null,10),"other actor native witness rejected");
-        check(mode.witness(map("gameTimeMs",10,"unitId",1,"submergedWeaponAvailable",true),null,10)&&mode.phase()==CapabilityUnitMode.Phase.SUBMERGED_READY,"explicit own native weapon witness confirms submerged capability");
+        check(!mode.witness(map("gameTimeMs",10),map("unitId",1,"movementType","WATER"),10),"desired Dive movement cannot prove submerged native height");
+        check(mode.phase()==CapabilityUnitMode.Phase.DIVE_REQUESTED&&"UNKNOWN".equals(mode.nativeMode())&&"WATER".equals(mode.snapshot().get("desiredMovementType")),"desired water is recorded without changing requested phase or physical mode");
+        check(mode.witness(map("gameTimeMs",10,"unitId",1,"submergedWeaponAvailable",false),null,10)&&mode.phase()==CapabilityUnitMode.Phase.DIVE_REQUESTED&&"AIR".equals(mode.nativeMode()),"native false after desired Dive proves transition remains pending");
+        check(mode.witness(map("gameTimeMs",11,"unitId",1,"submergedWeaponAvailable",true),null,11)&&mode.phase()==CapabilityUnitMode.Phase.SUBMERGED_READY,"later own native weapon witness confirms submerged threshold");
+        mode.flyAccepted();
+        check(!mode.witness(map("gameTimeMs",12),map("unitId",1,"movementType","AIR"),12)&&mode.phase()==CapabilityUnitMode.Phase.FLY_REQUESTED&&"SUBMERGED".equals(mode.nativeMode()),"desired Fly while native height remains submerged cannot prove flight");
+        check(mode.witness(map("gameTimeMs",12,"unitId",1,"submergedWeaponAvailable",true),null,12)&&mode.phase()==CapabilityUnitMode.Phase.FLY_REQUESTED,"actual submerged witness preserves pending Fly transition");
+        check(mode.witness(map("gameTimeMs",13,"unitId",1,"submergedWeaponAvailable",false),null,13)&&mode.phase()==CapabilityUnitMode.Phase.AIR_READY,"later native non-submerged witness confirms return readiness");
+    }
+    static void actualProbeValidation()throws Exception{
+        Fixture f=new Fixture();f.strategy.act(500,1);Map<String,Object> jet=f.legacy.addJet(81,1);
+        f.observe(124000);f.strategy.act(500,1);jet.put("x",1200);
+        f.observe(125000);f.strategy.act(500,1);int reads=f.modeReads;
+        f.observe(126000);f.strategy.act(500,1);
+        check(f.modeReads>reads&&"DIVE_REQUESTED".equals(f.strategy.unitModes().get(81L).get("phase")),"desired-water engagement requests a separate actual own mode sample without premature ready: reads="+f.modeReads+" before="+reads+" mode="+f.strategy.unitModes().get(81L));
+        f.probeTrue=true;f.probeStale=true;f.observe(127000);f.strategy.act(500,1);
+        check("DIVE_REQUESTED".equals(f.strategy.unitModes().get(81L).get("phase")),"stale true probe cannot confirm actual readiness");
+        f.probeStale=false;f.probeForeign=true;f.observe(128000);f.strategy.act(500,1);
+        check("DIVE_REQUESTED".equals(f.strategy.unitModes().get(81L).get("phase")),"foreign-session true probe cannot confirm actual readiness");
+        f.probeForeign=false;f.probeWrongActor=true;f.observe(129000);f.strategy.act(500,1);
+        check("DIVE_REQUESTED".equals(f.strategy.unitModes().get(81L).get("phase")),"other-actor true probe cannot confirm actual readiness");
+        f.probeWrongActor=false;f.observe(130000);f.strategy.act(500,1);
+        check("SUBMERGED_READY".equals(f.strategy.unitModes().get(81L).get("phase")),"only matching fresh same-session true probe confirms own submerged threshold");
+        check(!f.ordered("/command/attack-move?unitIds=81"),"mode readiness alone cannot replace separate legal engagement and terrain compatibility");
     }
     static void lawfulSearch(){
         check(SearchAreaNeed.lawful(true,true,false,"a",SearchAreaNeed.Domain.WATER,0,0,100,100,.2,null,.9,100,"coverage:o:1")==null,"ongoing alone cannot invent search region");
@@ -113,5 +140,5 @@ public final class CapabilityLifecycleHarness {
         combat.put("gameTimeMs",200L);combat.put("frame",2);combat.put("visibleEnemies",Collections.emptyList());adapter.accept(clock.observe("/combat/observe",combat,200,200,200L),combat);
         check(new SearchTask(need,Arrays.asList(8L)).discover(adapter.snapshot(),8,99)==null,"lost visibility cannot become new target from hidden coordinates");
     }
-    public static void main(String[] args)throws Exception{noInferredModes();lawfulSearch();independentVertical();System.out.println("CapabilityLifecycleHarness checks="+checks+" PASS");}
+    public static void main(String[] args)throws Exception{noInferredModes();lawfulSearch();independentVertical();actualProbeValidation();System.out.println("CapabilityLifecycleHarness checks="+checks+" PASS");}
 }
