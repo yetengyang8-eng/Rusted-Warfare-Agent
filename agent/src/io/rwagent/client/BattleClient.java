@@ -3340,6 +3340,15 @@ public final class BattleClient implements StrategyDirector.Host {
         maintainInvestment(state);
         if(buildJob!=null){advanceBuildJob(state);return;}
         long mines=countReadyExtractors(state);
+        long factories=countReadyType(state,"landFactory");
+        // Fresh-match bootstrap used to live only in MatchClient/EconomyClient. BattleClient can now
+        // enter directly from the native command-center + builder start, so establish the same minimum
+        // production chain here: one ready extractor, then the first land factory. The old mine-floor
+        // and second+ factory capacity policy resumes unchanged once a producer exists.
+        if(factories==0){
+            if(mines<1){planResourcePoint(state,mines,false);return;}
+            planProductionFacility(state,mines);return;
+        }
         if(mines<mineTarget){planResourcePoint(state,mines,false);return;}
         if(factoryTargetCommitted){planProductionFacility(state,mines);return;}
         if(!expansionTargetLogged){
@@ -3471,6 +3480,7 @@ public final class BattleClient implements StrategyDirector.Host {
      */
     private void planProductionFacility(Map<String,Object> state,long mines)throws Exception{
         long factories=countReadyType(state,"landFactory");
+        boolean bootstrapFirstFactory=factories==0;
         if(factories>=landFactoryTarget){
             // The target is met, so no earlier capacity expansion is still outstanding.
             factoryTargetCommitted=false;
@@ -3515,7 +3525,7 @@ public final class BattleClient implements StrategyDirector.Host {
             if(wouldBreachCapabilityReserve(state,committedPrice)){
                 reportFactoryBlocked(state,"CAPABILITY_PURCHASE_RESERVED",mines,factories);return;
             }
-        }else{
+        }else if(!bootstrapFirstFactory){
             if(!lastFactoryQueueNonEmpty){reportFactoryBlocked(state,"FACTORY_QUEUE_EMPTY",mines,factories);return;}
             if(lastPreferredUnitCost<=0){reportFactoryBlocked(state,"UNIT_COST_UNKNOWN",mines,factories);return;}
             double credits=n(obj(state.get("player")),"credits");
@@ -3549,7 +3559,7 @@ public final class BattleClient implements StrategyDirector.Host {
         buildJob.capacityExpansion=factoryTargetCommitted;buildJob.commitmentId=factoryCommitmentId;
         snapshotKnownUnits(state,JOB_LAND_FACTORY);
         Map<String,Object> data=new LinkedHashMap<String,Object>();
-        data.put("reason","SURPLUS_WITH_BUSY_FACTORY");data.put("mines",mines);data.put("factories",factories);
+        data.put("reason",bootstrapFirstFactory?"BOOTSTRAP_FIRST_FACTORY":"SURPLUS_WITH_BUSY_FACTORY");data.put("mines",mines);data.put("factories",factories);
         data.put("builderId",id(builder));data.put("x",x);data.put("y",y);
         data.put("factoryCost",buildJob.cost);data.put("preferredUnit",lastPreferredUnit);
         data.put("preferredUnitCost",lastPreferredUnitCost);data.put("credits",credits);

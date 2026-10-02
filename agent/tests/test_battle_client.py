@@ -306,7 +306,7 @@ class EconomyExpansionTests(unittest.TestCase):
 
 class ProductionFacilityTests(unittest.TestCase):
     """P2-B: a second land factory is funded from surplus while the first one stays saturated."""
-    def run_case(self,queue_busy=True,credits=5000,builder_start=(150,100),army_size=2,kill_builder=False,stall_site=False):
+    def run_case(self,queue_busy=True,credits=5000,builder_start=(150,100),army_size=2,kill_builder=False,stall_site=False,initial_factory=True,mine_count=3):
         calls=[];step=[0];builder=[builder_start[0],builder_start[1]];spawn=[None];purse=[credits];alive=[True]
         def unit(uid,kind,x=100,y=100,bp=1.0):
             building=kind in ('commandCenter','landFactory')
@@ -314,8 +314,10 @@ class ProductionFacilityTests(unittest.TestCase):
                         mobile=not building,canAttack=kind=='c_tank',building=building,techLevel=1,productionQueue=0,orderType=None)
         def own():
             st=step[0]
-            units=[unit(3,'commandCenter'),unit(5,'landFactory',150,100),
-                   unit(11,'extractorT1'),unit(12,'extractorT1',300,400),unit(13,'extractorT1',500,600)]
+            units=[unit(3,'commandCenter')]
+            if initial_factory:units.append(unit(5,'landFactory',150,100))
+            mine_sites=[(11,100,100),(12,300,400),(13,500,600)]
+            units += [unit(uid,'extractorT1',x,y) for uid,x,y in mine_sites[:mine_count]]
             if alive[0]:units.append(unit(4,'builder',builder[0],builder[1]))
             units+=[unit(20+i,'c_tank') for i in range(army_size)]
             if spawn[0] is not None and st>=spawn[0]:
@@ -355,9 +357,14 @@ class ProductionFacilityTests(unittest.TestCase):
                         fogEnabled=True,lineOfSightFog=True,visibleTiles=100,exploredTiles=5000,initialVisibleTiles=100,
                         newlyObservedTiles=0,resources=[],visibleThreats=[],rememberedThreats=[]))
                 if self.path=='/combat/production':
-                    return self.send(dict(status='observed',sessionId='s',factories=[dict(id=5,tier=2,queue=1 if queue_busy else 0,
-                        actions=[dict(actionId='tank',type='c_tank',cost=350,affordable=True),
-                                 dict(actionId='heavy',type='heavyTank',cost=900,affordable=credits>=900)])]))
+                    factories=[]
+                    if initial_factory:
+                        factories.append(dict(id=5,tier=2,queue=1 if queue_busy else 0,
+                            actions=[dict(actionId='tank',type='c_tank',cost=350,affordable=True),
+                                     dict(actionId='heavy',type='heavyTank',cost=900,affordable=credits>=900)]))
+                    if spawn[0] is not None and step[0]>=spawn[0]+2 and not stall_site:
+                        factories.append(dict(id=88,tier=1,queue=0,actions=[dict(actionId='tank',type='c_tank',cost=350,affordable=True)]))
+                    return self.send(dict(status='observed',sessionId='s',factories=factories))
                 if self.path=='/combat/observe':
                     return self.send(dict(status='observed',sessionId='s',gameTimeMs=step[0]*2000,visibleEnemies=[],rememberedEnemies=[]))
                 return self.send(dict(status='no_frontier',sessionId='s'))
@@ -371,6 +378,16 @@ class ProductionFacilityTests(unittest.TestCase):
                 report=next(pathlib.Path(cwd).glob('rw-agent-reports/battle-*.jsonl'))
                 return calls,[json.loads(x) for x in report.read_text().splitlines()]
         finally:server.shutdown();server.server_close()
+    def test_zero_factory_bootstrap_builds_first_without_busy_queue(self):
+        calls,rows=self.run_case(queue_busy=False,army_size=0,initial_factory=False,mine_count=1)
+        planned=[r for r in rows if r['event']=='production_facility_planned']
+        self.assertTrue(planned,"fresh BattleClient entry must establish its first producer")
+        self.assertEqual(planned[0]['data']['reason'],'BOOTSTRAP_FIRST_FACTORY')
+        self.assertEqual(planned[0]['data']['factories'],0)
+        self.assertTrue(any('build-factory' in c for c,_ in calls))
+        self.assertFalse([r for r in rows if r['event']=='production_facility_blocked' and r['data']['reason']=='FACTORY_QUEUE_EMPTY'],
+                         "the second-factory saturation gate cannot block the first factory")
+
     def test_surplus_with_a_saturated_factory_builds_a_second_one(self):
         calls,rows=self.run_case()
         planned=[r for r in rows if r['event']=='production_facility_planned']
