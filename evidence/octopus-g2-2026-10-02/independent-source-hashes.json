@@ -1,0 +1,26 @@
+[
+  {
+    "Path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\agent\\src\\io\\rwagent\\client\\GameClock.java",
+    "Hash": "8CE8AB39EDFAE1121D9120A14FCE323CE13BB3005608597FDE57B614D940AA29"
+  },
+  {
+    "Path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\agent\\src\\io\\rwagent\\client\\Json.java",
+    "Hash": "0B82EA66B23FFF4CE9D1B370A698BBA5C66DB09F5927BDBCFA91CCDFC13B1F19"
+  },
+  {
+    "Path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\agent\\src\\io\\rwagent\\client\\WorldState.java",
+    "Hash": "45C791026665AC53597117068A4DA413CBD09D3AAED17584CE2E3A64D853C3AA"
+  },
+  {
+    "Path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\agent\\src\\io\\rwagent\\client\\EventAdapter.java",
+    "Hash": "5FA8FFA9D6C14ACD89DC3367B1C5C4CFB3771BE2894D7E007C66DA7E91E74D51"
+  },
+  {
+    "Path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\independent\\G2IndependentProbe.java",
+    "Hash": "CBC6F26D87209119970E8F319B4A37F0DED4FB5219872FE625C50B1766F57271"
+  },
+  {
+    "Path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\independent\\G2MissingCoverageProbe.java",
+    "Hash": "093A9F0BDABAEADC44CE580D05D59E6CFA401B9F44DA121F573D61F8C090B636"
+  }
+]

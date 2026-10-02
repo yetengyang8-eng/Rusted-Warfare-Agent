@@ -1,0 +1,3 @@
+PASS empty combat without native time invalidates coverage without visibility-loss delta
+PASS empty scout without all native stamps invalidates coverage without threat-loss delta
+G2_MISSING_COVERAGE checks=2 failed=0

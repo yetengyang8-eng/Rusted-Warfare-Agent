@@ -1,0 +1,14 @@
+test_crisis_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_crisis_projection_preserves_original_behavior) ... ok
+test_foreign_combat_session_guard_precedes_g2 (__main__.G2WorldStateTests.test_foreign_combat_session_guard_precedes_g2) ... ok
+test_frame_rollback_guard_precedes_g2 (__main__.G2WorldStateTests.test_frame_rollback_guard_precedes_g2) ... ok
+test_native_missing_source_times_stay_missing (__main__.G2WorldStateTests.test_native_missing_source_times_stay_missing) ... ok
+test_network_match_guard_precedes_g2 (__main__.G2WorldStateTests.test_network_match_guard_precedes_g2) ... ok
+test_ordinary_production_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_ordinary_production_projection_preserves_original_behavior) ... ok
+test_provider_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_provider_projection_preserves_original_behavior) ... ok
+test_recon_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_recon_projection_preserves_original_behavior) ... ok
+test_replay_guard_precedes_g2 (__main__.G2WorldStateTests.test_replay_guard_precedes_g2) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 70.592s
+
+OK

@@ -1,0 +1,13 @@
+PASS invalid hp followed by valid row rebases without exception
+PASS invalid list then empty rebase does not revive stale current unit
+PASS same unstamped Observation cannot apply twice
+PASS older unstamped Observation cannot replace newer menu
+PASS stale visible row cannot refresh current hidden dynamics
+PASS delayed foreign combat source cannot reset new context
+PASS same stamp conflict cannot claim ready or empty queue
+PASS rebase after conflict permits labelled current readiness but suppresses unsupported ready-transition and empty deltas
+PASS different query scope cannot create entity disappearance
+PASS enemy hp without maxHp cannot become relative health band
+PASS same-epoch previously observed unit cannot be first-observed again after absence
+PASS ordered route change is not mistaken for unordered entity-list duplicate
+G2_INDEPENDENT checks=12 failed=0

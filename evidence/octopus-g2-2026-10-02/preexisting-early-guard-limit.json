@@ -1,0 +1,22 @@
+{
+  "command": [
+    "java",
+    "-Drwagent.g1Trace=true",
+    "-Drwagent.g2WorldState=false",
+    "-Drwagent.pollMs=60",
+    "-Drwagent.reachabilitySample=false",
+    "-Drwagent.builderTarget=0",
+    "-Drwagent.port=1466",
+    "-cp",
+    "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-frozen\\rw-agent-bootstrap.jar",
+    "io.rwagent.client.BattleClient",
+    "120"
+  ],
+  "exitCode": 1,
+  "stdout": "Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8\njava.lang.IllegalStateException: Local active match required\r\nReport commit failed: java.lang.NullPointerException\r\nFAIL / ONGOING: java.lang.IllegalStateException: Local active match required\r\nReport: G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\candidate-focused-source\\tmpaq7oi1js\\rw-agent-reports\\battle-1790934236122-c13021b7.jsonl\r\n",
+  "fixtureCannotReadCommittedReport": "\"1 != 0\" does not match \"0 != 1\"",
+  "commit": "ff693c805c4069a62ed451e33cffb882245cea35",
+  "jarSha256": "ec69c1f0fdb552ddd4e2059ef466f2f509f6c99ec6b40053a111de6f4da474d9",
+  "preexistingReportCommitNullPointerException": true,
+  "productionFinallyChanged": false
+}

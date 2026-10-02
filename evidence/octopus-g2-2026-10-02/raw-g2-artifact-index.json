@@ -1,0 +1,407 @@
+[
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-ff693c8-http.json",
+    "bytes": 259252,
+    "sha256": "5b7f2409e7c549c688e4219725bd9c63607ce3aa169caeec29c390ea1fa229ce"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-ff693c8-outcomes.json",
+    "bytes": 414949,
+    "sha256": "ab95a0e356a9c64b41361c979ce5a3380b2a53cb46fd121b8cbef5df3423fed0"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-ff693c8.jsonl",
+    "bytes": 594878,
+    "sha256": "eb786eae3e87270c11f89765fbf0dcd0d1783a1c3dc904e469a5d5753f370d3b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-off-http.json",
+    "bytes": 259252,
+    "sha256": "64492b440d0de99d3b416841a05074ca26be30ad9b8b6280eb5ca4b5e6c24cd1"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-off-outcomes.json",
+    "bytes": 414974,
+    "sha256": "12bbe554989f46d69666d55d7d0caec562219523eedfbdbfce04bbb4e6ac0d08"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-off.jsonl",
+    "bytes": 594878,
+    "sha256": "4cd4c3cd402061adfcca8b7b0159ab7b71f6b90955c1809868e1e0656b83fc72"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-on-http.json",
+    "bytes": 259252,
+    "sha256": "d75ffb2762f4c382f55f3b670d7474dc5cbb941916acffbe4d14e349f3295c4a"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-on-outcomes.json",
+    "bytes": 414972,
+    "sha256": "be964f51594fcbe7926c1320d5128962acf2e57850c5731b37f885e690c08526"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-on.jsonl",
+    "bytes": 1374372,
+    "sha256": "bda705457505e72c4d0adaccc85ccf55ae90ba046e9a4b19bf38ff9081a58661"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-ff693c8-http.json",
+    "bytes": 3142677,
+    "sha256": "ff600631cd9840f26c4623c673a258e6ea602da31fa98dccd5f5e97be2e51415"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-ff693c8-outcomes.json",
+    "bytes": 4036023,
+    "sha256": "23250e066d4d7b61d53147893ce3186993ddb7495921ad96d3368b1206020e7c"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-ff693c8.jsonl",
+    "bytes": 5022825,
+    "sha256": "b615da16ca9594aca1107000478ec071b7ddb60923ec44de5d50bc9a1bf4e3e8"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-off-http.json",
+    "bytes": 3142677,
+    "sha256": "414de90f87235f9492dd369b773a090070c211b48df8afd99018ad37f602d37b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-off-outcomes.json",
+    "bytes": 4036050,
+    "sha256": "dd3f51fca40d0118044a2c073f7a966e78887da623276e7fca51632683c2b438"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-off.jsonl",
+    "bytes": 5022825,
+    "sha256": "f92021544dfe8943d294e018741267fe07984e09e428e5e704cf92df295a3641"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-on-http.json",
+    "bytes": 3142677,
+    "sha256": "bea13daeb8ceb8fdb756c884fe81295aca544c249e308fdcfb9e6a0b1e953525"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-on-outcomes.json",
+    "bytes": 4036047,
+    "sha256": "be08049bdd0816dc79346e446c68304c0e63846bbc5603444d6aaec1c168ad1b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-on.jsonl",
+    "bytes": 9186497,
+    "sha256": "0456684b64ddb125643ebde3c845347b588b4bdb441996d8577ad1c61b4ea1db"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-http.json",
+    "bytes": 128108,
+    "sha256": "a3593819801a3e3a0222f618f615035d4260f03b29a9d6faaa271f71eb1c822a"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-native-stamps-http.json",
+    "bytes": 127551,
+    "sha256": "7b95307b2a43664e67fb8d41671a21d36786770aeb7157cd2984ff8cf34c78f8"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-native-stamps-outcomes.json",
+    "bytes": 157717,
+    "sha256": "3dec45c570c11477c5b78ae82449c99cf7ea8d1dd8c784944cc9947d0fc0f920"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-native-stamps.jsonl",
+    "bytes": 284424,
+    "sha256": "71858f8d6ee1ed746ca8437822520dfa6a2117a9986de813ac9f011d2f19f401"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-outcomes.json",
+    "bytes": 158313,
+    "sha256": "59a40de148a2f3440c0c29a8f4273ee05a6fa0cf732a0758e7884d91708f2019"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8.jsonl",
+    "bytes": 284872,
+    "sha256": "8028fac3c91a8bbb4c47e5083e07fe04b78cff00968453f095904dad3eeee738"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-http.json",
+    "bytes": 128108,
+    "sha256": "8ba467214f9e797b6ae969bc6966655e3b11f5d693d9fe8de62496abb1ab34b0"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-native-stamps-http.json",
+    "bytes": 127551,
+    "sha256": "170b43d78bc707dd24fa3cd2b03fab93cf541d02adb030be3ca4d5e11fb1d723"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-native-stamps-outcomes.json",
+    "bytes": 157742,
+    "sha256": "c8ede66cecd834006bf0688d5c7e4c54f21036b0bdd6de2bc531854398e49a5b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-native-stamps.jsonl",
+    "bytes": 284423,
+    "sha256": "f6c7f0fc2e71b45186ff716fd8131f8b1567b74836952d2a983bc2ebb509c75a"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-outcomes.json",
+    "bytes": 158340,
+    "sha256": "ccf2e38fe79dfade371672db780e31cc91d0bf480bd331ac342b4d74026fff9f"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off.jsonl",
+    "bytes": 284871,
+    "sha256": "1c8124e46f51c5e501c52973352cb840a284845d75ff0a113cd588a3b967da6f"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-http.json",
+    "bytes": 128108,
+    "sha256": "04fc558d283befc93a7344b7dc8db13f18bfe597b6c90dc0b7bfa99111ea3c52"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-native-stamps-http.json",
+    "bytes": 127551,
+    "sha256": "c79d233e7ad8cf3196faab50934a48ca4a9966f8079ea759c444dbf566e918ba"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-native-stamps-outcomes.json",
+    "bytes": 157741,
+    "sha256": "71a61f49ce8e8fb5156b8b81640da9322075fa158b1a2d90bc71329e959f84f8"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-native-stamps.jsonl",
+    "bytes": 785466,
+    "sha256": "67a8cffdf7a93524e28fcd4a3191c96dedb013029cf71559ba1bd4de5c66b29f"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-outcomes.json",
+    "bytes": 158338,
+    "sha256": "c9b8d5c541035342cd352f761367567439bd357bbc186be96742175963169778"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on.jsonl",
+    "bytes": 785967,
+    "sha256": "dbac9573b2948375c1aae804557f1dc4b9b69b808df84aebec47c3155a5d4376"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-ff693c8-http.json",
+    "bytes": 14961,
+    "sha256": "2171822936b2761bfbb67f3c2d5d8432f50e528075d14ce163cc85b041dab46b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-ff693c8-outcomes.json",
+    "bytes": 29154,
+    "sha256": "e50931d38a3dcf588d590342588404b2e5a52a019f3e076d3ae5afe5c646f413"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-ff693c8.jsonl",
+    "bytes": 55791,
+    "sha256": "eaaba46941140f412a0dbd903d56ae9a20dc4987de7a2972c067b5d9c3dd4a7f"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-g2-off-http.json",
+    "bytes": 14961,
+    "sha256": "80b16eb9127bee123cb8b6f0d784562af6ef404bc50220deddce7fb0efcaed63"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-g2-off-outcomes.json",
+    "bytes": 29180,
+    "sha256": "c6463e84a24dcae7bf19a0f362ccd2fa9e8d6472327460a3867ab7e77b6f2fc7"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-g2-off.jsonl",
+    "bytes": 55791,
+    "sha256": "8784903d0bf9185cbc076310e336e6c481107123515b8cd8f39abfbaa32a8ad6"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-http.json",
+    "bytes": 14961,
+    "sha256": "98dda59de44956e41ba3fe9b4e7df68749c86c3d6a1cc09b7ed29aadc49dcdbe"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-outcomes.json",
+    "bytes": 29178,
+    "sha256": "b3fed2122b47e45e8974833978147c60182896bf75b425240ae9d0081f49f9cd"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked.jsonl",
+    "bytes": 145672,
+    "sha256": "6971e61aaad9d6ddc53a9bbdc659fb2e041ca7249edcf5a1ad89be96f33e01a5"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-ff693c8-http.json",
+    "bytes": 14961,
+    "sha256": "decb01e72487d8cfc1028e8b505666b5d81413888ec511d6a2316d98d461c9ea"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-ff693c8-outcomes.json",
+    "bytes": 29154,
+    "sha256": "26175868072641436e31b603cc8cf06ccf11e18e1f7df8fd2ef075d2e0bbaaab"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-ff693c8.jsonl",
+    "bytes": 55791,
+    "sha256": "4c1a5415cb3b7784bc94960c6310035b8f7f073f8b90eceae6bfdd681d0e1cd3"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-g2-off-http.json",
+    "bytes": 14961,
+    "sha256": "07dca1eb8021a047760b170704b161b1e0a2e4b04737986bc16b89c036bf65f4"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-g2-off-outcomes.json",
+    "bytes": 29181,
+    "sha256": "d331b38e2c854e245f493d73b97823797361b8ba11777599ec2247f2832bfd69"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-g2-off.jsonl",
+    "bytes": 55791,
+    "sha256": "ca845d934f19839dad1f23c54a77bc37f0369b229ece2d8229c9a3997dcb5066"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-http.json",
+    "bytes": 14961,
+    "sha256": "9fd63db92dbab0ea4845efe8aa62411426f5613f87be4b2fc2b7535b2e1a1ab2"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-outcomes.json",
+    "bytes": 29178,
+    "sha256": "89b96f5a4b169562ef554f0236f2a40cd1ee6c5a03e217efa769d9864740848e"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay.jsonl",
+    "bytes": 145672,
+    "sha256": "a76b8349d06b0253a32b45f72c707628463000061a22681f7958ac1295c920bc"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-ff693c8-http.json",
+    "bytes": 14959,
+    "sha256": "308f1feb06136bf0a5347a5ae42c334f6ae857178bde320665d61ec0be3404fd"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-ff693c8-outcomes.json",
+    "bytes": 29125,
+    "sha256": "262c5d205fac893b8041aa191577dd6c45be4a567156d011cae3da6831ea530e"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-ff693c8.jsonl",
+    "bytes": 55922,
+    "sha256": "09071bf9feef37644352f9c4ca6b30fb99be8e4d7a3717ea511e5e68b55d9f36"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-g2-off-http.json",
+    "bytes": 14959,
+    "sha256": "5718342e25767b9eccac97d864eef775135d9efbee4af14d9973cf691f261744"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-g2-off-outcomes.json",
+    "bytes": 29150,
+    "sha256": "5859f5bc68f856d692cc82afa7eb558e3ff203501da7a987e409c881f420d14b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-g2-off.jsonl",
+    "bytes": 55922,
+    "sha256": "88a74e10f0744a38501349e6e31b6ed670c5416a8ff61265c913912c3ab80611"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-http.json",
+    "bytes": 14959,
+    "sha256": "ddc2582dde20e44656e65a4f9a90acca81b8d46792af8bc19ae9deca854ce97b"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-outcomes.json",
+    "bytes": 29148,
+    "sha256": "f69e800f315995baf79596cce05cf2b45139b0811ebcc909a95be500f34e1826"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback.jsonl",
+    "bytes": 145803,
+    "sha256": "ca4b5c1fee1e30a0efae31efd6d002274fc283010bbf50ba2322e0b570809f41"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-ff693c8-http.json",
+    "bytes": 15861,
+    "sha256": "5ded15fd31cf782ca595723bf2e3a5fa28caf0482ad987f2753871d70abd03a0"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-ff693c8-outcomes.json",
+    "bytes": 31058,
+    "sha256": "858f36227b5978b214169a8e711acdb4571baa58b2c3acdc2d75e608a17cb499"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-ff693c8.jsonl",
+    "bytes": 64317,
+    "sha256": "97326e567aad1e054471863f14f7338507fc67f75af49423fbb1d634ee70283e"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-g2-off-http.json",
+    "bytes": 15861,
+    "sha256": "7f82c19bab411c152ae039f5c5fed2e210e352425a1207a2c061c3aaf894f0bf"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-g2-off-outcomes.json",
+    "bytes": 31084,
+    "sha256": "50c5e2bc29177448fe2cf1990a06d738f88948d2f24332fff5d1bda86109ee3e"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-g2-off.jsonl",
+    "bytes": 64317,
+    "sha256": "d776c2699a544224786bdbdd37eb9e0ecd67b647e6e632e7954451c16021fba7"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-http.json",
+    "bytes": 15861,
+    "sha256": "2a79b537cdfab1d71a4e2f8bc9c481a19913b03c408a65b4c6fe07795a2bd7f8"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-outcomes.json",
+    "bytes": 31082,
+    "sha256": "b5d80e7e8849d208b85df7f6b2a2f4ad1a2fdce718498493df179baa2a1a856f"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session.jsonl",
+    "bytes": 159301,
+    "sha256": "bbbd0e74bf080a13ecc3e1f42fedd39dafc3fa8239d7ebc64ef7c1d59360d3c2"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-ff693c8-http.json",
+    "bytes": 547548,
+    "sha256": "55bf93c787c5a3308e6c5a05bafcf010331303a02d832b5f03f2b951a2a598fc"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-ff693c8-outcomes.json",
+    "bytes": 1191910,
+    "sha256": "91765dab92b2ef46c1816be37869e44912144dd5e73567faa5bc5f6ad6d15408"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-ff693c8.jsonl",
+    "bytes": 1523415,
+    "sha256": "5939562ee2d6519b9392043f784b108b99b5fcb6bba2f51e43e3f3cb7ae3f52e"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-off-http.json",
+    "bytes": 547548,
+    "sha256": "6ee8f69be23823240b40d47a0c989fb295d9138fd5cbd517e5bfdea09c986a1c"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-off-outcomes.json",
+    "bytes": 1191937,
+    "sha256": "24cff30048c99ad6c9bbb620e979e91285d3f7ed9659cc14db2e174f42e4637c"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-off.jsonl",
+    "bytes": 1523414,
+    "sha256": "385b203efb8746821082cf8ee5c97ea548949128192f6a2735137595dcef1274"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-on-http.json",
+    "bytes": 547548,
+    "sha256": "0bd89b8987382f840ff71de49e85db9078c5933e20b269d1bd41ee00caca60e7"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-on-outcomes.json",
+    "bytes": 1191935,
+    "sha256": "6c7617d638e06032ea7231d47c1b31f9f9407f7827983c4b23d1ed8c8d8e6acc"
+  },
+  {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-on.jsonl",
+    "bytes": 3461373,
+    "sha256": "de1a3cc46244732900b712809058f2a4eda7bd26ffc2f97015d44bb0eb8a74b2"
+  }
+]

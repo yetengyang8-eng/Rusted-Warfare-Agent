@@ -1,0 +1,85 @@
+{
+  "allUnchanged": true,
+  "inputs": [
+    {
+      "path": "C:\\Users\\Administrator\\Downloads\\八爪鱼系统_工程语义_v0.1_G0校准版.docx",
+      "expected": "9fa76aa43a0eb78ed105e8d7eb9c9f2ef1c7e45f8f0f3fcf76d7fac61133f831",
+      "actual": "9fa76aa43a0eb78ed105e8d7eb9c9f2ef1c7e45f8f0f3fcf76d7fac61133f831"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\handoff\\HANDOFF_Octopus_G1_2026-10-02.md",
+      "expected": "9964bfcdc8d572191d4adc33995ef4365572ecf287645bb990baa25478324907",
+      "actual": "9964bfcdc8d572191d4adc33995ef4365572ecf287645bb990baa25478324907"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\docs\\OCTOPUS_G1_TRACE.md",
+      "expected": "21ee77211ffd71f6b42012a81ff607aa56d87a18a961619fabd959db80edde52",
+      "actual": "21ee77211ffd71f6b42012a81ff607aa56d87a18a961619fabd959db80edde52"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\project-state\\baseline-manifest.json",
+      "expected": "4aab2368f8246c7170448a6406d9bbd504c05d90292ada52887346cdec693e29",
+      "actual": "4aab2368f8246c7170448a6406d9bbd504c05d90292ada52887346cdec693e29"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\astra-deliveries\\global-strategy-2026-09-30\\rw-agent-bootstrap.jar",
+      "expected": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed",
+      "actual": "76711a8ee2716af5d5b0b66d5c53b159ae28f4f744dcbb24cae492d96f0342ed"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+      "expected": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a",
+      "actual": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\design-v03.txt",
+      "expected": "7ef4e6b2e1acc5afeb1a74200e987df267234b2faa5a3658799a132d523f4263",
+      "actual": "7ef4e6b2e1acc5afeb1a74200e987df267234b2faa5a3658799a132d523f4263"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\FINAL_VERIFICATION.json",
+      "expected": "39174890bd55bb6f6af76d351b3d2c5ed8c1f55a9ca7426c670a2213821b7268",
+      "actual": "39174890bd55bb6f6af76d351b3d2c5ed8c1f55a9ca7426c670a2213821b7268"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\G0_AUDIT.md",
+      "expected": "d64ec50c581592d4f720f9bc75db8115ce5a8dc5a3cbb551c5b586f58bd2dcb3",
+      "actual": "d64ec50c581592d4f720f9bc75db8115ce5a8dc5a3cbb551c5b586f58bd2dcb3"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\INPUT_IDENTITY.json",
+      "expected": "e5e0b3b3b004a3b207f2ba082daee7ab0c3262380c5eec0e91d57664e057e116",
+      "actual": "e5e0b3b3b004a3b207f2ba082daee7ab0c3262380c5eec0e91d57664e057e116"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\notes-capability.md",
+      "expected": "8570d21bf6e74fcc7fe0c840c845e59dbc9b51b78d7a082479e14647e9b34bd1",
+      "actual": "8570d21bf6e74fcc7fe0c840c845e59dbc9b51b78d7a082479e14647e9b34bd1"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\notes-control.md",
+      "expected": "c81d66e2255d084476dcb70ccbc0dacce8080fc4a5e674d56ce879e9cd0d0189",
+      "actual": "c81d66e2255d084476dcb70ccbc0dacce8080fc4a5e674d56ce879e9cd0d0189"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\notes-observation.md",
+      "expected": "630ba9937310a6d2357b2d28c88e8726a254038b90a0538dbaaf321aa81a558a",
+      "actual": "630ba9937310a6d2357b2d28c88e8726a254038b90a0538dbaaf321aa81a558a"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\notes-time.md",
+      "expected": "28c54a0a211483c93e2a73458ea3995192f6d5fbbcc156f80ed51b415a4ea1db",
+      "actual": "28c54a0a211483c93e2a73458ea3995192f6d5fbbcc156f80ed51b415a4ea1db"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\semantics-v01.txt",
+      "expected": "984d84d9c42ff4801ab41bc40c50f85d85acc6fa60002e6b5cb9434ed81cdc35",
+      "actual": "984d84d9c42ff4801ab41bc40c50f85d85acc6fa60002e6b5cb9434ed81cdc35"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_audit\\octopus-g0-20261002\\SEMANTIC_CROSSWALK.md",
+      "expected": "81661471d7f73e310f9e62aa9d4f4a06ad0a0fdbc2efd46995a6f781efd200f7",
+      "actual": "81661471d7f73e310f9e62aa9d4f4a06ad0a0fdbc2efd46995a6f781efd200f7"
+    }
+  ]
+}

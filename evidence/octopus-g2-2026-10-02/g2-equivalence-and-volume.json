@@ -1,0 +1,530 @@
+{
+  "boundary": "Fixture export volume only; not CPU, memory, latency, game throughput or combat benefit.",
+  "fixtureAdaptation": "Supply missing /state.player.teamId=0 symmetrically in every G2 comparison; extra native-stamps case removes scout gameTimeMs and production gameTimeMs/frame.",
+  "baselineCommit": "ff693c805c4069a62ed451e33cffb882245cea35",
+  "reportCount": 27,
+  "normalThreeWayReports": 15,
+  "guardThreeWayReports": 12,
+  "normalComparisons": [
+    {
+      "fixture": "recon",
+      "g1TraceEnabledInAllVariants": true,
+      "commandCounts": {
+        "g2On": 1,
+        "g2Off": 1,
+        "baseline": 1
+      },
+      "requestCounts": {
+        "g2On": 103,
+        "g2Off": 103,
+        "baseline": 103
+      },
+      "reportBytes": {
+        "g2On": 785967,
+        "g2Off": 284871
+      },
+      "reportRows": {
+        "g2On": 238,
+        "g2Off": 136
+      },
+      "reportBytesRatioOnOff": 2.759028,
+      "reportRowsRatioOnOff": 1.75
+    },
+    {
+      "fixture": "local_crisis",
+      "g1TraceEnabledInAllVariants": true,
+      "commandCounts": {
+        "g2On": 6,
+        "g2Off": 6,
+        "baseline": 6
+      },
+      "requestCounts": {
+        "g2On": 118,
+        "g2Off": 118,
+        "baseline": 118
+      },
+      "reportBytes": {
+        "g2On": 1374372,
+        "g2Off": 594878
+      },
+      "reportRows": {
+        "g2On": 402,
+        "g2Off": 230
+      },
+      "reportBytesRatioOnOff": 2.310343,
+      "reportRowsRatioOnOff": 1.747826
+    },
+    {
+      "fixture": "strategy_provider",
+      "g1TraceEnabledInAllVariants": true,
+      "commandCounts": {
+        "g2On": 17,
+        "g2Off": 17,
+        "baseline": 17
+      },
+      "requestCounts": {
+        "g2On": 369,
+        "g2Off": 369,
+        "baseline": 369
+      },
+      "reportBytes": {
+        "g2On": 3461373,
+        "g2Off": 1523414
+      },
+      "reportRows": {
+        "g2On": 1033,
+        "g2Off": 645
+      },
+      "reportBytesRatioOnOff": 2.272116,
+      "reportRowsRatioOnOff": 1.60155
+    },
+    {
+      "fixture": "ordinary_production",
+      "g1TraceEnabledInAllVariants": true,
+      "commandCounts": {
+        "g2On": 78,
+        "g2Off": 78,
+        "baseline": 78
+      },
+      "requestCounts": {
+        "g2On": 833,
+        "g2Off": 833,
+        "baseline": 833
+      },
+      "reportBytes": {
+        "g2On": 9186497,
+        "g2Off": 5022825
+      },
+      "reportRows": {
+        "g2On": 2520,
+        "g2Off": 1637
+      },
+      "reportBytesRatioOnOff": 1.82895,
+      "reportRowsRatioOnOff": 1.539401
+    },
+    {
+      "fixture": "recon-native-stamps",
+      "g1TraceEnabledInAllVariants": true,
+      "commandCounts": {
+        "g2On": 1,
+        "g2Off": 1,
+        "baseline": 1
+      },
+      "requestCounts": {
+        "g2On": 103,
+        "g2Off": 103,
+        "baseline": 103
+      },
+      "reportBytes": {
+        "g2On": 785466,
+        "g2Off": 284423
+      },
+      "reportRows": {
+        "g2On": 238,
+        "g2Off": 136
+      },
+      "reportBytesRatioOnOff": 2.761612,
+      "reportRowsRatioOnOff": 1.75
+    }
+  ],
+  "reports": {
+    "local_crisis-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-ff693c8.jsonl",
+      "reportBytes": 594878,
+      "reportRows": 230,
+      "commands": 6,
+      "requests": 118,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "local_crisis-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-off.jsonl",
+      "reportBytes": 594878,
+      "reportRows": 230,
+      "commands": 6,
+      "requests": 118,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "local_crisis-g2-on": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\local_crisis-g2-on.jsonl",
+      "reportBytes": 1374372,
+      "reportRows": 402,
+      "commands": 6,
+      "requests": 118,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 95,
+      "g2AcceptedUpdates": 95,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 19,
+        "UNIT_READY_OBSERVED": 19,
+        "ENEMY_OBSERVED": 3,
+        "ENEMY_UPDATED": 34,
+        "ENEMY_LOST_VISIBILITY": 1
+      }
+    },
+    "ordinary_production-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-ff693c8.jsonl",
+      "reportBytes": 5022825,
+      "reportRows": 1637,
+      "commands": 78,
+      "requests": 833,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "ordinary_production-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-off.jsonl",
+      "reportBytes": 5022825,
+      "reportRows": 1637,
+      "commands": 78,
+      "requests": 833,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "ordinary_production-g2-on": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\ordinary_production-g2-on.jsonl",
+      "reportBytes": 9186497,
+      "reportRows": 2520,
+      "commands": 78,
+      "requests": 833,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 577,
+      "g2AcceptedUpdates": 564,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 73,
+        "UNIT_READY_OBSERVED": 73,
+        "ENEMY_OBSERVED": 1,
+        "ENEMY_UPDATED": 97,
+        "QUEUE_CHANGED": 41,
+        "QUEUE_BECAME_EMPTY": 20
+      }
+    },
+    "recon-ff693c8-native-stamps": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8-native-stamps.jsonl",
+      "reportBytes": 284424,
+      "reportRows": 136,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-ff693c8.jsonl",
+      "reportBytes": 284872,
+      "reportRows": 136,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-g2-off-native-stamps": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off-native-stamps.jsonl",
+      "reportBytes": 284423,
+      "reportRows": 136,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-off.jsonl",
+      "reportBytes": 284871,
+      "reportRows": 136,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-g2-on-native-stamps": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on-native-stamps.jsonl",
+      "reportBytes": 785466,
+      "reportRows": 238,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 82,
+      "g2AcceptedUpdates": 82,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9,
+        "ENEMY_SITE_CLEARED": 1
+      }
+    },
+    "recon-g2-on": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-g2-on.jsonl",
+      "reportBytes": 785967,
+      "reportRows": 238,
+      "commands": 1,
+      "requests": 103,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 82,
+      "g2AcceptedUpdates": 82,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9,
+        "ENEMY_SITE_CLEARED": 1
+      }
+    },
+    "recon-guard-networked-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-ff693c8.jsonl",
+      "reportBytes": 55791,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-networked-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked-g2-off.jsonl",
+      "reportBytes": 55791,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-networked": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-networked.jsonl",
+      "reportBytes": 145672,
+      "reportRows": 49,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 5,
+      "g2AcceptedUpdates": 5,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9
+      }
+    },
+    "recon-guard-replay-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-ff693c8.jsonl",
+      "reportBytes": 55791,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-replay-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay-g2-off.jsonl",
+      "reportBytes": 55791,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-replay": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-replay.jsonl",
+      "reportBytes": 145672,
+      "reportRows": 49,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 5,
+      "g2AcceptedUpdates": 5,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9
+      }
+    },
+    "recon-guard-rollback-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-ff693c8.jsonl",
+      "reportBytes": 55922,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-rollback-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback-g2-off.jsonl",
+      "reportBytes": 55922,
+      "reportRows": 25,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-rollback": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-rollback.jsonl",
+      "reportBytes": 145803,
+      "reportRows": 49,
+      "commands": 1,
+      "requests": 8,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 5,
+      "g2AcceptedUpdates": 5,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9
+      }
+    },
+    "recon-guard-session-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-ff693c8.jsonl",
+      "reportBytes": 64317,
+      "reportRows": 29,
+      "commands": 1,
+      "requests": 9,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-session-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session-g2-off.jsonl",
+      "reportBytes": 64317,
+      "reportRows": 29,
+      "commands": 1,
+      "requests": 9,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "recon-guard-session": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\recon-guard-session.jsonl",
+      "reportBytes": 159301,
+      "reportRows": 54,
+      "commands": 1,
+      "requests": 9,
+      "actualExitCode": 1,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 6,
+      "g2AcceptedUpdates": 6,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 9,
+        "UNIT_READY_OBSERVED": 9
+      }
+    },
+    "strategy_provider-ff693c8": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-ff693c8.jsonl",
+      "reportBytes": 1523415,
+      "reportRows": 645,
+      "commands": 17,
+      "requests": 369,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "strategy_provider-g2-off": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-off.jsonl",
+      "reportBytes": 1523414,
+      "reportRows": 645,
+      "commands": 17,
+      "requests": 369,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": false,
+      "g2Updates": 0,
+      "g2AcceptedUpdates": 0,
+      "g2EventKinds": {}
+    },
+    "strategy_provider-g2-on": {
+      "report": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-four-path\\strategy_provider-g2-on.jsonl",
+      "reportBytes": 3461373,
+      "reportRows": 1033,
+      "commands": 17,
+      "requests": 369,
+      "actualExitCode": 0,
+      "g1Trace": true,
+      "g2WorldState": true,
+      "g2Updates": 307,
+      "g2AcceptedUpdates": 307,
+      "g2EventKinds": {
+        "WORLD_CONTEXT_RESET": 1,
+        "UNIT_FIRST_OBSERVED": 16,
+        "UNIT_READY_OBSERVED": 16,
+        "ENEMY_OBSERVED": 1,
+        "ENEMY_UPDATED": 47
+      }
+    }
+  }
+}

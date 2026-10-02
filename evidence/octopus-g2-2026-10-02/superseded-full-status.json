@@ -1,0 +1,11 @@
+{
+  "status": "PARTIAL_SOURCE_SUPERSEDED",
+  "implementationCommit": "5e30a344f7a6f46e53765ba9b95e86df7b3f3691",
+  "termination": "Owned exec session 73507 interrupted by Ctrl-C; returned exit 1",
+  "reason": "Core discovered missing native source timestamps could imply false visibility loss; source will be corrected in a new frozen stage",
+  "completedPassSteps": 12,
+  "failedTestSteps": 0,
+  "lastStartedStep": "=== py:test_economy ===",
+  "fullRegressionResult": "NOT_COMPLETED_NOT_A_PRODUCT_REGRESSION_FAILURE",
+  "jarSha256": "f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6"
+}

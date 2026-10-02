@@ -1,3 +1,13 @@
+# Shared Agent Context — Octopus G2 2026-10-02
+
+当前候选为 **RW-CANDIDATE-2026-10-02-OCTOPUS-G2-v1**，分支 `codex/octopus-g2-world-state-20261002`，最终测试源码 `5dd76e41d95887ec6c8dc6647476491b9b5241a6`，起点 ff693c8。完整 Windows 60/60、31 Java、26 Python/448 tests、failed steps: 0。只读 WorldState/合法差分已双写，旧策略继续读原响应；未进入 G3。
+
+先读 [CURRENT_STATE](CURRENT_STATE.md)、[NEXT_STAGE_PLAN](NEXT_STAGE_PLAN.md)、[G2 交接](../handoff/HANDOFF_Octopus_G2_2026-10-02.md)、[契约](../docs/OCTOPUS_G2_WORLD_STATE.md)及[证据](../evidence/octopus-g2-2026-10-02/README.md)。固定 JAR SHA256：`1dbeb3084f9ee7dd154b7290daef6c9fc2fe780d9e033fd45539fb3aa01ac7d9`。未部署，未跑自然局/桌面验收。日志成本约 1.83–2.76x，只证明导出体积。
+
+本文件名沿用历史导航；用户后续子智能体偏好为 `gpt-6.1-sol / high`，不使用 Astra。下面是完整保留的 **历史 G1/capacity 上下文**，其中“current/latest/next”只在对应历史时期成立，不能覆盖上述 G2 身份或授权范围。
+
+---
+
 # Astra Context — Octopus G1 2026-10-02
 
 Current engineering candidate: RW-CANDIDATE-2026-10-02-OCTOPUS-G1-v1, implementation5cc3e3f on codex/octopus-g1-clock-trace-20261002 from be7ba94. Full Windows58/58,30Java,25Python/439tests,failedsteps0. Four HTTP paths prove deterministic command/legacy equality; no natural G1 game or desktop deployment. JAR SHA ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a.

@@ -1,0 +1,18 @@
+test_recon_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_recon_projection_preserves_original_behavior) ... FAIL
+
+======================================================================
+FAIL: test_recon_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_recon_projection_preserves_original_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "G:\deepseek 工作台\GitHub发布\Rusted-Warfare-Agent\agent\tests\test_g2_world_state.py", line 164, in test_recon_projection_preserves_original_behavior
+    self.compare('recon')
+  File "G:\deepseek 工作台\GitHub发布\Rusted-Warfare-Agent\agent\tests\test_g2_world_state.py", line 121, in compare
+    self.assert_world_links(enabled)
+  File "G:\deepseek 工作台\GitHub发布\Rusted-Warfare-Agent\agent\tests\test_g2_world_state.py", line 134, in assert_world_links
+    self.assertTrue(updates, 'real reads must reach the G2 adapter')
+AssertionError: [] is not true : real reads must reach the G2 adapter
+
+----------------------------------------------------------------------
+Ran 1 test in 5.019s
+
+FAILED (failures=1)

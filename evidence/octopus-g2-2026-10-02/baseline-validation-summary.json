@@ -1,0 +1,547 @@
+{
+  "sourceDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-source",
+  "transcript": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\transcript.txt",
+  "exitCode": 0,
+  "expectedSteps": 58,
+  "completedSteps": 58,
+  "passedSteps": 58,
+  "failedSteps": 0,
+  "javaHarnessRuns": 30,
+  "pythonSuites": 25,
+  "pythonTests": 439,
+  "pythonSkipped": 0,
+  "reportedFooter": "Java harness runs: 30   Python suites: 25   failed steps: 0",
+  "jar": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 336094,
+    "sha256": "ec69c1f0fdb552ddd4e2059ef466f2f509f6c99ec6b40053a111de6f4da474d9",
+    "contentDigest": "43da2c441785314a2089f5fab01715103b5d2e82af252fd49daf98e65e1eec13",
+    "entriesExcludingManifest": 112
+  },
+  "steps": [
+    {
+      "step": "build:compile",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\build_compile.log",
+      "rawLogSha256": "5f4a1217b53a61ba4c05f20f0add48886003fca20297bbcfbe521498eee68f51"
+    },
+    {
+      "step": "build:jar",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\build_jar.log",
+      "rawLogSha256": "91bba8682bdacc4c675b1dfbb937e620f97e0c7c7567d82cfc35dbc61a9d91ca"
+    },
+    {
+      "step": "build:test-classes",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\build_test-classes.log",
+      "rawLogSha256": "c191ea245a1a2c8e781162fd8af6479624f11a34d4d9c6b47ceeb13fc1bbf224"
+    },
+    {
+      "step": "java:SmokeHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_SmokeHarness.log",
+      "rawLogSha256": "24807dc91ab9faed71028c9082e4ca4f75593ceefc9638902ca802e61a5c612c"
+    },
+    {
+      "step": "java:BridgeHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_BridgeHarness.log",
+      "rawLogSha256": "ee0d35d4d2a936ecda824f9cc09ee3bb41bbccae903a1d8921cf18e2122145fc"
+    },
+    {
+      "step": "java:BridgeHarness-disabled",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_BridgeHarness-disabled.log",
+      "rawLogSha256": "6d3c8e7bc087ec3dec4a02c5619890fc78601c839cb92d90340fdf628977d0c0"
+    },
+    {
+      "step": "java:EconomyHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_EconomyHarness.log",
+      "rawLogSha256": "a1235ebdb3223382aa56a412766f237e044c109b9b64f341a158b98faafbd655"
+    },
+    {
+      "step": "java:OpeningHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_OpeningHarness.log",
+      "rawLogSha256": "344b9d918138658c0d74c1785ee629142b9cb36911ff82308faefe31cf0dfdca"
+    },
+    {
+      "step": "java:OpeningHarness-replacement",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_OpeningHarness-replacement.log",
+      "rawLogSha256": "469982ac5743648ebb2b5da8a3fe1b7b74009357efb7f0297f5e6f06992b948c"
+    },
+    {
+      "step": "java:ProductionPlanHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ProductionPlanHarness.log",
+      "rawLogSha256": "220b255c3ace8fa46c2f3887e5b51683feec5cea03d33509048a0979638e0981"
+    },
+    {
+      "step": "py:test_development",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 13,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_development.log",
+      "rawLogSha256": "4dcd8f5471c60abdc3915f4d727ed04186e11be7ec784136cd5993351070bd1f"
+    },
+    {
+      "step": "py:test_opening",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 8,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_opening.log",
+      "rawLogSha256": "565194ce11bae09655a77701c47cc7afaea562c040af37344149e4465b0de2f1"
+    },
+    {
+      "step": "py:test_economy",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 12,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_economy.log",
+      "rawLogSha256": "2c878814ef09fa3f88decf2f39c37e5b9f29c4eeae64e5a89b27c9ff85d478f6"
+    },
+    {
+      "step": "py:test_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 11,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_client.log",
+      "rawLogSha256": "ed6e71be4d5c7128d8fbd0a5fca084419d42b9596dbf3fc3d90f6ec6503b1f2c"
+    },
+    {
+      "step": "py:test_match_bootstrap",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 35,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_match_bootstrap.log",
+      "rawLogSha256": "1af79db722b6d469adae6e07d25347860ef1161e0e6baf3c1670d91ddfc99b20"
+    },
+    {
+      "step": "java:DiagnosticsHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_DiagnosticsHarness.log",
+      "rawLogSha256": "6ca2ed4d0db2b9c08913644ac8aeec27fa8217a4eec70af7690cb66ad707b760"
+    },
+    {
+      "step": "java:PreflightHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_PreflightHarness.log",
+      "rawLogSha256": "85a173472cc1f840d7bf4248dd2c42377fa9e735c067ef14c81c491d7d927fba"
+    },
+    {
+      "step": "py:test_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 16,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_reports.log",
+      "rawLogSha256": "95a51880af893b4da1868e466718dea2bacad8dacfb67d90c4281341c236edaa"
+    },
+    {
+      "step": "java:ScoutHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ScoutHarness.log",
+      "rawLogSha256": "cc30b53688d6d17aa650b05eb07c79881f94a7bf6ce93e3177869d1b840e0465"
+    },
+    {
+      "step": "java:TerrainMemoryHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_TerrainMemoryHarness.log",
+      "rawLogSha256": "cbca70b9a065f7d72a6b2f5307f08ce18e174e8f4e2f42b67067c93aa3e37cb9"
+    },
+    {
+      "step": "java:GuardHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_GuardHarness.log",
+      "rawLogSha256": "214a91247b771ac6457d428457f76a16c62d6dc768d0ceb1c6c0f9feacce65f3"
+    },
+    {
+      "step": "java:CapabilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_CapabilityHarness.log",
+      "rawLogSha256": "69602d5bfaa55ad0d3b160ca6b9f15ea44b5fbfa860fee9140a8bd949b633396"
+    },
+    {
+      "step": "java:TargetCompatibilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_TargetCompatibilityHarness.log",
+      "rawLogSha256": "534f7496e2dbcd59b9b2d4b37523c2e0d8603b3aa4078185a6fec0087357f2c9"
+    },
+    {
+      "step": "java:BuilderHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_BuilderHarness.log",
+      "rawLogSha256": "cc0f02c4026aba3ef58042d441b53b2e6b3a64507fe4212fd00264e03af1a386"
+    },
+    {
+      "step": "java:ReachabilityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ReachabilityHarness.log",
+      "rawLogSha256": "5a41e16a7c65d95bf4f8f67c8997441ce20d48d3e9191e7e6b6aa977b6c4234a"
+    },
+    {
+      "step": "java:ReachabilityHarness-sandbox",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ReachabilityHarness-sandbox.log",
+      "rawLogSha256": "5ad31175eca2529984dc4e7d75f568bc718edbec913be7425f6f45a25d1466f3"
+    },
+    {
+      "step": "py:test_frontier",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 8,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_frontier.log",
+      "rawLogSha256": "4f3074a6fdcde2a6ea0e9ddd1ce62a2ca59680efbcffab952d34b0e19c669b92"
+    },
+    {
+      "step": "py:test_frontier_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 10,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_frontier_reports.log",
+      "rawLogSha256": "f305b65040c825cc5d0eb2ad24100ad5576df3a644170d68c7c0949a1c0f9624"
+    },
+    {
+      "step": "java:CombatHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_CombatHarness.log",
+      "rawLogSha256": "0005f6703a74426dfd78ea1db78af20d0dae9aed5e65727650b8181bef356d45"
+    },
+    {
+      "step": "py:test_battle_reports",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 27,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_battle_reports.log",
+      "rawLogSha256": "4c92390fbe5b9d240342568d1a7ac17c5cc0fbaed1dbd402536a1c32eab8f5b7"
+    },
+    {
+      "step": "py:test_battle_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 78,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_battle_client.log",
+      "rawLogSha256": "8cdfc26c7fd6ce7891006edcb5e25606acbb5260ee8c5432cf5b2719def67064"
+    },
+    {
+      "step": "py:test_production_capacity",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 15,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_production_capacity.log",
+      "rawLogSha256": "e44a677d1cf5e51ad2eb914e9b7a86a0a7d013fa6b5f0a8fb555ae1e9ef98098"
+    },
+    {
+      "step": "py:test_strategy_funding",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 7,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_strategy_funding.log",
+      "rawLogSha256": "6911ddf9f4f9a482986b11a773b333a806441712aa138f5caa8bba334f4f230b"
+    },
+    {
+      "step": "py:test_specialist_lifecycle",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 4,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_specialist_lifecycle.log",
+      "rawLogSha256": "eadaa5dc87b979732bbb040bd73c283076f3f750b38faffbbe86a84963caa6e2"
+    },
+    {
+      "step": "py:test_local_army",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 12,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_local_army.log",
+      "rawLogSha256": "3a045489978c5ce5acadbc5749e1caf49d398ae072fd343d9857f5c285f2d74b"
+    },
+    {
+      "step": "py:test_surplus_spending",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 11,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_surplus_spending.log",
+      "rawLogSha256": "ff3618aa59444e29746e6d6908d650fd7d646dac666204a5738f00684f2a0a3c"
+    },
+    {
+      "step": "py:test_engineer_provider",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 8,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_engineer_provider.log",
+      "rawLogSha256": "a23f7985bd5afc542bbabe2f1c09aa0ed6efe88d1cfe7fcaac1850d6d1ff4853"
+    },
+    {
+      "step": "py:test_target_compatibility",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 15,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_target_compatibility.log",
+      "rawLogSha256": "feaa5db463ee454c78c67dd71e68fb4f5d34deb8698d1e946ab4ee10c09235c2"
+    },
+    {
+      "step": "py:test_recon_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 7,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_recon_client.log",
+      "rawLogSha256": "8bace9883d2e6f5918a0dace4529ec7554162e3cffb16f27f90a32419aff69ee"
+    },
+    {
+      "step": "py:test_recon_frontier_client",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 22,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_recon_frontier_client.log",
+      "rawLogSha256": "33a6428ccbc5db00a8a8c8edfd3fa62b0715ca6db7de7b74535f5101ceb4e4fd"
+    },
+    {
+      "step": "py:test_g1_trace",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 4,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_g1_trace.log",
+      "rawLogSha256": "7f24ad3c3161cfa68c16901ea486e99e5be834b526e4c89f7b77854cd23c4ead"
+    },
+    {
+      "step": "py:test_headless_parallel",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 28,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_headless_parallel.log",
+      "rawLogSha256": "f10a8d3fdefdd142d6880ded5c04d70e551f4ac6f0653be39c61a0a5ad06f778"
+    },
+    {
+      "step": "py:test_ab_aggregate",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 17,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_ab_aggregate.log",
+      "rawLogSha256": "9fd8d7947f56d1d3412853e4af2c926239c705d29c038803e692e8a51971e5c1"
+    },
+    {
+      "step": "py:test_ab_campaign",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 14,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_ab_campaign.log",
+      "rawLogSha256": "4f2321b6ff2ebb596d82de2c57273ca20618d6b362d8ed4d3dde7aa6b748bfee"
+    },
+    {
+      "step": "java:ReportCommitHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ReportCommitHarness.log",
+      "rawLogSha256": "f016c48ca346f9e900c25a349d45551dbe9a4fa3521fae2691f46b15213cb96a"
+    },
+    {
+      "step": "java:ExecutionContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ExecutionContractHarness.log",
+      "rawLogSha256": "72e8f194e4f987bac25d3f78d5d3aab012908966fd43eeed64d36b9ba3dd234d"
+    },
+    {
+      "step": "java:G1TraceHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_G1TraceHarness.log",
+      "rawLogSha256": "c405a62020ad5ad0343e7c56a5cd488198d0537d976a15cdddec14f97beb7eac"
+    },
+    {
+      "step": "java:StrategyContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_StrategyContractHarness.log",
+      "rawLogSha256": "fa3eb0efd116f707f4ef26b5968c918ac1f5bd7ebfebb747e2ce797b98efa5d9"
+    },
+    {
+      "step": "java:ProductionCapacityHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_ProductionCapacityHarness.log",
+      "rawLogSha256": "d58e6fcab1373fa57555a9bdb38c951906831614c2bb896ecfc18b4b5ebce540"
+    },
+    {
+      "step": "java:LocalArmyContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_LocalArmyContractHarness.log",
+      "rawLogSha256": "dfe70a092665197c6b8b00ed66439b283e746a0a67b201bef5d3a32bfa3b7725"
+    },
+    {
+      "step": "java:LocalCrisisContractHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_LocalCrisisContractHarness.log",
+      "rawLogSha256": "31abc99847b12493b37edba68418e98c53302e59f234f6db6d95d74a20075722"
+    },
+    {
+      "step": "java:SurplusSpendingHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_SurplusSpendingHarness.log",
+      "rawLogSha256": "e80cf7e3369b901a6c12e1ef027b5cc4d14a017b687c86fa371aa7bfce6cb539"
+    },
+    {
+      "step": "java:MineInvestmentHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_MineInvestmentHarness.log",
+      "rawLogSha256": "fcb2d39f632125568a206bb2897232b8fb8fee4096708a41c4d6e88717169de2"
+    },
+    {
+      "step": "java:EngineerProviderHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_EngineerProviderHarness.log",
+      "rawLogSha256": "79c6ce597475846ed893c392c4bb74e2630c408dd6806d4d22774e930b5b2349"
+    },
+    {
+      "step": "java:NativeMorphHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_NativeMorphHarness.log",
+      "rawLogSha256": "480fbc259e57a9095dfc6a78303a0a6f537178c259153c5a50c5c0e40ae93491"
+    },
+    {
+      "step": "java:StrategyNativeHarness",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 0,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\java_StrategyNativeHarness.log",
+      "rawLogSha256": "b11e9d84cb05c82113da7bd915dbee9b3109c29c2442857a71b91d91a5cec971"
+    },
+    {
+      "step": "py:test_feedback_progress_audit",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 48,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_feedback_progress_audit.log",
+      "rawLogSha256": "d28a78567e0ea6b6634bb28237edfe85702e599552b02b523fd0f388644e9a7e"
+    },
+    {
+      "step": "py:test_global_strategy_audit",
+      "status": "PASS",
+      "exitCode": 0,
+      "pythonTests": 9,
+      "pythonSkipped": 0,
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\raw-logs\\py_test_global_strategy_audit.log",
+      "rawLogSha256": "a912dd14b7ecae35d69f4a2f565f20831ad43b581983dc42e86d469390c70c8d"
+    }
+  ],
+  "passed": true,
+  "protectedFilesUnchanged": true
+}

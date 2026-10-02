@@ -1,0 +1,16 @@
+{
+  "sourceHashes": {
+    "agent/src/io/rwagent/client/WorldState.java": "45c791026665ac53597117068a4da413cbd09d3aaed17584ce2e3a64d853c3aa",
+    "agent/src/io/rwagent/client/EventAdapter.java": "5fa8ffa9d6c14acd89dc3367b1c5c4cfb3771be2894d7e007c66da7e91e74d51",
+    "agent/tests/WorldStateHarness.java": "cde9e5474ddb500cd88b15374455f50b7763dd0bcd6a16297ed896c7c9b3480d"
+  },
+  "focusedHarness": {
+    "result": "PASS",
+    "checks": 73,
+    "evidence": "E2_NO_ENGINE",
+    "java": "Bundled Java13 with --release8",
+    "logSha256": "f580e9f688d884bd70c9c0abdf89a2f3e142ba79fa9795f39aa5d3125d7e2431"
+  },
+  "oldPoliciesConsumeProjection": false,
+  "noOwnershipOrCommitmentState": true
+}

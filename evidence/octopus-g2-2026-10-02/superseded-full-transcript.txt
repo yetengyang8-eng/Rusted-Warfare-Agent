@@ -1,0 +1,464 @@
+**********************
+PowerShell transcript start
+Start time: 20261002174716
+Username: WIN-JS0D84D9EBQ\Administrator
+RunAs User: WIN-JS0D84D9EBQ\Administrator
+Configuration Name: 
+Machine: WIN-JS0D84D9EBQ (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+& 'G:\deepseek 工作台\_validation\octopus-g2-20261002\run-final.ps1'
+Process ID: 30208
+PSVersion: 7.6.5
+PSEdition: Core
+GitCommitId: 7.6.5
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is G:\deepseek 工作台\_validation\octopus-g2-20261002\final-full\transcript.txt
+=== build:compile ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+--> PASS exit=0
+=== build:jar ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+--> PASS exit=0
+=== build:test-classes ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+G:\deepseek 工作台\_validation\octopus-g2-20261002\final-source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+G:\deepseek 工作台\_validation\octopus-g2-20261002\final-source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                      ^
+                                                                      ^
+G:\deepseek 工作台\_validation\octopus-g2-20261002\final-source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+G:\deepseek 工作台\_validation\octopus-g2-20261002\final-source\agent\tests\EconomyHarness.java:22: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+    static Object empty(String name)throws Exception {Field f=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");f.setAccessible(true);return ((sun.misc.Unsafe)f.get(null)).allocateInstance(Class.forName(name));}
+                                                                                                                                                         ^
+                                                                                                                                                         ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+2 个警告
+2 个警告
+--> PASS exit=0
+=== java:SmokeHarness ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:21.465: GameEngine:GameEngine()
+2026-10-02 17:47:22.214 [RW-Agent] Local Agent API ready at http://127.0.0.1:47655
+2026-10-02 17:47:22.227 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+GET http://127.0.0.1:47655/health -> 200 {"status":"ok","version":"0.07-alpha1","port":47655,"strategyContractVersion":1,"allowCommands":true,"provenance":{"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}}
+GET http://127.0.0.1:47655/state -> 200 {"status":"menu","schemaVersion":1,"sessionId":"4e98de23-844c-48d2-82d5-c3971cc10fb8","map":{"width":0.000,"height":0.000,"tilesWide":0,"tilesHigh":0,"tileWidth":0,"tileHeight":0},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":null,"ownUnits":[]}
+POST http://127.0.0.1:47655/test/move-first -> 409 {"status":"error","message":"no level is currently loaded"}
+SMOKE_TEST_OK
+--> PASS exit=0
+=== java:BridgeHarness ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:22.944: GameEngine:GameEngine()
+2026-10-02 17:47:23.702 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:23.735 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /health -> 200 {"status":"ok","version":"0.07-alpha1","port":47656,"strategyContractVersion":1,"allowCommands":true,"provenance":{"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}}
+PASS GET /command/move -> 405 {"status":"error","message":"POST required"}
+PASS POST /command/move -> 400 {"status":"error","message":"invalid query"}
+PASS POST /command/move?unitId=4&x=NaN&y=1&sessionId=a&requestId=b -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/move?unitId=4&x=1&x=2&y=1&sessionId=a&requestId=b -> 400 {"status":"error","message":"duplicate query field"}
+PASS POST /command/move?unitId=4&x=100&y=100&sessionId=menu&requestId=a -> 409 {"status":"error","message":"no level is currently loaded"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"Tester\"\\\n中文","credits":4000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":9007199254740993,"type":"builder","x":100.000,"y":100.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS Small_Island 110x110 tiles must report 2200x2200 world units, not 200x200
+PASS native half-tile offsets were not altered by the fixture
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","map":{"width":2200.000,"height":1600.000,"tilesWide":110,"tilesHigh":80,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"Tester\"\\\n中文","credits":4000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":9007199254740993,"type":"builder","x":100.000,"y":100.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS rectangular map width and height are independent
+PASS enemy not exposed
+PASS POST /command/move?unitId=9007199254740993&x=2200&y=20&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=bounds -> 400 {"status":"error","message":"target is outside map bounds"}
+PASS POST /command/move?unitId=99&x=200&y=200&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=foreign -> 409 {"status":"error","message":"controllable own mobile unit not found"}
+PASS POST /command/move?unitId=9007199254740993&x=200&y=200&sessionId=old-session&requestId=stale -> 409 {"status":"error","message":"session changed; read state again"}
+2026-10-02 17:47:23.836 [RW-Agent] Queued move: request=once unit=9007199254740993 target=(220.0,160.0) frame=0
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=once -> 200 {"status":"queued","requestId":"once","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":220.000,"targetY":160.000}
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=once -> 200 {"status":"queued","requestId":"once","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":220.000,"targetY":160.000}
+PASS duplicate command queued only once
+PASS actual command target
+PASS command did not teleport unit
+PASS POST /command/move?unitId=9007199254740993&x=221&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=once -> 409 {"status":"error","message":"requestId reused with different coordinates or unit"}
+2026-10-02 17:47:23.848 [RW-Agent] Queued move: request=return-regression-0 unit=9007199254740993 target=(990.0,1730.0) frame=0
+PASS POST /command/move?unitId=9007199254740993&x=990&y=1730&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=return-regression-0 -> 200 {"status":"queued","requestId":"return-regression-0","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":990.000,"targetY":1730.000}
+2026-10-02 17:47:23.853 [RW-Agent] Queued move: request=return-regression-1 unit=9007199254740993 target=(988.95,1862.397) frame=0
+PASS POST /command/move?unitId=9007199254740993&x=988.95&y=1862.397&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=return-regression-1 -> 200 {"status":"queued","requestId":"return-regression-1","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":988.950,"targetY":1862.397}
+2026-10-02 17:47:23.857 [RW-Agent] Queued move: request=return-regression-2 unit=9007199254740993 target=(940.0,1780.0) frame=0
+PASS POST /command/move?unitId=9007199254740993&x=940&y=1780&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=return-regression-2 -> 200 {"status":"queued","requestId":"return-regression-2","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":940.000,"targetY":1780.000}
+PASS all three real return coordinates accepted inside 2200x2200 map
+2026-10-02 17:47:23.863 [RW-Agent] Queued move: request=690b0301-27e2-434d-873e-2cc3d363fce0 unit=9007199254740993 target=(1060.0,1720.0) frame=0
+PASS POST /test/move-first -> 200 {"status":"queued","requestId":"690b0301-27e2-434d-873e-2cc3d363fce0","sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","frame":0,"unitId":9007199254740993,"targetX":1060.000,"targetY":1720.000}
+PASS POST /test/move-first -> 409 {"status":"error","message":"unit position is inconsistent with map dimensions; no test move sent"}
+PASS invalid origin sent no legacy test command
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=net -> 409 {"status":"error","message":"network games are not supported"}
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=replay -> 409 {"status":"error","message":"replay commands are not supported"}
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=dead -> 409 {"status":"error","message":"controllable own mobile unit not found"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":100,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"Tester\"\\\n中文","credits":4000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":9007199254740993,"type":"builder","x":100.000,"y":100.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=e6ba0f6b-80bf-4af4-86e6-55dcf72a1ff4&requestId=reset -> 409 {"status":"error","message":"session changed; read state again"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"0c322d09-17fc-4910-b115-5fd4c08c49fe","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"Tester\"\\\n中文","credits":4000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":9007199254740993,"type":"builder","x":100.000,"y":100.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS session rotates after frame reset
+2026-10-02 17:47:28.900 [RW-Agent] Move request failed: java.util.concurrent.TimeoutException
+PASS POST /command/move?unitId=9007199254740993&x=220&y=160&sessionId=0c322d09-17fc-4910-b115-5fd4c08c49fe&requestId=timeout -> 503 {"status":"error","message":"result unknown; observe before issuing another command"}
+PASS timed-out task removed from queue
+PASS timeout did not execute later
+PASS GET /state -> 200 {"status":"menu","schemaVersion":1,"sessionId":"21bf7d33-3b69-4b5e-ac9f-255bfa143d6d","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":null,"ownUnits":[]}
+BRIDGE_TEST_OK checks=39
+--> PASS exit=0
+=== java:BridgeHarness-disabled ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:29.608: GameEngine:GameEngine()
+2026-10-02 17:47:30.306 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:30.331 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /health -> 200 {"status":"ok","version":"0.07-alpha1","port":47656,"strategyContractVersion":1,"allowCommands":false,"provenance":{"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}}
+PASS GET /command/move -> 405 {"status":"error","message":"POST required"}
+PASS POST /command/move -> 400 {"status":"error","message":"invalid query"}
+PASS POST /command/move?unitId=4&x=NaN&y=1&sessionId=a&requestId=b -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/move?unitId=4&x=1&x=2&y=1&sessionId=a&requestId=b -> 400 {"status":"error","message":"duplicate query field"}
+PASS POST /command/move?unitId=4&x=100&y=100&sessionId=menu&requestId=a -> 403 {"status":"error","message":"commands are disabled"}
+BRIDGE_TEST_OK checks=6
+--> PASS exit=0
+=== java:EconomyHarness ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:31.070: GameEngine:GameEngine()
+2026-10-02 17:47:31.117: MapLayer create: ground
+2026-10-02 17:47:31.812 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:31.823 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /economy/plan?unitId=4 -> 200 {"status":"planned","sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","builderId":4,"factoryType":"landFactory","productType":"tank","targetX":1050.000,"targetY":1790.000,"factoryCost":700,"tankCost":350,"credits":10000.000}
+PASS plan reports actual resolved product type
+PASS planning does not register previews or spend credits
+PASS native factory cost 700
+NATIVE_TANK_COST=350
+2026-10-02 17:47:31.886 [RW-Agent] Queued economy: /command/build-factory unit=4 request=build-1,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS one native build command after duplicate receipt
+PASS build waypoint uses native landFactory type
+PASS build command retains aligned placement
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=build-1 -> 409 {"status":"error","message":"requestId reused with different economy command"}
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=old&requestId=stale -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-factory?unitId=4&x=NaN&y=10&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=bad-coordinate -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/build-factory?unitId=4&x=10&y=10&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=far -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no completed own builder with affordable native landFactory action; prepare a standard builder and sufficient credits"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=terrain -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/produce-tank?unitId=50&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=tank-1 -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":0.99999,"productionQueue":0,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS almost complete is not rounded to complete
+2026-10-02 17:47:31.940 [RW-Agent] Queued economy: /command/produce-tank unit=50 request=tank-1,"type":"tank"
+PASS POST /command/produce-tank?unitId=50&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","unitId":50,"frame":0,"type":"tank"}
+PASS POST /command/produce-tank?unitId=50&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","unitId":50,"frame":0,"type":"tank"}
+PASS only one production command
+PASS native landFactory exposes tank action
+PASS production command carries actual native action identifier
+PASS native command debits the 350 tank cost
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"8f32fdd1-a587-47fb-9964-0eb92e0f8a6b","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":9650.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":1.0,"productionQueue":1,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS POST /command/produce-tank?unitId=50&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=busy -> 409 {"status":"error","message":"factory production queue must be empty"}
+PASS POST /command/produce-tank?unitId=50&sessionId=8f32fdd1-a587-47fb-9964-0eb92e0f8a6b&requestId=network -> 409 {"status":"error","message":"network games are not supported"}
+PASS bridge inserted no factory or tank into world
+ECONOMY_NATIVE_TEST_OK checks=34
+--> PASS exit=0
+=== java:OpeningHarness ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:32.611: GameEngine:GameEngine()
+2026-10-02 17:47:32.656: MapLayer create: ground
+2026-10-02 17:47:33.372 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:33.384 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /economy/plan?unitId=4 -> 200 {"status":"planned","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","builderId":4,"factoryType":"landFactory","productType":"c_tank","targetX":1050.000,"targetY":1790.000,"factoryCost":700,"tankCost":350,"credits":10000.000}
+PASS plan reports actual resolved product type
+PASS planning does not register previews or spend credits
+PASS native factory cost 700
+NATIVE_TANK_COST=350
+2026-10-02 17:47:33.452 [RW-Agent] Queued economy: /command/build-factory unit=4 request=build-1,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS one native build command after duplicate receipt
+PASS build waypoint uses native landFactory type
+PASS build command retains aligned placement
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=build-1 -> 409 {"status":"error","message":"requestId reused with different economy command"}
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=old&requestId=stale -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-factory?unitId=4&x=NaN&y=10&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=bad-coordinate -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/build-factory?unitId=4&x=10&y=10&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=far -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no completed own builder with affordable native landFactory action; prepare a standard builder and sufficient credits"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=terrain -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/produce-tank?unitId=50&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=tank-1 -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":0.99999,"productionQueue":0,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS almost complete is not rounded to complete
+2026-10-02 17:47:33.506 [RW-Agent] Queued economy: /command/produce-tank unit=50 request=tank-1,"type":"c_tank"
+PASS POST /command/produce-tank?unitId=50&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":50,"frame":0,"type":"c_tank"}
+PASS POST /command/produce-tank?unitId=50&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":50,"frame":0,"type":"c_tank"}
+PASS only one production command
+PASS native landFactory exposes tank action
+PASS production command carries actual native action identifier
+PASS native command debits the 350 tank cost
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":9650.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":1.0,"productionQueue":1,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS POST /command/produce-tank?unitId=50&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=busy -> 409 {"status":"error","message":"factory production queue must be empty"}
+PASS POST /command/produce-tank?unitId=50&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=network -> 409 {"status":"error","message":"network games are not supported"}
+PASS bridge inserted no factory or tank into world
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /opening/plan?unitId=4 -> 200 {"status":"planned","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","builderId":4,"extractorType":"extractor","extractorX":990.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":2,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":2,"notReachable":0,"nativeRejectionReasons":{}},"distance":120.830,"credits":10000.000}
+PASS nearest visible mine selected at native tile center
+PASS opening budget is 700 + 700 + 3*350
+PASS plan preserves resolved extractor type
+PASS opening keeps original loaded tank replacement
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","builderId":4,"extractorType":"extractor","extractorX":990.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":2,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":2,"notReachable":0,"nativeRejectionReasons":{}},"distance":120.830,"credits":0.000}
+PASS read-only plan works without credits and never orders
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","builderId":4,"extractorType":"extractor","extractorX":1110.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":1,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":1,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":1,"notReachable":0,"nativeRejectionReasons":{}},"distance":202.485,"credits":10000.000}
+PASS hidden nearest mine is not selected
+PASS GET /opening/plan -> 409 {"status":"error","message":"no legal opening site; extractorType=extractor; eligibleBuilders=1; visibleResourceCandidates=0; searchRange=600","diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":0,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":0,"notReachable":0,"nativeRejectionReasons":{}}}
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","builderId":4,"extractorType":"extractor","extractorX":1110.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":1,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":1,"legalCandidates":1,"notReachable":0,"nativeRejectionReasons":{"{0}":1}},"distance":202.485,"credits":10000.000}
+PASS occupied nearest mine is skipped
+2026-10-02 17:47:33.552 [RW-Agent] Queued economy: /command/build-extractor unit=4 request=mine,"targetX":990.000,"targetY":1890.000,"type":"extractor"
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=mine -> 200 {"status":"queued","requestId":"mine","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":4,"frame":0,"targetX":990.000,"targetY":1890.000,"type":"extractor"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=mine -> 200 {"status":"queued","requestId":"mine","sessionId":"6f24722f-f186-4e11-ba1f-bfae9287982f","unitId":4,"frame":0,"targetX":990.000,"targetY":1890.000,"type":"extractor"}
+PASS extractor retry has one native command
+PASS actual extractor waypoint type and coordinates
+PASS planning and queue submission did not spawn or directly charge units
+PASS POST /command/build-extractor?unitId=4&x=970&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=ground -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=footprint-fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=removed-site -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=old&requestId=old-session -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-extractor?unitId=99&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=6f24722f-f186-4e11-ba1f-bfae9287982f&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /opening/plan -> 409 {"status":"error","message":"network games are not supported"}
+PASS invalid extractor requests queued nothing
+OPENING_NATIVE_TEST_OK totalChecks=61
+--> PASS exit=0
+=== java:OpeningHarness-replacement ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:34.241: GameEngine:GameEngine()
+2026-10-02 17:47:34.289: MapLayer create: ground
+2026-10-02 17:47:34.988 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:34.998 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /economy/plan?unitId=4 -> 200 {"status":"planned","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","builderId":4,"factoryType":"landFactory","productType":"c_tank","targetX":1050.000,"targetY":1790.000,"factoryCost":700,"tankCost":350,"credits":10000.000}
+PASS plan reports actual resolved product type
+PASS planning does not register previews or spend credits
+PASS native factory cost 700
+NATIVE_TANK_COST=350
+2026-10-02 17:47:35.056 [RW-Agent] Queued economy: /command/build-factory unit=4 request=build-1,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS one native build command after duplicate receipt
+PASS build waypoint uses native landFactory type
+PASS build command retains aligned placement
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=build-1 -> 409 {"status":"error","message":"requestId reused with different economy command"}
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=old&requestId=stale -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-factory?unitId=4&x=NaN&y=10&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=bad-coordinate -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/build-factory?unitId=4&x=10&y=10&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=far -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no completed own builder with affordable native landFactory action; prepare a standard builder and sufficient credits"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=terrain -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/produce-tank?unitId=50&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=tank-1 -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":0.99999,"productionQueue":0,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS almost complete is not rounded to complete
+2026-10-02 17:47:35.108 [RW-Agent] Queued economy: /command/produce-tank unit=50 request=tank-1,"type":"c_tank"
+PASS POST /command/produce-tank?unitId=50&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":50,"frame":0,"type":"c_tank"}
+PASS POST /command/produce-tank?unitId=50&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":50,"frame":0,"type":"c_tank"}
+PASS only one production command
+PASS native landFactory exposes tank action
+PASS production command carries actual native action identifier
+PASS native command debits the 350 tank cost
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":9650.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":1.0,"productionQueue":1,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS POST /command/produce-tank?unitId=50&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=busy -> 409 {"status":"error","message":"factory production queue must be empty"}
+PASS POST /command/produce-tank?unitId=50&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=network -> 409 {"status":"error","message":"network games are not supported"}
+PASS bridge inserted no factory or tank into world
+PASS real custom preview keeps type and stays outside world
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /opening/plan?unitId=4 -> 200 {"status":"planned","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","builderId":4,"extractorType":"extractorT1","extractorX":990.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":2,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":2,"notReachable":0,"nativeRejectionReasons":{}},"distance":120.830,"credits":10000.000}
+PASS nearest visible mine selected at native tile center
+PASS opening budget is 700 + 700 + 3*350
+PASS plan preserves resolved extractor type
+PASS opening keeps original loaded tank replacement
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","builderId":4,"extractorType":"extractorT1","extractorX":990.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":2,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":2,"notReachable":0,"nativeRejectionReasons":{}},"distance":120.830,"credits":0.000}
+PASS read-only plan works without credits and never orders
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","builderId":4,"extractorType":"extractorT1","extractorX":1110.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":1,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":1,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":1,"notReachable":0,"nativeRejectionReasons":{}},"distance":202.485,"credits":10000.000}
+PASS hidden nearest mine is not selected
+PASS GET /opening/plan -> 409 {"status":"error","message":"no legal opening site; extractorType=extractorT1; eligibleBuilders=1; visibleResourceCandidates=0; searchRange=600","diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":0,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":0,"legalCandidates":0,"notReachable":0,"nativeRejectionReasons":{}}}
+PASS GET /opening/plan -> 200 {"status":"planned","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","builderId":4,"extractorType":"extractorT1","extractorX":1110.000,"extractorY":1890.000,"extractorCost":700,"factoryCost":700,"tankCost":350,"productType":"c_tank","targetTanks":3,"totalCost":2450,"resourceCandidates":1,"diagnostics":{"countingUnit":"builder_site_pair","searchRange":600,"eligibleBuilders":1,"visibleResourceCandidates":2,"outsideRange":0,"footprintOutsideMap":0,"footprintNotVisible":0,"nativeRejected":1,"legalCandidates":1,"notReachable":0,"nativeRejectionReasons":{"{0}":1}},"distance":202.485,"credits":10000.000}
+PASS occupied nearest mine is skipped
+2026-10-02 17:47:35.146 [RW-Agent] Queued economy: /command/build-extractor unit=4 request=mine,"targetX":990.000,"targetY":1890.000,"type":"extractorT1"
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=mine -> 200 {"status":"queued","requestId":"mine","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":4,"frame":0,"targetX":990.000,"targetY":1890.000,"type":"extractorT1"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=mine -> 200 {"status":"queued","requestId":"mine","sessionId":"e66ef5b6-87e0-4449-a586-0f8b252930ba","unitId":4,"frame":0,"targetX":990.000,"targetY":1890.000,"type":"extractorT1"}
+PASS extractor retry has one native command
+PASS actual extractor waypoint type and coordinates
+PASS planning and queue submission did not spawn or directly charge units
+PASS POST /command/build-extractor?unitId=4&x=970&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=ground -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=footprint-fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=removed-site -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=old&requestId=old-session -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-extractor?unitId=99&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-extractor?unitId=4&x=990&y=1890&sessionId=e66ef5b6-87e0-4449-a586-0f8b252930ba&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /opening/plan -> 409 {"status":"error","message":"network games are not supported"}
+PASS invalid extractor requests queued nothing
+OPENING_NATIVE_TEST_OK totalChecks=62
+--> PASS exit=0
+=== java:ProductionPlanHarness ===
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+2026-10-02 17:47:35.839: GameEngine:GameEngine()
+2026-10-02 17:47:35.884: MapLayer create: ground
+2026-10-02 17:47:36.592 [RW-Agent] Local Agent API ready at http://127.0.0.1:47656
+2026-10-02 17:47:36.605 [RW-Agent] Provenance {"agentVersion":"0.07-alpha1","agentJar":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar","agentJarSha256":"f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6","gameLibJar":"G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\game-lib.jar","gameLibJarSha256":"8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9","workingDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source","reportDirectory":"G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-source\\rw-agent-reports","osName":"Windows 10","javaVersion":"13"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS GET /economy/plan?unitId=4 -> 200 {"status":"planned","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","builderId":4,"factoryType":"landFactory","productType":"c_tank","targetX":1050.000,"targetY":1790.000,"factoryCost":700,"tankCost":350,"credits":10000.000}
+PASS plan reports actual resolved product type
+PASS planning does not register previews or spend credits
+PASS native factory cost 700
+NATIVE_TANK_COST=350
+2026-10-02 17:47:36.663 [RW-Agent] Queued economy: /command/build-factory unit=4 request=build-1,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=build-1 -> 200 {"status":"queued","requestId":"build-1","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","unitId":4,"frame":0,"targetX":1050.000,"targetY":1790.000,"type":"landFactory"}
+PASS one native build command after duplicate receipt
+PASS build waypoint uses native landFactory type
+PASS build command retains aligned placement
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=build-1 -> 409 {"status":"error","message":"requestId reused with different economy command"}
+PASS POST /command/build-factory?unitId=99&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=foreign -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=old&requestId=stale -> 409 {"status":"error","message":"session changed; read state again"}
+PASS POST /command/build-factory?unitId=4&x=NaN&y=10&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=bad-coordinate -> 400 {"status":"error","message":"coordinates must be finite"}
+PASS POST /command/build-factory?unitId=4&x=10&y=10&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=far -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no completed own builder with affordable native landFactory action; prepare a standard builder and sufficient credits"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=poor -> 409 {"status":"error","message":"action unavailable, locked, or insufficient credits"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=fog -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS GET /economy/plan -> 409 {"status":"error","message":"no nearby visible legal landFactory site; move builder to open land"}
+PASS POST /command/build-factory?unitId=4&x=1050.0&y=1790.0&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=terrain -> 409 {"status":"error","message":"no visible legal building footprint at target or target beyond allowed builder range"}
+PASS POST /command/produce-tank?unitId=50&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=tank-1 -> 409 {"status":"error","message":"completed controllable own unit not found"}
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":10000.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":0.99999,"productionQueue":0,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS almost complete is not rounded to complete
+2026-10-02 17:47:36.713 [RW-Agent] Queued economy: /command/produce-tank unit=50 request=tank-1,"type":"c_tank"
+PASS POST /command/produce-tank?unitId=50&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","unitId":50,"frame":0,"type":"c_tank"}
+PASS POST /command/produce-tank?unitId=50&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=tank-1 -> 200 {"status":"queued","requestId":"tank-1","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","unitId":50,"frame":0,"type":"c_tank"}
+PASS only one production command
+PASS native landFactory exposes tank action
+PASS production command carries actual native action identifier
+PASS native command debits the 350 tank cost
+PASS GET /state -> 200 {"status":"running","schemaVersion":1,"sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","map":{"width":2200.000,"height":2200.000,"tilesWide":110,"tilesHigh":110,"tileWidth":20,"tileHeight":20},"frame":0,"gameTimeMs":0,"networked":false,"replay":false,"player":{"teamId":0,"name":"","credits":9650.000},"match":{"outcome":"ONGOING","nativeVictory":false,"nativeDefeat":false,"ownTeamVictory":false,"ownTeamDefeated":false,"ownTeamWipedOut":false,"source":"native_result_screen"},"ownUnits":[{"id":4,"type":"builder","x":940.000,"y":1780.000,"hp":170.000,"maxHp":170.000,"buildProgress":1.0,"productionQueue":-1,"dead":false,"mobile":true,"canAttack":false,"building":false,"techLevel":1,"orderType":null,"guardTargetId":null},{"id":50,"type":"landFactory","x":1050.000,"y":1790.000,"hp":1200.000,"maxHp":1200.000,"buildProgress":1.0,"productionQueue":1,"dead":false,"mobile":false,"canAttack":false,"building":true,"techLevel":1,"orderType":null,"guardTargetId":null}]}
+PASS POST /command/produce-tank?unitId=50&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=busy -> 409 {"status":"error","message":"factory production queue must be empty"}
+PASS POST /command/produce-tank?unitId=50&sessionId=252ee944-25a5-4be4-a44e-bf100c47de51&requestId=network -> 409 {"status":"error","message":"network games are not supported"}
+PASS bridge inserted no factory or tank into world
+PASS GET /economy/production-plan -> 409 {"status":"error","message":"no completed own idle landFactory with available tank action; finish Opening first and clear its queue"}
+PASS GET /economy/production-plan -> 200 {"status":"planned","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","factoryId":51,"factoryType":"landFactory","productType":"c_tank","tankCost":350}
+PASS existing factory actual product, id and price with zero funds
+PASS GET /economy/production-plan?unitId=4 -> 409 {"status":"error","message":"no completed own idle landFactory with available tank action; finish Opening first and clear its queue"}
+PASS GET /economy/production-plan?unitId=51 -> 200 {"status":"planned","sessionId":"252ee944-25a5-4be4-a44e-bf100c47de51","factoryId":51,"factoryType":"landFactory","productType":"c_tank","tankCost":350}
+PASS GET /economy/production-plan -> 409 {"status":"error","message":"no completed own idle landFactory with available tank action; finish Opening first and clear its queue"}
+PASS GET /economy/production-plan -> 409 {"status":"error","message":"no completed own idle landFactory with available tank action; finish Opening first and clear its queue"}
+PASS GET /economy/production-plan -> 409 {"status":"error","message":"network games are not supported"}
+PASS GET /economy/production-plan?foo=1 -> 400 {"status":"error","message":"optional field: unitId"}
+PASS production planning submits nothing, spends nothing and spawns nothing
+PRODUCTION_PLAN_TEST_OK totalChecks=44
+--> PASS exit=0
+=== py:test_development ===
+test_completed_mine_death_stops (__main__.DevelopmentTests.test_completed_mine_death_stops) ... ok
+test_completed_mine_death_stops (__main__.DevelopmentTests.test_completed_mine_death_stops) ... ok
+test_default_eight_tanks_three_mines_overlap (__main__.DevelopmentTests.test_default_eight_tanks_three_mines_overlap) ... ok
+test_default_eight_tanks_three_mines_overlap (__main__.DevelopmentTests.test_default_eight_tanks_three_mines_overlap) ... ok
+test_exhausted_visible_mines_preserves_production (__main__.DevelopmentTests.test_exhausted_visible_mines_preserves_production) ... ok
+test_exhausted_visible_mines_preserves_production (__main__.DevelopmentTests.test_exhausted_visible_mines_preserves_production) ... ok
+test_missing_factory_zero_orders (__main__.DevelopmentTests.test_missing_factory_zero_orders) ... ok
+test_missing_factory_zero_orders (__main__.DevelopmentTests.test_missing_factory_zero_orders) ... ok
+test_no_visible_mine_reports_zero (__main__.DevelopmentTests.test_no_visible_mine_reports_zero) ... ok
+test_no_visible_mine_reports_zero (__main__.DevelopmentTests.test_no_visible_mine_reports_zero) ... ok
+test_pending_mine_budget_reserved_until_native_charge (__main__.DevelopmentTests.test_pending_mine_budget_reserved_until_native_charge) ... ok
+test_pending_mine_budget_reserved_until_native_charge (__main__.DevelopmentTests.test_pending_mine_budget_reserved_until_native_charge) ... ok
+test_plan_503_stops_zero_orders (__main__.DevelopmentTests.test_plan_503_stops_zero_orders) ... ok
+test_plan_503_stops_zero_orders (__main__.DevelopmentTests.test_plan_503_stops_zero_orders) ... ok
+test_preexisting_mine_not_accepted (__main__.DevelopmentTests.test_preexisting_mine_not_accepted) ... ok
+test_preexisting_mine_not_accepted (__main__.DevelopmentTests.test_preexisting_mine_not_accepted) ... ok
+test_production_only_option (__main__.DevelopmentTests.test_production_only_option) ... ok
+test_production_only_option (__main__.DevelopmentTests.test_production_only_option) ... ok
+test_queue_interference_stops_both_lanes (__main__.DevelopmentTests.test_queue_interference_stops_both_lanes) ... ok
+test_queue_interference_stops_both_lanes (__main__.DevelopmentTests.test_queue_interference_stops_both_lanes) ... ok
+test_session_change_stops_both_lanes (__main__.DevelopmentTests.test_session_change_stops_both_lanes) ... ok
+test_session_change_stops_both_lanes (__main__.DevelopmentTests.test_session_change_stops_both_lanes) ... ok
+test_type_mismatch_stops_before_other_lane_order (__main__.DevelopmentTests.test_type_mismatch_stops_before_other_lane_order) ... ok
+test_type_mismatch_stops_before_other_lane_order (__main__.DevelopmentTests.test_type_mismatch_stops_before_other_lane_order) ... ok
+test_unknown_production_never_retried (__main__.DevelopmentTests.test_unknown_production_never_retried) ... ok
+test_unknown_production_never_retried (__main__.DevelopmentTests.test_unknown_production_never_retried) ... ok
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Ran 13 tests in 50.893s
+Ran 13 tests in 50.893s
+
+
+OK
+OK
+--> PASS exit=0
+=== py:test_opening ===
+test_completed_mine_lost_during_second_tank_stops (__main__.OpeningTests.test_completed_mine_lost_during_second_tank_stops) ... ok
+test_completed_mine_lost_during_second_tank_stops (__main__.OpeningTests.test_completed_mine_lost_during_second_tank_stops) ... ok
+test_full_opening_and_distinct_tanks (__main__.OpeningTests.test_full_opening_and_distinct_tanks) ... ok
+test_full_opening_and_distinct_tanks (__main__.OpeningTests.test_full_opening_and_distinct_tanks) ... ok
+test_legacy_extractor_without_replacement (__main__.OpeningTests.test_legacy_extractor_without_replacement) ... ok
+test_legacy_extractor_without_replacement (__main__.OpeningTests.test_legacy_extractor_without_replacement) ... ok
+test_no_resource_sends_nothing (__main__.OpeningTests.test_no_resource_sends_nothing) ... ok
+test_no_resource_sends_nothing (__main__.OpeningTests.test_no_resource_sends_nothing) ... ok
+test_preexisting_extractor_not_accepted (__main__.OpeningTests.test_preexisting_extractor_not_accepted) ... ok
+test_preexisting_extractor_not_accepted (__main__.OpeningTests.test_preexisting_extractor_not_accepted) ... ok
+test_session_changed_stops (__main__.OpeningTests.test_session_changed_stops) ... ok
+test_session_changed_stops (__main__.OpeningTests.test_session_changed_stops) ... ok
+test_unknown_factory_command_not_retried (__main__.OpeningTests.test_unknown_factory_command_not_retried) ... ok
+test_unknown_factory_command_not_retried (__main__.OpeningTests.test_unknown_factory_command_not_retried) ... ok
+test_wait_income_before_mine_and_second_tank (__main__.OpeningTests.test_wait_income_before_mine_and_second_tank) ... ok
+test_wait_income_before_mine_and_second_tank (__main__.OpeningTests.test_wait_income_before_mine_and_second_tank) ... ok
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Ran 8 tests in 32.125s
+Ran 8 tests in 32.125s
+
+
+OK
+OK
+--> PASS exit=0
+=== py:test_economy ===
+test_ambiguous_tanks_rejected (__main__.EconomyTests.test_ambiguous_tanks_rejected) ... ok
+test_ambiguous_tanks_rejected (__main__.EconomyTests.test_ambiguous_tanks_rejected) ... ok
+test_builder_dead (__main__.EconomyTests.test_builder_dead) ... ok
+test_builder_dead (__main__.EconomyTests.test_builder_dead) ... ok
+test_existing_factory_not_accepted (__main__.EconomyTests.test_existing_factory_not_accepted) ... ok
+test_existing_factory_not_accepted (__main__.EconomyTests.test_existing_factory_not_accepted) ... ok
+test_existing_tank_not_accepted (__main__.EconomyTests.test_existing_tank_not_accepted) ... ok
+test_existing_tank_not_accepted (__main__.EconomyTests.test_existing_tank_not_accepted) ... ok
+test_factory_destroyed_no_production (__main__.EconomyTests.test_factory_destroyed_no_production) ... ok

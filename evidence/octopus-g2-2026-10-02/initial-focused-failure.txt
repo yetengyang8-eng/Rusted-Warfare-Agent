@@ -1,0 +1,112 @@
+test_crisis_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_crisis_projection_preserves_original_behavior) ... ok
+test_foreign_combat_session_guard_precedes_g2 (__main__.G2WorldStateTests.test_foreign_combat_session_guard_precedes_g2) ... FAIL
+test_frame_rollback_guard_precedes_g2 (__main__.G2WorldStateTests.test_frame_rollback_guard_precedes_g2) ... FAIL
+test_native_missing_source_times_stay_missing (__main__.G2WorldStateTests.test_native_missing_source_times_stay_missing) ... ok
+test_network_match_guard_precedes_g2 (__main__.G2WorldStateTests.test_network_match_guard_precedes_g2) ... FAIL
+test_ordinary_production_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_ordinary_production_projection_preserves_original_behavior) ... ok
+test_provider_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_provider_projection_preserves_original_behavior) ... ok
+test_recon_projection_preserves_original_behavior (__main__.G2WorldStateTests.test_recon_projection_preserves_original_behavior) ... ok
+test_replay_guard_precedes_g2 (__main__.G2WorldStateTests.test_replay_guard_precedes_g2) ... FAIL
+
+======================================================================
+FAIL: test_foreign_combat_session_guard_precedes_g2 (__main__.G2WorldStateTests.test_foreign_combat_session_guard_precedes_g2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 252, in test_foreign_combat_session_guard_precedes_g2
+    self.assert_guard_rejected('session')
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 220, in assert_guard_rejected
+    rows, packets = self.run_fixture('recon', JAR, True, 'guard-' + guard, mutation=reject)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 83, in run_fixture
+    result = getattr(module, class_name)().run_case(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_recon_client.py", line 185, in run_case
+    self.assertEqual(completed.returncode, 0,
+AssertionError: 1 != 0 : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+java.lang.IllegalStateException: Session changed
+
+FAIL / ONGOING: java.lang.IllegalStateException: Session changed
+
+Report: G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\tmphn22y04s\rw-agent-reports\battle-1790933887605-051cbb2b.jsonl
+
+
+
+======================================================================
+FAIL: test_frame_rollback_guard_precedes_g2 (__main__.G2WorldStateTests.test_frame_rollback_guard_precedes_g2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 249, in test_frame_rollback_guard_precedes_g2
+    self.assert_guard_rejected('rollback')
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 220, in assert_guard_rejected
+    rows, packets = self.run_fixture('recon', JAR, True, 'guard-' + guard, mutation=reject)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 83, in run_fixture
+    result = getattr(module, class_name)().run_case(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_recon_client.py", line 185, in run_case
+    self.assertEqual(completed.returncode, 0,
+AssertionError: 1 != 0 : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+java.lang.IllegalStateException: Frame went backwards
+
+Report commit failed: java.lang.NullPointerException
+
+FAIL / ONGOING: java.lang.IllegalStateException: Frame went backwards
+
+Report: G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\tmp2oztwfrr\rw-agent-reports\battle-1790933888614-98bf2291.jsonl
+
+
+
+======================================================================
+FAIL: test_network_match_guard_precedes_g2 (__main__.G2WorldStateTests.test_network_match_guard_precedes_g2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 243, in test_network_match_guard_precedes_g2
+    self.assert_guard_rejected('networked')
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 220, in assert_guard_rejected
+    rows, packets = self.run_fixture('recon', JAR, True, 'guard-' + guard, mutation=reject)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 83, in run_fixture
+    result = getattr(module, class_name)().run_case(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_recon_client.py", line 185, in run_case
+    self.assertEqual(completed.returncode, 0,
+AssertionError: 1 != 0 : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+java.lang.IllegalStateException: Local active match required
+
+Report commit failed: java.lang.NullPointerException
+
+FAIL / ONGOING: java.lang.IllegalStateException: Local active match required
+
+Report: G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\tmpio2uxsnd\rw-agent-reports\battle-1790933897112-9265ff4f.jsonl
+
+
+
+======================================================================
+FAIL: test_replay_guard_precedes_g2 (__main__.G2WorldStateTests.test_replay_guard_precedes_g2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 246, in test_replay_guard_precedes_g2
+    self.assert_guard_rejected('replay')
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 220, in assert_guard_rejected
+    rows, packets = self.run_fixture('recon', JAR, True, 'guard-' + guard, mutation=reject)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_g2_world_state.py", line 83, in run_fixture
+    result = getattr(module, class_name)().run_case(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\agent\tests\test_recon_client.py", line 185, in run_case
+    self.assertEqual(completed.returncode, 0,
+AssertionError: 1 != 0 : Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+java.lang.IllegalStateException: Local active match required
+
+Report commit failed: java.lang.NullPointerException
+
+FAIL / ONGOING: java.lang.IllegalStateException: Local active match required
+
+Report: G:\deepseek 工作台\_validation\octopus-g2-20261002\candidate-focused-source\tmpwapqx2tc\rw-agent-reports\battle-1790933949821-de32a280.jsonl
+
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 70.222s
+
+FAILED (failures=4)

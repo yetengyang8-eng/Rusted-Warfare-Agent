@@ -1,0 +1,17 @@
+{
+  "commit": "ff693c805c4069a62ed451e33cffb882245cea35",
+  "rebuilt": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-frozen\\rw-agent-bootstrap.jar",
+    "bytes": 336094,
+    "sha256": "ec69c1f0fdb552ddd4e2059ef466f2f509f6c99ec6b40053a111de6f4da474d9",
+    "contentDigest": "43da2c441785314a2089f5fab01715103b5d2e82af252fd49daf98e65e1eec13"
+  },
+  "frozenG1": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g1-20261002\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "bytes": 336094,
+    "sha256": "ab5b7fd1fe97a4e4ae0b8cb59cfd7d189c492e8a8e99a8400ce1d3eb93e7287a",
+    "contentDigest": "43da2c441785314a2089f5fab01715103b5d2e82af252fd49daf98e65e1eec13"
+  },
+  "sameCanonicalEntries": true,
+  "canonicalEntryCount": 112
+}

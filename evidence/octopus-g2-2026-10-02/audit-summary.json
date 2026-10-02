@@ -1,0 +1,77 @@
+{
+  "status": "G2_VALIDATED_NOT_DEPLOYED",
+  "startingCommit": "ff693c805c4069a62ed451e33cffb882245cea35",
+  "implementationCommit": "5dd76e41d95887ec6c8dc6647476491b9b5241a6",
+  "baseline": {
+    "passed": true,
+    "passedSteps": 58,
+    "failedSteps": 0,
+    "javaHarnessRuns": 30,
+    "pythonSuites": 25,
+    "pythonTests": 439,
+    "pythonSkipped": 0,
+    "exitCode": 0,
+    "summary": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\baseline-full\\validation-summary.json"
+  },
+  "final": {
+    "passed": true,
+    "passedSteps": 60,
+    "failedSteps": 0,
+    "javaHarnessRuns": 31,
+    "pythonSuites": 26,
+    "pythonTests": 448,
+    "pythonSkipped": 0,
+    "exitCode": 0,
+    "summary": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\validation-summary.json"
+  },
+  "candidate": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\fixed-candidate\\rw-agent-bootstrap.jar",
+    "bytes": 362190,
+    "sha256": "1dbeb3084f9ee7dd154b7290daef6c9fc2fe780d9e033fd45539fb3aa01ac7d9",
+    "contentDigest": "9e51d99cc67e00833080ae1b1a23387015f7b8bafc460b70206bee9a4c03998b",
+    "entriesExcludingManifest": 121,
+    "implementationCommit": "5dd76e41d95887ec6c8dc6647476491b9b5241a6",
+    "fullRegressionSource": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-source\\agent\\dist\\rw-agent-bootstrap.jar",
+    "jarUnchangedDuringFullRegression": true,
+    "validationStatus": "60_OF_60_PASS_NOT_DEPLOYED",
+    "naturalGame": "NOT_RUN",
+    "desktopInstalled": false,
+    "contentDigestAlgorithm": "Sorted ZIP entry names plus per-entry SHA256; directory entries included; META-INF/MANIFEST.MF excluded."
+  },
+  "sourceVerification": {
+    "implementationCommit": "5dd76e41d95887ec6c8dc6647476491b9b5241a6",
+    "sourceFileCount": 132,
+    "stagedFilesUnchanged": true,
+    "currentRepositoryMatchesStaged": true
+  },
+  "protectedInputVerification": {
+    "protectedFilesUnchanged": true,
+    "allOriginalLibraryFilesUnchanged": true,
+    "allOriginalAssetsUnchanged": true,
+    "isolatedAssetsMatchOriginal": true
+  },
+  "g2ReportSummary": "G:\\deepseek 工作台\\_validation\\octopus-g2-20261002\\final-v2-full\\g2-evidence-summary.json",
+  "retainedHistory": {
+    "baselineNegative": "One expected G2 positive failure on immutable G1, missing G2 adapter events.",
+    "initialFocused": "Four fixture exit-oracle failures retained; repaired9/9 and guards3way4/4 passed.",
+    "supersededFull": {
+      "status": "PARTIAL_SOURCE_SUPERSEDED",
+      "implementationCommit": "5e30a344f7a6f46e53765ba9b95e86df7b3f3691",
+      "termination": "Owned exec session 73507 interrupted by Ctrl-C; returned exit 1",
+      "reason": "Core discovered missing native source timestamps could imply false visibility loss; source will be corrected in a new frozen stage",
+      "completedPassSteps": 12,
+      "failedTestSteps": 0,
+      "lastStartedStep": "=== py:test_economy ===",
+      "fullRegressionResult": "NOT_COMPLETED_NOT_A_PRODUCT_REGRESSION_FAILURE",
+      "jarSha256": "f9b3fd7610bb09cd540505b9226986c3876b503d9fcbac452261ba340be3afd6"
+    },
+    "preexistingEarlyGuard": "Frozen ff693c8 confirms report commit NullPointerException at second state guard; staged raw reports preserved; no production cleanup change."
+  },
+  "boundedEvidence": {
+    "naturalGame": "NOT_RUN",
+    "desktopAcceptance": "NOT_RUN",
+    "desktopInstalled": false,
+    "reportVolumeIsPerformanceBenchmark": false
+  },
+  "memory": "Current G2 task uses freshly verified workspace evidence; quick memory query had no relevant G2 matches."
+}
