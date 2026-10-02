@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "tests": 7,
+  "timelines": 8,
+  "evidence": "E2_HTTP_MAIN_LOOP_SYNTHETIC_QUEUE_BIRTH_POSITION_NO_NATIVE_MATCH",
+  "jarSha256": "9353ef5e31f3cc0e58e70f559828ce452923656817b4e16802e567b38f997df2",
+  "scriptSha256": "6c473abb913000d1d887417b3b06f2622b11e693ac753c50f839a6b57213d506",
+  "artifacts": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\death_rebirth\\battle.jsonl",
+      "bytes": 2495608,
+      "sha256": "7ac80da00d47804b3cec04c24c1c57f5bc9a2cb708241a8b93514dd8049c73f5"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\death_rebirth\\fixture.json",
+      "bytes": 29291,
+      "sha256": "9a0e48c23cc3188d4784d85e7c815d02929923656aeeeab85d81a9af608e9c30"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\death_rebirth\\process.txt",
+      "bytes": 272,
+      "sha256": "3dbf3c43efce153d5e22a66bda31a72b6bf490cd242acd2689d08c5dd6b098cf"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\deferred_screen_cancelled_need\\battle.jsonl",
+      "bytes": 1551044,
+      "sha256": "ae800bf4bf6c382f6a71960f8e4e1fb162d7064b776e82652610802e69f163f4"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\deferred_screen_cancelled_need\\fixture.json",
+      "bytes": 19112,
+      "sha256": "38865dfa3d8ee33dd2ae9df701f3ebd173e0430c6c6179851b2f473f6a6f9d97"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\deferred_screen_cancelled_need\\process.txt",
+      "bytes": 272,
+      "sha256": "589cbda7b3d64143fb41bad97f5b1287bee3b9c2b010bcb34c9e71bc5ca982bf"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\forming_raids\\battle.jsonl",
+      "bytes": 2243899,
+      "sha256": "2c2dc4bb6d9666a59ce02eb365fa0955eb014eedadece5f31ac5d35e24a2db14"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\forming_raids\\fixture.json",
+      "bytes": 27645,
+      "sha256": "eea2ed708daa49088d110a3da78f2497a2d87b884b48f465bdc85afe4780f558"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\forming_raids\\process.txt",
+      "bytes": 272,
+      "sha256": "dbf71a73317ff9a6391f8fe268b9fc6499cb054351f4c73fd15ed088a06991b0"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_resource\\battle.jsonl",
+      "bytes": 3229137,
+      "sha256": "758bf1cf53946ec0cc1d61151ce58ceef1a10c606067823b711d9d61c5de8c1d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_resource\\fixture.json",
+      "bytes": 40433,
+      "sha256": "6ed1ff6b0212be0afc782d05c08c1efc4d300ff35a010e301c1c879e5a72b363"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_resource\\process.txt",
+      "bytes": 272,
+      "sha256": "789ec382e2bb40ffe24b3a6a1e39786fa367aa65ea4de37b4449b7e1ab9c0131"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_unknown\\battle.jsonl",
+      "bytes": 1445100,
+      "sha256": "2f8e6a61c79c9ea957046319de7afb2196d9be8b9cb6f1a632a420da8bb40602"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_unknown\\fixture.json",
+      "bytes": 17766,
+      "sha256": "f4b638b3717722827750f3637582460cc9dd71659d0de99d46b5ff1c613e565d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_unknown\\process.txt",
+      "bytes": 272,
+      "sha256": "4b2c7887445c5aba560f4c13e532bb7eefd391ea5207027de7a0873a1c1bcf31"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_wrong_knowledge\\battle.jsonl",
+      "bytes": 1445049,
+      "sha256": "e3ffce822ffae06ea5d20f871ce1b2550b6b07231b61f3e864e704d4d67662e3"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_wrong_knowledge\\fixture.json",
+      "bytes": 17773,
+      "sha256": "c152aad232ba9c4c2a024eb6cbad0384dfeb72aefdf478d3673e77c611cdcf69"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\static_wrong_knowledge\\process.txt",
+      "bytes": 272,
+      "sha256": "0b58844b0f26de318c660cf0994cf8b16fcad5bd25597b25f838138984429276"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\visible_but_illegal\\battle.jsonl",
+      "bytes": 2064241,
+      "sha256": "1466508eec011915dd86fb7f6971f7b39cb4c73cd849570178342a69b4d65924"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\visible_but_illegal\\fixture.json",
+      "bytes": 27058,
+      "sha256": "fe00c91fa172dc5febf15c2698130c8d56922fae0a405c3291822656e52fcfeb"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\visible_but_illegal\\process.txt",
+      "bytes": 272,
+      "sha256": "f0c9f05d143c860c903b3626c8394b929b80151cc01a7d050eae8ad0972ed73d"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\zero_to_six\\battle.jsonl",
+      "bytes": 2676962,
+      "sha256": "78118424336792fd25a2a6fd91be8a1276b30ff95ab4da52886ff93efcabcfb9"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\zero_to_six\\fixture.json",
+      "bytes": 31374,
+      "sha256": "1e4c5ae235e023c247da68b8b1a4b9a3ca0fc240077f643c9199405eaf4ea4e7"
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\runtime-official\\zero_to_six\\process.txt",
+      "bytes": 272,
+      "sha256": "545778d1715872eaeb605da9768c21bb8eadc93cc3534732b8d1e27917745541"
+    }
+  ],
+  "reasonForSeparateRawCapture": "The full wrapper used RW_G41_EVIDENCE_DIR rather than RW_G41_RUNTIME_EVIDENCE_DIR. Full assertions/logs ran normally; root reran only these seven focused tests against the same final JAR to retain raw trace/HTTP evidence, without a second full matrix."
+}

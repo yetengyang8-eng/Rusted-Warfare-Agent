@@ -1,0 +1,837 @@
+[
+  {
+    "path": "agent/build.sh",
+    "bytes": 770,
+    "sha256": "89d3afc97e1ee745e37497258fa4007d36bf185c62900ba36d5feefa33772fae"
+  },
+  {
+    "path": "agent/MANIFEST.MF",
+    "bytes": 126,
+    "sha256": "b61acab3dac18857226ca246ef4d801199d4bea27ebd76f59cdbd67bc43da63c"
+  },
+  {
+    "path": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json",
+    "bytes": 108801,
+    "sha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
+    "bytes": 72806,
+    "sha256": "85df4b30cf658551ac2adee0136836defa5997bcb867b7b133c514c38f7d390b"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/EconomyBridge.java",
+    "bytes": 40484,
+    "sha256": "916848580bb9817a05188036135cbeea9fad2a41dbcd2c3df08874af9f502c46"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/GuardBridge.java",
+    "bytes": 4040,
+    "sha256": "8af15a6b3d74ac7ff5b5bc288a244593386069d088f2264f70f902021e318476"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/RuntimeBridge.java",
+    "bytes": 27260,
+    "sha256": "28388089e6e77348159aed405d9b03aaeebbe5999cea7341aad796ce7c49a7f7"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/RwAgent.java",
+    "bytes": 3512,
+    "sha256": "8203e41a07b737b809f5bcba4ed5581b771baea46e90aaa5be619d97d5c84069"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
+    "bytes": 41904,
+    "sha256": "89ba14c476f7e5fcb5c17930af806a40c52d477c783da8ec5a82ee20304709b2"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/StaticMapKnowledge.java",
+    "bytes": 14183,
+    "sha256": "271f1442c3a449a169d2942f673cc58683221f1d1320622f618a0fce03fe3e09"
+  },
+  {
+    "path": "agent/src/io/rwagent/bootstrap/TerrainSemantics.java",
+    "bytes": 4357,
+    "sha256": "ff6466b0355bc59c708b3020d872a89e5d9d1520e78eaa801044529422e7b274"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/AgentClient.java",
+    "bytes": 3248,
+    "sha256": "f51ef7990ff17a13142e9eca708a582f99845bd1f8802f431909d5c14704a71d"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/AutopilotClient.java",
+    "bytes": 1863,
+    "sha256": "66fd58a8bfa10e5290f591a64cae6eeaaf69408c600a4e2ac17c9b737b1dd191"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/BattleBudget.java",
+    "bytes": 698,
+    "sha256": "e799de040a4c5ef694a5adfc83cb2b72b1f63ef67682aee573b2d11148814b1d"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/BattleClient.java",
+    "bytes": 353473,
+    "sha256": "a8cc19aae9796145326447dfa0160bc44a5aa3aa867c45e81fdd2c6ed274506b"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/BootstrapClient.java",
+    "bytes": 16036,
+    "sha256": "8c6c2a9a0f809aa80262161129e46140b08b5a2ba8191094bc9cc99273c1b44b"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/CapabilityTask.java",
+    "bytes": 1405,
+    "sha256": "227e1f8bc02ece44cc63796422f8551f6217ed15c8866547c70b9a7c22df394a"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/CapabilityUnitMode.java",
+    "bytes": 3095,
+    "sha256": "97c36e16bddaa99f255fdfa6fa71f61f01f6b446b4cd4fb67b838228914146f4"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/CommandArbiter.java",
+    "bytes": 7866,
+    "sha256": "8600e08ea0a275847dc23b30791a52847a9b49d849821d816f2ccf1fc1fd2d10"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ControlLoop.java",
+    "bytes": 12509,
+    "sha256": "b164e52a061bdd30492bf73671b2d1ceec3f5df5323bdfa2b8d1430aac290509"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/DevelopmentClient.java",
+    "bytes": 27876,
+    "sha256": "89d3fb0ce4d2a4855737ab0c9fb3210bb1d320f6b054ce13a81bc6cdc45963e8"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/EarlyExpansionNeed.java",
+    "bytes": 3046,
+    "sha256": "6af1fcdbb8b610fb1e1c66075b501ea6272e9f8251d49b5d53e63b9d3de90fbf"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/EconomyClient.java",
+    "bytes": 15831,
+    "sha256": "3ddfab552248014fbfc55e5dc2a082ec3e078001aa8be9a1435a8b32f7f2efa5"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/EngagementGeometry.java",
+    "bytes": 5642,
+    "sha256": "371ffaea5820aa63a40cf03e677e872328daeee23eb623aa01795295f0c8308e"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/EventAdapter.java",
+    "bytes": 34414,
+    "sha256": "5086046d14d08c0636263bafbf3a9d09809b737d2decb4687a0101a2d4344b82"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ExecutionScheduler.java",
+    "bytes": 10831,
+    "sha256": "bb743d10db150dbe58dd0a0f994485c1f62f87f98cd54855e3c81feda42ca52c"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ForceController.java",
+    "bytes": 22300,
+    "sha256": "93b58ee1c50b13716a2d984b336543fcad1f6027140590802df433983178ba2d"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/FrontierClient.java",
+    "bytes": 245,
+    "sha256": "0592a4264cd8e85408973ac896af28f471e1b7622b1277caf7506f5e4c3bab78"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/G1Trace.java",
+    "bytes": 8500,
+    "sha256": "4f59641d74cbba027c7c9720f6bf6c9708494610670c200fbc7e7a100618cd45"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/GameClock.java",
+    "bytes": 7174,
+    "sha256": "8ce8ab39edfae1121d9120a14fce323ce13bb3005608597fde57b614d940aa29"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/GeneralRegistry.java",
+    "bytes": 25645,
+    "sha256": "d2a0125d81dca21dd127cf810b193572d0b443ff6ee9731f303845e7c00ede5c"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/Intent.java",
+    "bytes": 5663,
+    "sha256": "6b64d801417a4874b96d87c5018646df4f5792b8b54cd4a34a7b4309e1a9ead5"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/Json.java",
+    "bytes": 4224,
+    "sha256": "0b82ea66b23fff4ce9d1b370a698bba5c66db09f5927bdbcfa91ccdfc13b1f19"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/LocalArmyDirector.java",
+    "bytes": 8471,
+    "sha256": "5b446dd8b301cd82babcc7d8f8ac7eff37f09f42f010eb2ea524db593c18d1b8"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/LocalCrisisPolicy.java",
+    "bytes": 2524,
+    "sha256": "3ccffe1ac78be11fcc797008310af688e43a43cfd5c030d3edf904296b896317"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/MatchClient.java",
+    "bytes": 1091,
+    "sha256": "875675e49ee7893b420cfb92540bb77520c9630f168b89920c9743d13968b853"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/MineInvestmentPolicy.java",
+    "bytes": 7352,
+    "sha256": "dc916d8e4e7c5cfe274b7c2875b79c5edb5835cb874a14fc3119bafe349a5664"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/MoveExecution.java",
+    "bytes": 2120,
+    "sha256": "c6ba21768448c2791525e9d2b941c99ebaa2f149a8c9ab0f2270539fe10ca993"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/NativeCreditWitness.java",
+    "bytes": 6840,
+    "sha256": "cb43a6c1e018b95e724a245d52ebe0762a387a76b976ebb51584dd34232c21be"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/OpeningClient.java",
+    "bytes": 242,
+    "sha256": "cba4e393ae45cdffbdf03d5955874720713d54b2bd1631367f19491bfb307d69"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/PreflightClient.java",
+    "bytes": 2431,
+    "sha256": "1362aa70531a6b95c678ffbab7cb19ae3077ade2a8e4784fed2c01d80d74be93"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ProductionCapacity.java",
+    "bytes": 1687,
+    "sha256": "df5ac0e9ff36e7c58fad898cadc64831fc0274c78b5d5dc4262e86429a8b9ae7"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ProductionRoute.java",
+    "bytes": 2426,
+    "sha256": "175378528adfd2c01d29e7c456166a769ab9b82a12623c18de67bf7e2437593a"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/ReportFiles.java",
+    "bytes": 4654,
+    "sha256": "423a74949cb0d2aeb40bb08a3b51dbf375dd01ddcc273681baf1241c8519063b"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/SearchAreaNeed.java",
+    "bytes": 2809,
+    "sha256": "1d37b3a1b53f55408eac5924ac5184950b010376e05c21dbaaae7ee9c96b7f88"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/SearchTask.java",
+    "bytes": 3036,
+    "sha256": "345ac93efdae83c3106f5c49ea4dccc23168f498b09d94fcd3df6a86b5cad5f6"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+    "bytes": 85947,
+    "sha256": "cb38df1fa5f4891ad94819893f0c5c3b3542de76433b0506ede0bec1505d5f9f"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/SurplusSpendingPolicy.java",
+    "bytes": 10406,
+    "sha256": "1b59af8cbde81b9d2730903cc5c90fbe5597598b1fd5614c9b0eff19c0bf5e2b"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/TargetCatalog.java",
+    "bytes": 8550,
+    "sha256": "dfbefbc1ac0dd733a7582638ab07c7876236dabafc615290e801d5cf10e4aff0"
+  },
+  {
+    "path": "agent/src/io/rwagent/client/WorldState.java",
+    "bytes": 11132,
+    "sha256": "45c791026665ac53597117068a4da413cbd09d3aaed17584ce2e3a64d853c3aa"
+  },
+  {
+    "path": "agent/src/io/rwagent/headless/HeadlessRunner.java",
+    "bytes": 7030,
+    "sha256": "b5595fc73e6777133da1ab79c12a5a0904fde9f6288d250df28a976cccd33668"
+  },
+  {
+    "path": "agent/test-win.ps1",
+    "bytes": 9542,
+    "sha256": "7867a9d700f8e4e49b5c788de70d9f14d1e2abacbf867b7453d5426989b66173"
+  },
+  {
+    "path": "agent/test.sh",
+    "bytes": 8377,
+    "sha256": "a2f2c6bff327e73fe1de0df84012903d94ec6c485b32b86659104585c6408a87"
+  },
+  {
+    "path": "agent/tests/AllowlistTraceProbe.java",
+    "bytes": 1165,
+    "sha256": "5b40ed6b52682c0ba85ab57181d1bdcbd7786624ca5795a9fbe8668d7634dcc2"
+  },
+  {
+    "path": "agent/tests/BridgeHarness.java",
+    "bytes": 8874,
+    "sha256": "570a56836062af8b0e07d456a662817ec649b5c24c476d87baf36803b5ab5553"
+  },
+  {
+    "path": "agent/tests/BuilderHarness.java",
+    "bytes": 7944,
+    "sha256": "7edac551992772d7eabc4634909364921fc8e2b8bb78f193f2b75b7d8914f973"
+  },
+  {
+    "path": "agent/tests/CapabilityHarness.java",
+    "bytes": 10275,
+    "sha256": "8a33be1b6cd718bb038ba5c707c1d89d00ee160232cf58d50dfa3098baaea9d0"
+  },
+  {
+    "path": "agent/tests/CapabilityLifecycleHarness.java",
+    "bytes": 16401,
+    "sha256": "bd991f34113d120ff1a54cd108e7a4eb215dba8e4ae358448473a54733972cf5"
+  },
+  {
+    "path": "agent/tests/CombatHarness.java",
+    "bytes": 11912,
+    "sha256": "444a4a44b39e6739aacc791b568c2516e54946ff659282a91cac81d6a95fe9a9"
+  },
+  {
+    "path": "agent/tests/CuMutationTraceProbe.java",
+    "bytes": 2679,
+    "sha256": "c78d5fb0b89a61ea87ba53632b77c6baa6bd4ec17c78c1cf2df760c72413ca12"
+  },
+  {
+    "path": "agent/tests/DiagnosticsHarness.java",
+    "bytes": 2660,
+    "sha256": "7b406bc1d863b739ac05f7184ad8e1121eadef9afa6ac5ff3b39591a66d14f0f"
+  },
+  {
+    "path": "agent/tests/EconomyHarness.java",
+    "bytes": 8281,
+    "sha256": "452988c33f7eec13d84071317b2d45505e8ac6cc2dfe82465821165c32545a4a"
+  },
+  {
+    "path": "agent/tests/EndpointMutationProbe.java",
+    "bytes": 1996,
+    "sha256": "95b14a9db9c5d0e975da859af8d68044c1226c811ce6257ebc99086b42a05cb6"
+  },
+  {
+    "path": "agent/tests/EngineerProviderHarness.java",
+    "bytes": 15735,
+    "sha256": "d25cc641277b26b9e639781103a05812c8b239eb12e3612da96608fd2561e0b3"
+  },
+  {
+    "path": "agent/tests/ExecutionContractHarness.java",
+    "bytes": 6184,
+    "sha256": "704590fb1799e3dc58a3f992c85401ea3fdb7c799a792ab4bc47e77e91ba0723"
+  },
+  {
+    "path": "agent/tests/ExecutionSchedulerHarness.java",
+    "bytes": 21953,
+    "sha256": "8fb6a18596fa3a72fd0174fd336c3fac5814fd2b10feef31c807cd9748816a91"
+  },
+  {
+    "path": "agent/tests/FallbackLoopProbe.java",
+    "bytes": 7840,
+    "sha256": "7223e71a153a778a30dc9979bc414825dc9b9b46f55947cf8a256ccea003e07e"
+  },
+  {
+    "path": "agent/tests/FieldReadIsolationProbe.java",
+    "bytes": 4879,
+    "sha256": "5499d3eb7d3f54675f99558b8c8622b7633a6c35e6fdd4a8bfe5b8f0e52f031e"
+  },
+  {
+    "path": "agent/tests/ForceControllerHarness.java",
+    "bytes": 17736,
+    "sha256": "1c185e5f9067fabef83f426c83060dfbea52f00876bb9889c5cd6bed8a23972c"
+  },
+  {
+    "path": "agent/tests/ForceFormationHarness.java",
+    "bytes": 12551,
+    "sha256": "60176d0cb143094a0a746c018bf599e1e6de1afea044fdc477d641b9802b6751"
+  },
+  {
+    "path": "agent/tests/G1TraceHarness.java",
+    "bytes": 10898,
+    "sha256": "679ae77ea4a1f8fe389d8cc991593d9972d7fa9c98d01f0bc4c8f0f2b8556db3"
+  },
+  {
+    "path": "agent/tests/G3NativeAcceptanceHarness.java",
+    "bytes": 28934,
+    "sha256": "1a72156d32a9d7a585e5c9132108b0a891cd70eb41eb7abf2e36a71ddccae3ab"
+  },
+  {
+    "path": "agent/tests/G3SpainTerrainNativeHarness.java",
+    "bytes": 10158,
+    "sha256": "a50331488d609cf67865432174d8103b2f951d92da8f5de9fd411fefcda9be40"
+  },
+  {
+    "path": "agent/tests/G41EarlyOperationsNativeHarness.java",
+    "bytes": 23051,
+    "sha256": "cbef0df63601063e77f4134cd691bc3889d4abbc1ff9e7102c2366befbe9ab9e"
+  },
+  {
+    "path": "agent/tests/G4ForceNativeHarness.java",
+    "bytes": 18920,
+    "sha256": "e3bf61c73808a4eaa688b8d4bcfc6d4ec46b2cb9a1117ed0ce32fc1ec778630d"
+  },
+  {
+    "path": "agent/tests/GeneralFormationHarness.java",
+    "bytes": 17257,
+    "sha256": "b63e7e7190f10ac2ba09dba3e8c092b2610f6c1b9083aa746380ebe0317b8a2b"
+  },
+  {
+    "path": "agent/tests/GeneralRegistryHarness.java",
+    "bytes": 21728,
+    "sha256": "453fc2b86d6df4c2743c4d0e692ef46e6045883c8849307a8b0e7dccb8b380b1"
+  },
+  {
+    "path": "agent/tests/GuardHarness.java",
+    "bytes": 3859,
+    "sha256": "2b20e600b180ec745479fe0209297df7f7acd93f1dbed454fce4bddfa7786a8d"
+  },
+  {
+    "path": "agent/tests/IncidentPathProbe.java",
+    "bytes": 2294,
+    "sha256": "eca82355bb80254e81ca10fe8536550c6ee3b931f51594d795bd5372df49f978"
+  },
+  {
+    "path": "agent/tests/LocalArmyContractHarness.java",
+    "bytes": 4835,
+    "sha256": "7d2466e87028d260626aaed3bbcc95e5bd5dbea337722d16813bb159d063c929"
+  },
+  {
+    "path": "agent/tests/LocalCrisisContractHarness.java",
+    "bytes": 3439,
+    "sha256": "8c308b90e483cf8a6b05ab5c607983ef75c45e430ab5f2f36fc63dc3963ee889"
+  },
+  {
+    "path": "agent/tests/MineInvestmentHarness.java",
+    "bytes": 6655,
+    "sha256": "baf5cac0b86bdd88a683c30d8bd7d34c534a74667dcacce27d901a50e089b137"
+  },
+  {
+    "path": "agent/tests/MovementClassLiveProbe.java",
+    "bytes": 2080,
+    "sha256": "f6f4449f46cb5e8f59eb1c24dd601c46138334ccef8e7dcc8acd4d32cbcefc77"
+  },
+  {
+    "path": "agent/tests/MovementResolutionProbe.java",
+    "bytes": 2651,
+    "sha256": "1bf191af7632a92ef30c1b990f4edfb0f319b187429fc5b1f866ac057cee2102"
+  },
+  {
+    "path": "agent/tests/NativeCreditWitnessHarness.java",
+    "bytes": 12405,
+    "sha256": "df53a9f6e9429aceba4c10f5de27bb6b899ba28868be816f076eab326cdf2c03"
+  },
+  {
+    "path": "agent/tests/NativeMorphHarness.java",
+    "bytes": 7764,
+    "sha256": "111600a0a2ac909d2931ed0caaca0fe3f42fb5964407cf7d4b6912678a50e863"
+  },
+  {
+    "path": "agent/tests/OpeningHarness.java",
+    "bytes": 6627,
+    "sha256": "794632a242335366abecba8162baa6a723a280a13211d098b15c61553122484f"
+  },
+  {
+    "path": "agent/tests/PreflightHarness.java",
+    "bytes": 1738,
+    "sha256": "3d3ef2ba390235d117367ce23bb99cd5189dd549368ef81ff1055c6c35c5ff8d"
+  },
+  {
+    "path": "agent/tests/ProductionCapacityHarness.java",
+    "bytes": 9257,
+    "sha256": "7d8dc8f39e5b03208b6121727c5d81d22938f2d88adefb0345f24caf2db08e2c"
+  },
+  {
+    "path": "agent/tests/ProductionPlanHarness.java",
+    "bytes": 2003,
+    "sha256": "7c29b9feec6a53d84e0feed2b9981f5940f38f5677a1180209836b83dae02406"
+  },
+  {
+    "path": "agent/tests/ReachabilityHarness.java",
+    "bytes": 17678,
+    "sha256": "ec8c812896cbbd30bf4d10bdc16b42b6168ead79b23aa00725de0e7ec663aea7"
+  },
+  {
+    "path": "agent/tests/ReachabilityProbe.java",
+    "bytes": 8298,
+    "sha256": "0049a8bdd4f340bf28066060fb38d58062acfdb7900d535b6bd85ec09b222163"
+  },
+  {
+    "path": "agent/tests/ReachabilitySample.java",
+    "bytes": 1217,
+    "sha256": "9952d25ec54bc6375ad17852e9b522e3f8e820cdc6e974376d2eca4ce9a9b1c2"
+  },
+  {
+    "path": "agent/tests/ReachabilitySandboxHarness.java",
+    "bytes": 10084,
+    "sha256": "bb0c08df9060f86e7d7ab22a5a42081a2cdba320fbd9ab7f11af6b9baee43083"
+  },
+  {
+    "path": "agent/tests/ReadContrastProbe.java",
+    "bytes": 1978,
+    "sha256": "cb7c26147a3ffc7689ea1bcdf82ea2fa451165b7809f0b1f3f805d1e6464a296"
+  },
+  {
+    "path": "agent/tests/ReportCommitHarness.java",
+    "bytes": 3550,
+    "sha256": "a56fcfe94bd0d719e503e266b8688c3d1df970f7c2ea47fab0c424002c4dabc9"
+  },
+  {
+    "path": "agent/tests/ScoutHarness.java",
+    "bytes": 15935,
+    "sha256": "7b22ca298cd06e8d5e0fcfbb81685e54dd2d4f04d7df6e4d150b731099cce8f2"
+  },
+  {
+    "path": "agent/tests/SmokeHarness.java",
+    "bytes": 3125,
+    "sha256": "45ec8f7d7007f69d7187e7db1b88f1afe1d63812f230336dc4194cbf7cdf5aad"
+  },
+  {
+    "path": "agent/tests/StageBisectProbe.java",
+    "bytes": 2262,
+    "sha256": "3f8d6415a73953cdf589f191a4d19cf69bc5e30d5d51820a458d1c9a06435572"
+  },
+  {
+    "path": "agent/tests/StaticMapNativeHarness.java",
+    "bytes": 13769,
+    "sha256": "41d39f7ad635931f4c8d2ac9995a0143774f2bcd65f3dca0c87be0def6a61bd9"
+  },
+  {
+    "path": "agent/tests/StrategyContractHarness.java",
+    "bytes": 34729,
+    "sha256": "3e889da772e7d3f4f26b247e352bfee8cc10cc599a1cc8d7f381cb052f1a613e"
+  },
+  {
+    "path": "agent/tests/StrategyNativeHarness.java",
+    "bytes": 9945,
+    "sha256": "030ee9d8002d079f77e62d649be95036ce58f9bf66a590db43197ee4ff173cd9"
+  },
+  {
+    "path": "agent/tests/StrategyQuoteProvenanceHarness.java",
+    "bytes": 10556,
+    "sha256": "4b1b73f2275fb0b7b90aef4645b7ebb74ec2124783c7447671a7ffb49344f656"
+  },
+  {
+    "path": "agent/tests/SurplusSpendingHarness.java",
+    "bytes": 9653,
+    "sha256": "d840506e1a7123c8a38b36020a7842e7f99867e82e0b792053f383ae0495d5fd"
+  },
+  {
+    "path": "agent/tests/target_policy_fixture.py",
+    "bytes": 4928,
+    "sha256": "f47b32936ba427924d77cf18b591e0ad0c34ae44f6656ede0337062262a0b781"
+  },
+  {
+    "path": "agent/tests/TargetCompatibilityHarness.java",
+    "bytes": 1994,
+    "sha256": "bc94e4bba3640223f36bc892ee2bd4472d850a90fabbcd5cb33912828f0dd418"
+  },
+  {
+    "path": "agent/tests/TerrainMemoryHarness.java",
+    "bytes": 7980,
+    "sha256": "eb3dff5c0c14bbbe5649888d0e5184fef9e56c932b9c5158c005a7b779b0302a"
+  },
+  {
+    "path": "agent/tests/TerrainNativeCostHarness.java",
+    "bytes": 9116,
+    "sha256": "d0bf74cd59fbe6c58d0434b6966e42c856bc7764ef859bff0b01f14345b8ddd1"
+  },
+  {
+    "path": "agent/tests/test_ab_aggregate.py",
+    "bytes": 21679,
+    "sha256": "a11e5dba34d88be237a459984136bb0fc1fede0c96b4f9a6c4968579c4a28b7a"
+  },
+  {
+    "path": "agent/tests/test_ab_campaign.py",
+    "bytes": 12089,
+    "sha256": "05939d5e4230807f108f4390a2f617225f29d461506d56b6c1a2cf36c73a63a9"
+  },
+  {
+    "path": "agent/tests/test_battle_client.py",
+    "bytes": 137457,
+    "sha256": "82d81bc2f1352170f3c3cecd43fa692c165f4c7f905d68f343655411302985b9"
+  },
+  {
+    "path": "agent/tests/test_battle_reports.py",
+    "bytes": 14247,
+    "sha256": "04d25e291f6397d54f356cafcb2da84abed598deb2940213a9081f6115b25dff"
+  },
+  {
+    "path": "agent/tests/test_client.py",
+    "bytes": 5780,
+    "sha256": "083272141122393d60953c1901d047de9f38fe76e4f5f20148079eda81ceeaa8"
+  },
+  {
+    "path": "agent/tests/test_development.py",
+    "bytes": 8668,
+    "sha256": "46dcc16dbcb1dc1cc431e30045cc5551c7a8eb977f9c5a08912e2964a69ddcb3"
+  },
+  {
+    "path": "agent/tests/test_economy.py",
+    "bytes": 6227,
+    "sha256": "bcac282dcc0d805bfc3f5d75e8152ce017a736c29c7a8037af462d5e809ae52e"
+  },
+  {
+    "path": "agent/tests/test_engineer_provider.py",
+    "bytes": 17876,
+    "sha256": "6d8c4c0c511aa925e4784ce67ba3cb59a78d37a919ef66819156c91fe561f415"
+  },
+  {
+    "path": "agent/tests/test_feedback_progress_audit.py",
+    "bytes": 20902,
+    "sha256": "17fdf33f8722e57ef56ac205d81c996b2598c64bdab232b81cf2ff8715a5ebe8"
+  },
+  {
+    "path": "agent/tests/test_frontier.py",
+    "bytes": 7439,
+    "sha256": "2f427ad408cf3ac77396e018bdd5dacaab68940e0083ef0b617299d3188e30d7"
+  },
+  {
+    "path": "agent/tests/test_frontier_reports.py",
+    "bytes": 9755,
+    "sha256": "15097336c5f253b9680e4ec86a60ba6d24c147f087188e832596d5836ebd14da"
+  },
+  {
+    "path": "agent/tests/test_g1_trace.py",
+    "bytes": 13042,
+    "sha256": "805e51e0558b22707b84f08fd755240596b7bdc26c3496b52ba53f68688444d7"
+  },
+  {
+    "path": "agent/tests/test_g2_world_state.py",
+    "bytes": 16647,
+    "sha256": "cc524d24046507c480012c3f308267c4afcda4e3874b6339d007fe26c2131977"
+  },
+  {
+    "path": "agent/tests/test_g3_execution.py",
+    "bytes": 20572,
+    "sha256": "9261439b5850f4d08b8f69c1e9b4b57e53f54216edd120b53645e35f82de477c"
+  },
+  {
+    "path": "agent/tests/test_g41_runtime.py",
+    "bytes": 28217,
+    "sha256": "6c473abb913000d1d887417b3b06f2622b11e693ac753c50f839a6b57213d506"
+  },
+  {
+    "path": "agent/tests/test_g4_runtime.py",
+    "bytes": 4938,
+    "sha256": "1089dce75092766a77b64293ef6481348a7bcf9cf2ed65054b58c9de7a17776c"
+  },
+  {
+    "path": "agent/tests/test_global_strategy_audit.py",
+    "bytes": 4381,
+    "sha256": "4c7be2080f65eb0e4d4cf902798c904d26b82eb2dd670a24f5c313dc2ddaf1c0"
+  },
+  {
+    "path": "agent/tests/test_headless_parallel.py",
+    "bytes": 53973,
+    "sha256": "f51f63557d0ce09884da0e134eb069a2779eff9ac7bf8be32ba6a47dabe319c7"
+  },
+  {
+    "path": "agent/tests/test_local_army.py",
+    "bytes": 21719,
+    "sha256": "be916eede8466fb8c4d6eb06a3b084fa7f83a77b6372dc894d9b00edfc1ce045"
+  },
+  {
+    "path": "agent/tests/test_match_bootstrap.py",
+    "bytes": 21941,
+    "sha256": "ade25dac686cac718de5c973b79115991c8ddea405535e3e9e012bdbbd39c575"
+  },
+  {
+    "path": "agent/tests/test_opening.py",
+    "bytes": 7393,
+    "sha256": "3090fbfc5777437af0f585245e7a521eeba89955c2a462e361f74ca0c7155666"
+  },
+  {
+    "path": "agent/tests/test_production_capacity.py",
+    "bytes": 11892,
+    "sha256": "7458539953724cbf219e9042f648bcc6cec9fe295a97b95b52842705cad92128"
+  },
+  {
+    "path": "agent/tests/test_recon_client.py",
+    "bytes": 19120,
+    "sha256": "01db49afa84e083029a8b0592bcba5804236532dfadacebc9004835125f8e66b"
+  },
+  {
+    "path": "agent/tests/test_recon_frontier_client.py",
+    "bytes": 49267,
+    "sha256": "83b19162e7a1a97906080189f8f2006c1e071fa5e2078f72b41140d341597b5f"
+  },
+  {
+    "path": "agent/tests/test_reports.py",
+    "bytes": 5811,
+    "sha256": "05046612aaec35bd7c9193cae7fda8db5c3e4b3782ff69537b032f69fc1a8880"
+  },
+  {
+    "path": "agent/tests/test_specialist_lifecycle.py",
+    "bytes": 16274,
+    "sha256": "f4b7af9ca7f697477db6cd0f7ca5d1c78398379892c1b9fdf1712618442e003f"
+  },
+  {
+    "path": "agent/tests/test_static_map_oracle.py",
+    "bytes": 3834,
+    "sha256": "eec3a69fd277dbf788062933a451deb23051292a4bf183e260c2c57356e1d890"
+  },
+  {
+    "path": "agent/tests/test_strategy_funding.py",
+    "bytes": 19476,
+    "sha256": "0718d017d6315409dfd9a88435a8cca791b0670dd184a9a12ab2fa6d002d772e"
+  },
+  {
+    "path": "agent/tests/test_surplus_spending.py",
+    "bytes": 20482,
+    "sha256": "61066825838bfff4c3129d7b8bcff7109409750594e3227b62c3f0589545a993"
+  },
+  {
+    "path": "agent/tests/test_target_compatibility.py",
+    "bytes": 16721,
+    "sha256": "b5a1c0bf6f5185525f8c11da145bf27abac4b615268c058d44805b80414124de"
+  },
+  {
+    "path": "agent/tests/test_terrain_native.py",
+    "bytes": 9573,
+    "sha256": "d32f08294987e41b6c40b1d8919a106bd737d63fbe9a14f5724004a8997cc8f0"
+  },
+  {
+    "path": "agent/tests/TypeAccessorProbe.java",
+    "bytes": 1567,
+    "sha256": "b14634682f37e0de20d059d0a983e530a7ad9e9a0ddfef8835b6200077519b69"
+  },
+  {
+    "path": "agent/tests/WorldStateHarness.java",
+    "bytes": 28612,
+    "sha256": "4d0f2120b074135f8cfd14281c6b4fad6a8fa55233ead22476f87e9a82300785"
+  },
+  {
+    "path": "docs/acceptance-0.02-alpha2.jsonl",
+    "bytes": 48595,
+    "sha256": "36904cb658201d4a6c6159b39240f0293a8134d7b51003ad9e909c93cef9c6b4"
+  },
+  {
+    "path": "docs/acceptance-0.03-alpha2.jsonl",
+    "bytes": 140814,
+    "sha256": "26b7cc235964b20028ea09c0ea175be4ffe896bf18e308416b2a3fea388443d0"
+  },
+  {
+    "path": "docs/acceptance-0.04/development-1789915769479-b2cf8dd8.jsonl",
+    "bytes": 1420,
+    "sha256": "d5a03d537dae39646b8f11a6a456c4193d559924bf7585f58335a23443bee49f"
+  },
+  {
+    "path": "docs/acceptance-0.04/development-1789915894952-9f623f78.jsonl",
+    "bytes": 279245,
+    "sha256": "b08b0271d90416e51a276f63ca21f2bfaca99710d900cc2abfcb91058c818e0a"
+  },
+  {
+    "path": "docs/acceptance-0.04/development-1789915982349-fc2d3b43.jsonl",
+    "bytes": 465817,
+    "sha256": "968431a15e3c369fb8468acadcf084bfc1bb76b4f6235dd14e5edb92c53a1fbb"
+  },
+  {
+    "path": "tools/aggregate_ab.py",
+    "bytes": 32973,
+    "sha256": "6436264141ce343634fe288bbbc2cc699d5dab5d89158de4fd73b5280d7f09f2"
+  },
+  {
+    "path": "tools/analyze_capability_funding.py",
+    "bytes": 13897,
+    "sha256": "65bcfe687ecc436bacabf2e48b3d777b12e3569d4d6a93dc76a53f62edee3f6a"
+  },
+  {
+    "path": "tools/analyze_production_capacity.py",
+    "bytes": 5205,
+    "sha256": "c0b29ac2148e18624f7ec19ae4942b1a3db3243842a0be491fcb1b78bffef8cd"
+  },
+  {
+    "path": "tools/analyze_reports.py",
+    "bytes": 21599,
+    "sha256": "fc59f879615403fcc502ed3f2f852025f769eef096c3ee36db8ccd7c38e8f16b"
+  },
+  {
+    "path": "tools/assemble_game.py",
+    "bytes": 6428,
+    "sha256": "71aa4626e5bcd22e85d23f2e855c9880010ef4a0783f07fe1032b8d9f7cd48ce"
+  },
+  {
+    "path": "tools/audit_feedback_progress.py",
+    "bytes": 28384,
+    "sha256": "111bc7ae3dd9c1df7c6130e8cd6438db5fa587b9f4f92d6b553c7d09194eec57"
+  },
+  {
+    "path": "tools/audit_global_strategy.py",
+    "bytes": 10681,
+    "sha256": "a5a896bab63d0d085e0f0b3dcc042d75cecec8bb7e0ce319edd5e2335393a1b0"
+  },
+  {
+    "path": "tools/audit_operations.py",
+    "bytes": 21394,
+    "sha256": "453a0cba89ed262d031dcd0a267661eb7fc4dac46e9b09492caa29ab5ac48ae3"
+  },
+  {
+    "path": "tools/audit_specialist_lifecycle.py",
+    "bytes": 20413,
+    "sha256": "753ae1c4bd521288b569bd368dedd65faf641f4ad34abd087a6fcda8ddbfe9ea"
+  },
+  {
+    "path": "tools/battle_reports.py",
+    "bytes": 13759,
+    "sha256": "d3c6a42605eec17cebe583aaac733f34b5c6182663c8d544ed97e2d39aa2b248"
+  },
+  {
+    "path": "tools/battle_viewer.html",
+    "bytes": 6757,
+    "sha256": "296b5ce3b62f268390018c5b503e983c0c417db51f1efe69437cb20d56fbc145"
+  },
+  {
+    "path": "tools/build_headless_engine_manifest.py",
+    "bytes": 1614,
+    "sha256": "7427e534bf82286d48a836396c27fd0a13b28552832ae51bd03e6a75cf6303b5"
+  },
+  {
+    "path": "tools/build_recon_client_overlay.py",
+    "bytes": 4484,
+    "sha256": "5701a5b6d737615d23bae2e3627b37bde3c71c151569ea2cec1e581a4edb1a79"
+  },
+  {
+    "path": "tools/collect_reports.py",
+    "bytes": 12923,
+    "sha256": "5ece78671902ac25038fb2ab089183a7b091de61044ec756ac6380198b9902aa"
+  },
+  {
+    "path": "tools/export_battle_replay.py",
+    "bytes": 2355,
+    "sha256": "8a2b407f51bc3fc171cd8c8ef61d5a2196bad79d1827157758fd71868c990dd8"
+  },
+  {
+    "path": "tools/package_release.py",
+    "bytes": 3690,
+    "sha256": "c3e856c1beb73b27a853addee2df615f765b5267efb1b958c16d642fee0b0122"
+  },
+  {
+    "path": "tools/prepare_headless_engine.py",
+    "bytes": 2713,
+    "sha256": "76aecf0f07f817564eb20f3ea71bca67ae031c9c9547fc25ba5b1f2f8362bec5"
+  },
+  {
+    "path": "tools/profiles/cap32_vs40.json",
+    "bytes": 273,
+    "sha256": "21e302b765a2ad82332a00eb6e450af3444e181d322397d65bb5735145cc7d28"
+  },
+  {
+    "path": "tools/replay_target_policy.py",
+    "bytes": 8272,
+    "sha256": "76842df06b48e4dd88785a8e7753fb9f02985513acdccaa5d1875b5fb1ce1e11"
+  },
+  {
+    "path": "tools/run_ab_campaign.py",
+    "bytes": 28033,
+    "sha256": "d9a795e0d1d480c3126217c912a3d1d98b6600250821aee4d2cba4d662927e48"
+  },
+  {
+    "path": "tools/run_headless.py",
+    "bytes": 53186,
+    "sha256": "ab989d348bf2fa336e0f39168f62accdb1e12b69b1223c688dd49ca4b2587c4b"
+  }
+]

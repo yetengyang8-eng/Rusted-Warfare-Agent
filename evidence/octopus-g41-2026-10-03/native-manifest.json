@@ -1,0 +1,735 @@
+{
+  "nativeGateStatus": "PASS",
+  "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+  "naturalMatch": "NO_NATURAL_MATCH",
+  "fullAutonomousMainLoop": false,
+  "productRecompiledByNativeAgent": false,
+  "desktopOperated": false,
+  "officialFullJar": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+  "officialFullJarSha256": "9353ef5e31f3cc0e58e70f559828ce452923656817b4e16802e567b38f997df2",
+  "isolatedJar": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-final.jar",
+  "isolatedJarSha256": "9353ef5e31f3cc0e58e70f559828ce452923656817b4e16802e567b38f997df2",
+  "sourceTree": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source",
+  "sourceAggregateSha256": "287e8de3c1482c8cb8ac857764be5ffb4b96cf62e80705257e036f82a5114223",
+  "aggregateDefinition": "UTF8 path|lowercase sha256 in sourceFiles array order separated by LF, no final LF",
+  "sourceFiles": [
+    {
+      "path": "agent/MANIFEST.MF",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\MANIFEST.MF",
+      "sha256": "b61acab3dac18857226ca246ef4d801199d4bea27ebd76f59cdbd67bc43da63c",
+      "bytes": 126
+    },
+    {
+      "path": "agent/resources/knowledge/UNIT_CATALOG_CANDIDATES.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\resources\\knowledge\\UNIT_CATALOG_CANDIDATES.json",
+      "sha256": "263cdaaa3e923e8307c37f059e50bee529b8ecd7c3e215937ce2adf615a0e236",
+      "bytes": 108801
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/CombatBridge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\CombatBridge.java",
+      "sha256": "85df4b30cf658551ac2adee0136836defa5997bcb867b7b133c514c38f7d390b",
+      "bytes": 72806
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/EconomyBridge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\EconomyBridge.java",
+      "sha256": "916848580bb9817a05188036135cbeea9fad2a41dbcd2c3df08874af9f502c46",
+      "bytes": 40484
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/GuardBridge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\GuardBridge.java",
+      "sha256": "8af15a6b3d74ac7ff5b5bc288a244593386069d088f2264f70f902021e318476",
+      "bytes": 4040
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RuntimeBridge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\RuntimeBridge.java",
+      "sha256": "28388089e6e77348159aed405d9b03aaeebbe5999cea7341aad796ce7c49a7f7",
+      "bytes": 27260
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/RwAgent.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\RwAgent.java",
+      "sha256": "8203e41a07b737b809f5bcba4ed5581b771baea46e90aaa5be619d97d5c84069",
+      "bytes": 3512
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/ScoutBridge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\ScoutBridge.java",
+      "sha256": "89ba14c476f7e5fcb5c17930af806a40c52d477c783da8ec5a82ee20304709b2",
+      "bytes": 41904
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/StaticMapKnowledge.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\StaticMapKnowledge.java",
+      "sha256": "271f1442c3a449a169d2942f673cc58683221f1d1320622f618a0fce03fe3e09",
+      "bytes": 14183
+    },
+    {
+      "path": "agent/src/io/rwagent/bootstrap/TerrainSemantics.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\bootstrap\\TerrainSemantics.java",
+      "sha256": "ff6466b0355bc59c708b3020d872a89e5d9d1520e78eaa801044529422e7b274",
+      "bytes": 4357
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AgentClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\AgentClient.java",
+      "sha256": "f51ef7990ff17a13142e9eca708a582f99845bd1f8802f431909d5c14704a71d",
+      "bytes": 3248
+    },
+    {
+      "path": "agent/src/io/rwagent/client/AutopilotClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\AutopilotClient.java",
+      "sha256": "66fd58a8bfa10e5290f591a64cae6eeaaf69408c600a4e2ac17c9b737b1dd191",
+      "bytes": 1863
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleBudget.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\BattleBudget.java",
+      "sha256": "e799de040a4c5ef694a5adfc83cb2b72b1f63ef67682aee573b2d11148814b1d",
+      "bytes": 698
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BattleClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\BattleClient.java",
+      "sha256": "a8cc19aae9796145326447dfa0160bc44a5aa3aa867c45e81fdd2c6ed274506b",
+      "bytes": 353473
+    },
+    {
+      "path": "agent/src/io/rwagent/client/BootstrapClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\BootstrapClient.java",
+      "sha256": "8c6c2a9a0f809aa80262161129e46140b08b5a2ba8191094bc9cc99273c1b44b",
+      "bytes": 16036
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CapabilityTask.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\CapabilityTask.java",
+      "sha256": "227e1f8bc02ece44cc63796422f8551f6217ed15c8866547c70b9a7c22df394a",
+      "bytes": 1405
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CapabilityUnitMode.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\CapabilityUnitMode.java",
+      "sha256": "97c36e16bddaa99f255fdfa6fa71f61f01f6b446b4cd4fb67b838228914146f4",
+      "bytes": 3095
+    },
+    {
+      "path": "agent/src/io/rwagent/client/CommandArbiter.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\CommandArbiter.java",
+      "sha256": "8600e08ea0a275847dc23b30791a52847a9b49d849821d816f2ccf1fc1fd2d10",
+      "bytes": 7866
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ControlLoop.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ControlLoop.java",
+      "sha256": "b164e52a061bdd30492bf73671b2d1ceec3f5df5323bdfa2b8d1430aac290509",
+      "bytes": 12509
+    },
+    {
+      "path": "agent/src/io/rwagent/client/DevelopmentClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\DevelopmentClient.java",
+      "sha256": "89d3fb0ce4d2a4855737ab0c9fb3210bb1d320f6b054ce13a81bc6cdc45963e8",
+      "bytes": 27876
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EarlyExpansionNeed.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\EarlyExpansionNeed.java",
+      "sha256": "6af1fcdbb8b610fb1e1c66075b501ea6272e9f8251d49b5d53e63b9d3de90fbf",
+      "bytes": 3046
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EconomyClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\EconomyClient.java",
+      "sha256": "3ddfab552248014fbfc55e5dc2a082ec3e078001aa8be9a1435a8b32f7f2efa5",
+      "bytes": 15831
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EngagementGeometry.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\EngagementGeometry.java",
+      "sha256": "371ffaea5820aa63a40cf03e677e872328daeee23eb623aa01795295f0c8308e",
+      "bytes": 5642
+    },
+    {
+      "path": "agent/src/io/rwagent/client/EventAdapter.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\EventAdapter.java",
+      "sha256": "5086046d14d08c0636263bafbf3a9d09809b737d2decb4687a0101a2d4344b82",
+      "bytes": 34414
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ExecutionScheduler.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ExecutionScheduler.java",
+      "sha256": "bb743d10db150dbe58dd0a0f994485c1f62f87f98cd54855e3c81feda42ca52c",
+      "bytes": 10831
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ForceController.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ForceController.java",
+      "sha256": "93b58ee1c50b13716a2d984b336543fcad1f6027140590802df433983178ba2d",
+      "bytes": 22300
+    },
+    {
+      "path": "agent/src/io/rwagent/client/FrontierClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\FrontierClient.java",
+      "sha256": "0592a4264cd8e85408973ac896af28f471e1b7622b1277caf7506f5e4c3bab78",
+      "bytes": 245
+    },
+    {
+      "path": "agent/src/io/rwagent/client/G1Trace.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\G1Trace.java",
+      "sha256": "4f59641d74cbba027c7c9720f6bf6c9708494610670c200fbc7e7a100618cd45",
+      "bytes": 8500
+    },
+    {
+      "path": "agent/src/io/rwagent/client/GameClock.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\GameClock.java",
+      "sha256": "8ce8ab39edfae1121d9120a14fce323ce13bb3005608597fde57b614d940aa29",
+      "bytes": 7174
+    },
+    {
+      "path": "agent/src/io/rwagent/client/GeneralRegistry.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\GeneralRegistry.java",
+      "sha256": "d2a0125d81dca21dd127cf810b193572d0b443ff6ee9731f303845e7c00ede5c",
+      "bytes": 25645
+    },
+    {
+      "path": "agent/src/io/rwagent/client/Intent.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\Intent.java",
+      "sha256": "6b64d801417a4874b96d87c5018646df4f5792b8b54cd4a34a7b4309e1a9ead5",
+      "bytes": 5663
+    },
+    {
+      "path": "agent/src/io/rwagent/client/Json.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\Json.java",
+      "sha256": "0b82ea66b23fff4ce9d1b370a698bba5c66db09f5927bdbcfa91ccdfc13b1f19",
+      "bytes": 4224
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalArmyDirector.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\LocalArmyDirector.java",
+      "sha256": "5b446dd8b301cd82babcc7d8f8ac7eff37f09f42f010eb2ea524db593c18d1b8",
+      "bytes": 8471
+    },
+    {
+      "path": "agent/src/io/rwagent/client/LocalCrisisPolicy.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\LocalCrisisPolicy.java",
+      "sha256": "3ccffe1ac78be11fcc797008310af688e43a43cfd5c030d3edf904296b896317",
+      "bytes": 2524
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MatchClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\MatchClient.java",
+      "sha256": "875675e49ee7893b420cfb92540bb77520c9630f168b89920c9743d13968b853",
+      "bytes": 1091
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MineInvestmentPolicy.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\MineInvestmentPolicy.java",
+      "sha256": "dc916d8e4e7c5cfe274b7c2875b79c5edb5835cb874a14fc3119bafe349a5664",
+      "bytes": 7352
+    },
+    {
+      "path": "agent/src/io/rwagent/client/MoveExecution.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\MoveExecution.java",
+      "sha256": "c6ba21768448c2791525e9d2b941c99ebaa2f149a8c9ab0f2270539fe10ca993",
+      "bytes": 2120
+    },
+    {
+      "path": "agent/src/io/rwagent/client/NativeCreditWitness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\NativeCreditWitness.java",
+      "sha256": "cb43a6c1e018b95e724a245d52ebe0762a387a76b976ebb51584dd34232c21be",
+      "bytes": 6840
+    },
+    {
+      "path": "agent/src/io/rwagent/client/OpeningClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\OpeningClient.java",
+      "sha256": "cba4e393ae45cdffbdf03d5955874720713d54b2bd1631367f19491bfb307d69",
+      "bytes": 242
+    },
+    {
+      "path": "agent/src/io/rwagent/client/PreflightClient.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\PreflightClient.java",
+      "sha256": "1362aa70531a6b95c678ffbab7cb19ae3077ade2a8e4784fed2c01d80d74be93",
+      "bytes": 2431
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionCapacity.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ProductionCapacity.java",
+      "sha256": "df5ac0e9ff36e7c58fad898cadc64831fc0274c78b5d5dc4262e86429a8b9ae7",
+      "bytes": 1687
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ProductionRoute.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ProductionRoute.java",
+      "sha256": "175378528adfd2c01d29e7c456166a769ab9b82a12623c18de67bf7e2437593a",
+      "bytes": 2426
+    },
+    {
+      "path": "agent/src/io/rwagent/client/ReportFiles.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\ReportFiles.java",
+      "sha256": "423a74949cb0d2aeb40bb08a3b51dbf375dd01ddcc273681baf1241c8519063b",
+      "bytes": 4654
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SearchAreaNeed.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\SearchAreaNeed.java",
+      "sha256": "1d37b3a1b53f55408eac5924ac5184950b010376e05c21dbaaae7ee9c96b7f88",
+      "bytes": 2809
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SearchTask.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\SearchTask.java",
+      "sha256": "345ac93efdae83c3106f5c49ea4dccc23168f498b09d94fcd3df6a86b5cad5f6",
+      "bytes": 3036
+    },
+    {
+      "path": "agent/src/io/rwagent/client/StrategyDirector.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\StrategyDirector.java",
+      "sha256": "cb38df1fa5f4891ad94819893f0c5c3b3542de76433b0506ede0bec1505d5f9f",
+      "bytes": 85947
+    },
+    {
+      "path": "agent/src/io/rwagent/client/SurplusSpendingPolicy.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\SurplusSpendingPolicy.java",
+      "sha256": "1b59af8cbde81b9d2730903cc5c90fbe5597598b1fd5614c9b0eff19c0bf5e2b",
+      "bytes": 10406
+    },
+    {
+      "path": "agent/src/io/rwagent/client/TargetCatalog.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\TargetCatalog.java",
+      "sha256": "dfbefbc1ac0dd733a7582638ab07c7876236dabafc615290e801d5cf10e4aff0",
+      "bytes": 8550
+    },
+    {
+      "path": "agent/src/io/rwagent/client/WorldState.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\client\\WorldState.java",
+      "sha256": "45c791026665ac53597117068a4da413cbd09d3aaed17584ce2e3a64d853c3aa",
+      "bytes": 11132
+    },
+    {
+      "path": "agent/src/io/rwagent/headless/HeadlessRunner.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\src\\io\\rwagent\\headless\\HeadlessRunner.java",
+      "sha256": "b5595fc73e6777133da1ab79c12a5a0904fde9f6288d250df28a976cccd33668",
+      "bytes": 7030
+    },
+    {
+      "path": "agent/tests/G3NativeAcceptanceHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\G3NativeAcceptanceHarness.java",
+      "sha256": "1a72156d32a9d7a585e5c9132108b0a891cd70eb41eb7abf2e36a71ddccae3ab",
+      "bytes": 28934
+    },
+    {
+      "path": "agent/tests/G3SpainTerrainNativeHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\G3SpainTerrainNativeHarness.java",
+      "sha256": "a50331488d609cf67865432174d8103b2f951d92da8f5de9fd411fefcda9be40",
+      "bytes": 10158
+    },
+    {
+      "path": "agent/tests/G41EarlyOperationsNativeHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\G41EarlyOperationsNativeHarness.java",
+      "sha256": "cbef0df63601063e77f4134cd691bc3889d4abbc1ff9e7102c2366befbe9ab9e",
+      "bytes": 23051
+    },
+    {
+      "path": "agent/tests/G4ForceNativeHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\G4ForceNativeHarness.java",
+      "sha256": "e3bf61c73808a4eaa688b8d4bcfc6d4ec46b2cb9a1117ed0ce32fc1ec778630d",
+      "bytes": 18920
+    },
+    {
+      "path": "agent/tests/StaticMapNativeHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\StaticMapNativeHarness.java",
+      "sha256": "41d39f7ad635931f4c8d2ac9995a0143774f2bcd65f3dca0c87be0def6a61bd9",
+      "bytes": 13769
+    },
+    {
+      "path": "agent/tests/TerrainNativeCostHarness.java",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\TerrainNativeCostHarness.java",
+      "sha256": "d0bf74cd59fbe6c58d0434b6966e42c856bc7764ef859bff0b01f14345b8ddd1",
+      "bytes": 9116
+    },
+    {
+      "path": "agent/tests/test_static_map_oracle.py",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\final-source\\agent\\tests\\test_static_map_oracle.py",
+      "sha256": "eec3a69fd277dbf788062933a451deb23051292a4bf183e260c2c57356e1d890",
+      "bytes": 3834
+    }
+  ],
+  "checksTotal": 657,
+  "scenarios": [
+    {
+      "scenario": "static-baseline",
+      "status": "PASS",
+      "checks": 119,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline\\static-map-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline.log"
+    },
+    {
+      "scenario": "static-override",
+      "status": "PASS",
+      "checks": 101,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override\\static-map-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override.log"
+    },
+    {
+      "scenario": "early",
+      "status": "PASS",
+      "checks": 139,
+      "g4Forces": true,
+      "earlyOperations": true,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early.log"
+    },
+    {
+      "scenario": "g4",
+      "status": "PASS",
+      "checks": 60,
+      "g4Forces": true,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-force-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4.log"
+    },
+    {
+      "scenario": "production",
+      "status": "PASS",
+      "checks": 168,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production.log"
+    },
+    {
+      "scenario": "modes",
+      "status": "PASS",
+      "checks": 30,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes.log"
+    },
+    {
+      "scenario": "competition",
+      "status": "PASS",
+      "checks": 31,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition.log"
+    },
+    {
+      "scenario": "spain",
+      "status": "PASS_BOUNDED_ACCESSORS",
+      "checks": 9,
+      "g4Forces": false,
+      "earlyOperations": false,
+      "summary": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-summary.json",
+      "rawLog": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain.log"
+    }
+  ],
+  "repositoryOracle": {
+    "status": "PASS",
+    "checks": 25,
+    "resourceTiles": 14,
+    "independentFromNativeMapA": true,
+    "artifact": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-repository-oracle.json",
+    "repositorySource": {
+      "path": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\knowledge\\TERRAIN_MAP_CANDIDATES.json",
+      "absolutePath": "G:\\deepseek 工作台\\GitHub发布\\Rusted-Warfare-Agent\\knowledge\\TERRAIN_MAP_CANDIDATES.json",
+      "sha256": "ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9",
+      "bytes": 253855
+    },
+    "isolatedReadOnlyCopy": {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\reference-knowledge\\TERRAIN_MAP_CANDIDATES.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\reference-knowledge\\TERRAIN_MAP_CANDIDATES.json",
+      "sha256": "ec38ef06c7ba378db7d4eb420a087f5205183a0bf02df400085db4d80196beb9",
+      "bytes": 253855
+    }
+  },
+  "allFocusedChecksIncludingRepositoryOracle": 682,
+  "nativeTerrainCostComparedCells": 534000,
+  "nativeTerrainCostMismatches": 0,
+  "constructionCompletion": {
+    "status": "NEEDS_EVIDENCE",
+    "actualProgress": 0.0,
+    "need": {
+      "knowledgeId": "6b2dea38-ef52-474c-9649-05581f277ed2:static-map:d3f33694-e526-46b9-8428-e37c1627d353",
+      "sourceObservationId": "d99d9917-1e7f-4e83-9494-b8781cf41e67:o:8",
+      "tile": 3639,
+      "builderId": 2,
+      "x": 410.0,
+      "y": 790.0,
+      "state": "CONSTRUCTION_OBSERVED",
+      "acceptedFrame": 125,
+      "safe": "UNKNOWN",
+      "enemyOccupancy": "UNKNOWN",
+      "dynamicReachability": "UNKNOWN",
+      "buildable": "UNKNOWN"
+    },
+    "reason": "ORIGINAL_CONTROLLED_BUILDER_UPDATE_DID_NOT_FINISH_NATIVE_CONSTRUCTION"
+  },
+  "artifacts": [
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline.log",
+      "sha256": "580463f3f8a6b123907259f29f4238e0ec0ab60f659e7c822f55a25cc4949a21",
+      "bytes": 10115
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline\\static-map-http.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline\\static-map-http.jsonl",
+      "sha256": "fde9ac28e42282248d2c128d5340bc0beec478ab4d47f50a5807de7ddf582bc1",
+      "bytes": 25744
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline\\static-map-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-baseline\\static-map-summary.json",
+      "sha256": "c34ab00ce840fd5f7a773d82b30207e4c47a08580e86499b552c7afe2e7ed8b0",
+      "bytes": 244
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override.log",
+      "sha256": "7d53e6140992c618dee761af5b75cbf77184a41401fc712a64b32b17ce97960a",
+      "bytes": 10214
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override\\static-map-http.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override\\static-map-http.jsonl",
+      "sha256": "6cebb8f66385331bd1f8adfb1af8d189eced7bc6e3c1cab6c16b4812374f0113",
+      "bytes": 24136
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override\\static-map-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-override\\static-map-summary.json",
+      "sha256": "2a51ccc5ce4cf9a1c5fe76387f6f20241eadac17843d8dddd831a3c128307857",
+      "bytes": 242
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early.log",
+      "sha256": "43cfd5b26d430b6dd7e07535eeca81aff91ee7cdd31e4e9584e695644687794e",
+      "bytes": 77698
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-early-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-early-battle.jsonl",
+      "sha256": "7bf4478061e9fcab4fb3e217cd1d745a550166d3e9a95bb55d186e1594af3633",
+      "bytes": 2650892
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-fixture.jsonl",
+      "sha256": "0daf35e3be9513409d46f1ae0d88198107f3e2c7ac57f4048639d572bb20ff8f",
+      "bytes": 66523
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-early\\g41-summary.json",
+      "sha256": "122c924423500080e31ba8c94c32e213cfc708bd05ebe1c462f9477ac1b745cc",
+      "bytes": 336
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4.log",
+      "sha256": "44fe781e9834c1564d7b06904662c7c6a057eb3890b44ead3a886aa9083ab68e",
+      "bytes": 62285
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-force-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-force-fixture.jsonl",
+      "sha256": "7281fb89840b1bb9ea55bde11bcaf08cf26e8bdb8ca9bd32b0d4b9f99a937960",
+      "bytes": 52734
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-force-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-force-summary.json",
+      "sha256": "eb36907e7519be91642b673d99ae2aa825549dd7790f00e37b068cd6705301f3",
+      "bytes": 298
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-forces-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-g4\\g4-forces-battle.jsonl",
+      "sha256": "248153384717c0671c4fd1924534a1b96357ebf009bbdea3cad93e2c7cb4e22b",
+      "bytes": 1156286
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production.log",
+      "sha256": "28cb7339e980949f0870c987e86d055e7e1568f818f37d00673612b99e79fcdd",
+      "bytes": 18974
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-abundant-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-abundant-battle.jsonl",
+      "sha256": "2169dc667e8b5a19c293671230a4b98fa9b9c21ca02a1931041f38394774ae9d",
+      "bytes": 811433
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-construction-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-construction-battle.jsonl",
+      "sha256": "7b9545d47c347b4cf2cfb1511e203921552dfe04d8bd2cc92bf2c59e02553d95",
+      "bytes": 127643
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-credits-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-credits-battle.jsonl",
+      "sha256": "3d5350653c024d25e0dc2545db8ab44327ba0438a19f3eeb5fb1af9aa1e11ce0",
+      "bytes": 496176
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-fixture.jsonl",
+      "sha256": "426f1cc990e1be12562b5f3d1d19c001c5835ec48930690a01223b65db4ab40f",
+      "bytes": 9588
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-slots-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-slots-battle.jsonl",
+      "sha256": "9320ccd4a442cc5926750faca82451865c221a1f4ff7570882efa8433f2c57b9",
+      "bytes": 502303
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-production\\production-summary.json",
+      "sha256": "7c0c06011f2ad166db96a06cd118876047d3f939cef7b80e5a672681c8d285b3",
+      "bytes": 252
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes.log",
+      "sha256": "618de2413d54e017a265ae936ce45f6dc3fb5ce2866e5d563a4c37ca2a9bbd91",
+      "bytes": 20994
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-battle.jsonl",
+      "sha256": "a9f9029d8132bffa196a7a3821fe568f8cf10c22e67264ed093a57c453e2241c",
+      "bytes": 993509
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-fixture.jsonl",
+      "sha256": "5f62d238391efba2f1f007bb3398be4d62178127375a5e2efa8416d7b292983f",
+      "bytes": 11258
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-modes\\modes-summary.json",
+      "sha256": "c76715ec7e54079106414b92891aa58fb731a1b1d8f57201e83464798718f31b",
+      "bytes": 241
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition.log",
+      "sha256": "e0fd958682f5e542fcc1089e7bc0dfef25c5a44a603e908a5e6163c42f91ab78",
+      "bytes": 12623
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-battle.jsonl",
+      "sha256": "45617d12143023a7d4197bb5cdf043dd9fd8ecd2eb42f2b76fc566dadd8a7fb9",
+      "bytes": 345151
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-fixture.jsonl",
+      "sha256": "95cece6b34b9b2207baa4ff13b872531460e3e932a37638e3dd3fa7bdc53662b",
+      "bytes": 2868
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-competition\\competition-summary.json",
+      "sha256": "3abf779f76856f7ce7a2c902554cf0a4dc0d5de4cef4638ebb9b8671d42db45f",
+      "bytes": 253
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain.log",
+      "sha256": "fa3dd6a7b945305da61a86e7f24ec5506e2dd7a4140e793ddb1e9fb8621c8fc0",
+      "bytes": 28556
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-battle.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-battle.jsonl",
+      "sha256": "42edefc476db4c2226f3fd56605fcc0d55bc71808850e23d368520aab00162b9",
+      "bytes": 335995
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-fixture.jsonl",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-fixture.jsonl",
+      "sha256": "0bdff441c4c270711ded5a38c6ff9e98e768d624e4c6a018a89de76f190dad1e",
+      "bytes": 18862
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-summary.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-spain\\spain-summary.json",
+      "sha256": "4cbf315348ff3046566442852f723da76818c802e89a7fcced945e8b273bcad1",
+      "bytes": 597
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-harness-compile.log",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-harness-compile.log",
+      "sha256": "d651472b202c3591b528a6549b9c7b869937e549f09312059242e7acb2500f1e",
+      "bytes": 139
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-repository-oracle.json",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\g41-full-static-repository-oracle.json",
+      "sha256": "c8d1774da7044e3b93e07b209938952ca3b2d2e93f00462df5dc6634d0a6d0a5",
+      "bytes": 1481
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\run-g41-official-native.ps1",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\run-g41-official-native.ps1",
+      "sha256": "705becde321a867fb147ddcbb83fcb3861ca695e3df290c22a5ead658515dfff",
+      "bytes": 4399
+    },
+    {
+      "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\write-g41-native-manifest.py",
+      "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\write-g41-native-manifest.py",
+      "sha256": "80851d4b007b2d4978278018ffb0417d46f2be72f39ddf6a1dd051fe5364ed2a",
+      "bytes": 9702
+    }
+  ],
+  "nativeEngine": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02",
+  "nativeEngineSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "copiedStaticMaps": [
+    {
+      "map": "[p2]Big Island (2p).tmx",
+      "original": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\assets\\maps\\skirmish\\[p2]Big Island (2p).tmx",
+      "copied": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\assets\\maps\\skirmish\\[p2]Big Island (2p).tmx",
+      "sha256": "bc6b59c1aef04e3bf9d7ec10d1276c0b31a3f62a35b9996405492717bc446593"
+    },
+    {
+      "map": "[p8]Many Islands (8p).tmx",
+      "original": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\assets\\maps\\skirmish\\[p8]Many Islands (8p).tmx",
+      "copied": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\assets\\maps\\skirmish\\[p8]Many Islands (8p).tmx",
+      "sha256": "decfe00532a50ff8b379ed5f5d269789d757f27d89865f8b02ec799a99d81a01"
+    }
+  ],
+  "staticOverrideFixture": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\assets\\maps\\skirmish\\E2_PathingOverride_two_cells.tmx",
+    "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\assets\\maps\\skirmish\\E2_PathingOverride_two_cells.tmx",
+    "sha256": "a292873a47be961b470dae3319db3fb03116aed1522785146f3f213de1e4eb09",
+    "bytes": 16368
+  },
+  "suppliedSpainMap": {
+    "path": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "absolutePath": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\mods\\maps\\[10p] 10p 西班牙混战_by_MP97.tmx",
+    "sha256": "342db6d8a8b8320b6a271b9e3c8a4c29c96a203e206c4be690c44bbef5882746",
+    "bytes": 365704
+  },
+  "environmentFailureArchive": "G:\\deepseek 工作台\\_validation\\octopus-g41-20261003\\native\\pre-spain-assets",
+  "scopeLimits": [
+    "Controlled native clock, fog, height, positions and original producer updates are recorded fixtures.",
+    "Native command.k, actual queues, own births, guarded extractor construction/payment and later own observations are real.",
+    "Natural production timing, movement arrival, constructor completion and a natural match are not established.",
+    "Spain direct Dive/accessors are bounded evidence; natural submerged traversal and attack firing need evidence.",
+    "Static terrain/resource prior does not prove current occupancy, safety, buildability or dynamic reachability."
+  ]
+}

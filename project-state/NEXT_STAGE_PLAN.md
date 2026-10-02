@@ -1,13 +1,13 @@
 # Next Stage Plan
 
-Updated: 2026-10-02 after Octopus G4. 当前授权已完成；以下是下一断点建议，不自动授权G5或部署。
+2026-10-03，G4.1已完成；下一建议为G4.2自然Early Operations隔离验收，不自动进入G5。
 
-先读 [G4 handoff](../handoff/HANDOFF_Octopus_G4_2026-10-02.md)、[状态契约](../docs/OCTOPUS_G4_FORCE_LIFECYCLE.md)、[manifest](../deliveries/octopus-g4-2026-10-02/candidate-manifest.json)。从当前分支最新提交继续，测试源码54b9de1，保留G3硬化与G4迁移；不从旧解压、9/30冻结源码重做。
+从当前分支最新HEAD继续，测试源码39a2670；先读G4.1 handoff、Early/Static两个契约、manifest。71/71 full和同Jar native657checks绿，不能重复从零审计或从旧冻结源码开始。
 
-1. 优先明确下一阶段两个真实接口：严重危机/health能否中断JOINING及reservation取消；入口零军队与FREE积累何时birth新General。G4未发明这两类策略，现有回归固定此边界。
-2. 新授权G5时，把CombatLedger/Performance、ThreatTask/HOT-COLD建立在合法WorldState事实上；敌失联不算死亡，receipt不算mode/arrival，队列空不算产品ready。不要重复G0～G3全仓审计。
-3. 若需全runtime调度，先定义成熟经济/Strategy同步返回receipt与commitment、paid/ghost的收集取消语义，再扩大batch。当前仅G4 force有真实priority裁决，不能宣传global arbitrate。
-4. 独立小范围补证据可关注Spain自然潜水route和实际fire/damage、施工effect缺失与unknown transport长持credit。当前受控原版native验收不证明自然5×、自然生产耗时或战争获益；桌面部署/自然验收另需授权。
-5. SearchArea继续contract-only；coverage/终局触发/水下发现与每成员path证据缺项仍NEEDS_EVIDENCE。无Scout/Reclaim、动态编制或将军数量上限。
+1. 在独立原版环境以正常simulation ticks，标准零普通军队/低资金/tier1或无工厂/fog开跑生产→真实加入→screen→原生建矿→ready→ACTIVE。记录game-time阶段延迟和真正卡点；禁止fixture位置/ready变化冒充自然推进，不操作桌面。
+2. 优先核实静态approach在动态障碍下实际抵达、施工ready、screen对早期扩张的作用与production节奏，再按证据做小修。未知安全/敌方占用不补猜；静态已知不改当前visibility规则。
+3. 自然核验后再讨论G5授权。严重危机/health中断JOINING、CombatLedger/Performance/ThreatTask/HOT-COLD、动态编制/数量上限尚未实现。SearchArea保持inactive。
+4. 扩大runtime batch前先定义成熟经济/Strategy同步receipt/commitment与取消语义；现在只有primary force和production后optional force两段真实priority，其他lane仍immediate。
+5. Spain自然潜水进入/实际伤害、transportunknown长持credit独立小范围补证，不替代前期主闭环验收。
 
-当前Windows68/68和同JAR native298checks绿；首遍日志兼容失败保留、必要修正后完整重跑一次。无新代码风险不重复完整矩阵。子智能体仅Sol6.1/high或用户指定同级，禁Astra；主智能体统一full。兼容开关g4Forces=false保留硬化G3，g3Execution=false历史gate。不部署、不push、不启停桌面游戏。
+当前full仅一次且零失败；无新改动/问题不重复跑完整矩阵。子智能体Sol6.1/high，根代理统一full。未deploy/push/桌面操作；9/30冻结baseline只核血统。

@@ -1,5 +1,7 @@
 # Octopus G4 — General / FREE / LocalResponse / JOINING contract
 
+G4.1 (2026-10-03) extends absence-driven first formation and early static-map logistics: [Early Operations](OCTOPUS_G41_EARLY_OPERATIONS.md), [Static Map Knowledge](OCTOPUS_G41_STATIC_MAP_KNOWLEDGE.md). The original G4 contract below remains historical; its zero-army no-birth boundary is superseded in the enabled G4.1 path. Ownership, response clear and later joining witnesses remain intact.
+
 2026-10-02. G3 native green checkpoint `b3d0a3b`; runtime switch `rwagent.g4Forces`, enabled by default when G3 execution is enabled. This is the minimal own-force migration; no G5 combat/crisis ledger or new General birth policy.
 
 ## Authority and independent control

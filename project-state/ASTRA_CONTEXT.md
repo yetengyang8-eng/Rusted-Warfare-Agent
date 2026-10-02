@@ -1,3 +1,11 @@
+# 当前 G4.1 接手入口 — 2026-10-03
+
+当前分支codex/octopus-g3-execution-20261002；起点5562ec7，测试源码39a2670；Windows71/71、39Java、29Python/473tests、同Jar native657checks绿。零军队FORMING→ACTIVE、静态地图缓存、原生合法扩张与轻量screen已接线。自然局/ready施工NEEDS_EVIDENCE，未deploy/push/进入G5。
+
+先读[CURRENT_STATE](CURRENT_STATE.md)、[G4.1 handoff](../handoff/HANDOFF_Octopus_G41_2026-10-03.md)、[Early契约](../docs/OCTOPUS_G41_EARLY_OPERATIONS.md)、[Static契约](../docs/OCTOPUS_G41_STATIC_MAP_KNOWLEDGE.md)。下一建议G4.2自然隔离核验。子智能体Sol6.1/high，禁Astra。下文完整保留历史导航，旧current/latest仅对旧阶段有效。
+
+---
+
 # 当前 G4 接手入口 — 2026-10-02
 
 从当前最新G4交付继续：分支codex/octopus-g3-execution-20261002，测试源码54b9de1；Windows68/68、37Java/28Python466 tests、同JAR原生298checks绿灯。首遍日志兼容失败及修正完整重跑均保留；未部署/push/自然验收，未进入G5。
