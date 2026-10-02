@@ -240,6 +240,8 @@ public final class EventAdapter {
     private String validateRows(GameClock.Observation o,Map<String,Object> payload){
         String key="/state".equals(o.endpoint)?"ownUnits":"/combat/observe".equals(o.endpoint)?"visibleEnemies":"/scout/observe".equals(o.endpoint)?"visibleThreats":"/combat/production".equals(o.endpoint)?"factories":null;
         if(key==null)return null;
+        if("visibleEnemies".equals(key)&&o.sourceGameTimeMs==null)return "MISSING_COMBAT_SOURCE_TIME_COVERAGE";
+        if("visibleThreats".equals(key)&&o.sourceGameTimeMs==null&&o.sourceFrame==null)return "MISSING_SCOUT_NATIVE_STAMP_COVERAGE";
         if(!(payload.get(key) instanceof List))return "MISSING_OR_INVALID_ENTITY_LIST";
         Set<Long> seen=new LinkedHashSet<Long>();
         for(Object value:(List<?>)payload.get(key)){

@@ -91,6 +91,9 @@ public final class WorldStateHarness {
         Map<String,Object> stale=combat("a",130,4,list(enemy(21,129)));
         EventAdapter.Update bad=f.accept("/combat/observe",stale);
         check(!bad.accepted&&count(bad,"ENEMY_LOST_VISIBILITY")==0&&count(bad,"ENEMY_UPDATED")==0,"stale visible row causes evidence gap, not false visibility loss");
+        Map<String,Object> noCombatTime=combat("a",135,5,list());noCombatTime.remove("gameTimeMs");
+        EventAdapter.Update unknownTime=f.accept("/combat/observe",noCombatTime);
+        check(!unknownTime.accepted&&count(unknownTime,"ENEMY_LOST_VISIBILITY")==0,"empty combat list without source time is unknown coverage");
         Map<String,Object> staleDomain=enemy(21,140);staleDomain.put("domainObservedAtGameTimeMs",130L);
         EventAdapter.Update domain=f.accept("/combat/observe",combat("a",140,5,list(staleDomain)));
         check(domain.snapshot.enemies().get(21L).currentField("targetDomain").equals("UNKNOWN"),"stale domain cannot be borrowed from fresh HP");
@@ -166,6 +169,8 @@ public final class WorldStateHarness {
         EventAdapter.Update sg=f.accept("/scout/observe",scout);
         check(count(sg,"SOURCE_COVERAGE_GAP")==1&&event(sg,"SOURCE_COVERAGE_GAP").data.get("gameGapBasis").equals("STATE_DETECTION_ANCHOR_NOT_SOURCE_TIME"),"frame-only source game coverage uses explicitly separate detection anchor");
         check(count(sg,"LOCAL_THREAT_BECAME_NOT_VISIBLE")==0,"no source continuity fabricated across anchor gap");
+        scout.remove("frame");EventAdapter.Update noScoutStamp=f.accept("/scout/observe",scout);
+        check(!noScoutStamp.accepted&&count(noScoutStamp,"LOCAL_THREAT_BECAME_NOT_VISIBLE")==0,"unstamped scout list cannot establish current visibility coverage");
         Fixture paused=new Fixture("paused");paused.accept("/state",state("s",0,1,1,list(unit(1,100,1,0))));paused.accept("/combat/observe",combat("s",1,1,list(enemy(2,1))));
         paused.wall+=1200;EventAdapter.Update refreshed=paused.accept("/combat/observe",combat("s",1,1,list(enemy(2,1))));
         check(count(refreshed,"ENEMY_UPDATED")==0&&count(refreshed,"ENEMY_LOST_VISIBILITY")==0&&!refreshed.snapshot.enemies().get(2L).current.isEmpty(),"fresh reads during pause do not expire solely from old receipt wall time");
