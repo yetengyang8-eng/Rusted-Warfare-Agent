@@ -36,7 +36,7 @@ public final class GeneralRegistryHarness {
         CommandArbiter a=new CommandArbiter();Set<Long> ids=new LinkedHashSet<Long>(Arrays.asList(1L,2L,3L,4L,5L,6L));a.observe(new CommandArbiter.Stamp("s","team:0",1,0),ids);
         GeneralRegistry r=new GeneralRegistry(a);r.bootstrap(Arrays.asList(Arrays.asList(1L),Arrays.asList(2L),Arrays.asList(3L),Arrays.asList(4L),Arrays.asList(5L)),ids);
         check(r.generals().size()==5,"bootstrap is not limited by old four-cohort cap");Set<String> owners=new HashSet<String>();
-        for(GeneralView g:r.generals()){check(owners.add(g.owner)&&g.desiredStrength==1&&g.members.size()==1,"each seed creates independent General and fixed initial desired strength");
+        for(GeneralView g:r.generals()){check(owners.add(g.owner)&&g.desiredStrength==LocalArmyDirector.FORM_MINIMUM&&g.phase==Phase.FORMING&&g.members.size()==1,"each small seed creates independent FORMING General with explicit minimum strength");
             long id=g.members.iterator().next();check(a.owns(g.owner,id)&&a.ownerGeneration(id)==2,"bootstrap genuinely claims then transfers General owner");}
         check(r.unit(6).allocation==Allocation.FREE&&r.freeCandidateIds().contains(6L),"unseeded initial unit remains FREE");
         ids.add(7L);a.observe(new CommandArbiter.Stamp("s","team:0",2,100),ids);check(r.admitFree(7,HealthRole.NORMAL),"new observed ordinary recruit admits FREE");

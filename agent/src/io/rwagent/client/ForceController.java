@@ -5,6 +5,15 @@ import java.util.*;
 /** G4 ordinary force proposals. Transport and deterministic batch admission belong to the host.
  * Only actual accepted native receipts advance command cooldowns or joining commitments. */
 public final class ForceController {
+    /** A lawful static resource objective; this does not assert occupancy or combat safety. */
+    public static final class ExpansionSupport {
+        public final int targetTile;
+        public final String sourceKnowledgeId;
+        public ExpansionSupport(int targetTile,String sourceKnowledgeId){
+            if(targetTile<0||sourceKnowledgeId==null||sourceKnowledgeId.isEmpty())throw new IllegalArgumentException("Static resource tile and knowledge identity required");
+            this.targetTile=targetTile;this.sourceKnowledgeId=sourceKnowledgeId;
+        }
+    }
     public interface Host {
         Map<String,Object> read(String path,String event)throws Exception;
         List<Map<String,Object>> eligible(List<Map<String,Object>> actors,Map<String,Object> target,Map<String,Object> enemies)throws Exception;
@@ -28,6 +37,8 @@ public final class ForceController {
     private final Host host;
     private static final long ORDER_INTERVAL_MS=8000;
     private final Map<Long,Long> generalAccepted=new HashMap<Long,Long>(),joinAccepted=new HashMap<Long,Long>(),responseClearedFrame=new HashMap<Long,Long>();
+    private final Map<Long,Long> screenAccepted=new HashMap<Long,Long>();
+    private ExpansionSupport expansionSupport;
     private Response response;
     private long responseSequence;
     private static final class Response {
@@ -37,6 +48,8 @@ public final class ForceController {
             owner="local-response:"+sequence;this.actors=actors;}
     }
     public ForceController(GeneralRegistry registry,Host host){if(registry==null||host==null)throw new IllegalArgumentException("Registry and host required");this.registry=registry;this.host=host;}
+    public void setExpansionSupport(ExpansionSupport support){expansionSupport=support;}
+    public void clearExpansionSupport(){expansionSupport=null;}
     /** Root may call this before its formal replenishment allocator; collect also reconciles idempotently. */
     public void reconcile(Map<String,Object> state,Map<String,Object> enemies,long now){
         if(response==null)return;
@@ -51,6 +64,7 @@ public final class ForceController {
         collectLocalResponse(state,enemies,now);
         collectJoining(state,now);
         collectGenerals(state,enemies,now);
+        collectFormingScreens(state,now);
         // FREE movement is deliberately absent without a lawful, useful home-resource route.
     }
     private void clearResponse(){if(response==null)return;for(Long actor:response.actors){GeneralRegistry.UnitView unit=registry.unit(actor);
@@ -83,7 +97,8 @@ public final class ForceController {
             for(Map<String,Object> actor:candidates){
                 if(selected.size()>=LocalCrisisPolicy.MAX_RESPONDERS)break;
                 GeneralRegistry.UnitView unit=registry.unit(id(actor));
-                if(unit.generalId!=null){Integer left=sizes.get(unit.generalId);if(left==null||left<=LocalArmyDirector.RELEASE_BELOW)continue;sizes.put(unit.generalId,left-1);}
+                if(unit.generalId!=null){Integer left=sizes.get(unit.generalId);GeneralRegistry.GeneralView general=registry.general(unit.generalId);
+                    if(left==null||general==null||general.phase==GeneralRegistry.Phase.ACTIVE&&left<=LocalArmyDirector.RELEASE_BELOW)continue;sizes.put(unit.generalId,left-1);}
                 selected.add(id(actor));hp+=number(actor,"hp");
                 if(hp>=enemyHp*LocalCrisisPolicy.HP_FACTOR)break;
             }
@@ -111,15 +126,17 @@ public final class ForceController {
             final GeneralRegistry.UnitView unit=registry.unit(initial.unitId);
             if(unit==null||unit.membership!=GeneralRegistry.Membership.JOINING||unit.reservedGeneralId==null)continue;
             GeneralRegistry.GeneralView general=registry.general(unit.reservedGeneralId);Map<String,Object> own=find(state,unit.unitId);
-            if(general==null||!general.centroidKnown||general.centroidFrame!=frame||!ready(own)||now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
-            if(unit.joinAcceptedFrame>=0&&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-general.x,number(own,"orderY")-general.y)<1)continue;
+            if(general==null||!general.joinTargetKnown||general.phase==GeneralRegistry.Phase.ACTIVE&&general.centroidFrame!=frame||!ready(own)||now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
+            if(unit.joinAcceptedFrame>=0&&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-general.joinTargetX,number(own,"orderY")-general.joinTargetY)<1)continue;
             List<Long> ids=Collections.singletonList(unit.unitId);
-            host.collect(new Proposal(unit.owner,ids,"/command/move?unitId="+unit.unitId+"&x="+general.x+"&y="+general.y,"JOINING",50,"MOVE_TO_CURRENT_GENERAL_CENTROID",
+            host.collect(new Proposal(unit.owner,ids,"/command/move?unitId="+unit.unitId+"&x="+general.joinTargetX+"&y="+general.joinTargetY,"JOINING",50,
+                general.phase==GeneralRegistry.Phase.FORMING?"MOVE_TO_FORMATION_OWN_ANCHOR":"MOVE_TO_CURRENT_GENERAL_CENTROID",
                 receipt->{Long actualFrame=GameClock.number(receipt.get("frame"));if(actualFrame!=null&&actualFrame>=frame&&registry.joinAccepted(unit.unitId,actualFrame))joinAccepted.put(unit.unitId,now);}));
         }
     }
     private void collectGenerals(Map<String,Object> state,Map<String,Object> enemies,long now)throws Exception{
         for(final GeneralRegistry.GeneralView general:registry.generals()){
+            if(general.phase!=GeneralRegistry.Phase.ACTIVE)continue;
             if(!general.centroidKnown||!Objects.equals(Long.valueOf(general.centroidFrame),GameClock.number(state.get("frame")))||now-last(generalAccepted,general.id.value)<ORDER_INTERVAL_MS)continue;
             List<Map<String,Object>> actors=new ArrayList<Map<String,Object>>();for(Long id:general.members){GeneralRegistry.UnitView unit=registry.unit(id);Map<String,Object> own=find(state,id);
                 if(unit!=null&&unit.membership==GeneralRegistry.Membership.ATTACHED&&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE
@@ -144,6 +161,34 @@ public final class ForceController {
             host.collect(new Proposal(general.owner,ids,attack(ids,number(plan,"targetX"),number(plan,"targetY")),"GENERAL",30,"NATIVE_KNOWN_ANCHOR_FRONTIER",
                 receipt->{generalAccepted.put(general.id.value,now);registry.updateGeneralGoal(general.id,number(plan,"targetX"),number(plan,"targetY"),null);}));
         }
+    }
+    private void collectFormingScreens(Map<String,Object> state,long now)throws Exception{
+        final ExpansionSupport support=expansionSupport;if(support==null)return;
+        for(final GeneralRegistry.GeneralView general:registry.generals()){
+            if(general.phase!=GeneralRegistry.Phase.FORMING)continue;
+            for(final Long actor:general.members){GeneralRegistry.UnitView unit=registry.unit(actor);Map<String,Object> own=find(state,actor);
+                if(unit!=null&&unit.membership==GeneralRegistry.Membership.ATTACHED&&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE
+                        &&unit.healthRole==GeneralRegistry.HealthRole.NORMAL&&unit.externalOwner==null&&general.owner.equals(unit.owner)
+                        &&ready(own)&&number(own,"hp")>=number(own,"maxHp")*.5&&now-last(screenAccepted,actor)>=ORDER_INTERVAL_MS){
+                    Map<String,Object> plan=host.read("/static-map/approach?unitId="+actor+"&tile="+support.targetTile,"g41_forming_expansion_approach");
+                    if(!staticApproachCurrent(plan,state,now,actor,support))continue;
+                    // Each actor is its own path anchor. A static short segment does not prove
+                    // hidden occupancy, dynamic safety, final arrival or another member's route.
+                    host.collect(new Proposal(general.owner,Collections.singletonList(actor),
+                        "/command/move?unitId="+actor+"&x="+number(plan,"waypointX")+"&y="+number(plan,"waypointY"),"FORMING_SCREEN",20,
+                        "STATIC_ANCHOR_APPROACH_DYNAMIC_UNKNOWN:knowledge="+support.sourceKnowledgeId+":tile="+support.targetTile+":anchor="+actor,
+                        receipt->{screenAccepted.put(actor,now);}));
+                }
+            }
+        }
+    }
+    private static boolean staticApproachCurrent(Map<String,Object> plan,Map<String,Object> state,long now,long actor,ExpansionSupport support){
+        if(plan==null||!"KNOWN".equals(plan.get("status"))||!Boolean.TRUE.equals(plan.get("staticOnly"))||!Boolean.TRUE.equals(plan.get("staticPathKnown")))return false;
+        Long unit=GameClock.number(plan.get("unitId")),tile=GameClock.number(plan.get("targetTile")),sourceFrame=GameClock.number(plan.get("frame")),frame=GameClock.number(state.get("frame")),sourceTime=GameClock.number(plan.get("gameTimeMs"));
+        Object session=state.get("sessionId");
+        return unit!=null&&unit==actor&&tile!=null&&tile==support.targetTile&&support.sourceKnowledgeId.equals(plan.get("knowledgeId"))
+                &&session instanceof String&&session.equals(plan.get("sessionId"))&&frame!=null&&sourceFrame!=null&&sourceFrame>=frame&&sourceTime!=null&&sourceTime>=now
+                &&finite(plan.get("waypointX"))&&finite(plan.get("waypointY"));
     }
     private static List<Long> validatedIds(List<Map<String,Object>> candidates,List<Map<String,Object>> eligible){List<Long> ids=new ArrayList<Long>();
         for(Map<String,Object> actor:eligible){long id=id(actor);if(contains(candidates,id)&&!ids.contains(id))ids.add(id);}return ids;}

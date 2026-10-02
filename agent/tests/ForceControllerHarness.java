@@ -9,7 +9,7 @@ public final class ForceControllerHarness {
     static int checks;
     static void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}
     static Map<String,Object> unit(long id,String type,double x,double y){return map("id",id,"type",type,"hp",1000,"maxHp",1000,"buildProgress",1,"dead",false,"x",x,"y",y,"orderType",null);}
-    static final class Fixture implements ForceController.Host {
+    static class Fixture implements ForceController.Host {
         final CommandArbiter gate=new CommandArbiter();final ExecutionScheduler scheduler=new ExecutionScheduler(gate);
         final GeneralRegistry registry=new GeneralRegistry(gate);final ForceController controller=new ForceController(registry,this);
         final List<Map<String,Object>> own=new ArrayList<Map<String,Object>>(),enemyRows=new ArrayList<Map<String,Object>>();
