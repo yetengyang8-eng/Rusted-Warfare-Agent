@@ -624,7 +624,7 @@ public final class BattleClient implements StrategyDirector.Host {
                         +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
                         +",\"targetEligibilityVersion\":1,\"targetSuppressionRelease\":\"NEWER_VISIBLE_COMPATIBLE_EVIDENCE\""
                         +(g3ExecutionEnabled?",\"g3Execution\":true,\"commandBudgetIntervalGameMs\":1000,\"commandBudgetInitialTokens\":1,\"commandBudgetAnchorGameTimeMs\":"+startTime+",\"commandBudgetBurst\":"+Math.max(1,Math.min(16,Integer.getInteger("rwagent.executionBurst",4))):"")
-                        +",\"g4Forces\":"+g4ForcesEnabled+",\"forcePriorityScope\":\"G4_FORCE_CONTROLLERS_ONLY\""
+                        +(g4ForcesEnabled?",\"g4Forces\":true,\"forcePriorityScope\":\"G4_FORCE_CONTROLLERS_ONLY\"":"")
                         +",\"globalStrategyEnabled\":"+strategy.enabled()+",\"strategyContractVersion\":1"
                         +",\"engagementAssessmentContract\":\"COMMITTED_FORMATION_V1\""
                         +",\"pollWallTimeMs\":"+Math.max(60,Math.min(1000,Integer.getInteger("rwagent.pollMs",500)))
