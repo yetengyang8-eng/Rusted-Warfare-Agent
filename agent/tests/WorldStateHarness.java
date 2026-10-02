@@ -30,7 +30,7 @@ public final class WorldStateHarness {
     private static EventAdapter.DerivedEvent event(EventAdapter.Update u,String kind){for(EventAdapter.DerivedEvent e:u.events)if(kind.equals(e.kind))return e;throw new AssertionError("missing "+kind);}
     @SuppressWarnings("unchecked") private static Map<String,Object> obj(Object o){return (Map<String,Object>)o;}
     public static void main(String[] args){
-        ownAndImmutability();enemyEvidence();resetOrderingAndCoverage();scopedSourcesAndFreshness();determinismAndBounds();
+        ownAndImmutability();enemyEvidence();enemyMeaningfulChanges();resetOrderingAndCoverage();scopedSourcesAndFreshness();determinismAndBounds();
         System.out.println("WorldStateHarness PASS checks="+checks+" evidence=E2_NO_ENGINE");
     }
     private static void ownAndImmutability(){
@@ -109,6 +109,61 @@ public final class WorldStateHarness {
         Map<String,Object> history=combat("a",180,9,list());history.put("enemyIntel",list(m("id",23L,"status","LOST_CONTACT","lastKnownType","tank","lastKnownHp",20.0,"lastKnownX",1.0,"lastKnownY",2.0,"lastSeenGameTimeMs",30L)));
         WorldState.EnemyFact hist=f.accept("/combat/observe",history).snapshot.enemies().get(23L);
         check(hist.current.isEmpty()&&hist.lastObservation.origin.equals("NATIVE_LAST_KNOWN_HISTORY_ONLY"),"first historical contact remains historical with original ID unknown");
+    }
+    private static void enemyMeaningfulChanges(){
+        Fixture f=new Fixture("enemy-facts");f.accept("/state",state("s",0,100,1,list()));
+        EventAdapter.Update first=f.accept("/combat/observe",combat("s",100,1,list(enemy(1,100))));
+        check(count(first,"ENEMY_OBSERVED")==1,"first legal sample is observed");
+        for(int i=1;i<=40;i++){
+            long time=100+i;EventAdapter.Update repeat=f.accept("/combat/observe",combat("s",time,1+i,list(enemy(1,time))));
+            check(repeat.events.isEmpty(),"unchanged visible enemy does not create transition flood at sample "+i);
+        }
+        WorldState.EnemyFact repeated=f.adapter.snapshot().enemies().get(1L);
+        check(repeated.lastObservation.fields.get("lastSeenGameTimeMs").equals(140L)
+                &&repeated.lastObservation.observation.id.equals(f.adapter.snapshot().views().get("/combat/observe|/combat/observe").observation.id),"silent sample refreshes both source and last legal observation");
+        Map<String,Object> previous=enemy(1,140);
+        String[] fields={"hp","x","y","type","targetDomain","touchingWater","building","canAttack","domainSourceId"};
+        Object[] values={40.0,121.0,131.0,"amphibiousJet","SURFACE",Boolean.TRUE,Boolean.TRUE,Boolean.TRUE,"new-native-proof"};
+        for(int i=0;i<fields.length;i++){
+            long time=150+i;Map<String,Object> changed=new LinkedHashMap<String,Object>(previous);
+            changed.put("lastSeenGameTimeMs",time);changed.put("domainObservedAtGameTimeMs",time);changed.put(fields[i],values[i]);
+            EventAdapter.Update update=f.accept("/combat/observe",combat("s",time,50+i,list(changed)));
+            check(count(update,"ENEMY_UPDATED")==1&&count(update,"ENEMY_OBSERVED")==0,"meaningful "+fields[i]+" change creates exactly one update");
+            check(event(update,"ENEMY_UPDATED").previous!=null&&event(update,"ENEMY_UPDATED").toMap().get("occurredAtGameTimeMs")==null,"update retains detection-only provenance for "+fields[i]);
+            previous=changed;
+        }
+        // Metadata attachment is first established, then its changing stamps stay silent.
+        Map<String,Object> stamped=new LinkedHashMap<String,Object>(previous);
+        stamped.put("lastSeenGameTimeMs",170L);stamped.put("domainObservedAtGameTimeMs",170L);
+        stamped.put("sampleGameTimeMs",170L);stamped.put("observedAtGameTimeMs",170L);stamped.put("frame",70L);
+        EventAdapter.Update sample=f.accept("/combat/observe",combat("s",170,70,list(stamped)));
+        check(sample.events.isEmpty(),"adding sample/frame provenance does not create factual update");
+        stamped.put("lastSeenGameTimeMs",180L);stamped.put("domainObservedAtGameTimeMs",180L);
+        stamped.put("sampleGameTimeMs",180L);stamped.put("observedAtGameTimeMs",180L);stamped.put("frame",80L);
+        check(f.accept("/combat/observe",combat("s",180,80,list(stamped))).events.isEmpty(),"sample/frame-only advance stays silent");
+        Map<String,Object> stale=new LinkedHashMap<String,Object>(stamped);stale.put("lastSeenGameTimeMs",189L);
+        EventAdapter.Update invalid=f.accept("/combat/observe",combat("s",190,81,list(stale)));
+        check(!invalid.accepted&&count(invalid,"ENEMY_UPDATED")==0&&count(invalid,"ENEMY_LOST_VISIBILITY")==0,"stale enemy row invalidates without update or loss");
+        EventAdapter.Update rebase=f.accept("/combat/observe",combat("s",200,82,list(enemy(1,200))));
+        check(count(rebase,"ENEMY_OBSERVED")==1&&count(rebase,"ENEMY_UPDATED")==0,"repair after invalid source establishes observation baseline");
+        EventAdapter.Update fog=f.accept("/combat/observe",combat("s",210,83,list()));
+        check(count(fog,"ENEMY_LOST_VISIBILITY")==1&&fog.snapshot.enemies().get(1L).current.isEmpty(),"fog retains unknown current and one narrow visibility loss");
+        EventAdapter.Update visibleAgain=f.accept("/combat/observe",combat("s",220,84,list(enemy(1,220))));
+        check(count(visibleAgain,"ENEMY_OBSERVED")==1&&count(visibleAgain,"ENEMY_UPDATED")==0,"return from fog is a fresh observation");
+        EventAdapter.Update gap=f.accept("/combat/observe",combat("s",1500,85,list(enemy(1,1500))));
+        check(count(gap,"SOURCE_COVERAGE_GAP")==1&&count(gap,"ENEMY_OBSERVED")==1&&count(gap,"ENEMY_UPDATED")==0,"long gap does not synthesize an enemy transition");
+        EventAdapter.Update gapEmpty=f.accept("/combat/observe",combat("s",2800,86,list()));
+        check(count(gapEmpty,"ENEMY_LOST_VISIBILITY")==0,"cross-gap empty sample does not infer loss");
+        f.accept("/state",state("next",1,10,1,list()));
+        EventAdapter.Update reset=f.accept("/combat/observe",combat("next",10,1,list(enemy(1,10))));
+        check(count(reset,"ENEMY_OBSERVED")==1&&count(reset,"ENEMY_UPDATED")==0,"new world context does not borrow old enemy baseline");
+        Fixture domain=new Fixture("enemy-domain");domain.accept("/state",state("s",0,100,1,list()));
+        Map<String,Object> unknown=enemy(1,100);unknown.put("domainObservedAtGameTimeMs",90L);
+        domain.accept("/combat/observe",combat("s",100,1,list(unknown)));
+        unknown=enemy(1,110);unknown.put("domainObservedAtGameTimeMs",90L);unknown.put("targetDomain","AIR");unknown.put("touchingWater",true);
+        EventAdapter.Update stillUnknown=domain.accept("/combat/observe",combat("s",110,2,list(unknown)));
+        check(stillUnknown.events.isEmpty()&&stillUnknown.snapshot.enemies().get(1L).currentField("targetDomain").equals("UNKNOWN"),"stale raw domain churn stays unknown without factual transition");
+        check(count(domain.accept("/combat/observe",combat("s",120,3,list(enemy(1,120)))),"ENEMY_UPDATED")==1,"fresh calibrated domain replacing unknown is a meaningful update");
     }
     private static void resetOrderingAndCoverage(){
         Fixture f=new Fixture("ordering");Map<String,Object> p=state("a",0,100,1,list(unit(1,100,1,0)));GameClock.Observation first=f.observation("/state",p);f.adapter.accept(first,p);

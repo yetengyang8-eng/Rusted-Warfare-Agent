@@ -200,13 +200,13 @@ public final class EventAdapter {
         Map<Long,Map<String,Object>> before=previous==null||previous.invalid?Collections.<Long,Map<String,Object>>emptyMap():rows(previous.payload,"visibleEnemies");
         for(Map.Entry<Long,Map<String,Object>> e:visible.entrySet()){
             long id=e.getKey();Map<String,Object> row=e.getValue(),old=before.get(id);
-            Map<String,Object> current=new LinkedHashMap<String,Object>(row);
-            if(!equalLong(row.get("domainObservedAtGameTimeMs"),o.sourceGameTimeMs)){
-                current.put("targetDomain","UNKNOWN");current.put("touchingWater",null);current.put("domainEvidenceStatus","UNKNOWN_OR_STALE_DOMAIN_SOURCE");
-            }
+            Map<String,Object> current=enemyCurrent(row,o.sourceGameTimeMs);
             WorldState.LastObservation last=new WorldState.LastObservation(o,current);
             enemies.put(id,new WorldState.EnemyFact(id,"VISIBLE_AT_SOURCE_SAMPLE",source.scope,current,last,"NOT_CLEARED"));
-            emit(events,old==null||!continuous?"ENEMY_OBSERVED":"ENEMY_UPDATED","OBSERVED",o,continuous&&previous!=null?previous.observation:null,
+            // A fresh legal read advances provenance even when only sampling stamps changed.
+            // Compare calibrated facts so stale raw domain values never become transitions.
+            if(old==null||!continuous||!enemyFacts(current).equals(enemyFacts(enemyCurrent(old,previous.observation.sourceGameTimeMs))))
+                emit(events,old==null||!continuous?"ENEMY_OBSERVED":"ENEMY_UPDATED","OBSERVED",o,continuous&&previous!=null?previous.observation:null,
                     WorldState.map("enemyId",id,"current",current,"attribution","UNKNOWN","maxHp",null,"confirmedDestroyed",null));
         }
         for(Long id:new TreeSet<Long>(enemies.keySet()))if(!visible.containsKey(id)){
@@ -231,6 +231,21 @@ public final class EventAdapter {
                     WorldState.map("enemyId",id,"siteEvidence",contact,"confirmedDestroyed",null,"confirmedKillProven",false));
             enemies.put(id,new WorldState.EnemyFact(id,prior.visibility,source.scope,prior.current,prior.lastObservation,"SITE_CLEARED"));
         }
+    }
+    private static Map<String,Object> enemyCurrent(Map<String,Object> row,Long sourceTime){
+        Map<String,Object> current=new LinkedHashMap<String,Object>(row);
+        if(!equalLong(row.get("domainObservedAtGameTimeMs"),sourceTime)){
+            current.put("targetDomain","UNKNOWN");current.put("touchingWater",null);current.put("domainEvidenceStatus","UNKNOWN_OR_STALE_DOMAIN_SOURCE");
+        }
+        return current;
+    }
+    /** All observed fact fields participate; only explicit read/sample provenance is excluded. */
+    private static String enemyFacts(Map<String,Object> current){
+        Map<String,Object> facts=new LinkedHashMap<String,Object>(current);
+        for(String key:new String[]{"lastSeenGameTimeMs","domainObservedAtGameTimeMs","observedAtGameTimeMs",
+                "sampleGameTimeMs","sourceGameTimeMs","gameTimeMs","frame","sourceFrame","sampleFrame",
+                "requestedWallTimeMs","receivedWallTimeMs","sampleWallTimeMs"})facts.remove(key);
+        return fingerprint(facts,"");
     }
     private void diffThreats(GameClock.Observation o,WorldState.SourceView source,WorldState.SourceView previous,boolean continuous,List<DerivedEvent> events){
         Map<Long,Map<String,Object>> now=rows(source.payload,"visibleThreats"),old=previous==null?Collections.<Long,Map<String,Object>>emptyMap():rows(previous.payload,"visibleThreats");
@@ -296,7 +311,7 @@ public final class EventAdapter {
     private void refreshFacts(GameClock.Observation o,WorldState.SourceView source){
         if("/state".equals(o.endpoint))for(Map.Entry<Long,Map<String,Object>> e:rows(source.payload,"ownUnits").entrySet())own.put(e.getKey(),new WorldState.UnitFact(e.getKey(),alive(e.getValue())?"AVAILABLE":"EXPLICIT_DEAD_OR_NONPOSITIVE_HP",source.scope,e.getValue(),new WorldState.LastObservation(o,e.getValue())));
         if("/combat/observe".equals(o.endpoint))for(Map.Entry<Long,Map<String,Object>> e:rows(source.payload,"visibleEnemies").entrySet()){
-            WorldState.EnemyFact prior=enemies.get(e.getKey());Map<String,Object> fields=new LinkedHashMap<String,Object>(e.getValue());if(!equalLong(fields.get("domainObservedAtGameTimeMs"),o.sourceGameTimeMs)){fields.put("targetDomain","UNKNOWN");fields.put("touchingWater",null);}
+            WorldState.EnemyFact prior=enemies.get(e.getKey());Map<String,Object> fields=enemyCurrent(e.getValue(),o.sourceGameTimeMs);
             enemies.put(e.getKey(),new WorldState.EnemyFact(e.getKey(),"VISIBLE_AT_SOURCE_SAMPLE",source.scope,fields,new WorldState.LastObservation(o,fields),prior==null?"NOT_CLEARED":prior.siteStatus));}
     }
     private void trimSessions(){while(retiredSessions.size()>MAX_RETIRED_SESSIONS)retiredSessions.remove(retiredSessions.iterator().next());}
