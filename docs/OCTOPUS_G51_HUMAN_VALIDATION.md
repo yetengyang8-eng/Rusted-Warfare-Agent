@@ -2,7 +2,7 @@
 
 工程代理不执行本文件中的桌面入口。操作者自行打开/创建合法本地Spain对局，再双击 `tools/RW-Agent-Octopus-Test.bat`；入口默认读取 `deliveries/octopus-g51-2026-10-03/candidate-manifest.json` 中的新候选JAR。已有Bridge若协议兼容可接入，客户端与Bridge SHA分别记录，不覆盖旧安装。
 
-默认1800游戏秒；超长入口可由操作者运行：
+默认4800游戏秒；也可由操作者显式运行：
 
 ```powershell
 & "G:\deepseek 工作台\GitHub发布\Rusted-Warfare-Agent\tools\RW-Agent-Octopus-Test.ps1" -Seconds 4800

@@ -89,10 +89,10 @@ def client_command(java, jar, port, seconds, wall_seconds, properties=()):
 
 
 def stage_game(game, jar, target):
-    """Copy only compatible engine inputs, never user config/save/replay/mod data."""
+    """Copy compatible engine inputs and map-only custom content, never user config/save/replay/unit-mod data."""
     target.mkdir(parents=True, exist_ok=False)
     copied = []
-    for name in ("game-lib.jar", "libs", "assets", "res"):
+    for name in ("game-lib.jar", "libs", "assets", "res", "font"):
         source = game / name
         if not source.exists():
             raise FileNotFoundError(source)
@@ -101,6 +101,10 @@ def stage_game(game, jar, target):
         else:
             shutil.copy2(source, target / name)
         copied.append(name)
+    maps_source = game / "mods" / "maps"
+    if maps_source.exists():
+        shutil.copytree(maps_source, target / "mods" / "maps")
+        copied.append("mods/maps")
     for source in game.glob("*.dll"):
         shutil.copy2(source, target / source.name)
         copied.append(source.name)

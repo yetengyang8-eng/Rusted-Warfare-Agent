@@ -1,4 +1,4 @@
-param([switch]$StartGame, [int]$Seconds=1800)
+param([switch]$StartGame, [int]$Seconds=4800)
 $ErrorActionPreference='Stop'
 $repo=Split-Path $PSScriptRoot -Parent
 $manifest=Get-Content -LiteralPath (Join-Path $repo 'deliveries/octopus-g51-2026-10-03/candidate-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
