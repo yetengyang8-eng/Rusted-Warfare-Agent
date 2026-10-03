@@ -105,6 +105,8 @@ public final class G51TacticalHarness {
         actor.remove("orderX");actor.remove("orderY");actor.put("x",100.);check(!d.allows(actor,4,3500,6000,2500,"[]"),"movement away from accepted point cannot retain fallback despite recent earlier progress");
         actor.put("x",180.);check(!d.allows(actor,5,4000,6000,2500,"NEW_THREAT"),"changed lawful threat signature cancels fallback immediately");
         check(!d.allows(actor,1,3000,6000,2500,"[]"),"same/pre-receipt own frame is not fallback progress evidence");
+        DestinationUnknownDefer gap=new DestinationUnknownDefer(900,100,0,1,"[]");actor.put("x",100.);gap.observe(actor,2,1000);actor.put("x",200.);
+        check(!gap.allows(actor,3,5000,6000,2500,"[]"),"long own-observation gap cannot turn detected displacement into recent progress witness");
     }
     static void arrivedRetreatMembersHoldIndividually()throws Exception{
         G5CombatHarness.Fixture f=new G5CombatHarness.Fixture();f.enemy(1500,180,20000);f.collect();Map<String,Object> rally=f.combat.view(f.a);

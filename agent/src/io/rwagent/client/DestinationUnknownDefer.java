@@ -6,7 +6,7 @@ import java.util.*;
 final class DestinationUnknownDefer {
     static final String EVIDENCE="DESTINATION_UNKNOWN_PROGRESS_SHORT_DEFER";
     final double x,y;final long acceptedAt,receiptFrame;final String threat;
-    private double bestDistance=Double.NaN;private long sampleFrame=-1,lastProgressAt=-1;private boolean netProgress;
+    private double bestDistance=Double.NaN;private long sampleFrame=-1,sampleTime=-1,lastProgressAt=-1;private boolean netProgress;
     DestinationUnknownDefer(double x,double y,long acceptedAt,long receiptFrame,String threat){this.x=x;this.y=y;this.acceptedAt=acceptedAt;this.receiptFrame=receiptFrame;this.threat=threat;}
     boolean allows(Map<String,Object> actor,long frame,long now,long hardWindow,long recentWindow,String currentThreat){
         if(actor.containsKey("orderX")||actor.containsKey("orderY")||frame<=receiptFrame||now<acceptedAt||now-acceptedAt>=hardWindow
@@ -15,7 +15,9 @@ final class DestinationUnknownDefer {
         return netProgress&&lastProgressAt>=0&&now-lastProgressAt<=recentWindow&&d<=bestDistance+8;
     }
     void observe(Map<String,Object> actor,long frame,long now){if(frame<=receiptFrame||frame<=sampleFrame||now<acceptedAt)return;double d=distance(actor,x,y);if(!Double.isFinite(d))return;
-        sampleFrame=frame;if(!Double.isFinite(bestDistance))bestDistance=d;else if(d<=bestDistance-24){bestDistance=d;lastProgressAt=now;netProgress=true;}}
+        // A long observation gap supplies a new baseline, never a fabricated recent progress interval.
+        boolean gap=sampleTime>=0&&(now<sampleTime||now-sampleTime>2500);sampleFrame=frame;sampleTime=now;
+        if(!Double.isFinite(bestDistance)||gap){bestDistance=d;netProgress=false;lastProgressAt=-1;}else if(d<=bestDistance-24){bestDistance=d;lastProgressAt=now;netProgress=true;}}
     static String threatSignature(Map<String,Object> enemies,boolean current){if(!current||enemies==null)return "UNKNOWN";Long time=GameClock.number(enemies.get("gameTimeMs"));Object rows=enemies.get("visibleEnemies");
         if(time==null||!(rows instanceof List))return "UNKNOWN";List<String> threats=new ArrayList<String>();
         for(Object raw:(List<?>)rows){if(!(raw instanceof Map))return "UNKNOWN";Map<?,?> row=(Map<?,?>)raw;Long id=GameClock.number(row.get("id"));

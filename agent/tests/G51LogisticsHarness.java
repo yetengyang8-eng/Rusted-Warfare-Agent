@@ -63,6 +63,7 @@ public final class G51LogisticsHarness {
     }
     private static void legacyJoiningShortDefer()throws Exception{
         ForceControllerHarness.Fixture f=joining();Map<String,Object> actor=f.find(33);actor.remove("orderX");actor.remove("orderY");actor.put("x",300.);f.observe(2000);f.collect();
+        actor.put("x",280.);f.observe(8000);f.collect();
         actor.put("x",250.);f.observe(10000);f.collect();check(f.lane("JOINING")==null,"legacy move without destination briefly defers after net progress toward accepted rendezvous");
         check(((Number)f.controller.orderReuseView().get("destinationUnknownJoinDeferCount")).longValue()==1&&f.registry.unit(33).membership==GeneralRegistry.Membership.JOINING,"joining defer diagnosis records unknown destination and never claims arrival");
         actor.put("x",220.);f.observe(12000);f.collect();check(f.lane("JOINING")==null,"recent own progress preserves defer before hard twelve-second deadline");
