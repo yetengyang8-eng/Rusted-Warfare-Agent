@@ -1,4 +1,10 @@
-# 当前优先入口：Octopus G5 — 2026-10-03
+# 当前优先入口：Octopus G5.1 — 2026-10-03
+
+验收起点ca2fc92；产品9cd71c1→8498c10，交付HEAD见Git。先读project-state/CURRENT_STATE.md、handoff/HANDOFF_Octopus_G51_2026-10-03.md、docs/OCTOPUS_G51_OPERATIONS.md与manifest/evidence。已交付可运行G5.1，真人抗针对/AIR交换/局部矿收益/产能转化/APM改善仍需新Spain raw；旧G5自然4General与长局能力已证，不重复审计或降为NEEDS_EVIDENCE。Windows完整raw79/80（唯一缺asset），同Jar环境补验后有效80/80；native495，最终同Jar自然600s PARTIAL/ONGOING。源码和测试输入一致，所有失败保留。未deploy/push/操作桌面/改Universal Bridge，子代理只Sol6.1/high。以下仅历史，不覆盖G5.1。
+
+---
+
+# 历史入口：Octopus G5 — 2026-10-03
 
 当前source功能22c88a2、测试f058d3a、后续最终交付HEAD见Git。读取project-state/CURRENT_STATE.md与handoff/HANDOFF_Octopus_G5_2026-10-03.md；旧G4.1/baseline仅历史。full仅一次、历史reference两差异已由83c复现，13项补验后有效76/76；natural/native/fixture/desktop边界不可混淆。下一优先人工Spain证多General；不部署/push/桌面操作，子代理只Sol6.1/high。以下历史内容不覆盖最新G5。
 
