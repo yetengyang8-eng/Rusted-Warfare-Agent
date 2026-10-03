@@ -1,0 +1,14 @@
+{
+  "candidateId": "RW-CANDIDATE-2026-10-03-OCTOPUS-G5-v1",
+  "status": "FOCUSED_AND_NATURAL_GREEN_FINAL_REGRESSION_PENDING",
+  "baselineCommit": "83c09fb",
+  "implementationCommit": "22c88a2",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "candidateJar": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\root-build\\rw-agent-bootstrap.jar",
+  "candidateJarSha256": "877dfa9ac8e40feab06263644dc13240fb856bddc429455ad4a48de28f9f67a6",
+  "referenceGameDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02",
+  "engineJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "deployed": false,
+  "pushed": false,
+  "desktopGameTouched": false
+}

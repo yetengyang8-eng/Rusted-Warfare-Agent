@@ -62,7 +62,7 @@ function PyStep([string]$name, [string]$script, [string[]]$pyArgs) {
     # Historical policy suites prove the explicit legacy path. G3 has its own enabled HTTP contracts.
     $previousJavaOptions = $env:JAVA_TOOL_OPTIONS
     try {
-        if ($script -notin @('test_g3_execution.py','test_g4_runtime.py','test_g41_runtime.py')) { $env:JAVA_TOOL_OPTIONS = "$previousJavaOptions -Drwagent.g3Execution=false" }
+        if ($script -notin @('test_g3_execution.py','test_g4_runtime.py','test_g41_runtime.py','test_g5_runtime.py')) { $env:JAVA_TOOL_OPTIONS = "$previousJavaOptions -Drwagent.g3Execution=false" }
         Step $name { & $python (Join-Path $root "tests\$script") @pyArgs }
     } finally { $env:JAVA_TOOL_OPTIONS = $previousJavaOptions }
 }
@@ -111,6 +111,8 @@ PyStep 'py:test_g2_world_state' 'test_g2_world_state.py' @($distJar)
 PyStep 'py:test_g3_execution' 'test_g3_execution.py' @($distJar)
 PyStep 'py:test_g4_runtime' 'test_g4_runtime.py' @($distJar)
 PyStep 'py:test_g41_runtime' 'test_g41_runtime.py' @($distJar)
+PyStep 'py:test_g5_runtime' 'test_g5_runtime.py' @($distJar)
+PyStep 'py:test_human_observer' 'test_human_observer.py' @()
 PyStep 'py:test_headless_parallel' 'test_headless_parallel.py' @()
 PyStep 'py:test_ab_aggregate' 'test_ab_aggregate.py' @()
 PyStep 'py:test_ab_campaign' 'test_ab_campaign.py' @()
@@ -124,6 +126,9 @@ Step 'java:GeneralRegistryHarness' { & $java -cp $cp io.rwagent.client.GeneralRe
 Step 'java:ForceControllerHarness' { & $java -cp $cp io.rwagent.client.ForceControllerHarness }
 Step 'java:GeneralFormationHarness' { & $java -cp $cp io.rwagent.client.GeneralFormationHarness }
 Step 'java:ForceFormationHarness' { & $java -cp $cp io.rwagent.client.ForceFormationHarness }
+Step 'java:G5CommanderHarness' { & $java -cp $cp io.rwagent.client.G5CommanderHarness }
+Step 'java:G5CombatHarness' { & $java -cp $cp io.rwagent.client.G5CombatHarness }
+Step 'java:RuntimeAccelerationHarness' { & $java --add-modules jdk.httpserver -cp $cp io.rwagent.client.RuntimeAccelerationHarness }
 Step 'java:G1TraceHarness' { & $java -cp $cp io.rwagent.client.G1TraceHarness }
 Step 'java:WorldStateHarness' { & $java -cp $cp io.rwagent.client.WorldStateHarness }
 Step 'java:StrategyContractHarness' { & $java -cp $cp io.rwagent.client.StrategyContractHarness }

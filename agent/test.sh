@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regression: the same 37 Java runs and 28 Python suites as test-win.ps1.
+# Regression mirrors test-win.ps1, including focused G5, runtime and human-observer checks.
 set -euo pipefail
 # Historical policy tests cover legacy behavior; the G3 suite explicitly enables the scheduler.
 compat_python() { JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-} -Drwagent.g3Execution=false" python3 "$@"; }
@@ -59,6 +59,8 @@ compat_python "$root/tests/test_g2_world_state.py" "$root/dist/rw-agent-bootstra
 python3 "$root/tests/test_g3_execution.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g4_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
 python3 "$root/tests/test_g41_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
+python3 "$root/tests/test_g5_runtime.py" "$root/dist/rw-agent-bootstrap.jar"
+compat_python "$root/tests/test_human_observer.py"
 compat_python "$root/tests/test_headless_parallel.py"
 compat_python "$root/tests/test_ab_aggregate.py"
 compat_python "$root/tests/test_ab_campaign.py"
@@ -77,6 +79,10 @@ java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceControllerHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/GeneralFormationHarness.java" "$root/tests/ForceFormationHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.GeneralFormationHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceFormationHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath:$root/build/tests" -d "$root/build/tests" "$root/tests/G5CommanderHarness.java" "$root/tests/G5CombatHarness.java" "$root/tests/RuntimeAccelerationHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G5CommanderHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G5CombatHarness
+java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" io.rwagent.client.RuntimeAccelerationHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/WorldStateHarness.java"
