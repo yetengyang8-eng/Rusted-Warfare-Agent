@@ -1,3 +1,11 @@
+# 当前 G5 接手入口 — 2026-10-03
+
+从83c09fb推进到G5，功能22c88a2、测试源码f058d3a，后续交付docs提交为最终HEAD。独立General combat/retreat/regroup、多General birth/Commander/ThreatTask、fast runtime和Human observer已接线。Windows full一次原始74/76，旧参考诊断漂移由83c复现；两suite13项当前参考补验后有效76/76，42Java/31Python/496tests；最终Jar native482；自然Small Island5×平均decision366ms且三次退却/恢复。未deploy/push/桌面启停。
+
+先读[G5 handoff](../handoff/HANDOFF_Octopus_G5_2026-10-03.md)、[CURRENT_STATE](CURRENT_STATE.md)、[契约](../docs/OCTOPUS_G5_COMBAT_RUNTIME.md)。下一建议G5.1人类Spain/长图证自然额外General与rally。不得隐藏原始reference失败，也不回滚83c首厂修复。子代理Sol6.1/high，禁Astra；历史文件名不授权模型或桌面操作。以下历史导航保留，仅对各旧阶段有效。
+
+---
+
 # 当前 G4.1 接手入口 — 2026-10-03
 
 当前分支codex/octopus-g3-execution-20261002；起点5562ec7，测试源码39a2670；Windows71/71、39Java、29Python/473tests、同Jar native657checks绿。零军队FORMING→ACTIVE、静态地图缓存、原生合法扩张与轻量screen已接线。自然局/ready施工NEEDS_EVIDENCE，未deploy/push/进入G5。

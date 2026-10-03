@@ -1,13 +1,11 @@
 # Next Stage Plan
 
-2026-10-03，G4.1已完成；下一建议为G4.2自然Early Operations隔离验收，不自动进入G5。
+从当前G5最后交付HEAD开始。先读G5 handoff/contract，不重开G0～G4审计。
 
-从当前分支最新HEAD继续，测试源码39a2670；先读G4.1 handoff、Early/Static两个契约、manifest。71/71 full和同Jar native657checks绿，不能重复从零审计或从旧冻结源码开始。
+1. 操作者使用RW-Agent-Octopus-Test（现有游戏）或Start-Test（明确新开隔离游戏），Spain或长图5×/正常速度各按真实问题选一局；raw+短报告自动留存。工程代理不擅自启停桌面或部署。
+2. 优先验证额外General自然birth、独立owner/crisis/goal、退却rally补员/后帧到达、production连续性；目前natural只证单General撤退/恢复，multiGeneral主要native fixture。
+3. 据真实raw处理mixed-domain join/rally可达性和HP proxy明显误判；没有原生证据就UNKNOWN。不增加击杀归因、K/D或隐藏状态。
+4. 如需要，进一步减少force与成熟immediate lane竞争；当前不是全局scheduler，先量化剩余last-token问题，再选择统一程度。
+5. 开发只focused，稳定候选才主代理一次Windows full；历史参考按最新验收baseline选取。本轮两旧参考差异记录不能被擦成首遍零失败。
 
-1. 在独立原版环境以正常simulation ticks，标准零普通军队/低资金/tier1或无工厂/fog开跑生产→真实加入→screen→原生建矿→ready→ACTIVE。记录game-time阶段延迟和真正卡点；禁止fixture位置/ready变化冒充自然推进，不操作桌面。
-2. 优先核实静态approach在动态障碍下实际抵达、施工ready、screen对早期扩张的作用与production节奏，再按证据做小修。未知安全/敌方占用不补猜；静态已知不改当前visibility规则。
-3. 自然核验后再讨论G5授权。严重危机/health中断JOINING、CombatLedger/Performance/ThreatTask/HOT-COLD、动态编制/数量上限尚未实现。SearchArea保持inactive。
-4. 扩大runtime batch前先定义成熟经济/Strategy同步receipt/commitment与取消语义；现在只有primary force和production后optional force两段真实priority，其他lane仍immediate。
-5. Spain自然潜水进入/实际伤害、transportunknown长持credit独立小范围补证，不替代前期主闭环验收。
-
-当前full仅一次且零失败；无新改动/问题不重复跑完整矩阵。子智能体Sol6.1/high，根代理统一full。未deploy/push/桌面操作；9/30冻结baseline只核血统。
+不要先追加大矩阵、动态编制理论或未经请求的部署/push。子代理仅gpt-6.1-sol/high，根代理最终集成与full。保留外部/用户设置变化，不能用hash不同授权回滚。

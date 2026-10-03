@@ -1,0 +1,41 @@
+{
+  "classification": "STALE_OPTIONAL_HISTORICAL_REFERENCE_PREEXISTING_AT_ACCEPTED_83c09fb",
+  "acceptedBaselineCommit": "83c09fb",
+  "acceptedBaselineJarSha256": "e911b1703d885269d31fc5ee5b15ca375e760e6fa759537fffe2674f29a81127",
+  "candidateImplementationSourceCommit": "f058d3a",
+  "candidateLegacyCommandsEqualAcceptedBaseline": true,
+  "candidateLegacyEventsEqualAcceptedBaseline": true,
+  "commandsEqualOlderReference": true,
+  "legacyEventCountOlder": 217,
+  "legacyEventCountAccepted": 231,
+  "firstMismatchIndex": 35,
+  "firstMismatchOlder": {
+    "event": "economy_expansion_blocked",
+    "data": {
+      "reason": "NO_BUILDER",
+      "mines": 1,
+      "mineTarget": 3,
+      "beyondFloor": false,
+      "attempts": 1,
+      "gameTimeMs": 2000
+    }
+  },
+  "firstMismatchAccepted": {
+    "event": "production_facility_blocked",
+    "data": {
+      "reason": "NO_BUILDER",
+      "mines": 1,
+      "factories": 0,
+      "landFactoryTarget": 2,
+      "attempts": 1,
+      "credits": 0.0,
+      "factoryCost": -1,
+      "preferredUnit": null,
+      "preferredUnitCost": -1,
+      "gameTimeMs": 2000
+    }
+  },
+  "productSourceChangedForCorrection": false,
+  "secondFullRun": false,
+  "reason": "83c09fb first-factory bootstrap changes zero-factory economy diagnostic traversal; optional pre-G1/G1 references predate that accepted fix. Current candidate and 83c have exactly equal commands and normalized legacy events under G3-disabled path. Original full failures and accepted-baseline reproduction retained."
+}

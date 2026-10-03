@@ -1,3 +1,9 @@
+# 当前优先入口：Octopus G5 — 2026-10-03
+
+当前source功能22c88a2、测试f058d3a、后续最终交付HEAD见Git。读取project-state/CURRENT_STATE.md与handoff/HANDOFF_Octopus_G5_2026-10-03.md；旧G4.1/baseline仅历史。full仅一次、历史reference两差异已由83c复现，13项补验后有效76/76；natural/native/fixture/desktop边界不可混淆。下一优先人工Spain证多General；不部署/push/桌面操作，子代理只Sol6.1/high。以下历史内容不覆盖最新G5。
+
+---
+
 # 当前 G4.1 接手入口 — 2026-10-03
 
 当前分支codex/octopus-g3-execution-20261002；起点5562ec7，测试源码39a2670；Windows71/71、39Java、29Python/473tests、同Jar native657checks绿。零军队FORMING→ACTIVE、静态地图缓存、原生合法扩张与轻量screen已接线。自然局/ready施工NEEDS_EVIDENCE，未deploy/push/进入G5。

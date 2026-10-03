@@ -24,11 +24,11 @@ Force 内部真实优先级：Critical90 → General Retreat85 → LocalResponse
 
 只有当前合法敌情 pressure≤0.55、短窗口 damage≤own maxHP2%、≥75%健康成员取得本 generation 对应 move 回执后的 rally位置 witness，才 `RETREATING → REGROUPING`。健康至少6（或目标更小）、HP≥maxHP60%、保持4s当前平静后恢复 NORMAL。>5s观察gap不能制造5s战损率或连续平静，记录 UNKNOWN gap delta。LastObservation不创建新攻击/overmatch，也不能清除保守撤退。
 
-健康统计：ready、NORMAL、known maxHP、HP≥50%。Critical HP25%与既有恢复角色继续由更高优先级路径处理。
+G5 CombatLedger / Commander 的健康统计要求 ready、NORMAL、known maxHP、HP≥50%。G4.1 成军门禁继续复用 GeneralRegistry.healthyAttachedStrength：当前帧健康角色 NORMAL、真实 ATTACHED、有效 General owner/generation；该成军计数没有新增 HP≥50% 门槛，不能与 G5 战斗健康计数混用。Critical HP25%与既有恢复角色继续由更高优先级路径处理。
 
 ## Commander / ThreatTask / 多 General
 
-G4.1第一 General仍采用同ID FORMING→ACTIVE。现有有效 Generals均 `members + reservations >= desiredStrength` 且至少6个当前健康ready ordinary FREE，才允许本 observation 创建一个新的 FORMING General；默认desired24，没有将军数量上限或六人碎片化。创建本身不把新兵直接ATTACHED；仍经过FREE同帧屏障 → PENDING_JOIN/JOINING → 实际回执 → 后帧位置见证 → ATTACHED →6健康ACTIVE。
+G4.1第一 General仍采用同ID FORMING→ACTIVE。现有有效 Generals均 `members + reservations >= desiredStrength` 且至少6个当前 G5 健康ready ordinary FREE，才允许本 observation 创建一个新的 FORMING General；默认desired24，没有将军数量上限或六人碎片化。创建本身不把新兵直接ATTACHED；仍经过FREE同帧屏障 → PENDING_JOIN/JOINING → 实际回执 → 后帧位置见证 → ATTACHED → GeneralRegistry 当前健康 ATTACHED 计数达到6后 ACTIVE。
 
 Commander只分配兵力与共享合法 visible ThreatTask attention。不同General的owner/roster/ledger/crisis/goal始终独立。当前完整合法样本中威胁失联是CLEAR(not killed)；foreign/stale/partial/malformed是UNKNOWN。任务关注不合并 command stream。
 

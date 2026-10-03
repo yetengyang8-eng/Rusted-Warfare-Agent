@@ -1,18 +1,14 @@
 # Current State
 
-Updated 2026-10-03 (Asia/Shanghai). 当前断点 **Octopus G4.1 Early Operations**；已验证，未部署/push，未进入G5。
+Updated 2026-10-03。当前工程断点 **Octopus G5 Combat + Runtime + Human Validation**；从83c09fb继续，功能22c88a2、测试源码f058d3a，最终交付docs提交在其后。未deploy/push/桌面启停。
 
-- 分支 `codex/octopus-g3-execution-20261002`；已验收起点5562ec7；阶段6ed2db4 → 1d91e43 → **39a2670测试源码**，后续docs不改测试输入。
-- 候选 `RW-CANDIDATE-2026-10-03-OCTOPUS-G41-v1`；同full/native JAR SHA256 `9353ef5e31f3cc0e58e70f559828ce452923656817b4e16802e567b38f997df2`，本地位置/contentDigest见manifest。
-- Windows **71/71、39Java、29Python/473 tests、skip0、failedsteps0、exit0**，本轮full一次；167测试输入/5历史fixtures一致，895保护输入未变。
-- 同Jar native八类**657checks**，静态成本534000零差异、独立knowledge oracle25绿。E2显式fixture，不是自然局或桌面验收。
+- Runtime250game-ms gate、自适应wall loop、独立transport并行/cycle原source cache、heavy1000ms/dirty、production优先；原credits/slots/unsettled/ghost/ABA保留。force真实collect/priority，其他成熟lane仍immediate。
+- 独立General ledger/crisis/退却/集结/滞回；满编+≥6健康FREE可额外FORMING desired24；Commander共享legalvisible ThreatTask与crisis/rally补员；native66actor兼容按48+18。
+- 本轮Small Island5×自然before平均2925.626→after366.026game-ms；同observation max4→9；命令/game minute24.445→52.098。两局原生VICTORY但seed非受控，不推胜率。G5自然三次撤退→集结→恢复；额外General自然birth尚未证。
+- **Windows full仅一次**，原始74/76（G1/G2旧历史参考诊断差异）；83c同样复现，候选与83c旧命令/事件完全等价。当前83c冻结参考下两suite13focused全绿，**有效76/76 / failedSteps0**，42Java/31Python/496tests/skip0。保留所有原始失败；未第二full/未改产品过关。
+- 最终同Jar native482（G5 253，G3 229）。候选SHA b5d87aff499028a32738eefc6b99710c6b6a9d90faafb04d6b5093b6b769acad；自然Jar877dfa…全部183payload与候选一致。
+- 185测试输入字节一致。engine与冻结Jar等6保护核心输入不变；preferences.ini在full结束后伴随外部桌面Main启动而变化，未归因/恢复，记录保留。
 
-首个健康ready普通FREE触发真实FORMING General，desired24/最少6；首兵也走FREE/pending/JOINING/后帧ATTACHED。1～5可LocalResponse/轻量expansion screen，无普通frontier；6当前健康ATTACHED同General转ACTIVE。基地只是anchor。全军失效后可rebirth。
+接手读[G5 handoff](../handoff/HANDOFF_Octopus_G5_2026-10-03.md)、[契约](../docs/OCTOPUS_G5_COMBAT_RUNTIME.md)、[人工入口](../docs/OCTOPUS_G5_HUMAN_VALIDATION.md)、[evidence](../evidence/octopus-g5-2026-10-03/README.md)、[manifest](../deliveries/octopus-g5-2026-10-03/candidate-manifest.json)。Frozen RW-BASELINE-2026-09-30-GS-v1仅血统，不覆盖当前源码。
 
-静态地图每局缓存来自当前原版Ground/Items/PathingOverride，route fields按domain/targetLRU8；fog不限制固定矿/地形，enemy与动态阻塞仍合法当前观测。Need与builder15/screen20只承认静态approach，build继续currentnative guard，receipt不算完成。native证到unfinished矿/实付款，ready及自然生产移动施工仍NEEDS_EVIDENCE。
-
-primary force90/70/50/30真实collect/priority；成熟经济/Strategy/Recon/production仍immediate；optional20/15在production后真实priority。派发前真实Need对象身份/live检查防同帧失效screen。不宣称全局scheduler，不新增G5，SearchAreainactive。
-
-先读 [G4.1 handoff](../handoff/HANDOFF_Octopus_G41_2026-10-03.md)、[Early契约](../docs/OCTOPUS_G41_EARLY_OPERATIONS.md)、[Static契约](../docs/OCTOPUS_G41_STATIC_MAP_KNOWLEDGE.md)、[evidence](../evidence/octopus-g41-2026-10-03/README.md)、[manifest](../deliveries/octopus-g41-2026-10-03/candidate-manifest.json)、[下一断点](NEXT_STAGE_PLAN.md)。旧G1～G4hand-offs/manifests保留，各current仅对历史阶段有效。
-
-next建议G4.2隔离自然前期验收；不自动G5或部署。JOINING严重health中断/Spain自然潜水伤害/unknowncredit长持仍后置。earlyOperations=false仅新增birth/staticsupport旁路；g4Forces=false硬化G3；g3Execution=falselegacy。原引擎/设置/存档/回放/冻结件保护，桌面游戏未操作。基线只核血统。子智能体Sol6.1/high，禁Astra。
+下一建议G5.1人类新入口Spain长图：自然多General、rally/补员、持续production、Observer；再修actual raw瓶颈。HP proxy非真实power，rally动态安全UNKNOWN；mixed-domain join/Spain浅滩自然攻击需证据，SearchAreainactive。只Sol6.1/high子代理；不自动部署或操作桌面。

@@ -1,0 +1,85 @@
+{
+  "before-83c": {
+    "jarSha256": "e911b1703d885269d31fc5ee5b15ca375e760e6fa759537fffe2674f29a81127",
+    "reportSha256": "679ab7c2b961ebc6a63b5e049b78f5256d2538047aa91631750dcc4b57774d3b",
+    "outcome": "PASS",
+    "matchOutcome": "VICTORY",
+    "battleGameTimeMs": 456528,
+    "commands": 186,
+    "decisionMeanGameMs": 2925.625806451613,
+    "observationMeanWallMs": 13.146924829157175,
+    "commandsPerGameMinute": 24.445379034801807,
+    "maxCommandsPerObservation": 4,
+    "maxGenerals": 1,
+    "maxFREE": 3,
+    "first": {
+      "firstMineCommandMs": 5136,
+      "firstFactoryCommandMs": 47728,
+      "firstQueueCommandMs": 64720,
+      "firstActiveMs": 123664
+    },
+    "runtime": null,
+    "ownLosses": 19,
+    "newCombatUnits": 35,
+    "claim": "NATURAL_ISOLATED_NATIVE_TICKS_FOG_ON_NOT_DESKTOP_NOT_WINRATE_AB",
+    "seedReproducibilityVerified": false,
+    "dispatchMeanActionToReceiptWallMs": 14.091397849462366,
+    "generalEventStateCounts": {},
+    "actualCrisisTransitions": {}
+  },
+  "after-g5": {
+    "jarSha256": "877dfa9ac8e40feab06263644dc13240fb856bddc429455ad4a48de28f9f67a6",
+    "reportSha256": "01263b04736c99afe699007ba2659b82ee4bc6628255da03854c02e39ed36a25",
+    "outcome": "PASS",
+    "matchOutcome": "VICTORY",
+    "battleGameTimeMs": 389264,
+    "commands": 338,
+    "decisionMeanGameMs": 366.0263653483992,
+    "observationMeanWallMs": 12.517683637776914,
+    "commandsPerGameMinute": 52.098318878704426,
+    "maxCommandsPerObservation": 9,
+    "maxGenerals": 1,
+    "maxFREE": 6,
+    "first": {
+      "firstFactoryCommandMs": 2528,
+      "firstQueueCommandMs": 20000,
+      "firstMineCommandMs": 37056,
+      "firstActiveMs": 73264
+    },
+    "runtime": {
+      "effectiveDecisionIntervalGameMs": 366.0263653483992,
+      "observationLatencyWallMs": 12.614701258226868,
+      "dispatchLatencyWallMs": 14.282457647058823,
+      "commandsPerGameMinute": 52.098318878704426,
+      "maxCommandsPerObservation": 9,
+      "commandsThisObservation": 0,
+      "observationReads": 5166,
+      "parallelFetches": 2126,
+      "cacheHits": 390,
+      "decisions": 1063,
+      "measuredGameSpeed": 4.897584368543224,
+      "atomicSnapshot": false,
+      "ordering": "SERIAL_CONTROLLER_STATE_PARALLEL_INDEPENDENT_TRANSPORT"
+    },
+    "ownLosses": 15,
+    "newCombatUnits": 26,
+    "claim": "NATURAL_ISOLATED_NATIVE_TICKS_FOG_ON_NOT_DESKTOP_NOT_WINRATE_AB",
+    "seedReproducibilityVerified": false,
+    "dispatchMeanActionToReceiptWallMs": 14.461538461538462,
+    "generalEventStateCounts": {
+      "NORMAL": 266,
+      "PRESSURED": 85,
+      "OVERMATCHED": 27,
+      "RETREATING": 47,
+      "REGROUPING": 5
+    },
+    "actualCrisisTransitions": {
+      "NORMAL->PRESSURED": 7,
+      "PRESSURED->NORMAL": 7,
+      "NORMAL->OVERMATCHED": 3,
+      "OVERMATCHED->RETREATING": 3,
+      "RETREATING->REGROUPING": 3,
+      "REGROUPING->NORMAL": 3
+    }
+  }
+}

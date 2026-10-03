@@ -1,0 +1,8 @@
+{
+  "nativeNaturalJarSha256": "877dfa9ac8e40feab06263644dc13240fb856bddc429455ad4a48de28f9f67a6",
+  "fullRegressionJarSha256": "b5d87aff499028a32738eefc6b99710c6b6a9d90faafb04d6b5093b6b769acad",
+  "entries": 183,
+  "identicalUncompressedPayload": true,
+  "differences": [],
+  "includes": "ALL class files, resources and manifest; excludes ZIP timestamps/compression/container metadata"
+}

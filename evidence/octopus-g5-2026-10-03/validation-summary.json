@@ -1,0 +1,208 @@
+{
+  "testedSourceCommit": "f058d3a",
+  "inputFiles": 185,
+  "inputMismatch": [],
+  "sourceInputsUnchanged": true,
+  "protectedSelectedFiles": 7,
+  "protectedChanges": [
+    "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\preferences.ini"
+  ],
+  "javaHarnessRuns": 42,
+  "pythonSuites": 31,
+  "pythonTests": 496,
+  "skipped": 0,
+  "fullRuns": 1,
+  "rawFirstPass": {
+    "steps": 76,
+    "passed": 74,
+    "failed": 2,
+    "exit": 1
+  },
+  "focusedCorrections": {
+    "suites": [
+      "test_g1_trace.py",
+      "test_g2_world_state.py"
+    ],
+    "tests": 13,
+    "passed": 13,
+    "referenceCommit": "83c09fb",
+    "productCodeChanged": false
+  },
+  "effectiveGate": {
+    "steps": 76,
+    "passed": 76,
+    "failedSteps": 0,
+    "classification": "GREEN_WITH_EXPLICIT_HISTORICAL_REFERENCE_CORRECTION"
+  },
+  "perPythonSuite": [
+    {
+      "name": "py_test_ab_aggregate",
+      "tests": 17,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_ab_campaign",
+      "tests": 14,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_battle_client",
+      "tests": 79,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_battle_reports",
+      "tests": 31,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_client",
+      "tests": 11,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_development",
+      "tests": 13,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_economy",
+      "tests": 12,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_engineer_provider",
+      "tests": 8,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_feedback_progress_audit",
+      "tests": 48,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_frontier",
+      "tests": 8,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_frontier_reports",
+      "tests": 10,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_g1_trace",
+      "tests": 4,
+      "rawStatus": "FAIL"
+    },
+    {
+      "name": "py_test_g2_world_state",
+      "tests": 9,
+      "rawStatus": "FAIL"
+    },
+    {
+      "name": "py_test_g3_execution",
+      "tests": 11,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_g41_runtime",
+      "tests": 7,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_g4_runtime",
+      "tests": 3,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_g5_runtime",
+      "tests": 4,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_global_strategy_audit",
+      "tests": 9,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_headless_parallel",
+      "tests": 28,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_human_observer",
+      "tests": 18,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_local_army",
+      "tests": 12,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_match_bootstrap",
+      "tests": 35,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_opening",
+      "tests": 8,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_production_capacity",
+      "tests": 15,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_recon_client",
+      "tests": 7,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_recon_frontier_client",
+      "tests": 22,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_reports",
+      "tests": 16,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_specialist_lifecycle",
+      "tests": 4,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_strategy_funding",
+      "tests": 7,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_surplus_spending",
+      "tests": 11,
+      "rawStatus": "PASS"
+    },
+    {
+      "name": "py_test_target_compatibility",
+      "tests": 15,
+      "rawStatus": "PASS"
+    }
+  ],
+  "protectedSettingDifference": {
+    "path": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02\\preferences.ini",
+    "classification": "EXTERNAL_DESKTOP_ACTIVITY_AFTER_FULL_OBSERVED_ORIGIN_NOT_ASSUMED",
+    "beforeSha256": "4ae11651363363889c546cc3c7a5495ebafcb335fa0d5581d2cfa5a4367be014",
+    "observedAfterSha256": "0242dd02d473f0f7948e2d64d3b9961c14bfeb75a34bd46fdff8714ea6bf6fb3",
+    "fullEndLocal": "2026-10-03T12:57:10+08:00",
+    "externalDesktopMainPid": 3896,
+    "externalDesktopMainCreatedLocal": "2026-10-03T12:58:19.341417+08:00",
+    "observedSettingsMtimeLocal": "2026-10-03T13:01:01.144589+08:00",
+    "readOnlyProcessInventory": true,
+    "restoredOrModifiedByThisTask": false,
+    "reason": "The observed desktop Main was created after all full/native/headless validation processes had ended. Its causal link to the settings difference is not proven. Preserve external/user changes; do not restore."
+  },
+  "protectedCoreFilesUnchanged": 6
+}

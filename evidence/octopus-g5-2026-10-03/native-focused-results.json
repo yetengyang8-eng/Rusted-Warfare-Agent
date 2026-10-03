@@ -1,0 +1,62 @@
+{
+  "jarSha256": "b5d87aff499028a32738eefc6b99710c6b6a9d90faafb04d6b5093b6b769acad",
+  "results": [
+    {
+      "scenario": "final-g5",
+      "summary": {
+        "status": "PASS",
+        "checks": 253,
+        "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+        "naturalMatch": "NO_NATURAL_MATCH",
+        "simulationTicks": 0,
+        "actualNativeLargeGuard": 66,
+        "nativeGroupLimit": 48,
+        "actualBCG5": true,
+        "desktopTouched": false,
+        "naturalProductionOrRouteProven": false,
+        "output": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g5"
+      },
+      "source": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g5\\g5-native-summary.json"
+    },
+    {
+      "scenario": "final-g3-production",
+      "summary": {
+        "scenario": "production",
+        "status": "PASS",
+        "checks": 168,
+        "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+        "naturalMatch": "NO_NATURAL_MATCH",
+        "simulationTicks": 0,
+        "output": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-production"
+      },
+      "source": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-production\\production-summary.json"
+    },
+    {
+      "scenario": "final-g3-modes",
+      "summary": {
+        "scenario": "modes",
+        "status": "PASS",
+        "checks": 30,
+        "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+        "naturalMatch": "NO_NATURAL_MATCH",
+        "simulationTicks": 0,
+        "output": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-modes"
+      },
+      "source": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-modes\\modes-summary.json"
+    },
+    {
+      "scenario": "final-g3-competition",
+      "summary": {
+        "scenario": "competition",
+        "status": "PASS",
+        "checks": 31,
+        "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+        "naturalMatch": "NO_NATURAL_MATCH",
+        "simulationTicks": 0,
+        "output": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-competition"
+      },
+      "source": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\native\\final-g3-competition\\competition-summary.json"
+    }
+  ],
+  "totalChecks": 482
+}

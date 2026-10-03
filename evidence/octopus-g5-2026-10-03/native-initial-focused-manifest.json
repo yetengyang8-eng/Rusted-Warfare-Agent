@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "checks": 253,
+  "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+  "naturalMatch": "NO_NATURAL_MATCH",
+  "simulationTicks": 0,
+  "desktopTouched": false,
+  "candidateJar": "g5-root-candidate.jar",
+  "candidateJarSha256": "877dfa9ac8e40feab06263644dc13240fb856bddc429455ad4a48de28f9f67a6",
+  "gameJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "harnessSource": "agent/tests/G5NativeOperationsHarness.java",
+  "harnessSourceSha256": "ee00c1d958a54aec29a60f1b5faa4f6ba2a180464f700184ee6f521460c17cec",
+  "map": "assets/maps/skirmish/[p2]Big Island (2p).tmx",
+  "mapSha256": "bc6b59c1aef04e3bf9d7ec10d1276c0b31a3f62a35b9996405492717bc446593",
+  "rawDirectory": "focused-attempt4",
+  "rawConsole": "focused-attempt4.log",
+  "nativeCompatibleActors": 66,
+  "nativeEngagementChunkSizes": [
+    48,
+    18
+  ],
+  "existingAttachedGeneralStrength": 24,
+  "explicitlySeededReadyNativeFreeActors": 38,
+  "additionalGeneralDesiredStrength": 24,
+  "acceptedNativeJoinMoves": 24,
+  "acceptedNativeRetreatMoves": 6,
+  "acceptedNativeIndependentAttacks": 1,
+  "fixtureControls": [
+    "READY_ORIGINAL_UNIT_SEEDS",
+    "NATIVE_POSITION_FIELDS",
+    "ALL_TILES_VISIBLE_FOG",
+    "EXPLICIT_MONOTONIC_NATIVE_CLOCK",
+    "ORIGINAL_COMMAND_K_APPLICATION_WITHOUT_TICKS",
+    "LATER_OWN_POSITION_ARRIVAL_FIXTURE"
+  ],
+  "naturalProductionTimingProven": false,
+  "naturalRouteTimingProven": false,
+  "killOrVictoryProven": false,
+  "preservedFailures": [
+    "focused-attempt1.log:PowerShell unquoted JVM -D option before engine boot",
+    "focused-attempt2:single original experimentalTank HP6000 did not reach General HP overmatch1.8 threshold",
+    "focused-attempt3:audit parser read accepted rather than authoritative nativeAccepted field"
+  ],
+  "productionModifiedForFailures": false
+}

@@ -30,3 +30,6 @@ Thumbs.db
 # Explicit public relay artifacts (intentional, reviewed)
 !astra-relay/headless-engine-1.15.zip
 !astra-deliveries/recon-execution-2026-09-29/Rusted-Warfare-Agent-ReconExecution-20260929.zip
+
+# Local human-validation output (raw journals and observer artifacts)
+_human_runs/

@@ -1,0 +1,740 @@
+{
+  "evidence": "ACTUAL_NATIVE_COMMITTED_JOURNAL_READ_ONLY_OBSERVER_NO_DESKTOP_ACCEPTANCE",
+  "observedFileState": "COMMITTED_ONLY_NO_PARTIAL_IN_THIS_READ",
+  "rawBefore": {
+    "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\after-g5\\work\\rw-agent-reports\\battle-1791001520663-7b259ef5.jsonl": {
+      "bytes": 85084113,
+      "sha256": "01263b04736c99afe699007ba2659b82ee4bc6628255da03854c02e39ed36a25",
+      "mtimeNs": 1791001601886071400
+    }
+  },
+  "rawAfter": {
+    "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\after-g5\\work\\rw-agent-reports\\battle-1791001520663-7b259ef5.jsonl": {
+      "bytes": 85084113,
+      "sha256": "01263b04736c99afe699007ba2659b82ee4bc6628255da03854c02e39ed36a25",
+      "mtimeNs": 1791001601886071400
+    }
+  },
+  "rawUnchanged": true,
+  "polls": [
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 1048576,
+        "backlog": 84035537
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 2097152,
+        "backlog": 82986961
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 3145728,
+        "backlog": 81938385
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 4194304,
+        "backlog": 80889809
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 5242880,
+        "backlog": 79841233
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 6291456,
+        "backlog": 78792657
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 7340032,
+        "backlog": 77744081
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 8388608,
+        "backlog": 76695505
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 9437184,
+        "backlog": 75646929
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 10485760,
+        "backlog": 74598353
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 11534336,
+        "backlog": 73549777
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 12582912,
+        "backlog": 72501201
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 13631488,
+        "backlog": 71452625
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 14680064,
+        "backlog": 70404049
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 15728640,
+        "backlog": 69355473
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 16777216,
+        "backlog": 68306897
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 17825792,
+        "backlog": 67258321
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 18874368,
+        "backlog": 66209745
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 19922944,
+        "backlog": 65161169
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 20971520,
+        "backlog": 64112593
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 22020096,
+        "backlog": 63064017
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 23068672,
+        "backlog": 62015441
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 24117248,
+        "backlog": 60966865
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 25165824,
+        "backlog": 59918289
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 26214400,
+        "backlog": 58869713
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 27262976,
+        "backlog": 57821137
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 28311552,
+        "backlog": 56772561
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 29360128,
+        "backlog": 55723985
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 30408704,
+        "backlog": 54675409
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 31457280,
+        "backlog": 53626833
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 32505856,
+        "backlog": 52578257
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 33554432,
+        "backlog": 51529681
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 34603008,
+        "backlog": 50481105
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 35651584,
+        "backlog": 49432529
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 36700160,
+        "backlog": 48383953
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 37748736,
+        "backlog": 47335377
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 38797312,
+        "backlog": 46286801
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 39845888,
+        "backlog": 45238225
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 40894464,
+        "backlog": 44189649
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 41943040,
+        "backlog": 43141073
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 42991616,
+        "backlog": 42092497
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 44040192,
+        "backlog": 41043921
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 45088768,
+        "backlog": 39995345
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 46137344,
+        "backlog": 38946769
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 47185920,
+        "backlog": 37898193
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 48234496,
+        "backlog": 36849617
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 49283072,
+        "backlog": 35801041
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 50331648,
+        "backlog": 34752465
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 51380224,
+        "backlog": 33703889
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 52428800,
+        "backlog": 32655313
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 53477376,
+        "backlog": 31606737
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 54525952,
+        "backlog": 30558161
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 55574528,
+        "backlog": 29509585
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 56623104,
+        "backlog": 28461009
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 57671680,
+        "backlog": 27412433
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 58720256,
+        "backlog": 26363857
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 59768832,
+        "backlog": 25315281
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 60817408,
+        "backlog": 24266705
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 61865984,
+        "backlog": 23218129
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 62914560,
+        "backlog": 22169553
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 63963136,
+        "backlog": 21120977
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 65011712,
+        "backlog": 20072401
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 66060288,
+        "backlog": 19023825
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 67108864,
+        "backlog": 17975249
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 68157440,
+        "backlog": 16926673
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 69206016,
+        "backlog": 15878097
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 70254592,
+        "backlog": 14829521
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 71303168,
+        "backlog": 13780945
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 72351744,
+        "backlog": 12732369
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 73400320,
+        "backlog": 11683793
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 74448896,
+        "backlog": 10635217
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 75497472,
+        "backlog": 9586641
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 76546048,
+        "backlog": 8538065
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 77594624,
+        "backlog": 7489489
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 78643200,
+        "backlog": 6440913
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 79691776,
+        "backlog": 5392337
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 80740352,
+        "backlog": 4343761
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 81788928,
+        "backlog": 3295185
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 82837504,
+        "backlog": 2246609
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 83886080,
+        "backlog": 1198033
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 84934656,
+        "backlog": 149457
+      }
+    },
+    {
+      "battle-1791001520663-7b259ef5.jsonl": {
+        "offset": 85084113,
+        "backlog": 0
+      }
+    }
+  ],
+  "wallSeconds": 0.7257527000001573,
+  "eventsConsumed": 19317,
+  "summary": {
+    "outcome": "PASS",
+    "reason": "Native result screen: VICTORY",
+    "phase": "battle",
+    "matchOutcome": "VICTORY",
+    "commands": 338,
+    "observations": 1159,
+    "ownLosses": 15,
+    "newCombatUnits": 26,
+    "attackOrders": 137,
+    "attackOrdersConfirmed": 133,
+    "retreatOrders": 10,
+    "upgradesCompleted": 1,
+    "completedMines": 3,
+    "newMines": 3,
+    "mineTarget": 3,
+    "minesBeyondFloor": 0,
+    "expansionRefusals": 9,
+    "expansionBlocked": 20,
+    "completedFactories": 2,
+    "newFactories": 2,
+    "landFactoryTarget": 2,
+    "factoryBlocks": 39,
+    "builderTarget": 1,
+    "builderRecoveries": 1,
+    "builderOrders": 1,
+    "battleGameTimeMs": 389264,
+    "gameSecondsPerWallSecond": 4.8,
+    "noProgressWindowMs": 20000,
+    "noProgressCooldownMs": 30000,
+    "targetNoProgressTriggers": 0,
+    "targetRetries": 0,
+    "targetSuppressionsStarted": 1,
+    "targetSuppressionsReleased": 1,
+    "targetSuppressedSelections": 0,
+    "targetSuppressionsAtEnd": 0,
+    "targetSwitches": 0,
+    "effectiveDecisionIntervalGameMs": 512,
+    "noProgressAttentionGapMs": 3000,
+    "maxObservedGameTimeJump": 1008,
+    "observationCount": 1159,
+    "spendTotal": 20650,
+    "spendByCategory": {
+      "NEW_FACTORY": {
+        "orders": 3,
+        "cost": 2100
+      },
+      "UNIT_PRODUCTION": {
+        "orders": 27,
+        "cost": 13950
+      },
+      "NEW_MINE": {
+        "orders": 3,
+        "cost": 2100
+      },
+      "BUILDER_RECOVERY": {
+        "orders": 1,
+        "cost": 500
+      },
+      "FACTORY_UPGRADE": {
+        "orders": 1,
+        "cost": 2000
+      }
+    },
+    "measuredIncomePerGameSecond": 54.42,
+    "investmentIntentions": 0,
+    "investmentCompletions": 0,
+    "investmentCancellations": 0,
+    "investmentReserveAtEnd": 0,
+    "investmentPendingAtEnd": false,
+    "finalUrgency": "STABLE",
+    "reconEnabled": true,
+    "reconTasksCreated": 4,
+    "reconOrdersQueued": 11,
+    "reconOrdersObserved": 11,
+    "reconMovesCompletedBetweenSamples": 0,
+    "frontierTasksSatisfiedByTeamVision": 0,
+    "reconResolvedAfterObservedMove": 2,
+    "reconReacquired": 4,
+    "reconSitesCleared": 0,
+    "reconBlocked": 0,
+    "reconTaskPendingAtEnd": false,
+    "reconFrontierEnabled": true,
+    "frontierTasksCreated": 0,
+    "frontierTasksRefreshed": 0,
+    "frontierTasksAdvanced": 0,
+    "frontierTasksBlocked": 0,
+    "frontierTasksPreempted": 0,
+    "expendableTransfers": 0,
+    "expendableScoutsAtEnd": 0,
+    "factoryTargetIncreases": 0,
+    "factoryTargetIncreaseBlocks": 1,
+    "landFactoryTargetAtEnd": 2,
+    "factoryTargetCommittedAtEnd": false,
+    "landFactoryTargetMax": 5,
+    "factorySaturationPct": 73.99,
+    "factorySaturationMinPct": 80,
+    "economyBaseIncome": 26.9,
+    "economyIncomePerMine": 12.07,
+    "economyModelSource": "MEASURED_4_MATCHES_2_SPEEDS_T1_R2_0.999_T2_T3_ESTIMATED_FROM_FROZEN_GENERATION_RATIOS",
+    "minesReadyAtEnd": 3,
+    "productionConsumptionPerGameSecond": 51.3,
+    "sustainableSurplusPerGameSecond": 11.8,
+    "productionCapacity": {
+      "incomeEstimate": 63.1,
+      "productionConsumptionPerGameSecond": 51.3,
+      "recentSpendPerGameSecond": 60.7,
+      "sustainableSurplusPerGameSecond": 11.8,
+      "credits": 309.0,
+      "strategyArmyTarget": 36,
+      "committedArmed": 13,
+      "hardSafetyCap": 128,
+      "readyProducerCount": 2,
+      "producerUtilizationPct": 74.31,
+      "observedProducerGameMs": 198768,
+      "demand": "UNKNOWN",
+      "backlogSlots": 23,
+      "routeCount": 0,
+      "routes": [
+        {
+          "producerId": 6,
+          "producerType": "landFactory",
+          "product": "heavyTank",
+          "nativeActionId": "u_heavyTank",
+          "nativeCost": 800.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        },
+        {
+          "producerId": 6,
+          "producerType": "landFactory",
+          "product": "c_tank",
+          "nativeActionId": "u_c_tank",
+          "nativeCost": 350.0,
+          "observedTech": 2,
+          "nativeQueue": 1,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        },
+        {
+          "producerId": 538,
+          "producerType": "landFactory",
+          "product": "c_tank",
+          "nativeActionId": "u_c_tank",
+          "nativeCost": 350.0,
+          "observedTech": 1,
+          "nativeQueue": 0,
+          "nativeAffordable": true,
+          "quoteSource": "LEGAL_NATIVE_MENU",
+          "expectedDurationGameMs": null,
+          "expectedThroughput": null,
+          "durationStatus": "UNKNOWN",
+          "fallbackScope": "EXISTING_ORDINARY_PRODUCTION_POLICY"
+        }
+      ],
+      "selectedNativeCost": null,
+      "selectedNativeAffordable": false,
+      "builderReserve": 0,
+      "investmentReserve": 0,
+      "capabilityReserve": 0.0,
+      "allReserved": 0.0,
+      "recovery": false,
+      "factoryTarget": 2,
+      "factoryTargetCommitted": false,
+      "bottleneck": "UNKNOWN",
+      "militaryCapacityDecision": "HOLD",
+      "producerCapacityDecision": "HOLD",
+      "windowGameMs": 150000,
+      "coveredGameMs": 150000,
+      "surplusGameMs": 150000,
+      "usefulDemandGameMs": 0,
+      "safeGameMs": 0,
+      "sustained": false,
+      "operationalCapacityStatus": "UNKNOWN",
+      "gameTimeMs": 390096
+    },
+    "strategy": {
+      "enabled": true,
+      "armyTarget": 36,
+      "activeTarget": 24,
+      "reserveTarget": 12,
+      "hardSafetyCap": 128,
+      "builderTarget": 1,
+      "militaryCapacityIncreases": 0,
+      "militaryCapacityFloor": 0,
+      "capabilityNeedsAtEnd": 0,
+      "needsResolvedByLegalEvidence": 0,
+      "investmentOrders": 0,
+      "mineUpgradesObserved": 0,
+      "constructionCompletionsObserved": 0,
+      "capabilityReservesStarted": 0,
+      "capabilityReservesReleased": 0,
+      "capabilityReserveAtEnd": 0.0,
+      "capabilityTasksAtEnd": 0,
+      "capabilityModeScope": "PER_UNIT",
+      "searchAreaPolicy": "CONTRACT_ONLY_NEEDS_LEGAL_COVERAGE_INPUT"
+    }
+  },
+  "shortReport": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\observer\\native-log-read\\rw-agent-human-report.txt",
+  "html": "G:\\deepseek 工作台\\_validation\\octopus-g5-20261003\\observer\\native-log-read\\rw-agent-live.html",
+  "observerSourceSha256": "202596416ea9a0092dfcde24946618dd600fff2f7235de2311be88027d7134d3",
+  "decisionClocks": {
+    "effectiveDecisionIntervalGameMs": 366.0263653483992,
+    "observationLatencyWallMs": 12.614701258226868,
+    "dispatchLatencyWallMs": 14.282457647058823,
+    "recentDecisionIntervalGameMs": 512
+  },
+  "tails": {
+    "battle-1791001520663-7b259ef5.jsonl": {
+      "offset": 85084113,
+      "invalid": 0,
+      "resets": 0,
+      "oversized": 0
+    }
+  }
+}
