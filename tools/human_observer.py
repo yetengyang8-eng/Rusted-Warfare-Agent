@@ -255,6 +255,7 @@ class HumanState:
             lines.append("General " + gid + " | " + " | ".join(k + "=" + panel_value(v) for k, v in
                          (("phase", get("phase")), ("members", members), ("healthy", get("healthy", "healthyAttachedStrength", "currentHealthy")),
                           ("goal", goal), ("crisis", get("crisis")), ("threat", get("threat", "currentThreat")),
+                          ("tactic", get("tacticalChoice")), ("admission", get("tacticalReason")), ("need", get("capabilityNeed")),
                           ("reinforcement", get("reinforcement")), ("cmd", get("currentCommand", "currentcmd")),
                           ("latest", get("latestMeaningful", "lastMeaningfulEvent")))))
         lines.append("Latest: " + panel_value(self.latest))

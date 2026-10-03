@@ -28,6 +28,8 @@ public final class GeneralCombatDirector {
             ledger.lastObservationGapMs=ledger.time<0?-1:now-ledger.time;
             ledger.damageWindowKnown=ledger.lastObservationGapMs>=0&&ledger.lastObservationGapMs<=DAMAGE_WINDOW_MS;
             ledger.frame=frame;ledger.time=now;ledger.ownCurrent=true;ledger.currentVisibleKnown=combatCurrent(state,enemies,now);
+            ledger.currentThreatSignature=DestinationUnknownDefer.threatSignature(enemies,ledger.currentVisibleKnown);
+            ledger.homeX=homeX;ledger.homeY=homeY;
             ledger.ownHp=ledger.ownMaxHp=0;ledger.currentMembers=ledger.currentHealthy=0;
             Map<Long,CombatLedger.OwnSample> current=new LinkedHashMap<Long,CombatLedger.OwnSample>();double damage=0,enemyDelta=0;int deaths=0;
             // Include explicitly observed dead samples for loss evidence; absence is never a death.
@@ -43,6 +45,9 @@ public final class GeneralCombatDirector {
                 if(owner.healthRole==GeneralRegistry.HealthRole.NORMAL&&maxKnown&&hp>=max*.5)ledger.currentHealthy++;
                 CombatLedger.OwnSample previous=ledger.own.get(id);if(previous!=null&&previous.generation==owner.ownerGeneration)damage+=Math.max(0,previous.hp-hp);
                 else if(previous!=null){ledger.acceptedAt.remove(id);ledger.acceptedRevision.remove(id);ledger.retreatReceiptFrame.remove(id);ledger.retreatReceiptGeneration.remove(id);ledger.event("OWNER_GENERATION_CHANGED",now);}
+                if(!ledger.progressX.containsKey(id)||previous==null||previous.generation!=owner.ownerGeneration||Math.hypot(number(unit,"x")-ledger.progressX.get(id),number(unit,"y")-ledger.progressY.get(id))>=24){
+                    ledger.progressX.put(id,number(unit,"x"));ledger.progressY.put(id,number(unit,"y"));ledger.progressAt.put(id,now);}
+                DestinationUnknownDefer pending=ledger.unknownDestinationDefer.get(id);if(pending!=null&&Objects.equals(ledger.acceptedGeneration.get(id),owner.ownerGeneration))pending.observe(unit,frame,now);
                 current.put(id,new CombatLedger.OwnSample(owner.ownerGeneration,hp));
             }
             ledger.own.clear();ledger.own.putAll(current);ledger.visiblePressure=0;
@@ -62,14 +67,24 @@ public final class GeneralCombatDirector {
             ledger.recentOwnDamage=ledger.weakVisibleHpDecrease=0;int recentLosses=0;
             for(CombatLedger.Damage trend:ledger.recent){ledger.recentOwnDamage+=trend.own;ledger.weakVisibleHpDecrease+=trend.enemy;recentLosses+=trend.losses;}
             ledger.observedOwnDeaths+=deaths;
+            List<Map<String,Object>> fighting=new ArrayList<Map<String,Object>>();for(Long actorId:general.members){GeneralRegistry.UnitView owner=registry.unit(actorId);Map<String,Object> actor=find(state,actorId);
+                if(owned(general,owner)&&owner.healthRole==GeneralRegistry.HealthRole.NORMAL&&ready(actor))fighting.add(actor);}
+            TacticalOpportunity.Exposure exposure=TacticalOpportunity.assess(fighting,items(state,"ownUnits"),ledger.currentVisibleKnown&&general.centroidKnown&&general.centroidFrame==frame?visible(enemies):Collections.<Map<String,Object>>emptyList(),
+                    enemies==null?Collections.<String,Object>emptyMap():enemies,general.x,general.y,homeX,homeY);
+            boolean previousAirNeed=ledger.airCapabilityNeed;ledger.currentAirThreatIds.clear();ledger.currentAirThreatIds.addAll(exposure.airIds);
+            ledger.localExposureRatio=exposure.ratio;ledger.visibleStaticHp=exposure.staticHp;ledger.visibleAirHp=exposure.airHp;
+            ledger.compatibleAirHp=exposure.compatibleAirHp;ledger.unknownAirHp=exposure.unknownAirHp;ledger.airCoverageKnown=exposure.airCoverageKnown;
+            ledger.airCapabilityNeed=ledger.currentVisibleKnown&&exposure.airDeficit();ledger.retreatDistance=exposure.retreatDistance;ledger.supportHp=exposure.supportHp;
+            if(previousAirNeed!=ledger.airCapabilityNeed)ledger.event(ledger.airCapabilityNeed?"CURRENT_VISIBLE_ANTI_AIR_CAPABILITY_NEEDED":"CURRENT_AIR_NEED_RELEASED_OR_UNKNOWN",now);
             boolean overmatch=ledger.currentVisibleKnown&&ledger.visiblePressure>0&&ledger.pressureRatio>=OVERMATCH_RATIO;
+            boolean defended=ledger.currentVisibleKnown&&exposure.staticHp>0&&exposure.ratio>=TacticalOpportunity.MAX_APPROACH_EXPOSURE;
             boolean losing=ledger.currentMembers>0&&(ledger.recentOwnDamage>=Math.max(1,ledger.ownMaxHp)*LOSING_DAMAGE_FRACTION
                     ||recentLosses>=2);
-            boolean calm=ledger.currentVisibleKnown&&ledger.damageWindowKnown&&ledger.pressureRatio<=RECOVERY_RATIO&&ledger.recentOwnDamage<=Math.max(1,ledger.ownMaxHp)*.02;
-            if(!ledger.retreating&&(overmatch||losing)){
-                ledger.retreating=true;ledger.trigger=overmatch?"CURRENT_VISIBLE_HP_OVERMATCH":"CURRENT_OWN_LOSS_EXCHANGE";
+            boolean calm=ledger.currentVisibleKnown&&ledger.damageWindowKnown&&!ledger.airCapabilityNeed&&!defended&&ledger.pressureRatio<=RECOVERY_RATIO&&ledger.recentOwnDamage<=Math.max(1,ledger.ownMaxHp)*.02;
+            if(!ledger.retreating&&(overmatch||losing||defended||ledger.airCapabilityNeed)){
+                ledger.retreating=true;ledger.trigger=ledger.airCapabilityNeed?"CURRENT_VISIBLE_AIR_COVERAGE_DEFICIT":defended?"CURRENT_VISIBLE_STATIC_FIRE_EXPOSURE":overmatch?"CURRENT_VISIBLE_HP_OVERMATCH":"CURRENT_OWN_LOSS_EXCHANGE";
                 ledger.commandRevision++;
-                ledger.change(overmatch?CombatLedger.Crisis.OVERMATCHED:CombatLedger.Crisis.LOSING_EXCHANGE,now);
+                ledger.change(overmatch||defended||ledger.airCapabilityNeed?CombatLedger.Crisis.OVERMATCHED:CombatLedger.Crisis.LOSING_EXCHANGE,now);
                 establishRally(ledger,general,state,enemies,homeX,homeY);ledger.regroupSince=-1;
             }else if(ledger.retreating){
                 if(ledger.crisis==CombatLedger.Crisis.REGROUPING){
@@ -119,42 +134,110 @@ public final class GeneralCombatDirector {
             if(ledger.retreating){
                 if(!ledger.rallyKnown||ledger.crisis==CombatLedger.Crisis.REGROUPING)continue;
                 for(Map<String,Object> actor:actors){final long id=id(actor);if(!due(ledger,id,now,RETREAT_RETRY_MS))continue;
-                    if("move".equals(actor.get("orderType"))&&distanceToOrder(actor,ledger.rallyX,ledger.rallyY)<1&&ledger.retreatReceiptFrame.containsKey(id))continue;
+                    Long retreatFrame=ledger.retreatReceiptFrame.get(id),retreatGeneration=ledger.retreatReceiptGeneration.get(id);
+                    Long acceptedRevision=ledger.acceptedRevision.get(id);DestinationUnknownDefer destination=ledger.unknownDestinationDefer.get(id);
+                    // Individual current own arrival can hold while other members have not met the General regroup quorum.
+                    // An old receipt alone, old generation, changed threat or changed rally never supplies this witness.
+                    if(retreatFrame!=null&&frame>retreatFrame&&retreatGeneration!=null&&retreatGeneration==registry.unit(id).ownerGeneration
+                            &&Objects.equals(ledger.acceptedGeneration.get(id),registry.unit(id).ownerGeneration)&&acceptedRevision!=null&&acceptedRevision==ledger.commandRevision
+                            &&destination!=null&&Objects.equals(destination.threat,ledger.currentThreatSignature)
+                            &&Math.hypot(destination.x-ledger.rallyX,destination.y-ledger.rallyY)<1&&distance(actor,ledger.rallyX,ledger.rallyY)<=140)continue;
+                    if("move".equals(actor.get("orderType"))&&distanceToOrder(actor,ledger.rallyX,ledger.rallyY)<1
+                            &&retreatFrame!=null&&frame>retreatFrame&&retreatGeneration!=null&&retreatGeneration==registry.unit(id).ownerGeneration
+                            &&currentReceiptProgress(ledger,id))continue;
+                    if("move".equals(actor.get("orderType"))&&unknownDestinationDefer(ledger,actor,ledger.rallyX,ledger.rallyY,4000))continue;
                     final long generation=registry.unit(id).ownerGeneration,revision=ledger.commandRevision;
                     host.collect(new ForceController.Proposal(general.owner,Collections.singletonList(id),"/command/move?unitId="+id+"&x="+ledger.rallyX+"&y="+ledger.rallyY,"GENERAL_RETREAT",85,
                         ledger.trigger+":RALLY_GEOMETRY_SAFETY_UNKNOWN",receipt->{Long receiptFrame=GameClock.number(receipt.get("frame"));if(receiptFrame==null||receiptFrame<frame||!stillOwned(general,id,generation))return;
-                            accepted(ledger,id,receipt,now,revision);ledger.retreatReceiptFrame.put(id,receiptFrame);ledger.retreatReceiptGeneration.put(id,generation);recordAccepted(ledger,general,receipt,"RETREAT_ACCEPTED_NOT_ARRIVED");}));
+                            accepted(ledger,id,receipt,now,revision,ledger.rallyX,ledger.rallyY);ledger.retreatReceiptFrame.put(id,receiptFrame);ledger.retreatReceiptGeneration.put(id,generation);recordAccepted(ledger,general,receipt,"RETREAT_ACCEPTED_NOT_ARRIVED");}));
                 }continue;
             }
             if(general.phase!=GeneralRegistry.Phase.ACTIVE||!combatCurrent(state,enemies,now))continue; // UNKNOWN keeps existing orders only.
             List<Map<String,Object>> targets=new ArrayList<Map<String,Object>>(visible(enemies));final Long priority=preferred.get(general.id);
-            Collections.sort(targets,(a,b)->{boolean ap=Objects.equals(priority,id(a)),bp=Objects.equals(priority,id(b));if(ap!=bp)return ap?-1:1;int d=Double.compare(distance(a,general.x,general.y),distance(b,general.x,general.y));return d!=0?d:Long.compare(id(a),id(b));});
-            boolean proposed=false;
-            for(Map<String,Object> target:targets){List<Map<String,Object>> eligible=host.eligible(actors,target,enemies);if(eligible==null)continue;
+            final Map<Long,Double> scores=new HashMap<Long,Double>();
+            for(Map<String,Object> target:targets){TacticalOpportunity.Exposure risk=TacticalOpportunity.assess(actors,items(state,"ownUnits"),targets,enemies,number(target,"x"),number(target,"y"),ledger.homeX,ledger.homeY);
+                scores.put(id(target),distance(target,general.x,general.y)+risk.ratio*1000-TacticalOpportunity.value(target)
+                        -(Objects.equals(priority,id(target))?120:0)-(Objects.equals(ledger.lastTarget,id(target))?100:0));}
+            Collections.sort(targets,(a,b)->{int d=Double.compare(scores.get(id(a)),scores.get(id(b)));return d!=0?d:Long.compare(id(a),id(b));});
+            boolean proposed=false;Map<String,Object> refused=null;
+            for(Map<String,Object> target:targets){
+                TacticalOpportunity.Exposure forceRisk=TacticalOpportunity.assess(actors,items(state,"ownUnits"),targets,enemies,number(target,"x"),number(target,"y"),ledger.homeX,ledger.homeY);
+                // Incompatibility cannot erase a visible air hazard and turn it into a frontier behind that hazard.
+                if(forceRisk.airDeficit()){if(refused==null){refused=target;ledger.targetExposureRatio=forceRisk.ratio;ledger.tacticalReason="OBJECTIVE_CURRENT_AIR_COVERAGE_DEFICIT";}continue;}
+                List<Map<String,Object>> eligible=host.eligible(actors,target,enemies);if(eligible==null)continue;
                 List<Long> ids=new ArrayList<Long>();for(Map<String,Object> actor:eligible)if(contains(actors,id(actor))&&!ids.contains(id(actor)))ids.add(id(actor));if(ids.isEmpty())continue;
+                TacticalOpportunity.Exposure risk=TacticalOpportunity.assess(eligible,items(state,"ownUnits"),targets,enemies,number(target,"x"),number(target,"y"),ledger.homeX,ledger.homeY);
+                double damageCost=ledger.recentOwnDamage/Math.max(1,ledger.ownMaxHp);
+                if(risk.ratio+damageCost*2>=TacticalOpportunity.MAX_APPROACH_EXPOSURE||risk.airDeficit()){
+                    if(refused==null){refused=target;ledger.targetExposureRatio=risk.ratio;ledger.tacticalReason=risk.airDeficit()?"OBJECTIVE_CURRENT_AIR_COVERAGE_DEFICIT":"OBJECTIVE_VISIBLE_DEFENDERS_EXCHANGE_SUPPORT_ESCAPE_COST";}continue;}
                 if(!Objects.equals(ledger.lastTarget,id(target))){ledger.lastTarget=id(target);ledger.commandRevision++;ledger.event("CURRENT_VISIBLE_TASK_CHANGED",now);}
-                ids.removeIf(id->!due(ledger,id,now,NORMAL_RETRY_MS));if(ids.isEmpty()){proposed=true;break;}
+                setTacticalChoice(ledger,"ADVANCE","ADMITTED_CURRENT_NATIVE_ELIGIBLE_OPPORTUNITY",risk.ratio,now);
+                ids.removeIf(id->!due(ledger,id,now,NORMAL_RETRY_MS)||matchingAdvance(ledger,find(state,id),number(target,"x"),number(target,"y"),id(target)));
+                if(ids.isEmpty()){proposed=true;break;}
                 attackChunks(general,ledger,ids,number(target,"x"),number(target,"y"),id(target),"CURRENT_VISIBLE_TARGET",frame,now);proposed=true;break;
             }
             if(proposed||actors.isEmpty())continue;
+            if(refused!=null){double dx=general.x-number(refused,"x"),dy=general.y-number(refused,"y"),length=Math.hypot(dx,dy);
+                setTacticalChoice(ledger,"STANDOFF",ledger.tacticalReason,ledger.targetExposureRatio,now);
+                // A rejected defended objective must not fall through to an army frontier behind its defenses.
+                // Being near the desired hold point does not cancel a previously accepted unsafe advance.
+                // Install the replacement even inside the arrival tolerance, then require a later receipt/order witness to reuse it.
+                if(length<1){dx=ledger.homeX-general.x;dy=ledger.homeY-general.y;length=Math.hypot(dx,dy);if(length<1){dx=1;dy=0;length=1;}}
+                double rawX=number(refused,"x")+dx/length*TacticalOpportunity.STANDOFF_DISTANCE,
+                        rawY=number(refused,"y")+dy/length*TacticalOpportunity.STANDOFF_DISTANCE;
+                final double[] point=boundedPoint(state,rawX,rawY);double x=point[0],y=point[1];
+                    if(!Objects.equals(ledger.lastTarget,id(refused))||!"STANDOFF".equals(ledger.commandMode)){ledger.lastTarget=id(refused);ledger.commandRevision++;}
+                    List<Long> ids=new ArrayList<Long>();for(Map<String,Object> actor:actors)if(due(ledger,id(actor),now,NORMAL_RETRY_MS)&&!matchingAdvance(ledger,actor,x,y,id(refused)))ids.add(id(actor));
+                    attackChunks(general,ledger,ids,x,y,id(refused),"TACTICAL_STANDOFF_GEOMETRY_SAFETY_UNKNOWN",frame,now);
+                continue;}
             Map<String,Object> anchor=actors.get(0);Map<String,Object> plan=host.read("/scout/plan?role=army&unitId="+id(anchor)+"&avoid=","g5_general_frontier_plan");
             if(plan==null||!"planned".equals(plan.get("status"))||!Boolean.TRUE.equals(plan.get("pathKnown"))||GameClock.number(plan.get("targetTile"))==null||!finite(plan.get("targetX"))||!finite(plan.get("targetY")))continue;
-            List<Long> ids=new ArrayList<Long>();for(Map<String,Object> actor:actors)if(Objects.equals(actor.get("type"),anchor.get("type"))&&due(ledger,id(actor),now,NORMAL_RETRY_MS))ids.add(id(actor));
+            if(ledger.lastTarget!=null){ledger.lastTarget=null;ledger.commandRevision++;}
+            setTacticalChoice(ledger,"FRONTIER","NATIVE_KNOWN_ANCHOR_FRONTIER",0,now);
+            List<Long> ids=new ArrayList<Long>();for(Map<String,Object> actor:actors)if(Objects.equals(actor.get("type"),anchor.get("type"))&&due(ledger,id(actor),now,NORMAL_RETRY_MS)&&!matchingAdvance(ledger,actor,number(plan,"targetX"),number(plan,"targetY"),null))ids.add(id(actor));
             attackChunks(general,ledger,ids,number(plan,"targetX"),number(plan,"targetY"),null,"NATIVE_KNOWN_ANCHOR_FRONTIER",frame,now);
         }
     }
     private void attackChunks(final GeneralRegistry.GeneralView general,final CombatLedger ledger,List<Long> actors,final double x,final double y,final Long target,String reason,final long frame,final long now)throws Exception{
+        final String mode=reason.startsWith("TACTICAL_STANDOFF")?"STANDOFF":target==null?"FRONTIER":"ADVANCE";
+        if(!ledger.commandPointKnown||!mode.equals(ledger.commandMode)||Math.hypot(x-ledger.commandX,y-ledger.commandY)>140)ledger.commandRevision++;
         for(int start=0;start<actors.size();start+=48){final List<Long> chunk=new ArrayList<Long>(actors.subList(start,Math.min(start+48,actors.size())));final Map<Long,Long> generations=new HashMap<Long,Long>();
             for(Long id:chunk)generations.put(id,registry.unit(id).ownerGeneration);final long revision=ledger.commandRevision;
             StringBuilder ids=new StringBuilder();for(Long id:chunk){if(ids.length()>0)ids.append(',');ids.append(id);}
             host.collect(new ForceController.Proposal(general.owner,chunk,"/command/attack-move?unitIds="+ids+"&x="+x+"&y="+y,"GENERAL",30,reason,
                 receipt->{Long receiptFrame=GameClock.number(receipt.get("frame"));if(receiptFrame==null||receiptFrame<frame)return;for(Long id:chunk)if(!stillOwned(general,id,generations.get(id)))return;
-                    for(Long id:chunk)accepted(ledger,id,receipt,now,revision);registry.updateGeneralGoal(general.id,x,y,target);recordAccepted(ledger,general,receipt,"ATTACK_ACCEPTED_NOT_EXECUTED");}));
+                    for(Long id:chunk)accepted(ledger,id,receipt,now,revision,x,y);ledger.commandPointKnown=true;ledger.commandX=x;ledger.commandY=y;ledger.commandMode=mode;
+                    registry.updateGeneralGoal(general.id,x,y,target);recordAccepted(ledger,general,receipt,"ATTACK_ACCEPTED_NOT_EXECUTED");}));
         }
     }
+    private void setTacticalChoice(CombatLedger ledger,String choice,String reason,double ratio,long now){boolean modeChanged=!choice.equals(ledger.tacticalChoice),changed=modeChanged||!reason.equals(ledger.tacticalReason);Map<String,Object> before=changed?ledger.view():null;
+        if(modeChanged)ledger.commandRevision++;
+        ledger.tacticalChoice=choice;ledger.tacticalReason=reason;ledger.targetExposureRatio=ratio;if(changed){ledger.event("TACTICAL_"+choice+":"+reason,now);
+            changes.add(fields("reason","GENERAL_TACTICAL_ADMISSION","generalId",ledger.id.value,"before",before,"after",ledger.view(),"sourceFrame",ledger.frame,"gameTimeMs",now));}}
+    private boolean matchingAdvance(CombatLedger ledger,Map<String,Object> actor,double x,double y,Long target){if(actor==null||!ledger.acceptedAt.containsKey(id(actor))||!ledger.commandPointKnown||!Objects.equals(ledger.lastTarget,target))return false;
+        if(!currentReceiptProgress(ledger,id(actor)))return false;
+        String mode=ledger.tacticalChoice;Long acceptedRevision=ledger.acceptedRevision.get(id(actor));
+        if(acceptedRevision==null||acceptedRevision!=ledger.commandRevision||!mode.equals(ledger.commandMode)||Math.hypot(x-ledger.commandX,y-ledger.commandY)>140)return false;
+        Object order=actor.get("orderType");return ("attackMove".equals(order)||"attack-move".equals(order)||"attack_move".equals(order))
+                &&(distanceToOrder(actor,ledger.commandX,ledger.commandY)<=140||Math.hypot(x-ledger.commandX,y-ledger.commandY)<1&&unknownDestinationDefer(ledger,actor,ledger.commandX,ledger.commandY,6000))
+                ||order==null&&distance(actor,ledger.commandX,ledger.commandY)<=140;}
+    private boolean unknownDestinationDefer(CombatLedger ledger,Map<String,Object> actor,double x,double y,long hardWindow){long id=id(actor);DestinationUnknownDefer pending=ledger.unknownDestinationDefer.get(id);Long revision=ledger.acceptedRevision.get(id);
+        if(!currentReceiptProgress(ledger,id)||revision==null||revision!=ledger.commandRevision||pending==null||Math.hypot(pending.x-x,pending.y-y)>1
+                ||!pending.allows(actor,ledger.frame,ledger.time,hardWindow,2500,ledger.currentThreatSignature))return false;
+        ledger.lastOrderReuseEvidence=DestinationUnknownDefer.EVIDENCE;ledger.destinationUnknownDeferCount++;return true;}
+    private boolean currentReceiptProgress(CombatLedger ledger,long id){GeneralRegistry.UnitView owner=registry.unit(id);Long generation=ledger.acceptedGeneration.get(id),receiptFrame=ledger.acceptedFrame.get(id),progressAt=ledger.progressAt.get(id);
+        DestinationUnknownDefer pending=ledger.unknownDestinationDefer.get(id);
+        return owner!=null&&generation!=null&&generation==owner.ownerGeneration&&receiptFrame!=null&&ledger.frame>receiptFrame&&progressAt!=null&&ledger.time-progressAt<=15000
+                &&(pending==null||Objects.equals(pending.threat,ledger.currentThreatSignature));}
+    private static double[] boundedPoint(Map<String,Object> state,double x,double y){Object raw=state.get("map");Map<?,?> map=raw instanceof Map?(Map<?,?>)raw:Collections.emptyMap();double width=numeric(map.get("width")),height=numeric(map.get("height"));
+        x=Math.max(0,x);y=Math.max(0,y);if(Double.isFinite(width)&&width>0)x=Math.min(x,Math.max(0,width-1));if(Double.isFinite(height)&&height>0)y=Math.min(y,Math.max(0,height-1));return new double[]{x,y};}
     private void recordAccepted(CombatLedger ledger,GeneralRegistry.GeneralView general,Map<String,Object> receipt,String reason){changes.add(fields("reason",reason,"generalId",general.id.value,"owner",general.owner,"receiptFrame",receipt.get("frame"),"receiptGameTimeMs",receipt.get("gameTimeMs"),"after",ledger.view()));}
-    private static void accepted(CombatLedger ledger,long id,Map<String,Object> receipt,long now,long revision){Long time=GameClock.number(receipt.get("gameTimeMs"));ledger.acceptedAt.put(id,time!=null&&time>=now?time:now);ledger.acceptedRevision.put(id,revision);}
-    private static boolean due(CombatLedger ledger,long id,long now,long interval){Long accepted=ledger.acceptedAt.get(id),revision=ledger.acceptedRevision.get(id);return accepted==null||revision==null||revision!=ledger.commandRevision||now-accepted>=interval;}
+    private void accepted(CombatLedger ledger,long id,Map<String,Object> receipt,long now,long revision,double x,double y){Long time=GameClock.number(receipt.get("gameTimeMs"));long acceptedTime=time!=null&&time>=now?time:now;ledger.acceptedAt.put(id,acceptedTime);ledger.acceptedRevision.put(id,revision);
+        ledger.acceptedGeneration.put(id,registry.unit(id).ownerGeneration);ledger.acceptedFrame.put(id,GameClock.number(receipt.get("frame")));ledger.progressAt.put(id,now);
+        ledger.unknownDestinationDefer.put(id,new DestinationUnknownDefer(x,y,acceptedTime,GameClock.number(receipt.get("frame")),ledger.currentThreatSignature));}
+    private boolean due(CombatLedger ledger,long id,long now,long interval){Long accepted=ledger.acceptedAt.get(id),revision=ledger.acceptedRevision.get(id),generation=ledger.acceptedGeneration.get(id);GeneralRegistry.UnitView owner=registry.unit(id);
+        DestinationUnknownDefer pending=ledger.unknownDestinationDefer.get(id);boolean threatChanged=pending!=null&&!Objects.equals(pending.threat,ledger.currentThreatSignature);
+        return threatChanged||owner==null||generation==null||generation!=owner.ownerGeneration||accepted==null||revision==null||revision!=ledger.commandRevision||now-accepted>=interval;}
     private boolean stillOwned(GeneralRegistry.GeneralView general,long id,long generation){GeneralRegistry.UnitView unit=registry.unit(id);return owned(general,unit)&&unit.ownerGeneration==generation;}
     private static boolean owned(GeneralRegistry.GeneralView general,GeneralRegistry.UnitView unit){return unit!=null&&unit.membership==GeneralRegistry.Membership.ATTACHED&&general.id.equals(unit.generalId)&&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE&&unit.externalOwner==null&&general.owner.equals(unit.owner);}
     private static double distanceToOrder(Map<String,Object> unit,double x,double y){return Math.hypot(number(unit,"orderX")-x,number(unit,"orderY")-y);}

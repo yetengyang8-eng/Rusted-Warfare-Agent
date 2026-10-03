@@ -27,6 +27,28 @@ public final class ProductionCapacityHarness {
         require(classify(20,40,128,"KNOWN",100000,0,false,true,true,100)==ProductionCapacity.Bottleneck.CAPACITY_EXPANSION_COMMITTED,"one commitment at a time");
         require(classify(20,40,128,"KNOWN",100000,0,false,false,false,100)==ProductionCapacity.Bottleneck.UNKNOWN,"one busy observation is insufficient");
     }
+    static void incomeFundedTech(){
+        Map<String,Object> upgrade=map("type","upgrade","actionId","native-upgrade","cost",2000,"affordable",true);
+        require(ProductionCapacity.techInvestment(upgrade,6,6,2500,0,350,63,20,false).selected,
+            "six healthy ordinary actors can invest via own force and native budget before ten-unit fence");
+        require(!ProductionCapacity.techInvestment(upgrade,12,5,100000,0,350,63,20,false).selected,
+            "large cash does not replace healthy force evidence");
+        require(!ProductionCapacity.techInvestment(upgrade,6,6,2500,300,350,63,20,false).selected,
+            "upgrade protects active investment and one native replacement");
+        require(!ProductionCapacity.techInvestment(upgrade,6,6,100000,0,350,63,20,true).selected,
+            "recovery takes priority over paid tech");
+        upgrade.put("affordable",false);
+        ProductionCapacity.TechInvestment bounded=ProductionCapacity.techInvestment(upgrade,6,6,2000,0,350,63,20,false);
+        require(!bounded.selected&&bounded.bank,"positive observed income can support bounded native-tech savings");
+        require(!ProductionCapacity.techInvestment(upgrade,6,6,2000,0,350,20,63,false).bank,
+            "no banking while consumption outruns income");
+        require(!ProductionCapacity.techInvestment(upgrade,6,6,100,0,350,40,39,false).bank,
+            "long unfunded tech wait must keep production moving");
+        require(!ProductionCapacity.techInvestment(upgrade,6,6,100000,0,Double.NaN,63,20,false).selected,
+            "unknown native replacement quote cannot release funds");
+        require(!ProductionCapacity.techInvestment(null,6,6,100000,0,350,63,20,false).selected,
+            "cash cannot invent native upgrade action");
+    }
     static void militaryFloor()throws Exception{
         BattleClient host=new BattleClient();set(host,"log",new BufferedWriter(new StringWriter()));
         CommandArbiter execution=(CommandArbiter)get(host,"execution");
@@ -86,7 +108,7 @@ public final class ProductionCapacityHarness {
         require(output.toString().contains("RECOVERY_PROTECTED"),"planned unpaid factory waits during dangerous recovery");
     }
     public static void main(String[] args)throws Exception{
-        diagnoses();militaryFloor();delayedReserve("builder");delayedReserve("investment");delayedReserve("capability");paidGap();delayedHardCap();
+        diagnoses();incomeFundedTech();militaryFloor();delayedReserve("builder");delayedReserve("investment");delayedReserve("capability");paidGap();delayedHardCap();
         System.out.println("PRODUCTION_CAPACITY_CONTRACT_OK checks="+checks+" fixtureOnly=true");
     }
 }

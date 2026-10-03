@@ -14,6 +14,9 @@ final class StrategyDirector {
         default Map<String,Object> orderStrategy(String owner,String path,Map<String,Object> context)throws Exception{return orderStrategy(owner,path);}
         default WorldState worldStrategy(){return null;}
         default boolean parallelStrategy(){return false;}
+        /** G5's supplied ordinary roster already includes owned General members. Assessment is
+         * read-only and must not confuse command ownership with eligibility for demand evidence. */
+        default boolean assessOwnedOrdinaryStrategy(){return false;}
         default double effectiveStrategyCredits(double nativeCredits){return nativeCredits;}
         /** Identity of the actual validated native menu/plan packet; absent metadata is UNKNOWN.
          * A later unrelated GET and the state observation are never this quote's price source. */
@@ -70,6 +73,7 @@ final class StrategyDirector {
         double x,y,buildX,buildY,best=Double.MAX_VALUE,hp=Double.MAX_VALUE;
         Set<Long> before=new HashSet<Long>();
         Set<Long> prospects=new HashSet<Long>();
+        final ProspectCommitment prospect=new ProspectCommitment();
         Map<String,Object> supportQuote;
         double supportReserve;
         long supportDeadline;
@@ -197,7 +201,8 @@ final class StrategyDirector {
     private void refreshAssessments(List<Map<String,Object>> force)throws Exception{
         if(force.isEmpty())return;
         List<Map<String,Object>> actors=new ArrayList<Map<String,Object>>();
-        for(Map<String,Object> actor:force)if(!arbiter.reserved(id(actor)))actors.add(actor);
+        for(Map<String,Object> actor:force)if(!arbiter.reserved(id(actor))
+                ||host.assessOwnedOrdinaryStrategy()&&ready(actor))actors.add(actor);
         if(actors.isEmpty())return;
         String ids=ids(actors);int queried=0;
         List<Map<String,Object>> contacts=new ArrayList<Map<String,Object>>(items(enemies,"visibleEnemies"));
@@ -285,6 +290,7 @@ final class StrategyDirector {
     private boolean available(Need need){return need!=null&&need.failures<3&&need.seen>need.awaitVisibleAfter;}
     private Need eligibleNeed(){for(Need need:needs.values())if(available(need)&&!assigned(need.id))return need;return null;}
     private void bind(Worker worker,Need need,String reason,long producer)throws Exception{
+        worker.prospect.clear();
         detachCapability(worker);worker.target=need.id;
         CapabilityTask collective=capabilityTasks.get(need.id);
         if(collective==null){collective=new CapabilityTask(need.id,need.id,need.reason);capabilityTasks.put(need.id,collective);}
@@ -398,7 +404,15 @@ final class StrategyDirector {
             }else if("PROSPECT".equals(w.job)){
                 double d=distance(actor,w.x,w.y);
                 if(d+20<w.best){w.best=d;w.lastProgress=now;}
-                if(d<75){emit("strategy_prospect_observed",map("taskId",w.task,"unitId",w.unit,"unit",actor));w.job="IDLE";w.retryAt=now;}
+                if(d<75){
+                    if(host.assessOwnedOrdinaryStrategy()){
+                        Long frame=GameClock.number(state.get("frame"));
+                        if(frame==null||!w.prospect.observeArrival(n(actor,"x"),n(actor,"y"),frame,now))continue;
+                        emit("strategy_prospect_cluster_committed",map("taskId",w.task,"unitId",w.unit,"anchorX",w.prospect.x(),"anchorY",w.prospect.y(),
+                            "paidTravel",w.prospect.paidTravel(),"sourceFrame",frame,"safety","CURRENT_NATIVE_SITE_STILL_REQUIRED"));
+                    }
+                    emit("strategy_prospect_observed",map("taskId",w.task,"unitId",w.unit,"unit",actor));w.job="IDLE";w.retryAt=now;
+                }
                 else if(now-w.lastProgress>45000||now-w.jobAt>120000){
                     emit("strategy_task_blocked",map("taskId",w.task,"job",w.job,"reason","PROSPECT_NO_PROGRESS"));w.job="IDLE";w.retryAt=now+15000;
                 }
@@ -525,14 +539,17 @@ final class StrategyDirector {
                 continue;
             }
             if(!"builder".equals(actor.get("type")))continue;
+            if(host.assessOwnedOrdinaryStrategy()&&worker.prospect.arrived()&&nearThreat(n(actor,"x"),n(actor,"y"),400)){
+                worker.prospect.clear();emit("strategy_prospect_cluster_released",map("unitId",worker.unit,"reason","CURRENT_OR_CONSERVATIVE_LOCAL_THREAT"));}
             if(!nearThreat(n(actor,"x"),n(actor,"y"),400)){
                 Map<String,Object> plan=host.readStrategy("/expansion/plan?unitId="+worker.unit,"strategy_expansion_plan");
                 if(plan!=null&&number(plan,"extractorCost",Double.MAX_VALUE)<=free
-                        &&!nearThreat(n(plan,"extractorX"),n(plan,"extractorY"),350)){
+                        &&!nearThreat(n(plan,"extractorX"),n(plan,"extractorY"),350)
+                        &&(!host.assessOwnedOrdinaryStrategy()||!worker.prospect.arrived()||worker.prospect.local(n(plan,"extractorX"),n(plan,"extractorY")))){
                     if(startBuild(worker,plan,"/command/build-extractor?unitId="+worker.unit+"&x="+n(plan,"extractorX")+"&y="+n(plan,"extractorY"),
                         "extractorT1",n(plan,"extractorX"),n(plan,"extractorY"),(long)n(plan,"extractorCost"),"MINE")){acted=true;if(!host.parallelStrategy())return true;continue workerAllocation;}
                 }
-                String build=count("landFactory")<factoryTarget?"landFactory":null;
+                String build=count("landFactory")<factoryTarget&&(!host.assessOwnedOrdinaryStrategy()||!worker.prospect.arrived())?"landFactory":null;
                 if(build!=null){
                     Map<String,Object> plan2=host.readStrategy("/economy/construction-plan?unitId="+worker.unit+"&type="+build,"strategy_construction_plan");
                     if(plan2!=null&&Boolean.TRUE.equals(plan2.get("affordable"))&&n(plan2,"cost")<=free){
@@ -543,6 +560,16 @@ final class StrategyDirector {
                 // Additional construction capacity must actually reach its backlog, not stand at
                 // home once all sites within the native 600-unit building search are occupied.
                 List<Map<String,Object>> resources=new ArrayList<Map<String,Object>>(items(scout,"resources"));
+                if(host.assessOwnedOrdinaryStrategy()&&worker.prospect.arrived()){
+                    List<Map<String,Object>> local=new ArrayList<Map<String,Object>>();
+                    for(Map<String,Object> resource:resources)if(worker.prospect.local(n(resource,"x"),n(resource,"y"))&&!occupiedResource(resource)
+                        &&!nearThreat(n(resource,"x"),n(resource,"y"),350))local.add(resource);
+                    boolean complete=localResourcesCurrent(resources,worker.prospect);
+                    boolean retained=worker.prospect.assessLocalBacklog(complete,!local.isEmpty()||plan!=null&&worker.prospect.local(n(plan,"extractorX"),n(plan,"extractorY")));
+                    if(retained){resources=local;
+                        emit("strategy_prospect_cluster_retained",map("unitId",worker.unit,"localCandidates",local.size(),"assessment",complete?"CURRENT_LOCAL_TILES":"UNKNOWN", "paidTravel",worker.prospect.paidTravel()));
+                    }else emit("strategy_prospect_cluster_released",map("unitId",worker.unit,"reason","TWO_CURRENT_EMPTY_LOCAL_ASSESSMENTS"));
+                }
                 Collections.sort(resources,(a,b)->Double.compare(distance(actor,n(a,"x"),n(a,"y")),distance(actor,n(b,"x"),n(b,"y"))));
                 int queriedResources=0;
                 for(Map<String,Object> resource:resources){
@@ -552,7 +579,10 @@ final class StrategyDirector {
                     worker.prospects.add(tile);
                     Map<String,Object> approach=host.readStrategy("/scout/resource-approach?unitId="+worker.unit+"&tile="+tile,"strategy_resource_approach");
                     if(approach==null||!Boolean.TRUE.equals(approach.get("pathKnown")))continue;
-                    if(traceOrder(worker.owner,"/command/move?unitId="+worker.unit+"&x="+n(approach,"x")+"&y="+n(approach,"y"))!=null){
+                    Map<String,Object> prospectReceipt=traceOrder(worker.owner,"/command/move?unitId="+worker.unit+"&x="+n(approach,"x")+"&y="+n(approach,"y"));
+                    if(prospectReceipt!=null){
+                        Long receiptFrame=GameClock.number(prospectReceipt.get("frame"));
+                        if(host.assessOwnedOrdinaryStrategy()&&receiptFrame!=null)worker.prospect.accepted(tile,n(approach,"x"),n(approach,"y"),n(actor,"x"),n(actor,"y"),receiptFrame,now);
                         worker.job="PROSPECT";worker.x=n(approach,"x");worker.y=n(approach,"y");worker.jobAt=worker.lastProgress=now;worker.best=distance(actor,worker.x,worker.y);
                         emit("strategy_prospect_ordered",map("taskId",worker.task,"unitId",worker.unit,"tile",tile,"evidence",approach));acted=true;if(!host.parallelStrategy())return true;continue workerAllocation;
                     }
@@ -562,6 +592,18 @@ final class StrategyDirector {
             worker.retryAt=now+15000;
         }
         return acted;
+    }
+    /** Current visibility over every remembered local tile can prove a locally empty candidate
+     * list. Missing tiles/packets are UNKNOWN, not evidence that the distant cluster is exhausted. */
+    private boolean localResourcesCurrent(List<Map<String,Object>> resources,ProspectCommitment commitment)throws Exception{
+        if(!commitment.arrived())return false;
+        Set<Long> tiles=new LinkedHashSet<Long>();for(Map<String,Object> resource:resources)if(commitment.local(n(resource,"x"),n(resource,"y")))tiles.add((long)n(resource,"tile"));
+        if(tiles.isEmpty()||tiles.size()>48)return false;
+        StringBuilder query=new StringBuilder();for(Long tile:tiles){if(query.length()>0)query.append(',');query.append(tile);}
+        Map<String,Object> current=host.readStrategy("/scout/visible?tiles="+query,"strategy_local_cluster_visibility");
+        if(current==null||!Objects.equals(state.get("sessionId"),current.get("sessionId"))||number(current,"gameTimeMs",-1)<now)return false;
+        Set<Long> observed=new HashSet<Long>();for(Map<String,Object> tile:items(current,"tiles"))if(Boolean.TRUE.equals(tile.get("visible")))observed.add((long)n(tile,"tile"));
+        return observed.containsAll(tiles);
     }
     private void validateCapabilityFunding()throws Exception{
         if(capabilityFunding==null)return;

@@ -33,7 +33,8 @@ public final class StrategyContractHarness {
         final List<Map<String,Object>> events=new ArrayList<Map<String,Object>>();
         final List<String> orders=new ArrayList<String>();
         Map<String,Object> world;String approach="BLOCKED_TERRAIN",specialistApproach="APPROACH_PATH_KNOWN";
-        boolean visible=true;int upgradeOrders;
+        boolean visible=true,assessOwned;int upgradeOrders;
+        public boolean assessOwnedOrdinaryStrategy(){return assessOwned;}
         double engineerCost=3500;
         boolean engineerOffered=true,productionMenuAvailable=true,rejectOrders,minePlan,supportPlan;
         public Map<String,Object> readStrategy(String path,String event){
@@ -119,6 +120,28 @@ public final class StrategyContractHarness {
         require(high.total>40&&high.total<=96&&high.builders==2,"capacity needs income, task/map demand and construction backlog");
         require(capacity(32400,40,0,0,0,false,40,300000,128,false).builders==1,"cash is absent from builder target decision");
         require(capacity(148000,200,5,1,5,true,40,300000,32,true).total==32,"explicit fixed cap experiment stays fixed");
+    }
+    static void ownedOrdinaryAssessment()throws Exception{
+        Fake f=new Fake();f.approach="APPROACH_PATH_KNOWN";
+        StrategyDirector strategy=new StrategyDirector(f,f.gate);strategy.enable(map("strategyContractVersion",1),128);
+        Map<String,Object> tank=unit(10,"heavyTank",450,350);
+        Map<String,Object> world=map("sessionId","session","gameTimeMs",120000L,"map",map("tilesWide",110,"tilesHigh",110),
+            "player",map("credits",10000),"ownUnits",Arrays.asList(unit(1,"commandCenter",2990,3070),tank));
+        Map<String,Object> enemies=map("visibleEnemies",Arrays.asList(map("id",230L,"type","landFactory","building",true,
+            "canAttack",false,"x",510,"y",70,"hp",1000)),"enemyIntel",Collections.emptyList());
+        Map<String,Object> scout=map("resources",Collections.emptyList(),"rememberedThreats",Collections.emptyList());
+        f.stamp(world);require(f.gate.claim("general:1",10),"ordinary tank remains owned by General");
+        long generation=f.gate.ownerGeneration(10);
+        strategy.observe(world,enemies,scout,Arrays.asList(tank),0,900000,63,20,0,false);
+        require("UNKNOWN".equals(strategy.ordinaryDemand("heavyTank")),"legacy assessment retains owned actor exclusion");
+        f.assessOwned=true;world.put("gameTimeMs",132000L);f.stamp(world);
+        strategy.observe(world,enemies,scout,Arrays.asList(tank),0,888000,63,20,0,false);
+        require("KNOWN".equals(strategy.ordinaryDemand("heavyTank")),"G5 read-only General assessment produces native-compatible route demand");
+        require(f.gate.owns("general:1",10)&&f.gate.ownerGeneration(10)==generation&&f.orders.isEmpty(),
+            "assessment cannot transfer ownership, alter generation, or issue General orders");
+        enemies.put("visibleEnemies",Collections.emptyList());world.put("gameTimeMs",144000L);f.stamp(world);
+        strategy.observe(world,enemies,scout,Arrays.asList(tank),0,876000,63,20,0,false);
+        require("NONE".equals(strategy.ordinaryDemand("heavyTank")),"owned assessment cannot create demand from LOST_CONTACT");
     }
     static void constructionCapacity()throws Exception{
         Fake f=new Fake();StrategyDirector strategy=new StrategyDirector(f,f.gate);strategy.enable(map("strategyContractVersion",1),3);
@@ -329,7 +352,7 @@ public final class StrategyContractHarness {
         require(support.f.orders.stream().anyMatch(p->p.startsWith("/command/attack-move?unitIds=81")),"dedicated support responder executes its inherited movement-gap response");
     }
     public static void main(String[] args)throws Exception{
-        geometry();policy();constructionCapacity();capabilityFunding();specialistLifecycle();
+        geometry();policy();ownedOrdinaryAssessment();constructionCapacity();capabilityFunding();specialistLifecycle();
         require(BattleBudget.seconds(new String[]{"3600"})==3600,"long product window is independent of old 1800 limit");
         boolean refused=false;try{BattleBudget.seconds(new String[]{"21601"});}catch(IllegalArgumentException e){refused=true;}
         require(refused,"long experiments retain a bounded safety ceiling");

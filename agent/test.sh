@@ -82,6 +82,11 @@ java -cp "$classpath:$root/build/tests" io.rwagent.client.ForceFormationHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath:$root/build/tests" -d "$root/build/tests" "$root/tests/G5CommanderHarness.java" "$root/tests/G5CombatHarness.java" "$root/tests/RuntimeAccelerationHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G5CommanderHarness
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G5CombatHarness
+java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath:$root/build/tests" -d "$root/build/tests" "$root/tests/G51OperationsHarness.java" "$root/tests/G51TacticalHarness.java" "$root/tests/G51LogisticsHarness.java" "$root/tests/G51ProspectIntegrationHarness.java"
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G51OperationsHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G51TacticalHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G51LogisticsHarness
+java -cp "$classpath:$root/build/tests" io.rwagent.client.G51ProspectIntegrationHarness
 java --add-modules jdk.httpserver -cp "$classpath:$root/build/tests" io.rwagent.client.RuntimeAccelerationHarness
 java -m jdk.compiler/com.sun.tools.javac.Main -cp "$classpath" -d "$root/build/tests" "$root/tests/G1TraceHarness.java"
 java -cp "$classpath:$root/build/tests" io.rwagent.client.G1TraceHarness

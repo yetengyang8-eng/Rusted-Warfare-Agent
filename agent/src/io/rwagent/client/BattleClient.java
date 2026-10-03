@@ -16,6 +16,7 @@ public final class BattleClient implements StrategyDirector.Host {
     private final boolean g4ForcesEnabled=g3ExecutionEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g4Forces","true"));
     private final boolean earlyOperationsEnabled=g4ForcesEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.earlyOperations","true"));
     private final boolean g5Enabled=g4ForcesEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g5","true"));
+    private final boolean g51Enabled=g5Enabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g51","true"));
     private final boolean adaptiveRuntime=g5Enabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.runtimeAdaptive","true"));
     private final long decisionInterval=adaptiveRuntime?Math.max(100,Math.min(1000,Long.getLong("rwagent.decisionIntervalGameMs",250L))):1000;
     private final long commandBudgetInterval=g5Enabled?Math.max(100,Math.min(1000,Long.getLong("rwagent.commandBudgetIntervalGameMs",250L))):1000;
@@ -25,6 +26,10 @@ public final class BattleClient implements StrategyDirector.Host {
     private CommanderDirector commander;
     private final Map<String,String> generalCommands=new HashMap<String,String>();
     private final Map<Long,Long> freeStageAt=new HashMap<Long,Long>();
+    private AirResponsePolicy.Need airNeed;
+    private String lastAirNeedSignature="";
+    private long lastTechEvaluation=-100000;
+    public boolean assessOwnedOrdinaryStrategy(){return g51Enabled;}
     private long lastHeavyDecision=-100000,lastHumanState=-100000;
     private String previousOperationsKey;
     private Map<String,Object> staticMapKnowledge;
@@ -313,9 +318,16 @@ public final class BattleClient implements StrategyDirector.Host {
     private void considerInvestmentIntent(Map<String,Object> state){
         if(investment!=null)return;
         if(time-lastInvestmentReleaseAt<investmentRetryCooldownGameMs)return;
-        if(!URGENCY_STABLE.equals(militaryUrgency)&&!URGENCY_OPEN.equals(militaryUrgency))return;
-        if(mainArmy(state).size()<activeArmyTarget)return;   // a transferred scout is not main-force readiness
+        if(g51Enabled){
+            if(productionRecovery(state))return;
+            int healthy=0;for(Map<String,Object> actor:mainArmy(state))if(n(actor,"buildProgress")>=1&&n(actor,"maxHp")>0&&n(actor,"hp")>=n(actor,"maxHp")*.5)healthy++;
+            if(healthy<LocalArmyDirector.FORM_MINIMUM)return;
+        }else{
+            if(!URGENCY_STABLE.equals(militaryUrgency)&&!URGENCY_OPEN.equals(militaryUrgency))return;
+            if(mainArmy(state).size()<activeArmyTarget)return;
+        }
         long cost=lastExtractorCost>0?lastExtractorCost:investmentMineCostDefault;
+        if(g51Enabled&&(lastPreferredUnitCost<=0||n(obj(state.get("player")),"credits")-cost<builderReserve+strategy.capabilityReserve()+lastPreferredUnitCost))return;
         if(wouldBreachCapabilityReserve(state,cost))return;
         long[] bucket=spendByCategory.get(SPEND_MINE);
         investment=new Investment("NEW_MINE",cost,time,time+investmentTimeoutGameMs);
@@ -345,7 +357,7 @@ public final class BattleClient implements StrategyDirector.Host {
     }
     private void maintainInvestment(Map<String,Object> state)throws Exception{
         if(investment==null)return;
-        if(URGENCY_EMERGENCY.equals(militaryUrgency)||URGENCY_CONTESTED.equals(militaryUrgency)){
+        if(g51Enabled?productionRecovery(state):URGENCY_EMERGENCY.equals(militaryUrgency)||URGENCY_CONTESTED.equals(militaryUrgency)){
             releaseInvestment("MILITARY_PRESSURE");return;
         }
         // Inclusive deadline: "release when the deadline arrives", not one decision later. A strict
@@ -643,7 +655,7 @@ public final class BattleClient implements StrategyDirector.Host {
                         +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
                         +",\"targetEligibilityVersion\":1,\"targetSuppressionRelease\":\"NEWER_VISIBLE_COMPATIBLE_EVIDENCE\""
                         +(g3ExecutionEnabled?",\"g3Execution\":true,\"commandBudgetIntervalGameMs\":"+commandBudgetInterval+",\"commandBudgetInitialTokens\":1,\"commandBudgetAnchorGameTimeMs\":"+startTime+",\"commandBudgetBurst\":"+commandBurst:"")
-                        +(g5Enabled?",\"g5\":true,\"runtimeAdaptive\":"+adaptiveRuntime+",\"decisionGateGameMs\":"+decisionInterval+",\"generalBirthPolicyG5\":\"FILLED_GENERAL_AND_SIX_CURRENT_HEALTHY_FREE\"":"")
+                        +(g5Enabled?",\"g5\":true,\"g51Operations\":"+g51Enabled+",\"runtimeAdaptive\":"+adaptiveRuntime+",\"decisionGateGameMs\":"+decisionInterval+",\"generalBirthPolicyG5\":\"FILLED_GENERAL_AND_SIX_CURRENT_HEALTHY_FREE\"":"")
                         +(g4ForcesEnabled?",\"g4Forces\":true,\"forcePriorityScope\":\"G4_FORCE_CONTROLLERS_ONLY\"":"")
                         +(earlyOperationsEnabled?",\"earlyOperations\":true,\"generalBirthPolicy\":\"NO_VALID_GENERAL_HEALTHY_FREE_FORMING\"":"")
                         +",\"globalStrategyEnabled\":"+strategy.enabled()+",\"strategyContractVersion\":1"
@@ -1115,6 +1127,13 @@ public final class BattleClient implements StrategyDirector.Host {
         Map<String,Object> menu=get("/combat/production","production_menu");check(menu);
         List<Map<String,Object>> factories=list(menu,"factories");
         observeProductionRoutes(factories);
+        if(g51Enabled){
+            int counterPending=0;for(Pending p:pending.values())if(AirResponsePolicy.counter(p.type))counterPending++;
+            Set<Long> ordinary=new LinkedHashSet<Long>();for(Map<String,Object> actor:mainArmy(state))ordinary.add(id(actor));
+            airNeed=AirResponsePolicy.assess(state,lastEnemies,ordinary,counterPending);
+            String signature=airNeed.evidence.get("status")+":"+airNeed.targets+":"+airNeed.coverage+":"+airNeed.deficit;
+            if(!signature.equals(lastAirNeedSignature)){lastAirNeedSignature=signature;event("g51_air_capability_need",json(airNeed.evidence));}
+        }
         double ordinaryQuote=-1;
         for(Map<String,Object> factory:factories)for(Map<String,Object> action:list(factory,"actions"))
             if("heavyTank".equals(action.get("type"))&&n(action,"cost")>0)ordinaryQuote=n(action,"cost");
@@ -1172,16 +1191,34 @@ public final class BattleClient implements StrategyDirector.Host {
             // busy, the price stayed unknown, and the surplus test could neither pass nor refuse.
             if(preferred!=null){lastPreferredUnit=(String)preferred.get("type");lastPreferredUnitCost=((Number)preferred.get("cost")).longValue();}
             Map<String,Object> chosen=null;int priority=-1;
+            ProductionCapacity.TechInvestment tech=null;
+            if(g51Enabled){
+                int healthy=0;for(Map<String,Object> actor:mainArmy(state))if(n(actor,"buildProgress")>=1&&n(actor,"maxHp")>0&&n(actor,"hp")>=n(actor,"maxHp")*.5)healthy++;
+                tech=ProductionCapacity.techInvestment(upgradeCandidate(f),mainCount,healthy,n(obj(state.get("player")),"credits"),
+                    strategyReserve()+strategy.capabilityReserve()+(!primary?primaryReserve:0),techReplacementNativeCost(f,preferred),
+                    modelledIncomePerGameSecond(state),productionConsumptionPerGameSecond(),productionRecovery(state));
+                if(upgradeCandidate(f)!=null&&(tech.selected||time-lastTechEvaluation>=10000)){
+                    Map<String,Object> data=new LinkedHashMap<String,Object>(tech.evidence);data.put("factoryId",fid);data.put("gameTimeMs",time);
+                    data.putAll(costSourceStrategy(menu));event("g51_tech_conversion",json(data));lastTechEvaluation=time;
+                }
+            }
             for(Map<String,Object> a:list(f,"actions")){
                 if(!Boolean.TRUE.equals(a.get("affordable")))continue;String type=(String)a.get("type");int score=-1;
                 if(("tank".equals(type)||"c_tank".equals(type))&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=1;
                 if("heavyTank".equals(type)&&army.size()<productionLimit()&&!wouldBreachMineReserve(state,n(a,"cost"))&&!wouldBreachInvestmentReserve(state,n(a,"cost")))score=3;
-                if("upgrade".equals(type)&&mainCount>=6&&n(obj(state.get("player")),"credits")>=n(a,"cost")
-                        &&!wouldBreachCapabilityReserve(state,n(a,"cost")))score=5;
+                if("upgrade".equals(type)&&(g51Enabled?tech!=null&&tech.selected:mainCount>=6&&n(obj(state.get("player")),"credits")>=n(a,"cost")
+                        &&!wouldBreachCapabilityReserve(state,n(a,"cost"))))score=5;
                 if(score>priority){priority=score;chosen=a;}
             }
             SurplusSpendingPolicy.Decision surplus=null;boolean qualitySelected=false;
-            if(strategy.enabled()&&(chosen==null||!"upgrade".equals(chosen.get("type")))){
+            boolean airSelected=false;
+            if(g51Enabled&&army.size()<productionLimit()){
+                Map<String,Object> counter=AirResponsePolicy.action(f,airNeed,n(obj(state.get("player")),"credits"),strategyReserve()+strategy.capabilityReserve()+(!primary?primaryReserve:0));
+                if(counter!=null){chosen=counter;qualitySelected=true;airSelected=true;
+                    Map<String,Object> evidence=new LinkedHashMap<String,Object>(airNeed.evidence);evidence.put("factoryId",fid);evidence.put("product",counter.get("type"));
+                    evidence.put("nativeAction",counter);evidence.putAll(costSourceStrategy(menu));event("g51_air_response_selected",json(evidence));}
+            }
+            if(!airSelected&&strategy.enabled()&&(chosen==null||!"upgrade".equals(chosen.get("type")))){
                 int ordinary=0;for(Map<String,Object> unit:mainArmy(state))if(!SurplusSpendingPolicy.PRODUCT.equals(unit.get("type")))ordinary++;
                 surplus=SurplusSpendingPolicy.evaluate(new SurplusSpendingPolicy.Inputs(state,lastEnemies,f,artilleryLedger,
                     strategy.armyTarget(),mobileUnitHardCap,ordinary,strategy.committedArmedForPolicy(),
@@ -1247,7 +1284,7 @@ public final class BattleClient implements StrategyDirector.Host {
                 if(idleReason==null)idleReason=investment?"BANKING_FOR_SECONDARY_UPGRADE":"RESERVING_FOR_PRIMARY";
                 continue;
             }
-            if(!"upgrade".equals(chosen.get("type"))&&mainCount>=10){
+            if(!airSelected&&!"upgrade".equals(chosen.get("type"))&&(g51Enabled?tech!=null&&tech.bank:mainCount>=10)){
                 boolean banking=chosenUpgrade!=null;
                 if(banking){
                     // 杈撳嚭13 搂7 / 杈撳嚭15 搂4: banking for the tech that unlocks the mainline unit is primary
@@ -1278,9 +1315,10 @@ public final class BattleClient implements StrategyDirector.Host {
             if(traceEnabled||g3ExecutionEnabled)nextTraceCommandContext=StrategyDirector.map("lane","ORDINARY_PRODUCTION","factoryId",fid,
                     "product",chosen.get("type"),"actionId",chosen.get("actionId"),"nativeCost",chosen.get("cost"),
                     "commitmentId","ordinary-production:"+fid+":"+time);
+            if(airSelected)nextTraceCommandContext.put("militarySlots",1);
             Map<String,Object> receipt=post("/command/queue?unitId="+fid+"&actionId="+URLEncoder.encode((String)chosen.get("actionId"),"UTF-8"));
             if(receipt==null){if(g3ExecutionEnabled)continue;return false;}
-            if(qualitySelected){
+            if(qualitySelected&&!airSelected){
                 artilleryLedger=artilleryLedger.accepted(state,fid,time);
                 Map<String,Object> evidence=new LinkedHashMap<String,Object>(surplus.evidence);
                 evidence.put("gameTimeMs",time);evidence.put("actionId",chosen.get("actionId"));evidence.put("receipt",receipt);
@@ -1295,6 +1333,9 @@ public final class BattleClient implements StrategyDirector.Host {
                 pendingFallback=null;
             }
             Pending p=new Pending();p.started=time;p.type=(String)chosen.get("type");p.tier=(int)n(f,"tier");pending.put(fid,p);
+            if(airSelected){int counters=0;for(Pending accepted:pending.values())if(AirResponsePolicy.counter(accepted.type))counters++;
+                Set<Long> ordinary=new LinkedHashSet<Long>();for(Map<String,Object> actor:mainArmy(state))ordinary.add(id(actor));
+                airNeed=AirResponsePolicy.assess(state,lastEnemies,ordinary,counters);}
             p.traceCommand=lastTraceCommand;
             productionIdleReason=null;produced=true;if(!g3ExecutionEnabled)return true;
         }
@@ -1302,6 +1343,14 @@ public final class BattleClient implements StrategyDirector.Host {
         lastFactoryQueueNonEmpty=anyQueueBusy;
         if(idleFactory&&idleReason!=null)reportProductionIdle(idleReason,mainCount,state);else productionIdleReason=null;
         return false;
+    }
+
+    /** A fresh replacement quote remains known even when no military slot is available.
+     * Upgrades consume only their native producer slot; price evidence is independent of army caps. */
+    private static double techReplacementNativeCost(Map<String,Object> factory,Map<String,Object> preferred){
+        if(preferred!=null&&StrategyDirector.number(preferred,"cost",Double.NaN)>0)return n(preferred,"cost");
+        List<ProductionRoute> routes=ProductionRoute.ordinaryOptions(factory);
+        return routes.isEmpty()?Double.NaN:routes.get(0).cost;
     }
 
     /**
@@ -1340,8 +1389,7 @@ public final class BattleClient implements StrategyDirector.Host {
         }
         double credits=n(obj(state.get("player")),"credits"),reserved=strategyReserve()+strategy.capabilityReserve();
         double income=modelledIncomePerGameSecond(state),consumption=productionConsumptionPerGameSecond();
-        boolean recovery=builderRecoveryActive||builderOrderPending||countReadyType(state,"builder")<builderTarget
-            ||URGENCY_EMERGENCY.equals(militaryUrgency)||URGENCY_CONTESTED.equals(militaryUrgency);
+        boolean recovery=productionRecovery(state);
         capacitySamples.add(new double[]{time,income-consumption,"KNOWN".equals(demand)?1:0,
             !recovery&&routeAffordable&&Double.isFinite(routeCost)&&credits-routeCost>=reserved?1:0});
         long cutoff=time-economyWindowGameMs;
@@ -2285,7 +2333,8 @@ public final class BattleClient implements StrategyDirector.Host {
         event("g5_runtime_state",json(StrategyDirector.map("gameTimeMs",time,"sourceFrame",execution.stamp().frame,"observationId",stateObservation.observationId,
             "credits",obj(state.get("player")).get("credits"),"income",measuredIncome(),"factories",factories,"freeCount",free,"generalCount",rows.size(),"generals",rows,
             "localResponse",local,"recon",reconTask==null?null:reconData(reconTask),"capability",strategy.summary(),
-            "threatTasks",commander==null?null:commander.snapshot(),"runtime",runtime==null?null:runtime.metrics(commands,time-startTime))));
+            "threatTasks",commander==null?null:commander.snapshot(),"runtime",runtime==null?null:runtime.metrics(commands,time-startTime),
+            "forceOrderReuse",forceController==null?null:forceController.orderReuseView())));
     }
     private void ensureForceControllers(){
         if(forceController!=null)return;
@@ -3715,7 +3764,7 @@ public final class BattleClient implements StrategyDirector.Host {
                         event("production_facility_ready",json(data));
                     }
                 }
-                buildJob=null;jobKnownUnits.clear();lastExpansionAttempt=time;
+                buildJob=null;jobKnownUnits.clear();lastExpansionAttempt=g51Enabled?time-expansionIntervalGameMs:time;
             }else{
                 // The site exists but is not finished. Only a builder can advance it, so without one the
                 // job is parked with its site and progress kept for a later builder instead of being
@@ -3759,6 +3808,7 @@ public final class BattleClient implements StrategyDirector.Host {
         }
         double distance=Math.hypot(n(builder,"x")-job.x,n(builder,"y")-job.y);
         if(distance>expansionBuildRangeWorld){
+            if(g51Enabled&&job.moving&&"move".equals(builder.get("orderType"))&&Math.hypot(n(builder,"orderX")-job.x,n(builder,"orderY")-job.y)<1)return;
             if(post("/command/move?unitId="+id(builder)+"&x="+job.x+"&y="+job.y)!=null){
                 job.moving=true;
                 Map<String,Object> data=new LinkedHashMap<String,Object>();
@@ -4413,6 +4463,29 @@ public final class BattleClient implements StrategyDirector.Host {
     }
     private double sustainableSurplusPerGameSecond(Map<String,Object> state){
         return modelledIncomePerGameSecond(state)-productionConsumptionPerGameSecond();
+    }
+    /** A distant General's exchange is not a homeland production-recovery veto. Unknown current
+     * telemetry and builder recovery remain conservative; legacy mode preserves the old gate. */
+    private boolean productionRecovery(Map<String,Object> state){
+        if(builderRecoveryActive||builderOrderPending||countReadyType(state,"builder")<builderTarget)return true;
+        if(!g51Enabled)return URGENCY_EMERGENCY.equals(militaryUrgency)||URGENCY_CONTESTED.equals(militaryUrgency);
+        Long observed=lastEnemies==null?null:GameClock.number(lastEnemies.get("gameTimeMs"));
+        Long frame=GameClock.number(state.get("frame")),sourceFrame=lastEnemies==null?null:GameClock.number(lastEnemies.get("frame"));
+        if(session==null||lastEnemies==null||!session.equals(lastEnemies.get("sessionId"))||observed==null||observed<time
+            ||!(lastEnemies.get("visibleEnemies") instanceof List)||frame==null
+            ||lastEnemies.containsKey("frame")&&(sourceFrame==null||sourceFrame<frame)
+            ||!AirResponsePolicy.sourceMatchesPlayer(state,lastEnemies))return true;
+        for(Object raw:(List<?>)lastEnemies.get("visibleEnemies")){
+            if(!(raw instanceof Map))return true;
+            Map<String,Object> enemy=obj(raw);
+            Long enemyId=GameClock.number(enemy.get("id"));double hp=StrategyDirector.number(enemy,"hp",Double.NaN);
+            if(enemyId==null||enemyId<0||!currentEnemy(enemy,lastEnemies)||!Double.isFinite(StrategyDirector.number(enemy,"x",Double.NaN))
+                ||!Double.isFinite(StrategyDirector.number(enemy,"y",Double.NaN))
+                ||!Double.isFinite(hp)||hp<=0||Boolean.TRUE.equals(enemy.get("dead")))return true;
+        }
+        for(Map<String,Object> enemy:list(lastEnemies,"visibleEnemies"))if(currentEnemy(enemy,lastEnemies)
+            &&Boolean.TRUE.equals(enemy.get("canAttack"))&&distance(enemy,homeX,homeY)<500)return true;
+        return false;
     }
     /**
      * Economy v1b (对话38 裁决 §2): the ONE behaviour this version adds. One more land factory is justified by

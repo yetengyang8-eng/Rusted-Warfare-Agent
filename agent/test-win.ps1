@@ -128,6 +128,10 @@ Step 'java:GeneralFormationHarness' { & $java -cp $cp io.rwagent.client.GeneralF
 Step 'java:ForceFormationHarness' { & $java -cp $cp io.rwagent.client.ForceFormationHarness }
 Step 'java:G5CommanderHarness' { & $java -cp $cp io.rwagent.client.G5CommanderHarness }
 Step 'java:G5CombatHarness' { & $java -cp $cp io.rwagent.client.G5CombatHarness }
+Step 'java:G51OperationsHarness' { & $java -cp $cp io.rwagent.client.G51OperationsHarness }
+Step 'java:G51TacticalHarness' { & $java -cp $cp io.rwagent.client.G51TacticalHarness }
+Step 'java:G51LogisticsHarness' { & $java -cp $cp io.rwagent.client.G51LogisticsHarness }
+Step 'java:G51ProspectIntegrationHarness' { & $java -cp $cp io.rwagent.client.G51ProspectIntegrationHarness }
 Step 'java:RuntimeAccelerationHarness' { & $java --add-modules jdk.httpserver -cp $cp io.rwagent.client.RuntimeAccelerationHarness }
 Step 'java:G1TraceHarness' { & $java -cp $cp io.rwagent.client.G1TraceHarness }
 Step 'java:WorldStateHarness' { & $java -cp $cp io.rwagent.client.WorldStateHarness }

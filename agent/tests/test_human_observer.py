@@ -76,6 +76,17 @@ class TailTests(unittest.TestCase):
 
 
 class StateTests(unittest.TestCase):
+    def test_g51_tactical_admission_is_visible_without_claiming_damage(self):
+        state = HumanState()
+        state.consume({"event": "g5_runtime_state", "data": {"generals": [
+            {"generalId": 1, "phase": "ACTIVE", "members": [2], "combat": {
+                "tacticalChoice": "STANDOFF", "tacticalReason": "VISIBLE_STATIC_DEFENDERS", "capabilityNeed": "ANTI_AIR"}}]}})
+        text = state.render()
+        self.assertIn("tactic=STANDOFF", text)
+        self.assertIn("admission=VISIBLE_STATIC_DEFENDERS", text)
+        self.assertIn("need=ANTI_AIR", text)
+        self.assertNotIn("kills=", text)
+
     def test_multi_general_never_merge_and_unknown_stays_unknown(self):
         state = HumanState()
         state.consume({"event": "g5_runtime_state", "data": {"generals": [
@@ -290,6 +301,7 @@ class LauncherTests(unittest.TestCase):
                 return launcher.GAME_SHA if Path(path).name == "game-lib.jar" else "new-client"
             with mock.patch.object(launcher, "get", side_effect=bridge), mock.patch.object(launcher, "sha", side_effect=fingerprint), \
                  mock.patch.object(launcher.subprocess, "Popen", side_effect=FakeClient), mock.patch.object(launcher.time, "sleep"), \
+                 mock.patch("tempfile.gettempdir", return_value=directory), \
                  mock.patch("builtins.print"):
                 code = launcher.main(["--game-dir", str(external), "--jar", str(jar), "--java", sys.executable,
                                       "--output-root", str(root / "runs space"), "--no-wait"])
@@ -308,10 +320,11 @@ class LauncherTests(unittest.TestCase):
             self.assertFalse((external / "rw-agent-reports").exists())
 
     def test_port_lease_excludes_competing_launchers(self):
-        with launcher.PortLease(58191):
-            with self.assertRaises(RuntimeError):
-                with launcher.PortLease(58191):
-                    pass
+        with tempfile.TemporaryDirectory() as directory, mock.patch("tempfile.gettempdir", return_value=directory):
+            with launcher.PortLease(58191):
+                with self.assertRaises(RuntimeError):
+                    with launcher.PortLease(58191):
+                        pass
 
 
 if __name__ == "__main__":

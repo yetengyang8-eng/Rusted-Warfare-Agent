@@ -38,9 +38,13 @@ public final class ForceController {
     private static final long ORDER_INTERVAL_MS=8000;
     private final Map<Long,Long> generalAccepted=new HashMap<Long,Long>(),joinAccepted=new HashMap<Long,Long>(),responseClearedFrame=new HashMap<Long,Long>();
     private final Map<Long,JoinReceiptTarget> joinReceiptTargets=new HashMap<Long,JoinReceiptTarget>();
+    private long destinationUnknownJoinDeferCount;private Map<String,Object> lastJoinDefer=Collections.emptyMap();
+    public Map<String,Object> orderReuseView(){Map<String,Object> out=new LinkedHashMap<String,Object>();out.put("destinationUnknownJoinDeferCount",destinationUnknownJoinDeferCount);out.put("lastJoinDefer",lastJoinDefer);return out;}
     private static final class JoinReceiptTarget {
         final GeneralRegistry.GeneralId general;final long generation;final double x,y;final String source;
-        JoinReceiptTarget(GeneralRegistry.UnitView unit,double x,double y,String source){general=unit.reservedGeneralId;generation=unit.ownerGeneration;this.x=x;this.y=y;this.source=source;}
+        double bestDistance;long lastProgressAt;
+        final DestinationUnknownDefer unknownDefer;
+        JoinReceiptTarget(GeneralRegistry.UnitView unit,double x,double y,String source,double distance,long now,long receiptFrame,String threat){general=unit.reservedGeneralId;generation=unit.ownerGeneration;this.x=x;this.y=y;this.source=source;bestDistance=distance;lastProgressAt=now;unknownDefer=new DestinationUnknownDefer(x,y,now,receiptFrame,threat);}
     }
     private final Map<Long,Long> screenAccepted=new HashMap<Long,Long>();
     private ExpansionSupport expansionSupport;
@@ -70,7 +74,7 @@ public final class ForceController {
         if(state==null||enemies==null||now<0)return;
         reconcile(state,enemies,now);
         collectLocalResponse(state,enemies,now);
-        collectJoining(state,now);
+        collectJoining(state,enemies,now);
         if(generalCombatDirector==null)collectGenerals(state,enemies,now);else generalCombatDirector.collect(state,enemies,now);
         collectFormingScreens(state,now);
         // FREE movement is deliberately absent without a lawful, useful home-resource route.
@@ -127,8 +131,9 @@ public final class ForceController {
             receipt->{if(response==active)active.acceptedAt=now;}));
     }
     private int localRank(long actor){GeneralRegistry.UnitView unit=registry.unit(actor);return unit!=null&&unit.membership!=GeneralRegistry.Membership.ATTACHED?0:1;}
-    private void collectJoining(Map<String,Object> state,long now)throws Exception{
+    private void collectJoining(Map<String,Object> state,Map<String,Object> enemies,long now)throws Exception{
         final Long frame=GameClock.number(state.get("frame"));if(frame==null)return;
+        final String threat=DestinationUnknownDefer.threatSignature(enemies,generalCombatDirector==null?combatCurrent(state,enemies,now):generalCombatDirector.combatCurrent(state,enemies,now));
         for(GeneralRegistry.UnitView initial:registry.units()){
             if(initial.temporaryTask!=GeneralRegistry.TemporaryTask.NONE||initial.externalOwner!=null)continue;
             if(initial.allocation==GeneralRegistry.Allocation.PENDING_JOIN&&initial.membership==GeneralRegistry.Membership.UNATTACHED&&initial.healthRole==GeneralRegistry.HealthRole.NORMAL)registry.beginJoining(initial.unitId);
@@ -139,11 +144,29 @@ public final class ForceController {
             if(general==null||!Boolean.TRUE.equals(target.get("known"))||!ready(own))continue;
             final double targetX=number(target,"x"),targetY=number(target,"y");
             final String targetSource=(String)target.get("source");final JoinReceiptTarget prior=joinReceiptTargets.get(unit.unitId);
+            final boolean sameCommitment=prior!=null&&prior.generation==unit.ownerGeneration&&unit.reservedGeneralId.equals(prior.general);
+            if(sameCommitment)prior.unknownDefer.observe(own,frame,now);
+            boolean threatChanged=sameCommitment&&!Objects.equals(prior.unknownDefer.threat,threat);
             boolean urgentRedirect="CURRENT_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN".equals(targetSource)
-                    &&(prior==null||prior.generation!=unit.ownerGeneration||!unit.reservedGeneralId.equals(prior.general)
+                    &&(!sameCommitment
                     ||!targetSource.equals(prior.source)||Math.hypot(prior.x-targetX,prior.y-targetY)>=1);
-            if(!urgentRedirect&&now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
-            if(unit.joinAcceptedFrame>=0&&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-targetX,number(own,"orderY")-targetY)<1)continue;
+            if(!urgentRedirect&&!threatChanged&&sameCommitment&&now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
+            if(!urgentRedirect&&!threatChanged&&sameCommitment&&Objects.equals(targetSource,prior.source)&&unit.joinAcceptedFrame>=0&&frame>unit.joinAcceptedFrame
+                    &&Math.hypot(prior.x-targetX,prior.y-targetY)<1&&"move".equals(own.get("orderType"))
+                    &&prior.unknownDefer.allows(own,frame,now,12000,2500,threat)){
+                destinationUnknownJoinDeferCount++;Map<String,Object> witness=new LinkedHashMap<String,Object>();witness.put("evidence",DestinationUnknownDefer.EVIDENCE);witness.put("actorId",unit.unitId);witness.put("generation",unit.ownerGeneration);
+                witness.put("sourceFrame",frame);witness.put("gameTimeMs",now);witness.put("semantics","SHORT_SCHEDULING_DEFER_NOT_NATIVE_DESTINATION_OR_ARRIVAL_WITNESS");lastJoinDefer=Collections.unmodifiableMap(witness);continue;}
+            // Reuse the actual native order while its rendezvous still falls inside the current
+            // joining arrival envelope. Small centroid changes must not repeatedly restart travel.
+            // Owner generation and a later own frame keep old/ABA receipts from suppressing work.
+            if(!urgentRedirect&&!threatChanged&&sameCommitment
+                    &&Objects.equals(targetSource,prior.source)&&unit.joinAcceptedFrame>=0&&frame>unit.joinAcceptedFrame
+                    &&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-prior.x,number(own,"orderY")-prior.y)<1
+                    &&Math.hypot(prior.x-targetX,prior.y-targetY)<=90){
+                double d=distance(own,prior.x,prior.y);
+                if(d+15<prior.bestDistance){prior.bestDistance=d;prior.lastProgressAt=now;}
+                if(now-prior.lastProgressAt<20000)continue;
+            }
             List<Long> ids=Collections.singletonList(unit.unitId);
             host.collect(new Proposal(unit.owner,ids,"/command/move?unitId="+unit.unitId+"&x="+targetX+"&y="+targetY,"JOINING",50,
                 "CURRENT_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN".equals(target.get("source"))?"MOVE_TO_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN":general.phase==GeneralRegistry.Phase.FORMING?"MOVE_TO_FORMATION_OWN_ANCHOR":"MOVE_TO_CURRENT_GENERAL_CENTROID",
@@ -151,7 +174,8 @@ public final class ForceController {
                     if(actualFrame!=null&&actualFrame>=frame&&current!=null&&current.ownerGeneration==unit.ownerGeneration&&current.owner.equals(unit.owner)
                             &&Objects.equals(current.reservedGeneralId,unit.reservedGeneralId)&&registry.joinAccepted(unit.unitId,actualFrame)){
                         Long actualTime=GameClock.number(receipt.get("gameTimeMs"));joinAccepted.put(unit.unitId,actualTime!=null&&actualTime>=now?actualTime:now);
-                        joinReceiptTargets.put(unit.unitId,new JoinReceiptTarget(unit,targetX,targetY,targetSource));}}));
+                        long acceptedTime=actualTime!=null&&actualTime>=now?actualTime:now;
+                        joinReceiptTargets.put(unit.unitId,new JoinReceiptTarget(unit,targetX,targetY,targetSource,distance(own,targetX,targetY),acceptedTime,actualFrame,threat));}}));
         }
     }
     private void collectGenerals(Map<String,Object> state,Map<String,Object> enemies,long now)throws Exception{

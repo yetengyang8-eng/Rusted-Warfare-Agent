@@ -19,6 +19,10 @@ public final class CombatLedger {
     final Deque<Damage> recent=new ArrayDeque<Damage>();
     final Map<Long,Long> acceptedAt=new HashMap<Long,Long>(),acceptedRevision=new HashMap<Long,Long>(),retreatReceiptFrame=new HashMap<Long,Long>();
     final Map<Long,Long> retreatReceiptGeneration=new HashMap<Long,Long>();
+    final Map<Long,Long> acceptedGeneration=new HashMap<Long,Long>(),acceptedFrame=new HashMap<Long,Long>(),progressAt=new HashMap<Long,Long>();
+    final Map<Long,Double> progressX=new HashMap<Long,Double>(),progressY=new HashMap<Long,Double>();
+    final Map<Long,DestinationUnknownDefer> unknownDestinationDefer=new HashMap<Long,DestinationUnknownDefer>();
+    String currentThreatSignature="UNKNOWN",lastOrderReuseEvidence="NONE";long destinationUnknownDeferCount;
     Crisis crisis=Crisis.NORMAL; boolean retreating,rallyKnown,currentVisibleKnown,ownCurrent,rallyBoundsKnown,damageWindowKnown;
     double rallyX,rallyY,ownHp,ownMaxHp,visiblePressure,pressureRatio,recentOwnDamage,weakVisibleHpDecrease;
     int currentHealthy,currentMembers,observedOwnDeaths;
@@ -26,6 +30,12 @@ public final class CombatLedger {
     long frame=-1,time=-1,revision,commandRevision,regroupSince=-1,lastMeaningfulTime=-1,lastObservationGapMs=-1;
     String lastMeaningfulEvent="INITIAL",trigger="NONE",session,player;
     Long lastTarget;
+    double homeX,homeY,localExposureRatio,visibleStaticHp,visibleAirHp,compatibleAirHp,unknownAirHp,retreatDistance,supportHp;
+    boolean airCoverageKnown,airCapabilityNeed;
+    final List<Long> currentAirThreatIds=new ArrayList<Long>();
+    String tacticalChoice="NONE",tacticalReason="NONE";
+    double targetExposureRatio;
+    boolean commandPointKnown;double commandX,commandY;String commandMode="NONE";
     CombatLedger(GeneralRegistry.GeneralId id){this.id=id;}
     void event(String reason,long now){lastMeaningfulEvent=reason;lastMeaningfulTime=now;revision++;}
     void change(Crisis next,long now){if(crisis!=next){crisis=next;event("CRISIS_"+next.name(),now);}}
@@ -48,6 +58,16 @@ public final class CombatLedger {
         out.put("pressureRadius",GeneralCombatDirector.PRESSURE_RADIUS);out.put("overmatchHpRatio",GeneralCombatDirector.OVERMATCH_RATIO);
         out.put("losingDamageFraction",GeneralCombatDirector.LOSING_DAMAGE_FRACTION);out.put("recoveryPressureRatio",GeneralCombatDirector.RECOVERY_RATIO);
         out.put("regroupHoldMs",GeneralCombatDirector.REGROUP_HOLD_MS);out.put("policyEvidence","CONSERVATIVE_HP_PROXY_NOT_COMBAT_STRENGTH");
+        out.put("tacticalChoice",tacticalChoice);out.put("tacticalReason",tacticalReason);out.put("targetExposureRatio",targetExposureRatio);
+        out.put("localExposureRatio",currentVisibleKnown?localExposureRatio:null);out.put("visibleStaticHp",currentVisibleKnown?visibleStaticHp:null);
+        out.put("visibleAirHp",currentVisibleKnown?visibleAirHp:null);out.put("compatibleAirHp",currentVisibleKnown?compatibleAirHp:null);
+        out.put("unknownAirHp",currentVisibleKnown?unknownAirHp:null);out.put("airCoverage",currentVisibleKnown&&airCoverageKnown?"CURRENT_TRUSTED_STATIC_DOMAIN_PROXY":"UNKNOWN");
+        out.put("capabilityNeed",currentVisibleKnown&&airCapabilityNeed?"ANTI_AIR":"NONE");out.put("capabilityNeedEvidence","CURRENT_VISIBLE_LOCAL_ARMED_AIR_ONLY");
+        out.put("currentVisibleAirThreatIds",Collections.unmodifiableList(new ArrayList<Long>(currentAirThreatIds)));
+        out.put("retreatDistance",retreatDistance);out.put("nearbySupportHp",supportHp);
+        out.put("exposureEvidence","VISIBLE_ARMED_HP_STATIC_WEIGHT_SUPPORT_ESCAPE_PROXY_NOT_DPS_OR_NATIVE_PERMISSION");
+        out.put("lastOrderReuseEvidence",lastOrderReuseEvidence);out.put("destinationUnknownDeferCount",destinationUnknownDeferCount);
+        out.put("destinationUnknownDeferSemantics","SHORT_SCHEDULING_DEFER_NOT_NATIVE_DESTINATION_OR_EXECUTION_WITNESS");
         return Collections.unmodifiableMap(out);
     }
 }
