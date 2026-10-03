@@ -1,0 +1,11 @@
+{
+  "step": "java:StrategyNativeHarness",
+  "rawFailure": "Missing assets/translations/Strings.properties before native engine initialization",
+  "correctedWorkingDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\native-work",
+  "correctedLog": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\strategy-native-environment-corrected.log",
+  "checks": 51,
+  "exit": 0,
+  "sameCandidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+  "productSourceChanged": false,
+  "secondFullRun": false
+}

@@ -1,0 +1,63 @@
+{
+  "candidateId": "RW-CANDIDATE-2026-10-03-OCTOPUS-G5.1-v1",
+  "status": "RUNNABLE_CANDIDATE_HUMAN_ACCEPTANCE_PENDING_WITH_ENVIRONMENT_CORRECTION",
+  "baselineCommit": "ca2fc92",
+  "implementationCommits": [
+    "9cd71c1",
+    "8498c10"
+  ],
+  "testedSourceCommit": "8498c101ed56b24c756af951936c1e29c99607c3",
+  "branch": "codex/octopus-g3-execution-20261002",
+  "candidateJar": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+  "candidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+  "referenceGameDirectory": "G:\\deepseek 工作台\\游戏环境\\P1F-GPTSol61-ProductionCapacity-2026-10-02",
+  "engineJarSha256": "8a550a37e2d8a5430866090d4e7d5892f9010b47f52a5a09350fc66c620deec9",
+  "windows": {
+    "steps": 80,
+    "passed": 80,
+    "failedSteps": 0,
+    "classification": "GREEN_WITH_EXPLICIT_NATIVE_ASSET_ENVIRONMENT_CORRECTION",
+    "javaHarnessRuns": 46,
+    "pythonSuites": 31,
+    "pythonTests": 497,
+    "skipped": 0
+  },
+  "windowsRawFirstPass": {
+    "steps": 80,
+    "passed": 79,
+    "failedSteps": 1,
+    "exit": 1
+  },
+  "environmentCorrection": {
+    "step": "java:StrategyNativeHarness",
+    "rawFailure": "Missing assets/translations/Strings.properties before native engine initialization",
+    "correctedWorkingDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\native-work",
+    "correctedLog": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\strategy-native-environment-corrected.log",
+    "checks": 51,
+    "exit": 0,
+    "sameCandidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+    "productSourceChanged": false,
+    "secondFullRun": false
+  },
+  "completedFullRuns": 1,
+  "abortedIntermediateFullRuns": 1,
+  "nativeChecks": 495,
+  "naturalValidationSameJar": true,
+  "testInputFiles": 219,
+  "deployed": false,
+  "pushed": false,
+  "desktopGameTouched": false,
+  "universalBridgeModified": false,
+  "evidenceDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003",
+  "handoff": "handoff/HANDOFF_Octopus_G51_2026-10-03.md",
+  "contract": "docs/OCTOPUS_G51_OPERATIONS.md",
+  "humanEntry": "tools/RW-Agent-Octopus-Test.bat",
+  "needsEvidence": [
+    "G51_HUMAN_SPAIN_FIRST_WAVE_SURVIVAL_AND_ANTI_COUNTER",
+    "NATURAL_COUNTER_ARRIVAL_AND_AIR_EXCHANGE",
+    "NATURAL_PROSPECT_CLUSTER_PAYOFF_AND_RELEASE",
+    "NATURAL_SUSTAINED_CAPACITY_EXPANSION_AND_MINE_UPGRADE_TIMING",
+    "HUMAN_COMMAND_EFFICIENCY_WITH_OLD_BRIDGE",
+    "DYNAMIC_RALLY_AND_STANDOFF_REACHABILITY"
+  ]
+}

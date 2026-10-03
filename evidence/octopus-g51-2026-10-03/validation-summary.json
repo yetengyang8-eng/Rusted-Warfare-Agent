@@ -1,0 +1,127 @@
+{
+  "baselineCommit": "ca2fc92d36ef67beedf91d72cea9606fdb1544e4",
+  "testedSourceCommit": "8498c101ed56b24c756af951936c1e29c99607c3",
+  "candidateJar": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\final-source\\agent\\dist\\rw-agent-bootstrap.jar",
+  "candidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+  "windows": {
+    "steps": 80,
+    "passed": 80,
+    "failedSteps": 0,
+    "classification": "GREEN_WITH_EXPLICIT_NATIVE_ASSET_ENVIRONMENT_CORRECTION",
+    "javaHarnessRuns": 46,
+    "pythonSuites": 31,
+    "pythonTests": 497,
+    "skipped": 0
+  },
+  "windowsRawFirstPass": {
+    "steps": 80,
+    "passed": 79,
+    "failedSteps": 1,
+    "exit": 1
+  },
+  "environmentCorrection": {
+    "step": "java:StrategyNativeHarness",
+    "rawFailure": "Missing assets/translations/Strings.properties before native engine initialization",
+    "correctedWorkingDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\native-work",
+    "correctedLog": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\strategy-native-environment-corrected.log",
+    "checks": 51,
+    "exit": 0,
+    "sameCandidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+    "productSourceChanged": false,
+    "secondFullRun": false
+  },
+  "completedFullRuns": 1,
+  "abortedIntermediateFullRuns": 1,
+  "abortedReason": "After 9cd71c1 freeze, final subagent focused found a long-gap displacement treated as recent progress. Only root-owned regression tree stopped; all logs retained; final full against8498c10.",
+  "testInputFiles": 219,
+  "testInputMismatches": [],
+  "historicalReferences": {
+    "g1g2": "accepted83c09fb frozen e911b1703d885269d31fc5ee5b15ca375e760e6fa759537fffe2674f29a81127",
+    "g3": "accepted G2 fixed-candidate"
+  },
+  "focused": {
+    "G51Operations": 37,
+    "G51Tactical": 45,
+    "G51Logistics": 53,
+    "G51ProspectIntegration": 92
+  },
+  "nativeChecks": 495,
+  "naturalSmoke": {
+    "raw": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\candidate-8498c10\\work\\rw-agent-reports\\battle-1791028507910-8a1cdf98.jsonl",
+    "rawBytes": 232946029,
+    "rawSha256": "a5c1980ca15a8535df61455d3fbef7d6671037437008438733baa34750bea3da",
+    "malformed": 0,
+    "maximum": {
+      "mines": 2,
+      "factories": 1,
+      "ordinary": 20,
+      "credits": 6534.0,
+      "generals": 1
+    },
+    "firstObservedGameTimeMs": {
+      "factories>=1": 20080,
+      "ordinary>=6": 77200,
+      "factoryT2": 317616
+    },
+    "acceptedCommands": 953,
+    "lanes": {
+      "ECONOMY": 6,
+      "ORDINARY_PRODUCTION": 29,
+      "JOINING": 99,
+      "EARLY_EXPANSION": 4,
+      "FORMING_SCREEN": 19,
+      "GENERAL": 213,
+      "GENERAL_RETREAT": 544,
+      "BUILDER_RECOVERY": 2,
+      "LOCAL_RESPONSE": 3,
+      "RECON": 14,
+      "CRITICAL_RETREAT": 18,
+      "STRATEGY": 2
+    },
+    "consecutiveExactMoveRepeats": 559,
+    "tactics": {
+      "NONE": 43,
+      "FRONTIER": 119,
+      "ADVANCE": 258,
+      "STANDOFF": 50
+    },
+    "capacityStates": {
+      "NO_USEFUL_DEMAND": 26,
+      "UNKNOWN": 21,
+      "MONEY_LIMITED": 19,
+      "RESERVE_PROTECTED": 16,
+      "ROUTE_UNAVAILABLE": 2
+    },
+    "scope": "NATURAL_NATIVE_SMALL_ISLAND_5X_NOT_HUMAN_SPAIN_OR_CONTROLLED_AB",
+    "candidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+    "outcome": "PARTIAL",
+    "matchOutcome": "ONGOING",
+    "battleGameTimeMs": 600400,
+    "newCombatUnits": 29,
+    "upgradesCompleted": 1,
+    "completedMines": 3,
+    "factoryTargetIncreases": 0,
+    "causalImprovement": "NEEDS_EVIDENCE_NOT_CONTROLLED_AB"
+  },
+  "evidenceDirectory": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003",
+  "deployed": false,
+  "pushed": false,
+  "desktopGameTouched": false,
+  "universalBridgeModified": false,
+  "retainedFailures": [
+    "native-attempt1: PowerShell unquoted JVM argument, no engine bootstrap",
+    "native-attempt2: expected heavyTank but legal native cheapest AIR counter was scout; discovered/fixed explicit militarySlots1",
+    "observer first focused: live human port lease; mock test now isolates temporary lock root, production lock unchanged",
+    "aborted9cd71c1 intermediate regression and source retained",
+    "final full raw79/80 StrategyNativeHarness missing assets; same Jar corrected fixture51 PASS, no second full",
+    "early after-g51 result hash sampled mutable rebuild path; actual raw immutable running Jar19120d2e, final smoke273a matches current Jar"
+  ],
+  "needsEvidence": [
+    "G51_HUMAN_SPAIN_FIRST_WAVE_SURVIVAL_AND_ANTI_COUNTER",
+    "NATURAL_COUNTER_ARRIVAL_AND_AIR_EXCHANGE",
+    "NATURAL_PROSPECT_CLUSTER_PAYOFF_AND_RELEASE",
+    "NATURAL_SUSTAINED_CAPACITY_EXPANSION_AND_MINE_UPGRADE_TIMING",
+    "HUMAN_COMMAND_EFFICIENCY_WITH_OLD_BRIDGE",
+    "DYNAMIC_RALLY_AND_STANDOFF_REACHABILITY"
+  ]
+}

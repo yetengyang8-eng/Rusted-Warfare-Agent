@@ -1,0 +1,42 @@
+{
+  "candidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+  "g51": {
+    "status": "PASS",
+    "checks": 266,
+    "airChecks": 13,
+    "evidence": "E2_NATIVE_FIXTURE_REAL_HTTP",
+    "simulationTicks": 0,
+    "desktopTouched": false,
+    "naturalSurvivalBenefit": "NEEDS_EVIDENCE"
+  },
+  "g3": [
+    {
+      "scenario": "production",
+      "status": "PASS",
+      "checks": 168,
+      "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+      "naturalMatch": "NO_NATURAL_MATCH",
+      "simulationTicks": 0,
+      "output": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\g3-native-8498c10"
+    },
+    {
+      "scenario": "modes",
+      "status": "PASS",
+      "checks": 30,
+      "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+      "naturalMatch": "NO_NATURAL_MATCH",
+      "simulationTicks": 0,
+      "output": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\g3-native-8498c10"
+    },
+    {
+      "scenario": "competition",
+      "status": "PASS",
+      "checks": 31,
+      "evidence": "E2_NATIVE_FIXTURE_WITH_REAL_HTTP",
+      "naturalMatch": "NO_NATURAL_MATCH",
+      "simulationTicks": 0,
+      "output": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\g3-native-8498c10"
+    }
+  ],
+  "totalChecks": 495
+}

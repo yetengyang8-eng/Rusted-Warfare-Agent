@@ -1,0 +1,60 @@
+{
+  "source": "G:\\铁锈战争 桥 工作空间\\headless-runs\\human-g5-spain-20261003-01\\agent\\rw-agent-reports\\battle-1791014693923-d7f87169.jsonl",
+  "sha256": "6f54bcd21224e78ee5383e28537a429517760e92036f8a37d166df4b7afa5a9b",
+  "bytes": 707127357,
+  "malformed": 0,
+  "capacityBottlenecks": {
+    "NO_USEFUL_DEMAND": 27,
+    "UNKNOWN": 51
+  },
+  "capacityRecoveryCounts": {
+    "True": 56,
+    "False": 22
+  },
+  "capacitySustained": {
+    "False": 78
+  },
+  "producerUtilizationMax": 93.11,
+  "moveLanes": {
+    "JOINING": 739,
+    "ECONOMY": 47,
+    "EARLY_EXPANSION": 15,
+    "CRITICAL_RETREAT": 81,
+    "GENERAL_RETREAT": 556,
+    "RECON": 15,
+    "STRATEGY": 8,
+    "FORMING_SCREEN": 9
+  },
+  "sameOwnerActorsExactConsecutiveMoveRepeats": 536,
+  "peakCredits": 17648.0,
+  "maxGenerals": 4,
+  "rawLines": 111746,
+  "findings": [
+    {
+      "cause": "General current-owned ordinary actors excluded from legacy free-army assessment",
+      "proof": "78 capacity assessments: 27 NO_USEFUL_DEMAND,51 UNKNOWN; usefulDemand/safe window zero",
+      "fix": "Read-only current-owned army assessment plus local homeland recovery gate"
+    },
+    {
+      "cause": "PROSPECT arrival returns IDLE followed by global resource sort",
+      "proof": "builder5924 own north arrival detected696832, south reassignment702544, south native mine command788720 game ms",
+      "fix": "Later-position local cluster commitment; native/current build and visibility guards retained"
+    },
+    {
+      "cause": "Nearest native-compatible enemy opportunity lacks objective-defense admission",
+      "proof": "Current gunShip contact at256144, armed commandCenter at326880; early own General HP1050..1260",
+      "fix": "Current visible defense/AIR exposure admission, alternative goal/standoff/retreat"
+    },
+    {
+      "cause": "Repeated single-unit move refresh and missing old-bridge destination evidence",
+      "proof": "1470 accepted moves;739 JOINING,556 GENERAL_RETREAT;536 exact consecutive same owner/actors/path repeats",
+      "fix": "Native order reuse; per-actor rally witness; bounded missing-destination recent-progress defer"
+    }
+  ],
+  "limits": [
+    "Snapshot times are detection/source sample times, not exact native event occurrence.",
+    "Raw final sample1549392 credits17191.5 with mobileArmed0/landFactoryQueue0; peak17648 alone does not prove a buyable production opportunity.",
+    "Repeated paths do not by themselves prove every command was useless.",
+    "Human metadata replay resyncCount0 is supplied prior acceptance; replay was not re-parsed this round."
+  ]
+}

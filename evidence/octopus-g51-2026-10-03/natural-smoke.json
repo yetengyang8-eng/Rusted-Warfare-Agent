@@ -1,0 +1,57 @@
+{
+  "raw": "G:\\deepseek 工作台\\_validation\\octopus-g51-20261003\\candidate-8498c10\\work\\rw-agent-reports\\battle-1791028507910-8a1cdf98.jsonl",
+  "rawBytes": 232946029,
+  "rawSha256": "a5c1980ca15a8535df61455d3fbef7d6671037437008438733baa34750bea3da",
+  "malformed": 0,
+  "maximum": {
+    "mines": 2,
+    "factories": 1,
+    "ordinary": 20,
+    "credits": 6534.0,
+    "generals": 1
+  },
+  "firstObservedGameTimeMs": {
+    "factories>=1": 20080,
+    "ordinary>=6": 77200,
+    "factoryT2": 317616
+  },
+  "acceptedCommands": 953,
+  "lanes": {
+    "ECONOMY": 6,
+    "ORDINARY_PRODUCTION": 29,
+    "JOINING": 99,
+    "EARLY_EXPANSION": 4,
+    "FORMING_SCREEN": 19,
+    "GENERAL": 213,
+    "GENERAL_RETREAT": 544,
+    "BUILDER_RECOVERY": 2,
+    "LOCAL_RESPONSE": 3,
+    "RECON": 14,
+    "CRITICAL_RETREAT": 18,
+    "STRATEGY": 2
+  },
+  "consecutiveExactMoveRepeats": 559,
+  "tactics": {
+    "NONE": 43,
+    "FRONTIER": 119,
+    "ADVANCE": 258,
+    "STANDOFF": 50
+  },
+  "capacityStates": {
+    "NO_USEFUL_DEMAND": 26,
+    "UNKNOWN": 21,
+    "MONEY_LIMITED": 19,
+    "RESERVE_PROTECTED": 16,
+    "ROUTE_UNAVAILABLE": 2
+  },
+  "scope": "NATURAL_NATIVE_SMALL_ISLAND_5X_NOT_HUMAN_SPAIN_OR_CONTROLLED_AB",
+  "candidateJarSha256": "273a861f479f2c89438e9689a352fd399b4d35640281bd88a4aa0f6995c23418",
+  "outcome": "PARTIAL",
+  "matchOutcome": "ONGOING",
+  "battleGameTimeMs": 600400,
+  "newCombatUnits": 29,
+  "upgradesCompleted": 1,
+  "completedMines": 3,
+  "factoryTargetIncreases": 0,
+  "causalImprovement": "NEEDS_EVIDENCE_NOT_CONTROLLED_AB"
+}

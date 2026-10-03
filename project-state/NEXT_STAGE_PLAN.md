@@ -1,6 +1,17 @@
 # Next Stage Plan
 
-从当前G5最后交付HEAD开始。先读G5 handoff/contract，不重开G0～G4审计。
+从当前G5.1最后交付HEAD开始（测试产品源码8498c10）。先读G5.1 handoff/contract、manifest与真人Spain反馈，不重开G0～G4审计。
+
+1. 由操作者自行创建Spain合法本地局，Test入口默认G5.1；收集第一波防御准入/AIR采购到位、local cluster、tech/矿/产能、move/APM5个现象。工程代理不启动或关闭桌面。
+2. 用新raw验证收益与长期站桩/保守锁住等副作用，再做最有证据的跨模块修复；不要提高decision frequency、随机路线或固定build order。
+3. 旧G5真人4General/多路推进撤退/长期生产扩矿/>48/no resync已证，不重复降为NEEDS_EVIDENCE。G5.1短自然smoke不等于Spain抗针对提升；counter采购不等于counter已到位或击落敌机。
+4. 开发focused，收束root统一full。隔离full确保StrategyNativeHarness cwd有合法复制的assets/res；当前raw79/80+同Jar环境补验51后有效80/80证据完整保留。不要重复缺asset启动或改产品过环境关。
+
+以下仅旧G5历史计划，不覆盖以上G5.1入口。
+
+---
+
+历史：从G5最后交付HEAD开始。
 
 1. 操作者使用RW-Agent-Octopus-Test（现有游戏）或Start-Test（明确新开隔离游戏），Spain或长图5×/正常速度各按真实问题选一局；raw+短报告自动留存。工程代理不擅自启停桌面或部署。
 2. 优先验证额外General自然birth、独立owner/crisis/goal、退却rally补员/后帧到达、production连续性；目前natural只证单General撤退/恢复，multiGeneral主要native fixture。
