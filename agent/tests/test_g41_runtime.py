@@ -214,6 +214,7 @@ class G41RuntimeTests(unittest.TestCase):
         try:
             with tempfile.TemporaryDirectory(prefix='rw-g41-http-') as cwd:
                 command = [JAVA, '-Dfile.encoding=UTF-8', '-Drwagent.pollMs=60', '-Drwagent.g3Execution=true',
+                    '-Drwagent.g5=false',
                     '-Drwagent.g4Forces=true', '-Drwagent.earlyOperations=true', '-Drwagent.globalStrategy=false',
                     '-Drwagent.reconEnabled=false', '-Drwagent.reachabilitySample=false', '-Drwagent.landFactoryTarget=1',
                     '-Drwagent.g1Trace=' + str(trace).lower(), '-Drwagent.port=' + str(server.server_port),

@@ -61,14 +61,17 @@ public final class GeneralRegistry {
         public final long anchorFrame,joinTargetFrame;
         public final String joinTargetSource;
         public final int healthyAttachedStrength;
-        private GeneralView(GeneralState g,int healthyAttached,long currentFrame){id=g.id;owner=g.id.owner();members=immutableSet(g.members);reservations=immutableSet(g.reservations);
+        private GeneralView(GeneralState g,int healthyAttached,CommandArbiter.Stamp current){id=g.id;owner=g.id.owner();members=immutableSet(g.members);reservations=immutableSet(g.reservations);
             desiredStrength=g.desiredStrength;x=g.x;y=g.y;centroidKnown=g.centroidKnown;centroidFrame=g.centroidFrame;
             goalKnown=g.goalKnown;goalX=g.goalX;goalY=g.goalY;targetEnemyId=g.targetEnemyId;phase=g.phase;
             anchorKnown=g.anchorKnown;anchorX=g.anchorX;anchorY=g.anchorY;anchorFrame=g.anchorFrame;healthyAttachedStrength=healthyAttached;
             boolean rally=phase==Phase.FORMING&&anchorKnown;
-            joinTargetKnown=rally||!g.members.isEmpty()&&centroidKnown&&centroidFrame==currentFrame;
-            joinTargetX=rally?anchorX:x;joinTargetY=rally?anchorY:y;joinTargetFrame=rally?anchorFrame:centroidFrame;
-            joinTargetSource=!joinTargetKnown?"UNKNOWN":rally?"LEGAL_OWN_RALLY_ANCHOR":"CURRENT_ATTACHED_CENTROID";}
+            boolean override=g.joinOverrideRequired,overrideCurrent=g.joinOverrideStamp!=null&&current.samePlayer(g.joinOverrideStamp)
+                    &&current.frame==g.joinOverrideStamp.frame&&current.gameTimeMs==g.joinOverrideStamp.gameTimeMs;
+            joinTargetKnown=override?overrideCurrent:rally||!g.members.isEmpty()&&centroidKnown&&centroidFrame==current.frame;
+            joinTargetX=override?g.joinOverrideX:rally?anchorX:x;joinTargetY=override?g.joinOverrideY:rally?anchorY:y;
+            joinTargetFrame=override?g.joinOverrideStamp==null?-1:g.joinOverrideStamp.frame:rally?anchorFrame:centroidFrame;
+            joinTargetSource=!joinTargetKnown?"UNKNOWN":override?"CURRENT_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN":rally?"LEGAL_OWN_RALLY_ANCHOR":"CURRENT_ATTACHED_CENTROID";}
         public Map<String,Object> metadata(){return fields("generalId",id.value,"owner",owner,"members",new ArrayList<Long>(members),
                 "reservations",new ArrayList<Long>(reservations),"desiredStrength",desiredStrength,"centroidKnown",centroidKnown,"centroidFrame",centroidFrame,
                 "centroidX",centroidKnown?x:null,"centroidY",centroidKnown?y:null,"goalKnown",goalKnown,
@@ -91,6 +94,7 @@ public final class GeneralRegistry {
         double x,y;boolean centroidKnown;long centroidFrame=-1;
         double goalX,goalY;boolean goalKnown;Long targetEnemyId;
         Phase phase;boolean anchorKnown;double anchorX,anchorY;long anchorFrame=-1;
+        boolean joinOverrideRequired;double joinOverrideX,joinOverrideY;CommandArbiter.Stamp joinOverrideStamp;
         GeneralState(GeneralId id,Collection<Long> initial,int desired,Phase phase){this.id=id;members.addAll(initial);desiredStrength=desired;this.phase=phase;}
     }
     private final CommandArbiter arbiter;
@@ -138,6 +142,54 @@ public final class GeneralRegistry {
     }
     /** A retained empty FORMING General is valid until its own-state adapter explicitly invalidates it. */
     public boolean hasValidGeneral(){return !generals.isEmpty();}
+    /** Overflow birth is explicit and capacity gated. It never leases its first recruit. */
+    public GeneralId createAdditionalForming(int desiredStrength,double anchorX,double anchorY){
+        validateFormation(desiredStrength,anchorX,anchorY);if(!hasValidGeneral())return null;
+        for(GeneralState existing:generals.values())if(existing.members.size()+existing.reservations.size()<existing.desiredStrength)return null;
+        int free=0;for(UnitState u:units.values())if(freeEligible(u)&&u.healthObservedFrame==arbiter.stamp().frame
+                &&arbiter.validate(arbiter.stamp(),FREE_OWNER,Collections.singletonList(u.id))==null)free++;
+        if(free<LocalArmyDirector.FORM_MINIMUM)return null;
+        GeneralState g=new GeneralState(new GeneralId(++nextGeneral),Collections.<Long>emptySet(),desiredStrength,Phase.FORMING);
+        setAnchor(g,anchorX,anchorY);generals.put(g.id,g);changes.add(fields("reason","GENERAL_ADDITIONAL_FORMATION_CREATED","sourceFrame",arbiter.stamp().frame,
+                "gameTimeMs",arbiter.stamp().gameTimeMs,"before",null,"after",generalView(g).metadata()));return g.id;
+    }
+    /** Strict current-state adapter: NORMAL is necessary but a >=50% ready HP witness is also required. */
+    public GeneralId createAdditionalForming(Map<String,Object> state,int desiredStrength,double anchorX,double anchorY){
+        validateFormation(desiredStrength,anchorX,anchorY);if(!currentOwnState(state)||!(state.get("ownUnits") instanceof List))return null;
+        int count=0;boolean ownAnchor=false;Set<Long> observed=new HashSet<Long>();
+        for(Object value:(List<?>)state.get("ownUnits"))if(value instanceof Map){Map<?,?> own=(Map<?,?>)value;Long id=GameClock.number(own.get("id"));
+            if(id==null||!observed.add(id))continue;double x=number(own.get("x")),y=number(own.get("y")),hp=number(own.get("hp")),max=number(own.get("maxHp"));
+            if(!Double.isFinite(x)||!Double.isFinite(y)||!(hp>0)||Boolean.TRUE.equals(own.get("dead"))||!(number(own.get("buildProgress"))>=1))continue;
+            if(("commandCenter".equals(own.get("type"))||Boolean.TRUE.equals(own.get("building")))&&Math.hypot(x-anchorX,y-anchorY)<=1)ownAnchor=true;
+            UnitState u=units.get(id);if(u!=null&&freeEligible(u)&&u.healthObservedFrame==arbiter.stamp().frame&&max>0&&hp>=max*.5
+                    &&arbiter.validate(arbiter.stamp(),FREE_OWNER,Collections.singletonList(id))==null)count++;
+        }
+        return ownAnchor&&count>=LocalArmyDirector.FORM_MINIMUM?createAdditionalForming(desiredStrength,anchorX,anchorY):null;
+    }
+    public CommandArbiter.Stamp observation(){return arbiter.stamp();}
+    /** Set only from the current same-player own-state observation. Safety remains UNKNOWN. */
+    public boolean setJoinTargetOverride(GeneralId id,CommandArbiter.Stamp observation,double x,double y){
+        GeneralState g=generals.get(id);CommandArbiter.Stamp current=arbiter.stamp();
+        if(g==null||observation==null||!current.samePlayer(observation)||current.frame!=observation.frame
+                ||current.gameTimeMs!=observation.gameTimeMs||!Double.isFinite(x)||!Double.isFinite(y))return false;
+        g.joinOverrideRequired=true;g.joinOverrideX=x;g.joinOverrideY=y;g.joinOverrideStamp=observation;return true;
+    }
+    /** An unknown retreat rally blocks unsafe fallback to a losing centroid. */
+    public boolean requireJoinTargetOverride(GeneralId id){GeneralState g=generals.get(id);if(g==null)return false;
+        g.joinOverrideRequired=true;g.joinOverrideStamp=null;return true;}
+    public boolean clearJoinTargetOverride(GeneralId id){GeneralState g=generals.get(id);if(g==null)return false;
+        g.joinOverrideRequired=false;g.joinOverrideStamp=null;return true;}
+    public Map<String,Object> joiningTarget(GeneralId id,Map<String,Object> state){
+        GeneralState g=generals.get(id);if(g==null||!currentOwnState(state))return fields("known",false,"source","UNKNOWN");
+        GeneralView view=generalView(g);return fields("known",view.joinTargetKnown,"x",view.joinTargetKnown?view.joinTargetX:null,
+                "y",view.joinTargetKnown?view.joinTargetY:null,"frame",view.joinTargetFrame,"source",view.joinTargetSource);
+    }
+    public boolean currentOwnState(Map<String,Object> state){if(state==null||arbiter.stamp()==null)return false;CommandArbiter.Stamp current=arbiter.stamp();
+        Object player=state.get("player");Object team=player instanceof Map?((Map<?,?>)player).get("teamId"):null;
+        return current.session.equals(state.get("sessionId"))&&Objects.equals(Long.valueOf(current.frame),GameClock.number(state.get("frame")))
+                &&Objects.equals(Long.valueOf(current.gameTimeMs),GameClock.number(state.get("gameTimeMs")))
+                &&(!(team instanceof Number)||current.player.equals("team:"+((Number)team).longValue()))
+                &&(!(state.get("playerKey") instanceof String)||current.player.equals(state.get("playerKey")));}
     public boolean hasActiveGeneral(){for(GeneralState g:generals.values())if(g.phase==Phase.ACTIVE)return true;return false;}
     /** Current health facts cannot create readiness, membership or a native arrival witness. */
     public boolean refreshFormation(){
@@ -265,7 +317,7 @@ public final class GeneralRegistry {
     private void clearReservation(UnitState u){if(u.reservation!=null){GeneralState g=generals.get(u.reservation);if(g!=null)g.reservations.remove(u.id);}u.reservation=null;}
     private void makeFree(UnitState u){u.general=null;u.allocation=Allocation.FREE;u.membership=Membership.UNATTACHED;u.joinStartedFrame=u.joinAcceptedFrame=-1;u.freeSinceFrame=arbiter.stamp().frame;}
     private UnitView view(UnitState u){return new UnitView(u,arbiter.ownerGeneration(u.id));}
-    private GeneralView generalView(GeneralState g){return new GeneralView(g,healthyAttached(g),arbiter.stamp().frame);}
+    private GeneralView generalView(GeneralState g){return new GeneralView(g,healthyAttached(g),arbiter.stamp());}
     private int healthyAttached(GeneralState g){
         int count=0;for(Long id:g.members){UnitState u=units.get(id);
             if(u!=null&&g.id.equals(u.general)&&u.membership==Membership.ATTACHED&&u.temporaryTask==TemporaryTask.NONE&&u.externalOwner==null
@@ -281,5 +333,6 @@ public final class GeneralRegistry {
     private static Set<Long> validIds(Collection<Long> input){if(input==null)throw new IllegalArgumentException("Observed actors required");Set<Long> ids=new LinkedHashSet<Long>();
         for(Long id:input)if(id==null||id<0||!ids.add(id))throw new IllegalArgumentException("Distinct nonnegative actors required");return ids;}
     private static Set<Long> immutableSet(Collection<Long> values){return Collections.unmodifiableSet(new LinkedHashSet<Long>(values));}
+    private static double number(Object value){return value instanceof Number?((Number)value).doubleValue():Double.NaN;}
     private static Map<String,Object> fields(Object... pairs){Map<String,Object> result=new LinkedHashMap<String,Object>();for(int i=0;i<pairs.length;i+=2)result.put((String)pairs[i],pairs[i+1]);return result;}
 }

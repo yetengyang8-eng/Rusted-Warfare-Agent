@@ -15,13 +15,24 @@ public final class BattleClient implements StrategyDirector.Host {
     private final boolean g3ExecutionEnabled=!"false".equalsIgnoreCase(System.getProperty("rwagent.g3Execution","true"));
     private final boolean g4ForcesEnabled=g3ExecutionEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g4Forces","true"));
     private final boolean earlyOperationsEnabled=g4ForcesEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.earlyOperations","true"));
+    private final boolean g5Enabled=g4ForcesEnabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.g5","true"));
+    private final boolean adaptiveRuntime=g5Enabled&&!"false".equalsIgnoreCase(System.getProperty("rwagent.runtimeAdaptive","true"));
+    private final long decisionInterval=adaptiveRuntime?Math.max(100,Math.min(1000,Long.getLong("rwagent.decisionIntervalGameMs",250L))):1000;
+    private final long commandBudgetInterval=g5Enabled?Math.max(100,Math.min(1000,Long.getLong("rwagent.commandBudgetIntervalGameMs",250L))):1000;
+    private final int commandBurst=Math.max(1,Math.min(16,Integer.getInteger("rwagent.executionBurst",g5Enabled?16:4)));
+    private final RuntimeAcceleration runtime=adaptiveRuntime?new RuntimeAcceleration(port):null;
+    private GeneralCombatDirector generalCombat;
+    private CommanderDirector commander;
+    private final Map<String,String> generalCommands=new HashMap<String,String>();
+    private final Map<Long,Long> freeStageAt=new HashMap<Long,Long>();
+    private long lastHeavyDecision=-100000,lastHumanState=-100000;
+    private String previousOperationsKey;
     private Map<String,Object> staticMapKnowledge;
     private String staticMapObservationId;
     private EarlyExpansionNeed earlyExpansion;
     private long staticMapRetryAt=-1000000;
     private Map<String,Object> queuedEarlyApproach;
-    private final ExecutionScheduler scheduler=g3ExecutionEnabled?new ExecutionScheduler(execution,1000,
-            Math.max(1,Math.min(16,Integer.getInteger("rwagent.executionBurst",4)))):null;
+    private final ExecutionScheduler scheduler=g3ExecutionEnabled?new ExecutionScheduler(execution,commandBudgetInterval,commandBurst):null;
     private final boolean additionalDiagnostics=!"false".equalsIgnoreCase(System.getProperty("rwagent.additionalDiagnostics","true"));
     private long intentSequence,samplingNanos,samplingCalls,worldNanos,worldCalls,executionNanos,executionCalls;
     private GameClock.Observation stateObservation;
@@ -631,7 +642,8 @@ public final class BattleClient implements StrategyDirector.Host {
                         +",\"reconMinReadyArmy\":7,\"reconThreatBufferWorld\":80"
                         +",\"executionContractVersion\":1,\"executionPlayerScope\":"+Json.quote(execution.stamp().player)
                         +",\"targetEligibilityVersion\":1,\"targetSuppressionRelease\":\"NEWER_VISIBLE_COMPATIBLE_EVIDENCE\""
-                        +(g3ExecutionEnabled?",\"g3Execution\":true,\"commandBudgetIntervalGameMs\":1000,\"commandBudgetInitialTokens\":1,\"commandBudgetAnchorGameTimeMs\":"+startTime+",\"commandBudgetBurst\":"+Math.max(1,Math.min(16,Integer.getInteger("rwagent.executionBurst",4))):"")
+                        +(g3ExecutionEnabled?",\"g3Execution\":true,\"commandBudgetIntervalGameMs\":"+commandBudgetInterval+",\"commandBudgetInitialTokens\":1,\"commandBudgetAnchorGameTimeMs\":"+startTime+",\"commandBudgetBurst\":"+commandBurst:"")
+                        +(g5Enabled?",\"g5\":true,\"runtimeAdaptive\":"+adaptiveRuntime+",\"decisionGateGameMs\":"+decisionInterval+",\"generalBirthPolicyG5\":\"FILLED_GENERAL_AND_SIX_CURRENT_HEALTHY_FREE\"":"")
                         +(g4ForcesEnabled?",\"g4Forces\":true,\"forcePriorityScope\":\"G4_FORCE_CONTROLLERS_ONLY\"":"")
                         +(earlyOperationsEnabled?",\"earlyOperations\":true,\"generalBirthPolicy\":\"NO_VALID_GENERAL_HEALTHY_FREE_FORMING\"":"")
                         +",\"globalStrategyEnabled\":"+strategy.enabled()+",\"strategyContractVersion\":1"
@@ -648,30 +660,35 @@ public final class BattleClient implements StrategyDirector.Host {
                 long wallStart=System.nanoTime();wallStartNanos=wallStart;
                 startCredits=n(obj(state.get("player")),"credits");
                 while(true){
+                    long loopStarted=System.nanoTime();
                     state=observe();lastState=state;Map<String,Object> match=obj(state.get("match"));matchOutcome=(String)match.get("outcome");                    if(!"ONGOING".equals(matchOutcome)){event("match_terminal",json(match));outcome="PASS";reason="Native result screen: "+matchOutcome;exit=0;break;}
                     if(time-startTime>=seconds*1000L){outcome="PARTIAL";reason="Game-time budget reached without native result";exit=2;break;}
                     if((System.nanoTime()-wallStart)/1e9>BattleBudget.wallLimit())throw new IllegalStateException("Configured wall-time safety limit");
                     account(state);
                     observeReconMotion(state);
-                    if(time-lastDecision>=1000){
+                    if(time-lastDecision>=decisionInterval){
                         // Speed readiness (对话35): the decision GATE is game time, but the loop is wall
                         // time, so the real decision interval in game ms grows with the game speed. It is
                         // measured here instead of assumed, and it is what the no-progress attention
                         // tolerance is derived from.
                         if(lastDecision>=0)noteDecisionInterval(time-lastDecision);
-                        lastDecision=time;Map<String,Object> enemies=get("/combat/observe","combat_observation");check(enemies);
-                        lastEnemies=enemies;
+                        lastDecision=time;
                         String scoutPath="/scout/observe";
                         if(reconEnabled&&reconTask!=null&&reconTask.frontier())
                             scoutPath+="?tile="+reconTask.frontierTile+"&since="
                                     +reconTask.createdAt;
+                        if(runtime!=null){runtime.beginCycle();runtime.decision(time);runtime.prefetch("/combat/observe",scoutPath);}
+                        Map<String,Object> enemies=get("/combat/observe","combat_observation");check(enemies);lastEnemies=enemies;
                         Map<String,Object> scoutState=get(scoutPath,"scout_visibility");check(scoutState);
                         lastScout=scoutState;
                         confirm(state);updatePending(state);
                         updateMilitaryUrgency(state,enemies);
+                        boolean heavy=!adaptiveRuntime||time-lastHeavyDecision>=1000||operationsDirty(state);
+                        if(heavy){lastHeavyDecision=time;
                         strategy.noteUnobservedCombatSlots(artilleryLedger.unobservedSlots(state)+ordinaryUnobservedSlots(state));
                         strategy.observe(state,enemies,scoutState,mainArmy(state),startTime,seconds*1000L-(time-startTime),
                                 modelledIncomePerGameSecond(state),productionConsumptionPerGameSecond(),strategyReserve(),buildJob!=null);
+                        }
                         if(g3ExecutionEnabled)beginExecutionObservation(state);
                         if(g4ForcesEnabled)observeG4Forces(state,enemies);
                         if(searchTarget!=null&&strategy.rejected(searchTarget.sourceEnemyId)){
@@ -679,7 +696,7 @@ public final class BattleClient implements StrategyDirector.Host {
                                 "sourceEnemyId",searchTarget.sourceEnemyId,"reason","TERRAIN_APPROACH_REJECTION","gameTimeMs",time)));
                             searchTarget=null;searchNeedsOrder=false;
                         }
-                        if(reconEnabled)updateRecon(state,enemies);
+                        if(reconEnabled&&heavy)updateRecon(state,enemies);
                         // Consume negative evidence even when Economy/Recon spends this tick's command.
                         updateTargetSuppressions(state,enemies);
                         if(!g4ForcesEnabled){
@@ -694,9 +711,12 @@ public final class BattleClient implements StrategyDirector.Host {
                             executingLane="LOCAL_CRISIS";issueLocalCrisis(state,enemies);
                             executingLane="LOCAL_RECOVERY";issueIdleLocalRecovery(state,enemies);
                         }
-                        evaluateProductionCapacity(executionState(state));
-                        executingLane="STRATEGY";strategy.act(strategyReserve(),factoryTargetCommitted?countType(state,"landFactory"):landFactoryTarget);
-                        executingLane="ECONOMY";economyLane(executionState(state));
+                        if(g5Enabled&&execution.ready(time)){executingLane="ORDINARY_PRODUCTION";produce(executionState(state));}
+                        if(heavy){
+                            evaluateProductionCapacity(executionState(state));
+                            executingLane="STRATEGY";strategy.act(strategyReserve(),factoryTargetCommitted?countType(state,"landFactory"):landFactoryTarget);
+                            executingLane="ECONOMY";economyLane(executionState(state));
+                        }
                         if(execution.ready(time)){
                             // A frontier scout with a refreshed own position needs its first order
                             // before its old army attack-move can carry it away. Rechecks and later
@@ -709,7 +729,7 @@ public final class BattleClient implements StrategyDirector.Host {
                                 if(reconEnabled&&execution.ready(time)&&reconTask!=null
                                         &&(time-reconTask.createdAt>=10000||(reconTask.frontier()&&reconTask.unitId<0&&!reconTask.awaitFreshOwnObservation)))issueReconOrder(state);
                                 executingLane="ORDINARY_PRODUCTION";
-                                if(execution.ready(time))produce(executionState(state));
+                                if(!g5Enabled&&execution.ready(time))produce(executionState(state));
                                 executingLane="RECON";
                                 if(reconEnabled&&execution.ready(time))issueReconOrder(state);
                                 executingLane="TACTICS";
@@ -727,6 +747,7 @@ public final class BattleClient implements StrategyDirector.Host {
                         }
                         if(earlyOperationsEnabled){collectEarlyApproach();flushG4Forces();}
                         if(!g4ForcesEnabled)reportLocalArmyState(state,enemies);
+                        if(g5Enabled){emitG5Transitions();humanState(state,false);}
                     }
                     if(time-lastHeartbeat>=10000){lastHeartbeat=time;heartbeat(state);}
                     long battleSeconds=(time-startTime)/1000L;
@@ -742,7 +763,8 @@ public final class BattleClient implements StrategyDirector.Host {
                     // representative-only; it never feeds a decision.
                     if(reachabilitySampleEnabled&&time-lastReachabilitySample>=reachabilitySampleIntervalMs)
                         reachabilitySample(state);
-                    Thread.sleep(Math.max(60,Math.min(1000,Integer.getInteger("rwagent.pollMs",500))));
+                    if(adaptiveRuntime&&log!=null)log.flush();
+                    Thread.sleep(runtime!=null?runtime.sleepMs(decisionInterval,loopStarted):Math.max(60,Math.min(1000,Integer.getInteger("rwagent.pollMs",500))));
                 }
             }
         }catch(Exception err){reason=err.toString();System.err.println(reason);}
@@ -751,6 +773,8 @@ public final class BattleClient implements StrategyDirector.Host {
                 if(g3ExecutionEnabled)event("g3_cost_summary",json(StrategyDirector.map("samplingCalls",samplingCalls,"samplingNanos",samplingNanos,
                         "worldCalls",worldCalls,"worldNanos",worldNanos,"executionCalls",executionCalls,"executionNanos",executionNanos,
                         "clock","System.nanoTime elapsed; includes IO/network; not CPU","g1Trace",traceEnabled,"g2Trace",worldTraceEnabled,"additionalDiagnostics",additionalDiagnostics)));
+                if(g5Enabled)humanState(lastState,true);
+                if(runtime!=null)runtime.close();
                 strategy.close();
                 if(reconAcquisition!=null)cancelReconAcquisition("CONTROLLER_ENDED");
                 if(reconTask!=null)releaseOwnership(reconTask.taskId,"CONTROLLER_ENDED");
@@ -2193,10 +2217,17 @@ public final class BattleClient implements StrategyDirector.Host {
             if(count==0){if(general.phase!=GeneralRegistry.Phase.FORMING||ordinary.isEmpty())generals.invalidateGeneral(general.id);}
             else generals.updateGeneralCentroid(general.id,x/count,y/count);
         }
+        if(g5Enabled){
+            ensureForceControllers();
+            generalCombat.observe(state,enemies,homeX,homeY,time);
+            commander.reconcile(state,enemies,homeX,homeY,time,activeArmyTarget);
+            generalCombat.setPreferredThreats(commander.preferredThreats());
+        }
         for(GeneralRegistry.UnitView unit:generals.units())if(unit.membership==GeneralRegistry.Membership.JOINING){
             Map<String,Object> own=find(state,unit.unitId);if(own!=null)generals.observeJoinPosition(unit.unitId,execution.stamp(),n(own,"x"),n(own,"y"),180);
         }
         if(earlyOperationsEnabled)generals.refreshFormation();
+        if(!g5Enabled){
         // Existing replenishment fills initial-size vacancies. Reservations count before any movement.
         // No accumulation-driven birth, fixed FREE floor or dynamic formation sizing.
         for(final GeneralRegistry.GeneralView general:generals.generals()){
@@ -2211,18 +2242,69 @@ public final class BattleClient implements StrategyDirector.Host {
                 int d=Double.compare(distance(find(ownState,a.unitId),general.joinTargetX,general.joinTargetY),distance(find(ownState,b.unitId),general.joinTargetX,general.joinTargetY));return d!=0?d:Long.compare(a.unitId,b.unitId);}});
             for(GeneralRegistry.UnitView unit:candidates){if(vacancies<=0)break;if(generals.requestJoin(unit.unitId,general.id))vacancies--;}
         }
+        }
+        if(g5Enabled)generalCombat.observe(state,enemies,homeX,homeY,time);
         emitG4Transitions();
     }
-    private void collectG4Forces(final Map<String,Object> state,final Map<String,Object> enemies,Map<String,Object> scout)throws Exception{
-        if(!g4ForcesEnabled||!g4Bootstrapped)return;forceProposals.clear();
-        if(forceController==null)forceController=new ForceController(generals,new ForceController.Host(){
+    private boolean operationsDirty(Map<String,Object> state){
+        StringBuilder key=new StringBuilder();key.append((long)n(obj(state.get("player")),"credits")/500);
+        for(Map<String,Object> unit:units(state))key.append('|').append(id(unit)).append(':').append(n(unit,"buildProgress")>=1).append(':').append(unit.get("productionQueue"));
+        String current=key.toString();boolean dirty=!current.equals(previousOperationsKey);previousOperationsKey=current;return dirty;
+    }
+    private void emitG5Transitions()throws Exception{
+        if(generalCombat!=null)for(Map<String,Object> change:generalCombat.drainChanges()){
+            change.put("observationId",stateObservation.observationId);event("g5_general_transition",json(change));}
+        if(commander!=null)for(Map<String,Object> change:commander.drainChanges()){
+            change.put("observationId",stateObservation.observationId);event("g5_commander_transition",json(change));}
+    }
+    private void collectFreeStaging(Map<String,Object> state)throws Exception{
+        if(!g5Enabled)return;
+        for(final GeneralRegistry.UnitView unit:generals.units()){
+            if(unit.allocation!=GeneralRegistry.Allocation.FREE||unit.membership!=GeneralRegistry.Membership.UNATTACHED
+                    ||unit.temporaryTask!=GeneralRegistry.TemporaryTask.NONE||unit.externalOwner!=null||unit.reservedGeneralId!=null
+                    ||unit.healthRole!=GeneralRegistry.HealthRole.NORMAL||unit.freeSinceFrame>=execution.stamp().frame)continue;
+            Long last=freeStageAt.get(unit.unitId);if(last!=null&&time-last<8000)continue;
+            Map<String,Object> actor=find(state,unit.unitId);if(actor==null||distance(actor,homeX,homeY)<=240)continue;
+            collectForceProposal(new ForceController.Proposal(unit.owner,Collections.singletonList(unit.unitId),
+                    "/command/move?unitId="+unit.unitId+"&x="+homeX+"&y="+homeY,"FREE_STAGING",10,"UNASSIGNED_HOME_SIDE_DYNAMIC_UNKNOWN",
+                    new ForceController.ReceiptCallback(){public void accepted(Map<String,Object> receipt){freeStageAt.put(unit.unitId,time);}}));
+        }
+    }
+    private void humanState(Map<String,Object> state,boolean force)throws Exception{
+        if(!g5Enabled||state==null||!force&&time-lastHumanState<1000)return;lastHumanState=time;
+        List<Map<String,Object>> rows=new ArrayList<Map<String,Object>>(),factories=new ArrayList<Map<String,Object>>();
+        int free=0,local=0;for(GeneralRegistry.UnitView unit:generals.units()){
+            if(unit.allocation==GeneralRegistry.Allocation.FREE&&unit.externalOwner==null)free++;
+            if(unit.temporaryTask==GeneralRegistry.TemporaryTask.LOCAL_RESPONSE)local++;}
+        for(GeneralRegistry.GeneralView general:generals.generals()){
+            Map<String,Object> row=new LinkedHashMap<String,Object>(general.metadata());if(generalCombat!=null)row.putAll(generalCombat.view(general.id));
+            row.put("currentCommand",generalCommands.get(general.owner));row.put("reinforcement",general.reservations.size());
+            row.put("currentThreat",commander==null?null:commander.taskForGeneral(general.id)==null?null:commander.taskForGeneral(general.id).metadata());rows.add(row);}
+        for(Map<String,Object> unit:units(state))if(unit.get("productionQueue") instanceof Number)
+            factories.add(StrategyDirector.map("id",id(unit),"type",unit.get("type"),"queue",unit.get("productionQueue")));
+        event("g5_runtime_state",json(StrategyDirector.map("gameTimeMs",time,"sourceFrame",execution.stamp().frame,"observationId",stateObservation.observationId,
+            "credits",obj(state.get("player")).get("credits"),"income",measuredIncome(),"factories",factories,"freeCount",free,"generalCount",rows.size(),"generals",rows,
+            "localResponse",local,"recon",reconTask==null?null:reconData(reconTask),"capability",strategy.summary(),
+            "threatTasks",commander==null?null:commander.snapshot(),"runtime",runtime==null?null:runtime.metrics(commands,time-startTime))));
+    }
+    private void ensureForceControllers(){
+        if(forceController!=null)return;
+        ForceController.Host host=new ForceController.Host(){
             public Map<String,Object> read(String path,String kind)throws Exception{return readStrategy(path,kind);}
             public List<Map<String,Object>> eligible(List<Map<String,Object>> actors,Map<String,Object> target,Map<String,Object> contacts)throws Exception{
                 if(!currentEnemy(target,contacts))return Collections.emptyList();
                 return crisisCompatible(actors,Collections.singletonList(target),contacts);
             }
             public void collect(ForceController.Proposal proposal)throws Exception{collectForceProposal(proposal);}
-        });
+        };
+        forceController=new ForceController(generals,host);
+        if(g5Enabled){generalCombat=new GeneralCombatDirector(generals,host);forceController.setGeneralCombatDirector(generalCombat);
+            commander=new CommanderDirector(generals);commander.setCombatProvider(new CommanderDirector.CombatProvider(){
+                public Map<String,Object> view(GeneralRegistry.GeneralId id){return generalCombat.view(id);}});}
+    }
+    private void collectG4Forces(final Map<String,Object> state,final Map<String,Object> enemies,Map<String,Object> scout)throws Exception{
+        if(!g4ForcesEnabled||!g4Bootstrapped)return;forceProposals.clear();
+        ensureForceControllers();
         if(earlyOperationsEnabled){reconcileEarlyExpansion(state,enemies);
             forceController.setExpansionSupport(earlyExpansion!=null&&earlyExpansion.live()?new ForceController.ExpansionSupport(earlyExpansion.tile,earlyExpansion.knowledgeId):null);}
         for(final GeneralRegistry.UnitView unit:generals.units())if(unit.externalOwner==null&&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE
@@ -2234,7 +2316,9 @@ public final class BattleClient implements StrategyDirector.Host {
                         new ForceController.ReceiptCallback(){public void accepted(Map<String,Object> receipt)throws Exception{
                             resting.put(unit.unitId,time+45000);retreats++;event("combat_retreat",json(StrategyDirector.map("unitId",unit.unitId,"reason","CRITICAL_HP","gameTimeMs",time)));}}));
         }
-        forceController.collect(state,enemies,scout,homeX,homeY,time);emitG4Transitions();
+        forceController.collect(state,enemies,scout,homeX,homeY,time);
+        if(g5Enabled)collectFreeStaging(state);
+        emitG4Transitions();
     }
     private void collectForceProposal(ForceController.Proposal proposal)throws Exception{
         collectForceProposal(proposal,Collections.<String,Object>emptyMap());
@@ -2282,6 +2366,7 @@ public final class BattleClient implements StrategyDirector.Host {
             Map<String,Object> receipt=scheduledPost(order.intent.owner,order.intent.path,order.intent.observation);
             if(receipt!=null){
                 order.proposal.accepted(receipt);
+                if(g5Enabled)generalCommands.put(order.intent.owner,order.intent.lane+" "+order.intent.kind);
                 if("/command/attack-move".equals(order.intent.kind)){attacks++;awaitingOrder=receipt;
                     event("g4_force_order",json(StrategyDirector.map("intentId",order.intent.intentId,"owner",order.intent.owner,"lane",order.intent.lane,
                             "unitIds",order.intent.actorIds,"requestId",receipt.get("requestId"),"receiptStatus",receipt.get("status"))));}
@@ -2522,19 +2607,19 @@ public final class BattleClient implements StrategyDirector.Host {
             if(!"COMPATIBLE".equals(guard.status))return Collections.emptyList();
             result=strategy.eligible(target,guard.assigned);
             if(result.isEmpty())return result;
-            StringBuilder ids=new StringBuilder();for(Map<String,Object> u:result){if(ids.length()>0)ids.append(',');ids.append(id(u));}
-            Map<String,Object> nativeEvidence=optionalGet("/combat/engagement?unitIds="+ids+"&targetId="+id(target),"local_crisis_engagement");
-            if(nativeEvidence==null||!Boolean.TRUE.equals(nativeEvidence.get("targetVisible")))return Collections.emptyList();
-            check(nativeEvidence);
-            Long seen=numberOrNull(nativeEvidence,"targetObservedAtGameTimeMs");
-            if(seen==null||seen.longValue()<(long)n(enemies,"gameTimeMs"))return Collections.emptyList();
-            if(nativeEvidence.get("targetX") instanceof Number&&distance(target,n(nativeEvidence,"targetX"),n(nativeEvidence,"targetY"))>160)
-                return Collections.emptyList();
-            Set<Long> known=new HashSet<Long>();
-            for(Map<String,Object> a:list(nativeEvidence,"actors"))if("COMPATIBLE".equals(a.get("compatibility"))
-                    &&"APPROACH_PATH_KNOWN".equals(a.get("status")))known.add((long)n(a,"unitId"));
             List<Map<String,Object>> next=new ArrayList<Map<String,Object>>();
-            for(Map<String,Object> u:result)if(known.contains(id(u)))next.add(u);
+            for(int offset=0;offset<result.size();offset+=48){
+                List<Map<String,Object>> chunk=result.subList(offset,Math.min(offset+48,result.size()));
+                StringBuilder ids=new StringBuilder();for(Map<String,Object> u:chunk){if(ids.length()>0)ids.append(',');ids.append(id(u));}
+                Map<String,Object> evidence=optionalGet("/combat/engagement?unitIds="+ids+"&targetId="+id(target),"local_crisis_engagement");
+                if(evidence==null||!Boolean.TRUE.equals(evidence.get("targetVisible")))continue;
+                check(evidence);Long seen=numberOrNull(evidence,"targetObservedAtGameTimeMs");
+                if(seen==null||seen<(long)n(enemies,"gameTimeMs"))continue;
+                if(evidence.get("targetX") instanceof Number&&distance(target,n(evidence,"targetX"),n(evidence,"targetY"))>160)continue;
+                Set<Long> known=new HashSet<Long>();for(Map<String,Object> actor:list(evidence,"actors"))
+                    if("COMPATIBLE".equals(actor.get("compatibility"))&&"APPROACH_PATH_KNOWN".equals(actor.get("status")))known.add((long)n(actor,"unitId"));
+                for(Map<String,Object> actor:chunk)if(known.contains(id(actor)))next.add(actor);
+            }
             result=next;if(result.isEmpty())return result;
         }
         return result;
@@ -3346,6 +3431,7 @@ public final class BattleClient implements StrategyDirector.Host {
         // production chain here: one ready extractor, then the first land factory. The old mine-floor
         // and second+ factory capacity policy resumes unchanged once a producer exists.
         if(factories==0){
+            if(g5Enabled){planProductionFacility(state,mines);return;}
             if(mines<1){planResourcePoint(state,mines,false);return;}
             planProductionFacility(state,mines);return;
         }
@@ -4468,6 +4554,7 @@ public final class BattleClient implements StrategyDirector.Host {
         long frame=((Number)s.get("frame")).longValue();if(frame<lastFrame)throw new IllegalStateException("Frame went backwards");
         if(frame!=lastFrame){lastFrame=frame;frameAt=System.nanoTime();}else if((System.nanoTime()-frameAt)/1e9>30)throw new IllegalStateException("No advancing frames for 30 seconds");
         time=((Number)s.get("gameTimeMs")).longValue();
+        if(runtime!=null)runtime.sample(time);
         // Speed readiness (对话35): the largest game-time step between two observations is the honest
         // measure of how coarse the client's view of the world became as the game speed rose.
         if(lastObservedGameTime>=0){
@@ -4666,7 +4753,9 @@ public final class BattleClient implements StrategyDirector.Host {
                 String requestId=UUID.randomUUID().toString(),requestPath=path+"&sessionId="+session+"&requestId="+requestId;
                 event("action",json(StrategyDirector.map("path",requestPath,"gameTimeMs",time,"owner",owner,"observationFrame",stamp.frame)));
                 AgentClient.Response response;
-                try{response=AgentClient.request("POST","http://127.0.0.1:"+port+requestPath);}
+                long dispatchStarted=System.nanoTime();
+                try{response=AgentClient.request("POST","http://127.0.0.1:"+port+requestPath);
+                    if(runtime!=null)runtime.dispatch(System.nanoTime()-dispatchStarted,response.status==200&&"queued".equals(traceReceiptBody(response.body).get("status")));}
                 catch(Exception failure){safeTraceEvent("g1_command_transport_failure",span,"TRANSPORT_FAILURE",StrategyDirector.map("exceptionType",failure.getClass().getName()));throw failure;}
                 context.put("nativeHttpStatus",response.status);
                 if(response.status==409){if(span!=null)trace.rememberReceipt(span,requestId,traceReceiptBody(response.body));event("command_rejected",json(StrategyDirector.map("status",409,"body",response.body)));return StrategyDirector.map("status","rejected","nativeHttpStatus",409);}
@@ -4699,9 +4788,13 @@ public final class BattleClient implements StrategyDirector.Host {
     private Map<String,Object> optionalGet(String path,String kind)throws Exception{
         long sampleStarted=System.nanoTime();
         worldReadPayload=null;worldReadObservation=null;
+        if(runtime!=null){RuntimeAcceleration.CachedRead cached=runtime.cached(path);if(cached!=null){
+            worldReadPayload=cached.payload;worldReadObservation=cached.observation;return cached.payload;}}
         long requestedWallTimeMs=System.currentTimeMillis();
-        AgentClient.Response r=AgentClient.request("GET","http://127.0.0.1:"+port+path);
-        long receivedWallTimeMs=System.currentTimeMillis();
+        RuntimeAcceleration.Read read=runtime==null?null:runtime.fetch(path);
+        AgentClient.Response r=read==null?AgentClient.request("GET","http://127.0.0.1:"+port+path):read.response;
+        long receivedWallTimeMs=read==null?System.currentTimeMillis():read.receivedWallMs;
+        if(read!=null)requestedWallTimeMs=read.requestedWallMs;
         if(r.status==409){event("plan_unavailable","{\"path\":"+Json.quote(path)+",\"body\":"+Json.quote(r.body)+"}");return null;}
         if(r.status!=200)throw new IllegalStateException("GET HTTP "+r.status+": "+r.body);
         // Preserve legacy logging/parse-failure ordering while parsing successful payloads once.
@@ -4719,7 +4812,8 @@ public final class BattleClient implements StrategyDirector.Host {
         if((worldStateEnabled||g3ExecutionEnabled)&&parsed!=null){worldReadPayload=parsed;worldReadObservation=readObservation;}
         if("/state".equals(path))stateObservation=readObservation;
         if(g3ExecutionEnabled){samplingCalls++;samplingNanos+=System.nanoTime()-sampleStarted;}
-        if(parseFailure!=null)throw parseFailure;return parsed;
+        if(parseFailure!=null)throw parseFailure;
+        if(runtime!=null)runtime.remember(path,parsed,readObservation);return parsed;
     }
     /** Consume only a GET packet that reached its existing caller's validation point.
      * Optional reads without that validation remain outside the G2 world.
@@ -4745,7 +4839,7 @@ public final class BattleClient implements StrategyDirector.Host {
         long wall=System.currentTimeMillis();
         String phase="OBSERVED".equals(data.get("evidenceLevel"))?"OBSERVATION":"DERIVED_STATE";
         log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+json(data)
-                +",\"trace\":"+json(trace.event(kind,wall,observation,null,phase,data))+"}\n");log.flush();
+                +",\"trace\":"+json(trace.event(kind,wall,observation,null,phase,data))+"}\n");if(!adaptiveRuntime)log.flush();
     }
     private Map<String,Object> get(String path,String kind)throws Exception{Map<String,Object> r=optionalGet(path,kind);if(r==null)throw new IllegalStateException("Unavailable "+path);return r;}
     private void event(String kind,String data)throws Exception{
@@ -4757,7 +4851,7 @@ public final class BattleClient implements StrategyDirector.Host {
                     ("command_result".equals(kind)||"command_rejected".equals(kind)?"NATIVE_RECEIPT":"COMMAND_ATTEMPT"):tracePhase;
             metadata=",\"trace\":"+json(trace.event(kind,wall,traceObservation!=null?traceObservation:gameClock.latestState(),activeTraceCommand,phase,traceContext));
         }
-        log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+data+metadata+"}\n");log.flush();
+        log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+data+metadata+"}\n");if(!adaptiveRuntime)log.flush();
     }
     private void traceEvent(String kind,G1Trace.CommandSpan command,String phase,Map<String,Object> data)throws Exception{
         if(!traceEnabled)return;
@@ -4766,7 +4860,7 @@ public final class BattleClient implements StrategyDirector.Host {
         try{
             long wall=System.currentTimeMillis();
             log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote(kind)+",\"data\":"+json(data)
-                    +",\"trace\":"+json(trace.event(kind,wall,gameClock.latestState(),command,phase,data))+"}\n");log.flush();
+                    +",\"trace\":"+json(trace.event(kind,wall,gameClock.latestState(),command,phase,data))+"}\n");if(!adaptiveRuntime)log.flush();
         }finally{activeTraceCommand=previous;traceContext=previousContext;tracePhase=previousPhase;}
     }
     private static Map<String,Object> traceReceiptBody(String body){
@@ -4826,7 +4920,7 @@ public final class BattleClient implements StrategyDirector.Host {
         try{
             long wall=System.currentTimeMillis();
             log.write("{\"wallTimeMs\":"+wall+",\"event\":"+Json.quote("g1_strategy_"+kind)+",\"data\":"+json(data)
-                    +",\"trace\":"+json(trace.event("g1_strategy_"+kind,wall,observation,command,kind.contains("witness")?"LATER_WITNESS":"EXISTING_STRATEGY_EVIDENCE",context))+"}\n");log.flush();
+                    +",\"trace\":"+json(trace.event("g1_strategy_"+kind,wall,observation,command,kind.contains("witness")?"LATER_WITNESS":"EXISTING_STRATEGY_EVIDENCE",context))+"}\n");if(!adaptiveRuntime)log.flush();
         }catch(Exception failure){recordTraceFailure(failure);}
     }
     static String json(Object v){

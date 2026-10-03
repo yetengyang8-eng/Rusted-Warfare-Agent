@@ -37,8 +37,14 @@ public final class ForceController {
     private final Host host;
     private static final long ORDER_INTERVAL_MS=8000;
     private final Map<Long,Long> generalAccepted=new HashMap<Long,Long>(),joinAccepted=new HashMap<Long,Long>(),responseClearedFrame=new HashMap<Long,Long>();
+    private final Map<Long,JoinReceiptTarget> joinReceiptTargets=new HashMap<Long,JoinReceiptTarget>();
+    private static final class JoinReceiptTarget {
+        final GeneralRegistry.GeneralId general;final long generation;final double x,y;final String source;
+        JoinReceiptTarget(GeneralRegistry.UnitView unit,double x,double y,String source){general=unit.reservedGeneralId;generation=unit.ownerGeneration;this.x=x;this.y=y;this.source=source;}
+    }
     private final Map<Long,Long> screenAccepted=new HashMap<Long,Long>();
     private ExpansionSupport expansionSupport;
+    private GeneralCombatDirector generalCombatDirector;
     private Response response;
     private long responseSequence;
     private static final class Response {
@@ -49,6 +55,8 @@ public final class ForceController {
     }
     public ForceController(GeneralRegistry registry,Host host){if(registry==null||host==null)throw new IllegalArgumentException("Registry and host required");this.registry=registry;this.host=host;}
     public void setExpansionSupport(ExpansionSupport support){expansionSupport=support;}
+    /** G5 replaces ordinary General decisions only; null retains the validated G4 lane. */
+    public void setGeneralCombatDirector(GeneralCombatDirector director){generalCombatDirector=director;}
     public void clearExpansionSupport(){expansionSupport=null;}
     /** Root may call this before its formal replenishment allocator; collect also reconciles idempotently. */
     public void reconcile(Map<String,Object> state,Map<String,Object> enemies,long now){
@@ -63,7 +71,7 @@ public final class ForceController {
         reconcile(state,enemies,now);
         collectLocalResponse(state,enemies,now);
         collectJoining(state,now);
-        collectGenerals(state,enemies,now);
+        if(generalCombatDirector==null)collectGenerals(state,enemies,now);else generalCombatDirector.collect(state,enemies,now);
         collectFormingScreens(state,now);
         // FREE movement is deliberately absent without a lawful, useful home-resource route.
     }
@@ -82,6 +90,7 @@ public final class ForceController {
             List<Map<String,Object>> available=new ArrayList<Map<String,Object>>();
             for(GeneralRegistry.UnitView unit:registry.units())if(unit.membership!=GeneralRegistry.Membership.JOINING
                     &&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE&&unit.healthRole==GeneralRegistry.HealthRole.NORMAL
+                    &&(generalCombatDirector==null||unit.generalId==null||!generalCombatDirector.retreating(unit.generalId))
                     &&unit.externalOwner==null&&!Objects.equals(responseClearedFrame.get(unit.unitId),GameClock.number(state.get("frame")))){Map<String,Object> own=find(state,unit.unitId);if(ready(own)&&number(own,"hp")>=number(own,"maxHp")*.5)available.add(own);}
             if(available.isEmpty())return;
             List<Map<String,Object>> compatible=available;
@@ -126,12 +135,23 @@ public final class ForceController {
             final GeneralRegistry.UnitView unit=registry.unit(initial.unitId);
             if(unit==null||unit.membership!=GeneralRegistry.Membership.JOINING||unit.reservedGeneralId==null)continue;
             GeneralRegistry.GeneralView general=registry.general(unit.reservedGeneralId);Map<String,Object> own=find(state,unit.unitId);
-            if(general==null||!general.joinTargetKnown||general.phase==GeneralRegistry.Phase.ACTIVE&&general.centroidFrame!=frame||!ready(own)||now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
-            if(unit.joinAcceptedFrame>=0&&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-general.joinTargetX,number(own,"orderY")-general.joinTargetY)<1)continue;
+            Map<String,Object> target=registry.joiningTarget(unit.reservedGeneralId,state);
+            if(general==null||!Boolean.TRUE.equals(target.get("known"))||!ready(own))continue;
+            final double targetX=number(target,"x"),targetY=number(target,"y");
+            final String targetSource=(String)target.get("source");final JoinReceiptTarget prior=joinReceiptTargets.get(unit.unitId);
+            boolean urgentRedirect="CURRENT_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN".equals(targetSource)
+                    &&(prior==null||prior.generation!=unit.ownerGeneration||!unit.reservedGeneralId.equals(prior.general)
+                    ||!targetSource.equals(prior.source)||Math.hypot(prior.x-targetX,prior.y-targetY)>=1);
+            if(!urgentRedirect&&now-last(joinAccepted,unit.unitId)<ORDER_INTERVAL_MS)continue;
+            if(unit.joinAcceptedFrame>=0&&"move".equals(own.get("orderType"))&&Math.hypot(number(own,"orderX")-targetX,number(own,"orderY")-targetY)<1)continue;
             List<Long> ids=Collections.singletonList(unit.unitId);
-            host.collect(new Proposal(unit.owner,ids,"/command/move?unitId="+unit.unitId+"&x="+general.joinTargetX+"&y="+general.joinTargetY,"JOINING",50,
-                general.phase==GeneralRegistry.Phase.FORMING?"MOVE_TO_FORMATION_OWN_ANCHOR":"MOVE_TO_CURRENT_GENERAL_CENTROID",
-                receipt->{Long actualFrame=GameClock.number(receipt.get("frame"));if(actualFrame!=null&&actualFrame>=frame&&registry.joinAccepted(unit.unitId,actualFrame))joinAccepted.put(unit.unitId,now);}));
+            host.collect(new Proposal(unit.owner,ids,"/command/move?unitId="+unit.unitId+"&x="+targetX+"&y="+targetY,"JOINING",50,
+                "CURRENT_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN".equals(target.get("source"))?"MOVE_TO_HOME_SIDE_RALLY_DYNAMIC_UNKNOWN":general.phase==GeneralRegistry.Phase.FORMING?"MOVE_TO_FORMATION_OWN_ANCHOR":"MOVE_TO_CURRENT_GENERAL_CENTROID",
+                receipt->{Long actualFrame=GameClock.number(receipt.get("frame"));GeneralRegistry.UnitView current=registry.unit(unit.unitId);
+                    if(actualFrame!=null&&actualFrame>=frame&&current!=null&&current.ownerGeneration==unit.ownerGeneration&&current.owner.equals(unit.owner)
+                            &&Objects.equals(current.reservedGeneralId,unit.reservedGeneralId)&&registry.joinAccepted(unit.unitId,actualFrame)){
+                        Long actualTime=GameClock.number(receipt.get("gameTimeMs"));joinAccepted.put(unit.unitId,actualTime!=null&&actualTime>=now?actualTime:now);
+                        joinReceiptTargets.put(unit.unitId,new JoinReceiptTarget(unit,targetX,targetY,targetSource));}}));
         }
     }
     private void collectGenerals(Map<String,Object> state,Map<String,Object> enemies,long now)throws Exception{
@@ -166,6 +186,7 @@ public final class ForceController {
         final ExpansionSupport support=expansionSupport;if(support==null)return;
         for(final GeneralRegistry.GeneralView general:registry.generals()){
             if(general.phase!=GeneralRegistry.Phase.FORMING)continue;
+            if(generalCombatDirector!=null&&generalCombatDirector.retreating(general.id))continue;
             for(final Long actor:general.members){GeneralRegistry.UnitView unit=registry.unit(actor);Map<String,Object> own=find(state,actor);
                 if(unit!=null&&unit.membership==GeneralRegistry.Membership.ATTACHED&&unit.temporaryTask==GeneralRegistry.TemporaryTask.NONE
                         &&unit.healthRole==GeneralRegistry.HealthRole.NORMAL&&unit.externalOwner==null&&general.owner.equals(unit.owner)

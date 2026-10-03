@@ -42,6 +42,7 @@ class G4RuntimeTests(unittest.TestCase):
             command = list(command)
             if command and pathlib.Path(command[0]).stem.lower() == 'java':
                 command[1:1] = ['-Drwagent.g3Execution=true', '-Drwagent.g4Forces=true',
+                    '-Drwagent.g5=false',
                     '-Drwagent.earlyOperations=false',
                     '-Drwagent.g1Trace=' + str(trace).lower(), '-Drwagent.globalStrategy=false']
             result = original_run(command, *args, **kwargs)
